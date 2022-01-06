@@ -1,9 +1,10 @@
 import React from "react";
+import TopTab from "../components/TopTab/TopTab";
 
 const Lands = () => {
   return (
     <>
-      <div>hello</div>
+      <TopTab />
     </>
   );
 };

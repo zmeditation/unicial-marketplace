@@ -1,7 +1,7 @@
 import React from "react";
 import { HeaderStyle, StyledHeaderBtn } from "./HeaderStyle";
 import logo_svg from "./../../assets/svg/logo.svg";
-export default function Layout() {
+export default function Header() {
   const classes = HeaderStyle();
   const [head_index, setHeaderIndex] = React.useState(1);
   const handleMarketPlace = () => {
@@ -33,11 +33,37 @@ export default function Layout() {
               </a>
 
               <StyledHeaderBtn
-                // disabled={head_index === 1}
+                disabled={head_index === 1}
                 onClick={handleMarketPlace}
               >
                 Marketplace
               </StyledHeaderBtn>
+              <StyledHeaderBtn
+                disabled={head_index === 2}
+                onClick={handleBuilder}
+              >
+                Builder
+              </StyledHeaderBtn>
+              <StyledHeaderBtn disabled={head_index === 3} onClick={handleDocs}>
+                Docs
+              </StyledHeaderBtn>
+              <StyledHeaderBtn
+                disabled={head_index === 4}
+                onClick={handleEvents}
+              >
+                Events
+              </StyledHeaderBtn>
+              <StyledHeaderBtn disabled={head_index === 5} onClick={handleDAO}>
+                DAO
+              </StyledHeaderBtn>
+              <StyledHeaderBtn disabled={head_index === 6} onClick={handleBlog}>
+                Blog
+              </StyledHeaderBtn>
+            </div>
+          </div>
+          <div className={classes.account_root}>
+            <div className={classes.account_container}>
+              <a className={classes.signinbtn}>Sign in</a>
             </div>
           </div>
         </div>
