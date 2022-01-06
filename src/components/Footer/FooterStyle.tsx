@@ -7,7 +7,6 @@ export const FooterStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       marginTop: "0px",
-      paddingTop: "96px",
       width: "100%",
       backgroundColor: "#18141a",
     },

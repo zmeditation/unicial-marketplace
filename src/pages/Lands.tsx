@@ -8,7 +8,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minHeight: "calc(100vh - 186px)",
+    minHeight: "calc(100vh - 246px)",
     // display: "inline-block",
   },
 }));
@@ -23,6 +23,7 @@ const Lands: React.FC = () => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [estateid, setEstateid] = useState(null);
+  const [height, setHeight] = useState(0);
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
@@ -64,6 +65,12 @@ const Lands: React.FC = () => {
     },
     [estateid, tiles]
   );
+
+  const handleHidePopup = useCallback(() => {
+    // setShowPopup(false);
+    setMouseX(-1);
+    setMouseY(-1);
+  }, []);
 
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
@@ -127,10 +134,11 @@ const Lands: React.FC = () => {
     if (window) {
       fetchTiles().then((_tiles: any) => setTiles(_tiles));
     }
+    setHeight(window.innerHeight - 250);
   }, []);
 
   return (
-    <>
+    <div onMouseLeave={handleHidePopup}>
       <div>
         <SearchBar />
       </div>
@@ -140,6 +148,7 @@ const Lands: React.FC = () => {
           layers={[selectedStrokeLayer, selectedFillLayer]}
           onHover={handleHover}
           onClick={handleClick}
+          height={height}
         />
         {hoveredTile ? (
           <Popup
@@ -151,7 +160,7 @@ const Lands: React.FC = () => {
           />
         ) : null}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -6,8 +6,6 @@ export default function TopTab() {
   const classes = TopTabStyle();
   const location = useLocation();
 
-  console.log(location.pathname);
-
   const [toptab_index, setToptabIndex] = React.useState(1);
   const handleLand = () => {
     setToptabIndex(1);

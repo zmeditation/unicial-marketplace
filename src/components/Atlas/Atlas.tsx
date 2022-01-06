@@ -22,10 +22,11 @@ interface AtlasProps {
   tiles?: Record<string, AtlasTile>;
   onHover?: any;
   onClick?: any;
+  height?: number;
 }
 
 export const Atlas = (props: AtlasProps) => {
-  const { layers, tiles, ...rest } = props;
+  const { layers, tiles, height, ...rest } = props;
   const classes = "dcl atlas ";
 
   const COLOR_BY_TYPE: any = Object.freeze({
@@ -68,7 +69,7 @@ export const Atlas = (props: AtlasProps) => {
       className={classes.trim()}
       layers={[layer, ...layers]}
       size={1}
-      height={500}
+      height={height}
     />
   );
 };

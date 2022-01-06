@@ -26,6 +26,11 @@
   font-weight: 600;
 }
 
+.name-row {
+  display: flex !important;
+  align-items: center;
+}
+
 .AtlasPopup .coordinates {
   font-size: 12px !important;
   line-height: 13px !important;
@@ -33,6 +38,10 @@
   margin-left: 8px;
   height: 24px !important;
   font-weight: 500 !important;
+  display: flex;
+  align-items: center;
+  background-color: #3d3a46;
+  border-radius: 8px;
 }
 
 .AtlasPopup .dcl.section.medium:last-child {
@@ -49,4 +58,22 @@
 
 .AtlasPopup.no-owner .land-name {
   margin-bottom: 0px;
+}
+
+.owner-price-title {
+  color: #676370;
+  font-size: 13px;
+  font-weight: 400;
+  margin-top: 20px;
+}
+
+.address-content {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.address-img {
+  width: 20px;
+  margin-right: 10px;
 }

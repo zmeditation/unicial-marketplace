@@ -2,6 +2,7 @@ import * as React from "react";
 import Coordinate from "../../Coordinate/Coordinate";
 import { Props } from "./Popup.types";
 import "./Popup.css";
+import makeBlockie from "ethereum-blockies-base64";
 
 export default class Popup extends React.PureComponent<Props> {
   render() {
@@ -17,21 +18,31 @@ export default class Popup extends React.PureComponent<Props> {
         <div className="land-name">
           <div className="name-row">
             <span className="name">
-              {tile.name || (!isEstate ? "global.parcel" : "global.estate")}
+              {tile.name || (!isEstate ? "Parcel" : "Estate")}
             </span>
             <Coordinate className="coordinates" x={tile.x} y={tile.y} />
           </div>
         </div>
 
         <div className="owner">
-          <div>{"owner"}</div>
-          <div>{tile.owner}</div>
+          <div className={"owner-price-title"}>OWNER</div>
+          <div
+            className={"address-content"}
+            style={{ overflowWrap: "break-word" }}
+          >
+            <img
+              src={tile.owner && makeBlockie(tile.owner)}
+              className={"address-img"}
+              alt="A"
+            />
+            {tile?.owner?.slice(0, 6)}
+          </div>
         </div>
 
         {tile.price ? (
           <div className="price">
-            <div>{"price"}</div>
-            <div>{tile.price.toLocaleString()}</div>
+            <div className={"owner-price-title"}>PRICE</div>
+            <div>{tile?.price.toLocaleString()}</div>
           </div>
         ) : null}
       </div>

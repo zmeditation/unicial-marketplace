@@ -4,7 +4,7 @@ import { makeStyles, withStyles } from "@material-ui/styles";
 export const MarketPlaceStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      height: "420px",
+      height: "calc(100vh - 250px)",
       display: "flex",
       flexFlow: "column nowrap",
       justifyContent: "center",
