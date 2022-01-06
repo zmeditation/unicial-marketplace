@@ -15,18 +15,3 @@ export const HeaderMobileMenuStyle = makeStyles((theme: Theme) =>
     },
   })
 );
-
-export const StyledHeaderAccordion = withStyles({
-  root: {
-    backgroundColor: "#242129",
-    "&:hover": {
-      color: "#fff",
-      cursor: "pointer",
-    },
-    "&.Mui-disabled": {
-      fontWeight: 700,
-      color: "#ffffff",
-      cursor: "pointer",
-    },
-  },
-})(Accordion);
