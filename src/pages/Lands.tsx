@@ -65,14 +65,14 @@ const Lands: React.FC = () => {
   );
 
   const selectedStrokeLayer: Layer = useCallback(
-    (x, y) => {
+    (x: any, y: any) => {
       return isSelected(x, y) ? { color: "#ff0044", scale: 1.4 } : null;
     },
     [isSelected]
   );
 
   const selectedFillLayer: Layer = useCallback(
-    (x, y) => {
+    (x: any, y: any) => {
       return isSelected(x, y) ? { color: "#ff9990", scale: 1.2 } : null;
     },
     [isSelected]
