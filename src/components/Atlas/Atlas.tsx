@@ -67,8 +67,6 @@ export const Atlas = (props: AtlasProps) => {
       {...rest}
       className={classes.trim()}
       layers={[layer, ...layers]}
-      initialX={10}
-      initialY={20}
       size={1}
       height={500}
     />

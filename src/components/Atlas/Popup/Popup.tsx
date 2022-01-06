@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Address } from "web3x/address";
 import Coordinate from "../../Coordinate/Coordinate";
 import { Props } from "./Popup.types";
 import "./Popup.css";
@@ -27,10 +26,6 @@ export default class Popup extends React.PureComponent<Props> {
         <div className="owner">
           <div>{"owner"}</div>
           <div>{tile.owner}</div>
-          {/* <Profile
-            address={tile.owner || Address.ZERO.toString()}
-            debounce={500}
-          /> */}
         </div>
 
         {tile.price ? (
