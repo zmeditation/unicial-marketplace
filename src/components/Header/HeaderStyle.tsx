@@ -3,15 +3,6 @@ import { makeStyles, withStyles } from "@material-ui/styles";
 import { Button } from "@material-ui/core";
 export const HeaderStyle = makeStyles((theme: Theme) =>
   createStyles({
-    // root: {
-    //   margin: "48px 0px",
-    //   padding: "0px 24px",
-    //   width: "100%",
-    //   [theme.breakpoints.down(760)]: {
-    //     margin: "48px 0px 48px 0px",
-    //     padding: "0px 16px 0px 16px",
-    //   },
-    // },
     root: {
       marginTop: "0px",
       borderBottom: "none",
@@ -47,6 +38,20 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       border: "none",
       boxShadow: "none",
       display: "flex",
+      [theme.breakpoints.down(768)]: {
+        display: "none",
+      },
+    },
+    header_mobilemenu: {
+      display: "none",
+
+      [theme.breakpoints.down(768)]: {
+        display: "block",
+        position: "absolute",
+        top: "-30px",
+        left: "-16px",
+        zIndex: 5,
+      },
     },
     logo: {
       cursor: "pointer",

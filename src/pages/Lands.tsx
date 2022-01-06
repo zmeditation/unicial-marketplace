@@ -1,3 +1,4 @@
+import SearchBar from "../components/SearchBar/SearchBar";
 import React, { useCallback, useEffect, useState, useMemo } from "react";
 import { Atlas, Layer, Coord } from "../components/Atlas/Atlas";
 import { Tile } from "../components/Atlas/Atlas.types";
@@ -129,23 +130,28 @@ const Lands: React.FC = () => {
   }, []);
 
   return (
-    <div className={classes.root}>
-      <Atlas
-        tiles={tiles}
-        layers={[selectedStrokeLayer, selectedFillLayer]}
-        onHover={handleHover}
-        onClick={handleClick}
-      />
-      {hoveredTile ? (
-        <Popup
-          x={x}
-          y={y}
-          visible={showPopup}
-          tile={hoveredTile}
-          position={x > window.innerWidth - 280 ? "left" : "right"}
+    <>
+      <div>
+        <SearchBar />
+      </div>
+      <div className={classes.root}>
+        <Atlas
+          tiles={tiles}
+          layers={[selectedStrokeLayer, selectedFillLayer]}
+          onHover={handleHover}
+          onClick={handleClick}
         />
-      ) : null}
-    </div>
+        {hoveredTile ? (
+          <Popup
+            x={x}
+            y={y}
+            visible={showPopup}
+            tile={hoveredTile}
+            position={x > window.innerWidth - 280 ? "left" : "right"}
+          />
+        ) : null}
+      </div>
+    </>
   );
 };
 
