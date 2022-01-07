@@ -19,7 +19,8 @@ import IconButton from "@material-ui/core/IconButton";
 // import SearchIcon from "@material-ui/icons/Search";
 const PurpleSwitch = withStyles({
   root: {
-    height: "35px",
+    height: "36px",
+    width: "55px",
   },
   switchBase: {
     color: "#ff2d55",

@@ -14,6 +14,7 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
       background: "#16141abf",
       backdropFilter: "blur(20)",
       zIndex: 1,
+      display: "flex",
       //   [theme.breakpoints.down(769)]: {
       //     marginTop: "22px",
       //     marginBottom: "22px",
@@ -90,7 +91,7 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
       "& .MuiSwitch-thumb": {
         width: "12px",
         height: "12px",
-        marginTop: "2px",
+        marginTop: "3px",
         marginLeft: "3px",
       },
     },

@@ -22,9 +22,14 @@ const useStyles = makeStyles((theme: Theme) =>
       maxWidth: 360,
       // backgroundColor: theme.palette.background.paper,
       color: "white",
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
-      fontSize: "13px",
+
+      "& .MuiTypography-root": {
+        fontFamily:
+          '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+        fontWeight: 700,
+        color: "#ffffff",
+        cursor: "pointer",
+      },
     },
     nested: {
       paddingLeft: theme.spacing(4),
@@ -57,8 +62,7 @@ export default function HeaderMobileMenu() {
         <ListItemIcon>
           <img src={logo_svg} className={classes.logo} alt="symbol" />
         </ListItemIcon>
-        {/* <div>uiui</div> */}
-        <ListItemText primary="Marketplace" />
+        <ListItemText primary="MARKETPLACE" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse
