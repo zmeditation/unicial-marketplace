@@ -25,14 +25,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface ButtonProps {
   children: React.ReactNode;
+  onClick: () => void;
 }
 
-const ActionButton = ({ children }: ButtonProps) => {
+const ActionButton = ({ children, onClick }: ButtonProps) => {
   const classes = useStyles();
 
   return (
     <>
-      <div className={classes.root}>{children}</div>
+      <div className={classes.root} onClick={onClick}>
+        {children}
+      </div>
     </>
   );
 };

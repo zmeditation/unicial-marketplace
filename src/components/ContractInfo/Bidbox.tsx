@@ -1,7 +1,7 @@
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import Button from "../Base/Button";
 import ActionButton from "../Base/ActionButton";
+import { useNavigate } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -30,11 +30,13 @@ interface BidboxProps {}
 
 const Bidbox: React.FC = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
   return (
     <div className={classes.root}>
       <div className={classes.title}>network</div>
       <div className={classes.subtitle}>Ethereum</div>
-      <ActionButton>BID</ActionButton>
+      <ActionButton onClick={() => navigate("bid")}>BID</ActionButton>
     </div>
   );
 };
