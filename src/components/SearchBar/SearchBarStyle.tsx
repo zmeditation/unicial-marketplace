@@ -128,11 +128,27 @@ export const StyledFormControlLabel = withStyles({
   },
 })(FormControlLabel);
 
-export const StyledButton = withStyles({
+export const StyledTableButton = withStyles({
   root: {
     // backgroundColor: "#504c58",
     backgroundColor: "#4c4a57",
-    borderRadius: "5px",
+    borderRadius: "5px 0px 0px 5px",
+    padding: "7px 11px",
+    minWidth: "35px",
+    "&.Mui-disabled": {
+      backgroundColor: "#333842 !important",
+      "& svg": {
+        fill: "#ff2d55",
+      },
+    },
+  },
+})(Button);
+
+export const StyledLocationButton = withStyles({
+  root: {
+    // backgroundColor: "#504c58",
+    backgroundColor: "#4c4a57",
+    borderRadius: "0px 5px 5px 0px",
     padding: "7px 11px",
     minWidth: "35px",
     "&.Mui-disabled": {

@@ -108,3 +108,27 @@ export const StyledHeaderBtn = withStyles({
     },
   },
 })(Button);
+
+export const StyledSignInBtn = withStyles({
+  root: {
+    fontWeight: 400,
+    color: "#676370",
+    borderRadius: "6px",
+    textTransform: "uppercase",
+    fontFamily:
+      '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+    marginLeft: "24px",
+    padding: "0px",
+    fontSize: "13px",
+    lineHeight: "18px",
+    "&:hover": {
+      color: "#fff",
+      cursor: "pointer",
+    },
+    "&.Mui-disabled": {
+      fontWeight: 700,
+      color: "#ff2d55",
+      cursor: "pointer",
+    },
+  },
+})(Button);

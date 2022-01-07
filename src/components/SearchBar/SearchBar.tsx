@@ -2,7 +2,8 @@ import React from "react";
 import {
   SearchBarStyle,
   StyledFormControlLabel,
-  StyledButton,
+  StyledTableButton,
+  StyledLocationButton,
   StyledTableChartIcon,
   StyledLocationOnIcon,
   //   StyledIconButton,
@@ -95,20 +96,20 @@ export default function SearchBar() {
                 />
               </div>
               <div style={{ marginLeft: "20px" }}>
-                <StyledButton
+                <StyledTableButton
                   disabled={filter_index === 1}
                   onClick={handletable}
                 >
                   <StyledTableChartIcon />
-                </StyledButton>
+                </StyledTableButton>
 
-                <StyledButton
+                <StyledLocationButton
                   //   onChange={handlechangetest}
                   disabled={filter_index === 2}
                   onClick={handlelocation}
                 >
                   <StyledLocationOnIcon />
-                </StyledButton>
+                </StyledLocationButton>
               </div>
             </div>
           </div>

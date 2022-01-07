@@ -12,7 +12,7 @@ import SendIcon from "@material-ui/icons/Send";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import StarBorder from "@material-ui/icons/StarBorder";
-import logo_svg from "./../../../assets/svg/logo.svg";
+import logo_svg from "./../../../../assets/svg/logo.svg";
 import { HeaderMobileMenuStyle } from "./HeaderMobileMenuStyle";
 
 const useStyles = makeStyles((theme: Theme) =>

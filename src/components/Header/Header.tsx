@@ -1,6 +1,7 @@
 import React from "react";
-import { HeaderStyle, StyledHeaderBtn } from "./HeaderStyle";
-import HeaderMobileMenu from "./component/HeaderMobileMenu";
+import Typography from "@material-ui/core/Typography";
+import { HeaderStyle, StyledHeaderBtn, StyledSignInBtn } from "./HeaderStyle";
+import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import logo_svg from "./../../assets/svg/logo.svg";
 export default function Header() {
   const classes = HeaderStyle();
@@ -23,6 +24,12 @@ export default function Header() {
   const handleBlog = () => {
     setHeaderIndex(6);
   };
+
+  const [is_SignIn, setIsSignIn] = React.useState(0);
+  const handleSignIn = () => {
+    setIsSignIn(1);
+  };
+
   return (
     <>
       <div className={classes.root}>
@@ -65,11 +72,10 @@ export default function Header() {
               <HeaderMobileMenu />
             </div>
           </div>
-          <div className={classes.account_root}>
-            <div className={classes.account_container}>
-              <a className={classes.signinbtn}>Sign in</a>
-            </div>
-          </div>
+          <StyledSignInBtn disabled={is_SignIn === 1} onClick={handleSignIn}>
+            SIGN IN
+          </StyledSignInBtn>
+          {/* <div className={classes.navbar_account}></div> */}
         </div>
       </div>
     </>

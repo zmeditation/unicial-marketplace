@@ -24,19 +24,44 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       width: "1064px",
       marginLeft: "auto !important",
       marginRight: "auto !important",
-      //   marginTop: "96px",
+      marginTop: "96px",
       justifyContent: "space-between",
-
+      [theme.breakpoints.down(1204)]: {
+        height: "auto",
+        marginBottom: "48px",
+      },
+      [theme.breakpoints.down(1201)]: {
+        flexFlow: "column nowrap",
+        marginBottom: "12px",
+        // width: "1064px",
+      },
       [theme.breakpoints.down(1200)]: {
         flexFlow: "column nowrap",
+        marginBottom: "12px",
         width: "933px",
+      },
+      [theme.breakpoints.down(992)]: {
+        width: "723px",
+      },
+      [theme.breakpoints.down(769)]: {
+        margin: "48px 16px !important",
+        paddingBottom: "80px",
+      },
+      [theme.breakpoints.down(768)]: {
+        width: "auto !important",
       },
     },
     mainfooter: {
       display: "flex",
       flexFlow: "row wrap",
       justifyContent: "center",
-      height: "20px",
+      //   height: "20px",
+      [theme.breakpoints.down(1201)]: {
+        marginBottom: "12px",
+      },
+      [theme.breakpoints.down(1025)]: {
+        marginBottom: "48px",
+      },
     },
     links: {
       fontFamily:
@@ -56,10 +81,17 @@ export const FooterStyle = makeStyles((theme: Theme) =>
     secondary_footer: {
       display: "flex",
       //   height: "56px",
+      [theme.breakpoints.down(1025)]: {
+        flexFlow: "column",
+        alignItems: "center",
+      },
     },
     social_links: {
       marginRight: "24px",
       marginTop: "2px",
+      [theme.breakpoints.down(1025)]: {
+        marginBottom: "12px",
+      },
     },
     social_icon: {
       display: "inline-block",
@@ -85,6 +117,9 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       display: "inline-block",
       outline: 0,
       textAlign: "left",
+      [theme.breakpoints.down(1025)]: {
+        marginBottom: "18px",
+      },
     },
     flag_lanRoot: {
       transform: "translateY(4px)",

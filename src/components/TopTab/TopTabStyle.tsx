@@ -15,6 +15,7 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(769)]: {
         marginTop: "22px",
         marginBottom: "22px",
+        display: "contents",
       },
     },
     container: {
@@ -29,22 +30,24 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(992)]: {
         width: "723px",
       },
-      // [theme.breakpoints.down(769)]: {
-      //   marginLeft: "16px !important",
-      //   marginRight: "16px !important",
-      // },
+      [theme.breakpoints.down(769)]: {
+        marginLeft: "0px !important",
+        marginRight: "0px !important",
+        marginTop: "22px !important",
+        marginBottom: "22px !important",
+      },
     },
     tabs_left: {
-      flex: "1 0 auto",
+      //   flex: "1 0 auto",
       fontSize: "14px",
-      //   [theme.breakpoints.down(769)]: {
-      //     display: "grid",
-      //   },
+      [theme.breakpoints.down(769)]: {
+        display: "inline-grid",
+      },
     },
   })
 );
 
-export const StyledTopTabBtn = withStyles({
+export const StyledTopTabBtn = withStyles((theme) => ({
   root: {
     color: "white",
     position: "relative",
@@ -60,10 +63,28 @@ export const StyledTopTabBtn = withStyles({
     textTransform: "none",
     borderBottom: "3px solid #18141a",
     marginBottom: "-2px",
+    [theme.breakpoints.down(769)]: {
+      padding: "0px",
+      marginBottom: "6px",
+    },
     "&.Mui-disabled": {
       borderBottom: "3px solid #ff2d55",
       borderRadius: "0px",
       color: "white",
+      [theme.breakpoints.down(769)]: {
+        borderBottom: "none",
+        borderLeft: "2px solid #ff2d55",
+      },
+    },
+    "& .MuiButton-label": {
+      textAlign: "left",
+      [theme.breakpoints.down(769)]: {
+        fontWeight: 600,
+        fontSize: "15px",
+        marginRight: "32px",
+        marginBottom: "0px",
+        paddingLeft: "16px",
+      },
     },
   },
-})(Button);
+}))(Button);
