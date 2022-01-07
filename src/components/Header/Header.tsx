@@ -1,5 +1,6 @@
 import React from "react";
 import { HeaderStyle, StyledHeaderBtn } from "./HeaderStyle";
+import HeaderMobileMenu from "./component/HeaderMobileMenu";
 import logo_svg from "./../../assets/svg/logo.svg";
 export default function Header() {
   const classes = HeaderStyle();
@@ -59,6 +60,9 @@ export default function Header() {
               <StyledHeaderBtn disabled={head_index === 6} onClick={handleBlog}>
                 Blog
               </StyledHeaderBtn>
+            </div>
+            <div className={classes.header_mobilemenu}>
+              <HeaderMobileMenu />
             </div>
           </div>
           <div className={classes.account_root}>

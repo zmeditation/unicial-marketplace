@@ -49,7 +49,7 @@ export const StyledTopTabBtn = withStyles({
     color: "white",
     position: "relative",
     display: "inline-block",
-    padding: "19px 0px",
+    padding: "19px 0px 15px 0px",
     marginRight: "32px",
     fontSize: "17px",
     fontFamily:
@@ -58,6 +58,8 @@ export const StyledTopTabBtn = withStyles({
     letterSpacing: "-0.2px",
     cursor: "pointer",
     textTransform: "none",
+    borderBottom: "3px solid #18141a",
+    marginBottom: "-2px",
     "&.Mui-disabled": {
       borderBottom: "3px solid #ff2d55",
       borderRadius: "0px",

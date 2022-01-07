@@ -13,6 +13,7 @@ export const MarketPlaceStyle = makeStyles((theme: Theme) =>
       overflow: "hidden",
       padding: "64px",
       backgroundColor: " #18141a",
+      borderBottom: "1px solid #67637033",
     },
     itemContainer: {
       width: "1064px",

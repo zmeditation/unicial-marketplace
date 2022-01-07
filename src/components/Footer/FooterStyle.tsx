@@ -7,25 +7,31 @@ export const FooterStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       marginTop: "0px",
-      display: "flex",
+      paddingTop: "96px",
+      width: "100%",
+      backgroundColor: "#18141a",
+    },
+    cotainer: {
       flexFlow: "row nowrap",
 
       alignItems: "center",
-      width: "100%",
       maxWidth: "100% !important",
       height: "56px",
 
-      backgroundColor: "#18141a",
       fontFamily:
         'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-    },
-    cotainer: {
+      //
       display: "flex",
       width: "1064px",
       marginLeft: "auto !important",
       marginRight: "auto !important",
+      //   marginTop: "96px",
       justifyContent: "space-between",
-      alignItems: "center",
+
+      [theme.breakpoints.down(1200)]: {
+        flexFlow: "column nowrap",
+        width: "933px",
+      },
     },
     mainfooter: {
       display: "flex",
