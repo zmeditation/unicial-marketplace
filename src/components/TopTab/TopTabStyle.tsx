@@ -49,7 +49,6 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
 
 export const StyledTopTabBtn = withStyles((theme) => ({
   root: {
-    minWidth: "0px",
     color: "white",
     position: "relative",
     display: "inline-block",
