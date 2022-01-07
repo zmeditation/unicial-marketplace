@@ -1,10 +1,28 @@
 import React, { useCallback, useEffect, useState, useMemo } from "react";
-import { Atlas, Layer, Coord } from "../components/Atlas/Atlas";
-import { Tile } from "../components/Atlas/Atlas.types";
-import Popup from "../components/Atlas/Popup";
-import { fetchTiles } from "../hooks/tiles";
+import { useNavigate } from "react-router";
 
-const Test: React.FC = () => {
+import { Atlas, Layer, Coord } from "../Atlas/Atlas";
+import { Tile } from "../Atlas/Atlas.types";
+import Popup from "../Atlas/Popup";
+import { fetchTiles } from "../../hooks/tiles";
+import { Theme, makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) => ({}));
+
+interface LandMapProps {
+  height?: any;
+  width?: any;
+  initialX?: number;
+  initialY?: number;
+}
+
+const LandMap: React.FC<LandMapProps> = ({
+  height,
+  width,
+  initialX,
+  initialY,
+}) => {
+  const classes = useStyles();
   const [tiles, setTiles] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
@@ -13,14 +31,12 @@ const Test: React.FC = () => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [estateid, setEstateid] = useState(null);
+  let navigate = useNavigate();
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
   const handleClick = useCallback(
     async (x: number, y: number) => {
-      if (!true) {
-        return;
-      }
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
       if (!tile) {
         return;
@@ -28,10 +44,16 @@ const Test: React.FC = () => {
       if (tile.estate_id) {
         console.log("tile.estate_id", tile.estate_id);
         setEstateid(tile.estate_id);
+        navigate(
+          "/contracts/0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d/tokens/115792089237316195423570985008687907843061513658012410135556345784960083296262"
+        );
       } else {
         setEstateid(null);
         try {
           console.log("parcel");
+          navigate(
+            "/contracts/0x959e104e1a4db6317fa58f8295f586e1a978c297/tokens/735"
+          );
         } catch (error: any) {
           console.warn(
             `Couldn't fetch parcel ${tile.x},${tile.y}: ${error.message}`
@@ -55,15 +77,21 @@ const Test: React.FC = () => {
     [estateid, tiles]
   );
 
+  const handleHidePopup = useCallback(() => {
+    setShowPopup(false);
+    setMouseX(-1);
+    setMouseY(-1);
+  }, []);
+
   const selectedStrokeLayer: Layer = useCallback(
-    (x, y) => {
+    (x: any, y: any) => {
       return isSelected(x, y) ? { color: "#ff0044", scale: 1.4 } : null;
     },
     [isSelected]
   );
 
   const selectedFillLayer: Layer = useCallback(
-    (x, y) => {
+    (x: any, y: any) => {
       return isSelected(x, y) ? { color: "#ff9990", scale: 1.2 } : null;
     },
     [isSelected]
@@ -120,13 +148,16 @@ const Test: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <div>this is land market place</div>
+    <div onMouseLeave={handleHidePopup}>
       <Atlas
         tiles={tiles}
         layers={[selectedStrokeLayer, selectedFillLayer]}
         onHover={handleHover}
         onClick={handleClick}
+        height={height}
+        width={width}
+        initialX={initialX}
+        initialY={initialY}
       />
       {hoveredTile ? (
         <Popup
@@ -137,8 +168,8 @@ const Test: React.FC = () => {
           position={x > window.innerWidth - 280 ? "left" : "right"}
         />
       ) : null}
-    </>
+    </div>
   );
 };
 
-export default Test;
+export default LandMap;
