@@ -1,20 +1,10 @@
-import SearchBar from "../components/SearchBar/SearchBar";
 import React, { useCallback, useEffect, useState, useMemo } from "react";
 import { Atlas, Layer, Coord } from "../components/Atlas/Atlas";
 import { Tile } from "../components/Atlas/Atlas.types";
 import Popup from "../components/Atlas/Popup";
 import { fetchTiles } from "../hooks/tiles";
-import { Theme, makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    minHeight: "calc(100vh - 186px)",
-    // display: "inline-block",
-  },
-}));
-
-const Lands: React.FC = () => {
-  const classes = useStyles();
+const Test: React.FC = () => {
   const [tiles, setTiles] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
@@ -131,28 +121,24 @@ const Lands: React.FC = () => {
 
   return (
     <>
-      <div>
-        <SearchBar />
-      </div>
-      <div className={classes.root}>
-        <Atlas
-          tiles={tiles}
-          layers={[selectedStrokeLayer, selectedFillLayer]}
-          onHover={handleHover}
-          onClick={handleClick}
+      <div>this is land market place</div>
+      <Atlas
+        tiles={tiles}
+        layers={[selectedStrokeLayer, selectedFillLayer]}
+        onHover={handleHover}
+        onClick={handleClick}
+      />
+      {hoveredTile ? (
+        <Popup
+          x={x}
+          y={y}
+          visible={showPopup}
+          tile={hoveredTile}
+          position={x > window.innerWidth - 280 ? "left" : "right"}
         />
-        {hoveredTile ? (
-          <Popup
-            x={x}
-            y={y}
-            visible={showPopup}
-            tile={hoveredTile}
-            position={x > window.innerWidth - 280 ? "left" : "right"}
-          />
-        ) : null}
-      </div>
+      ) : null}
     </>
   );
 };
 
-export default Lands;
+export default Test;
