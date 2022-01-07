@@ -7,7 +7,7 @@ import { Box } from "@material-ui/core";
 import matic_svg from "./../../../../assets/svg/matic.svg";
 import sigin_user_svg from "./../../../../assets/svg/sigin_user.svg";
 import { HeaderSignInBarStyle, StyledRingButton } from "./HeaderSignInBarStyle";
-import { StyledMenu, StyledMenuItem } from "../../../Footer/FooterStyle";
+import { StyledPopover, StyledMenuItem } from "../../../Footer/FooterStyle";
 
 export default function HeaderSignInBar() {
   const classes = HeaderSignInBarStyle();
@@ -61,13 +61,20 @@ export default function HeaderSignInBar() {
           </Box>
 
           {/* avatar menu open */}
-          <StyledMenu
+          <StyledPopover
             id="simple-menu"
             anchorEl={anchorEl}
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleClose}
-            style={{ top: "40px" }}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
           >
             <div className={classes.account_info}>
               <div className={classes.image_container}>
@@ -76,8 +83,8 @@ export default function HeaderSignInBar() {
                   style={{ width: "100%", height: "100%" }}
                   alt="symbol"
                 />
-                <div className={classes.image_label}>Guest</div>
               </div>
+              <div className={classes.image_label}>Guest</div>
             </div>
             <StyledMenuItem onClick={handleAccount}>
               <Box className={classes.item_container}>
@@ -99,7 +106,7 @@ export default function HeaderSignInBar() {
                 <Box className={classes.item_label}>Sign Out</Box>
               </Box>
             </StyledMenuItem>
-          </StyledMenu>
+          </StyledPopover>
         </div>
       </div>
     </div>

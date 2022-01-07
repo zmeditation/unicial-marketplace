@@ -1,6 +1,5 @@
 import { createStyles, Theme, withWidth } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
-import { Button } from "@material-ui/core";
 export const HeaderStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -42,17 +41,6 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         display: "none",
       },
     },
-    // header_mobilemenu: {
-    //   display: "none",
-
-    //   [theme.breakpoints.down(768)]: {
-    //     display: "block",
-    //     position: "absolute",
-    //     top: "-30px",
-    //     left: "-16px",
-    //     zIndex: 5,
-    //   },
-    // },
     logo: {
       cursor: "pointer",
       width: "36px",
@@ -86,54 +74,58 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         cursor: "pointer",
       },
     },
-  })
-);
-
-export const StyledHeaderBtn = withStyles({
-  root: {
-    fontWeight: 400,
-    color: "#676370",
-    borderRadius: "6px",
-    textTransform: "uppercase",
-    fontFamily:
-      '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
-    marginLeft: "24px",
-    padding: "0px",
-    fontSize: "13px",
-    lineHeight: "18px",
-    minWidth: "33px",
-    "&:hover": {
-      color: "#fff",
-      cursor: "pointer",
+    headerBtn: {
+      fontWeight: 400,
+      color: "#676370",
+      borderRadius: "6px",
+      textTransform: "uppercase",
+      fontFamily:
+        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+      marginLeft: "24px",
+      padding: "0px",
+      fontSize: "13px",
+      lineHeight: "18px",
+      minWidth: "33px",
+      "&:hover": {
+        cursor: "pointer",
+      },
     },
-    "&.Mui-disabled": {
+    headerClickBtn: {
       fontWeight: 700,
       color: "#ffffff",
-      cursor: "pointer",
+      borderRadius: "6px",
+      textTransform: "uppercase",
+      fontFamily:
+        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+      marginLeft: "24px",
+      padding: "0px",
+      fontSize: "13px",
+      lineHeight: "18px",
+      minWidth: "33px",
+      "&:hover": {
+        cursor: "pointer",
+      },
     },
-  },
-})(Button);
-
-export const StyledSignInBtn = withStyles({
-  root: {
-    fontWeight: 400,
-    color: "#676370",
-    borderRadius: "6px",
-    textTransform: "uppercase",
-    fontFamily:
-      '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
-    marginLeft: "24px",
-    padding: "0px",
-    fontSize: "13px",
-    lineHeight: "18px",
-    "&:hover": {
-      color: "#fff",
-      cursor: "pointer",
+    signBtn: {
+      fontWeight: 400,
+      color: "#676370",
+      borderRadius: "6px",
+      textTransform: "uppercase",
+      fontFamily:
+        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+      marginLeft: "24px",
+      padding: "0px",
+      fontSize: "13px",
+      lineHeight: "18px",
+      "&:hover": {
+        color: "#fff",
+        cursor: "pointer",
+      },
+      "&.Mui-disabled": {
+        fontWeight: 700,
+        color: "#ff2d55",
+        cursor: "pointer",
+      },
     },
-    "&.Mui-disabled": {
-      fontWeight: 700,
-      color: "#ff2d55",
-      cursor: "pointer",
-    },
-  },
-})(Button);
+  })
+);

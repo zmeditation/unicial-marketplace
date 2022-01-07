@@ -10,18 +10,6 @@ export default function TopTab() {
   const handleLand = () => {
     setToptabIndex(1);
   };
-  const handleCollectibles = () => {
-    setToptabIndex(2);
-  };
-  const handlePartners = () => {
-    setToptabIndex(3);
-  };
-  const handleMyAssets = () => {
-    setToptabIndex(4);
-  };
-  const handleMyBids = () => {
-    setToptabIndex(5);
-  };
 
   return (
     <>
@@ -30,33 +18,22 @@ export default function TopTab() {
           <div className={classes.container}>
             <div className={classes.tabs_left}>
               <StyledTopTabBtn
+                disableRipple
                 onClick={handleLand}
                 disabled={toptab_index === 1}
               >
                 Land
               </StyledTopTabBtn>
-              <StyledTopTabBtn
-                onClick={handleCollectibles}
-                disabled={toptab_index === 2}
-              >
+              <StyledTopTabBtn disableRipple disabled={toptab_index === 2}>
                 Collectibles
               </StyledTopTabBtn>
-              <StyledTopTabBtn
-                onClick={handlePartners}
-                disabled={toptab_index === 3}
-              >
+              <StyledTopTabBtn disableRipple disabled={toptab_index === 3}>
                 Partners
               </StyledTopTabBtn>
-              <StyledTopTabBtn
-                onClick={handleMyAssets}
-                disabled={toptab_index === 4}
-              >
+              <StyledTopTabBtn disableRipple disabled={toptab_index === 4}>
                 My Assets
               </StyledTopTabBtn>
-              <StyledTopTabBtn
-                onClick={handleMyBids}
-                disabled={toptab_index === 5}
-              >
+              <StyledTopTabBtn disableRipple disabled={toptab_index === 5}>
                 My Bids
               </StyledTopTabBtn>
             </div>

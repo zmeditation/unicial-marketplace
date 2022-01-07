@@ -42,13 +42,14 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
     mana: {
       flex: "none",
       cursor: "pointer",
-      display: "inline-block",
+      display: "flex",
       margin: "0 20px 0 0",
       color: "white",
       fontSize: "13px",
       lineHeight: "18px",
       textOverflow: "ellipsis",
       overflow: "hidden",
+      textDecoration: "none",
     },
     symbol: {
       fontWeight: 700,
@@ -56,13 +57,13 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
       fontStyle: "normal",
       paddingRight: "0.3em",
       transform: "translateY(-0.06em)",
-      display: "inline-block",
+      display: "flex",
+      alignItems: "center",
       marginRight: "4px",
     },
     matic_icon: {
       width: "13px",
       height: "13px",
-      fill: "red !important",
     },
     avatar_container: {
       backgroundColor: "#37343d",

@@ -1,4 +1,10 @@
-import { createStyles, Hidden, Theme, withWidth } from "@material-ui/core";
+import {
+  createStyles,
+  Hidden,
+  Popover,
+  Theme,
+  withWidth,
+} from "@material-ui/core";
 import { Menu } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
@@ -153,6 +159,16 @@ export const StyledMenu = withStyles({
     position: "absolute",
   },
 })(Menu);
+
+export const StyledPopover = withStyles({
+  paper: {
+    backgroundColor: "#676370",
+    marginTop: "13px",
+    borderRadius: "6px",
+    position: "absolute",
+    minWidth: "180px",
+  },
+})(Popover);
 
 export const StyledMenuItem = withStyles({
   root: {
