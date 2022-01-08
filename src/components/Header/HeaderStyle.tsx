@@ -58,10 +58,10 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       width: "36px",
       height: "36px",
       marginTop: "2px",
-      [theme.breakpoints.down(769)]: {
-        width: "32px",
-        height: "32px",
-      },
+      // [theme.breakpoints.down(769)]: {
+      //   width: "32px",
+      //   height: "32px",
+      // },
     },
     account_root: {
       position: "relative",

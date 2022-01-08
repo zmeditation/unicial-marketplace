@@ -17,8 +17,8 @@ export const HeaderMobileMenuStyle = makeStyles((theme: Theme) =>
     },
     logo: {
       cursor: "pointer",
-      width: "36px",
-      height: "36px",
+      width: "32px !important",
+      height: "32px !important",
       marginTop: "2px",
     },
     collapse: {
