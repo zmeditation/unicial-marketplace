@@ -42,22 +42,26 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         display: "none",
       },
     },
-    header_mobilemenu: {
-      display: "none",
+    // header_mobilemenu: {
+    //   display: "none",
 
-      [theme.breakpoints.down(768)]: {
-        display: "block",
-        position: "absolute",
-        top: "-30px",
-        left: "-16px",
-        zIndex: 5,
-      },
-    },
+    //   [theme.breakpoints.down(768)]: {
+    //     display: "block",
+    //     position: "absolute",
+    //     top: "-30px",
+    //     left: "-16px",
+    //     zIndex: 5,
+    //   },
+    // },
     logo: {
       cursor: "pointer",
       width: "36px",
       height: "36px",
       marginTop: "2px",
+      [theme.breakpoints.down(769)]: {
+        width: "32px",
+        height: "32px",
+      },
     },
     account_root: {
       position: "relative",
@@ -97,6 +101,7 @@ export const StyledHeaderBtn = withStyles({
     padding: "0px",
     fontSize: "13px",
     lineHeight: "18px",
+    minWidth: "33px",
     "&:hover": {
       color: "#fff",
       cursor: "pointer",

@@ -6,12 +6,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
 import logo_svg from "./../../../../assets/svg/logo.svg";
 import { HeaderMobileMenuStyle } from "./HeaderMobileMenuStyle";
 
@@ -19,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: "100%",
-      maxWidth: 360,
+      // maxWidth: 360,
       // backgroundColor: theme.palette.background.paper,
       color: "white",
 
@@ -53,33 +49,32 @@ export default function HeaderMobileMenu() {
   };
 
   return (
-    <List
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      className={classes.root}
-    >
-      <ListItem button onClick={handleClick}>
-        <ListItemIcon>
-          <img src={logo_svg} className={classes.logo} alt="symbol" />
-        </ListItemIcon>
-        <ListItemText primary="MARKETPLACE" />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-      <Collapse
-        in={open}
-        timeout="auto"
-        unmountOnExit
-        className={myclasses.collapse}
+    <div className={myclasses.header_mobilemenu}>
+      <List
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        className={classes.root}
       >
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="Starred" />
-          </ListItem>
-        </List>
-      </Collapse>
-    </List>
+        <ListItem button onClick={handleClick}>
+          <ListItemIcon>
+            <img src={logo_svg} className={classes.logo} alt="symbol" />
+          </ListItemIcon>
+          <ListItemText primary="MARKETPLACE" />
+          {open ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse
+          in={open}
+          timeout="auto"
+          unmountOnExit
+          className={myclasses.collapse}
+        >
+          <List component="div" disablePadding>
+            <ListItem button className={classes.nested}>
+              <ListItemText primary="Starred" />
+            </ListItem>
+          </List>
+        </Collapse>
+      </List>
+    </div>
   );
 }

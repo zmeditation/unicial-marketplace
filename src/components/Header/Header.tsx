@@ -1,7 +1,9 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+
 import { HeaderStyle, StyledHeaderBtn, StyledSignInBtn } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
+import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
 import logo_svg from "./../../assets/svg/logo.svg";
 export default function Header() {
   const classes = HeaderStyle();
@@ -68,14 +70,14 @@ export default function Header() {
                 Blog
               </StyledHeaderBtn>
             </div>
-            <div className={classes.header_mobilemenu}>
-              <HeaderMobileMenu />
-            </div>
           </div>
-          <StyledSignInBtn disabled={is_SignIn === 1} onClick={handleSignIn}>
+          <HeaderMobileMenu />
+          {/* <StyledSignInBtn disabled={is_SignIn === 1} onClick={handleSignIn}>
             SIGN IN
-          </StyledSignInBtn>
-          {/* <div className={classes.navbar_account}></div> */}
+          </StyledSignInBtn> */}
+          <div>
+            <HeaderSignInBar />
+          </div>
         </div>
       </div>
     </>
