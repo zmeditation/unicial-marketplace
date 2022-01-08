@@ -98,7 +98,6 @@ const Contract = () => {
   const classes = useStyles();
   const { contractaddress, tokensId } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
   const [width, setWidth] = useState(0);
 
   const handleResize = () => {
@@ -122,7 +121,7 @@ const Contract = () => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
-  console.log(width);
+
   return (
     <div className={classes.root}>
       <span className={classes.backBtn} onClick={() => navigate(-1)}>
