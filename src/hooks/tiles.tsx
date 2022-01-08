@@ -1,4 +1,4 @@
-const TILES_URL = "https://api.decentraland.org/v1/tiles";
+const TILES_URL = "https://api.decentraland.org/v2/tiles";
 
 interface AtlasTile {
   x: number;
