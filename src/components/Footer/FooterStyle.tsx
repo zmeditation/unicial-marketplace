@@ -30,7 +30,6 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       width: "1064px",
       marginLeft: "auto !important",
       marginRight: "auto !important",
-      marginTop: "96px",
       justifyContent: "space-between",
       [theme.breakpoints.down(1204)]: {
         height: "auto",

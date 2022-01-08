@@ -104,6 +104,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   price_container: {
     minWidth: "400px",
+    marginBottom: "14px",
     "& .MuiFormControl-root": {
       width: "100%",
     },
@@ -115,10 +116,19 @@ const useStyles = makeStyles((theme: Theme) => ({
       paddingBottom: "15px",
     },
     "& .MuiInput-underline:before": {
+      borderBottom: "2px solid #28242b",
+    },
+    "& .MuiInput-underline:after": {
       borderBottom: "2px solid white",
     },
+    "& .MuiInput-underline:hover": {
+      borderBottom: "none",
+    },
   },
-  price_label: {
+  date_container: {
+    minWidth: "400px",
+  },
+  subheader_label: {
     color: "#676370",
     fontSize: "13px",
     lineHeight: "18px",
@@ -166,25 +176,26 @@ const Bid = () => {
           </div>
           <div className={classes.form_field}>
             <div className={classes.price_container}>
-              <div className={classes.price_label}>PRICE</div>
+              <div className={classes.subheader_label}>PRICE</div>
               {/* <div className={classes.manafield}>
                 <i className={classes.symbol}>⏣</i>
                 <div className={classes.price_value}>1000</div>
               </div> */}
               <FormControl>
-                {/* <InputLabel htmlFor="input-with-icon-adornment">
-                  With a start adornment
-                </InputLabel> */}
                 <Input
+                  placeholder="1000"
                   id="input-with-icon-adornment"
                   startAdornment={
-                    <InputAdornment position="start" placeholder="1000">
-                      {/* <AccountCircle /> */}
+                    <InputAdornment position="start">
                       <i className={classes.symbol}>⏣</i>
                     </InputAdornment>
                   }
                 />
               </FormControl>
+            </div>
+            <p>&nbsp;</p>
+            <div className={classes.date_container}>
+              <div className={classes.subheader_label}>EXPIRATION DATE</div>
             </div>
           </div>
         </div>
