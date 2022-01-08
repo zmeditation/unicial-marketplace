@@ -9,6 +9,7 @@ import Description from "../components/ContractInfo/Description";
 import Owner from "../components/ContractInfo/Owner";
 import Bidbox from "../components/ContractInfo/Bidbox";
 import Parcels from "../components/ContractInfo/Parcels";
+import TobTab from "../components/TopTab/TopTab";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -123,31 +124,34 @@ const Contract = () => {
   });
 
   return (
-    <div className={classes.root}>
-      <span className={classes.backBtn} onClick={() => navigate(-1)}>
-        <ArrowBackIosIcon className={classes.backIcon} />
-      </span>
-      <div className={classes.LandMap}>
-        <div style={{ height: "400px" }}>
-          <LandMap height={400} width={width} initialX={1} initialY={1} />
-        </div>
-        <div className={classes.contractDescription}>
-          <div className={classes.leftDescription}>
-            <div className={classes.items}>
-              <Title />
-            </div>
-            <div className={classes.items}>
-              <Description />
-            </div>
-            <Owner />
+    <>
+      <TobTab />
+      <div className={classes.root}>
+        <span className={classes.backBtn} onClick={() => navigate(-1)}>
+          <ArrowBackIosIcon className={classes.backIcon} />
+        </span>
+        <div className={classes.LandMap}>
+          <div style={{ height: "400px" }}>
+            <LandMap height={400} width={width} initialX={1} initialY={1} />
           </div>
-          <div className={classes.rightDescription}>
-            <Bidbox />
+          <div className={classes.contractDescription}>
+            <div className={classes.leftDescription}>
+              <div className={classes.items}>
+                <Title />
+              </div>
+              <div className={classes.items}>
+                <Description />
+              </div>
+              <Owner />
+            </div>
+            <div className={classes.rightDescription}>
+              <Bidbox />
+            </div>
           </div>
+          <Parcels />
         </div>
-        <Parcels />
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
 import React from "react";
-// import { Badge } from 'decentraland-ui'
 import { Props } from "./Coordinate.types";
 import styles from "./Coordinate.module.css";
 import LocationOnIcon from "@material-ui/icons/LocationOn";

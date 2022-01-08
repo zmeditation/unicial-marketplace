@@ -193,7 +193,7 @@ export default function Footer() {
                 />
               </a>
             </div>
-            <div className={classes.copyright}>© 2022 Decentraland</div>
+            <div className={classes.copyright}>© 2022 Unicial</div>
           </div>
         </div>
       </div>

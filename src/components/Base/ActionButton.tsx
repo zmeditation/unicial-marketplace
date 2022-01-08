@@ -1,5 +1,5 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
-
+import clsx from "clsx";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     cursor: "pointer",
@@ -10,15 +10,35 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "6px",
     gridGap: "8px",
     gap: "8px",
-    backgroundColor: "#ff2d55",
+
     padding: "13px 32px",
     minWidth: "128px",
     fontSize: "13px",
     justifyContent: "center",
     margin: "20px 0px 10px 0px",
+  },
+  darkColor: {
+    backgroundColor: "#242129",
+    "&:hover": {
+      transform: "translateY(-2px)",
+      backgroundColor: "#28262c",
+    },
+  },
+  redColor: {
+    backgroundColor: "#ff2d55",
     "&:hover": {
       transform: "translateY(-2px)",
       backgroundColor: "#ff3d61",
+    },
+  },
+  disablestatus: {
+    backgroundColor: "#7f1f34",
+    color: "#7f7d80",
+    cursor: "default",
+    "&:hover": {
+      transform: "translateY(0px)",
+      backgroundColor: "#7f1f34",
+      color: "#7f7d80",
     },
   },
 }));
@@ -26,14 +46,23 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface ButtonProps {
   children: React.ReactNode;
   onClick: () => void;
+  color?: string;
+  disabled?: boolean;
 }
 
-const ActionButton = ({ children, onClick }: ButtonProps) => {
+const ActionButton = ({ children, onClick, color, disabled }: ButtonProps) => {
   const classes = useStyles();
 
   return (
     <>
-      <div className={classes.root} onClick={onClick}>
+      <div
+        className={clsx(classes.root, {
+          [classes.darkColor]: color === "dark",
+          [classes.redColor]: color === "red",
+          [classes.disablestatus]: disabled,
+        })}
+        onClick={onClick}
+      >
         {children}
       </div>
     </>

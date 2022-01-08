@@ -25,7 +25,7 @@ const Description: React.FC = () => {
   return (
     <div>
       <div className={classes.title}>description</div>
-      <div className={classes.descript}>Decentraland Genesis Plaza</div>
+      <div className={classes.descript}>Unicial Genesis Plaza</div>
     </div>
   );
 };

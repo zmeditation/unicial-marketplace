@@ -8,7 +8,7 @@ export default function MarketPlace() {
     <>
       <div className={classes.root}>
         <div className={classes.itemContainer}>
-          <div className={classes.title}>Decentraland Marketplace</div>
+          <div className={classes.title}>Unicial Marketplace</div>
         </div>
         <div className={classes.itemContainer}>
           <div className={classes.subtitle}>

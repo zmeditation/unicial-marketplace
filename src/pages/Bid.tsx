@@ -1,8 +1,14 @@
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import TokenImg from "../assets/img/1.png";
-
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
@@ -50,23 +56,37 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     flexFlow: "row nowrap",
     width: "100%",
+    [theme.breakpoints.down(769)]: {
+      display: "block",
+    },
   },
   leftCard: {
     flex: "0.75 1 auto",
     textAlign: "right",
     marginRight: "80px",
+    [theme.breakpoints.down(769)]: {
+      marginRight: "0px !important",
+      marginBottom: "25px !important",
+      width: "100%",
+      height: "100%",
+    },
   },
   rightCard: {
     flex: "1.25 1 auto",
   },
   tokenImg: {
     width: "100%",
+    borderRadius: "15px",
   },
   imgContent: {
     width: "240px",
     borderRadius: "16px",
     overFlow: "hidden",
     display: "inline-block",
+    [theme.breakpoints.down(769)]: {
+      width: "100%",
+      height: "auto",
+    },
   },
   title: {
     fontSize: "34px",
@@ -78,6 +98,49 @@ const useStyles = makeStyles((theme: Theme) => ({
   subtitle: {
     marginBottom: "32px",
   },
+  form_field: {
+    maxWidth: "420px",
+    marginBottom: "20px",
+  },
+  price_container: {
+    minWidth: "400px",
+    "& .MuiFormControl-root": {
+      width: "100%",
+    },
+    "& .MuiInputBase-input": {
+      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontWeight: 500,
+      fontSize: "20px",
+      color: "white",
+      paddingBottom: "15px",
+    },
+    "& .MuiInput-underline:before": {
+      borderBottom: "2px solid white",
+    },
+  },
+  price_label: {
+    color: "#676370",
+    fontSize: "13px",
+    lineHeight: "18px",
+    fontWeight: 400,
+    marginBottom: "6px",
+  },
+  manafield: {
+    display: "flex",
+  },
+  symbol: {
+    fontWeight: 700,
+    fontSize: "21px",
+    color: "#ff2d55",
+    fontStyle: "normal",
+    paddingRight: "0.3em",
+    transform: "translateY(-0.06em)",
+    display: "inline-block",
+    // marginRight: "4px",
+    marginLeft: "5px",
+    marginBottom: "6px",
+  },
+  price_value: {},
 }));
 
 const Bid = () => {
@@ -100,6 +163,29 @@ const Bid = () => {
           <div className={classes.subtitle}>
             Set a price and expiration date for your bid on{" "}
             <span>Genesis Plaza</span>.
+          </div>
+          <div className={classes.form_field}>
+            <div className={classes.price_container}>
+              <div className={classes.price_label}>PRICE</div>
+              {/* <div className={classes.manafield}>
+                <i className={classes.symbol}>⏣</i>
+                <div className={classes.price_value}>1000</div>
+              </div> */}
+              <FormControl>
+                {/* <InputLabel htmlFor="input-with-icon-adornment">
+                  With a start adornment
+                </InputLabel> */}
+                <Input
+                  id="input-with-icon-adornment"
+                  startAdornment={
+                    <InputAdornment position="start" placeholder="1000">
+                      {/* <AccountCircle /> */}
+                      <i className={classes.symbol}>⏣</i>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </div>
           </div>
         </div>
       </div>

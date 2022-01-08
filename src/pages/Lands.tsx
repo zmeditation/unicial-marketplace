@@ -2,6 +2,7 @@ import SearchBar from "../components/SearchBar/SearchBar";
 import React, { useEffect, useState } from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import LandMap from "../components/LandMap";
+import TobTab from "../components/TopTab/TopTab";
 
 const useStyles = makeStyles((theme: Theme) => ({
   landMap: {
@@ -29,6 +30,7 @@ const Lands: React.FC = () => {
 
   return (
     <>
+      <TobTab />
       <div>
         <SearchBar />
       </div>

@@ -35,8 +35,10 @@ const Bidbox: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.title}>network</div>
-      <div className={classes.subtitle}>Ethereum</div>
-      <ActionButton onClick={() => navigate("bid")}>BID</ActionButton>
+      <div className={classes.subtitle}>Zilionixx</div>
+      <ActionButton color="red" onClick={() => navigate("bid")}>
+        BID
+      </ActionButton>
     </div>
   );
 };

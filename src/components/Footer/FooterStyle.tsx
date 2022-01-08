@@ -44,7 +44,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
         width: "723px",
       },
       [theme.breakpoints.down(769)]: {
-        margin: "48px 16px !important",
+        margin: "48px 16px 0px 16px !important",
         paddingBottom: "80px",
       },
       [theme.breakpoints.down(768)]: {

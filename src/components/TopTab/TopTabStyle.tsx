@@ -63,7 +63,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     textTransform: "none",
     borderBottom: "3px solid #18141a",
     marginBottom: "-2px",
-    // minWidth: "35px",
+    minWidth: "35px",
     [theme.breakpoints.down(769)]: {
       padding: "0px",
       marginBottom: "6px",
