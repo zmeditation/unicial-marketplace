@@ -2,12 +2,11 @@ import React from "react";
 import { Box } from "@material-ui/core";
 
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-
+import clsx from "clsx";
 import {
   FooterStyle,
   StyledLanguagePopover,
   StyledMenuItem,
-  //StyledMenu
 } from "./FooterStyle";
 import joy_svg from "./../../assets/svg/joy.svg";
 import robot_svg from "./../../assets/svg/robot.svg";
@@ -68,35 +67,24 @@ export default function Footer() {
   //flag end
   return (
     <>
-      {/* {index === 1 ? (
-              <>
-                  <img  />
-          <span>English</span>
-        </>
-      ) : index === 2 ? (
-        <span>Spanish</span>
-      ) : (
-        <span>Chinease</span>
-      )} */}
       <div className={classes.root}>
         <div className={classes.cotainer}>
           <div className={classes.mainfooter}>
-            {/* <div>flag</div> */}
             <div>
               <Box
                 aria-controls="simple-menu"
                 aria-haspopup="true"
                 onClick={handleClick}
-                className={classes.language_dropdown}
+                className={classes.languageDropdown}
               >
-                <Box className={classes.flag_lanRoot}>
-                  <Box className={classes.flag_lanContainer}>
+                <Box className={classes.flagLanRoot}>
+                  <Box className={classes.flagLanContainer}>
                     <img
                       src={countryFlag}
-                      className={classes.flag_icon}
+                      className={classes.flagIcon}
                       alt="symbol"
                     />
-                    <Box className={classes.language_label}>
+                    <Box className={classes.languageLabel}>
                       {countryLanguage}
                     </Box>
                     <ArrowDropDownIcon
@@ -121,35 +109,35 @@ export default function Footer() {
                 }}
               >
                 <StyledMenuItem onClick={handleEnglish}>
-                  <Box className={classes.flag_lanContainer}>
+                  <Box className={classes.flagLanContainer}>
                     <img
                       src={England_svg}
-                      className={classes.flag_icon}
+                      className={classes.flagIcon}
                       alt="symbol"
                     />
-                    <Box className={classes.language_label}>English</Box>
+                    <Box className={classes.languageLabel}>English</Box>
                   </Box>
                 </StyledMenuItem>
 
                 <StyledMenuItem onClick={handleSpanish}>
-                  <Box className={classes.flag_lanContainer}>
+                  <Box className={classes.flagLanContainer}>
                     <img
                       src={Spain_svg}
-                      className={classes.flag_icon}
+                      className={classes.flagIcon}
                       alt="symbol"
                     />
-                    <Box className={classes.language_label}>Spanish</Box>
+                    <Box className={classes.languageLabel}>Spanish</Box>
                   </Box>
                 </StyledMenuItem>
 
                 <StyledMenuItem onClick={handleChinese}>
-                  <Box className={classes.flag_lanContainer}>
+                  <Box className={classes.flagLanContainer}>
                     <img
                       src={China_svg}
-                      className={classes.flag_icon}
+                      className={classes.flagIcon}
                       alt="symbol"
                     />
-                    <Box className={classes.language_label}>Chinese</Box>
+                    <Box className={classes.languageLabel}>Chinese</Box>
                   </Box>
                 </StyledMenuItem>
               </StyledLanguagePopover>
@@ -173,37 +161,32 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          <div className={classes.secondary_footer}>
-            <div className={classes.social_links}>
+          <div className={classes.secondaryFooter}>
+            <div className={classes.socialLinks}>
               <a>
                 <img
                   src={joy_svg}
-                  className={classes.social_icon}
-                  style={{ width: "18px", height: "14px" }}
+                  className={clsx(classes.socialIcon, classes.joySvg)}
                   alt="symbol"
                 />
               </a>
               <a style={{ marginLeft: "26px" }}>
                 <img
                   src={robot_svg}
-                  className={classes.social_icon}
-                  style={{ width: "19px", height: "17px" }}
-                  alt="symbol"
+                  className={clsx(classes.socialIcon, classes.robotSvg)}
                 />
               </a>
               <a style={{ marginLeft: "26px" }}>
                 <img
                   src={github_svg}
-                  className={classes.social_icon}
-                  style={{ width: "13px", height: "17px" }}
+                  className={clsx(classes.socialIcon, classes.githubSvg)}
                   alt="symbol"
                 />
               </a>
               <a style={{ marginLeft: "26px" }}>
                 <img
                   src={dove_svg}
-                  className={classes.social_icon}
-                  style={{ width: "16px", height: "14px" }}
+                  className={clsx(classes.socialIcon, classes.dovSvg)}
                   alt="symbol"
                 />
               </a>

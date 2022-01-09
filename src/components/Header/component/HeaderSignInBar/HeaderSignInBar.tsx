@@ -39,8 +39,8 @@ export default function HeaderSignInBar() {
         <StyledRingButton onClick={handleRingButton} disabled={tmp === 1}>
           <NotificationsIcon className={classes.notificationicon} />
         </StyledRingButton>
-        <div className={classes.user_menu}>
-          <div className={classes.account_wrapper}>
+        <div className={classes.userMenu}>
+          <div className={classes.accountWrapper}>
             <a href="#" className={classes.mana}>
               <i className={classes.symbol}>⏣</i>0
             </a>
@@ -48,7 +48,7 @@ export default function HeaderSignInBar() {
               <i className={classes.symbol}>
                 <img
                   src={matic_svg}
-                  className={classes.matic_icon}
+                  className={classes.maticIcon}
                   alt="symbol"
                 />
               </i>
@@ -56,7 +56,7 @@ export default function HeaderSignInBar() {
             </a>
           </div>
           {/* avartar */}
-          <Box className={classes.avatar_container} onClick={handleClick}>
+          <Box className={classes.avatarContainer} onClick={handleClick}>
             <img
               src={sigin_user_svg}
               style={{ width: "100%", height: "100%" }}
@@ -80,34 +80,34 @@ export default function HeaderSignInBar() {
               horizontal: "right",
             }}
           >
-            <div className={classes.account_info}>
-              <div className={classes.image_container}>
+            <div className={classes.accountInfo}>
+              <div className={classes.imageContainer}>
                 <img
                   src={sigin_user_svg}
                   style={{ width: "100%", height: "100%" }}
                   alt="symbol"
                 />
               </div>
-              <div className={classes.image_label}>Guest</div>
+              <div className={classes.imageLabel}>Guest</div>
             </div>
             <StyledMenuItem onClick={handleAccount}>
-              <Box className={classes.item_container}>
-                <PersonOutlineIcon className={classes.item_icon} />
-                <Box className={classes.item_label}>Account</Box>
+              <Box className={classes.itemContainer}>
+                <PersonOutlineIcon className={classes.itemIcon} />
+                <Box className={classes.itemLabel}>Account</Box>
               </Box>
             </StyledMenuItem>
 
             <StyledMenuItem onClick={handleSettings}>
-              <Box className={classes.item_container}>
-                <SettingsIcon className={classes.item_icon} />
-                <Box className={classes.item_label}>Settings</Box>
+              <Box className={classes.itemContainer}>
+                <SettingsIcon className={classes.itemIcon} />
+                <Box className={classes.itemLabel}>Settings</Box>
               </Box>
             </StyledMenuItem>
 
             <StyledMenuItem onClick={handleSignOut}>
-              <Box className={classes.item_container}>
-                <ExitToAppIcon className={classes.item_icon} />
-                <Box className={classes.item_label}>Sign Out</Box>
+              <Box className={classes.itemContainer}>
+                <ExitToAppIcon className={classes.itemIcon} />
+                <Box className={classes.itemLabel}>Sign Out</Box>
               </Box>
             </StyledMenuItem>
           </StyledAvatarPopover>

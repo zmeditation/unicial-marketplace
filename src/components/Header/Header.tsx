@@ -18,7 +18,7 @@ export default function Header() {
       <div className={classes.root}>
         <div className={classes.container}>
           <div style={{ position: "relative" }}>
-            <div className={classes.headermenu_container}>
+            <div className={classes.headermenuContainer}>
               <a href="/">
                 <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
               </a>
@@ -87,9 +87,6 @@ export default function Header() {
             </div>
           </div>
           <HeaderMobileMenu />
-          {/* <Button className={classes.signBtn} >
-            SIGN IN
-          </Button> */}
           <div>
             <HeaderSignInBar />
           </div>

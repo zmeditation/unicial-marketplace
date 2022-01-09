@@ -6,18 +6,14 @@ import {
   StyledLocationButton,
   StyledTableChartIcon,
   StyledLocationOnIcon,
-  //   StyledIconButton,
 } from "./SearchBarStyle";
+import { searchbarBtn } from "../../config/constant";
 import filter_svg from "./../../assets/svg/filter.svg";
 import search_svg from "./../../assets/svg/search.svg";
-//
 import { withStyles } from "@material-ui/core/styles";
 
 import Switch from "@material-ui/core/Switch";
-//
 
-import IconButton from "@material-ui/core/IconButton";
-// import SearchIcon from "@material-ui/icons/Search";
 const PurpleSwitch = withStyles({
   root: {
     height: "36px",
@@ -38,7 +34,7 @@ const PurpleSwitch = withStyles({
 
 export default function SearchBar() {
   const classes = SearchBarStyle();
-  //
+
   const [state, setState] = React.useState({
     checkedA: true,
   });
@@ -46,7 +42,6 @@ export default function SearchBar() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
-  //
 
   const [filter_index, setFilterIndex] = React.useState(1);
   const handletable = () => {
@@ -54,9 +49,6 @@ export default function SearchBar() {
   };
   const handlelocation = () => {
     setFilterIndex(2);
-  };
-  const handlechangetest = () => {
-    console.log("onchange test");
   };
   return (
     <>
@@ -67,7 +59,7 @@ export default function SearchBar() {
               <div className={classes.textfilter}>
                 <img
                   src={search_svg}
-                  className={classes.search_icon}
+                  className={classes.searchIcon}
                   alt="symbol"
                 />
                 <input
@@ -75,7 +67,7 @@ export default function SearchBar() {
                   placeholder="Search land..."
                 />
               </div>
-              <div className={classes.topbar_filter}>
+              <div className={classes.topbarFilter}>
                 <StyledFormControlLabel
                   control={
                     <PurpleSwitch
@@ -88,24 +80,23 @@ export default function SearchBar() {
                 />
               </div>
               <div className={classes.openfilter}>
-                <div className={classes.openfilter_label}>FILTER</div>
+                <div className={classes.openfilterLabel}>FILTER</div>
                 <img
                   src={filter_svg}
-                  className={classes.filter_icon}
+                  className={classes.filterIcon}
                   alt="symbol"
                 />
               </div>
               <div style={{ marginLeft: "20px" }}>
                 <StyledTableButton
-                  disabled={filter_index === 1}
+                  disabled={filter_index === searchbarBtn.tableBtn}
                   onClick={handletable}
                 >
                   <StyledTableChartIcon />
                 </StyledTableButton>
 
                 <StyledLocationButton
-                  //   onChange={handlechangetest}
-                  disabled={filter_index === 2}
+                  disabled={filter_index === searchbarBtn.locationBtn}
                   onClick={handlelocation}
                 >
                   <StyledLocationOnIcon />

@@ -1,6 +1,4 @@
 import React from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import { ClickAwayListener } from "@material-ui/core";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -27,7 +25,7 @@ export default function HeaderMobileMenu() {
   };
 
   return (
-    <div className={classes.header_mobilemenu}>
+    <div className={classes.headerMobilemenu}>
       <ClickAwayListener onClickAway={() => setOpen(false)}>
         <List
           component="nav"

@@ -14,3 +14,16 @@ export const tabId = {
   dao: 5,
   blog: 6,
 };
+
+export const topTabIndex = {
+  land: 1,
+  collectibles: 2,
+  partners: 3,
+  myassets: 4,
+  mybids: 5,
+};
+
+export const searchbarBtn = {
+  tableBtn: 1,
+  locationBtn: 2,
+};

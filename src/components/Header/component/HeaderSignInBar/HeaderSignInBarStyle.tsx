@@ -2,8 +2,6 @@ import { createStyles, Theme, withStyles } from "@material-ui/core";
 import { Popover } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-
 export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -24,13 +22,13 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
       fill: "white",
       fontSize: "20px",
     },
-    user_menu: {
+    userMenu: {
       display: "flex",
       position: "relative",
       textAlign: "left",
       outline: "none",
     },
-    account_wrapper: {
+    accountWrapper: {
       display: "flex",
       flexFlow: "row nowrap",
       alignItems: "center",
@@ -57,11 +55,11 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
       alignItems: "center",
       marginRight: "4px",
     },
-    matic_icon: {
+    maticIcon: {
       width: "13px",
       height: "13px",
     },
-    avatar_container: {
+    avatarContainer: {
       backgroundColor: "#37343d",
       borderRadius: "100%",
       cursor: "pointer",
@@ -73,28 +71,28 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
         height: "36px",
       },
     },
-    item_container: {
+    itemContainer: {
       display: "flex",
       alignItems: "center",
     },
-    item_icon: {
+    itemIcon: {
       fontSize: "20px",
     },
-    item_label: {
+    itemLabel: {
       fontSize: "14px",
       lineHeight: "20px",
       marginLeft: "8px",
       fontWeight: 500,
       color: "white",
     },
-    account_info: {
+    accountInfo: {
       color: "white",
       display: "flex",
       alignItems: "center",
       borderBottom: "1px solid #24212933",
       padding: "12px 16px",
     },
-    image_container: {
+    imageContainer: {
       marginRight: "10px",
       backgroundColor: "#37343d",
       borderRadius: "100%",
@@ -104,7 +102,7 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
       width: "32px",
       height: "32px",
     },
-    image_label: {
+    imageLabel: {
       fontSize: "16px",
       lineHeight: "20px",
       marginLeft: "8px",
@@ -116,13 +114,11 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
 
 export const StyledRingButton = withStyles({
   root: {
-    // backgroundColor: "#333842",
     borderRadius: "5px 0px 0px 5px",
     padding: "7px 11px",
     minWidth: "35px",
     marginRight: "7px",
     "&.Mui-disabled": {
-      // backgroundColor: "#333842 !important",
       "& svg": {
         fill: "#ff2d55 !important",
       },

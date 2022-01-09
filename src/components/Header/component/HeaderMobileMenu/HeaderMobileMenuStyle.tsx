@@ -1,6 +1,5 @@
 import { createStyles, Theme } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/styles";
-import Accordion from "@material-ui/core/Accordion";
+import { makeStyles } from "@material-ui/styles";
 export const HeaderMobileMenuStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -46,7 +45,7 @@ export const HeaderMobileMenuStyle = makeStyles((theme: Theme) =>
         marginTop: "3px",
       },
     },
-    header_mobilemenu: {
+    headerMobilemenu: {
       display: "none",
 
       [theme.breakpoints.down(768)]: {

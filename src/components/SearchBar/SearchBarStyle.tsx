@@ -5,8 +5,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TableChartIcon from "@material-ui/icons/TableChart";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 
-// import IconButton from "@material-ui/core/IconButton";
-import search_svg from "./../../assets/svg/search.svg";
 export const SearchBarStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -15,10 +13,6 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
       backdropFilter: "blur(20)",
       zIndex: 1,
       display: "flex",
-      //   [theme.breakpoints.down(769)]: {
-      //     marginTop: "22px",
-      //     marginBottom: "22px",
-      //   },
     },
     container: {
       width: "1064px",
@@ -61,7 +55,7 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
       marginRight: "30px",
       display: "flex",
     },
-    search_icon: {
+    searchIcon: {
       height: "14px",
       marginTop: "8px",
       marginRight: "10px",
@@ -78,12 +72,11 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
       padding: "6px 6px 6px 0px",
       outline: "none",
       width: "100%",
-      //   backgroundImage: "url(" + search_svg + " )",
       backgroundRepeat: "no-repeat",
       backgroundPositionX: "8px",
       overflow: "visible",
     },
-    topbar_filter: {
+    topbarFilter: {
       marginLeft: "20px",
       [theme.breakpoints.down(768)]: {
         display: "none",
@@ -95,12 +88,7 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
         marginLeft: "3px",
       },
     },
-    table_location_filter: {
-      marginLeft: "20px",
-      [theme.breakpoints.down(768)]: {
-        display: "none",
-      },
-    },
+
     openfilter: {
       display: "none",
       [theme.breakpoints.down(768)]: {
@@ -109,12 +97,12 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
         cursor: "pointer",
       },
     },
-    openfilter_label: {
+    openfilterLabel: {
       color: "#ff2d55",
       marginRight: "10px",
       fontWeight: 500,
     },
-    filter_icon: {
+    filterIcon: {
       width: "20px",
       height: "20px",
     },
@@ -130,7 +118,6 @@ export const StyledFormControlLabel = withStyles({
 
 export const StyledTableButton = withStyles({
   root: {
-    // backgroundColor: "#504c58",
     backgroundColor: "#4c4a57",
     borderRadius: "5px 0px 0px 5px",
     padding: "7px 11px",
@@ -146,7 +133,6 @@ export const StyledTableButton = withStyles({
 
 export const StyledLocationButton = withStyles({
   root: {
-    // backgroundColor: "#504c58",
     backgroundColor: "#4c4a57",
     borderRadius: "0px 5px 5px 0px",
     padding: "7px 11px",

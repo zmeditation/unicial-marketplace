@@ -7,7 +7,6 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ActionButton from "../components/Base/ActionButton";
 import TokenImg from "../assets/img/1.png";
-import { Placeholder } from "semantic-ui-react";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
@@ -122,9 +121,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: "20px",
       color: "white",
       paddingBottom: "15px",
-      // "&:after": {
-      //   color: "red !important",
-      // },
     },
 
     "& .MuiInput-underline:before": {

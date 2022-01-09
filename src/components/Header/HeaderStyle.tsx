@@ -1,5 +1,5 @@
-import { createStyles, Theme, withWidth } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/styles";
+import { createStyles, Theme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 export const HeaderStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -31,7 +31,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         margin: "0 !important",
       },
     },
-    headermenu_container: {
+    headermenuContainer: {
       margin: "0px",
       borderRadius: "0px",
       border: "none",
@@ -46,18 +46,14 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       width: "36px",
       height: "36px",
       marginTop: "2px",
-      // [theme.breakpoints.down(769)]: {
-      //   width: "32px",
-      //   height: "32px",
-      // },
     },
-    account_root: {
+    accountRoot: {
       position: "relative",
       display: "flex",
       flexFlow: "row nowrap",
       alignItems: "center",
     },
-    account_container: {
+    accountContainer: {
       margin: "0px",
       display: "flex",
     },

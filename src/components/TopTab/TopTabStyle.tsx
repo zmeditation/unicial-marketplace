@@ -1,4 +1,4 @@
-import { createStyles, Theme, withWidth } from "@material-ui/core";
+import { createStyles, Theme } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 import { Button } from "@material-ui/core";
 export const TopTabStyle = makeStyles((theme: Theme) =>
@@ -37,8 +37,7 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
         marginBottom: "22px !important",
       },
     },
-    tabs_left: {
-      //   flex: "1 0 auto",
+    tabsLeft: {
       fontSize: "14px",
       [theme.breakpoints.down(769)]: {
         display: "inline-grid",
