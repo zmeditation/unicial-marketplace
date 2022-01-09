@@ -1,19 +1,21 @@
 import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ActionButton from "../components/Base/ActionButton";
 import TokenImg from "../assets/img/1.png";
+import { Placeholder } from "semantic-ui-react";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
     maxWidth: "1064px",
-    margin: "40px auto",
+    marginTop: "40px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: "95px",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
@@ -94,6 +96,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "42px",
     textAlign: "left",
     marginBottom: "8px",
+    [theme.breakpoints.down(769)]: {
+      fontSize: "28px",
+    },
   },
   subtitle: {
     marginBottom: "32px",
@@ -101,10 +106,42 @@ const useStyles = makeStyles((theme: Theme) => ({
   form_field: {
     maxWidth: "420px",
     marginBottom: "20px",
+    [theme.breakpoints.down(769)]: {
+      marginBottom: "30px",
+    },
   },
   price_container: {
-    minWidth: "400px",
-    marginBottom: "14px",
+    minWidth: "auto",
+    marginBottom: "-5px",
+    "& .MuiFormControl-root": {
+      width: "100%",
+    },
+    "& .MuiInputBase-input": {
+      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontWeight: 500,
+      fontSize: "20px",
+      color: "white",
+      paddingBottom: "15px",
+      // "&:after": {
+      //   color: "red !important",
+      // },
+    },
+
+    "& .MuiInput-underline:before": {
+      borderBottom: "2px solid #28242b",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottom: "2px solid white",
+    },
+    "& .MuiInput-underline:hover": {
+      "&:before": {
+        borderBottom: "2px solid #28242b",
+      },
+    },
+  },
+  date_container: {
+    minWidth: "auto",
+    //
     "& .MuiFormControl-root": {
       width: "100%",
     },
@@ -122,11 +159,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderBottom: "2px solid white",
     },
     "& .MuiInput-underline:hover": {
-      borderBottom: "none",
+      "&:before": {
+        borderBottom: "2px solid #28242b",
+      },
     },
-  },
-  date_container: {
-    minWidth: "400px",
   },
   subheader_label: {
     color: "#676370",
@@ -150,7 +186,29 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: "5px",
     marginBottom: "6px",
   },
-  price_value: {},
+  buttons: {
+    display: "flex",
+    width: "400px",
+    [theme.breakpoints.down(769)]: {
+      width: "100%",
+      display: "grid",
+    },
+  },
+  bidchange: {
+    marginLeft: "16px",
+    minWidth: "64px",
+    [theme.breakpoints.down(769)]: {
+      marginLeft: "0px",
+      order: 1,
+    },
+  },
+  cancelchange: {
+    minWidth: "64px",
+    [theme.breakpoints.down(769)]: {
+      order: 2,
+      marginTop: "15px",
+    },
+  },
 }));
 
 const Bid = () => {
@@ -177,10 +235,7 @@ const Bid = () => {
           <div className={classes.form_field}>
             <div className={classes.price_container}>
               <div className={classes.subheader_label}>PRICE</div>
-              {/* <div className={classes.manafield}>
-                <i className={classes.symbol}>⏣</i>
-                <div className={classes.price_value}>1000</div>
-              </div> */}
+
               <FormControl>
                 <Input
                   placeholder="1000"
@@ -196,7 +251,27 @@ const Bid = () => {
             <p>&nbsp;</p>
             <div className={classes.date_container}>
               <div className={classes.subheader_label}>EXPIRATION DATE</div>
+              <form noValidate>
+                <TextField
+                  id="date"
+                  type="date"
+                  defaultValue="2017-05-24"
+                  // className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </form>
             </div>
+          </div>
+          {/* buttons */}
+          <div className={classes.buttons}>
+            <ActionButton color="dark" className={classes.cancelchange}>
+              CANCEL
+            </ActionButton>
+            <ActionButton disabled color="red" className={classes.bidchange}>
+              BID
+            </ActionButton>
           </div>
         </div>
       </div>

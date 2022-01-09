@@ -1,10 +1,14 @@
 import React from "react";
 import { Box } from "@material-ui/core";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
-import { FooterStyle, StyledMenu, StyledMenuItem } from "./FooterStyle";
+import {
+  FooterStyle,
+  StyledLanguagePopover,
+  StyledMenuItem,
+  //StyledMenu
+} from "./FooterStyle";
 import joy_svg from "./../../assets/svg/joy.svg";
 import robot_svg from "./../../assets/svg/robot.svg";
 import github_svg from "./../../assets/svg/github.svg";
@@ -54,7 +58,6 @@ export default function Footer() {
         setCountryLanguage("English");
     }
   }, [languageIndex]);
-  console.log(countryLanguage);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -102,12 +105,20 @@ export default function Footer() {
                   </Box>
                 </Box>
               </Box>
-              <StyledMenu
+              <StyledLanguagePopover
                 id="simple-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                transformOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
               >
                 <StyledMenuItem onClick={handleEnglish}>
                   <Box className={classes.flag_lanContainer}>
@@ -141,7 +152,7 @@ export default function Footer() {
                     <Box className={classes.language_label}>Chinese</Box>
                   </Box>
                 </StyledMenuItem>
-              </StyledMenu>
+              </StyledLanguagePopover>
             </div>
             {/* flag end */}
             <div className={classes.links}>
@@ -168,6 +179,7 @@ export default function Footer() {
                 <img
                   src={joy_svg}
                   className={classes.social_icon}
+                  style={{ width: "18px", height: "14px" }}
                   alt="symbol"
                 />
               </a>
@@ -175,6 +187,7 @@ export default function Footer() {
                 <img
                   src={robot_svg}
                   className={classes.social_icon}
+                  style={{ width: "19px", height: "17px" }}
                   alt="symbol"
                 />
               </a>
@@ -182,6 +195,7 @@ export default function Footer() {
                 <img
                   src={github_svg}
                   className={classes.social_icon}
+                  style={{ width: "13px", height: "17px" }}
                   alt="symbol"
                 />
               </a>
@@ -189,6 +203,7 @@ export default function Footer() {
                 <img
                   src={dove_svg}
                   className={classes.social_icon}
+                  style={{ width: "16px", height: "14px" }}
                   alt="symbol"
                 />
               </a>

@@ -6,8 +6,12 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Box } from "@material-ui/core";
 import matic_svg from "./../../../../assets/svg/matic.svg";
 import sigin_user_svg from "./../../../../assets/svg/sigin_user.svg";
-import { HeaderSignInBarStyle, StyledRingButton } from "./HeaderSignInBarStyle";
-import { StyledPopover, StyledMenuItem } from "../../../Footer/FooterStyle";
+import {
+  StyledAvatarPopover,
+  HeaderSignInBarStyle,
+  StyledRingButton,
+} from "./HeaderSignInBarStyle";
+import { StyledMenuItem } from "../../../Footer/FooterStyle";
 
 export default function HeaderSignInBar() {
   const classes = HeaderSignInBarStyle();
@@ -55,13 +59,13 @@ export default function HeaderSignInBar() {
           <Box className={classes.avatar_container} onClick={handleClick}>
             <img
               src={sigin_user_svg}
-              style={{ width: "42px", height: "42px" }}
+              style={{ width: "100%", height: "100%" }}
               alt="symbol"
             />
           </Box>
 
           {/* avatar menu open */}
-          <StyledPopover
+          <StyledAvatarPopover
             id="simple-menu"
             anchorEl={anchorEl}
             keepMounted
@@ -106,7 +110,7 @@ export default function HeaderSignInBar() {
                 <Box className={classes.item_label}>Sign Out</Box>
               </Box>
             </StyledMenuItem>
-          </StyledPopover>
+          </StyledAvatarPopover>
         </div>
       </div>
     </div>

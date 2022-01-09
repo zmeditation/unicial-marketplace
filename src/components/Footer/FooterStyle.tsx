@@ -75,6 +75,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       flexFlow: "row wrap",
       justifyContent: "center",
       fontSize: "14px",
+      marginTop: "2px",
     },
     link: {
       color: "#676370",
@@ -86,6 +87,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
     secondary_footer: {
       display: "flex",
       //   height: "56px",
+      marginBottom: "5px",
       [theme.breakpoints.down(1025)]: {
         flexFlow: "column",
         alignItems: "center",
@@ -96,12 +98,13 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       marginTop: "2px",
       [theme.breakpoints.down(1025)]: {
         marginBottom: "12px",
+        marginRight: "0px",
       },
     },
     social_icon: {
       display: "inline-block",
-      width: "18px",
-      height: "17px",
+      //   width: "18px",
+      //   height: "17px",
       color: "#676370",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "50%",
@@ -113,7 +116,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       fontSize: "14px",
       fontFamily:
         'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-      lineHeight: "1.4285em",
+      lineHeight: "1.7em",
     },
     language_dropdown: {
       transform: "translateY(-4px)",
@@ -159,10 +162,10 @@ export const StyledMenu = withStyles({
   },
 })(Menu);
 
-export const StyledPopover = withStyles({
+export const StyledLanguagePopover = withStyles({
   paper: {
     backgroundColor: "#676370",
-    marginTop: "13px",
+    marginBottom: "70px",
     borderRadius: "6px",
     position: "absolute",
     minWidth: "180px",

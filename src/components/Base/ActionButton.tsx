@@ -45,18 +45,25 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
   color?: string;
   disabled?: boolean;
+  className?: any;
+  onClick?: () => void;
 }
 
-const ActionButton = ({ children, onClick, color, disabled }: ButtonProps) => {
+const ActionButton = ({
+  children,
+  color,
+  disabled,
+  className,
+  onClick,
+}: ButtonProps) => {
   const classes = useStyles();
 
   return (
     <>
       <div
-        className={clsx(classes.root, {
+        className={clsx(classes.root, className, {
           [classes.darkColor]: color === "dark",
           [classes.redColor]: color === "red",
           [classes.disablestatus]: disabled,

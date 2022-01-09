@@ -1,4 +1,5 @@
 import { createStyles, Theme, withStyles } from "@material-ui/core";
+import { Popover } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -10,11 +11,6 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
       display: "flex",
       flexFlow: "row nowrap",
       alignItems: "center",
-      //   [theme.breakpoints.down(769)]: {
-      //     marginTop: "22px",
-      //     marginBottom: "22px",
-      //     display: "contents",
-      //   },
     },
     container: {
       flex: "1 1 auto",
@@ -69,8 +65,13 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
       backgroundColor: "#37343d",
       borderRadius: "100%",
       cursor: "pointer",
-      //   width: "42px",
-      //   height: "42px",
+      width: "42px",
+      height: "42px",
+      overflow: "hidden",
+      [theme.breakpoints.down(769)]: {
+        width: "36px",
+        height: "36px",
+      },
     },
     item_container: {
       display: "flex",
@@ -128,3 +129,13 @@ export const StyledRingButton = withStyles({
     },
   },
 })(Button);
+
+export const StyledAvatarPopover = withStyles({
+  paper: {
+    backgroundColor: "#676370",
+    marginTop: "13px",
+    borderRadius: "6px",
+    position: "absolute",
+    minWidth: "180px",
+  },
+})(Popover);
