@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router";
+import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import LandMap from "../components/LandMap";
+import clsx from "clsx";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Title from "../components/ContractInfo/Title";
 import Description from "../components/ContractInfo/Description";
 import Owner from "../components/ContractInfo/Owner";
+import Highlight from "../components/ContractInfo/Highlight";
 import Bidbox from "../components/ContractInfo/Bidbox";
+import Buybox from "../components/ContractInfo/Buybox";
 import Parcels from "../components/ContractInfo/Parcels";
 import TobTab from "../components/TopTab/TopTab";
-
+import StyledTable from "../components/ContractInfo/StyledTable";
+//import table realted data
+import { headerData, BidsData } from "../config/tabletestData";
+import { TableCell, TableRow } from "@material-ui/core";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
@@ -93,6 +99,56 @@ const useStyles = makeStyles((theme: Theme) => ({
   items: {
     marginBottom: "40px",
   },
+  tableRoot: {
+    // width: "820px ",
+    width: "100%",
+    "& .MuiTableContainer-root": {
+      width: "auto",
+    },
+  },
+  tableHeaderCell: {
+    fontSize: "13px",
+    lineHeight: "18px",
+    fontWeight: 400,
+    color: "#676370",
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+    "&.MuiTableCell-root": {
+      padding: "0px 16px",
+      // borderBottm: "none",
+    },
+  },
+  tableCell: {
+    fontSize: "17px",
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+    color: "white",
+    fontWeight: 500,
+    "&.MuiTableCell-root": {
+      padding: "12px 16px",
+    },
+  },
+  firstcellmargin: {
+    display: "flex",
+    marginRight: "40px",
+    alignItems: "center",
+  },
+  secondcellmargin: {
+    marginRight: "20px",
+  },
+  thirdcellmargin: {},
+  symbol: {
+    fontSize: "normal",
+    paddingRight: "0.3em",
+    transform: "translateY(-0.06em)",
+    color: "#ff2d55",
+  },
+  fromIamge: {
+    width: "18px !important",
+    height: "18px !important",
+    marginRight: "5px",
+    borderRadius: "3px",
+  },
 }));
 
 const Contract = () => {
@@ -123,6 +179,41 @@ const Contract = () => {
     window.addEventListener("resize", handleResize);
   });
 
+  // table realted
+  const rowsPerPage = 10;
+  const [page, setPage] = React.useState(0);
+
+  const tableColumns = headerData.map((column: any, key: any) => (
+    <TableCell key={column} className={classes.tableHeaderCell}>
+      {column}
+    </TableCell>
+  ));
+
+  const tableRows = (
+    rowsPerPage > 0
+      ? BidsData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+      : BidsData
+  ).map((row: any, key: any) => (
+    <TableRow key={key}>
+      <TableCell component="th" scope="row" className={clsx(classes.tableCell)}>
+        <div className={classes.firstcellmargin}>
+          <img
+            src={row.imgSrc}
+            className={classes.fromIamge}
+            alt="fromimage!"
+          />
+          {row.from}
+        </div>
+      </TableCell>
+      <TableCell className={clsx(classes.tableCell, classes.secondcellmargin)}>
+        <i className={classes.symbol}>⏣</i>
+        {row.price}
+      </TableCell>
+      <TableCell className={clsx(classes.tableCell, classes.thirdcellmargin)}>
+        {row.timeleft}
+      </TableCell>
+    </TableRow>
+  ));
   return (
     <>
       <TobTab />
@@ -143,11 +234,18 @@ const Contract = () => {
                 <Description />
               </div>
               <Owner />
+              <Highlight />
             </div>
             <div className={classes.rightDescription}>
               <Bidbox />
+              <Buybox />
             </div>
           </div>
+          {/* /// */}
+          <div className={classes.tableRoot}>
+            <StyledTable columns={tableColumns} rows={tableRows} />
+          </div>
+
           <Parcels />
         </div>
       </div>
