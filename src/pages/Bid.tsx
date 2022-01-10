@@ -9,12 +9,11 @@ import ActionButton from "../components/Base/ActionButton";
 import TokenImg from "../assets/img/1.png";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minHeight: "calc(100vh - 246px)",
+    minHeight: "calc(100vh - 160px)",
     maxWidth: "1064px",
     marginTop: "40px",
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: "95px",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
@@ -36,7 +35,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "30px",
     display: "flex",
     alignItems: "center",
-    marginTop: "5vh",
     marginBottom: "10vh",
     cursor: "pointer",
     "&:hover": {

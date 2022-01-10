@@ -7,9 +7,9 @@ import ActionButton from "../components/Base/ActionButton";
 import TokenImg from "../assets/img/1.png";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minHeight: "calc(100vh - 120px)",
+    minHeight: "calc(100vh - 160px)",
     maxWidth: "1064px",
-    // marginTop: "40px",
+    marginTop: "40px",
     marginLeft: "auto",
     marginRight: "auto",
     // marginBottom: "95px",
@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "30px",
     display: "flex",
     alignItems: "center",
-    marginTop: "5vh",
     marginBottom: "10vh",
     cursor: "pointer",
     "&:hover": {
@@ -227,7 +226,7 @@ const Buy = () => {
   return (
       <div className={classes.root}>
       {
-        isSignIn === 0 ?
+        isSignIn === 1 ?
         <div>
           <span className={classes.backBtn} onClick={() => navigate(-1)}>
             <ArrowBackIosIcon className={classes.backIcon} />
