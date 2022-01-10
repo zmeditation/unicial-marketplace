@@ -1,12 +1,6 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  descriptionRoot: {
-    height: "calc(100vh - 124px)",
-    display: "flex",
-    justifyContent: "center",
-    position: "relative",
-  },
   descriptionContainer: {
     display: "flex",
     justifyContent: "center",
@@ -28,7 +22,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function NeedSignIn() {
   const classes = useStyles();
   return (
-    <div className={classes.descriptionRoot}>
       <div className={classes.descriptionContainer}>
         <p className={classes.text}>
           You need to{" "}
@@ -38,6 +31,5 @@ export default function NeedSignIn() {
           to access this page
         </p>
       </div>
-    </div>
   );
 }

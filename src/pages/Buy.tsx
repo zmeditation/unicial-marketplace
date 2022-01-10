@@ -225,56 +225,51 @@ const Buy = () => {
   var isSignIn = 1;
 
   return (
-    <>
-      <div
-        className={clsx(
-          classes.root,
-          isSignIn === 1 ? classes.viewBuy : classes.unviewBuy
-        )}
-      >
-        <span className={classes.backBtn} onClick={() => navigate(-1)}>
-          <ArrowBackIosIcon className={classes.backIcon} />
-        </span>
-        <div className={classes.bidCard}>
-          <div className={classes.leftCard}>
-            <div className={classes.imgContent}>
-              <img
-                src={TokenImg}
-                className={classes.tokenImg}
-                alt="token"
-              ></img>
-            </div>
-          </div>
-
-          <div className={classes.rightCard}>
-            <div className={classes.title}>Buy Estate</div>
-            <div className={classes.subtitle}>
-              You don't have enough MANA to buy
-              <b> Hanzo-Gate1 </b>
-              for<i className={classes.symbol}>⏣</i>
-              1,000,000.
+      <div className={classes.root}>
+      {
+        isSignIn === 0 ?
+        <div>
+          <span className={classes.backBtn} onClick={() => navigate(-1)}>
+            <ArrowBackIosIcon className={classes.backIcon} />
+          </span>
+          <div className={classes.bidCard}>
+            <div className={classes.leftCard}>
+              <div className={classes.imgContent}>
+                <img
+                  src={TokenImg}
+                  className={classes.tokenImg}
+                  alt="token"
+                ></img>
+              </div>
             </div>
 
-            {/* buttons */}
-            <div className={classes.buttons}>
-              <ActionButton color="dark" className={classes.cancelchange}>
-                CANCEL
-              </ActionButton>
-              <ActionButton disabled color="red" className={classes.bidchange}>
-                BUY
-              </ActionButton>
+            <div className={classes.rightCard}>
+              <div className={classes.title}>Buy Estate</div>
+              <div className={classes.subtitle}>
+                You don't have enough MANA to buy
+                <b> Hanzo-Gate1 </b>
+                for<i className={classes.symbol}>⏣</i>
+                1,000,000.
+              </div>
+
+              {/* buttons */}
+              <div className={classes.buttons}>
+                <ActionButton color="dark" className={classes.cancelchange}>
+                  CANCEL
+                </ActionButton>
+                <ActionButton disabled color="red" className={classes.bidchange}>
+                  BUY
+                </ActionButton>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className={
-          isSignIn === 0 ? classes.viewNeedSignIn : classes.unviewNeedSignIn
-        }
-      >
+      :
+      <div>
         <NeedSignIn />
       </div>
-    </>
+      }
+      </div>
   );
 };
 

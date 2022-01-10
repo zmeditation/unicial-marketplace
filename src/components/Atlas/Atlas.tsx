@@ -38,11 +38,13 @@ export const Atlas = (props: AtlasProps) => {
     2: "#ff9990", // my estates
     3: "#ff4053", // my estates on sale
     4: "#ffbd33", // parcels/estates where I have permissions
-    5: "#5054D4", // districts
+    district: "#5054D4", // districts
     6: "#563db8", // contributions
-    7: "#716C7A", // roads
+    road: "#716C7A", // roads
+    // 7: "#716C7A", // roads
     8: "#70AC76", // plazas
-    9: "#3D3A46", // owned parcel/estate
+    unowned: "#3D3A46", // owned parcel/estate
+    // 9: "#3D3A46", // owned parcel/estate
     10: "#3D3A46", // parcels on sale (we show them as owned parcels)
     11: "#09080A", // unowned pacel/estate
     12: "#18141a", // background
@@ -59,6 +61,9 @@ export const Atlas = (props: AtlasProps) => {
         top: !!tile.top,
         left: !!tile.left,
         topLeft: !!tile.topLeft,
+        // top: false,
+        // left: false,
+        // topLeft: false,
       };
     } else {
       return {
