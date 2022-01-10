@@ -102,7 +102,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         cursor: "pointer",
       },
     },
-    signBtn: {
+    signnormal: {
       fontWeight: 400,
       color: "#676370",
       borderRadius: "6px",
@@ -113,15 +113,34 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       padding: "0px",
       fontSize: "13px",
       lineHeight: "18px",
+      cursor: "pointer",
       "&:hover": {
         color: "#fff",
-        cursor: "pointer",
       },
-      "&.Mui-disabled": {
-        fontWeight: 700,
-        color: "#ff2d55",
-        cursor: "pointer",
-      },
+    },
+    signclicked: {
+      fontWeight: 700,
+      color: "#ff2d55",
+      cursor: "pointer",
+      textTransform: "uppercase",
+      fontFamily:
+        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+      marginLeft: "24px",
+      padding: "0px",
+      fontSize: "13px",
+      lineHeight: "18px",
+    },
+    viewSignin: {
+      display: "block",
+    },
+    unviewSignin: {
+      display: "none",
+    },
+    viewHeaderSignInBar: {
+      display: "block",
+    },
+    unviewHeaderSignInBar: {
+      display: "none",
     },
   })
 );

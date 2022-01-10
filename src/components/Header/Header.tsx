@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 
 import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
@@ -12,6 +12,13 @@ export default function Header() {
   const handleMarketPlace = () => {
     setHeaderIndex(tabId.marketplace);
   };
+
+  const [isSignInclicked, setIsSignInclicked] = React.useState(0);
+  const handleSignIn = () => {
+    setIsSignInclicked(1);
+  };
+
+  var isSigned = 1;
 
   return (
     <>
@@ -87,7 +94,27 @@ export default function Header() {
             </div>
           </div>
           <HeaderMobileMenu />
-          <div>
+          <div
+            className={
+              isSigned === 0 ? classes.viewSignin : classes.unviewSignin
+            }
+          >
+            <Box
+              className={
+                isSignInclicked === 0 ? classes.signnormal : classes.signclicked
+              }
+              onClick={handleSignIn}
+            >
+              Sign In
+            </Box>
+          </div>
+          <div
+            className={
+              isSigned === 0
+                ? classes.unviewHeaderSignInBar
+                : classes.viewHeaderSignInBar
+            }
+          >
             <HeaderSignInBar />
           </div>
         </div>
