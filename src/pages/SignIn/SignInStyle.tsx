@@ -4,9 +4,10 @@ import { makeStyles } from "@material-ui/styles";
 export const SignInStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      marginTop: "20px",
-      marginBottom: "50px",
+      //   marginTop: "20px",
+      //   marginBottom: "50px",
       width: "100%",
+      minHeight: "calc(100vh - 120px)",
     },
     container: {
       alignItems: "center",

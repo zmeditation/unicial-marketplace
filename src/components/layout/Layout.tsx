@@ -5,11 +5,9 @@ import MarketPlace from "../../pages/MarketPlace/MarketPlace";
 
 import Bid from "../../pages/Bid";
 import Buy from "../../pages/Buy";
-import NeedSignIn from "../../pages/NeedSignIn";
 import SignIn from "../../pages/SignIn/SignIn";
 
 export default function Layout() {
-  var isSignIn = 1;
   return (
     <Router>
       <Routes>
@@ -27,7 +25,7 @@ export default function Layout() {
         />
         <Route
           path="/contracts/:contractaddress/tokens/:tokensid/buy"
-          element={isSignIn === 1 ? <Buy /> : <NeedSignIn />}
+          element={<Buy />}
         />
       </Routes>
     </Router>

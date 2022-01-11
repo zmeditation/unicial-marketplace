@@ -8,16 +8,4 @@ export const BidsData = [
     price: "63,000",
     timeleft: "about 8 hours",
   },
-  {
-    imgSrc: fromImg,
-    from: "2x4a4",
-    price: "53,000",
-    timeleft: "about 3 hours",
-  },
-  {
-    imgSrc: fromImg,
-    from: "2x9a4",
-    price: "73,000",
-    timeleft: "about 11 hours",
-  },
 ];

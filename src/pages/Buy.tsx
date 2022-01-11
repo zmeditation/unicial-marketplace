@@ -1,16 +1,18 @@
+import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import NeedSignIn from "./NeedSignIn";
 import ActionButton from "../components/Base/ActionButton";
 import TokenImg from "../assets/img/1.png";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minHeight: "calc(100vh - 246px)",
+    minHeight: "calc(100vh - 120px)",
     maxWidth: "1064px",
-    marginTop: "40px",
+    // marginTop: "40px",
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: "95px",
+    // marginBottom: "95px",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
@@ -203,45 +205,76 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: "15px",
     },
   },
+  viewNeedSignIn: {
+    display: "block",
+  },
+  unviewNeedSignIn: {
+    display: "none",
+  },
+  viewBuy: {
+    display: "block",
+  },
+  unviewBuy: {
+    display: "none",
+  },
 }));
 
 const Buy = () => {
   const classes = useStyles();
   let navigate = useNavigate();
+  var isSignIn = 1;
 
   return (
-    <div className={classes.root}>
-      <span className={classes.backBtn} onClick={() => navigate(-1)}>
-        <ArrowBackIosIcon className={classes.backIcon} />
-      </span>
-      <div className={classes.bidCard}>
-        <div className={classes.leftCard}>
-          <div className={classes.imgContent}>
-            <img src={TokenImg} className={classes.tokenImg} alt="token"></img>
+    <>
+      <div
+        className={clsx(
+          classes.root,
+          isSignIn === 1 ? classes.viewBuy : classes.unviewBuy
+        )}
+      >
+        <span className={classes.backBtn} onClick={() => navigate(-1)}>
+          <ArrowBackIosIcon className={classes.backIcon} />
+        </span>
+        <div className={classes.bidCard}>
+          <div className={classes.leftCard}>
+            <div className={classes.imgContent}>
+              <img
+                src={TokenImg}
+                className={classes.tokenImg}
+                alt="token"
+              ></img>
+            </div>
           </div>
-        </div>
 
-        <div className={classes.rightCard}>
-          <div className={classes.title}>Buy Estate</div>
-          <div className={classes.subtitle}>
-            You don't have enough MANA to buy
-            <b> Hanzo-Gate1 </b>
-            for<i className={classes.symbol}>⏣</i>
-            1,000,000.
-          </div>
+          <div className={classes.rightCard}>
+            <div className={classes.title}>Buy Estate</div>
+            <div className={classes.subtitle}>
+              You don't have enough MANA to buy
+              <b> Hanzo-Gate1 </b>
+              for<i className={classes.symbol}>⏣</i>
+              1,000,000.
+            </div>
 
-          {/* buttons */}
-          <div className={classes.buttons}>
-            <ActionButton color="dark" className={classes.cancelchange}>
-              CANCEL
-            </ActionButton>
-            <ActionButton disabled color="red" className={classes.bidchange}>
-              BUY
-            </ActionButton>
+            {/* buttons */}
+            <div className={classes.buttons}>
+              <ActionButton color="dark" className={classes.cancelchange}>
+                CANCEL
+              </ActionButton>
+              <ActionButton disabled color="red" className={classes.bidchange}>
+                BUY
+              </ActionButton>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <div
+        className={
+          isSignIn === 0 ? classes.viewNeedSignIn : classes.unviewNeedSignIn
+        }
+      >
+        <NeedSignIn />
+      </div>
+    </>
   );
 };
 
