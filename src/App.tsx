@@ -9,9 +9,7 @@ function App() {
   const theme = useTheme();
   return (
     <ThemeProvider theme={theme}>
-      <Header />
       <Layout />
-      <Footer />
     </ThemeProvider>
   );
 }
