@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Box, Button } from "@material-ui/core";
 import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
@@ -28,9 +28,9 @@ export default function Header() {
         <div className={classes.container}>
           <div style={{ position: "relative" }}>
             <div className={classes.headermenuContainer}>
-              {/* <Link to="/"> */}
-              <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
-              {/* </Link> */}
+              <Link to="/">
+                <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
+              </Link>
 
               <Button
                 className={
