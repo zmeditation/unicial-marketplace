@@ -6,10 +6,13 @@ import MarketPlace from "../../pages/MarketPlace/MarketPlace";
 import Bid from "../../pages/Bid/Bid";
 import Buy from "../../pages/Buy/Buy";
 import SignIn from "../../pages/SignIn/SignIn";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 export default function Layout() {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<MarketPlace />} />
         <Route path="/need" element={<MarketPlace />} />
@@ -28,6 +31,7 @@ export default function Layout() {
           element={<Buy />}
         />
       </Routes>
+      <Footer />
     </Router>
   );
 }
