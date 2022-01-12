@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function NeedSignIn() {
   const classes = useStyles();
   return (
-      <div className={classes.descriptionContainer}>
-        <p className={classes.text}>
-          You need to{" "}
-          <a href="/signin" className={classes.link}>
-            Sign In
-          </a>{" "}
-          to access this page
-        </p>
-      </div>
+    <div className={classes.descriptionContainer}>
+      <p className={classes.text}>
+        You need to{" "}
+        <a href="/signin" className={classes.link}>
+          Sign In
+        </a>{" "}
+        to access this page
+      </p>
+    </div>
   );
 }

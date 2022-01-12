@@ -130,17 +130,5 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       fontSize: "13px",
       lineHeight: "18px",
     },
-    viewSignin: {
-      display: "block",
-    },
-    unviewSignin: {
-      display: "none",
-    },
-    viewHeaderSignInBar: {
-      display: "block",
-    },
-    unviewHeaderSignInBar: {
-      display: "none",
-    },
   })
 );

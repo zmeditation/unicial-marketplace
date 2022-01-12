@@ -1,9 +1,8 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import { MarketPlaceStyle } from "./MarketPlaceStyle";
-import Lands from "../Lands";
+import { useStyles } from "./MarketPlaceStyle";
 export default function MarketPlace() {
-  const classes = MarketPlaceStyle();
+  const classes = useStyles();
   return (
     <>
       <div className={classes.root}>

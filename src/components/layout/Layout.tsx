@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Lands from "../../pages/Lands";
-import Contracts from "../../pages/Contracts";
+import Lands from "../../pages/Lands/Lands";
+import Contracts from "../../pages/Contracts/Contracts";
 import MarketPlace from "../../pages/MarketPlace/MarketPlace";
 
-import Bid from "../../pages/Bid";
-import Buy from "../../pages/Buy";
+import Bid from "../../pages/Bid/Bid";
+import Buy from "../../pages/Buy/Buy";
 import SignIn from "../../pages/SignIn/SignIn";
 
 export default function Layout() {

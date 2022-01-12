@@ -1,6 +1,6 @@
 export const highlight = {
   plaza: 1,
-  road: 0,
+  road: 1,
   district: 1,
 };
 

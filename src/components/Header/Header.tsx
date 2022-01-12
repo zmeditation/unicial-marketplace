@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { createBrowserHistory } from "history";
 import { Box, Button } from "@material-ui/core";
 
 import { HeaderStyle } from "./HeaderStyle";
@@ -7,18 +8,21 @@ import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
 import { tabId } from "../../config/constant";
 
 export default function Header() {
+  const browserHistory = createBrowserHistory();
   const classes = HeaderStyle();
-  const [head_index, setHeaderIndex] = React.useState(tabId.marketplace);
-  const handleMarketPlace = () => {
-    setHeaderIndex(tabId.marketplace);
-  };
-
-  const [isSignInclicked, setIsSignInclicked] = React.useState(0);
+  const [head_index, setHeaderIndex] = useState(tabId.marketplace);
+  const [isSignInclicked, setIsSignInclicked] = useState(0);
   const handleSignIn = () => {
     setIsSignInclicked(1);
+    browserHistory.push(`/signin`);
+    window.location.reload();
   };
 
-  var isSigned = 1;
+  const handleMarketPlace = () => {
+    setHeaderIndex(tabId.marketplace);
+    // navigate("/");
+  };
+  var isSigned = 0;
 
   return (
     <>
@@ -26,9 +30,9 @@ export default function Header() {
         <div className={classes.container}>
           <div style={{ position: "relative" }}>
             <div className={classes.headermenuContainer}>
-              <a href="/">
-                <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
-              </a>
+              {/* <Link to="/"> */}
+              <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
+              {/* </Link> */}
 
               <Button
                 className={
@@ -94,11 +98,7 @@ export default function Header() {
             </div>
           </div>
           <HeaderMobileMenu />
-          <div
-            className={
-              isSigned === 0 ? classes.viewSignin : classes.unviewSignin
-            }
-          >
+          {isSigned === 0 ? (
             <Box
               className={
                 isSignInclicked === 0 ? classes.signnormal : classes.signclicked
@@ -107,16 +107,9 @@ export default function Header() {
             >
               Sign In
             </Box>
-          </div>
-          <div
-            className={
-              isSigned === 0
-                ? classes.unviewHeaderSignInBar
-                : classes.viewHeaderSignInBar
-            }
-          >
+          ) : (
             <HeaderSignInBar />
-          </div>
+          )}
         </div>
       </div>
     </>

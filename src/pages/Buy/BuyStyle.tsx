@@ -1,19 +1,13 @@
-import Input from "@material-ui/core/Input";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
-import { useNavigate } from "react-router-dom";
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ActionButton from "../components/Base/ActionButton";
-import TokenImg from "../assets/img/1.png";
-const useStyles = makeStyles((theme: Theme) => ({
+
+export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 160px)",
     maxWidth: "1064px",
     marginTop: "40px",
     marginLeft: "auto",
     marginRight: "auto",
+    display: "grid",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
@@ -27,28 +21,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(769)]: {
       maxWidth: "calc(100% - 32px) !important",
     },
-  },
-  backBtn: {
-    borderRadius: "25px",
-    border: "1px solid #6763709c",
-    width: "30px",
-    height: "30px",
-    display: "flex",
-    alignItems: "center",
-    marginBottom: "10vh",
-    cursor: "pointer",
-    "&:hover": {
-      borderColor: "white",
-    },
-    [theme.breakpoints.down(769)]: {
-      top: "-40px",
-    },
-  },
-  backIcon: {
-    width: "15px",
-    height: "15px",
-    color: "white",
-    marginLeft: "10px",
   },
   bidCard: {
     display: "flex",
@@ -98,7 +70,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   subtitle: {
-    marginBottom: "32px",
+    marginBottom: "10px",
+    color: "#ffa900",
+    fontSize: "14px",
   },
   form_field: {
     maxWidth: "420px",
@@ -170,7 +144,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   symbol: {
     fontWeight: 700,
-    fontSize: "21px",
+    fontSize: "normal",
     color: "#ff2d55",
     fontStyle: "normal",
     paddingRight: "0.3em",
@@ -203,74 +177,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: "15px",
     },
   },
+  viewNeedSignIn: {
+    display: "block",
+  },
+  unviewNeedSignIn: {
+    display: "none",
+  },
+  viewBuy: {
+    display: "block",
+  },
+  unviewBuy: {
+    display: "none",
+  },
 }));
-
-const Bid = () => {
-  const classes = useStyles();
-  let navigate = useNavigate();
-
-  return (
-    <div className={classes.root}>
-      <span className={classes.backBtn} onClick={() => navigate(-1)}>
-        <ArrowBackIosIcon className={classes.backIcon} />
-      </span>
-      <div className={classes.bidCard}>
-        <div className={classes.leftCard}>
-          <div className={classes.imgContent}>
-            <img src={TokenImg} className={classes.tokenImg} alt="token"></img>
-          </div>
-        </div>
-        <div className={classes.rightCard}>
-          <div className={classes.title}>Place a bid</div>
-          <div className={classes.subtitle}>
-            Set a price and expiration date for your bid on{" "}
-            <span>Genesis Plaza</span>.
-          </div>
-          <div className={classes.form_field}>
-            <div className={classes.price_container}>
-              <div className={classes.subheader_label}>PRICE</div>
-
-              <FormControl>
-                <Input
-                  placeholder="1000"
-                  id="input-with-icon-adornment"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <i className={classes.symbol}>⏣</i>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-            </div>
-            <p>&nbsp;</p>
-            <div className={classes.date_container}>
-              <div className={classes.subheader_label}>EXPIRATION DATE</div>
-              <form noValidate>
-                <TextField
-                  id="date"
-                  type="date"
-                  defaultValue="2017-05-24"
-                  // className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </form>
-            </div>
-          </div>
-          {/* buttons */}
-          <div className={classes.buttons}>
-            <ActionButton color="dark" className={classes.cancelchange}>
-              CANCEL
-            </ActionButton>
-            <ActionButton disabled color="red" className={classes.bidchange}>
-              BID
-            </ActionButton>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Bid;

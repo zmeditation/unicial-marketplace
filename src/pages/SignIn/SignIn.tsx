@@ -10,15 +10,15 @@ export default function SignIn() {
         <div className={classes.container}>
           <div className={classes.headerText}>Get Started</div>
           <div className={classes.starWalletIcon}>
-            <img src={starWallet_svg} />
+            <img src={starWallet_svg} alt="wallet_img" />
           </div>
           <div className={classes.descriptionContainer}>
             You can use mobile browsers such as{" "}
-            <a href="#" className={classes.browserLink}>
+            <a href="/signin" className={classes.browserLink}>
               Coinbase Wallet
             </a>{" "}
             or{" "}
-            <a href="#" className={classes.browserLink}>
+            <a href="/signin" className={classes.browserLink}>
               imToken
             </a>
             .

@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: "6px",
     borderRadius: "6px",
     width: "42px",
+    cursor: "pointer",
   },
 }));
 

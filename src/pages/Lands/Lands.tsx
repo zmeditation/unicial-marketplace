@@ -1,14 +1,8 @@
-import SearchBar from "../components/SearchBar/SearchBar";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import React, { useEffect, useState } from "react";
-import { Theme, makeStyles } from "@material-ui/core/styles";
-import LandMap from "../components/LandMap";
-import TobTab from "../components/TopTab/TopTab";
-
-const useStyles = makeStyles((theme: Theme) => ({
-  landMap: {
-    minHeight: "calc(100vh - 246px)",
-  },
-}));
+import LandMap from "../../components/LandMap";
+import TobTab from "../../components/TopTab/TopTab";
+import { useStyles } from "./LandsStyle";
 
 const Lands: React.FC = () => {
   const classes = useStyles();

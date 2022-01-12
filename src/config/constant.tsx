@@ -2,10 +2,6 @@ export const tabs = {
   land: 1,
 };
 
-export const getLastUrl = (url: string) => {
-  return url.substring(url.lastIndexOf("/") + 1);
-};
-
 export const tabId = {
   marketplace: 1,
   builder: 2,
@@ -26,4 +22,15 @@ export const topTabIndex = {
 export const searchbarBtn = {
   tableBtn: 1,
   locationBtn: 2,
+};
+
+export const networkInfo = {
+  chain_id: 1,
+  rpcUrl: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+  chain_name: "Ethereum Mainnet",
+};
+
+export const connectWalletStatus = {
+  connect: "1",
+  disconnect: "2",
 };

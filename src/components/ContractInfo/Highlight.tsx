@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   cards: {
     width: "100%",
     display: "flex",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     [theme.breakpoints.down(769)]: {
       display: "block",
     },
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   card: {
     display: "flex",
     marginBottom: "20px",
+    marginRight: "30px",
   },
   addressImg: {
     marginRight: "8px",

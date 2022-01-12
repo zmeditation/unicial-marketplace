@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "12px",
     display: "flex",
     flexDirection: "column",
+    margin: "5px 0px",
   },
   title: {
     fontSize: "13px",
