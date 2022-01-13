@@ -128,6 +128,9 @@ export const StyledTableButton = withStyles({
         fill: "#ff2d55",
       },
     },
+    "&.MuiButton-root:hover": {
+      backgroundColor: "#392d38",
+    },
   },
 })(Button);
 
@@ -142,6 +145,9 @@ export const StyledLocationButton = withStyles({
       "& svg": {
         fill: "#ff2d55",
       },
+    },
+    "&.MuiButton-root:hover": {
+      backgroundColor: "#392d38",
     },
   },
 })(Button);
