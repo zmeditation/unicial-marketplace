@@ -2,13 +2,14 @@ export const tabs = {
   land: 1,
 };
 
-export const tabId = {
+export const headerId = {
   marketplace: 1,
-  builder: 2,
-  docs: 3,
-  events: 4,
-  dao: 5,
-  blog: 6,
+  admin: 2,
+  builder: 3,
+  docs: 4,
+  events: 5,
+  dao: 6,
+  blog: 7,
 };
 
 export const topTabIndex = {

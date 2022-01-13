@@ -4,13 +4,13 @@ import { Box, Button } from "@material-ui/core";
 import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
-import { tabId } from "../../config/constant";
+import { headerId } from "../../config/constant";
 
 export default function Header() {
   const classes = HeaderStyle();
   const navigate = useNavigate();
   const location = useLocation();
-  const [head_index, setHeaderIndex] = useState(tabId.marketplace);
+  const [head_index, setHeaderIndex] = useState(headerId.marketplace);
   const [isSignInclicked, setIsSignInclicked] = useState(0);
   const handleSignIn = () => {
     setIsSignInclicked(1);
@@ -18,8 +18,13 @@ export default function Header() {
   };
 
   const handleMarketPlace = () => {
-    setHeaderIndex(tabId.marketplace);
+    setHeaderIndex(headerId.marketplace);
     navigate("/");
+  };
+
+  const handleAdmin = () => {
+    setHeaderIndex(headerId.admin);
+    navigate("/admin/lands");
   };
   var isSigned = 0;
   return (
@@ -34,7 +39,7 @@ export default function Header() {
 
               <Button
                 className={
-                  head_index === tabId.marketplace
+                  head_index === headerId.marketplace
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
@@ -43,9 +48,21 @@ export default function Header() {
               >
                 Marketplace
               </Button>
+
               <Button
                 className={
-                  head_index === tabId.builder
+                  head_index === headerId.admin
+                    ? classes.headerClickBtn
+                    : classes.headerBtn
+                }
+                onClick={handleAdmin}
+              >
+                Admin
+              </Button>
+
+              <Button
+                className={
+                  head_index === headerId.builder
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
@@ -55,7 +72,7 @@ export default function Header() {
               </Button>
               <Button
                 className={
-                  head_index === tabId.docs
+                  head_index === headerId.docs
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
@@ -65,7 +82,7 @@ export default function Header() {
               </Button>
               <Button
                 className={
-                  head_index === tabId.events
+                  head_index === headerId.events
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
@@ -75,7 +92,7 @@ export default function Header() {
               </Button>
               <Button
                 className={
-                  head_index === tabId.dao
+                  head_index === headerId.dao
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
@@ -85,7 +102,7 @@ export default function Header() {
               </Button>
               <Button
                 className={
-                  head_index === tabId.blog
+                  head_index === headerId.blog
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }

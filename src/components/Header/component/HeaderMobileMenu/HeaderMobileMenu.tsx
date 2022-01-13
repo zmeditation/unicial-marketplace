@@ -7,12 +7,12 @@ import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { HeaderMobileMenuStyle } from "./HeaderMobileMenuStyle";
-import { tabId } from "../../../../config/constant";
+import { headerId } from "../../../../config/constant";
 
 export default function HeaderMobileMenu() {
   const classes = HeaderMobileMenuStyle();
   const [open, setOpen] = React.useState(false);
-  const [head_index, setHeaderIndex] = React.useState(tabId.marketplace);
+  const [head_index, setHeaderIndex] = React.useState(headerId.marketplace);
 
   const handleClick = () => {
     setOpen(!open);
@@ -20,7 +20,7 @@ export default function HeaderMobileMenu() {
 
   const handleMarketplace = () => {
     setOpen(false);
-    setHeaderIndex(tabId.marketplace);
+    setHeaderIndex(headerId.marketplace);
     window.location.href = "/";
   };
 
@@ -51,7 +51,7 @@ export default function HeaderMobileMenu() {
               <ListItem
                 button
                 className={
-                  head_index === tabId.marketplace
+                  head_index === headerId.marketplace
                     ? classes.active
                     : classes.unactive
                 }

@@ -4,7 +4,7 @@ import starWallet_svg from "../../assets/svg/starWallet.svg";
 import { ethers } from "ethers";
 import { CHAIN_INFO } from "../../config/constant";
 
-declare var windwo: any;
+declare var window: any;
 
 export default function SignIn() {
   const classes = SignInStyle();

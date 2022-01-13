@@ -9,6 +9,8 @@ import SignIn from "../../pages/SignIn/SignIn";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
+import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
+// import AdminEstate from "../Admin/AdminEstate/AdminEstate";
 export default function Layout() {
   return (
     <Router>
@@ -30,6 +32,8 @@ export default function Layout() {
           path="/contracts/:contractaddress/tokens/:tokensid/buy"
           element={<Buy />}
         />
+        {/* admin relate */}
+        <Route path="/admin/lands" element={<AdminLands />} />
       </Routes>
       <Footer />
     </Router>
