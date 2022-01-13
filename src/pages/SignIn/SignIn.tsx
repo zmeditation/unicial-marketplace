@@ -1,8 +1,14 @@
 import { SignInStyle } from "./SignInStyle";
+import { ethers } from "ethers";
+
 import ActionButton from "../../components/Base/ActionButton";
 import starWallet_svg from "../../assets/svg/starWallet.svg";
-import { ethers } from "ethers";
 import { CHAIN_INFO } from "../../config/constant";
+import {
+  SpaceRegistryAbi,
+  SpaceRegistryAddress,
+} from "../../config/contracts/SpaceRegistryContract";
+import internal from "stream";
 
 declare var window: any;
 
@@ -10,11 +16,63 @@ export default function SignIn() {
   const classes = SignInStyle();
 
   var loginAddress: string;
+  var isAdmin: boolean;
 
-  const checkIsAuthorizedSpace = async (
+  var spaceRegistryContract: any;
+  // spaceRegistryContract = new ethers.Contract(
+  //   SpaceRegistryAddress,
+  //   SpaceRegistryAbi,
+  //   signer
+  // );
+  const assignSpaceForTest = async (
+    spaceRegistryContract: any,
+    x: number,
+    y: number
+  ) => {
+    console.log("x, y: ", x, y);
+    let ownerOfSpace = await spaceRegistryContract.ownerOfSpace(x, y);
+    console.log(
+      `${(x.toString(), y.toString())} is assigned before assign`,
+      ownerOfSpace
+    );
+
+    let assignSpaceTx = await spaceRegistryContract.assignNewRood(
+      x,
+      y,
+      "0x8734CB972d36a740Cc983d5515e160C373A4a016"
+    );
+
+    await assignSpaceTx.wait();
+
+    ownerOfSpace = await spaceRegistryContract.ownerOfSpace(x, y);
+    console.log(
+      `${(x.toString(), y.toString())} is assigned after assign`,
+      ownerOfSpace
+    );
+  };
+
+  const spaceRegistryAuthorized = async (
     signer: any,
     connectedAddress: string
-  ) => {};
+  ) => {
+    spaceRegistryContract = new ethers.Contract(
+      SpaceRegistryAddress,
+      SpaceRegistryAbi,
+      signer
+    );
+
+    let proxyOwner = await spaceRegistryContract.proxyOwner();
+    let isAuthorizedDeploy = await spaceRegistryContract.authorizedDeploy(
+      connectedAddress
+    );
+    isAdmin = proxyOwner === connectedAddress || isAuthorizedDeploy;
+    console.log("isAdmin", isAdmin);
+
+    //assign (0, 0) for test
+    await assignSpaceForTest(spaceRegistryContract, 0, 20);
+
+    return isAdmin;
+  };
 
   const getLoginAddress = async (signer: any, msgToSign: string) => {
     let signature = await signer.signMessage(msgToSign);
@@ -24,7 +82,6 @@ export default function SignIn() {
 
     return recoveredAddress;
   };
-
   const handleSignIn = async () => {
     var provider = new ethers.providers.Web3Provider(window.ethereum);
     var signer = provider.getSigner();
@@ -48,6 +105,7 @@ export default function SignIn() {
       // check current chain id is equal to Zilionixx Mainnet
       if (chainId === znxChainId) {
         loginAddress = await getLoginAddress(signer, "Hello World");
+        isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
         window.alert("Recovered address: " + loginAddress);
       } else {
         let ethereum = window.ethereum;
@@ -62,6 +120,7 @@ export default function SignIn() {
           signer = provider.getSigner();
 
           loginAddress = await getLoginAddress(signer, "Hello World");
+          isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
           window.alert(
             "Switched chain done & Recovered address: " + loginAddress
           );
@@ -85,13 +144,14 @@ export default function SignIn() {
               signer = provider.getSigner();
 
               loginAddress = await getLoginAddress(signer, "Hello World");
+              isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
               window.alert(
                 "Add chain done & Recovered address: " + loginAddress
               );
             } catch (addError) {
               // handle "add" error
               window.alert(
-                "Can not switch to Zilionixx network. Are you offline?"
+                "Can not add Zilionixx network. Please add Zilionixx network."
               );
             }
           }
