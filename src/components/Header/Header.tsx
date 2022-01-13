@@ -1,29 +1,27 @@
 import React, { useState } from "react";
-import { createBrowserHistory } from "history";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Box, Button } from "@material-ui/core";
-
 import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
 import { tabId } from "../../config/constant";
 
 export default function Header() {
-  const browserHistory = createBrowserHistory();
   const classes = HeaderStyle();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [head_index, setHeaderIndex] = useState(tabId.marketplace);
   const [isSignInclicked, setIsSignInclicked] = useState(0);
   const handleSignIn = () => {
     setIsSignInclicked(1);
-    browserHistory.push(`/signin`);
-    window.location.reload();
+    navigate(`/signin`);
   };
 
   const handleMarketPlace = () => {
     setHeaderIndex(tabId.marketplace);
-    // navigate("/");
+    navigate("/");
   };
   var isSigned = 0;
-
   return (
     <>
       <div className={classes.root}>
@@ -101,7 +99,9 @@ export default function Header() {
           {isSigned === 0 ? (
             <Box
               className={
-                isSignInclicked === 0 ? classes.signnormal : classes.signclicked
+                location.pathname === "/signin"
+                  ? classes.signclicked
+                  : classes.signnormal
               }
               onClick={handleSignIn}
             >
