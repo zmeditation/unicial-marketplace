@@ -42,6 +42,7 @@ const Auction = () => {
         <div className={classes.leftTime}>
           <CountDown />
         </div>
+        <span className={classes.title}>Staging</span>
         <div>
           <StageMarket columns={headerData} rows={transactionData} />
         </div>

@@ -135,7 +135,6 @@ function StageMarket({ columns, rows, emptyTableRows }: StyledTableleProps) {
   ));
   return (
     <>
-      <div className={classes.title}>Staging</div>
       <TableContainer className={classes.tableContainer}>
         <Table
           stickyHeader

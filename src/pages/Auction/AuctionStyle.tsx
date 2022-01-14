@@ -107,12 +107,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
   leftTime: {
     backgroundColor: "#242129",
     borderRadius: "10px",
-    padding: "24px",
+    paddingBottom: "24px",
   },
   title: {
     fontSize: "28px",
     fontWeight: 600,
     lineHeight: "42px",
     textAlign: "left",
+    margin: "20px 0px",
+    display: "block",
   },
 }));
