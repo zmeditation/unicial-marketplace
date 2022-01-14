@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Box, Button } from "@material-ui/core";
 import { HeaderStyle } from "./HeaderStyle";
@@ -10,14 +10,7 @@ export default function Header() {
   const classes = HeaderStyle();
   const navigate = useNavigate();
   const location = useLocation();
-
-  let headerIndexId;
-  if (location.pathname.includes("/admin")) {
-    headerIndexId = headerId.admin;
-  } else {
-    headerIndexId = headerId.marketplace;
-  }
-  const [headIndex, setHeaderIndex] = useState(headerIndexId);
+  const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
   const [isSignInclicked, setIsSignInclicked] = useState(0);
   const handleSignIn = () => {
     setIsSignInclicked(1);
@@ -34,6 +27,14 @@ export default function Header() {
     navigate("/admin/lands");
   };
   var isSigned = 0;
+
+  useEffect(() => {
+    if (location.pathname.includes("/admin")) {
+      setHeaderIndex(headerId.admin);
+    } else {
+      setHeaderIndex(headerId.marketplace);
+    }
+  }, [location.pathname]);
 
   return (
     <>
@@ -64,7 +65,7 @@ export default function Header() {
                 disableRipple
                 onClick={handleAdmin}
               >
-                Admin
+                ADMIN
               </Button>
             </div>
           </div>
