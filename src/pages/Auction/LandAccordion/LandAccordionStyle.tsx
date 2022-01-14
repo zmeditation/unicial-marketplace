@@ -7,7 +7,6 @@ import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 
 export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   root: {
-    minHeight: "calc(100vh - 160px)",
     width: "100%",
     maxWidth: "1064px",
     marginTop: "40px",

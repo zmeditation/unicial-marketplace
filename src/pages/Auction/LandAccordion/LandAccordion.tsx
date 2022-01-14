@@ -144,7 +144,7 @@ export default function LandAccordion() {
                       id="input-with-icon-adornment"
                       startAdornment={
                         <InputAdornment position="start">
-                          <span className={classes.axisLabel}>[ X , Y ]</span>
+                          <span className={classes.axisLabel}>[ "X , Y" ]</span>
                         </InputAdornment>
                       }
                     />

@@ -8,7 +8,7 @@ import { BackButton } from "../../components/BackButton/BackButton";
 const Buy = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  var isSignIn = 0;
+  var isSignIn = 1;
 
   return (
     <div className={classes.root}>

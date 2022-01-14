@@ -88,7 +88,7 @@ const Contract = () => {
             ))}
           </div>
 
-          <Parcels />
+          {/* <Parcels /> */}
         </div>
       </div>
     </>
