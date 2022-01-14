@@ -99,6 +99,10 @@ const LandMap: React.FC<LandMapProps> = ({
         setHoveredTile(tile);
         setMouseX(-1);
         setMouseY(-1);
+      } else if (tile && tile !== hoveredTile) {
+        setHoveredTile(tile);
+        setMouseX(-1);
+        setMouseY(-1);
       } else if (!tile && showPopup) {
         setShowPopup(false);
       }

@@ -22,9 +22,18 @@ export default function Layout() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/lands" element={<Lands />} />
         <Route path="/auction" element={<Auction />} />
-        <Route path="/contracts" element={<Contracts />} />
-        <Route path="/contracts/bid" element={<Bid />} />
-        <Route path="/contracts/buy" element={<Buy />} />
+        <Route
+          path="/contracts/:contractaddress/tokens/:tokensid"
+          element={<Contracts />}
+        />
+        <Route
+          path="/contracts/:contractaddress/tokens/:tokensid/bid"
+          element={<Bid />}
+        />
+        <Route
+          path="/contracts/:contractaddress/tokens/:tokensid/buy"
+          element={<Buy />}
+        />
         {/* admin relate */}
         <Route path="/admin/lands" element={<AdminLands />} />
         <Route path="/admin/estate" element={<AdminEstate />} />

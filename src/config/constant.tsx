@@ -9,7 +9,7 @@ export const headerId = {
 
 export const topTabIndex = {
   land: 1,
-  collectibles: 2,
+  auction: 2,
   partners: 3,
   myassets: 4,
   mybids: 5,

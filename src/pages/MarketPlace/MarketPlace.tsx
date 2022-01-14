@@ -16,7 +16,7 @@ export default function MarketPlace() {
           </div>
         </div>
         <div className={classes.hero_action}>
-          <Button className={classes.browsebtn} href="/auction">
+          <Button className={classes.browsebtn} href="/lands">
             Start Browsing
           </Button>
         </div>

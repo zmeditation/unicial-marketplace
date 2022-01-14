@@ -113,10 +113,6 @@ const LandMap: React.FC<LandMapProps> = ({
         setHoveredTile(tile);
         setMouseX(-1);
         setMouseY(-1);
-      } else if (tile && tile !== hoveredTile) {
-        setHoveredTile(tile);
-        setMouseX(-1);
-        setMouseY(-1);
       } else if (!tile && showPopup) {
         setShowPopup(false);
       }
@@ -148,7 +144,6 @@ const LandMap: React.FC<LandMapProps> = ({
       fetchTiles().then((_tiles: any) => setTiles(_tiles));
     }
   }, []);
-
   return (
     <div onMouseLeave={handleHidePopup}>
       <Atlas
@@ -167,7 +162,7 @@ const LandMap: React.FC<LandMapProps> = ({
           y={y}
           visible={showPopup}
           tile={hoveredTile}
-          position={x > window.innerWidth - 280 ? "left" : "right"}
+          position={x > window.innerWidth - 550 ? "left" : "right"}
         />
       ) : null}
     </div>
