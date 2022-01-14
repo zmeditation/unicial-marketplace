@@ -7,7 +7,7 @@ import makeBlockie from "ethereum-blockies-base64";
 export default class Popup extends React.PureComponent<Props> {
   render() {
     const { x, y, visible, tile, position } = this.props;
-    const isEstate = !!tile.estate_id;
+    const isEstate = !!tile.estateId;
     return (
       <div
         className={`AtlasPopup ${position} ${

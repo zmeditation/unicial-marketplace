@@ -5,3 +5,7 @@ export function isEmptyObject(obj: any) {
   }
   return true;
 }
+
+export function includeArray(array: any, key: any) {
+  return array.indexOf(key) !== -1;
+}
