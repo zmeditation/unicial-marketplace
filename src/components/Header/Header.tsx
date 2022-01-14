@@ -10,7 +10,14 @@ export default function Header() {
   const classes = HeaderStyle();
   const navigate = useNavigate();
   const location = useLocation();
-  const [head_index, setHeaderIndex] = useState(headerId.marketplace);
+
+  let headerIndexId;
+  if (location.pathname.includes("/admin")) {
+    headerIndexId = headerId.admin;
+  } else {
+    headerIndexId = headerId.marketplace;
+  }
+  const [headIndex, setHeaderIndex] = useState(headerIndexId);
   const [isSignInclicked, setIsSignInclicked] = useState(0);
   const handleSignIn = () => {
     setIsSignInclicked(1);
@@ -27,6 +34,7 @@ export default function Header() {
     navigate("/admin/lands");
   };
   var isSigned = 0;
+
   return (
     <>
       <div className={classes.root}>
@@ -38,7 +46,7 @@ export default function Header() {
               </Link>
               <Button
                 className={
-                  head_index === headerId.marketplace
+                  headIndex === headerId.marketplace
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
@@ -47,13 +55,13 @@ export default function Header() {
               >
                 Marketplace
               </Button>
-
               <Button
                 className={
-                  head_index === headerId.admin
+                  headIndex === headerId.admin
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
+                disableRipple
                 onClick={handleAdmin}
               >
                 Admin

@@ -78,11 +78,12 @@ const Contract = () => {
           </div>
           <div>
             <div className={classes.BidsTitle}>BIDS</div>
-            {BidRecordData.map((row) => (
+            {BidRecordData.map((row, index) => (
               <BidRecord
                 fromName={row.fromName}
                 price={row.price}
                 time={row.time}
+                key={index}
               />
             ))}
           </div>
