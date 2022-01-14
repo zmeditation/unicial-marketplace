@@ -117,4 +117,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     margin: "20px 0px",
     display: "block",
   },
+  actionButton: {
+    display: "flex",
+    justifyContent: "end",
+    marginTop: "20px",
+  },
+  approveBtn: {
+    marginRight: "20px",
+  },
 }));

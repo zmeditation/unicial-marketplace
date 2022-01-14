@@ -67,15 +67,16 @@ const Contract = () => {
             </div>
             <div className={classes.rightDescription}>
               <Bidbox />
-              <Buybox />
+              {/* <Buybox /> */}
             </div>
           </div>
-          <div className={classes.tableRoot}>
+          <Parcels />
+          {/* <div className={classes.tableRoot}>
             <TransactionHistoryTable
               columns={headerData}
               rows={transactionData}
             />
-          </div>
+          </div> */}
           <div>
             <div className={classes.BidsTitle}>BIDS</div>
             {BidRecordData.map((row, index) => (
@@ -87,8 +88,6 @@ const Contract = () => {
               />
             ))}
           </div>
-
-          {/* <Parcels /> */}
         </div>
       </div>
     </>

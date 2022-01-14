@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import { Atlas, Layer, Coord } from "../../Atlas/Atlas";
+import { Atlas, Layer } from "../../Atlas/Atlas";
 import { Tile } from "../../Atlas/Atlas.types";
 import Popup from "../../Atlas/Popup";
 import { fetchTiles } from "../../../hooks/tiles";
-import { Theme, makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme: Theme) => ({}));
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { selectparcels } from "../../../store/selectedparcels/selectors";
+import { getparcels } from "../../../store/selectedparcels";
 
 interface LandMapProps {
   height?: any;
@@ -28,7 +28,8 @@ const LandMap: React.FC<LandMapProps> = ({
   const [mouseY, setMouseY] = useState(-1);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const [selectedTile, setSelectedTile] = useState<string[]>([]);
+  const dispatch = useAppDispatch();
+  const selectedTile = useAppSelector(selectparcels);
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
   const handleClick = useCallback(
@@ -54,7 +55,7 @@ const LandMap: React.FC<LandMapProps> = ({
             selectedTile.slice(selectedIndex + 1)
           );
         }
-        setSelectedTile(newSelectedTile);
+        dispatch(getparcels(newSelectedTile));
       }
     },
     [tiles, selectedTile]

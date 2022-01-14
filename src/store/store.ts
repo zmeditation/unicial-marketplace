@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
+import mapparceldataReducer from "./selectedparcels";
 
 import testReducer from "./Test/index";
 
 export const store = configureStore({
   reducer: {
     test: testReducer,
+    selectedparcels: mapparceldataReducer,
   },
 });
 

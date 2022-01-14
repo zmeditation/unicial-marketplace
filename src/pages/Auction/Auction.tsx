@@ -7,6 +7,7 @@ import LandAccordion from "./LandAccordion/LandAccordion";
 import CountDown from "../../components/CountDown/CountDown";
 import StageMarket from "../../components/StageMarket/StageMarket";
 import { headerData, transactionData } from "./AuctionData";
+import ActionButton from "../../components/Base/ActionButton";
 
 const Auction = () => {
   const classes = useStyles();
@@ -52,6 +53,12 @@ const Auction = () => {
         <div className={classes.LandMap}>
           <div className={classes.LandMapContent}>
             <LandMap height={400} width={width} initialX={1} initialY={1} />
+          </div>
+          <div className={classes.actionButton}>
+            <ActionButton color="red" className={classes.approveBtn}>
+              Approve
+            </ActionButton>
+            <ActionButton color="dark">clear</ActionButton>
           </div>
           <LandAccordion />
         </div>
