@@ -39,6 +39,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(768)]: {
       margin: "0px calc( (100% - 400px) / 2)",
     },
+    [theme.breakpoints.down(500)]: {
+      margin: "0px calc( (100% - 300px) / 2)",
+    },
   },
 
   backBtnPosition: {
