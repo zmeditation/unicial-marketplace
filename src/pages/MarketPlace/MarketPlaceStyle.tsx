@@ -2,12 +2,11 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    height: "calc(100vh - 250px)",
+    height: "calc(100vh - 120px)",
     display: "flex",
     flexFlow: "column nowrap",
     justifyContent: "center",
     position: "relative",
-    //   width: "100%",
     overflow: "hidden",
     padding: "64px",
     backgroundColor: " #18141a",

@@ -56,7 +56,7 @@ export default function Header() {
               >
                 Marketplace
               </Button>
-              <Button
+              {/* <Button
                 className={
                   headIndex === headerId.admin
                     ? classes.headerClickBtn
@@ -66,7 +66,7 @@ export default function Header() {
                 onClick={handleAdmin}
               >
                 ADMIN
-              </Button>
+              </Button> */}
             </div>
           </div>
           <HeaderMobileMenu />

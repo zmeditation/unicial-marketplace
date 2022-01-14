@@ -23,9 +23,9 @@ export default function TopTab() {
                 onClick={handleLand}
                 disabled={toptab_index === topTabIndex.land}
               >
-                Land
+                Auction
               </StyledTopTabBtn>
-              <StyledTopTabBtn
+              {/* <StyledTopTabBtn
                 disableRipple
                 disabled={toptab_index === topTabIndex.collectibles}
               >
@@ -48,7 +48,7 @@ export default function TopTab() {
                 disabled={toptab_index === topTabIndex.mybids}
               >
                 My Bids
-              </StyledTopTabBtn>
+              </StyledTopTabBtn> */}
             </div>
           </div>
         </div>
