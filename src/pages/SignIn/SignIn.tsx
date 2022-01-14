@@ -95,6 +95,7 @@ export default function SignIn() {
 
     if (accounts.length > 0) {
       // get current network id
+      console.log("this is account lenth", accounts.length);
       const { chainId } = await provider.getNetwork();
       let znxChainId: number = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
 
