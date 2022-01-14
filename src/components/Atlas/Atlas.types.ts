@@ -1,5 +1,5 @@
 export type Tile = {
-  estate_id?: string;
+  estateId?: string;
   price?: number;
   owner?: string;
   name?: string;
