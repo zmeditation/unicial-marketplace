@@ -1,12 +1,11 @@
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
-
 //accordion relate
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 //
 
-export const AdminLandsStyle = makeStyles((theme: Theme) => ({
+export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 160px)",
     maxWidth: "1064px",
@@ -25,13 +24,16 @@ export const AdminLandsStyle = makeStyles((theme: Theme) => ({
       maxWidth: "calc(100% - 32px) !important",
     },
   },
+
   accordionRoot: {
     borderRadius: "10px",
-    border: "2px solid #242129",
+    border: "3px solid #242129",
     height: "fit-content",
     "& .MuiPaper-root": {
       backgroundColor: "#18141a",
       color: "white",
+      borderRadius: "inherit",
+      border: "none",
     },
   },
   areaLandDetailRoot: {
@@ -82,7 +84,6 @@ export const AdminLandsStyle = makeStyles((theme: Theme) => ({
     paddingRight: "0.3em",
     transform: "translateY(-0.06em)",
     display: "inline-block",
-    // marginRight: "4px",
     marginLeft: "5px",
   },
 
@@ -110,16 +111,42 @@ export const AdminLandsStyle = makeStyles((theme: Theme) => ({
   },
   selectedLandLabelContainer: {
     display: "flex",
+    justifyContent: "center",
   },
   selectedLandLabel: {
     color: "#676370",
     fontSize: "17px",
-    marginRight: "5px",
+    marginRight: "15px",
   },
   selectedLandResult: {
     color: "white",
     fontSize: "18px",
     fontWeight: 400,
+  },
+  testinput: {
+    width: "100%",
+    "& .MuiFormControl-root": {
+      width: "100%",
+      padding: "16px 0px",
+    },
+    "& .MuiInputBase-input": {
+      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontWeight: 500,
+      fontSize: "20px",
+      color: "white",
+      paddingBottom: "7px",
+    },
+    "& .MuiInput-underline:before": {
+      borderBottom: "2px solid #28242b",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottom: "2px solid white",
+    },
+    "& .MuiInput-underline:hover": {
+      "&:before": {
+        borderBottom: "2px solid #28242b",
+      },
+    },
   },
 }));
 
@@ -143,9 +170,12 @@ export const StyledAccordion = withStyles((theme) => ({
 
 export const StyledAccordionSummary = withStyles((theme) => ({
   root: {
-    backgroundColor: "rgba(0, 0, 0, .03)",
-    borderBottom: "1px solid rgba(0, 0, 0, .125)",
-    marginBottom: -1,
+    backgroundColor: "rgba(0, 0, 0, .07)",
+    borderBottom: "1px solid #242129",
+    // marginBottom: "1px",
+    // borderTop: "1px solid #242129",
+    // borderRadius: "10px",
+    // marginBottom: -1,
     minHeight: 56,
     "&$expanded": {
       minHeight: 56,
