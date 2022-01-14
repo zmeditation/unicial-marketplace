@@ -60,19 +60,7 @@ export default function HeaderMobileMenu() {
                 <ListItemText primary="MARKETPLACE" />
               </ListItem>
               <ListItem button className={classes.unactive}>
-                <ListItemText primary="BUILDER" />
-              </ListItem>
-              <ListItem button className={classes.unactive}>
-                <ListItemText primary="DOCS" />
-              </ListItem>
-              <ListItem button className={classes.unactive}>
-                <ListItemText primary="EVENTS" />
-              </ListItem>
-              <ListItem button className={classes.unactive}>
-                <ListItemText primary="DAO" />
-              </ListItem>
-              <ListItem button className={classes.unactive}>
-                <ListItemText primary="BLOG" />
+                <ListItemText primary="ADMIN" />
               </ListItem>
             </List>
           </Collapse>

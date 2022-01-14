@@ -5,11 +5,6 @@ export const tabs = {
 export const headerId = {
   marketplace: 1,
   admin: 2,
-  builder: 3,
-  docs: 4,
-  events: 5,
-  dao: 6,
-  blog: 7,
 };
 
 export const topTabIndex = {

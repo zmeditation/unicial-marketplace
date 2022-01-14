@@ -10,7 +10,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
-// import AdminEstate from "../Admin/AdminEstate/AdminEstate";
+import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 export default function Layout() {
   return (
     <Router>
@@ -34,6 +34,7 @@ export default function Layout() {
         />
         {/* admin relate */}
         <Route path="/admin/lands" element={<AdminLands />} />
+        <Route path="/admin/estate" element={<AdminEstate />} />
       </Routes>
       <Footer />
     </Router>

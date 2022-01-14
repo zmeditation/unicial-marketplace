@@ -8,6 +8,7 @@ import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 160px)",
+    width: "100%",
     maxWidth: "1064px",
     marginTop: "40px",
     marginLeft: "auto",
@@ -32,18 +33,21 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
     "& .MuiPaper-root": {
       backgroundColor: "#18141a",
       color: "white",
-      // borderRadius: "inherit",
       border: "none",
     },
   },
   firstAccordion: {
     "&.MuiPaper-root": {
-      borderRadius: "6px 0px 0px 0px",
+      borderRadius: "8px 8px 0px 0px",
     },
   },
   secondAccordion: {
     "&.MuiPaper-root": {
-      borderRadius: "0px 0px 6px 6px",
+      borderRadius: "0px 0px 8px 8px",
+      // boderTop: "2px solid #242129 !important",
+      "& .MuiAccordionSummary-root": {
+        boderTop: "1px solid #242129 ",
+      },
     },
   },
   areaLandDetailRoot: {
@@ -99,7 +103,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
 
   buttons: {
     display: "flex",
-    width: "400px",
+    // width: "400px",
     [theme.breakpoints.down(769)]: {
       width: "100%",
       display: "grid",
@@ -112,7 +116,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   selectedLandContainer: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     [theme.breakpoints.down(769)]: {
       width: "100%",
       display: "grid",
@@ -136,7 +140,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   testinput: {
     width: "100%",
     "& .MuiFormControl-root": {
-      width: "100%",
+      width: "71%",
       padding: "16px 0px",
     },
     "& .MuiInputBase-input": {
@@ -182,10 +186,7 @@ export const StyledAccordionSummary = withStyles((theme) => ({
   root: {
     backgroundColor: "rgba(0, 0, 0, .07)",
     borderBottom: "1px solid #242129",
-    // marginBottom: "1px",
-    // borderTop: "1px solid #242129",
-    // borderRadius: "10px",
-    // marginBottom: -1,
+    borderTop: "1px solid #242129",
     minHeight: 56,
     "&$expanded": {
       minHeight: 56,

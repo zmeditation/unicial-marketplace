@@ -36,7 +36,6 @@ export default function Header() {
               <Link to="/">
                 <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
               </Link>
-
               <Button
                 className={
                   head_index === headerId.marketplace
@@ -58,57 +57,6 @@ export default function Header() {
                 onClick={handleAdmin}
               >
                 Admin
-              </Button>
-
-              <Button
-                className={
-                  head_index === headerId.builder
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                Builder
-              </Button>
-              <Button
-                className={
-                  head_index === headerId.docs
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                Docs
-              </Button>
-              <Button
-                className={
-                  head_index === headerId.events
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                Events
-              </Button>
-              <Button
-                className={
-                  head_index === headerId.dao
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                DAO
-              </Button>
-              <Button
-                className={
-                  head_index === headerId.blog
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                Blog
               </Button>
             </div>
           </div>

@@ -70,6 +70,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         cursor: "pointer",
       },
     },
+
     headerBtn: {
       fontWeight: 400,
       color: "#676370",
