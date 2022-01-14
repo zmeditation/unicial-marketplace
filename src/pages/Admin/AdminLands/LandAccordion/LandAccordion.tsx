@@ -28,6 +28,7 @@ export default function LandAccordion() {
             square
             expanded={expanded === "panel1"}
             onChange={handleChange("panel1")}
+            className={classes.firstAccordion}
           >
             <StyledAccordionSummary
               aria-controls="panel1d-content"
@@ -124,6 +125,7 @@ export default function LandAccordion() {
             square
             expanded={expanded === "panel2"}
             onChange={handleChange("panel2")}
+            className={classes.secondAccordion}
           >
             <StyledAccordionSummary
               aria-controls="panel2d-content"

@@ -32,8 +32,18 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
     "& .MuiPaper-root": {
       backgroundColor: "#18141a",
       color: "white",
-      borderRadius: "inherit",
+      // borderRadius: "inherit",
       border: "none",
+    },
+  },
+  firstAccordion: {
+    "&.MuiPaper-root": {
+      borderRadius: "6px 0px 0px 0px",
+    },
+  },
+  secondAccordion: {
+    "&.MuiPaper-root": {
+      borderRadius: "0px 0px 6px 6px",
     },
   },
   areaLandDetailRoot: {
