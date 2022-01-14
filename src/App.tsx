@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Layout from "./components/layout/Layout";
+import Layout from "./components/Layout/Layout";
 import { ThemeProvider, useTheme } from "@material-ui/core/styles";
 
 function App() {
