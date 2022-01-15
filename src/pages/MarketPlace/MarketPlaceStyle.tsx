@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     overflow: "hidden",
     padding: "64px",
-    backgroundColor: " #18141a",
+    backgroundColor: " #21263f",
     borderBottom: "1px solid #67637033",
   },
   itemContainer: {

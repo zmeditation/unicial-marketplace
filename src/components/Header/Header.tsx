@@ -5,6 +5,7 @@ import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
 import { headerId } from "../../config/constant";
+import HeaderSignInBtn from "./component/HeaderSignInBtn/HeaderSignInBtn";
 
 export default function Header() {
   const classes = HeaderStyle();
@@ -12,6 +13,7 @@ export default function Header() {
   const location = useLocation();
   const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
   const [isSignInclicked, setIsSignInclicked] = useState(0);
+
   const handleSignIn = () => {
     setIsSignInclicked(1);
     navigate(`/signin`);
@@ -26,7 +28,7 @@ export default function Header() {
     setHeaderIndex(headerId.admin);
     navigate("/admin/lands");
   };
-  var isSigned = 1;
+  var isSigned = 0;
 
   useEffect(() => {
     if (location.pathname.includes("/admin")) {
@@ -71,16 +73,7 @@ export default function Header() {
           </div>
           <HeaderMobileMenu />
           {isSigned === 0 ? (
-            <Box
-              className={
-                location.pathname === "/signin"
-                  ? classes.signclicked
-                  : classes.signnormal
-              }
-              onClick={handleSignIn}
-            >
-              Sign In
-            </Box>
+            <HeaderSignInBtn onClick={handleSignIn} />
           ) : (
             <HeaderSignInBar />
           )}
