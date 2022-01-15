@@ -1,4 +1,3 @@
-import React from "react";
 import { SignInStyle } from "./SignInStyle";
 import { ethers } from "ethers";
 
@@ -8,31 +7,87 @@ import { CHAIN_INFO } from "../../config/constant";
 import {
   SpaceRegistryAbi,
   SpaceRegistryAddress,
+  SpaceProxyAddress,
+  SpaceProxyAbi,
 } from "../../config/contracts/SpaceRegistryContract";
-import { parseBytes32String } from "ethers/lib/utils";
+import { SpaceAuctionAddress } from "../../config/contracts/SpaceAuctionContract";
+import { setloginAddress } from "../../store/auth/actions";
+import { useAppDispatch } from "../../store/hooks";
 
 declare var window: any;
+var provider: any;
+var signer: any;
 
 export default function SignIn() {
   const classes = SignInStyle();
+  const dispatch = useAppDispatch();
 
   var loginAddress: string;
   var isAdmin: boolean;
+  var spaceProxyContract: any, spaceRegistryContract: any;
 
-  var spaceRegistryContract: any;
+  const addSpaceAuctionContractAsAdmin = async (
+    spaceProxyContract: any,
+    SpaceAuctionAddress: string
+  ) => {
+    console.log("SpaceAuctionAddress: ", SpaceAuctionAddress);
+    let authorizedDeployStatus = await spaceProxyContract.authorizedDeploy(
+      SpaceAuctionAddress
+    );
+
+    let proxyOwner = await spaceProxyContract.proxyOwner();
+    console.log("proxyOwner: ", proxyOwner);
+
+    console.log(
+      "authorizedDeployStatus for ",
+      SpaceAuctionAddress,
+      "is",
+      authorizedDeployStatus
+    );
+    if (!authorizedDeployStatus) {
+      console.log("To be Authorized Address: ", SpaceAuctionAddress);
+
+      spaceProxyContract = new ethers.Contract(
+        SpaceProxyAddress,
+        SpaceRegistryAbi,
+        signer
+      );
+
+      let authorizeSpaceAuctionTx = await spaceProxyContract.authorizeDeploy(
+        SpaceAuctionAddress
+      );
+
+      console.log("authorizeSpaceAuctionTx");
+      console.log(authorizeSpaceAuctionTx);
+      await authorizeSpaceAuctionTx.wait();
+
+      console.log(
+        "SpaceAuctionAddress" +
+          SpaceAuctionAddress +
+          "is successfully authorized as Space token deployer"
+      );
+    } else {
+      console.log(
+        "SpaceAuctionAddress" +
+          SpaceAuctionAddress +
+          "is already authorized as Space token deployer"
+      );
+    }
+  };
+
   const assignSpaceForTest = async (
-    spaceRegistryContract: any,
+    spaceProxyContract: any,
     x: number,
     y: number
   ) => {
     console.log("x, y: ", x, y);
-    let ownerOfSpace = await spaceRegistryContract.ownerOfSpace(x, y);
+    let ownerOfSpace = await spaceProxyContract.ownerOfSpace(x, y);
     console.log(
       `${(x.toString(), y.toString())} is assigned before assign`,
       ownerOfSpace
     );
 
-    let assignSpaceTx = await spaceRegistryContract.assignNewRood(
+    let assignSpaceTx = await spaceProxyContract.assignNewRood(
       x,
       y,
       "0x8734CB972d36a740Cc983d5515e160C373A4a016"
@@ -40,7 +95,7 @@ export default function SignIn() {
 
     await assignSpaceTx.wait();
 
-    ownerOfSpace = await spaceRegistryContract.ownerOfSpace(x, y);
+    ownerOfSpace = await spaceProxyContract.ownerOfSpace(x, y);
     console.log(
       `${(x.toString(), y.toString())} is assigned after assign`,
       ownerOfSpace
@@ -51,21 +106,46 @@ export default function SignIn() {
     signer: any,
     connectedAddress: string
   ) => {
+    spaceProxyContract = new ethers.Contract(
+      SpaceProxyAddress,
+      SpaceProxyAbi,
+      signer
+    );
+
     spaceRegistryContract = new ethers.Contract(
-      SpaceRegistryAddress,
+      SpaceProxyAddress,
       SpaceRegistryAbi,
       signer
     );
 
-    let proxyOwner = await spaceRegistryContract.proxyOwner();
-    let isAuthorizedDeploy = await spaceRegistryContract.authorizedDeploy(
-      connectedAddress
+    let spaceBalance = await spaceRegistryContract.balanceOf(connectedAddress);
+    console.log("Space balance of " + connectedAddress + "is: " + spaceBalance);
+
+    let proxyOwner = await spaceProxyContract.proxyOwner();
+    let currentContract = await spaceProxyContract.currentContract();
+    let isAuthorizedDeploy = await spaceProxyContract.authorizedDeploy(
+      SpaceAuctionAddress
     );
+
+    // console.log("isAuthorizedDeploy", isAuthorizedDeploy);
+    // console.log("signer in spaceRegistryAuthorized");
+
+    console.log("currentContract", currentContract);
+
+    console.log(signer);
+    if (!isAuthorizedDeploy) {
+      //add auction contract as a authorizedDeployer
+      await addSpaceAuctionContractAsAdmin(
+        spaceProxyContract,
+        SpaceAuctionAddress
+      );
+    }
+
     isAdmin = proxyOwner === connectedAddress || isAuthorizedDeploy;
     console.log("isAdmin", isAdmin);
 
     //assign (0, 0) for test
-    await assignSpaceForTest(spaceRegistryContract, 0, 20);
+    // await assignSpaceForTest(spaceProxyContract, 0, 20);
 
     return isAdmin;
   };
@@ -75,88 +155,85 @@ export default function SignIn() {
 
     // Make sure you arrayify the message if you want the bytes to be used as the message
     const recoveredAddress = ethers.utils.verifyMessage(msgToSign, signature);
-
+    console.log("recoveredAddress", recoveredAddress);
+    dispatch(setloginAddress(recoveredAddress));
     return recoveredAddress;
   };
-  const handleSignIn = async () => {
-    var provider = new ethers.providers.Web3Provider(window.ethereum);
-    var signer = provider.getSigner();
 
+  const handleSignIn = async () => {
     var accounts = [];
+    console.log(window);
     if (window.ethereum) {
-      accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
+      provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+      await provider.send("eth_requestAccounts", []);
+      signer = provider.getSigner();
+
+      console.log("signer in handleSignIn");
+      console.log(await signer.getAddress());
     } else {
       window.alert(
         "Metamask seem to be not installed. Please install metamask first and try again."
       );
     }
 
-    if (accounts.length > 0) {
-      // get current network id
-      console.log("this is account lenth", accounts.length);
-      const { chainId } = await provider.getNetwork();
-      let znxChainId: number = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
+    // get current network id
+    console.log("this is account lenth", accounts.length);
+    const { chainId } = await provider.getNetwork();
+    let znxChainId: number = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
 
-      // check current chain id is equal to Zilionixx Mainnet
-      if (chainId === znxChainId) {
+    // check current chain id is equal to Zilionixx Mainnet
+    if (chainId === znxChainId) {
+      loginAddress = await getLoginAddress(signer, "Hello World");
+      isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
+      window.alert("Recovered address: " + loginAddress);
+    } else {
+      let ethereum = window.ethereum;
+      try {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: CHAIN_INFO.TESTNET.chainId }],
+        });
+
+        // switch provider and signer to zilionixx network
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        signer = provider.getSigner();
+
         loginAddress = await getLoginAddress(signer, "Hello World");
         isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
-        window.alert("Recovered address: " + loginAddress);
-      } else {
-        let ethereum = window.ethereum;
-        try {
-          await ethereum.request({
-            method: "wallet_switchEthereumChain",
-            params: [{ chainId: CHAIN_INFO.TESTNET.chainId }],
-          });
+        window.alert(
+          "Switched chain done & Recovered address: " + loginAddress
+        );
+      } catch (switchError: any) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        if (switchError.code === 4902) {
+          try {
+            await ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: CHAIN_INFO.TESTNET.chainId,
+                  chainName: CHAIN_INFO.TESTNET.chainName,
+                  rpcUrls: CHAIN_INFO.TESTNET.rpcUrls /* ... */,
+                },
+              ],
+            });
 
-          // switch provider and signer to zilionixx network
-          provider = new ethers.providers.Web3Provider(window.ethereum);
-          signer = provider.getSigner();
+            // switch provider and signer to zilionixx network
+            provider = new ethers.providers.Web3Provider(window.ethereum);
+            signer = provider.getSigner();
 
-          loginAddress = await getLoginAddress(signer, "Hello World");
-          isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
-          window.alert(
-            "Switched chain done & Recovered address: " + loginAddress
-          );
-        } catch (switchError: any) {
-          // This error code indicates that the chain has not been added to MetaMask.
-          if (switchError.code === 4902) {
-            try {
-              await ethereum.request({
-                method: "wallet_addEthereumChain",
-                params: [
-                  {
-                    chainId: CHAIN_INFO.TESTNET.chainId,
-                    chainName: CHAIN_INFO.TESTNET.chainName,
-                    rpcUrls: CHAIN_INFO.TESTNET.rpcUrls /* ... */,
-                  },
-                ],
-              });
-
-              // switch provider and signer to zilionixx network
-              provider = new ethers.providers.Web3Provider(window.ethereum);
-              signer = provider.getSigner();
-
-              loginAddress = await getLoginAddress(signer, "Hello World");
-              isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
-              window.alert(
-                "Add chain done & Recovered address: " + loginAddress
-              );
-            } catch (addError) {
-              // handle "add" error
-              window.alert(
-                "Can not add Zilionixx network. Please add Zilionixx network."
-              );
-            }
+            loginAddress = await getLoginAddress(signer, "Hello World");
+            isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
+            window.alert("Add chain done & Recovered address: " + loginAddress);
+          } catch (addError) {
+            // handle "add" error
+            window.alert(
+              "Can not add Zilionixx network. Please add Zilionixx network."
+            );
           }
-          // handle other "switch" errors
         }
+        // handle other "switch" errors
       }
-    } else {
-      window.alert("No address is connected to this site");
     }
   };
 
