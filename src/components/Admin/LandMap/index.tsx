@@ -32,10 +32,11 @@ const LandMap: React.FC<LandMapProps> = ({
   const selectedTile = useAppSelector(selectparcels);
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
+
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (!tile) {
+      if (tile.owner) {
         return;
       } else {
         let newSelectedTile: string[] = [];
