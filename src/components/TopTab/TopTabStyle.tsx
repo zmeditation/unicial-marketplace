@@ -51,7 +51,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     color: "white",
     position: "relative",
     display: "inline-block",
-    padding: "19px 0px 15px 0px",
+    padding: "16px 0px",
     marginRight: "32px",
     fontSize: "17px",
     fontFamily:
