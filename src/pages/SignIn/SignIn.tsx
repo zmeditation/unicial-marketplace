@@ -9,6 +9,7 @@ import {
   SpaceRegistryAbi,
   SpaceRegistryAddress,
 } from "../../config/contracts/SpaceRegistryContract";
+import { parseBytes32String } from "ethers/lib/utils";
 
 declare var window: any;
 
@@ -93,12 +94,6 @@ export default function SignIn() {
     }
 
     if (accounts.length > 0) {
-      console.log("this is account lenth", accounts.length);
-      // React.useEffect(() => {
-      //   const formData = new FormData()
-      //   const len = accounts.length
-      //   formData.append('loginAdress', len )
-      // })
       // get current network id
       const { chainId } = await provider.getNetwork();
       let znxChainId: number = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
