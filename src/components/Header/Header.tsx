@@ -28,7 +28,7 @@ export default function Header() {
     setHeaderIndex(headerId.admin);
     navigate("/admin/lands");
   };
-  var isSigned = 0;
+  var isSigned = 1;
 
   useEffect(() => {
     if (location.pathname.includes("/admin")) {
@@ -42,23 +42,23 @@ export default function Header() {
     <>
       <div className={classes.root}>
         <div className={classes.container}>
-          <div style={{ position: "relative" }}>
-            <div className={classes.headermenuContainer}>
-              <Link to="/">
-                <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
-              </Link>
-              <Button
-                className={
-                  headIndex === headerId.marketplace
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-                onClick={handleMarketPlace}
-              >
-                Marketplace
-              </Button>
-              {/* <Button
+          <div className={classes.headermenuContainer}>
+            <Link to="/" className={classes.logoContent}>
+              <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
+              <span className={classes.logoName}>UNICIAL</span>
+            </Link>
+            <Button
+              className={
+                headIndex === headerId.marketplace
+                  ? classes.headerClickBtn
+                  : classes.headerBtn
+              }
+              disableRipple
+              onClick={handleMarketPlace}
+            >
+              Marketplace
+            </Button>
+            {/* <Button
                 className={
                   headIndex === headerId.admin
                     ? classes.headerClickBtn
@@ -69,7 +69,6 @@ export default function Header() {
               >
                 ADMIN
               </Button> */}
-            </div>
           </div>
           <HeaderMobileMenu />
           {isSigned === 0 ? (

@@ -37,15 +37,33 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       border: "none",
       boxShadow: "none",
       display: "flex",
+      alignItems: "center",
+      height: "100%",
       // [theme.breakpoints.down(768)]: {
       //   display: "none",
       // },
+    },
+    logoContent: {
+      textDecoration: "none",
+      display: "flex",
+      alignItems: "center",
     },
     logo: {
       cursor: "pointer",
       width: "36px",
       height: "36px",
       marginTop: "2px",
+    },
+    logoName: {
+      color: "#fff",
+      fontSize: "16px",
+      fontWeight: 600,
+      letterSpacing: "0.02em",
+      lineHeight: "20px",
+      margin: "0px 10px",
+      [theme.breakpoints.down(500)]: {
+        display: "none",
+      },
     },
     accountRoot: {
       position: "relative",
@@ -72,23 +90,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
     },
 
     headerBtn: {
-      fontWeight: 400,
-      color: "#676370",
-      borderRadius: "6px",
-      textTransform: "uppercase",
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
-      marginLeft: "24px",
-      padding: "0px",
-      fontSize: "13px",
-      lineHeight: "18px",
-      minWidth: "33px",
-      "&:hover": {
-        cursor: "pointer",
-      },
-    },
-    headerClickBtn: {
-      fontWeight: 700,
+      fontWeight: "normal",
       color: "#ffffff",
       borderRadius: "6px",
       textTransform: "uppercase",
@@ -96,9 +98,27 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
       marginLeft: "24px",
       padding: "0px",
-      fontSize: "13px",
+      fontSize: "16px",
       lineHeight: "18px",
       minWidth: "33px",
+      "&:hover": {
+        cursor: "pointer",
+      },
+    },
+    headerClickBtn: {
+      fontWeight: "normal",
+      color: "#ffffff",
+      textTransform: "uppercase",
+      fontFamily:
+        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+      marginLeft: "24px",
+      padding: "0px",
+      fontSize: "16px",
+      lineHeight: "18px",
+      minWidth: "33px",
+      height: "100%",
+      borderRadius: "0px",
+      borderBottom: "2px solid #7F64E2",
       "&:hover": {
         cursor: "pointer",
       },

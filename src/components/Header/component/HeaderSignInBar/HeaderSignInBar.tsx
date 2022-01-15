@@ -4,7 +4,8 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Box } from "@material-ui/core";
-import matic_svg from "./../../../../assets/svg/matic.svg";
+import coinIcon1 from "./../../../../assets/svg/coin_symbol1.svg";
+import coinIcon2 from "./../../../../assets/svg/coin_symbol2.svg";
 import sigin_user_svg from "./../../../../assets/svg/sigin_user.svg";
 import {
   StyledAvatarPopover,
@@ -42,12 +43,19 @@ export default function HeaderSignInBar() {
         <div className={classes.userMenu}>
           <div className={classes.accountWrapper}>
             <a href="#" className={classes.mana}>
-              <i className={classes.symbol}>⏣</i>0
+              <i className={classes.symbol}>
+                <img
+                  src={coinIcon1}
+                  className={classes.maticIcon}
+                  alt="symbol"
+                />
+              </i>
+              0
             </a>
             <a href="#" className={classes.mana}>
               <i className={classes.symbol}>
                 <img
-                  src={matic_svg}
+                  src={coinIcon2}
                   className={classes.maticIcon}
                   alt="symbol"
                 />
