@@ -112,7 +112,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       fontFamily:
         '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
       marginLeft: "24px",
-      padding: "0px",
+      padding: "2px 0px 0px 0px!important",
       fontSize: "16px",
       lineHeight: "18px",
       minWidth: "33px",
@@ -121,6 +121,16 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       borderBottom: "2px solid #7F64E2",
       "&:hover": {
         cursor: "pointer",
+      },
+      position: "relative",
+      "&::after": {
+        content: "",
+        position: "absolute",
+        left: 0,
+        bottom: 0,
+        height: "1px",
+        width: "50%",
+        borderBottom: "1px solid magenta",
       },
     },
     // signnormal: {
