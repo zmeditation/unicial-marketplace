@@ -67,16 +67,16 @@ const Contract = () => {
             </div>
             <div className={classes.rightDescription}>
               <Bidbox />
-              {/* <Buybox /> */}
+              <Buybox />
             </div>
           </div>
           <Parcels />
-          {/* <div className={classes.tableRoot}>
+          <div className={classes.tableRoot}>
             <TransactionHistoryTable
               columns={headerData}
               rows={transactionData}
             />
-          </div> */}
+          </div>
           <div>
             <div className={classes.BidsTitle}>BIDS</div>
             {BidRecordData.map((row, index) => (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ActionButton from "../../../components/Base/ActionButton";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
@@ -13,6 +13,8 @@ import {
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { selectparcels } from "../../../store/selectedparcels/selectors";
 import { getparcels } from "../../../store/selectedparcels";
+import { fetchTiles } from "../../../hooks/tiles";
+import { Tile } from "../../../components/Atlas/Atlas.types";
 
 export default function LandAccordion() {
   const classes = LandAccordionStyle();
@@ -21,6 +23,9 @@ export default function LandAccordion() {
   const [x2, setx2] = useState<number>(0);
   const [y1, sety1] = useState<number>(0);
   const [y2, sety2] = useState<number>(0);
+  const [xy, setxy] = useState<string>();
+  const [tiles, setTiles] = useState();
+  const [count, setCount] = useState(0);
   const dispatch = useAppDispatch();
 
   const handleChange =
@@ -44,9 +49,68 @@ export default function LandAccordion() {
     sety2(Number(data));
   };
 
-  const showmapArea = () => {
-    console.log(x1, x2, y1, y2);
+  const inputxy = (data: string) => {
+    setxy(data);
   };
+
+  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
+
+  const showmapArea = () => {
+    let newSelectedTile: string[] = [];
+    let minx,
+      miny,
+      maxx,
+      maxy,
+      count = 0;
+    maxx = x1 >= x2 ? x1 : x2;
+    minx = x1 >= x2 ? x2 : x1;
+    maxy = y1 >= y2 ? y1 : y2;
+    miny = y1 >= y2 ? y2 : y1;
+    for (let x = minx; x <= maxx; x++) {
+      for (let y = miny; y < maxy; y++) {
+        const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+        if (tile.owner) {
+        } else {
+          newSelectedTile.push(getCoords(x, y));
+          count++;
+        }
+      }
+    }
+    setCount(count);
+    dispatch(getparcels(newSelectedTile));
+  };
+
+  const showmapMultiland = () => {
+    let newSelectedTile: string[] = [];
+    let count = 0;
+    const content_str = xy
+      ?.replace("[", "")
+      .replace("]", "")
+      .slice(1, -1)
+      .split("','");
+    content_str?.forEach((str) => {
+      const tile: any = tiles && (tiles[str] as Tile);
+      try {
+        if (tile.owner) {
+        } else {
+          newSelectedTile.push(str);
+          count++;
+        }
+      } catch (error) {
+        console.log("please input correct form");
+        return;
+      }
+    });
+    console.log(newSelectedTile);
+    setCount(count);
+    dispatch(getparcels(newSelectedTile));
+  };
+
+  useEffect(() => {
+    if (window) {
+      fetchTiles().then((_tiles: any) => setTiles(_tiles));
+    }
+  }, []);
 
   return (
     <>
@@ -134,7 +198,7 @@ export default function LandAccordion() {
                     <div className={classes.selectedLandLabel}>
                       Selected Lands:
                     </div>
-                    <div className={classes.selectedLandResult}>9000000</div>
+                    <div className={classes.selectedLandResult}>{count}</div>
                   </div>
 
                   {/* buttons */}
@@ -174,11 +238,13 @@ export default function LandAccordion() {
                 <div className={classes.testinput}>
                   <FormControl>
                     <Input
-                      placeholder="0"
                       id="input-with-icon-adornment"
+                      onChange={(e) => inputxy(e.target.value)}
                       startAdornment={
                         <InputAdornment position="start">
-                          <span className={classes.axisLabel}>[ "X , Y" ]</span>
+                          <span className={classes.axisLabel}>
+                            [ " X1 , Y1 ", " X2 , Y2 " ]
+                          </span>
                         </InputAdornment>
                       }
                     />
@@ -190,12 +256,14 @@ export default function LandAccordion() {
                     <div className={classes.selectedLandLabel}>
                       Selected Lands:
                     </div>
-                    <div className={classes.selectedLandResult}>9000000</div>
+                    <div className={classes.selectedLandResult}>{count}</div>
                   </div>
-
-                  {/* buttons */}
                   <div className={classes.buttons}>
-                    <ActionButton color="red" className={classes.btnchange}>
+                    <ActionButton
+                      color="red"
+                      className={classes.btnchange}
+                      onClick={showmapMultiland}
+                    >
                       Show Map
                     </ActionButton>
                     {/* <ActionButton color="dark" className={classes.btnchange}>

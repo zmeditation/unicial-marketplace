@@ -101,8 +101,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   },
 
   buttons: {
-    display: "flex",
-    // width: "400px",
+    padding: "0px 16px",
     [theme.breakpoints.down(769)]: {
       width: "100%",
       display: "grid",
@@ -125,6 +124,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   selectedLandLabelContainer: {
     display: "flex",
     justifyContent: "center",
+    padding: "16px",
   },
   selectedLandLabel: {
     color: "#676370",
@@ -137,9 +137,8 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
     fontWeight: 400,
   },
   testinput: {
-    width: "100%",
     "& .MuiFormControl-root": {
-      width: "71%",
+      width: "100%",
       padding: "16px 0px",
     },
     "& .MuiInputBase-input": {

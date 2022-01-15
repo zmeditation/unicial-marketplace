@@ -123,6 +123,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "20px",
   },
   approveBtn: {
-    marginRight: "20px",
+    marginRight: "20px !important",
   },
 }));
