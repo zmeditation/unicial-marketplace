@@ -1,6 +1,11 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
+  auctionInfo: {
+    maxWidth: "1064px",
+    margin: "40px auto",
+    position: "relative",
+  },
   root: {
     minHeight: "calc(100vh - 246px)",
     maxWidth: "1064px",
@@ -86,5 +91,30 @@ export const useStyles = makeStyles((theme: Theme) => ({
     textTransform: "uppercase",
     marginBottom: "16px",
     color: "#676370",
+  },
+  countdownItem: {
+    width: "70px",
+    padding: "10px 0px 15px 0px",
+  },
+  timeItem: {
+    color: "#12232f",
+    fontSize: "36px",
+    lineHeight: "53px",
+    fontWeight: 800,
+    position: "relative",
+    textAlign: "center",
+  },
+  leftTime: {
+    backgroundColor: "#242129",
+    borderRadius: "10px",
+    paddingBottom: "24px",
+  },
+  title: {
+    fontSize: "28px",
+    fontWeight: 600,
+    lineHeight: "42px",
+    textAlign: "left",
+    margin: "20px 0px",
+    display: "block",
   },
 }));

@@ -37,9 +37,9 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       border: "none",
       boxShadow: "none",
       display: "flex",
-      [theme.breakpoints.down(768)]: {
-        display: "none",
-      },
+      // [theme.breakpoints.down(768)]: {
+      //   display: "none",
+      // },
     },
     logo: {
       cursor: "pointer",

@@ -22,7 +22,6 @@ const LandMap: React.FC<LandMapProps> = ({
   initialX,
   initialY,
 }) => {
-  const classes = useStyles();
   const [tiles, setTiles] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
@@ -66,7 +65,6 @@ const LandMap: React.FC<LandMapProps> = ({
 
   const isSelected = useCallback(
     (x: number, y: number) => {
-      // console.log("2");
       if (!tiles) return false;
       const tile = tiles[getCoords(x, y)] as Tile;
       if (estateid && tile && tile.estateId && estateid === tile.estateId) {
@@ -146,7 +144,6 @@ const LandMap: React.FC<LandMapProps> = ({
       fetchTiles().then((_tiles: any) => setTiles(_tiles));
     }
   }, []);
-
   return (
     <div onMouseLeave={handleHidePopup}>
       <Atlas
@@ -165,7 +162,7 @@ const LandMap: React.FC<LandMapProps> = ({
           y={y}
           visible={showPopup}
           tile={hoveredTile}
-          position={x > window.innerWidth - 280 ? "left" : "right"}
+          position={x > window.innerWidth - 550 ? "left" : "right"}
         />
       ) : null}
     </div>

@@ -1,10 +1,4 @@
-import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
-
-//accordion relate
-import MuiAccordion from "@material-ui/core/Accordion";
-import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
-import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
-//
+import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const AdminLandsStyle = makeStyles((theme: Theme) => ({
   root: {
@@ -49,6 +43,9 @@ export const AdminLandsStyle = makeStyles((theme: Theme) => ({
     height: "400px",
     [theme.breakpoints.down(768)]: {
       margin: "0px calc( (100% - 400px) / 2)",
+    },
+    [theme.breakpoints.down(500)]: {
+      margin: "0px calc( (100% - 300px) / 2)",
     },
   },
 }));

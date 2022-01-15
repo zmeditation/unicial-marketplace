@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Lands from "../../pages/Lands/Lands";
+import Auction from "../../pages/Auction/Auction";
 import Contracts from "../../pages/Contracts/Contracts";
 import MarketPlace from "../../pages/MarketPlace/MarketPlace";
 
@@ -22,6 +23,7 @@ export default function Layout() {
         <Route path="/need" element={<MarketPlace />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/lands" element={<Lands />} />
+        <Route path="/auction" element={<Auction />} />
         <Route
           path="/contracts/:contractaddress/tokens/:tokensid"
           element={<Contracts />}

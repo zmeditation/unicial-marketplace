@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Box, Button } from "@material-ui/core";
 import { HeaderStyle } from "./HeaderStyle";
@@ -10,7 +10,7 @@ export default function Header() {
   const classes = HeaderStyle();
   const navigate = useNavigate();
   const location = useLocation();
-  const [head_index, setHeaderIndex] = useState(headerId.marketplace);
+  const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
   const [isSignInclicked, setIsSignInclicked] = useState(0);
   const handleSignIn = () => {
     setIsSignInclicked(1);
@@ -27,6 +27,15 @@ export default function Header() {
     navigate("/admin/lands");
   };
   var isSigned = 0;
+
+  useEffect(() => {
+    if (location.pathname.includes("/admin")) {
+      setHeaderIndex(headerId.admin);
+    } else {
+      setHeaderIndex(headerId.marketplace);
+    }
+  }, [location.pathname]);
+
   return (
     <>
       <div className={classes.root}>
@@ -38,7 +47,7 @@ export default function Header() {
               </Link>
               <Button
                 className={
-                  head_index === headerId.marketplace
+                  headIndex === headerId.marketplace
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
@@ -47,17 +56,17 @@ export default function Header() {
               >
                 Marketplace
               </Button>
-
-              <Button
+              {/* <Button
                 className={
-                  head_index === headerId.admin
+                  headIndex === headerId.admin
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
+                disableRipple
                 onClick={handleAdmin}
               >
-                Admin
-              </Button>
+                ADMIN
+              </Button> */}
             </div>
           </div>
           <HeaderMobileMenu />
