@@ -26,55 +26,6 @@ export default function SignIn() {
   var isAdmin: boolean;
   var spaceProxyContract: any, spaceRegistryContract: any;
 
-  const addSpaceAuctionContractAsAdmin = async (
-    spaceProxyContract: any,
-    SpaceAuctionAddress: string
-  ) => {
-    console.log("SpaceAuctionAddress: ", SpaceAuctionAddress);
-    let authorizedDeployStatus = await spaceProxyContract.authorizedDeploy(
-      SpaceAuctionAddress
-    );
-
-    let proxyOwner = await spaceProxyContract.proxyOwner();
-    console.log("proxyOwner: ", proxyOwner);
-
-    console.log(
-      "authorizedDeployStatus for ",
-      SpaceAuctionAddress,
-      "is",
-      authorizedDeployStatus
-    );
-    if (!authorizedDeployStatus) {
-      console.log("To be Authorized Address: ", SpaceAuctionAddress);
-
-      spaceProxyContract = new ethers.Contract(
-        SpaceProxyAddress,
-        SpaceRegistryAbi,
-        signer
-      );
-
-      let authorizeSpaceAuctionTx = await spaceProxyContract.authorizeDeploy(
-        SpaceAuctionAddress
-      );
-
-      console.log("authorizeSpaceAuctionTx");
-      console.log(authorizeSpaceAuctionTx);
-      await authorizeSpaceAuctionTx.wait();
-
-      console.log(
-        "SpaceAuctionAddress" +
-          SpaceAuctionAddress +
-          "is successfully authorized as Space token deployer"
-      );
-    } else {
-      console.log(
-        "SpaceAuctionAddress" +
-          SpaceAuctionAddress +
-          "is already authorized as Space token deployer"
-      );
-    }
-  };
-
   const assignSpaceForTest = async (
     spaceProxyContract: any,
     x: number,
@@ -100,54 +51,6 @@ export default function SignIn() {
       `${(x.toString(), y.toString())} is assigned after assign`,
       ownerOfSpace
     );
-  };
-
-  const spaceRegistryAuthorized = async (
-    signer: any,
-    connectedAddress: string
-  ) => {
-    spaceProxyContract = new ethers.Contract(
-      SpaceProxyAddress,
-      SpaceProxyAbi,
-      signer
-    );
-
-    spaceRegistryContract = new ethers.Contract(
-      SpaceProxyAddress,
-      SpaceRegistryAbi,
-      signer
-    );
-
-    let spaceBalance = await spaceRegistryContract.balanceOf(connectedAddress);
-    console.log("Space balance of " + connectedAddress + "is: " + spaceBalance);
-
-    let proxyOwner = await spaceProxyContract.proxyOwner();
-    let currentContract = await spaceProxyContract.currentContract();
-    let isAuthorizedDeploy = await spaceProxyContract.authorizedDeploy(
-      SpaceAuctionAddress
-    );
-
-    // console.log("isAuthorizedDeploy", isAuthorizedDeploy);
-    // console.log("signer in spaceRegistryAuthorized");
-
-    console.log("currentContract", currentContract);
-
-    console.log(signer);
-    if (!isAuthorizedDeploy) {
-      //add auction contract as a authorizedDeployer
-      await addSpaceAuctionContractAsAdmin(
-        spaceProxyContract,
-        SpaceAuctionAddress
-      );
-    }
-
-    isAdmin = proxyOwner === connectedAddress || isAuthorizedDeploy;
-    console.log("isAdmin", isAdmin);
-
-    //assign (0, 0) for test
-    // await assignSpaceForTest(spaceProxyContract, 0, 20);
-
-    return isAdmin;
   };
 
   const getLoginAddress = async (signer: any, msgToSign: string) => {
@@ -184,7 +87,7 @@ export default function SignIn() {
     // check current chain id is equal to Zilionixx Mainnet
     if (chainId === znxChainId) {
       loginAddress = await getLoginAddress(signer, "Hello World");
-      isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
+      // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
       window.alert("Recovered address: " + loginAddress);
     } else {
       let ethereum = window.ethereum;
@@ -199,7 +102,7 @@ export default function SignIn() {
         signer = provider.getSigner();
 
         loginAddress = await getLoginAddress(signer, "Hello World");
-        isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
+        // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
         window.alert(
           "Switched chain done & Recovered address: " + loginAddress
         );
@@ -223,7 +126,7 @@ export default function SignIn() {
             signer = provider.getSigner();
 
             loginAddress = await getLoginAddress(signer, "Hello World");
-            isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
+            // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
             window.alert("Add chain done & Recovered address: " + loginAddress);
           } catch (addError) {
             // handle "add" error

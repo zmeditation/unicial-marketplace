@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BigNumber } from "ethers";
 
 import LandMap from "../../components/Admin/LandMap";
 import TobTab from "../../components/TopTab/TopTab";
@@ -22,6 +23,10 @@ import {
   SpaceAuctionAddress,
   SpaceAuctionAbi,
 } from "../../config/contracts/SpaceAuctionContract";
+import {
+  SpaceProxyAddress,
+  SpaceRegistryAbi,
+} from "../../config/contracts/SpaceRegistryContract";
 
 // import utility functions
 import {
@@ -31,7 +36,10 @@ import {
 
 declare var window: any;
 var loginAddress: string;
-var signer: any, uccContract: any, spaceAuctionContract: any;
+var signer: any,
+  uccContract: any,
+  spaceAuctionContract: any,
+  spaceRegistryContract: any;
 
 // define consts
 var uccPricePerSpace: number;
@@ -43,10 +51,12 @@ const Auction = () => {
   const [width, setWidth] = useState(0);
   const [isApprovable, setIsApprovable] = useState(true);
   const [isBiddable, setIsBiddable] = useState(false);
-  const [uccAllowance, setUccAllowance] = useState(0);
-  const [uccBalance, setUccBalance] = useState(0);
-  const [uccApproveAmount, setUccApproveAmount] = useState(0);
+  const [uccAllowance, setUccAllowance] = useState(BigNumber.from(0)); // This shows current allowed ucc allowance
+  const [uccApprovalAmount, setUccApprovalAmount] = useState(BigNumber.from(0)); // This shows current allowed ucc allowance
+  const [uccBalance, setUccBalance] = useState(BigNumber.from(0));
   const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAuctionAuthorized, setIsAuctionAuthorized] = useState(false);
 
   const loginAddress = useAppSelector(selectLoginAddress);
   console.log("loginAddress", loginAddress);
@@ -68,13 +78,18 @@ const Auction = () => {
 
   // approve UCC token to buy Space token
   const handleApproveUCCToken = async () => {
-    // generate approve tx and wait until tx finishes
+    console.log("======== uccApprovalAmount in handleApproveUCCToken ========");
+    console.log(uccApprovalAmount);
+    console.log("======== uccApprovalAmount in handleApproveUCCToken ========");
+
+    // generate approve tx and wait until tx finihes
     let uccApproveTx = await uccContract.approve(
       SpaceAuctionAddress,
-      uccPricePerSpace * spacesLimitPerBid
+      uccApprovalAmount
     );
 
     await uccApproveTx.wait();
+    setIsBiddable(true);
 
     let allowance = await uccContract.allowance(
       loginAddress,
@@ -84,26 +99,61 @@ const Auction = () => {
 
     let uccTokenAddressInSpaceAuction = await spaceAuctionContract.uccToken();
     console.log("uccTokenAddressInSpaceAuction", uccTokenAddressInSpaceAuction);
-
-    window.alert("Bid was successful");
   };
 
   const handleBidSpace = async () => {
-    signer = generateSigner(window.ethereum);
-
-    spaceAuctionContract = generateContractInstance(
-      SpaceAuctionAddress,
-      SpaceAuctionAbi,
-      signer
-    );
-
     console.log("bid.xs", bid.xs);
     console.log("bid.ys", bid.ys);
+    console.log("======== UCC allowance in handleBidSpace ========");
+    console.log(uccAllowance);
+    console.log("======== UCC allowance in handleBidSpace ========");
+
+    let ttlSpacesPrice = BigNumber.from(bidParcels.length * uccPricePerSpace);
+    console.log("Bid parcels changing");
+    console.log("uccBalance", uccBalance);
+    console.log(uccBalance);
+    console.log("uccAllowance", uccAllowance);
+    console.log(uccAllowance);
+    console.log("uccPricePerSpace", uccPricePerSpace);
+    console.log(uccPricePerSpace);
+    console.log("ttlSpacesPrice", ttlSpacesPrice);
+    console.log(ttlSpacesPrice);
+    console.log("uccBalance > ttlSpacesPrice", uccBalance.gt(ttlSpacesPrice));
+
+    if (bidParcels.length === 0) {
+      console.log("case 0");
+      window.alert("No space selected for bid. Please select first.");
+    } else {
+      // check able to bid first for else case
+      if (bidParcels.length > spacesLimitPerBid) {
+        console.log("case 1-1");
+        window.alert(
+          "Selction is out of limit. Maximum spaces per bid is " +
+            spacesLimitPerBid
+        );
+      } else {
+        if (uccBalance.gt(ttlSpacesPrice)) {
+          // check able to approve
+          window.alert(
+            "Not enough allowance for ucc token. Will you approve the auction contract to use some of your UCC for your bid?"
+          );
+          setUccApprovalAmount(ttlSpacesPrice);
+          await handleApproveUCCToken();
+        } else {
+          window.alert(
+            "You don't have enought UCC token to bid for space tokens"
+          );
+        }
+      }
+    }
 
     // call bid function to get space token by offering ucc token
     let bidTx = await spaceAuctionContract.bid(bid.xs, bid.ys, loginAddress);
 
     await bidTx.wait();
+    window.alert("Bid was successful");
+
+    await initUccBalAndAllowance();
   };
 
   useEffect(() => {
@@ -132,53 +182,6 @@ const Auction = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Bid parcels changing");
-    console.log("uccBalance", uccBalance);
-    console.log("uccAllowance", uccAllowance);
-    console.log("uccPricePerSpace", uccPricePerSpace);
-    console.log(
-      "bidParcels.length * uccPricePerSpace",
-      bidParcels.length * uccPricePerSpace
-    );
-    console.log(
-      "uccBalance > bidParcels.length * uccPricePerSpace",
-      uccBalance > bidParcels.length * uccPricePerSpace
-    );
-    if (bidParcels.length === 0) {
-      setIsBiddable(false);
-      setIsApprovable(false);
-    }
-    // Disable if bid parcels count is bigger than space limit
-    else if (bidParcels.length > spacesLimitPerBid) {
-      setIsBiddable(false);
-      window.alert(
-        "Info: You can only bid up to " +
-          spacesLimitPerBid +
-          " spaces " +
-          "per bid."
-      );
-    }
-    // if already approved enough then show Bid button
-    else if (uccAllowance > bidParcels.length * uccPricePerSpace) {
-      console.log("In case 3");
-      setIsBiddable(true);
-    }
-    // if bid parcels is in [0, spacesLimitPerBid] and not approved enough yet then make a approve & else set is approval false
-    else {
-      if (uccBalance > bidParcels.length * uccPricePerSpace) {
-        console.log("In case 4-1");
-
-        setUccApproveAmount(
-          bidParcels.length * uccPricePerSpace - uccAllowance
-        );
-        setIsApprovable(true);
-      } else {
-        console.log("In case 4-2");
-
-        setIsApprovable(false);
-      }
-    }
-
     convertToBidData();
   }, [bidParcels.length]);
 
@@ -198,10 +201,43 @@ const Auction = () => {
     setBid(data);
   };
   const initialize = async () => {
+    // initialize contracts
+    signer = generateSigner(window.ethereum);
+
+    spaceRegistryContract = generateContractInstance(
+      SpaceProxyAddress,
+      SpaceRegistryAbi,
+      signer
+    );
+
+    spaceAuctionContract = generateContractInstance(
+      SpaceAuctionAddress,
+      SpaceAuctionAbi,
+      signer
+    );
+
+    // check if loginAddress is proxy owner
+    isProxyOwner();
+    // if proxy owner then authorize auction contract as authorizedDeployer if not yet
+    initializeAsProxyOwner();
     // current znx coin balance of login address
     let coinBal = await signer.getBalance();
     console.log("coin balance before approve", coinBal);
 
+    await initUccBalAndAllowance();
+
+    uccPricePerSpace = parseInt(
+      (await spaceAuctionContract.getCurrentPrice()).toString()
+    );
+    console.log("uccPricePerSpace in initializa", uccPricePerSpace);
+    spacesLimitPerBid = parseInt(
+      (await spaceAuctionContract.spacesLimitPerBid()).toString()
+    );
+    console.log("uccPricePerSpace: ", uccPricePerSpace);
+    console.log("spacesLimitPerBid: ", spacesLimitPerBid);
+  };
+
+  const initUccBalAndAllowance = async () => {
     // current ucc balance of login address
     let uccBal = await uccContract.balanceOf(loginAddress);
     setUccBalance(uccBal);
@@ -214,16 +250,67 @@ const Auction = () => {
     );
     setUccAllowance(allowance);
     console.log("uccAllowance before approve", uccAllowance);
+  };
 
-    uccPricePerSpace = parseInt(
-      (await spaceAuctionContract.getCurrentPrice()).toString()
+  const initializeAsProxyOwner = async () => {
+    addSpaceAuctionContractAsAuthorized();
+  };
+
+  const addSpaceAuctionContractAsAuthorized = async () => {
+    console.log("SpaceAuctionAddress: ", SpaceAuctionAddress);
+    let authorizedDeployStatus = await spaceRegistryContract.authorizedDeploy(
+      SpaceAuctionAddress
     );
-    console.log("uccPricePerSpace in initializa", uccPricePerSpace);
-    spacesLimitPerBid = parseInt(
-      (await spaceAuctionContract.spacesLimitPerBid()).toString()
+
+    console.log(
+      "authorizedDeployStatus for ",
+      SpaceAuctionAddress,
+      "is",
+      authorizedDeployStatus
     );
-    console.log("uccPricePerSpace: ", uccPricePerSpace);
-    console.log("spacesLimitPerBid: ", spacesLimitPerBid);
+
+    if (!authorizedDeployStatus) {
+      console.log("To be Authorized Address: ", SpaceAuctionAddress);
+
+      let authorizeSpaceAuctionTx = await spaceRegistryContract.authorizeDeploy(
+        SpaceAuctionAddress
+      );
+
+      console.log("authorizeSpaceAuctionTx");
+      console.log(authorizeSpaceAuctionTx);
+      await authorizeSpaceAuctionTx.wait();
+
+      setIsAuctionAuthorized(true);
+      console.log(
+        "SpaceAuctionAddress" +
+          SpaceAuctionAddress +
+          "is successfully authorized as Space token deployer"
+      );
+    } else {
+      setIsAuctionAuthorized(true);
+      console.log(
+        "SpaceAuctionAddress " +
+          SpaceAuctionAddress +
+          " is already authorized as Space token deployer"
+      );
+    }
+  };
+
+  const isProxyOwner = async () => {
+    let proxyOwner = await spaceRegistryContract.proxyOwner();
+    let currentContract = await spaceRegistryContract.currentContract();
+
+    console.log("proxyOwner", proxyOwner);
+    console.log("currentContract", currentContract);
+
+    let isAdmin = proxyOwner === loginAddress;
+    console.log(
+      "Current login address " + loginAddress + " is proxy owner? ",
+      isAdmin
+    );
+    setIsAdmin(isAdmin);
+
+    return isAdmin;
   };
 
   return (
@@ -246,29 +333,29 @@ const Auction = () => {
             <LandMap height={400} width={width} initialX={1} initialY={1} />
           </div>
           <div className={classes.actionButton}>
-            {isBiddable ? (
-              <ActionButton
-                color="red"
-                className={classes.approveBtn}
-                onClick={handleBidSpace}
-              >
-                Bid
-              </ActionButton>
-            ) : isApprovable ? (
-              <ActionButton
-                color="red"
-                className={classes.approveBtn}
-                onClick={handleApproveUCCToken}
-              >
-                Approve
-              </ActionButton>
-            ) : (
-              <ActionButton color="red" className={classes.approveBtn}>
-                Cant' approve
-              </ActionButton>
-            )}
+            <ActionButton
+              color="red"
+              className={classes.approveBtn}
+              onClick={handleBidSpace}
+            >
+              Bid
+            </ActionButton>
 
             <ActionButton color="dark">clear</ActionButton>
+            {isAdmin ? (
+              isAuctionAuthorized ? (
+                <ActionButton
+                  color="dark"
+                  onClick={addSpaceAuctionContractAsAuthorized}
+                >
+                  Auction Authorized
+                </ActionButton>
+              ) : (
+                <ActionButton color="dark">Authorize Auction</ActionButton>
+              )
+            ) : (
+              <></>
+            )}
           </div>
           <LandAccordion />
         </div>
