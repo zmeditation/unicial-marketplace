@@ -23,7 +23,7 @@ export default function LandAccordion() {
   const [x2, setx2] = useState<number>(0);
   const [y1, sety1] = useState<number>(0);
   const [y2, sety2] = useState<number>(0);
-  const [xy, setxy] = useState<string[]>([]);
+  const [xy, setxy] = useState<string>();
   const [tiles, setTiles] = useState();
   const [count, setCount] = useState(0);
   const dispatch = useAppDispatch();
@@ -50,9 +50,7 @@ export default function LandAccordion() {
   };
 
   const inputxy = (data: string) => {
-    const newData = Array.from(data);
-    console.log(newData);
-    // setxy(data);
+    setxy(data);
   };
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
@@ -78,6 +76,32 @@ export default function LandAccordion() {
         }
       }
     }
+    setCount(count);
+    dispatch(getparcels(newSelectedTile));
+  };
+
+  const showmapMultiland = () => {
+    let newSelectedTile: string[] = [];
+    let count = 0;
+    const content_str = xy
+      ?.replace("[", "")
+      .replace("]", "")
+      .slice(1, -1)
+      .split("','");
+    content_str?.forEach((str) => {
+      const tile: any = tiles && (tiles[str] as Tile);
+      try {
+        if (tile.owner) {
+        } else {
+          newSelectedTile.push(str);
+          count++;
+        }
+      } catch (error) {
+        console.log("please input correct form");
+        return;
+      }
+    });
+    console.log(newSelectedTile);
     setCount(count);
     dispatch(getparcels(newSelectedTile));
   };
@@ -235,7 +259,11 @@ export default function LandAccordion() {
                     <div className={classes.selectedLandResult}>{count}</div>
                   </div>
                   <div className={classes.buttons}>
-                    <ActionButton color="red" className={classes.btnchange}>
+                    <ActionButton
+                      color="red"
+                      className={classes.btnchange}
+                      onClick={showmapMultiland}
+                    >
                       Show Map
                     </ActionButton>
                     {/* <ActionButton color="dark" className={classes.btnchange}>
