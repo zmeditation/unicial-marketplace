@@ -1,3 +1,4 @@
+import React from "react";
 import { SignInStyle } from "./SignInStyle";
 import { ethers } from "ethers";
 
@@ -8,7 +9,6 @@ import {
   SpaceRegistryAbi,
   SpaceRegistryAddress,
 } from "../../config/contracts/SpaceRegistryContract";
-import internal from "stream";
 
 declare var window: any;
 
@@ -19,11 +19,6 @@ export default function SignIn() {
   var isAdmin: boolean;
 
   var spaceRegistryContract: any;
-  // spaceRegistryContract = new ethers.Contract(
-  //   SpaceRegistryAddress,
-  //   SpaceRegistryAbi,
-  //   signer
-  // );
   const assignSpaceForTest = async (
     spaceRegistryContract: any,
     x: number,
@@ -98,6 +93,12 @@ export default function SignIn() {
     }
 
     if (accounts.length > 0) {
+      console.log("this is account lenth", accounts.length);
+      // React.useEffect(() => {
+      //   const formData = new FormData()
+      //   const len = accounts.length
+      //   formData.append('loginAdress', len )
+      // })
       // get current network id
       const { chainId } = await provider.getNetwork();
       let znxChainId: number = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
