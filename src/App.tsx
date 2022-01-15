@@ -5,6 +5,8 @@ import { ThemeProvider, useTheme } from "@material-ui/core/styles";
 
 function App() {
   const theme = useTheme();
+
+  React.useEffect(() => {}, []);
   return (
     <ThemeProvider theme={theme}>
       <Layout />
