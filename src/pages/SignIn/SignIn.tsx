@@ -4,13 +4,6 @@ import { ethers } from "ethers";
 import ActionButton from "../../components/Base/ActionButton";
 import starWallet_svg from "../../assets/svg/starWallet.svg";
 import { CHAIN_INFO } from "../../config/constant";
-import {
-  SpaceRegistryAbi,
-  SpaceRegistryAddress,
-  SpaceProxyAddress,
-  SpaceProxyAbi,
-} from "../../config/contracts/SpaceRegistryContract";
-import { SpaceAuctionAddress } from "../../config/contracts/SpaceAuctionContract";
 import { setloginAddress } from "../../store/auth/actions";
 import { useAppDispatch } from "../../store/hooks";
 
@@ -23,41 +16,13 @@ export default function SignIn() {
   const dispatch = useAppDispatch();
 
   var loginAddress: string;
-  var isAdmin: boolean;
-  var spaceProxyContract: any, spaceRegistryContract: any;
-
-  const assignSpaceForTest = async (
-    spaceProxyContract: any,
-    x: number,
-    y: number
-  ) => {
-    console.log("x, y: ", x, y);
-    let ownerOfSpace = await spaceProxyContract.ownerOfSpace(x, y);
-    console.log(
-      `${(x.toString(), y.toString())} is assigned before assign`,
-      ownerOfSpace
-    );
-
-    let assignSpaceTx = await spaceProxyContract.assignNewRood(
-      x,
-      y,
-      "0x8734CB972d36a740Cc983d5515e160C373A4a016"
-    );
-
-    await assignSpaceTx.wait();
-
-    ownerOfSpace = await spaceProxyContract.ownerOfSpace(x, y);
-    console.log(
-      `${(x.toString(), y.toString())} is assigned after assign`,
-      ownerOfSpace
-    );
-  };
 
   const getLoginAddress = async (signer: any, msgToSign: string) => {
     let signature = await signer.signMessage(msgToSign);
 
     // Make sure you arrayify the message if you want the bytes to be used as the message
     const recoveredAddress = ethers.utils.verifyMessage(msgToSign, signature);
+
     console.log("recoveredAddress", recoveredAddress);
     dispatch(setloginAddress(recoveredAddress));
     return recoveredAddress;
@@ -65,14 +30,10 @@ export default function SignIn() {
 
   const handleSignIn = async () => {
     var accounts = [];
-    console.log(window);
     if (window.ethereum) {
       provider = new ethers.providers.Web3Provider(window.ethereum, "any");
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
-
-      console.log("signer in handleSignIn");
-      console.log(await signer.getAddress());
     } else {
       window.alert(
         "Metamask seem to be not installed. Please install metamask first and try again."
@@ -80,7 +41,6 @@ export default function SignIn() {
     }
 
     // get current network id
-    console.log("this is account lenth", accounts.length);
     const { chainId } = await provider.getNetwork();
     let znxChainId: number = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
 
