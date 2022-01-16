@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@material-ui/core";
 import { useStyles } from "./MarketPlaceStyle";
 import TopLeftTexture from "../../assets/svg/top_left_texture.svg";
 import TopRightTexture from "../../assets/svg/top_right_texture.svg";
@@ -7,6 +6,7 @@ import TopEllipse1 from "../../assets/svg/top_ellipse1.svg";
 import TopEllipse2 from "../../assets/svg/top_ellipse2.svg";
 import TopEllipse3 from "../../assets/svg/top_ellipse3.svg";
 import CallMadeIcon from "@material-ui/icons/CallMade";
+import { Link } from "react-router-dom";
 
 export default function MarketPlace() {
   const classes = useStyles();
@@ -28,10 +28,10 @@ export default function MarketPlace() {
           </div>
         </div>
         <div className={classes.hero_action}>
-          <Button className={classes.browsebtn} href="/lands">
+          <Link className={classes.browsebtn} to="/lands">
             Start Browsing&nbsp;
             <CallMadeIcon fontSize="small" />
-          </Button>
+          </Link>
         </div>
       </div>
     </>

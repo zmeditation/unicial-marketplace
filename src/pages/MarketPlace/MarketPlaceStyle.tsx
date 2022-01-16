@@ -66,9 +66,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     outline: 0,
     border: "none",
     textTransform: "none",
+    textDecoration: "none",
     "&:hover": {
       backgroundColor: "#ff3d61",
       cursor: "pointer",
@@ -92,17 +94,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
     top: "0px",
     left: "5%",
     width: "16%",
+    borderRadius: "100%",
   },
   topEllipse2: {
     position: "absolute",
     top: "25%",
     left: "20%",
     width: "8%",
+    borderRadius: "100%",
   },
   topEllipse3: {
     position: "absolute",
     top: "10%",
     right: "10%",
     width: "12%",
+    borderRadius: "100%",
   },
 }));
