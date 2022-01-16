@@ -9,7 +9,6 @@ import {
   SpaceRegistryAbi,
   SpaceRegistryAddress,
 } from "../../config/contracts/SpaceRegistryContract";
-import { parseBytes32String } from "ethers/lib/utils";
 
 declare var window: any;
 
@@ -94,8 +93,8 @@ export default function SignIn() {
     }
 
     if (accounts.length > 0) {
-      // get current network id
       console.log("this is account lenth", accounts.length);
+      // get current network id
       const { chainId } = await provider.getNetwork();
       let znxChainId: number = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
 
@@ -103,6 +102,13 @@ export default function SignIn() {
       if (chainId === znxChainId) {
         loginAddress = await getLoginAddress(signer, "Hello World");
         isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
+
+        ///
+        // const accountInfo = {
+        //   chainId: chainId,
+        //   loginAddress: loginAddress,
+        //   isAdmin: isAdmin,
+        // };
         window.alert("Recovered address: " + loginAddress);
       } else {
         let ethereum = window.ethereum;
