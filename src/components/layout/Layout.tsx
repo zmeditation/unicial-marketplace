@@ -14,6 +14,7 @@ import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 //
 import Test from "../../pages/Test/Test";
+import Collectibles from "../../pages/Collectibles/Collectibles";
 export default function Layout() {
   return (
     <Router>
@@ -35,11 +36,11 @@ export default function Layout() {
           path="/contracts/:contractaddress/tokens/:tokensid/buy"
           element={<Buy />}
         />
-        {/* admin relate */}
         <Route path="/admin/lands" element={<AdminLands />} />
         <Route path="/admin/estate" element={<AdminEstate />} />
         <Route path="/test" element={<Test />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/browse" element={<Collectibles />} />
       </Routes>
       <Footer />
     </Router>

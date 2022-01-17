@@ -187,6 +187,7 @@ export const StyledLanguagePopover = withStyles({
     borderRadius: "6px",
     position: "absolute",
     minWidth: "180px",
+    top: "419px",
   },
 })(Popover);
 
