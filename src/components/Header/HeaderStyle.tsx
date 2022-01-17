@@ -7,7 +7,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       borderBottom: "none",
       width: "100%",
       position: "relative",
-      backgroundColor: "#18141a",
+      backgroundColor: "#21263F",
     },
     container: {
       position: "relative",

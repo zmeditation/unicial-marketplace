@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@material-ui/core";
 
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import clsx from "clsx";
 import {
   FooterStyle,
@@ -12,6 +12,7 @@ import joy_svg from "./../../assets/svg/joy.svg";
 import robot_svg from "./../../assets/svg/robot.svg";
 import github_svg from "./../../assets/svg/github.svg";
 import dove_svg from "./../../assets/svg/dove.svg";
+
 import China_svg from "./../../assets/svg/China.svg";
 import England_svg from "./../../assets/svg/England.svg";
 import Spain_svg from "./../../assets/svg/Spain.svg";
@@ -39,17 +40,17 @@ export default function Footer() {
   React.useEffect(() => {
     switch (languageIndex) {
       case 1:
-        setCountryLanguage("English");
+        setCountryLanguage("ENG");
         setCountryFlag(England_svg);
         handleClose();
         break;
       case 2:
-        setCountryLanguage("Spanish");
+        setCountryLanguage("SPANISH");
         setCountryFlag(Spain_svg);
         handleClose();
         break;
       case 3:
-        setCountryLanguage("Chinese");
+        setCountryLanguage("CHINESE");
         setCountryFlag(China_svg);
         handleClose();
         break;
@@ -68,8 +69,58 @@ export default function Footer() {
   return (
     <>
       <div className={classes.root}>
-        <div className={classes.cotainer}>
+        <div className={classes.container}>
           <div className={classes.mainfooter}>
+            <div className={classes.links}>
+              <a href="/" className={classes.link}>
+                Home
+              </a>
+              <a href="/" className={classes.link}>
+                Privacy Policy
+              </a>
+              <a href="/" className={classes.link}>
+                Terms of Use
+              </a>
+              <a href="/" className={classes.link}>
+                Content Policy
+              </a>
+              <a href="/" className={classes.link}>
+                Code of Ethics
+              </a>
+            </div>
+            <div className={classes.socialLinks}>
+              <a>
+                <img
+                  src={joy_svg}
+                  className={clsx(classes.socialIcon, classes.joySvg)}
+                  alt="symbol"
+                />
+              </a>
+              <a style={{ marginLeft: "23px" }}>
+                <img
+                  src={robot_svg}
+                  className={clsx(classes.socialIcon, classes.robotSvg)}
+                />
+              </a>
+              <a style={{ marginLeft: "23px" }}>
+                <img
+                  src={github_svg}
+                  className={clsx(classes.socialIcon, classes.githubSvg)}
+                  alt="symbol"
+                />
+              </a>
+              <a style={{ marginLeft: "23px" }}>
+                <img
+                  src={dove_svg}
+                  className={clsx(classes.socialIcon, classes.dovSvg)}
+                  alt="symbol"
+                />
+              </a>
+            </div>
+          </div>
+          <div className={classes.secondaryFooter}>
+            <div className={classes.copyright}>© 2022 Unicial</div>
+            {/* flag start */}
             <div>
               <Box
                 aria-controls="simple-menu"
@@ -79,16 +130,16 @@ export default function Footer() {
               >
                 <Box className={classes.flagLanRoot}>
                   <Box className={classes.flagLanContainer}>
-                    <img
+                    {/* <img
                       src={countryFlag}
                       className={classes.flagIcon}
                       alt="symbol"
-                    />
+                    /> */}
                     <Box className={classes.languageLabel}>
                       {countryLanguage}
                     </Box>
-                    <ArrowDropDownIcon
-                      style={{ color: "white", marginLeft: "3px" }}
+                    <ExpandMoreIcon
+                      style={{ color: "#96A1DB", marginLeft: "3px" }}
                     />
                   </Box>
                 </Box>
@@ -143,55 +194,6 @@ export default function Footer() {
               </StyledLanguagePopover>
             </div>
             {/* flag end */}
-            <div className={classes.links}>
-              <a href="/" className={classes.link}>
-                Home
-              </a>
-              <a href="/" className={classes.link}>
-                Privacy Policy
-              </a>
-              <a href="/" className={classes.link}>
-                Terms of Use
-              </a>
-              <a href="/" className={classes.link}>
-                Content Policy
-              </a>
-              <a href="/" className={classes.link}>
-                Code of Ethics
-              </a>
-            </div>
-          </div>
-          <div className={classes.secondaryFooter}>
-            <div className={classes.socialLinks}>
-              <a>
-                <img
-                  src={joy_svg}
-                  className={clsx(classes.socialIcon, classes.joySvg)}
-                  alt="symbol"
-                />
-              </a>
-              <a style={{ marginLeft: "26px" }}>
-                <img
-                  src={robot_svg}
-                  className={clsx(classes.socialIcon, classes.robotSvg)}
-                />
-              </a>
-              <a style={{ marginLeft: "26px" }}>
-                <img
-                  src={github_svg}
-                  className={clsx(classes.socialIcon, classes.githubSvg)}
-                  alt="symbol"
-                />
-              </a>
-              <a style={{ marginLeft: "26px" }}>
-                <img
-                  src={dove_svg}
-                  className={clsx(classes.socialIcon, classes.dovSvg)}
-                  alt="symbol"
-                />
-              </a>
-            </div>
-            <div className={classes.copyright}>© 2022 Unicial</div>
           </div>
         </div>
       </div>

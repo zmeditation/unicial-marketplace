@@ -26,7 +26,7 @@ export default function Header() {
     setHeaderIndex(headerId.admin);
     navigate("/admin/lands");
   };
-  var isSigned = 1;
+  var isSigned = 0;
 
   useEffect(() => {
     if (location.pathname.includes("/admin")) {

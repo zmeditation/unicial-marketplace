@@ -6,18 +6,18 @@ import { makeStyles, withStyles } from "@material-ui/styles";
 export const FooterStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      marginTop: "0px",
+      marginTop: "38px",
       width: "100%",
-      backgroundColor: "#18141a",
+      backgroundColor: "#21263F",
     },
-    cotainer: {
+    container: {
       flexFlow: "row nowrap",
       alignItems: "center",
       maxWidth: "100% !important",
       height: "56px",
       fontFamily:
         'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-      display: "flex",
+      // display: "flex",
       width: "1064px",
       marginLeft: "auto !important",
       marginRight: "auto !important",
@@ -49,7 +49,8 @@ export const FooterStyle = makeStyles((theme: Theme) =>
     mainfooter: {
       display: "flex",
       flexFlow: "row wrap",
-      justifyContent: "center",
+      justifyContent: "space-between",
+      marginBottom: "5px",
       [theme.breakpoints.down(1201)]: {
         marginBottom: "12px",
       },
@@ -63,18 +64,22 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       display: "flex",
       flexFlow: "row wrap",
       justifyContent: "center",
-      fontSize: "14px",
       marginTop: "2px",
     },
     link: {
-      color: "#676370",
+      fontSize: "14px",
       fontWeight: 400,
-      marginLeft: "16px",
+      fontStyle: "normal",
+      lineHeight: "16.8px",
+      color: "white",
+
+      marginRight: "16px",
       marginBottom: "8px",
       textDecoration: "none",
     },
     secondaryFooter: {
       display: "flex",
+      justifyContent: "space-between",
       marginBottom: "5px",
       [theme.breakpoints.down(1025)]: {
         flexFlow: "column",
@@ -82,7 +87,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       },
     },
     socialLinks: {
-      marginRight: "24px",
+      // marginRight: "24px",
       marginTop: "2px",
       [theme.breakpoints.down(1025)]: {
         marginBottom: "12px",
@@ -90,8 +95,10 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       },
     },
     socialIcon: {
+      width: "21px",
+      height: "21px",
       display: "inline-block",
-      color: "#676370",
+      color: "#96A1DB",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "50%",
       backgroundClip: "content-box",
@@ -114,19 +121,28 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       height: "14px",
     },
     copyright: {
-      color: "#676370",
+      color: "#96A1DB",
       fontSize: "14px",
       fontFamily:
         'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
       lineHeight: "1.7em",
     },
     languageDropdown: {
+      width: "87px",
+      height: "30px",
       transform: "translateY(-4px)",
       cursor: "pointer",
       position: "relative",
       display: "inline-block",
       outline: 0,
-      textAlign: "left",
+      textAlign: "center",
+      //
+      borderRadius: "100px",
+      border: "1px solid",
+      borderImageSlice: 2,
+      borderWidth: "1px",
+      borderImageSource: "linear-gradient( #7F64E2, #41A6EF)",
+      //
       [theme.breakpoints.down(1025)]: {
         marginBottom: "18px",
       },
@@ -149,8 +165,9 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       fontSize: "14px",
       lineHeight: "20px",
       marginLeft: "8px",
-      fontWeight: 500,
-      color: "white",
+      fontWeight: 400,
+      fontStyle: "normal",
+      color: "#96A1DB",
     },
   })
 );
