@@ -8,17 +8,17 @@ import {
   StyledLanguagePopover,
   StyledMenuItem,
 } from "./FooterStyle";
-import joy_svg from "./../../assets/svg/joy.svg";
-import robot_svg from "./../../assets/svg/robot.svg";
-import github_svg from "./../../assets/svg/github.svg";
-import dove_svg from "./../../assets/svg/dove.svg";
+import JoySvg from "./../../assets/svg/joy.svg";
+import RobotSvg from "./../../assets/svg/robot.svg";
+import GithubSvg from "./../../assets/svg/github.svg";
+import DoveSvg from "./../../assets/svg/dove.svg";
 
-import China_svg from "./../../assets/svg/China.svg";
-import England_svg from "./../../assets/svg/England.svg";
-import Spain_svg from "./../../assets/svg/Spain.svg";
+import ChinaSvg from "./../../assets/svg/China.svg";
+import EnglandSvg from "./../../assets/svg/England.svg";
+import SpainSvg from "./../../assets/svg/Spain.svg";
+import FooterTexture from "../../assets/svg/footer_texture.svg";
 export default function Footer() {
   const classes = FooterStyle();
-  //flag
   const [countryLanguage, setCountryLanguage] = React.useState("");
   const [countryFlag, setCountryFlag] = React.useState("");
   const [languageIndex, setlanguageIndex] = React.useState(1);
@@ -41,17 +41,17 @@ export default function Footer() {
     switch (languageIndex) {
       case 1:
         setCountryLanguage("ENG");
-        setCountryFlag(England_svg);
+        setCountryFlag(EnglandSvg);
         handleClose();
         break;
       case 2:
         setCountryLanguage("SPANISH");
-        setCountryFlag(Spain_svg);
+        setCountryFlag(SpainSvg);
         handleClose();
         break;
       case 3:
         setCountryLanguage("CHINESE");
-        setCountryFlag(China_svg);
+        setCountryFlag(ChinaSvg);
         handleClose();
         break;
       default:
@@ -67,7 +67,12 @@ export default function Footer() {
 
   //flag end
   return (
-    <>
+    <div className={classes.footer}>
+      <img
+        src={FooterTexture}
+        alt="texture"
+        className={classes.footerTexture}
+      />
       <div className={classes.root}>
         <div className={classes.container}>
           <div className={classes.mainfooter}>
@@ -91,27 +96,27 @@ export default function Footer() {
             <div className={classes.socialLinks}>
               <a>
                 <img
-                  src={joy_svg}
+                  src={JoySvg}
                   className={clsx(classes.socialIcon, classes.joySvg)}
                   alt="symbol"
                 />
               </a>
               <a style={{ marginLeft: "23px" }}>
                 <img
-                  src={robot_svg}
+                  src={RobotSvg}
                   className={clsx(classes.socialIcon, classes.robotSvg)}
                 />
               </a>
               <a style={{ marginLeft: "23px" }}>
                 <img
-                  src={github_svg}
+                  src={GithubSvg}
                   className={clsx(classes.socialIcon, classes.githubSvg)}
                   alt="symbol"
                 />
               </a>
               <a style={{ marginLeft: "23px" }}>
                 <img
-                  src={dove_svg}
+                  src={DoveSvg}
                   className={clsx(classes.socialIcon, classes.dovSvg)}
                   alt="symbol"
                 />
@@ -163,7 +168,7 @@ export default function Footer() {
                 <StyledMenuItem onClick={handleEnglish}>
                   <Box className={classes.flagLanContainer}>
                     <img
-                      src={England_svg}
+                      src={EnglandSvg}
                       className={classes.flagIcon}
                       alt="symbol"
                     />
@@ -174,7 +179,7 @@ export default function Footer() {
                 <StyledMenuItem onClick={handleSpanish}>
                   <Box className={classes.flagLanContainer}>
                     <img
-                      src={Spain_svg}
+                      src={SpainSvg}
                       className={classes.flagIcon}
                       alt="symbol"
                     />
@@ -185,7 +190,7 @@ export default function Footer() {
                 <StyledMenuItem onClick={handleChinese}>
                   <Box className={classes.flagLanContainer}>
                     <img
-                      src={China_svg}
+                      src={ChinaSvg}
                       className={classes.flagIcon}
                       alt="symbol"
                     />
@@ -198,6 +203,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
