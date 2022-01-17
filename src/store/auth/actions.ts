@@ -9,3 +9,10 @@ export const setloginAddress = createAsyncThunk(
     return payload;
   }
 );
+
+export const setlogoutAddress = createAsyncThunk(
+  "auth/logoutAddress",
+  async () => {
+    return true;
+  }
+);

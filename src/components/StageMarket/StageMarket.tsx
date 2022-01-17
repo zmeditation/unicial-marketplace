@@ -11,11 +11,14 @@ import {
   Theme,
 } from "@material-ui/core";
 import clsx from "clsx";
+import cancelIcon from "../../assets/svg/cancel_icon.svg";
+import checkIcon from "../../assets/svg/check_icon.svg";
 
 interface StyledTableleProps {
   columns?: any;
   rows: any;
   emptyTableRows?: any;
+  stepIndex: any;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -45,37 +48,30 @@ const useStyles = makeStyles((theme: Theme) =>
         minWidth: "100%",
         tableLayout: "auto",
       },
-      "& .MuiTableRow-head": {
-        backgroundColor: "red",
-      },
-      "& .MuiTableCell-stickyHeader": {
-        backgroundColor: "#18141a",
-      },
     },
     tableHeaderCell: {
-      fontSize: "13px",
-      lineHeight: "18px",
+      fontSize: "14px",
+      lineHeight: "17px",
       fontWeight: 400,
       color: "#676370",
       fontFamily:
         '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
       "&.MuiTableCell-root": {
-        padding: "11px 0px",
-        borderBottom: "solid 1px #242129",
+        padding: "10px 0px 10px 20px",
+        borderBottom: "solid 1px #282E4E",
       },
       [theme.breakpoints.down(769)]: {
         display: "none",
       },
     },
     tableCell: {
-      fontSize: "15px",
+      fontSize: "16px",
       fontFamily:
         '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
       color: "white",
-      fontWeight: 500,
+      fontWeight: "normal",
       "&.MuiTableCell-root": {
-        padding: "18px 0px",
-        borderBottom: "solid 1px #242129",
+        padding: "10px 0px 10px 20px",
       },
     },
     firstcellmargin: {
@@ -110,14 +106,27 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       textAlign: "right",
     },
+    center: {
+      textAlign: "center",
+    },
   })
 );
 
-function StageMarket({ columns, rows, emptyTableRows }: StyledTableleProps) {
+function StageMarket({
+  columns,
+  rows,
+  emptyTableRows,
+  stepIndex,
+}: StyledTableleProps) {
   const classes = useStyles();
 
   const tableColumns = columns?.map((column: any, key: any) => (
-    <TableCell key={column} className={classes.tableHeaderCell}>
+    <TableCell
+      key={column}
+      className={clsx(classes.tableHeaderCell, {
+        [classes.center]: column === "Status",
+      })}
+    >
       {column}
     </TableCell>
   ));
@@ -130,17 +139,19 @@ function StageMarket({ columns, rows, emptyTableRows }: StyledTableleProps) {
 
       <TableCell className={clsx(classes.tableCell)}>{row.price}</TableCell>
 
-      <TableCell className={clsx(classes.tableCell)}></TableCell>
+      <TableCell className={clsx(classes.tableCell, classes.center)}>
+        {stepIndex === key ? (
+          <img src={checkIcon} alt="check"></img>
+        ) : (
+          <img src={cancelIcon} alt="cancel"></img>
+        )}
+      </TableCell>
     </TableRow>
   ));
   return (
     <>
       <TableContainer className={classes.tableContainer}>
-        <Table
-          stickyHeader
-          aria-label="simple table"
-          className={classes.tableContent}
-        >
+        <Table aria-label="simple table" className={classes.tableContent}>
           <TableHead>
             <TableRow>{tableColumns}</TableRow>
           </TableHead>

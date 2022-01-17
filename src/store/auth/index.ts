@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { setloginAddress } from "./actions";
+import { setloginAddress, setlogoutAddress } from "./actions";
 
 // const PREFIX = 'trade/orderHsitory'
 const PREFIX = "auth";
@@ -9,6 +9,12 @@ const initialState: any = {
 
 const setAuth = (state: any, loginAddress: any) => {
   localStorage.setItem("loginAddress", loginAddress);
+  state.loginAddress = loginAddress;
+};
+
+const logout = (state: any) => {
+  localStorage.removeItem("loginAddress");
+  state.loginAddress = "";
 };
 
 export const authReducer = createSlice({
@@ -22,8 +28,11 @@ export const authReducer = createSlice({
         setAuth(state, action.payload.loginAddress);
       }
     );
+    builder.addCase(setlogoutAddress.fulfilled.type, (state: any) => {
+      logout(state);
+    });
   },
 });
 
-export { setloginAddress };
+export { setloginAddress, setlogoutAddress };
 export default authReducer.reducer;

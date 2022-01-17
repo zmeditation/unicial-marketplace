@@ -13,7 +13,7 @@ import ActionButton from "../../components/Base/ActionButton";
 import { useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { selectparcels } from "../../store/selectedparcels/selectors";
-
+import CallMadeIcon from "@material-ui/icons/CallMade";
 // import contracts information
 import {
   UccContractAbi,
@@ -59,11 +59,11 @@ const Auction = () => {
   const bidParcels = useAppSelector(selectparcels);
   const handleResize = () => {
     if (window.innerWidth > 1200) {
-      setWidth(945);
+      setWidth(1064);
     } else if (window.innerWidth <= 1200 && window.innerWidth > 992) {
-      setWidth(820);
+      setWidth(933);
     } else if (window.innerWidth <= 992 && window.innerWidth > 770) {
-      setWidth(600);
+      setWidth(723);
     } else if (window.innerWidth <= 770 && window.innerWidth > 500) {
       setWidth(420);
     } else if (window.innerWidth <= 500) {
@@ -242,32 +242,32 @@ const Auction = () => {
   return (
     <>
       <TobTab />
-      <div className={classes.auctionInfo}>
-        <span className={classes.title}>Left Time</span>
-        <div className={classes.leftTime}>
-          <CountDown />
-        </div>
-        <span className={classes.title}>Staging</span>
-        <div>
-          <StageMarket columns={headerData} rows={transactionData} />
-        </div>
-      </div>
       <div className={classes.root}>
-        <BackButton className={classes.backBtnPosition} />
+        <div className={classes.auctionInfo}>
+          <span className={classes.title}>Left Time.</span>
+          <CountDown />
+          <span className={classes.title}>Staging.</span>
+          <StageMarket
+            columns={headerData}
+            rows={transactionData}
+            stepIndex={1}
+          />
+        </div>
         <div className={classes.LandMap}>
           <div className={classes.LandMapContent}>
+            <BackButton />
             <LandMap height={400} width={width} initialX={1} initialY={1} />
           </div>
           <div className={classes.actionButton}>
             <ActionButton
-              color="red"
+              color="light"
               className={classes.approveBtn}
               onClick={handleBidSpace}
             >
               Bid
+              <CallMadeIcon fontSize="small" />
             </ActionButton>
-
-            <ActionButton color="dark">clear</ActionButton>
+            <ActionButton color="dark">Clear</ActionButton>
             {isAdmin ? (
               isAuctionAuthorized ? (
                 <ActionButton

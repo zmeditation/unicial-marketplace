@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStyles } from "./CountDownStyle";
+import CountTexture from "../../assets/svg/count_texture.svg";
 
 const CountDown = () => {
   const classes = useStyles();
@@ -32,32 +33,42 @@ const CountDown = () => {
   return (
     <>
       <div className={classes.root}>
+        <img
+          src={CountTexture}
+          className={classes.countTexture1}
+          alt="texture"
+        ></img>
+        <img
+          src={CountTexture}
+          className={classes.countTexture2}
+          alt="texture"
+        ></img>
         <div className={classes.countdownItem}>
+          <div className={classes.timeDesc}>Days</div>
           <div className={classes.timeItem}>
             {timeLeft.days < 10 ? "0" + timeLeft.days : timeLeft.days}
           </div>
-          <div className={classes.daysDesc}>Days</div>
         </div>
-        <span className={classes.semicon}>:</span>
+        <span className={classes.semicon}></span>
         <div className={classes.countdownItem}>
+          <div className={classes.timeDesc}>Hours</div>
           <div className={classes.timeItem}>
             {timeLeft.hours < 10 ? "0" + timeLeft.hours : timeLeft.hours}
           </div>
-          <div className={classes.hoursDesc}>Hours</div>
         </div>
-        <span className={classes.semicon}>:</span>
+        <span className={classes.semicon}></span>
         <div className={classes.countdownItem}>
+          <div className={classes.timeDesc}>Minutes</div>
           <div className={classes.timeItem}>
             {timeLeft.minutes < 10 ? "0" + timeLeft.minutes : timeLeft.minutes}
           </div>
-          <div className={classes.minutesDesc}>Minutes</div>
         </div>
-        <span className={classes.semicon}>:</span>
+        <span className={classes.semicon}></span>
         <div className={classes.countdownItem}>
+          <div className={classes.timeDesc}>Seconds</div>
           <div className={classes.timeItem}>
             {timeLeft.seconds < 10 ? "0" + timeLeft.seconds : timeLeft.seconds}
           </div>
-          <div className={classes.secondsDesc}>Seconds</div>
         </div>
       </div>
     </>

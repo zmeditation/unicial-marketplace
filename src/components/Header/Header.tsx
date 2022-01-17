@@ -6,16 +6,17 @@ import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
 import { headerId } from "../../config/constant";
 import HeaderSignInBtn from "./component/HeaderSignInBtn/HeaderSignInBtn";
+import { useAppSelector } from "../../store/hooks";
+import { selectLoginAddress } from "../../store/auth/selectors";
 
 export default function Header() {
   const classes = HeaderStyle();
   const navigate = useNavigate();
   const location = useLocation();
   const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
-  const [isSignInclicked, setIsSignInclicked] = useState(0);
+  const loginAddress = useAppSelector(selectLoginAddress);
 
   const handleSignIn = () => {
-    setIsSignInclicked(1);
     navigate(`/signin`);
   };
 
@@ -28,7 +29,6 @@ export default function Header() {
     setHeaderIndex(headerId.admin);
     navigate("/admin/lands");
   };
-  var isSigned = 0;
 
   useEffect(() => {
     if (location.pathname.includes("/admin")) {
@@ -56,7 +56,9 @@ export default function Header() {
               disableRipple
               onClick={handleMarketPlace}
             >
-              Marketplace
+              <span></span>
+              <span>Marketplace</span>
+              <span className={"active-border"}></span>
             </Button>
             {/* <Button
                 className={
@@ -71,10 +73,10 @@ export default function Header() {
               </Button> */}
           </div>
           <HeaderMobileMenu />
-          {isSigned === 0 ? (
-            <HeaderSignInBtn onClick={handleSignIn} />
-          ) : (
+          {loginAddress ? (
             <HeaderSignInBar />
+          ) : (
+            <HeaderSignInBtn onClick={handleSignIn} />
           )}
         </div>
       </div>

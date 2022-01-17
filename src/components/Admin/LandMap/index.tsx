@@ -92,7 +92,7 @@ const LandMap: React.FC<LandMapProps> = ({
       return isOwned(x, y)
         ? { color: "transparent", scale: 1.4 }
         : isSelected(x, y)
-        ? { color: "#ff0044", scale: 1.4 }
+        ? { color: "transparent", scale: 1.4 }
         : null;
     },
     [isSelected]
@@ -101,7 +101,7 @@ const LandMap: React.FC<LandMapProps> = ({
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
       return isOwned(x, y)
-        ? { color: "#0d0b0e", scale: 1.2 }
+        ? { color: "#141b31", scale: 1.2 }
         : isSelected(x, y)
         ? { color: "#ff9990", scale: 1.2 }
         : null;

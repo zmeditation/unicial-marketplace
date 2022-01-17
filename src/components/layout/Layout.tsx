@@ -21,7 +21,6 @@ export default function Layout() {
       <Routes>
         <Route path="/" element={<MarketPlace />} />
         <Route path="/need" element={<MarketPlace />} />
-        <Route path="/signin" element={<SignIn />} />
         <Route path="/lands" element={<Lands />} />
         <Route path="/auction" element={<Auction />} />
         <Route
@@ -39,8 +38,8 @@ export default function Layout() {
         {/* admin relate */}
         <Route path="/admin/lands" element={<AdminLands />} />
         <Route path="/admin/estate" element={<AdminEstate />} />
-
         <Route path="/test" element={<Test />} />
+        <Route path="/signin" element={<SignIn />} />
       </Routes>
       <Footer />
     </Router>

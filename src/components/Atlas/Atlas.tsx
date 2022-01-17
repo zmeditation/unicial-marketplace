@@ -48,8 +48,8 @@ export const Atlas = (props: AtlasProps) => {
     10: "#3D3A46", // parcels on sale (we show them as owned parcels) black
     11: "#09080A", // unowned pacel/estate strong black
     12: "#18141a", // background
-    13: "#110e13", // loading odd
-    14: "#0d0b0e", // loading even
+    13: "#10182c", // loading odd
+    14: "#141b31", // loading even
   });
 
   const layer: Layer = (x, y) => {
