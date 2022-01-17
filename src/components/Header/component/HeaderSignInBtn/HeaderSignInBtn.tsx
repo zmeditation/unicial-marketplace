@@ -13,6 +13,7 @@ const HeaderSignInBtn = ({ onClick }: HeaderSignInBtnProps) => {
       <div className={classes.signBtnContent}>
         <span className={classes.signIcon}>
           <img src={singinusersvg} alt="user"></img>
+          <span className={classes.signtext}>Sign in</span>
         </span>
         <span className={classes.signMiddle}></span>
         <span className={classes.signIcon}>
