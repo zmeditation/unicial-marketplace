@@ -158,6 +158,7 @@ export default function Footer() {
                   vertical: "bottom",
                   horizontal: "left",
                 }}
+                // style={{ backgroundColor: "#171b30" }}
               >
                 <StyledMenuItem onClick={handleEnglish}>
                   <Box className={classes.flagLanContainer}>

@@ -5,6 +5,7 @@ import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
 import { headerId } from "../../config/constant";
+import HeaderSignInBtn from "./component/HeaderSignInBtn/HeaderSignInBtn";
 
 export default function Header() {
   const classes = HeaderStyle();
@@ -12,6 +13,7 @@ export default function Header() {
   const location = useLocation();
   const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
   const [isSignInclicked, setIsSignInclicked] = useState(0);
+
   const handleSignIn = () => {
     setIsSignInclicked(1);
     navigate(`/signin`);
@@ -40,23 +42,23 @@ export default function Header() {
     <>
       <div className={classes.root}>
         <div className={classes.container}>
-          <div style={{ position: "relative" }}>
-            <div className={classes.headermenuContainer}>
-              <Link to="/">
-                <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
-              </Link>
-              <Button
-                className={
-                  headIndex === headerId.marketplace
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-                onClick={handleMarketPlace}
-              >
-                Marketplace
-              </Button>
-              {/* <Button
+          <div className={classes.headermenuContainer}>
+            <Link to="/" className={classes.logoContent}>
+              <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
+              <span className={classes.logoName}>UNICIAL</span>
+            </Link>
+            <Button
+              className={
+                headIndex === headerId.marketplace
+                  ? classes.headerClickBtn
+                  : classes.headerBtn
+              }
+              disableRipple
+              onClick={handleMarketPlace}
+            >
+              Marketplace
+            </Button>
+            {/* <Button
                 className={
                   headIndex === headerId.admin
                     ? classes.headerClickBtn
@@ -67,20 +69,10 @@ export default function Header() {
               >
                 ADMIN
               </Button> */}
-            </div>
           </div>
           <HeaderMobileMenu />
           {isSigned === 0 ? (
-            <Box
-              className={
-                location.pathname === "/signin"
-                  ? classes.signclicked
-                  : classes.signnormal
-              }
-              onClick={handleSignIn}
-            >
-              Sign In
-            </Box>
+            <HeaderSignInBtn onClick={handleSignIn} />
           ) : (
             <HeaderSignInBar />
           )}

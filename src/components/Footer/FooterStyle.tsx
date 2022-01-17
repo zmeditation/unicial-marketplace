@@ -57,6 +57,11 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(1025)]: {
         marginBottom: "48px",
       },
+      [theme.breakpoints.down(769)]: {
+        // marginBottom: "48px",
+        display: "block",
+        marginBottom: "20px",
+      },
     },
     links: {
       fontFamily:
@@ -81,7 +86,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       marginBottom: "5px",
-      [theme.breakpoints.down(1025)]: {
+      [theme.breakpoints.down(769)]: {
         flexFlow: "column",
         alignItems: "center",
       },
@@ -92,6 +97,10 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(1025)]: {
         marginBottom: "12px",
         marginRight: "0px",
+      },
+      [theme.breakpoints.down(769)]: {
+        display: "flex",
+        justifyContent: "center",
       },
     },
     socialIcon: {
@@ -126,6 +135,9 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       fontFamily:
         'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
       lineHeight: "1.7em",
+      [theme.breakpoints.down(769)]: {
+        marginBottom: "15px",
+      },
     },
     languageDropdown: {
       width: "87px",
@@ -137,18 +149,19 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       outline: 0,
       textAlign: "center",
       //
+      border: "double 1px transparent",
       borderRadius: "100px",
-      border: "1px solid",
-      borderImageSlice: 2,
-      borderWidth: "1px",
-      borderImageSource: "linear-gradient( #7F64E2, #41A6EF)",
+      backgroundImage:
+        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+      backgroundClip: "content-box, border-box",
+      backgroundOrigin: "border-box",
       //
       [theme.breakpoints.down(1025)]: {
         marginBottom: "18px",
       },
     },
     flagLanRoot: {
-      transform: "translateY(4px)",
+      transform: "translateY(2px)",
       textTransform: "none",
       display: "inline-block",
       transition: "none",
@@ -172,18 +185,9 @@ export const FooterStyle = makeStyles((theme: Theme) =>
   })
 );
 
-export const StyledMenu = withStyles({
-  paper: {
-    backgroundColor: "#676370",
-    marginTop: "13px",
-    borderRadius: "6px",
-    position: "absolute",
-  },
-})(Menu);
-
 export const StyledLanguagePopover = withStyles({
   paper: {
-    backgroundColor: "#676370",
+    backgroundColor: "#171b30",
     marginBottom: "70px",
     borderRadius: "6px",
     position: "absolute",

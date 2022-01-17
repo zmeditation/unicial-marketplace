@@ -6,7 +6,6 @@ import { Button } from "@material-ui/core";
 export const TopTabStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      borderBottom: "1px solid #67637033",
       backgroundColor: "#21263F",
       marginBottom: "0px",
       display: "flex",
@@ -91,7 +90,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     position: "relative",
     display: "inline-block",
     padding: "0px 0px",
-    marginRight: "32px",
+    marginRight: "14px",
     fontSize: "16px",
     fontFamily:
       '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
@@ -109,16 +108,17 @@ export const StyledTopTabBtn = withStyles((theme) => ({
       marginBottom: "6px",
     },
     "&.Mui-disabled": {
+      border: "double 1px transparent",
       borderRadius: "100px",
-      border: "1px solid",
-      borderImageSlice: 2,
-      borderWidth: "1px",
-      borderImageSource: "linear-gradient( #7F64E2, #41A6EF)",
+      backgroundImage:
+        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+      backgroundClip: "content-box, border-box",
+      backgroundOrigin: "border-box",
 
       color: "white",
       [theme.breakpoints.down(769)]: {
-        borderBottom: "none",
-        borderLeft: "2px solid #ff2d55",
+        // borderBottom: "none",
+        // borderLeft: "2px solid #ff2d55",
       },
     },
     "& .MuiButton-label": {
@@ -128,7 +128,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
         fontSize: "15px",
         marginRight: "32px",
         marginBottom: "0px",
-        paddingLeft: "16px",
+        // paddingLeft: "16px",
       },
     },
   },
@@ -158,8 +158,8 @@ export const StyledTableButton = withStyles({
     "&.Mui-disabled": {
       backgroundColor: "#333B67 !important",
       "& svg": {
-        // fill: "#ff2d55",
-        background: "linear-gradient(#7F64E2 100%, #41A6EF 100%)",
+        fill: "red",
+        // background: "linear-gradient(#7F64E2 100%, #41A6EF 100%)",
         //
       },
     },

@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
+import auth from "./auth";
 import mapparceldataReducer from "./selectedparcels";
 
 import testReducer from "./Test/index";
+import authReducer from "./auth/index";
 
 export const store = configureStore({
   reducer: {
     test: testReducer,
     selectedparcels: mapparceldataReducer,
+    auth: authReducer,
   },
 });
 
