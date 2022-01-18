@@ -2,21 +2,26 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    height: "calc(100vh - 121px)",
+    height: "calc(100vh - 203px)",
     display: "flex",
     flexFlow: "column nowrap",
     justifyContent: "start",
     position: "relative",
     overflow: "hidden",
     backgroundColor: " #21263f",
-    borderBottom: "1px solid #67637033",
     textAlign: "center",
+    [theme.breakpoints.down(768)]: {
+      height: "calc(100vh - 272px)",
+    },
   },
   itemContainer: {
     width: "1064px",
     maxWidth: "100% !important",
     marginLeft: "auto !important",
     marginRight: "auto !important",
+    [theme.breakpoints.down(768)]: {
+      width: "80%",
+    },
   },
   title: {
     margin: "calc(2rem - 0.14286em) 0 1rem",
@@ -29,6 +34,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 600,
     fontStretch: "normal",
     marginTop: "20%",
+    [theme.breakpoints.down(550)]: {
+      fontSize: "30px",
+    },
   },
   subtitle: {
     color: "#96A1DB",

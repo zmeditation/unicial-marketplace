@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 export const HeaderSignInBtnStyle = makeStyles((theme: Theme) =>
   createStyles({
     signBtn: {
-      width: "107px",
+      width: "156px",
       height: "40px",
       border: "double 1px transparent",
       borderRadius: "100px",
@@ -15,6 +15,7 @@ export const HeaderSignInBtnStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       cursor: "pointer",
+      marginLeft: "5px",
     },
     signMiddle: {
       border: "1px solid #282e4e",
@@ -23,6 +24,11 @@ export const HeaderSignInBtnStyle = makeStyles((theme: Theme) =>
     signIcon: {
       display: "flex",
       alignItems: "center",
+    },
+    signtext: {
+      fontSize: "14px",
+      lineHeight: "17px",
+      margin: "0px 10px",
     },
     signBtnContent: {
       display: "flex",

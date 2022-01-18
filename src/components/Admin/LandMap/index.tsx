@@ -70,6 +70,17 @@ const LandMap: React.FC<LandMapProps> = ({
     [selectedTile, tiles]
   );
 
+  const isOwned = useCallback(
+    (x: number, y: number) => {
+      if (!tiles) return false;
+      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      if (tile?.owner) {
+        return true;
+      } else return false;
+    },
+    [tiles]
+  );
+
   const handleHidePopup = useCallback(() => {
     setShowPopup(false);
     setMouseX(-1);
@@ -78,14 +89,22 @@ const LandMap: React.FC<LandMapProps> = ({
 
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y) ? { color: "#ff0044", scale: 1.4 } : null;
+      return isOwned(x, y)
+        ? { color: "transparent", scale: 1.4 }
+        : isSelected(x, y)
+        ? { color: "#ff0044", scale: 1.4 }
+        : null;
     },
     [isSelected]
   );
 
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y) ? { color: "#ff9990", scale: 1.2 } : null;
+      return isOwned(x, y)
+        ? { color: "#0d0b0e", scale: 1.2 }
+        : isSelected(x, y)
+        ? { color: "#ff9990", scale: 1.2 }
+        : null;
     },
     [isSelected]
   );

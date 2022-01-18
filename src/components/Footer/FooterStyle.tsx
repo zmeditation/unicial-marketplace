@@ -5,8 +5,29 @@ import { makeStyles, withStyles } from "@material-ui/styles";
 
 export const FooterStyle = makeStyles((theme: Theme) =>
   createStyles({
+    footer: {
+      position: "relative",
+      display: "flex",
+      overflow: "hidden",
+      borderTop: "1px solid #67637033",
+    },
+    footerTexture: {
+      position: "absolute",
+      left: "50%",
+      width: "50%",
+      height: "100%",
+      [theme.breakpoints.down(768)]: {
+        width: "80%",
+        left: "0px",
+      },
+      [theme.breakpoints.down(500)]: {
+        width: "100%",
+        left: "0px",
+        top: "20%",
+      },
+    },
     root: {
-      marginTop: "38px",
+      padding: "40px 0px 35px 0px",
       width: "100%",
       backgroundColor: "#21263F",
     },
@@ -14,33 +35,21 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       flexFlow: "row nowrap",
       alignItems: "center",
       maxWidth: "100% !important",
-      height: "56px",
       fontFamily:
         'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-      // display: "flex",
       width: "1064px",
       marginLeft: "auto !important",
       marginRight: "auto !important",
       justifyContent: "space-between",
-      [theme.breakpoints.down(1204)]: {
-        height: "auto",
-        marginBottom: "48px",
-      },
       [theme.breakpoints.down(1201)]: {
         flexFlow: "column nowrap",
-        marginBottom: "12px",
       },
       [theme.breakpoints.down(1200)]: {
         flexFlow: "column nowrap",
-        marginBottom: "12px",
         width: "933px",
       },
       [theme.breakpoints.down(992)]: {
         width: "723px",
-      },
-      [theme.breakpoints.down(769)]: {
-        margin: "48px 16px 0px 16px !important",
-        paddingBottom: "80px",
       },
       [theme.breakpoints.down(768)]: {
         width: "auto !important",
@@ -51,16 +60,9 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       flexFlow: "row wrap",
       justifyContent: "space-between",
       marginBottom: "5px",
-      [theme.breakpoints.down(1201)]: {
-        marginBottom: "12px",
-      },
-      [theme.breakpoints.down(1025)]: {
-        marginBottom: "48px",
-      },
       [theme.breakpoints.down(769)]: {
-        // marginBottom: "48px",
         display: "block",
-        marginBottom: "20px",
+        marginBottom: "12px",
       },
     },
     links: {
@@ -70,6 +72,9 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       flexFlow: "row wrap",
       justifyContent: "center",
       marginTop: "2px",
+      [theme.breakpoints.down(769)]: {
+        marginLeft: "8px",
+      },
     },
     link: {
       fontSize: "14px",
@@ -77,27 +82,22 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       fontStyle: "normal",
       lineHeight: "16.8px",
       color: "white",
-
       marginRight: "16px",
       marginBottom: "8px",
       textDecoration: "none",
+      textAlign: "center",
     },
     secondaryFooter: {
       display: "flex",
+      alignItems: "center",
       justifyContent: "space-between",
-      marginBottom: "5px",
       [theme.breakpoints.down(769)]: {
         flexFlow: "column",
-        alignItems: "center",
       },
     },
     socialLinks: {
       // marginRight: "24px",
       marginTop: "2px",
-      [theme.breakpoints.down(1025)]: {
-        marginBottom: "12px",
-        marginRight: "0px",
-      },
       [theme.breakpoints.down(769)]: {
         display: "flex",
         justifyContent: "center",
@@ -148,17 +148,12 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       display: "inline-block",
       outline: 0,
       textAlign: "center",
-      //
       border: "double 1px transparent",
       borderRadius: "100px",
       backgroundImage:
         "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
       backgroundClip: "content-box, border-box",
       backgroundOrigin: "border-box",
-      //
-      [theme.breakpoints.down(1025)]: {
-        marginBottom: "18px",
-      },
     },
     flagLanRoot: {
       transform: "translateY(2px)",
