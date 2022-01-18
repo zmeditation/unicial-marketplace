@@ -1,47 +1,15 @@
 import React from "react";
 import {
-  CollectibleSearchBarStyle,
-  StyledFormControlLabel,
+  MystoreSearchBarStyle,
   StyledListPopover,
   StyledMenuItem,
-} from "./CollectibleSearchBarStyle";
-import filter_svg from "./../../../assets/svg/filter.svg";
+} from "./MystoreSearchBarStyle";
 import search_svg from "./../../../assets/svg/search.svg";
-import { withStyles } from "@material-ui/core/styles";
-
-import Switch from "@material-ui/core/Switch";
 import { Box } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 
-const PurpleSwitch = withStyles({
-  root: {
-    height: "36px",
-    width: "55px",
-  },
-  switchBase: {
-    color: "#FF7C4C",
-    "&$checked": {
-      color: "#333B67",
-    },
-    "&$checked + $track": {
-      backgroundColor: "#333B67",
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
-
-export default function CollectibleSearchBar() {
-  const classes = CollectibleSearchBarStyle();
-
-  const [state, setState] = React.useState({
-    checkedA: true,
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+export default function MystoreSearchBar() {
+  const classes = MystoreSearchBarStyle();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -91,7 +59,7 @@ export default function CollectibleSearchBar() {
                 />
                 <input
                   className={classes.searchinput}
-                  placeholder="Search 25 results..."
+                  placeholder="Search 0 items..."
                 />
               </div>
               {/* select start */}
@@ -161,28 +129,6 @@ export default function CollectibleSearchBar() {
                 </StyledListPopover>
               </div>
               {/* select end */}
-
-              <div className={classes.topbarFilter}>
-                <StyledFormControlLabel
-                  control={
-                    <PurpleSwitch
-                      checked={state.checkedA}
-                      onChange={handleChange}
-                      name="checkedA"
-                    />
-                  }
-                  label="ON SALE"
-                  className={classes.switch}
-                />
-              </div>
-              <div className={classes.openfilter}>
-                <div className={classes.openfilterLabel}>FILTER</div>
-                <img
-                  src={filter_svg}
-                  className={classes.filterIcon}
-                  alt="symbol"
-                />
-              </div>
             </div>
           </div>
         </div>

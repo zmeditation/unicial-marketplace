@@ -140,7 +140,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       },
     },
     languageDropdown: {
-      width: "87px",
+      width: "90px",
       height: "30px",
       transform: "translateY(-4px)",
       cursor: "pointer",
@@ -176,17 +176,21 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontStyle: "normal",
       color: "#96A1DB",
+      "&:hover": {
+        color: "white",
+      },
     },
   })
 );
 
 export const StyledLanguagePopover = withStyles({
   paper: {
-    backgroundColor: "#171b30",
+    backgroundColor: "#1A1F37",
+    boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05 )",
     marginBottom: "70px",
-    borderRadius: "6px",
+    borderRadius: "15px",
     position: "absolute",
-    minWidth: "180px",
+    minWidth: "168px",
     top: "419px",
   },
 })(Popover);
@@ -197,12 +201,12 @@ export const StyledMenuItem = withStyles({
     fontSize: "14px",
     lineHeight: "20px",
     fontWeight: 500,
-    minWidth: "210px",
+    minWidth: "168px",
     padding: "10px 16px",
     cursor: "pointer",
     position: "relative",
-    "&:hover": {
-      backgroundColor: "#24212933",
-    },
+    // "&:hover": {
+    //   backgroundColor: "#24212933",
+    // },
   },
 })(MenuItem);

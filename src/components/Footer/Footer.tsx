@@ -45,7 +45,7 @@ export default function Footer() {
         handleClose();
         break;
       case 2:
-        setCountryLanguage("SPANISH");
+        setCountryLanguage("SPAIN");
         setCountryFlag(SpainSvg);
         handleClose();
         break;
@@ -135,11 +135,6 @@ export default function Footer() {
               >
                 <Box className={classes.flagLanRoot}>
                   <Box className={classes.flagLanContainer}>
-                    {/* <img
-                      src={countryFlag}
-                      className={classes.flagIcon}
-                      alt="symbol"
-                    /> */}
                     <Box className={classes.languageLabel}>
                       {countryLanguage}
                     </Box>
@@ -157,43 +152,27 @@ export default function Footer() {
                 onClose={handleClose}
                 anchorOrigin={{
                   vertical: "top",
-                  horizontal: "left",
+                  horizontal: "right",
                 }}
                 transformOrigin={{
                   vertical: "bottom",
-                  horizontal: "left",
+                  horizontal: "right",
                 }}
-                // style={{ backgroundColor: "#171b30" }}
               >
                 <StyledMenuItem onClick={handleEnglish}>
                   <Box className={classes.flagLanContainer}>
-                    <img
-                      src={EnglandSvg}
-                      className={classes.flagIcon}
-                      alt="symbol"
-                    />
                     <Box className={classes.languageLabel}>English</Box>
                   </Box>
                 </StyledMenuItem>
 
                 <StyledMenuItem onClick={handleSpanish}>
                   <Box className={classes.flagLanContainer}>
-                    <img
-                      src={SpainSvg}
-                      className={classes.flagIcon}
-                      alt="symbol"
-                    />
                     <Box className={classes.languageLabel}>Spanish</Box>
                   </Box>
                 </StyledMenuItem>
 
                 <StyledMenuItem onClick={handleChinese}>
                   <Box className={classes.flagLanContainer}>
-                    <img
-                      src={ChinaSvg}
-                      className={classes.flagIcon}
-                      alt="symbol"
-                    />
                     <Box className={classes.languageLabel}>Chinese</Box>
                   </Box>
                 </StyledMenuItem>

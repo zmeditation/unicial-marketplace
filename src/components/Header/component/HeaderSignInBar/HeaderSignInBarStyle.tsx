@@ -132,6 +132,6 @@ export const StyledAvatarPopover = withStyles({
     marginTop: "13px",
     borderRadius: "6px",
     position: "absolute",
-    minWidth: "180px",
+    minWidth: "168px",
   },
 })(Popover);

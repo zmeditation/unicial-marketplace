@@ -15,7 +15,16 @@ import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 //
 import Test from "../../pages/Test/Test";
 import Collectibles from "../../pages/Collectibles/Collectibles";
+import { setloginAddress } from "../../store/auth/actions";
+import { useAppDispatch } from "../../store/hooks";
+
 export default function Layout() {
+  const dispatch = useAppDispatch();
+
+  if (localStorage.loginAddress) {
+    dispatch(setloginAddress(localStorage.loginAddress));
+  }
+
   return (
     <Router>
       <Header />
@@ -24,6 +33,7 @@ export default function Layout() {
         <Route path="/need" element={<MarketPlace />} />
         <Route path="/lands" element={<Lands />} />
         <Route path="/auction" element={<Auction />} />
+        <Route path="/browse" element={<Collectibles />} />
         <Route
           path="/contracts/:contractaddress/tokens/:tokensid"
           element={<Contracts />}
@@ -40,7 +50,6 @@ export default function Layout() {
         <Route path="/admin/estate" element={<AdminEstate />} />
         <Route path="/test" element={<Test />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/browse" element={<Collectibles />} />
       </Routes>
       <Footer />
     </Router>

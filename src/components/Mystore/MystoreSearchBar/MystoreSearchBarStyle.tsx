@@ -8,7 +8,7 @@ import {
 import { makeStyles } from "@material-ui/styles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
+export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       position: "relative",
