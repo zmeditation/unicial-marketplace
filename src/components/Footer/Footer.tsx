@@ -1,23 +1,24 @@
 import React from "react";
 import { Box } from "@material-ui/core";
 
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import clsx from "clsx";
 import {
   FooterStyle,
   StyledLanguagePopover,
   StyledMenuItem,
 } from "./FooterStyle";
-import joy_svg from "./../../assets/svg/joy.svg";
-import robot_svg from "./../../assets/svg/robot.svg";
-import github_svg from "./../../assets/svg/github.svg";
-import dove_svg from "./../../assets/svg/dove.svg";
-import China_svg from "./../../assets/svg/China.svg";
-import England_svg from "./../../assets/svg/England.svg";
-import Spain_svg from "./../../assets/svg/Spain.svg";
+import JoySvg from "./../../assets/svg/joy.svg";
+import RobotSvg from "./../../assets/svg/robot.svg";
+import GithubSvg from "./../../assets/svg/github.svg";
+import DoveSvg from "./../../assets/svg/dove.svg";
+
+import ChinaSvg from "./../../assets/svg/China.svg";
+import EnglandSvg from "./../../assets/svg/England.svg";
+import SpainSvg from "./../../assets/svg/Spain.svg";
+import FooterTexture from "../../assets/svg/footer_texture.svg";
 export default function Footer() {
   const classes = FooterStyle();
-  //flag
   const [countryLanguage, setCountryLanguage] = React.useState("");
   const [countryFlag, setCountryFlag] = React.useState("");
   const [languageIndex, setlanguageIndex] = React.useState(1);
@@ -39,18 +40,18 @@ export default function Footer() {
   React.useEffect(() => {
     switch (languageIndex) {
       case 1:
-        setCountryLanguage("English");
-        setCountryFlag(England_svg);
+        setCountryLanguage("ENG");
+        setCountryFlag(EnglandSvg);
         handleClose();
         break;
       case 2:
-        setCountryLanguage("Spanish");
-        setCountryFlag(Spain_svg);
+        setCountryLanguage("SPANISH");
+        setCountryFlag(SpainSvg);
         handleClose();
         break;
       case 3:
-        setCountryLanguage("Chinese");
-        setCountryFlag(China_svg);
+        setCountryLanguage("CHINESE");
+        setCountryFlag(ChinaSvg);
         handleClose();
         break;
       default:
@@ -66,10 +67,65 @@ export default function Footer() {
 
   //flag end
   return (
-    <>
+    <div className={classes.footer}>
+      <img
+        src={FooterTexture}
+        alt="texture"
+        className={classes.footerTexture}
+      />
       <div className={classes.root}>
-        <div className={classes.cotainer}>
+        <div className={classes.container}>
           <div className={classes.mainfooter}>
+            <div className={classes.links}>
+              <a href="/" className={classes.link}>
+                Home
+              </a>
+              <a href="/" className={classes.link}>
+                Privacy Policy
+              </a>
+              <a href="/" className={classes.link}>
+                Terms of Use
+              </a>
+              <a href="/" className={classes.link}>
+                Content Policy
+              </a>
+              <a href="/" className={classes.link}>
+                Code of Ethics
+              </a>
+            </div>
+            <div className={classes.socialLinks}>
+              <a>
+                <img
+                  src={JoySvg}
+                  className={clsx(classes.socialIcon, classes.joySvg)}
+                  alt="symbol"
+                />
+              </a>
+              <a style={{ marginLeft: "23px" }}>
+                <img
+                  src={RobotSvg}
+                  className={clsx(classes.socialIcon, classes.robotSvg)}
+                />
+              </a>
+              <a style={{ marginLeft: "23px" }}>
+                <img
+                  src={GithubSvg}
+                  className={clsx(classes.socialIcon, classes.githubSvg)}
+                  alt="symbol"
+                />
+              </a>
+              <a style={{ marginLeft: "23px" }}>
+                <img
+                  src={DoveSvg}
+                  className={clsx(classes.socialIcon, classes.dovSvg)}
+                  alt="symbol"
+                />
+              </a>
+            </div>
+          </div>
+          <div className={classes.secondaryFooter}>
+            <div className={classes.copyright}>© 2022 Unicial</div>
+            {/* flag start */}
             <div>
               <Box
                 aria-controls="simple-menu"
@@ -79,16 +135,16 @@ export default function Footer() {
               >
                 <Box className={classes.flagLanRoot}>
                   <Box className={classes.flagLanContainer}>
-                    <img
+                    {/* <img
                       src={countryFlag}
                       className={classes.flagIcon}
                       alt="symbol"
-                    />
+                    /> */}
                     <Box className={classes.languageLabel}>
                       {countryLanguage}
                     </Box>
-                    <ArrowDropDownIcon
-                      style={{ color: "white", marginLeft: "3px" }}
+                    <ExpandMoreIcon
+                      style={{ color: "#96A1DB", marginLeft: "3px" }}
                     />
                   </Box>
                 </Box>
@@ -107,11 +163,12 @@ export default function Footer() {
                   vertical: "bottom",
                   horizontal: "left",
                 }}
+                // style={{ backgroundColor: "#171b30" }}
               >
                 <StyledMenuItem onClick={handleEnglish}>
                   <Box className={classes.flagLanContainer}>
                     <img
-                      src={England_svg}
+                      src={EnglandSvg}
                       className={classes.flagIcon}
                       alt="symbol"
                     />
@@ -122,7 +179,7 @@ export default function Footer() {
                 <StyledMenuItem onClick={handleSpanish}>
                   <Box className={classes.flagLanContainer}>
                     <img
-                      src={Spain_svg}
+                      src={SpainSvg}
                       className={classes.flagIcon}
                       alt="symbol"
                     />
@@ -133,7 +190,7 @@ export default function Footer() {
                 <StyledMenuItem onClick={handleChinese}>
                   <Box className={classes.flagLanContainer}>
                     <img
-                      src={China_svg}
+                      src={ChinaSvg}
                       className={classes.flagIcon}
                       alt="symbol"
                     />
@@ -143,58 +200,9 @@ export default function Footer() {
               </StyledLanguagePopover>
             </div>
             {/* flag end */}
-            <div className={classes.links}>
-              <a href="/" className={classes.link}>
-                Home
-              </a>
-              <a href="/" className={classes.link}>
-                Privacy Policy
-              </a>
-              <a href="/" className={classes.link}>
-                Terms of Use
-              </a>
-              <a href="/" className={classes.link}>
-                Content Policy
-              </a>
-              <a href="/" className={classes.link}>
-                Code of Ethics
-              </a>
-            </div>
-          </div>
-          <div className={classes.secondaryFooter}>
-            <div className={classes.socialLinks}>
-              <a>
-                <img
-                  src={joy_svg}
-                  className={clsx(classes.socialIcon, classes.joySvg)}
-                  alt="symbol"
-                />
-              </a>
-              <a style={{ marginLeft: "26px" }}>
-                <img
-                  src={robot_svg}
-                  className={clsx(classes.socialIcon, classes.robotSvg)}
-                />
-              </a>
-              <a style={{ marginLeft: "26px" }}>
-                <img
-                  src={github_svg}
-                  className={clsx(classes.socialIcon, classes.githubSvg)}
-                  alt="symbol"
-                />
-              </a>
-              <a style={{ marginLeft: "26px" }}>
-                <img
-                  src={dove_svg}
-                  className={clsx(classes.socialIcon, classes.dovSvg)}
-                  alt="symbol"
-                />
-              </a>
-            </div>
-            <div className={classes.copyright}>© 2022 Unicial</div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

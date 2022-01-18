@@ -4,10 +4,10 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       marginTop: "0px",
-      borderBottom: "none",
+      borderBottom: "1px solid #282e4e",
       width: "100%",
       position: "relative",
-      backgroundColor: "#18141a",
+      backgroundColor: "#21263F",
     },
     container: {
       position: "relative",
@@ -26,7 +26,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         width: "723px",
       },
       [theme.breakpoints.down(769)]: {
-        width: "calc(100% - 32px) !important",
+        width: "100%",
         padding: "0 16px",
         margin: "0 !important",
       },
@@ -37,15 +37,33 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       border: "none",
       boxShadow: "none",
       display: "flex",
-      [theme.breakpoints.down(768)]: {
-        display: "none",
-      },
+      alignItems: "center",
+      height: "100%",
+      // [theme.breakpoints.down(768)]: {
+      //   display: "none",
+      // },
+    },
+    logoContent: {
+      textDecoration: "none",
+      display: "flex",
+      alignItems: "center",
     },
     logo: {
       cursor: "pointer",
       width: "36px",
       height: "36px",
       marginTop: "2px",
+    },
+    logoName: {
+      color: "#fff",
+      fontSize: "16px",
+      fontWeight: 600,
+      letterSpacing: "0.02em",
+      lineHeight: "20px",
+      margin: "0px 10px",
+      [theme.breakpoints.down(500)]: {
+        display: "none",
+      },
     },
     accountRoot: {
       position: "relative",
@@ -70,24 +88,9 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         cursor: "pointer",
       },
     },
+
     headerBtn: {
-      fontWeight: 400,
-      color: "#676370",
-      borderRadius: "6px",
-      textTransform: "uppercase",
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
-      marginLeft: "24px",
-      padding: "0px",
-      fontSize: "13px",
-      lineHeight: "18px",
-      minWidth: "33px",
-      "&:hover": {
-        cursor: "pointer",
-      },
-    },
-    headerClickBtn: {
-      fontWeight: 700,
+      fontWeight: "normal",
       color: "#ffffff",
       borderRadius: "6px",
       textTransform: "uppercase",
@@ -95,40 +98,69 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
       marginLeft: "24px",
       padding: "0px",
-      fontSize: "13px",
+      fontSize: "16px",
       lineHeight: "18px",
       minWidth: "33px",
       "&:hover": {
         cursor: "pointer",
       },
     },
-    signnormal: {
-      fontWeight: 400,
-      color: "#676370",
-      borderRadius: "6px",
+    headerClickBtn: {
+      fontWeight: "normal",
+      color: "#ffffff",
       textTransform: "uppercase",
       fontFamily:
         '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
       marginLeft: "24px",
-      padding: "0px",
-      fontSize: "13px",
+      padding: "2px 0px 0px 0px!important",
+      fontSize: "16px",
       lineHeight: "18px",
-      cursor: "pointer",
+      minWidth: "33px",
+      height: "100%",
+      borderRadius: "0px",
+      // borderBottom: "2px solid #7F64E2",
       "&:hover": {
-        color: "#fff",
+        cursor: "pointer",
+      },
+      "& .MuiButton-label": {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      },
+      "& .active-border": {
+        width: "34px",
+        height: "2px",
+        background: "#7F64E2",
       },
     },
-    signclicked: {
-      fontWeight: 700,
-      color: "#ff2d55",
-      cursor: "pointer",
-      textTransform: "uppercase",
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
-      marginLeft: "24px",
-      padding: "0px",
-      fontSize: "13px",
-      lineHeight: "18px",
-    },
+    // signnormal: {
+    //   fontWeight: 400,
+    //   color: "#676370",
+    //   borderRadius: "6px",
+    //   textTransform: "uppercase",
+    //   fontFamily:
+    //     '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+    //   marginLeft: "24px",
+    //   padding: "0px",
+    //   fontSize: "13px",
+    //   lineHeight: "18px",
+    //   cursor: "pointer",
+    //   "&:hover": {
+    //     color: "#fff",
+    //   },
+    // },
+    // signclicked: {
+    //   fontWeight: 700,
+    //   color: "#ff2d55",
+    //   cursor: "pointer",
+    //   textTransform: "uppercase",
+    //   fontFamily:
+    //     '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+    //   marginLeft: "24px",
+    //   padding: "0px",
+    //   fontSize: "13px",
+    //   lineHeight: "18px",
+    // },
   })
 );

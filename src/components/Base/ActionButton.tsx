@@ -3,32 +3,37 @@ import clsx from "clsx";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     cursor: "pointer",
-    fontWeight: 600,
+    fontWeight: 500,
     display: "flex",
     alignItems: "center",
-    textTransform: "uppercase",
-    borderRadius: "6px",
+    textTransform: "none",
+    borderRadius: "25px",
     gridGap: "8px",
     gap: "8px",
-
-    padding: "13px 32px",
     minWidth: "128px",
-    fontSize: "13px",
+    fontSize: "16px",
+    lineHeight: "19px",
     justifyContent: "center",
     margin: "20px 0px 10px 0px",
   },
   darkColor: {
-    backgroundColor: "#242129",
+    border: "double 1px transparent",
+    borderRadius: "100px",
+    backgroundImage:
+      "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+    backgroundClip: "content-box, border-box",
+    backgroundOrigin: "border-box",
+    color: "white",
     "&:hover": {
       transform: "translateY(-2px)",
       backgroundColor: "#28262c",
     },
   },
-  redColor: {
-    backgroundColor: "#ff2d55",
+  lightColor: {
+    background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
+    padding: "10px 32px",
     "&:hover": {
       transform: "translateY(-2px)",
-      backgroundColor: "#ff3d61",
     },
   },
   disablestatus: {
@@ -65,7 +70,7 @@ const ActionButton = ({
       <div
         className={clsx(classes.root, className, {
           [classes.darkColor]: color === "dark",
-          [classes.redColor]: color === "red",
+          [classes.lightColor]: color === "light",
           [classes.disablestatus]: disabled,
         })}
         onClick={onClick}

@@ -25,9 +25,9 @@ const Lands: React.FC = () => {
   return (
     <>
       <TobTab />
-      <div>
+      {/* <div>
         <SearchBar />
-      </div>
+      </div> */}
       <div className={classes.landMap}>
         <LandMap height={height} width={width} initialX={50} initialY={50} />
       </div>

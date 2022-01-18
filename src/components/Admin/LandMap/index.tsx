@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import { Atlas, Layer, Coord } from "../../Atlas/Atlas";
+import { Atlas, Layer } from "../../Atlas/Atlas";
 import { Tile } from "../../Atlas/Atlas.types";
 import Popup from "../../Atlas/Popup";
 import { fetchTiles } from "../../../hooks/tiles";
-import { Theme, makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme: Theme) => ({}));
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { selectparcels } from "../../../store/selectedparcels/selectors";
+import { getparcels } from "../../../store/selectedparcels";
 
 interface LandMapProps {
   height?: any;
@@ -28,13 +28,15 @@ const LandMap: React.FC<LandMapProps> = ({
   const [mouseY, setMouseY] = useState(-1);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const [selectedTile, setSelectedTile] = useState<string[]>([]);
+  const dispatch = useAppDispatch();
+  const selectedTile = useAppSelector(selectparcels);
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
+
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (!tile) {
+      if (tile.owner) {
         return;
       } else {
         let newSelectedTile: string[] = [];
@@ -54,7 +56,7 @@ const LandMap: React.FC<LandMapProps> = ({
             selectedTile.slice(selectedIndex + 1)
           );
         }
-        setSelectedTile(newSelectedTile);
+        dispatch(getparcels(newSelectedTile));
       }
     },
     [tiles, selectedTile]
@@ -68,6 +70,17 @@ const LandMap: React.FC<LandMapProps> = ({
     [selectedTile, tiles]
   );
 
+  const isOwned = useCallback(
+    (x: number, y: number) => {
+      if (!tiles) return false;
+      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      if (tile?.owner) {
+        return true;
+      } else return false;
+    },
+    [tiles]
+  );
+
   const handleHidePopup = useCallback(() => {
     setShowPopup(false);
     setMouseX(-1);
@@ -76,14 +89,22 @@ const LandMap: React.FC<LandMapProps> = ({
 
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y) ? { color: "#ff0044", scale: 1.4 } : null;
+      return isOwned(x, y)
+        ? { color: "transparent", scale: 1.4 }
+        : isSelected(x, y)
+        ? { color: "transparent", scale: 1.4 }
+        : null;
     },
     [isSelected]
   );
 
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y) ? { color: "#ff9990", scale: 1.2 } : null;
+      return isOwned(x, y)
+        ? { color: "#141b31", scale: 1.2 }
+        : isSelected(x, y)
+        ? { color: "#ff9990", scale: 1.2 }
+        : null;
     },
     [isSelected]
   );
@@ -96,6 +117,10 @@ const LandMap: React.FC<LandMapProps> = ({
 
       if (tile && !showPopup) {
         setShowPopup(true);
+        setHoveredTile(tile);
+        setMouseX(-1);
+        setMouseY(-1);
+      } else if (tile && tile !== hoveredTile) {
         setHoveredTile(tile);
         setMouseX(-1);
         setMouseY(-1);

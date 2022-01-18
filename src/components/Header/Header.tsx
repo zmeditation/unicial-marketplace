@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Box, Button } from "@material-ui/core";
 import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
 import { headerId } from "../../config/constant";
+import HeaderSignInBtn from "./component/HeaderSignInBtn/HeaderSignInBtn";
+import { useAppSelector } from "../../store/hooks";
+import { selectLoginAddress } from "../../store/auth/selectors";
 
 export default function Header() {
   const classes = HeaderStyle();
   const navigate = useNavigate();
   const location = useLocation();
-  const [head_index, setHeaderIndex] = useState(headerId.marketplace);
-  const [isSignInclicked, setIsSignInclicked] = useState(0);
+  const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
+  const loginAddress = useAppSelector(selectLoginAddress);
+
   const handleSignIn = () => {
-    setIsSignInclicked(1);
     navigate(`/signin`);
   };
 
@@ -26,106 +29,54 @@ export default function Header() {
     setHeaderIndex(headerId.admin);
     navigate("/admin/lands");
   };
-  var isSigned = 0;
+
+  useEffect(() => {
+    if (location.pathname.includes("/admin")) {
+      setHeaderIndex(headerId.admin);
+    } else {
+      setHeaderIndex(headerId.marketplace);
+    }
+  }, [location.pathname]);
+
   return (
     <>
       <div className={classes.root}>
         <div className={classes.container}>
-          <div style={{ position: "relative" }}>
-            <div className={classes.headermenuContainer}>
-              <Link to="/">
-                <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
-              </Link>
-
-              <Button
+          <div className={classes.headermenuContainer}>
+            <Link to="/" className={classes.logoContent}>
+              <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
+              <span className={classes.logoName}>UNICIAL</span>
+            </Link>
+            <Button
+              className={
+                headIndex === headerId.marketplace
+                  ? classes.headerClickBtn
+                  : classes.headerBtn
+              }
+              disableRipple
+              onClick={handleMarketPlace}
+            >
+              <span></span>
+              <span>Marketplace</span>
+              <span className={"active-border"}></span>
+            </Button>
+            {/* <Button
                 className={
-                  head_index === headerId.marketplace
+                  headIndex === headerId.admin
                     ? classes.headerClickBtn
                     : classes.headerBtn
                 }
                 disableRipple
-                onClick={handleMarketPlace}
-              >
-                Marketplace
-              </Button>
-
-              <Button
-                className={
-                  head_index === headerId.admin
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
                 onClick={handleAdmin}
               >
-                Admin
-              </Button>
-
-              <Button
-                className={
-                  head_index === headerId.builder
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                Builder
-              </Button>
-              <Button
-                className={
-                  head_index === headerId.docs
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                Docs
-              </Button>
-              <Button
-                className={
-                  head_index === headerId.events
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                Events
-              </Button>
-              <Button
-                className={
-                  head_index === headerId.dao
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                DAO
-              </Button>
-              <Button
-                className={
-                  head_index === headerId.blog
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-              >
-                Blog
-              </Button>
-            </div>
+                ADMIN
+              </Button> */}
           </div>
           <HeaderMobileMenu />
-          {isSigned === 0 ? (
-            <Box
-              className={
-                location.pathname === "/signin"
-                  ? classes.signclicked
-                  : classes.signnormal
-              }
-              onClick={handleSignIn}
-            >
-              Sign In
-            </Box>
-          ) : (
+          {loginAddress ? (
             <HeaderSignInBar />
+          ) : (
+            <HeaderSignInBtn onClick={handleSignIn} />
           )}
         </div>
       </div>

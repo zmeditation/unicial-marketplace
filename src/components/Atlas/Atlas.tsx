@@ -34,22 +34,22 @@ export const Atlas = (props: AtlasProps) => {
 
   const COLOR_BY_TYPE: any = Object.freeze({
     0: "#ff9990", // my parcels
-    1: "#ff4053", // my parcels on sale
-    2: "#ff9990", // my estates
+    1: "#ff4053", // my parcels on sale red
+    2: "#ff9990", // my estates pink
     3: "#ff4053", // my estates on sale
     4: "#ffbd33", // parcels/estates where I have permissions
     district: "#5054D4", // districts
-    6: "#563db8", // contributions
+    6: "#563db8", // contributions purple
     road: "#716C7A", // roads
     // 7: "#716C7A", // roads
-    8: "#70AC76", // plazas
+    8: "#70AC76", // plazas green
     unowned: "#3D3A46", // owned parcel/estate
     // 9: "#3D3A46", // owned parcel/estate
-    10: "#3D3A46", // parcels on sale (we show them as owned parcels)
-    11: "#09080A", // unowned pacel/estate
+    10: "#3D3A46", // parcels on sale (we show them as owned parcels) black
+    11: "#09080A", // unowned pacel/estate strong black
     12: "#18141a", // background
-    13: "#110e13", // loading odd
-    14: "#0d0b0e", // loading even
+    13: "#10182c", // loading odd
+    14: "#141b31", // loading even
   });
 
   const layer: Layer = (x, y) => {

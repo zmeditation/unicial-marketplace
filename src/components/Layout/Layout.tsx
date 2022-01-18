@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Lands from "../../pages/Lands/Lands";
+import Auction from "../../pages/Auction/Auction";
 import Contracts from "../../pages/Contracts/Contracts";
 import MarketPlace from "../../pages/MarketPlace/MarketPlace";
 
@@ -10,7 +11,10 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
-// import AdminEstate from "../Admin/AdminEstate/AdminEstate";
+import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
+//
+import Test from "../../pages/Test/Test";
+import Collectibles from "../../pages/Collectibles/Collectibles";
 export default function Layout() {
   return (
     <Router>
@@ -18,8 +22,8 @@ export default function Layout() {
       <Routes>
         <Route path="/" element={<MarketPlace />} />
         <Route path="/need" element={<MarketPlace />} />
-        <Route path="/signin" element={<SignIn />} />
         <Route path="/lands" element={<Lands />} />
+        <Route path="/auction" element={<Auction />} />
         <Route
           path="/contracts/:contractaddress/tokens/:tokensid"
           element={<Contracts />}
@@ -32,8 +36,11 @@ export default function Layout() {
           path="/contracts/:contractaddress/tokens/:tokensid/buy"
           element={<Buy />}
         />
-        {/* admin relate */}
         <Route path="/admin/lands" element={<AdminLands />} />
+        <Route path="/admin/estate" element={<AdminEstate />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/browse" element={<Collectibles />} />
       </Routes>
       <Footer />
     </Router>

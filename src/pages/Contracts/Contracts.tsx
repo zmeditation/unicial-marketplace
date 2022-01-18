@@ -30,9 +30,9 @@ const Contract = () => {
       setWidth(820);
     } else if (window.innerWidth <= 992 && window.innerWidth > 770) {
       setWidth(600);
-    } else if (window.innerWidth <= 770 && window.innerWidth >= 500) {
+    } else if (window.innerWidth <= 770 && window.innerWidth > 500) {
       setWidth(420);
-    } else {
+    } else if (window.innerWidth <= 500) {
       setWidth(300);
     }
   };
@@ -70,6 +70,7 @@ const Contract = () => {
               <Buybox />
             </div>
           </div>
+          <Parcels />
           <div className={classes.tableRoot}>
             <TransactionHistoryTable
               columns={headerData}
@@ -78,16 +79,15 @@ const Contract = () => {
           </div>
           <div>
             <div className={classes.BidsTitle}>BIDS</div>
-            {BidRecordData.map((row) => (
+            {BidRecordData.map((row, index) => (
               <BidRecord
                 fromName={row.fromName}
                 price={row.price}
                 time={row.time}
+                key={index}
               />
             ))}
           </div>
-
-          <Parcels />
         </div>
       </div>
     </>

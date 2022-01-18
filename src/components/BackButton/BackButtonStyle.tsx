@@ -2,25 +2,23 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   backBtn: {
-    borderRadius: "25px",
-    border: "1px solid #6763709c",
-    width: "30px",
-    height: "30px",
+    position: "absolute",
+    bottom: "-50px",
     display: "flex",
-    alignItems: "center",
-    marginBottom: "10vh",
+    background: "linear-gradient(to right, #7F64E2 20%, #41A6EF 80%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    alignItems: "end",
     cursor: "pointer",
     "&:hover": {
-      borderColor: "white",
-    },
-    [theme.breakpoints.down(769)]: {
-      top: "-40px",
+      transform: "translateY(-2px)",
     },
   },
-  backIcon: {
-    width: "15px",
-    height: "15px",
-    color: "white",
-    marginLeft: "10px",
+  revertIcon: {
+    transform: "rotate(-45deg)",
+    marginRight: "10px",
+    background: "linear-gradient(#7F64E2 20%, #41A6EF 80%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
   },
 }));

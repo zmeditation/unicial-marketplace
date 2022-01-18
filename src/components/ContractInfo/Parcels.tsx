@@ -79,6 +79,18 @@ const Parcels: React.FC = () => {
             <LocationOnIcon className={classes.pin} />
             -9, -5
           </Button>
+          <Button color="dark" className={classes.parcelbtn}>
+            <LocationOnIcon className={classes.pin} />
+            -9, -5
+          </Button>
+          <Button color="dark" className={classes.parcelbtn}>
+            <LocationOnIcon className={classes.pin} />
+            -9, -5
+          </Button>
+          <Button color="dark" className={classes.parcelbtn}>
+            <LocationOnIcon className={classes.pin} />
+            -9, -5
+          </Button>
         </div>
         <div className={classes.showmoreContent}>
           <span className={classes.showmoreBtn}>SHOW LESS</span>

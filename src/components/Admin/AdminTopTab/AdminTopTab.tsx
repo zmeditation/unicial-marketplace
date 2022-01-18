@@ -11,6 +11,9 @@ export default function TopTab() {
   const handleLand = () => {
     setToptabIndex(1);
   };
+  const handleEstate = () => {
+    setToptabIndex(2);
+  };
 
   return (
     <>
@@ -19,14 +22,13 @@ export default function TopTab() {
           <div className={classes.container}>
             <div className={classes.tabsLeft}>
               <StyledTopTabBtn
-                disableRipple
                 onClick={handleLand}
                 disabled={toptab_index === adminTopTabIndex.land}
               >
                 Land
               </StyledTopTabBtn>
               <StyledTopTabBtn
-                disableRipple
+                onClick={handleEstate}
                 disabled={toptab_index === adminTopTabIndex.estate}
               >
                 Estate

@@ -75,7 +75,7 @@ export const SignInStyle = makeStyles((theme: Theme) =>
     },
     connectBtn: {
       minWidth: "64px",
-      width: "64px !important",
+      // width: "64px !important",
     },
   })
 );
