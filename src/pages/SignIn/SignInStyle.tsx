@@ -5,6 +5,7 @@ export const SignInStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      justifyContent: "center",
       alignItems: "center",
       width: "100%",
       minHeight: "calc(100vh - 203px)",
