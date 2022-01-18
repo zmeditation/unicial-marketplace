@@ -33,6 +33,7 @@ export default function Layout() {
         <Route path="/need" element={<MarketPlace />} />
         <Route path="/lands" element={<Lands />} />
         <Route path="/auction" element={<Auction />} />
+        <Route path="/browse" element={<Collectibles />} />
         <Route
           path="/contracts/:contractaddress/tokens/:tokensid"
           element={<Contracts />}
@@ -49,7 +50,6 @@ export default function Layout() {
         <Route path="/admin/estate" element={<AdminEstate />} />
         <Route path="/test" element={<Test />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/browse" element={<Collectibles />} />
       </Routes>
       <Footer />
     </Router>

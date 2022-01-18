@@ -182,18 +182,3 @@ export const StyledLocationButton = withStyles({
     },
   },
 })(Button);
-
-export const StyledTableChartIcon = withStyles({
-  root: {
-    fill: "#fff",
-
-    fontSize: "20px",
-  },
-})(TableChartIcon);
-
-export const StyledLocationOnIcon = withStyles({
-  root: {
-    fill: "#fff",
-    fontSize: "20px",
-  },
-})(LocationOnIcon);

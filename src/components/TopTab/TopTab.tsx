@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { topTabIndex } from "../../config/constant";
+import { topTabIndex, searchBarIndex } from "../../config/constant";
 import {
   TopTabStyle,
   StyledTopTabBtn,
   StyledFormControlLabel,
   StyledTableButton,
-  StyledTableChartIcon,
   StyledLocationButton,
-  StyledLocationOnIcon,
 } from "./TopTabStyle";
+import CollectibleSearchBar from "../Collectible/CollectibleSearchBar/CollectibleSearchBar";
+import MystoreSearchBar from "../Mystore/MystoreSearchBar/MystoreSearchBar";
 import { searchbarBtn } from "../../config/constant";
 import { useLocation, useNavigate } from "react-router";
 import { withStyles } from "@material-ui/styles";
@@ -38,6 +38,7 @@ export default function TopTab() {
   const location = useLocation();
   const navigate = useNavigate();
   const [toptab_index, setToptabIndex] = React.useState(1);
+  const [searchbar_index, setSearchbarIndex] = React.useState(1);
 
   const handleLand = (url: string) => {
     navigate(url);
@@ -46,8 +47,15 @@ export default function TopTab() {
   useEffect(() => {
     if (location.pathname.includes("/lands")) {
       setToptabIndex(topTabIndex.land);
+      setSearchbarIndex(searchBarIndex.land);
     } else if (location.pathname.includes("/auction")) {
       setToptabIndex(topTabIndex.auction);
+      setSearchbarIndex(searchBarIndex.default);
+    } else if (location.pathname.includes("/browse")) {
+      // setToptabIndex(topTabIndex.collectibles);
+      setSearchbarIndex(searchBarIndex.collectibles);
+    } else if (location.pathname.includes("/account")) {
+      setToptabIndex(searchBarIndex.mystore);
     }
   }, [location.pathname]);
 
@@ -91,34 +99,46 @@ export default function TopTab() {
                     Auction
                   </StyledTopTabBtn>
                 </div>
-                <StyledFormControlLabel
-                  control={
-                    <PurpleSwitch
-                      checked={state.checkedA}
-                      onChange={handleChange}
-                      name="checkedA"
-                    />
-                  }
-                  label="ON SALE"
-                  className={classes.switch}
-                />
-                <div style={{ marginLeft: "20px" }}>
-                  <StyledTableButton
-                    disabled={filter_index === searchbarBtn.tableBtn}
-                    onClick={handletable}
-                  >
-                    {/* <StyledTableChartIcon /> */}
-                    <img src={book_svg} />
-                  </StyledTableButton>
 
-                  <StyledLocationButton
-                    disabled={filter_index === searchbarBtn.locationBtn}
-                    onClick={handlelocation}
-                  >
-                    {/* <StyledLocationOnIcon /> */}
-                    <img src={location_svg} />
-                  </StyledLocationButton>
-                </div>
+                {searchbar_index === 0 ? (
+                  <></>
+                ) : searchbar_index === 1 ? (
+                  /* //Land */
+                  <div style={{ display: "flex" }}>
+                    <StyledFormControlLabel
+                      control={
+                        <PurpleSwitch
+                          checked={state.checkedA}
+                          onChange={handleChange}
+                          name="checkedA"
+                        />
+                      }
+                      label="ON SALE"
+                      className={classes.switch}
+                    />
+                    <div style={{ marginLeft: "20px" }}>
+                      <StyledTableButton
+                        disabled={filter_index === searchbarBtn.tableBtn}
+                        onClick={handletable}
+                      >
+                        <img src={book_svg} />
+                      </StyledTableButton>
+
+                      <StyledLocationButton
+                        disabled={filter_index === searchbarBtn.locationBtn}
+                        onClick={handlelocation}
+                      >
+                        <img src={location_svg} />
+                      </StyledLocationButton>
+                    </div>
+                  </div>
+                ) : searchbar_index === 2 ? (
+                  //  Collctibles
+                  <CollectibleSearchBar />
+                ) : (
+                  //My store
+                  <MystoreSearchBar />
+                )}
               </div>
             </div>
           </div>
