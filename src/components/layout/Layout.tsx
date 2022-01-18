@@ -14,6 +14,7 @@ import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 //
 import Test from "../../pages/Test/Test";
+import Collectibles from "../../pages/Collectibles/Collectibles";
 export default function Layout() {
   return (
     <Router>
@@ -41,6 +42,7 @@ export default function Layout() {
         <Route path="/admin/estate" element={<AdminEstate />} />
 
         <Route path="/test" element={<Test />} />
+        <Route path="/browse" element={<Collectibles />} />
       </Routes>
       <Footer />
     </Router>
