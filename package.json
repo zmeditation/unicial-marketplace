@@ -18,6 +18,7 @@
     "@types/react-dom": "^17.0.9",
     "axios": "^0.24.0",
     "clsx": "^1.1.1",
+    "env-cmd": "^10.1.0",
     "ethereum-blockies-base64": "^1.0.2",
     "ethers": "^5.5.3",
     "npm": "^7.1.22",
@@ -42,6 +43,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-production": "env-cmd -f .env.staging npm run build -- --profile",
+    "serve": "serve -l 8088 -s -n build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
