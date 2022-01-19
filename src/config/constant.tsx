@@ -20,6 +20,14 @@ export const searchbarBtn = {
   locationBtn: 2,
 };
 
+export const searchBarIndex = {
+  land: 1,
+  collectibles: 2,
+  mystore: 3,
+  auction: 4,
+  default: 0,
+};
+
 export const networkInfo = {
   chain_id: 1,
   rpcUrl: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",

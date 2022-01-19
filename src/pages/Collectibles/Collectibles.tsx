@@ -1,5 +1,5 @@
 import { CollectiblesStyle } from "./CollectiblesStyle";
-import TypeBox from "../../components/Collectible/TypeBox/TypeBox";
+import TopTab from "../../components/TopTab/TopTab";
 import CategoryTree from "../../components/Collectible/CategoryTree/CategoryTree";
 import CollectibleSearchBar from "../../components/Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import CollectibleFilter from "../../components/Collectible/CollectibleFilter/CollectibleFilter";
@@ -8,6 +8,7 @@ export default function Collectibles() {
   const classes = CollectiblesStyle();
   return (
     <>
+      <TopTab />
       <div className={classes.root}>
         <div className={classes.leftPart}>
           {/* <TypeBox /> */}
