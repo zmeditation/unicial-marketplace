@@ -35,13 +35,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   disablestatus: {
-    backgroundColor: "#7f1f34",
     color: "#7f7d80",
     cursor: "default",
     "&:hover": {
       transform: "translateY(0px)",
-      backgroundColor: "#7f1f34",
-      color: "#7f7d80",
     },
   },
   text: {

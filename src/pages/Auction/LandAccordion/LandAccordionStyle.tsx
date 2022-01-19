@@ -149,8 +149,9 @@ export const StyledAccordionSummary = withStyles((theme) => ({
     },
   },
   content: {
+    margin: "0px",
     "&$expanded": {
-      margin: "0px 0",
+      margin: "0px",
     },
   },
   expanded: {},

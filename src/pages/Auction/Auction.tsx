@@ -137,6 +137,7 @@ const Auction = () => {
   const handleClear = () => {
     dispatch(getparcels([]));
   };
+  const handleApprovedUCCToken = () => {};
   const handleBidSpace = async () => {
     console.log("ttlSpacesPrice", ttlSpacesPrice);
     if (bidParcels.length === 0) {
@@ -277,7 +278,8 @@ const Auction = () => {
             <ActionButton
               color="light"
               className={classes.normalBtn}
-              onClick={handleBidSpace}
+              onClick={handleApprovedUCCToken}
+              disabled
             >
               Approve
               <CallMadeIcon fontSize="small" />
@@ -297,11 +299,7 @@ const Auction = () => {
             >
               Clear
             </ActionButton>
-            <ActionButton
-              color="dark"
-              onClick={handleClear}
-              className={classes.gradientBtn}
-            >
+            <ActionButton color="dark" className={classes.gradientBtn}>
               Authorize Auction
             </ActionButton>
             {isAdmin ? (
