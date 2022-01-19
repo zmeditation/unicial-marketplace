@@ -1,5 +1,6 @@
 import { SignInStyle } from "./SignInStyle";
 import { ethers } from "ethers";
+import { nanoid } from "nanoid";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import ActionButton from "../../components/Base/ActionButton";
 import signinlogo from "../../assets/svg/signin_logo.svg";
@@ -13,6 +14,23 @@ import { useNavigate } from "react-router-dom";
 declare var window: any;
 var provider: any;
 var signer: any;
+
+const generateSignature = () => {
+  let currentTimestamp: string = Math.floor(
+    new Date().getTime() / 1000
+  ).toString();
+  let rndString: string = nanoid();
+  let signature: string =
+    "Unicial: Verify your signin:\n\n" +
+    "  - Current UTC timestamp: " +
+    currentTimestamp +
+    "\n" +
+    "  - Signature: " +
+    rndString;
+
+  console.log("Signature string: " + signature);
+  return signature;
+};
 
 export default function SignIn() {
   const classes = SignInStyle();
@@ -33,7 +51,6 @@ export default function SignIn() {
   };
 
   const handleSignIn = async () => {
-    var accounts = [];
     if (window.ethereum) {
       provider = new ethers.providers.Web3Provider(window.ethereum, "any");
       await provider.send("eth_requestAccounts", []);
@@ -50,7 +67,7 @@ export default function SignIn() {
 
     // check current chain id is equal to Zilionixx Mainnet
     if (chainId === znxChainId) {
-      loginAddress = await getLoginAddress(signer, "Hello World");
+      loginAddress = await getLoginAddress(signer, generateSignature());
       // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
       window.alert("Recovered address: " + loginAddress);
     } else {
@@ -65,7 +82,7 @@ export default function SignIn() {
         provider = new ethers.providers.Web3Provider(window.ethereum);
         signer = provider.getSigner();
 
-        loginAddress = await getLoginAddress(signer, "Hello World");
+        loginAddress = await getLoginAddress(signer, generateSignature());
         // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
         window.alert(
           "Switched chain done & Recovered address: " + loginAddress
@@ -89,7 +106,7 @@ export default function SignIn() {
             provider = new ethers.providers.Web3Provider(window.ethereum);
             signer = provider.getSigner();
 
-            loginAddress = await getLoginAddress(signer, "Hello World");
+            loginAddress = await getLoginAddress(signer, generateSignature());
             // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
             window.alert("Add chain done & Recovered address: " + loginAddress);
           } catch (addError) {

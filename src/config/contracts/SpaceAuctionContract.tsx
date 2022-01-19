@@ -1,4 +1,4 @@
-export const SpaceAuctionAddress = "0xcCd5478C1867f2A9eB69690FcE5aE3135Fa4ac28";
+export const SpaceAuctionAddress = "0x2aE729B9BcaE209179dc77747886106B349957DE";
 
 export const SpaceAuctionAbi: any = [
   {

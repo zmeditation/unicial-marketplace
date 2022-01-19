@@ -21,6 +21,7 @@
     "env-cmd": "^10.1.0",
     "ethereum-blockies-base64": "^1.0.2",
     "ethers": "^5.5.3",
+    "nanoid": "^3.2.0",
     "npm": "^7.1.22",
     "react": "^17.0.2",
     "react-backdrop-filter": "^2.1.0",

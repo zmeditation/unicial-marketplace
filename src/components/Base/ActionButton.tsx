@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "16px",
     lineHeight: "19px",
     justifyContent: "center",
-    margin: "20px 0px 10px 0px",
   },
   darkColor: {
     border: "double 1px transparent",
@@ -31,19 +30,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   lightColor: {
     background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
-    padding: "10px 32px",
     "&:hover": {
       transform: "translateY(-2px)",
     },
   },
   disablestatus: {
-    backgroundColor: "#7f1f34",
     color: "#7f7d80",
     cursor: "default",
     "&:hover": {
       transform: "translateY(0px)",
-      backgroundColor: "#7f1f34",
-      color: "#7f7d80",
+    },
+  },
+  text: {
+    margin: "10px 32px",
+    display: "flex",
+    "& svg": {
+      margin: "0px 5px",
     },
   },
 }));
@@ -75,7 +77,7 @@ const ActionButton = ({
         })}
         onClick={onClick}
       >
-        {children}
+        <span className={classes.text}>{children}</span>
       </div>
     </>
   );

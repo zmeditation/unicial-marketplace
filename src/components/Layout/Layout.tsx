@@ -15,7 +15,16 @@ import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 //
 import Test from "../../pages/Test/Test";
 import Collectibles from "../../pages/Collectibles/Collectibles";
+import { setloginAddress } from "../../store/auth/actions";
+import { useAppDispatch } from "../../store/hooks";
+
 export default function Layout() {
+  const dispatch = useAppDispatch();
+
+  if (localStorage.loginAddress) {
+    dispatch(setloginAddress(localStorage.loginAddress));
+  }
+
   return (
     <Router>
       <Header />
