@@ -114,12 +114,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
         "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
       backgroundClip: "content-box, border-box",
       backgroundOrigin: "border-box",
-
       color: "white",
-      [theme.breakpoints.down(769)]: {
-        // borderBottom: "none",
-        // borderLeft: "2px solid #ff2d55",
-      },
     },
     "& .MuiButton-label": {
       textAlign: "center",
@@ -128,7 +123,6 @@ export const StyledTopTabBtn = withStyles((theme) => ({
         fontSize: "15px",
         marginRight: "32px",
         marginBottom: "0px",
-        // paddingLeft: "16px",
       },
     },
   },

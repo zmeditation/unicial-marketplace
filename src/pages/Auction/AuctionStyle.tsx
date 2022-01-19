@@ -25,32 +25,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   LandMap: {
-    maxWidth: "945px",
+    // maxWidth: "945px",
     display: "grid",
     margin: "0px auto",
-    [theme.breakpoints.down(1200)]: {
-      maxWidth: "820px",
-    },
-    [theme.breakpoints.down(992)]: {
-      maxWidth: "600px",
-    },
-    [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
-      marginTop: "60px",
-    },
+    width: "100%",
   },
   LandMapContent: {
+    position: "relative",
     height: "400px",
     [theme.breakpoints.down(768)]: {
       margin: "0px calc( (100% - 400px) / 2)",
     },
-    [theme.breakpoints.down(500)]: {
+    [theme.breakpoints.down(501)]: {
       margin: "0px calc( (100% - 300px) / 2)",
     },
-  },
-
-  backBtnPosition: {
-    position: "absolute",
   },
   contractDescription: {
     marginTop: "35px",
@@ -104,11 +92,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     textAlign: "center",
   },
-  leftTime: {
-    backgroundColor: "#242129",
-    borderRadius: "10px",
-    paddingBottom: "24px",
-  },
   title: {
     fontSize: "28px",
     fontWeight: 600,
@@ -121,6 +104,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "end",
     marginTop: "20px",
+    [theme.breakpoints.down(500)]: {
+      marginTop: "35px",
+      width: "100%",
+      justifyContent: "space-around",
+    },
   },
   approveBtn: {
     marginRight: "20px !important",

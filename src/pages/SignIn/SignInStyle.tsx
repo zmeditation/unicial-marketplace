@@ -5,11 +5,16 @@ export const SignInStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      justifyContent: "center",
       alignItems: "center",
       width: "100%",
-      minHeight: "calc(100vh - 120px)",
+      minHeight: "calc(100vh - 203px)",
+      [theme.breakpoints.down(768)]: {
+        minHeight: "calc(100vh - 272px)",
+      },
     },
     container: {
+      position: "relative",
       alignItems: "center",
       maxWidth: "100% !important",
       height: "auto",
@@ -53,29 +58,34 @@ export const SignInStyle = makeStyles((theme: Theme) =>
       marginBottom: "25px",
     },
     starWalletIcon: {
-      marginBottom: "25px",
       width: "180px",
       height: "180px",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      borderRadius: "100%",
-      backgroundColor: "#242129",
     },
     descriptionContainer: {
       padding: "0px 38px",
-      marginBottom: "40px",
+      marginBottom: "20px",
       textAlign: "center",
-      color: "#676370",
+      color: "#96A1DB",
       fontSize: "16px",
     },
     browserLink: {
-      color: "#ff2d55",
+      color: "#FF7C4C",
       textDecoration: "none",
     },
     connectBtn: {
       minWidth: "64px",
-      // width: "64px !important",
+    },
+    signinellipse1: {
+      position: "absolute",
+      top: "30%",
+      left: "0px",
+    },
+    signinellipse2: {
+      position: "absolute",
+      right: "0px",
     },
   })
 );

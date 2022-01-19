@@ -1,4 +1,4 @@
-const TILES_URL = "http://192.168.112.107:3000/api/v1/map";
+const TILES_URL = "http://192.168.112.107:8080/api/v1/map";
 // const TILES_URL = "https://api.decentraland.org/v2/tiles";
 interface AtlasTile {
   x: number;

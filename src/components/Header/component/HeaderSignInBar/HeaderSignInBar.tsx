@@ -13,10 +13,13 @@ import {
   StyledRingButton,
 } from "./HeaderSignInBarStyle";
 import { StyledMenuItem } from "../../../Footer/FooterStyle";
+import { setlogoutAddress } from "../../../../store/auth/actions";
+import { useAppDispatch } from "../../../../store/hooks";
 
 export default function HeaderSignInBar() {
   const classes = HeaderSignInBarStyle();
   const [tmp, setTmp] = React.useState(0);
+  const dispatch = useAppDispatch();
   const handleRingButton = () => {
     setTmp(1);
   };
@@ -33,7 +36,9 @@ export default function HeaderSignInBar() {
 
   const handleAccount = () => {};
   const handleSettings = () => {};
-  const handleSignOut = () => {};
+  const handleSignOut = () => {
+    dispatch(setlogoutAddress());
+  };
   return (
     <div className={classes.root}>
       <div className={classes.container}>
@@ -115,7 +120,9 @@ export default function HeaderSignInBar() {
             <StyledMenuItem onClick={handleSignOut}>
               <Box className={classes.itemContainer}>
                 <ExitToAppIcon className={classes.itemIcon} />
-                <Box className={classes.itemLabel}>Sign Out</Box>
+                <Box className={classes.itemLabel} onClick={handleSignOut}>
+                  Sign Out
+                </Box>
               </Box>
             </StyledMenuItem>
           </StyledAvatarPopover>

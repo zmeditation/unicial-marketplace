@@ -118,19 +118,20 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       minWidth: "33px",
       height: "100%",
       borderRadius: "0px",
-      borderBottom: "2px solid #7F64E2",
+      // borderBottom: "2px solid #7F64E2",
       "&:hover": {
         cursor: "pointer",
       },
-      position: "relative",
-      "&::after": {
-        content: "",
-        position: "absolute",
-        left: 0,
-        bottom: 0,
-        height: "1px",
-        width: "50%",
-        borderBottom: "1px solid magenta",
+      "& .MuiButton-label": {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      },
+      "& .active-border": {
+        width: "34px",
+        height: "2px",
+        background: "#7F64E2",
       },
     },
     // signnormal: {

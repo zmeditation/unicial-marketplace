@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import ActionButton from "../../../components/Base/ActionButton";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import {
   LandAccordionStyle,
   StyledAccordion,
   StyledAccordionSummary,
   StyledAccordionDetails,
+  StyledInput,
 } from "./LandAccordionStyle";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { selectparcels } from "../../../store/selectedparcels/selectors";
@@ -136,12 +136,12 @@ export default function LandAccordion() {
                   <div className={classes.card}>
                     <div>
                       <FormControl>
-                        <Input
+                        <StyledInput
                           placeholder="0"
                           onChange={(e) => inputx1(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span className={classes.axisLabel}>X1</span>
+                              <span>X1</span>
                             </InputAdornment>
                           }
                         />
@@ -149,12 +149,12 @@ export default function LandAccordion() {
                     </div>
                     <div>
                       <FormControl>
-                        <Input
+                        <StyledInput
                           placeholder="0"
                           onChange={(e) => inputy1(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span className={classes.axisLabel}>Y1</span>
+                              <span>Y1</span>
                             </InputAdornment>
                           }
                         />
@@ -164,13 +164,13 @@ export default function LandAccordion() {
                   <div className={classes.card}>
                     <div>
                       <FormControl>
-                        <Input
+                        <StyledInput
                           placeholder="0"
                           id="input-with-icon-adornment"
                           onChange={(e) => inputx2(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span className={classes.axisLabel}>X2</span>
+                              <span>X2</span>
                             </InputAdornment>
                           }
                         />
@@ -178,13 +178,13 @@ export default function LandAccordion() {
                     </div>
                     <div>
                       <FormControl>
-                        <Input
+                        <StyledInput
                           placeholder="0"
                           id="input-with-icon-adornment"
                           onChange={(e) => inputy2(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span className={classes.axisLabel}>Y2</span>
+                              <span>Y2</span>
                             </InputAdornment>
                           }
                         />
@@ -193,26 +193,20 @@ export default function LandAccordion() {
                   </div>
                 </div>
                 <div className={classes.selectedLandContainer}>
-                  {/* selected lands */}
+                  <div className={classes.buttons}>
+                    <ActionButton
+                      color="dark"
+                      onClick={showmapArea}
+                      className={classes.showmapBtn}
+                    >
+                      Show Map
+                    </ActionButton>
+                  </div>
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
                       Selected Lands:
                     </div>
                     <div className={classes.selectedLandResult}>{count}</div>
-                  </div>
-
-                  {/* buttons */}
-                  <div className={classes.buttons}>
-                    <ActionButton
-                      color="red"
-                      className={classes.btnchange}
-                      onClick={showmapArea}
-                    >
-                      Show Map
-                    </ActionButton>
-                    {/* <ActionButton color="dark" className={classes.btnchange}>
-                      Buy
-                    </ActionButton> */}
                   </div>
                 </div>
               </div>
@@ -235,40 +229,34 @@ export default function LandAccordion() {
             </StyledAccordionSummary>
             <StyledAccordionDetails>
               <div className={classes.areaLandDetailRoot}>
-                <div className={classes.testinput}>
+                <div className={classes.inputLands}>
                   <FormControl>
-                    <Input
+                    <StyledInput
                       id="input-with-icon-adornment"
                       onChange={(e) => inputxy(e.target.value)}
                       startAdornment={
                         <InputAdornment position="start">
-                          <span className={classes.axisLabel}>
-                            [ " X1 , Y1 ", " X2 , Y2 " ]
-                          </span>
+                          <span>[ " X1 , Y1 ", " X2 , Y2 " ]</span>
                         </InputAdornment>
                       }
                     />
                   </FormControl>
                 </div>
                 <div className={classes.selectedLandContainer}>
-                  {/* selected lands */}
+                  <div className={classes.buttons}>
+                    <ActionButton
+                      color="dark"
+                      onClick={showmapMultiland}
+                      className={classes.showmapBtn}
+                    >
+                      Show Map
+                    </ActionButton>
+                  </div>
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
                       Selected Lands:
                     </div>
                     <div className={classes.selectedLandResult}>{count}</div>
-                  </div>
-                  <div className={classes.buttons}>
-                    <ActionButton
-                      color="red"
-                      className={classes.btnchange}
-                      onClick={showmapMultiland}
-                    >
-                      Show Map
-                    </ActionButton>
-                    {/* <ActionButton color="dark" className={classes.btnchange}>
-                      BUY
-                    </ActionButton> */}
                   </div>
                 </div>
               </div>
