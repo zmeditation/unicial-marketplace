@@ -70,7 +70,7 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       "& .MuiSwitch-thumb": {
         width: "13px",
         height: "13px",
-        marginTop: "3px",
+        marginTop: "2.5px",
         marginLeft: "3px",
         background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
       },

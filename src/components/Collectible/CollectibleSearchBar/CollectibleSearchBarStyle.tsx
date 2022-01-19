@@ -34,11 +34,11 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       fontSize: "12px",
+      justifyContent: "end",
     },
     textfilter: {
-      flex: "1 0 auto",
-      marginRight: "30px",
       display: "flex",
+      width: "175px",
     },
     searchIcon: {
       height: "14px",
@@ -46,12 +46,12 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       marginRight: "10px",
     },
     searchinput: {
-      fontSize: "15px",
+      fontSize: "14px",
       color: "white",
       backgroundPositionY: "4px",
-      lineHeight: "20px",
+      lineHeight: "17px",
       background: "none",
-      fontWeight: 600,
+      fontWeight: 400,
       border: "none",
       borderRadius: "6px",
       padding: "6px 6px 6px 0px",
@@ -113,30 +113,66 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       },
     },
     listRoot: {
-      transform: "translateY(2px)",
       textTransform: "none",
       display: "inline-block",
       transition: "none",
+      cursor: "pointer",
     },
     listContainer: {
       display: "flex",
       alignItems: "center",
     },
+    gradientlistLabel: {
+      fontFamily: "Lato",
+      fontSize: "16px",
+      fontStyle: "Regular",
+      fontWeight: 400,
+      lineHeight: "19px",
+      background: "linear-gradient( #FF7C4C 0%, #FFB03A 100%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    },
     listLabel: {
       fontSize: "14px",
       lineHeight: "20px",
-      marginLeft: "8px",
       fontWeight: 400,
       fontStyle: "normal",
       color: "#96A1DB",
+      "&:hover": {
+        color: "white",
+      },
+    },
+    switch: {
+      "& .MuiSwitch-thumb": {
+        width: "13px",
+        height: "13px",
+        marginTop: "2.5px",
+        marginLeft: "3px",
+        background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
+      },
+      "& .MuiSwitch-root": {
+        padding: "12.5px 12px",
+      },
+    },
+    filterDownArrow: {
+      color: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      marginLeft: "3px",
+      marginTop: "4px",
     },
   })
 );
 
 export const StyledFormControlLabel = withStyles({
   label: {
-    fontSize: "12px",
-    color: "#ff2d55",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontWeight: 400,
+    lineHeight: "19px",
+    background: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
   },
 })(FormControlLabel);
 
@@ -146,7 +182,7 @@ export const StyledListPopover = withStyles({
     marginBottom: "70px",
     borderRadius: "6px",
     position: "absolute",
-    minWidth: "180px",
+    minWidth: "168px",
     top: "419px",
   },
 })(Popover);

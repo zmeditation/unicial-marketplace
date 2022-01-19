@@ -4,12 +4,18 @@ import {
   StyledCollectionPopover,
   StyledMenuItem,
 } from "./CollectibleFilterStyle";
+import Tag from "../../Base/Tag";
+import StyledRadio from "../../Base/StyledRadio";
 import {
   collectionData,
   networkData,
 } from "../../../config/Collectible/collectionData";
 import { Box } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+//
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import closeSvg from "../../../assets/svg/close.svg";
 
 export default function CollectibleFilter() {
   const classes = CollectibleFilterStyle();
@@ -36,16 +42,23 @@ export default function CollectibleFilter() {
   };
 
   const [collectionCategory, setcollectionCategory] =
-    React.useState("ALL COLLECTIONS");
+    React.useState("All Collections");
   const handleCollectionItem = (index: number) => {
     setcollectionCategory(collectionData[index].catatory);
     handleCollectionClose();
   };
 
-  const [networkCategory, setnetworkCategory] = React.useState("ALL NETWORK");
+  const [networkCategory, setnetworkCategory] = React.useState("All Network");
   const handleNetworkItem = (index: number) => {
     setnetworkCategory(networkData[index].category);
     handleNetworkClose();
+  };
+
+  //radio relate
+  const [value, setValue] = React.useState("Male");
+
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((event.target as HTMLInputElement).value);
   };
 
   return (
@@ -53,7 +66,7 @@ export default function CollectibleFilter() {
       <div className={classes.root}>
         <div className={classes.selectPart}>
           <div className={classes.collectionSelectContainer}>
-            <div className={classes.title}>COLLECTION</div>
+            <div className={classes.title}>Collections</div>
             {/* collection select start */}
             <div>
               <Box
@@ -64,7 +77,7 @@ export default function CollectibleFilter() {
               >
                 <Box className={classes.listRoot}>
                   <Box className={classes.listContainer}>
-                    <Box className={classes.listLabel}>
+                    <Box className={classes.mainlistLabel}>
                       {collectionCategory}
                     </Box>
                     <ExpandMoreIcon
@@ -80,12 +93,12 @@ export default function CollectibleFilter() {
                 open={Boolean(anchorCollection)}
                 onClose={handleCollectionClose}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
+                  vertical: "center",
+                  horizontal: "center",
                 }}
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: "center",
+                  horizontal: "center",
                 }}
               >
                 {collectionData.map((data) => (
@@ -106,7 +119,7 @@ export default function CollectibleFilter() {
             className={classes.collectionSelectContainer}
             style={{ marginLeft: "30px" }}
           >
-            <div className={classes.title}>NETWORK</div>
+            <div className={classes.title}>Network</div>
             {/* network select start */}
             <div>
               <Box
@@ -117,7 +130,9 @@ export default function CollectibleFilter() {
               >
                 <Box className={classes.listRoot}>
                   <Box className={classes.listContainer}>
-                    <Box className={classes.listLabel}> {networkCategory}</Box>
+                    <Box className={classes.mainlistLabel}>
+                      {networkCategory}
+                    </Box>
                     <ExpandMoreIcon
                       style={{ color: "#96A1DB", marginLeft: "3px" }}
                     />
@@ -131,12 +146,12 @@ export default function CollectibleFilter() {
                 open={Boolean(anchorNetwork)}
                 onClose={handleNetworkClose}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
+                  vertical: "center",
+                  horizontal: "center",
                 }}
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: "center",
+                  horizontal: "center",
                 }}
               >
                 {networkData.map((data) => (
@@ -153,30 +168,50 @@ export default function CollectibleFilter() {
         </div>
         {/* downPart Rarity & Genger */}
         <div className={classes.selectPart} style={{ marginTop: "12px" }}>
+          {/* gender part */}
+          <div className={classes.rarityPart}>
+            <div className={classes.rarityPartContainer}>
+              <div className={classes.title}>GENDER</div>
+              {/* radio realte */}
+              <RadioGroup
+                aria-label="gender"
+                name="gender1"
+                value={value}
+                onChange={handleRadioChange}
+                className={classes.genderRadioContainer}
+              >
+                <FormControlLabel
+                  value="Male"
+                  control={<StyledRadio />}
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="Female"
+                  control={<StyledRadio />}
+                  label="Female"
+                />
+              </RadioGroup>
+            </div>
+          </div>
           {/* rarity part */}
           <div className={classes.rarityPart}>
             <div className={classes.rarityPartContainer}>
               <div className={classes.title}>RARITY</div>
               <div className={classes.options}>
-                <div className={classes.option}>COMMON</div>
-                <div className={classes.option}>UNCOMMON</div>
-                <div className={classes.option}>RARE</div>
-                <div className={classes.option}>EPIC</div>
-                <div className={classes.option}>LEGENDARY</div>
-                <div className={classes.option}>MYTHIK</div>
-                <div className={classes.option}>UNIQUE</div>
+                <Tag color="CommonColor" letter="COMMON" />
+                <Tag color="RareColor" letter="RARE" />
+                <Tag color="EpicColor" letter="EPIC" />
+                <Tag color="LegendaryColor" letter="LEGENDARY" />
+                <Tag color="DefaultColor" letter="MYTHIC" />
+                <Tag color="DefaultColor" letter="UNIQUE" />
               </div>
             </div>
           </div>
-          {/* gender part */}
-          <div className={classes.rarityPart}>
-            <div className={classes.rarityPartContainer}>
-              <div className={classes.title}>GENDER</div>
-              <div className={classes.options}>
-                <div className={classes.option}>MALE</div>
-                <div className={classes.option}>FEMALE</div>
-              </div>
-            </div>
+        </div>
+        <div className={classes.footer}>
+          <div className={classes.clearFilterContainer}>
+            <div className={classes.clearFilterLabel}>Clear Filter</div>
+            <img src={closeSvg} />
           </div>
         </div>
       </div>

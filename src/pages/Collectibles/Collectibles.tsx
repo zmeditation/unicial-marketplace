@@ -10,7 +10,7 @@ export default function Collectibles() {
     <>
       <div className={classes.root}>
         <div className={classes.leftPart}>
-          <TypeBox />
+          {/* <TypeBox /> */}
           <CategoryTree />
         </div>
         <div className={classes.rightPart}>

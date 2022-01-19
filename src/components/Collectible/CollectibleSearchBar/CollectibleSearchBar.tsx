@@ -12,6 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 import { Box } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 
 const PurpleSwitch = withStyles({
   root: {
@@ -19,12 +20,12 @@ const PurpleSwitch = withStyles({
     width: "55px",
   },
   switchBase: {
-    color: "#ff2d55",
+    color: "#FF7C4C",
     "&$checked": {
-      color: "#ff2d55",
+      color: "#333B67",
     },
     "&$checked + $track": {
-      backgroundColor: "#ff2d55",
+      backgroundColor: "#333B67",
     },
   },
   checked: {},
@@ -90,7 +91,7 @@ export default function CollectibleSearchBar() {
                 />
                 <input
                   className={classes.searchinput}
-                  placeholder="Search 910 results..."
+                  placeholder="Search 25 results..."
                 />
               </div>
               {/* select start */}
@@ -99,13 +100,16 @@ export default function CollectibleSearchBar() {
                   aria-controls="simple-menu"
                   aria-haspopup="true"
                   onClick={handleClick}
-                  className={classes.listDropdown}
+                  // className={classes.listDropdown}
                 >
                   <Box className={classes.listRoot}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{listIndex}</Box>
-                      <ExpandMoreIcon
-                        style={{ color: "#96A1DB", marginLeft: "3px" }}
+                      <Box className={classes.gradientlistLabel}>
+                        {listIndex}
+                      </Box>
+                      <img
+                        src={filterDownArrowSvg}
+                        className={classes.filterDownArrow}
                       />
                     </Box>
                   </Box>
@@ -168,6 +172,7 @@ export default function CollectibleSearchBar() {
                     />
                   }
                   label="ON SALE"
+                  className={classes.switch}
                 />
               </div>
               <div className={classes.openfilter}>

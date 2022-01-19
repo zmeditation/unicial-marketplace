@@ -10,10 +10,11 @@ import { makeStyles } from "@material-ui/styles";
 export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      backgroundColor: "#3e4461",
-      borderRadius: "16px",
+      backgroundColor: "#282E4E",
+      boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
+      borderRadius: "15px",
       marginBottom: "32px",
-      padding: "16px 16px 8px",
+      padding: "26px 40px",
     },
     selectPart: {
       alignItems: "flex-start",
@@ -27,29 +28,28 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       flex: "1 0 auto",
     },
     title: {
+      fontStyle: "normal",
+      fontWeight: 400,
+      color: "#96A1DB",
+      fontSize: "14px",
+      lineHeight: "17px",
+      opacity: 0.5,
       marginBottom: "12px !important",
-      fontWeight: 600,
-      color: "#676370",
-      fontSize: "13px",
-      lineHeight: "18px",
     },
     //select round
     listDropdown: {
+      marginTop: "5px",
       width: "100%",
-      height: "30px",
-      transform: "translateY(-4px)",
+      height: "32px",
       cursor: "pointer",
       position: "relative",
-      display: "inline-block",
-      outline: 0,
-      textAlign: "center",
-      //
-      border: "double 1px transparent",
+      border: "1px solid #373F66",
       borderRadius: "100px",
-      backgroundImage:
-        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
-      backgroundClip: "content-box, border-box",
-      backgroundOrigin: "border-box",
+      padding: "1px 20px",
+      // transform: "translateY(-4px)",
+      // display: "inline-block",
+      // outline: 0,
+      // textAlign: "center",
       //
       [theme.breakpoints.down(1025)]: {
         marginBottom: "18px",
@@ -58,7 +58,6 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
     listRoot: {
       transform: "translateY(2px)",
       textTransform: "none",
-      display: "inline-block",
       transition: "none",
     },
     listContainer: {
@@ -66,13 +65,20 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "space-between",
     },
+    mainlistLabel: {
+      fontSize: "16px",
+      lineHeight: "19px",
+      color: "white",
+    },
     listLabel: {
       fontSize: "14px",
       lineHeight: "20px",
-      marginLeft: "8px",
       fontWeight: 400,
       fontStyle: "normal",
       color: "#96A1DB",
+      "&:hover": {
+        color: "white",
+      },
     },
     rarityPart: {
       flex: "1 1 auto",
@@ -88,6 +94,7 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
     options: {
       display: "flex",
       flexFlow: "wrap",
+      marginTop: "13px",
     },
     option: {
       padding: "5px 10px",
@@ -98,23 +105,49 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       marginRight: "8px",
       marginBottom: "8px",
     },
+    genderRadioContainer: {
+      "&.MuiFormGroup-root": {
+        flexDirection: "row",
+        flexWrap: "nowrap",
+      },
+    },
+    footer: {
+      marginTop: "13px",
+    },
+    clearFilterContainer: {
+      display: "flex",
+      justifyContent: "end",
+      alignItems: "center",
+    },
+    clearFilterLabel: {
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: 400,
+      fontSize: "14px",
+      lineHeight: "17px",
+      background: "linear-gradient(#7F64E2 10%, #41A6EF 100%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      marginRight: "3px",
+    },
   })
 );
 
 export const StyledCollectionPopover = withStyles({
   paper: {
-    backgroundColor: "#171b30",
+    backgroundColor: "#1A1F37",
+    boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05 )",
     marginBottom: "70px",
-    borderRadius: "6px",
+    borderRadius: "15px",
     position: "absolute",
-    minWidth: "180px",
+    minWidth: "168px",
     top: "419px",
   },
 })(Popover);
 
 export const StyledMenuItem = withStyles({
   root: {
-    color: "white",
+    color: "#96A1DB",
     fontSize: "14px",
     lineHeight: "20px",
     fontWeight: 500,
@@ -123,7 +156,8 @@ export const StyledMenuItem = withStyles({
     cursor: "pointer",
     position: "relative",
     "&:hover": {
-      backgroundColor: "#24212933",
+      // backgroundColor: "#24212933",
+      color: "white",
     },
   },
 })(MenuItem);
