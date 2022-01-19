@@ -131,6 +131,7 @@ const Auction = () => {
     setUccAllowance(allowance);
   };
 
+  const handleClear = () => {};
   const handleBidSpace = async () => {
     console.log("ttlSpacesPrice", ttlSpacesPrice);
     if (bidParcels.length === 0) {
@@ -156,7 +157,6 @@ const Auction = () => {
         }
       }
     }
-
     // call bid function to get space token by offering ucc token
     let bidTx = await spaceAuctionContract.bid(bid.xs, bid.ys, loginAddress);
 
@@ -277,7 +277,9 @@ const Auction = () => {
               Bid
               <CallMadeIcon fontSize="small" />
             </ActionButton>
-            <ActionButton color="dark">Clear</ActionButton>
+            <ActionButton color="dark" onClick={handleClear}>
+              Clear
+            </ActionButton>
             {isAdmin ? (
               isAuctionAuthorized ? (
                 <ActionButton color="dark" onClick={authorizeAuctionContract}>
