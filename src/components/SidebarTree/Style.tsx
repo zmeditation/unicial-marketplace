@@ -6,7 +6,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     labelNav: {
       display: "flex",
       alignItems: "center",
-      fontFamily: "Roboto",
+      fontStyle: "normal",
+      fontSize: "16px",
+      lineHeight: "40px",
+      color: "white",
       "& i": {
         margin: "0px 8px",
         color: "#848e9c",
@@ -27,15 +30,15 @@ export const useStyles = makeStyles((theme: Theme) =>
       top: 64,
       boxShadow: "rgb(0 0 0 / 8%) 0px 2px 4px, rgb(0 0 0 / 8%) 0px 0px 4px",
       minWidth: "200px",
-      width: "200px",
+      width: "100%",
       zIndex: 1,
-      [theme.breakpoints.down("md")]: {
-        width: "180px",
-        minWidth: "180px",
-      },
-      [theme.breakpoints.down(768)]: {
-        display: "none",
-      },
+      // [theme.breakpoints.down("md")]: {
+      //   width: "180px",
+      //   minWidth: "180px",
+      // },
+      // [theme.breakpoints.down(768)]: {
+      //   display: "none",
+      // },
     },
     sidebarWrap: {
       width: "100%",
@@ -43,48 +46,52 @@ export const useStyles = makeStyles((theme: Theme) =>
     sidebarLink: {
       display: "flex",
       justifyContent: "space-between",
-      borderLeft: "4px solid transparent",
+      borderLeft: "2px solid transparent",
       alignItems: "center",
       listStyle: "none",
-      height: "48px",
+      height: "36px",
       textDecoration: "none",
       fontSize: "14px",
-      "&:hover": {
-        background: "#f5f5f5",
-        cursor: "pointer",
-      },
+      cursor: "pointer",
+      padding: "0px 21px 0px 59px",
+      // "&:hover": {
+      //   background: "#f5f5f5",
+      //   cursor: "pointer",
+      // },
     },
     activeSidebarLink: {
       display: "flex",
       justifyContent: "space-between",
-      borderLeft: "4px solid #f0b90b",
+      borderLeft: "4px solid #7F64E2",
       alignItems: "center",
       listStyle: "none",
-      height: "48px",
+      height: "36px",
       textDecoration: "none",
       fontSize: "14px",
       background: "#f5f5f5",
-      "&:hover": {
-        background: "#f5f5f5",
-        cursor: "pointer",
-      },
+      padding: "0px 21px 0px 59px",
+      // "&:hover": {
+      //   background: "#f5f5f5",
+      //   cursor: "pointer",
+      // },
     },
     dropdownLink: {
-      height: "48px",
-      paddingLeft: "40px",
+      fontSize: "16px",
+      lineHeight: "40px",
+      paddingLeft: "70px",
+      textDecoration: "none",
+      color: "#70708F",
+      borderLeft: "2px solid transparent",
       display: "flex",
       alignItems: "center",
-      textDecoration: "none",
-      borderLeft: "4px solid transparent",
-      fontSize: "14px",
-      "&:hover": {
-        background: "#f5f5f5",
-        cursor: "pointer",
-      },
+      // "&:hover": {
+      //   background: "#f5f5f5",
+      //   cursor: "pointer",
+      // },
     },
     activeDropdownLink: {
-      height: "48px",
-      borderLeft: "4px solid #f0b90b",
+      height: "40px",
+      borderLeft: "4px solid #7F64E2",
       paddingLeft: "40px",
       display: "flex",
       alignItems: "center",
@@ -92,10 +99,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       fontWeight: 500,
       background: "#f5f5f5",
-      "&:hover": {
-        background: "#f5f5f5",
-        cursor: "pointer",
-      },
+      // "&:hover": {
+      //   background: "#f5f5f5",
+      //   cursor: "pointer",
+      // },
     },
   })
 );

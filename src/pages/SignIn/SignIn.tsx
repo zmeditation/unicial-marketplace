@@ -139,7 +139,7 @@ export default function SignIn() {
             onClick={handleSignIn}
           >
             Connect
-            <CallMadeIcon fontSize="small" />
+            <CallMadeIcon className={classes.callmadeicon} />
           </ActionButton>
         </div>
       </div>

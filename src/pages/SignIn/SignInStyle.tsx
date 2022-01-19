@@ -87,5 +87,9 @@ export const SignInStyle = makeStyles((theme: Theme) =>
       position: "absolute",
       right: "0px",
     },
+    callmadeicon: {
+      width: "20px",
+      height: "16px",
+    },
   })
 );

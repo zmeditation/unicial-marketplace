@@ -36,6 +36,7 @@ export default function TypeBox() {
             <div className={classes.itemDescription}>Items being resold</div>
           </div>
         </div>
+        <div className={classes.divideline}></div>
       </div>
     </>
   );

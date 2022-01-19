@@ -61,36 +61,7 @@ export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
       backgroundPositionX: "8px",
       overflow: "visible",
     },
-    topbarFilter: {
-      marginLeft: "20px",
-      [theme.breakpoints.down(768)]: {
-        display: "none",
-      },
-      "& .MuiSwitch-thumb": {
-        width: "12px",
-        height: "12px",
-        marginTop: "3px",
-        marginLeft: "3px",
-      },
-    },
 
-    openfilter: {
-      display: "none",
-      [theme.breakpoints.down(768)]: {
-        display: "flex",
-        position: "relative",
-        cursor: "pointer",
-      },
-    },
-    openfilterLabel: {
-      color: "#ff2d55",
-      marginRight: "10px",
-      fontWeight: 500,
-    },
-    filterIcon: {
-      width: "20px",
-      height: "20px",
-    },
     listDropdown: {
       // width: "120px",
       height: "30px",
@@ -142,18 +113,6 @@ export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
-    switch: {
-      "& .MuiSwitch-thumb": {
-        width: "13px",
-        height: "13px",
-        marginTop: "2.5px",
-        marginLeft: "3px",
-        background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
-      },
-      "& .MuiSwitch-root": {
-        padding: "12.5px 12px",
-      },
-    },
     filterDownArrow: {
       color: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
       WebkitBackgroundClip: "text",
@@ -163,18 +122,6 @@ export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
     },
   })
 );
-
-export const StyledFormControlLabel = withStyles({
-  label: {
-    fontSize: "16px",
-    fontStyle: "normal",
-    fontWeight: 400,
-    lineHeight: "19px",
-    background: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-  },
-})(FormControlLabel);
 
 export const StyledListPopover = withStyles({
   paper: {

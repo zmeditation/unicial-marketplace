@@ -1,5 +1,4 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import { findByLabelText } from "@testing-library/react";
 export const CollectiblesStyle = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
@@ -21,7 +20,8 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
     },
   },
   leftPart: {
-    width: "256px",
+    width: "264px",
+    marginRight: "20px",
   },
   rightPart: {
     width: "100%",

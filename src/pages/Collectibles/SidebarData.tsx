@@ -1,67 +1,109 @@
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
 import ArrowDropUpRoundedIcon from "@material-ui/icons/ArrowDropUpRounded";
-export const SidebarData = [
+export const WearablesData = [
   {
-    title: "Spot Order",
+    title: "Head",
     path: "",
-    icon: <i className={"icon-spot-order"} />,
     iconClosed: <ArrowDropDownRoundedIcon />,
     iconOpened: <ArrowDropUpRoundedIcon />,
     number: "1",
     subNav: [
       {
-        title: "Open Orders",
+        title: "Facial Hair",
         path: "/my/orders/exchange/openorder",
         parentKey: "1",
         ownKey: "5",
       },
       {
-        title: "Order History",
+        title: "Hair",
         path: "/my/orders/exchange/tradeorder",
         parentKey: "1",
         ownKey: "6",
       },
       {
-        title: "Trade History",
+        title: "Eyes",
         path: "/my/orders/exchange/usertrade",
         parentKey: "1",
         ownKey: "7",
       },
-    ],
-  },
-  {
-    title: "P2P order",
-    path: "/my/orders/exchange/p2p-order",
-    icon: <i className={"icon-p2p-order"} />,
-    iconClosed: <ArrowDropDownRoundedIcon />,
-    iconOpened: <ArrowDropUpRoundedIcon />,
-    number: "2",
-  },
-  {
-    title: "Buy Crypto History",
-    path: "/my/orders/exchange/buysell-history",
-    icon: <i className={"icon-buy-crypto-history"} />,
-    number: "3",
-  },
-  {
-    title: "Convert History",
-    path: "",
-    icon: <i className={"icon-convert-history"} />,
-    iconClosed: <ArrowDropDownRoundedIcon />,
-    iconOpened: <ArrowDropUpRoundedIcon />,
-    number: "4",
-    subNav: [
       {
-        title: "Convert History",
-        path: "/my/orders/convert/history",
-        parentKey: "4",
+        title: "Eyebrows",
+        path: "/my/orders/exchange/usertrade",
+        parentKey: "1",
         ownKey: "8",
       },
       {
-        title: "Open Orders",
-        path: "/my/orders/convert/openorder",
-        parentKey: "4",
+        title: "Mouth",
+        path: "/my/orders/exchange/usertrade",
+        parentKey: "1",
         ownKey: "9",
+      },
+    ],
+  },
+  {
+    title: "Upper Body",
+    path: "/my/orders/exchange/p2p-order",
+    number: "2",
+  },
+  {
+    title: "Lower Body",
+    path: "/my/orders/exchange/buysell-history",
+    number: "3",
+  },
+  {
+    title: "Feet",
+    path: "/my/orders/exchange/buysell-history",
+    number: "4",
+  },
+
+  {
+    title: "Accessories",
+    path: "",
+    iconClosed: <ArrowDropDownRoundedIcon />,
+    iconOpened: <ArrowDropUpRoundedIcon />,
+    number: "5",
+    subNav: [
+      {
+        title: "Earring",
+        path: "/my/orders/convert/history",
+        parentKey: "5",
+        ownKey: "10",
+      },
+      {
+        title: "Eyewear",
+        path: "/my/orders/convert/openorder",
+        parentKey: "5",
+        ownKey: "11",
+      },
+      {
+        title: "Hat",
+        path: "/my/orders/convert/openorder",
+        parentKey: "5",
+        ownKey: "12",
+      },
+      {
+        title: "Helmet",
+        path: "/my/orders/convert/openorder",
+        parentKey: "5",
+        ownKey: "13",
+      },
+      {
+        title: "Mask",
+        path: "/my/orders/convert/openorder",
+        parentKey: "5",
+        ownKey: "14",
+      },
+      {
+        title: "Tiara",
+        path: "/my/orders/convert/openorder",
+        parentKey: "5",
+        ownKey: "15",
+      },
+      {
+        title: "Top Head",
+        path: "/my/orders/convert/openorder",
+        parentKey: "5",
+        ownKey: "16",
       },
     ],
   },

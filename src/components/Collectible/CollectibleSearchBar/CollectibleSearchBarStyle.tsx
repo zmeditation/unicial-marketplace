@@ -170,7 +170,7 @@ export const StyledFormControlLabel = withStyles({
     fontStyle: "normal",
     fontWeight: 400,
     lineHeight: "19px",
-    background: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
+    background: "linear-gradient(to right, #FF7C4C, #FFB03A)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   },

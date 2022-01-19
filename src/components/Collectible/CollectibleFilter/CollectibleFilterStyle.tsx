@@ -125,7 +125,7 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontSize: "14px",
       lineHeight: "17px",
-      background: "linear-gradient(#7F64E2 10%, #41A6EF 100%)",
+      background: "linear-gradient(to right, #7F64E2 10%, #41A6EF 100%)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       marginRight: "3px",

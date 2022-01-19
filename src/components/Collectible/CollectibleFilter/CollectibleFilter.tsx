@@ -93,12 +93,12 @@ export default function CollectibleFilter() {
                 open={Boolean(anchorCollection)}
                 onClose={handleCollectionClose}
                 anchorOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
+                  vertical: "bottom",
+                  horizontal: "right",
                 }}
                 transformOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
+                  vertical: "top",
+                  horizontal: "right",
                 }}
               >
                 {collectionData.map((data) => (
@@ -146,12 +146,12 @@ export default function CollectibleFilter() {
                 open={Boolean(anchorNetwork)}
                 onClose={handleNetworkClose}
                 anchorOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
+                  vertical: "bottom",
+                  horizontal: "right",
                 }}
                 transformOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
+                  vertical: "top",
+                  horizontal: "right",
                 }}
               >
                 {networkData.map((data) => (
