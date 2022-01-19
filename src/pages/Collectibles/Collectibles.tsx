@@ -4,6 +4,9 @@ import CategoryTree from "../../components/Collectible/CategoryTree/CategoryTree
 import CollectibleSearchBar from "../../components/Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import CollectibleFilter from "../../components/Collectible/CollectibleFilter/CollectibleFilter";
 import ProductCard from "../../components/Collectible/ProductCard/ProductCard";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import { SidebarData } from "./SidebarData";
+
 export default function Collectibles() {
   const classes = CollectiblesStyle();
   return (
@@ -13,6 +16,7 @@ export default function Collectibles() {
         <div className={classes.leftPart}>
           {/* <TypeBox /> */}
           <CategoryTree />
+          <Sidebar data={SidebarData} />
         </div>
         <div className={classes.rightPart}>
           <CollectibleSearchBar />

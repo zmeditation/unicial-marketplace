@@ -159,86 +159,6 @@ export const SpaceRegistryAbi = [
         name: "assetId",
         type: "uint256",
       },
-      {
-        indexed: false,
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "bytes",
-        name: "userData",
-        type: "bytes",
-      },
-      {
-        indexed: false,
-        internalType: "bytes",
-        name: "operatorData",
-        type: "bytes",
-      },
-    ],
-    name: "Transfer",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "assetId",
-        type: "uint256",
-      },
-      {
-        indexed: false,
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "bytes",
-        name: "userData",
-        type: "bytes",
-      },
-    ],
-    name: "Transfer",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "assetId",
-        type: "uint256",
-      },
     ],
     name: "Transfer",
     type: "event",
@@ -1368,9 +1288,9 @@ export const SpaceRegistryAbi = [
 ];
 
 export const SpaceRegistryAddress =
-  "0x5d72b4697E468d5AC752028aD75ff454DF4B6F3A";
+  "0xa20e6D5d5cc0467Ed5caC4281804610b8cA06259";
 
-export const SpaceProxyAddress = "0x7FD63a29c38CeF42E97D0D3CD80Cc48286e4d419";
+export const SpaceProxyAddress = "0xE091e3C30e665213Aa33069e1301cD17938c1E8b";
 
 export const SpaceProxyAbi = [
   {
