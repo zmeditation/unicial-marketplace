@@ -10,7 +10,7 @@ import CountDown from "../../components/CountDown/CountDown";
 import StagingTable from "./StagingTable/StagingTable";
 import { headerData, transactionData } from "./AuctionData";
 import ActionButton from "../../components/Base/ActionButton";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { selectparcels } from "../../store/selectedparcels/selectors";
 import CallMadeIcon from "@material-ui/icons/CallMade";
@@ -33,6 +33,7 @@ import {
   generateContractInstance,
   generateSigner,
 } from "../../common/contract";
+import { getparcels } from "../../store/selectedparcels";
 
 declare var window: any;
 var signer: any,
@@ -58,14 +59,16 @@ const Auction = () => {
 
   const loginAddress = useAppSelector(selectLoginAddress);
   const bidParcels = useAppSelector(selectparcels) || [];
+  const dispatch = useAppDispatch();
+
   const handleResize = () => {
     if (window.innerWidth > 1200) {
       setWidth(1064);
     } else if (window.innerWidth <= 1200 && window.innerWidth > 992) {
       setWidth(933);
-    } else if (window.innerWidth <= 992 && window.innerWidth > 770) {
+    } else if (window.innerWidth <= 992 && window.innerWidth > 767) {
       setWidth(723);
-    } else if (window.innerWidth <= 770 && window.innerWidth > 500) {
+    } else if (window.innerWidth <= 767 && window.innerWidth > 500) {
       setWidth(420);
     } else if (window.innerWidth <= 500) {
       setWidth(300);
@@ -131,7 +134,9 @@ const Auction = () => {
     setUccAllowance(allowance);
   };
 
-  const handleClear = () => {};
+  const handleClear = () => {
+    dispatch(getparcels([]));
+  };
   const handleBidSpace = async () => {
     console.log("ttlSpacesPrice", ttlSpacesPrice);
     if (bidParcels.length === 0) {
@@ -271,14 +276,33 @@ const Auction = () => {
           <div className={classes.actionButton}>
             <ActionButton
               color="light"
-              className={classes.approveBtn}
+              className={classes.normalBtn}
+              onClick={handleBidSpace}
+            >
+              Approve
+              <CallMadeIcon fontSize="small" />
+            </ActionButton>
+            <ActionButton
+              color="light"
+              className={classes.normalBtn}
               onClick={handleBidSpace}
             >
               Bid
               <CallMadeIcon fontSize="small" />
             </ActionButton>
-            <ActionButton color="dark" onClick={handleClear}>
+            <ActionButton
+              color="dark"
+              className={classes.gradientBtn}
+              onClick={handleClear}
+            >
               Clear
+            </ActionButton>
+            <ActionButton
+              color="dark"
+              onClick={handleClear}
+              className={classes.gradientBtn}
+            >
+              Authorize Auction
             </ActionButton>
             {isAdmin ? (
               isAuctionAuthorized ? (

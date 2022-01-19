@@ -19,6 +19,21 @@ interface StyledTableleProps {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    "@global": {
+      "*::-webkit-scrollbar": {
+        width: "5px !important",
+        height: "6px",
+        background: "#141b31",
+      },
+      "*::-webkit-scrollbar-track": {
+        borderRadius: "0px",
+        background: "rgba(0, 0, 0, 0.05)",
+      },
+      "*::-webkit-scrollbar-thumb": {
+        background: "#3d3a46",
+        borderRadius: "3px",
+      },
+    },
     title: {
       fontSize: "13px",
       fontWeight: 400,
@@ -35,6 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
         marginBottom: "20px",
       },
       "& .MuiTableCell-root": {
+        whiteSpace: "nowrap",
         borderBottom: "none",
       },
     },
@@ -53,11 +69,8 @@ const useStyles = makeStyles((theme: Theme) =>
       fontFamily:
         '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
       "&.MuiTableCell-root": {
-        padding: "10px 0px 10px 20px",
+        padding: "10px 10px 10px 20px",
         borderBottom: "solid 1px #282E4E",
-      },
-      [theme.breakpoints.down(769)]: {
-        display: "none",
       },
     },
     tableCell: {
@@ -66,9 +79,6 @@ const useStyles = makeStyles((theme: Theme) =>
         '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
       color: "white",
       fontWeight: "normal",
-      "&.MuiTableCell-root": {
-        padding: "10px 0px 10px 20px",
-      },
     },
     firstcellmargin: {
       display: "flex",

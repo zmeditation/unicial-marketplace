@@ -68,6 +68,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down(769)]: {
       width: "100%",
+      paddingRight: "0px",
     },
   },
   title: {
@@ -79,17 +80,16 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   axisContainer: {
     display: "flex",
   },
-  buttons: {
-    padding: "0px 16px",
-    [theme.breakpoints.down(769)]: {
-      padding: "0px",
-    },
-  },
   selectedLandContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "end",
     [theme.breakpoints.down(769)]: {
       width: "100%",
-      display: "flex",
       alignItems: "center",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      marginTop: "20px",
     },
   },
   selectedLandLabelContainer: {
@@ -113,9 +113,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
     fontSize: "18px",
     fontWeight: 400,
   },
-  showmapBtn: {
-    lineHeight: "38px",
-  },
+  showmapBtn: {},
   inputLands: {
     width: "100%",
     "& .MuiFormControl-root": {
@@ -152,7 +150,7 @@ export const StyledAccordionSummary = withStyles((theme) => ({
   },
   content: {
     "&$expanded": {
-      margin: "12px 0",
+      margin: "0px 0",
     },
   },
   expanded: {},

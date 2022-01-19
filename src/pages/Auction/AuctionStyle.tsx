@@ -103,14 +103,23 @@ export const useStyles = makeStyles((theme: Theme) => ({
   actionButton: {
     display: "flex",
     justifyContent: "end",
-    marginTop: "20px",
-    [theme.breakpoints.down(500)]: {
-      marginTop: "35px",
+    marginTop: "35px",
+    [theme.breakpoints.down(769)]: {
+      display: "grid",
       width: "100%",
       justifyContent: "space-around",
     },
   },
-  approveBtn: {
-    marginRight: "20px !important",
+  normalBtn: {
+    margin: "20px 10px",
+    [theme.breakpoints.down(769)]: {
+      margin: "15px 0px",
+    },
+  },
+  gradientBtn: {
+    margin: "20px 10px",
+    [theme.breakpoints.down(769)]: {
+      margin: "15px 0px",
+    },
   },
 }));

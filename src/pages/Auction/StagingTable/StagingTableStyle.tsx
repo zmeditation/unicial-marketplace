@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: "white !important",
     fontWeight: "normal",
     "&.MuiTableCell-root": {
-      padding: "10px 0px 10px 20px !important",
+      padding: "10px 10px 10px 20px !important",
     },
   },
 }));
