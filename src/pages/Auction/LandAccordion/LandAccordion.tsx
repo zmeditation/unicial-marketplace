@@ -67,7 +67,7 @@ export default function LandAccordion() {
     maxy = y1 >= y2 ? y1 : y2;
     miny = y1 >= y2 ? y2 : y1;
     for (let x = minx; x <= maxx; x++) {
-      for (let y = miny; y < maxy; y++) {
+      for (let y = miny; y <= maxy; y++) {
         const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
         if (tile.owner) {
         } else {

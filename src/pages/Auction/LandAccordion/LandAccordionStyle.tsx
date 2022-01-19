@@ -193,7 +193,7 @@ export const StyledInput = withStyles((theme) => ({
       transform: "translateY(-0.06em)",
       display: "inline-block",
       marginTop: "2px",
-      background: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
+      background: "linear-gradient(to right, #FF7C4C 20%, #FFB03A 101.82%)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       borderRight: "1px solid #373F66",

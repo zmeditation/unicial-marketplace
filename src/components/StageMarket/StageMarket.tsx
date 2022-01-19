@@ -11,14 +11,10 @@ import {
   Theme,
 } from "@material-ui/core";
 import clsx from "clsx";
-import cancelIcon from "../../assets/svg/cancel_icon.svg";
-import checkIcon from "../../assets/svg/check_icon.svg";
 
 interface StyledTableleProps {
   columns?: any;
   rows: any;
-  emptyTableRows?: any;
-  stepIndex: any;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -109,15 +105,17 @@ const useStyles = makeStyles((theme: Theme) =>
     center: {
       textAlign: "center",
     },
+    targetRow: {
+      backgroundColor: "#282e4e",
+      borderLeft: "2px solid #7e64e2",
+      "& > td:last-child": {
+        borderRadius: "0px 15px 15px 0px",
+      },
+    },
   })
 );
 
-function StageMarket({
-  columns,
-  rows,
-  emptyTableRows,
-  stepIndex,
-}: StyledTableleProps) {
+function StageMarket({ columns, rows }: StyledTableleProps) {
   const classes = useStyles();
 
   const tableColumns = columns?.map((column: any, key: any) => (
@@ -131,23 +129,6 @@ function StageMarket({
     </TableCell>
   ));
 
-  const tableRows = rows?.map((row: any, key: any) => (
-    <TableRow key={key}>
-      <TableCell className={clsx(classes.tableCell)}>{row.stage}</TableCell>
-
-      <TableCell className={clsx(classes.tableCell)}>{row.time}</TableCell>
-
-      <TableCell className={clsx(classes.tableCell)}>{row.price}</TableCell>
-
-      <TableCell className={clsx(classes.tableCell, classes.center)}>
-        {stepIndex === key ? (
-          <img src={checkIcon} alt="check"></img>
-        ) : (
-          <img src={cancelIcon} alt="cancel"></img>
-        )}
-      </TableCell>
-    </TableRow>
-  ));
   return (
     <>
       <TableContainer className={classes.tableContainer}>
@@ -155,7 +136,7 @@ function StageMarket({
           <TableHead>
             <TableRow>{tableColumns}</TableRow>
           </TableHead>
-          <TableBody>{tableRows}</TableBody>
+          <TableBody>{rows}</TableBody>
         </Table>
       </TableContainer>
     </>

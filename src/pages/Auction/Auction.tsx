@@ -7,7 +7,7 @@ import { useStyles } from "./AuctionStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import LandAccordion from "./LandAccordion/LandAccordion";
 import CountDown from "../../components/CountDown/CountDown";
-import StageMarket from "../../components/StageMarket/StageMarket";
+import StagingTable from "./StagingTable/StagingTable";
 import { headerData, transactionData } from "./AuctionData";
 import ActionButton from "../../components/Base/ActionButton";
 import { useAppSelector } from "../../store/hooks";
@@ -257,7 +257,7 @@ const Auction = () => {
           <span className={classes.title}>Left Time.</span>
           <CountDown />
           <span className={classes.title}>Staging.</span>
-          <StageMarket
+          <StagingTable
             columns={headerData}
             rows={transactionData}
             stepIndex={1}
