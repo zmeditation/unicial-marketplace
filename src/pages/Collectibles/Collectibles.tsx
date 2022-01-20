@@ -5,6 +5,8 @@ import ProductCard from "../../components/Collectible/ProductCard/ProductCard";
 import CollectibleSidebar from "../../components/Collectible/CollectibleSidebar/CollectibleSidebar";
 import NoResult from "../../components/NoResult/NoResult";
 
+import Grid from "@material-ui/core/Grid";
+
 export default function Collectibles() {
   const classes = CollectiblesStyle();
   return (
@@ -15,17 +17,83 @@ export default function Collectibles() {
           <CollectibleSidebar />
         </div>
         <div className={classes.rightPart}>
-          {/* <CollectibleFilter />
-          <div className={classes.products}>
-            <ProductCard
-              tagColor="EpicColor"
-              tagLetter="EPIC"
-              productName="Pussy Hair"
-              category="Polygon"
-              price={1259}
-            />
-          </div> */}
-<NoResult/>
+          <CollectibleFilter />
+          {/* /// */}
+          <Grid container spacing={1}>
+            <Grid item xs={12} sm={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+          </Grid>
+          {/* <NoResult/> */}
         </div>
       </div>
     </>

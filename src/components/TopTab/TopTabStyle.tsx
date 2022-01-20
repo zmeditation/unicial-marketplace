@@ -101,7 +101,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     // borderBottom: "3px solid #18141a",
     marginBottom: "-2px",
     minWidth: "35px",
-    width: "77px",
+    width: "90px",
     height: "30px",
     [theme.breakpoints.down(769)]: {
       padding: "0px",
@@ -119,6 +119,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     "& .MuiButton-label": {
       textAlign: "center",
       [theme.breakpoints.down(769)]: {
+        textAlign: "left",
         fontWeight: 600,
         fontSize: "15px",
         marginRight: "32px",

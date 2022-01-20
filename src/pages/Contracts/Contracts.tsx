@@ -16,6 +16,7 @@ import { headerData, transactionData } from "./ContractsData";
 import { BidRecordData } from "./ContractsData";
 import { useStyles } from "./ContractsStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
+import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/LatestSalesTable";
 
 const Contract = () => {
   const classes = useStyles();
@@ -71,9 +72,14 @@ const Contract = () => {
           </div>
           <Parcels />
           <div className={classes.tableRoot}>
-            <TransactionHistoryTable
+            {/* <TransactionHistoryTable
               columns={headerData}
               rows={transactionData}
+            /> */}
+            <LatestSalesTable
+              columns={headerData}
+              rows={transactionData}
+              stepIndex={1}
             />
           </div>
           <div>

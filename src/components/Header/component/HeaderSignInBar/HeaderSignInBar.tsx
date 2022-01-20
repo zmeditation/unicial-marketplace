@@ -47,7 +47,7 @@ export default function HeaderSignInBar() {
         </StyledRingButton>
         <div className={classes.userMenu}>
           <div className={classes.accountWrapper}>
-            <a href="#" className={classes.mana}>
+            <a className={classes.mana}>
               <i className={classes.symbol}>
                 <img
                   src={coinIcon1}

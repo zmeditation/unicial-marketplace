@@ -16,7 +16,6 @@ const SubMenu = ({ item, subnav, handleSubnav }: SubMenuProps) => {
     subnav === selectedItem.number
       ? handleSubnav(null)
       : handleSubnav(selectedItem.number);
-    alert("okdes" + subnav);
   };
   useEffect(() => {
     setSubnavItem(null);

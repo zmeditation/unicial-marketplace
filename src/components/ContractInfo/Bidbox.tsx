@@ -1,16 +1,17 @@
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
+import CallMadeIcon from "@material-ui/icons/CallMade";
 import ActionButton from "../Base/ActionButton";
 import { useNavigate } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     padding: "20px 24px",
-    border: "2px solid #242129",
-    borderRadius: "12px",
+    borderRadius: "15px",
     display: "flex",
     flexDirection: "column",
     margin: "5px 0px",
+    backgroundColor: "#282E4E",
   },
   title: {
     fontSize: "13px",
@@ -25,6 +26,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "4px",
     lineHeight: "28px",
   },
+  callmadeicon: {
+    width: "20px",
+    height: "20px",
+  },
 }));
 
 interface BidboxProps {}
@@ -37,8 +42,9 @@ const Bidbox: React.FC = () => {
     <div className={classes.root}>
       <div className={classes.title}>network</div>
       <div className={classes.subtitle}>Zilionixx</div>
-      <ActionButton color="red" onClick={() => navigate("bid")}>
+      <ActionButton color="light" onClick={() => navigate("bid")}>
         BID
+        <CallMadeIcon className={classes.callmadeicon} />
       </ActionButton>
     </div>
   );

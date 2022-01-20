@@ -100,7 +100,7 @@ export default function CollectibleSearchBar() {
                   aria-controls="simple-menu"
                   aria-haspopup="true"
                   onClick={handleClick}
-                  // className={classes.listDropdown}
+                  className={classes.listDropdown}
                 >
                   <Box className={classes.listRoot}>
                     <Box className={classes.listContainer}>

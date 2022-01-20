@@ -53,7 +53,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   rightDescription: {
-    minWidth: "320px",
+    minWidth: "265px",
     [theme.breakpoints.down(992)]: {
       width: "100%",
       marginTop: "20px",
