@@ -18,20 +18,22 @@ export default function MarketPlace() {
         <img src={TopEllipse1} className={classes.topEllipse1}></img>
         <img src={TopEllipse2} className={classes.topEllipse2}></img>
         <img src={TopEllipse3} className={classes.topEllipse3}></img>
-        <div className={classes.itemContainer}>
-          <div className={classes.title}>Unicial Marketplace</div>
-        </div>
-        <div className={classes.itemContainer}>
-          <div className={classes.subtitle}>
-            Welcome to the virtual world’s one-stop-shop for the very best
-            digital assets.
+        <div className={classes.content}>
+          <div className={classes.itemContainer}>
+            <div className={classes.title}>Unicial Marketplace</div>
           </div>
-        </div>
-        <div className={classes.hero_action}>
-          <Link className={classes.browsebtn} to="/lands">
-            Start Browsing&nbsp;
-            <CallMadeIcon fontSize="small" />
-          </Link>
+          <div className={classes.itemContainer}>
+            <div className={classes.subtitle}>
+              Welcome to the virtual world’s one-stop-shop for the very best
+              digital assets.
+            </div>
+          </div>
+          <div className={classes.hero_action}>
+            <Link className={classes.browsebtn} to="/lands">
+              Start Browsing&nbsp;
+              <CallMadeIcon fontSize="small" />
+            </Link>
+          </div>
         </div>
       </div>
     </>

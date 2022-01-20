@@ -159,7 +159,7 @@ export default function Footer() {
                   horizontal: "right",
                 }}
               >
-                <StyledMenuItem onClick={handleEnglish}>
+                <StyledMenuItem onClick={handleEnglish} disableRipple>
                   <Box className={classes.flagLanContainer}>
                     <Box className={classes.languageLabel}>English</Box>
                   </Box>

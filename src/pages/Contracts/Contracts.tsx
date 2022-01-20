@@ -25,18 +25,17 @@ const Contract = () => {
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
-      setWidth(945);
+      setWidth(1064);
     } else if (window.innerWidth <= 1200 && window.innerWidth > 992) {
-      setWidth(820);
-    } else if (window.innerWidth <= 992 && window.innerWidth > 770) {
-      setWidth(600);
-    } else if (window.innerWidth <= 770 && window.innerWidth > 500) {
+      setWidth(933);
+    } else if (window.innerWidth <= 992 && window.innerWidth > 767) {
+      setWidth(723);
+    } else if (window.innerWidth <= 767 && window.innerWidth > 500) {
       setWidth(420);
     } else if (window.innerWidth <= 500) {
       setWidth(300);
     }
   };
-
   useEffect(() => {
     handleResize();
   }, []);

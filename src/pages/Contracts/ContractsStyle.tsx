@@ -20,19 +20,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   LandMap: {
-    maxWidth: "945px",
     display: "grid",
     margin: "0px auto",
-    [theme.breakpoints.down(1200)]: {
-      maxWidth: "820px",
-    },
-    [theme.breakpoints.down(992)]: {
-      maxWidth: "600px",
-    },
-    [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
-      marginTop: "60px",
-    },
+    width: "100%",
   },
   LandMapContent: {
     height: "400px",

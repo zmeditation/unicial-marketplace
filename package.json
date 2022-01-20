@@ -21,11 +21,13 @@
     "env-cmd": "^10.1.0",
     "ethereum-blockies-base64": "^1.0.2",
     "ethers": "^5.5.3",
+    "i18n": "^0.13.4",
     "nanoid": "^3.2.0",
     "npm": "^7.1.22",
     "react": "^17.0.2",
     "react-backdrop-filter": "^2.1.0",
     "react-dom": "^17.0.2",
+    "react-i18next": "^11.15.3",
     "react-redux": "^7.2.0",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
@@ -38,8 +40,7 @@
     "redux-thunk": "^2.4.0",
     "semantic-ui-react": "^2.0.4",
     "typescript": "^4.5.4",
-    "web-vitals": "^2.1.0",
-    "web3": "^1.6.1"
+    "web-vitals": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
