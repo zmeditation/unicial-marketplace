@@ -1,5 +1,5 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
-export const CollectiblesStyle = makeStyles((theme: Theme) => ({
+export const MyStoreStyle = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
     maxWidth: "1064px",
@@ -26,11 +26,5 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
   rightPart: {
     width: "100%",
   },
-  products: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  product: {
-    width: "32%",
-  },
+  statsContainer: {},
 }));

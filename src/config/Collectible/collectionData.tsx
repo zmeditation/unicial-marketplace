@@ -1,7 +1,7 @@
 export const collectionData = [
   {
     index: 0,
-    catatory: "ALL COLLECTIONS",
+    catatory: "All Collections",
   },
   {
     index: 1,
@@ -20,7 +20,7 @@ export const collectionData = [
 export const networkData = [
   {
     index: 0,
-    category: "ALL NETWORK",
+    category: "All Network",
   },
   {
     index: 1,

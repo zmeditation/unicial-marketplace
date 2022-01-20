@@ -4,12 +4,13 @@ import { makeStyles, withStyles } from "@material-ui/styles";
 export const ProductCardStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: "360px",
+      // width: "360px",
       height: "424px",
       borderRadius: "15px",
       backgroundColor: "#282E4E",
       boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
       padding: "30px 12px",
+      marginBottom: "10px",
     },
     header: {
       display: "flex",
@@ -35,7 +36,15 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       marginTop: "23px",
       marginBottom: "17px",
       textAlign: "center",
-      paddingTop: "16px",
+      // paddingTop: "16px",
+      //
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    image: {
+      width: "80%",
+      maxWidth: "80%",
     },
     productName: {
       fontFamily: "Monserrat",

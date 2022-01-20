@@ -9,10 +9,12 @@ export const headerId = {
 
 export const topTabIndex = {
   land: 1,
-  auction: 2,
-  partners: 3,
-  myassets: 4,
-  mybids: 5,
+  collectibles: 2,
+  mystore: 3,
+  auction: 4,
+  partners: 5,
+  myassets: 6,
+  mybids: 7,
 };
 
 export const searchbarBtn = {

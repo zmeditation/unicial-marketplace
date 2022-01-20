@@ -52,10 +52,11 @@ export default function TopTab() {
       setToptabIndex(topTabIndex.auction);
       setSearchbarIndex(searchBarIndex.default);
     } else if (location.pathname.includes("/browse")) {
-      // setToptabIndex(topTabIndex.collectibles);
+      setToptabIndex(topTabIndex.collectibles);
       setSearchbarIndex(searchBarIndex.collectibles);
     } else if (location.pathname.includes("/account")) {
-      setToptabIndex(searchBarIndex.mystore);
+      setToptabIndex(topTabIndex.mystore);
+      setSearchbarIndex(searchBarIndex.mystore);
     }
   }, [location.pathname]);
 
@@ -89,6 +90,22 @@ export default function TopTab() {
                     disabled={toptab_index === topTabIndex.land}
                   >
                     Lands
+                  </StyledTopTabBtn>
+
+                  <StyledTopTabBtn
+                    disableRipple
+                    onClick={() => handleLand("/browse")}
+                    disabled={toptab_index === topTabIndex.collectibles}
+                  >
+                    Collectibles
+                  </StyledTopTabBtn>
+
+                  <StyledTopTabBtn
+                    disableRipple
+                    onClick={() => handleLand("/account")}
+                    disabled={toptab_index === topTabIndex.mystore}
+                  >
+                    My Store
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
@@ -135,9 +152,11 @@ export default function TopTab() {
                 ) : searchbar_index === 2 ? (
                   //  Collctibles
                   <CollectibleSearchBar />
-                ) : (
+                ) : searchbar_index === 3 ? (
                   //My store
                   <MystoreSearchBar />
+                ) : (
+                  <></>
                 )}
               </div>
             </div>

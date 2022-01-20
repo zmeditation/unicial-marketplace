@@ -39,6 +39,9 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
     textfilter: {
       display: "flex",
       width: "175px",
+      [theme.breakpoints.down(768)]: {
+        display: "none",
+      },
     },
     searchIcon: {
       height: "14px",
@@ -92,24 +95,8 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       height: "20px",
     },
     listDropdown: {
-      // width: "120px",
-      height: "30px",
-      transform: "translateY(-4px)",
-      cursor: "pointer",
-      position: "relative",
-      display: "inline-block",
-      outline: 0,
-      textAlign: "center",
-      //
-      border: "double 1px transparent",
-      borderRadius: "100px",
-      backgroundImage:
-        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
-      backgroundClip: "content-box, border-box",
-      backgroundOrigin: "border-box",
-      //
-      [theme.breakpoints.down(1025)]: {
-        marginBottom: "18px",
+      [theme.breakpoints.down(768)]: {
+        display: "none",
       },
     },
     listRoot: {
