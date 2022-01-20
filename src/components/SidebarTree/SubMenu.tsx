@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import { useLocation, Link } from 'react-router-dom'
-import { useStyles } from './Style'
+import React, { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
+import { useStyles } from "./Style";
 
 interface SubMenuProps {
-  item: any
-  subnav: any
-  handleSubnav: (number: any) => void
+  item: any;
+  subnav: any;
+  handleSubnav: (number: any) => void;
 }
 
 const SubMenu = ({ item, subnav, handleSubnav }: SubMenuProps) => {
-  const classes = useStyles()
-  const location = useLocation()
-  const [subnavItem, setSubnavItem] = useState(null)
+  const classes = useStyles();
+  const location = useLocation();
+  const [subnavItem, setSubnavItem] = useState(null);
   const showSubnav = (selectedItem: any) => {
-    subnav === selectedItem.number ? handleSubnav(null) : handleSubnav(selectedItem.number)
-  }
+    subnav === selectedItem.number
+      ? handleSubnav(null)
+      : handleSubnav(selectedItem.number);
+    alert("okdes" + subnav);
+  };
   useEffect(() => {
-    setSubnavItem(null)
+    setSubnavItem(null);
     if (item.subNav) {
       item.subNav.forEach((item: any, index: any) => {
         if (location.pathname === item.path) {
-          handleSubnav(item.parentKey)
-          setSubnavItem(item.ownKey)
+          handleSubnav(item.parentKey);
+          setSubnavItem(item.ownKey);
         }
-      })
+      });
     } else {
-      location.pathname === item.path && handleSubnav(item.number)
+      location.pathname === item.path && handleSubnav(item.number);
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location])
+  }, [location]);
   return (
     <>
       {item.subNav && (
@@ -38,13 +41,21 @@ const SubMenu = ({ item, subnav, handleSubnav }: SubMenuProps) => {
             <span>{item.title}</span>
           </div>
           <div className={classes.arrowIcon}>
-            {item.subNav && subnav === item.number ? item.iconOpened : item.subNav ? item.iconClosed : null}
+            {item.subNav && subnav === item.number
+              ? item.iconOpened
+              : item.subNav
+              ? item.iconClosed
+              : null}
           </div>
         </div>
       )}
       {!item.subNav && (
         <Link
-          className={subnav === item.number ? classes.activeSidebarLink : classes.sidebarLink}
+          className={
+            subnav === item.number
+              ? classes.activeSidebarLink
+              : classes.sidebarLink
+          }
           to={item.path}
           onClick={() => showSubnav(item)}
         >
@@ -53,7 +64,11 @@ const SubMenu = ({ item, subnav, handleSubnav }: SubMenuProps) => {
             <span>{item.title}</span>
           </div>
           <div className={classes.arrowIcon}>
-            {item.subNav && subnav === item.number ? item.iconOpened : item.subNav ? item.iconClosed : null}
+            {item.subNav && subnav === item.number
+              ? item.iconOpened
+              : item.subNav
+              ? item.iconClosed
+              : null}
           </div>
         </Link>
       )}
@@ -61,16 +76,20 @@ const SubMenu = ({ item, subnav, handleSubnav }: SubMenuProps) => {
         item.subNav?.map((item: any, index: any) => {
           return (
             <Link
-              className={subnavItem === item.ownKey ? classes.activeDropdownLink : classes.dropdownLink}
+              className={
+                subnavItem === item.ownKey
+                  ? classes.activeDropdownLink
+                  : classes.dropdownLink
+              }
               to={item.path}
               key={index}
             >
               <span>{item.title}</span>
             </Link>
-          )
+          );
         })}
     </>
-  )
-}
+  );
+};
 
-export default SubMenu
+export default SubMenu;

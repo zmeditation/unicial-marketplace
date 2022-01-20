@@ -24,11 +24,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     sidebarNav: {
-      minHeight: "calc(100vh - 64px)",
       display: "flex",
       justifyContent: "center",
       top: 64,
-      boxShadow: "rgb(0 0 0 / 8%) 0px 2px 4px, rgb(0 0 0 / 8%) 0px 0px 4px",
       minWidth: "200px",
       width: "100%",
       zIndex: 1,

@@ -3,6 +3,7 @@ import TopTab from "../../components/TopTab/TopTab";
 import CollectibleFilter from "../../components/Collectible/CollectibleFilter/CollectibleFilter";
 import ProductCard from "../../components/Collectible/ProductCard/ProductCard";
 import CollectibleSidebar from "../../components/Collectible/CollectibleSidebar/CollectibleSidebar";
+import NoResult from "../../components/NoResult/NoResult";
 
 export default function Collectibles() {
   const classes = CollectiblesStyle();
@@ -14,7 +15,7 @@ export default function Collectibles() {
           <CollectibleSidebar />
         </div>
         <div className={classes.rightPart}>
-          <CollectibleFilter />
+          {/* <CollectibleFilter />
           <div className={classes.products}>
             <ProductCard
               tagColor="EpicColor"
@@ -23,7 +24,8 @@ export default function Collectibles() {
               category="Polygon"
               price={1259}
             />
-          </div>
+          </div> */}
+<NoResult/>
         </div>
       </div>
     </>

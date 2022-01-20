@@ -128,7 +128,7 @@ export const StyledRingButton = withStyles({
 
 export const StyledAvatarPopover = withStyles({
   paper: {
-    backgroundColor: "#676370",
+    backgroundColor: "#1a1f37",
     marginTop: "13px",
     borderRadius: "6px",
     position: "absolute",

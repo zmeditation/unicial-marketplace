@@ -27,36 +27,38 @@ export default function CollectibleSidebar() {
         <TypeBox />
         <div className={classes.categoryBox}>
           <div className={classes.categoryTitle}>Categories</div>
-          <StyledAccordion
-            square
-            expanded={expanded === "panel1"}
-            onChange={handleChange("panel1")}
-            className={classes.firstAccordion}
-          >
-            <StyledAccordionSummary
-              aria-controls="panel1d-content"
-              id="panel1d-header"
+          <div className={classes.accordionRoot}>
+            <StyledAccordion
+              square
+              expanded={expanded === "panel1"}
+              onChange={handleChange("panel1")}
+              className={classes.firstAccordion}
             >
-              <Typography className={classes.maintitle}>Wearables</Typography>
-            </StyledAccordionSummary>
-            <StyledAccordionDetails>
-              <SidebarTree data={WearablesData} />
-            </StyledAccordionDetails>
-          </StyledAccordion>
-          {/* // */}
-          <StyledAccordion
-            square
-            expanded={expanded === "panel2"}
-            onChange={handleChange("panel2")}
-            className={classes.firstAccordion}
-          >
-            <StyledAccordionSummary
-              aria-controls="panel2d-content"
-              id="panel2d-header"
+              <StyledAccordionSummary
+                aria-controls="panel1d-content"
+                id="panel1d-header"
+              >
+                <Typography className={classes.maintitle}>Wearables</Typography>
+              </StyledAccordionSummary>
+              <StyledAccordionDetails>
+                <SidebarTree data={WearablesData} />
+              </StyledAccordionDetails>
+            </StyledAccordion>
+            {/* // */}
+            <StyledAccordion
+              square
+              expanded={expanded === "panel2"}
+              onChange={handleChange("panel2")}
+              className={classes.firstAccordion}
             >
-              <Typography className={classes.maintitle}>Names</Typography>
-            </StyledAccordionSummary>
-          </StyledAccordion>
+              <StyledAccordionSummary
+                aria-controls="panel2d-content"
+                id="panel2d-header"
+              >
+                <Typography className={classes.maintitle}>Names</Typography>
+              </StyledAccordionSummary>
+            </StyledAccordion>
+          </div>
         </div>
       </div>
     </>

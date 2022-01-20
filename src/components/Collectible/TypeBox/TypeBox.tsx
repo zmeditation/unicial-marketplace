@@ -12,7 +12,7 @@ export default function TypeBox() {
   return (
     <>
       <div className={classes.typeBoxRoot}>
-        <div className={classes.headerTitle}>TYPE </div>
+        <div className={classes.headerTitle}>Type </div>
         <div className={classes.boxBody}>
           <div
             className={
