@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     gap: "8px",
     minWidth: "128px",
     fontSize: "16px",
-    lineHeight: "19px",
+    lineHeight: "20px",
     justifyContent: "center",
   },
   darkColor: {
