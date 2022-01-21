@@ -65,3 +65,13 @@ export const CHAIN_INFO = {
     blockExplorerUrls: ["http://testnet.znxscan.com"],
   },
 };
+
+export const typebox = {
+  store: "item",
+  listing: "nft",
+};
+
+export const category = {
+  wearable: "wearables",
+  name: "ens",
+};
