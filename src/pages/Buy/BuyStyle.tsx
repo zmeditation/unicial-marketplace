@@ -1,3 +1,5 @@
+/** @format */
+
 import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -7,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "40px",
     marginLeft: "auto",
     marginRight: "auto",
-    display: "grid",
+    display: "flex",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
@@ -25,6 +27,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   bidCard: {
     display: "flex",
     position: "relative",
+    marginBottom: "150px",
     flexFlow: "row nowrap",
     width: "100%",
     [theme.breakpoints.down(769)]: {
@@ -35,6 +38,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flex: "0.75 1 auto",
     textAlign: "right",
     marginRight: "80px",
+    paddingTop: "20px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
       marginBottom: "25px !important",
@@ -50,9 +54,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "15px",
   },
   imgContent: {
-    width: "240px",
+    width: "329px",
+    height: "265.85px",
     borderRadius: "16px",
-    overFlow: "hidden",
+    overflow: "hidden",
     display: "inline-block",
     [theme.breakpoints.down(769)]: {
       width: "100%",
@@ -60,19 +65,25 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   title: {
-    fontSize: "34px",
+    fontStyle: "normal",
     fontWeight: 600,
-    lineHeight: "42px",
-    textAlign: "left",
+    fontSize: "35px",
+    lineHeight: "50px",
+
+    letterSpacing: "0.02em",
+
     marginBottom: "8px",
     [theme.breakpoints.down(769)]: {
       fontSize: "28px",
     },
   },
   subtitle: {
-    marginBottom: "10px",
-    color: "#ffa900",
+    marginBottom: "50px",
+    fontStyle: "normal",
+    fontWeight: "normal",
     fontSize: "14px",
+    lineHeight: "17px",
+    color: "#96A1DB",
   },
   form_field: {
     maxWidth: "420px",
@@ -143,16 +154,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
   },
   symbol: {
-    fontWeight: 700,
     fontSize: "normal",
-    color: "#ff2d55",
-    fontStyle: "normal",
-    paddingRight: "0.3em",
+    marginBottom: "-5px",
     transform: "translateY(-0.06em)",
     display: "inline-block",
-    // marginRight: "4px",
     marginLeft: "5px",
-    marginBottom: "6px",
   },
   buttons: {
     display: "flex",
@@ -164,14 +170,24 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   bidchange: {
     marginLeft: "16px",
-    minWidth: "64px",
+    minWidth: "160px",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#FFFFFF",
     [theme.breakpoints.down(769)]: {
       marginLeft: "0px",
       order: 1,
     },
   },
   cancelchange: {
-    minWidth: "64px",
+    minWidth: "160px",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#FFFFFF",
     [theme.breakpoints.down(769)]: {
       order: 2,
       marginTop: "15px",

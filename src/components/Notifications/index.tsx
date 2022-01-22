@@ -3,16 +3,21 @@ import React, { useState, useEffect } from "react";
 import check from "../../assets/svg/notification_check.svg";
 import error from "../../assets/svg/notification_error.svg";
 import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 import { makeStyles, Theme } from "@material-ui/core/styles";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+
+import { alertMessage, alertSeverity } from "../../store/alert/selectors";
+import { showAlert } from "../../store/alert";
 
 const useStyles = makeStyles((theme: Theme) => ({
   displayNone: {
     display: "none",
   },
   notificationRoot: {
-    position: "absolute",
+    position: "fixed",
     top: "123px",
-    right: "224px",
+    right: "170px",
     flexDirection: "column",
   },
   notificationContainer: {
@@ -97,42 +102,42 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface StyledNotificationProps {
-  type: string;
-  description?: string;
-  handleClose?: any;
-  showAlert?: boolean;
-}
-
-export default function Notifications({
-  type,
-  description,
-  handleClose,
-  showAlert,
-}: StyledNotificationProps) {
+export default function Notifications() {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
+  const msg = useAppSelector(alertMessage);
+  const severity = useAppSelector(alertSeverity);
+
+  const [openAlert, setOpenAlert] = React.useState(false);
+
+  React.useEffect(() => {
+    if (msg.length !== 0) {
+      setOpenAlert(true);
+    }
+  }, [msg, severity]);
 
   const handleCloseClick = () => {
-    handleClose();
+    dispatch(showAlert({ message: "", severity: severity }));
+    setOpenAlert(false);
   };
   return (
     <>
       <div
         className={
-          showAlert === true ? classes.notificationRoot : classes.displayNone
+          openAlert === true ? classes.notificationRoot : classes.displayNone
         }>
-        {type === "success" ? (
+        {severity === "success" ? (
           <div className={classes.notificationContainer}>
             <div className={classes.notificationPicture}>
               <img src={check} className={classes.checkIcon} />
             </div>
             <div className={classes.notificationText}>
               <div className={classes.notificationTitle}>Success</div>
-              <div className={classes.notificationDescription}>
-                {description}
-              </div>
+              <div className={classes.notificationDescription}>{msg}</div>
             </div>
-            <CloseIcon className={classes.closeIcon} />
+            <IconButton onClick={handleCloseClick} size='small'>
+              <CloseIcon className={classes.closeIcon} />
+            </IconButton>
           </div>
         ) : (
           <div className={classes.notificationContainer}>
@@ -141,14 +146,11 @@ export default function Notifications({
             </div>
             <div className={classes.notificationText}>
               <div className={classes.notificationTitle_error}>Error</div>
-              <div className={classes.notificationDescription}>
-                {description}
-              </div>
+              <div className={classes.notificationDescription}>{msg}</div>
             </div>
-            <CloseIcon
-              className={classes.closeIcon}
-              onClick={handleCloseClick}
-            />
+            <IconButton onClick={handleCloseClick} size='small'>
+              <CloseIcon className={classes.closeIcon} />
+            </IconButton>
           </div>
         )}
       </div>

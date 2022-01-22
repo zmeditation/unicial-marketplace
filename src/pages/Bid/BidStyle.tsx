@@ -1,4 +1,7 @@
-import { Theme, makeStyles } from "@material-ui/core/styles";
+/** @format */
+
+import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
+import { Input } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -7,7 +10,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "40px",
     marginLeft: "auto",
     marginRight: "auto",
-    display: "grid",
+    display: "flex",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
@@ -34,7 +37,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   leftCard: {
     flex: "0.75 1 auto",
     textAlign: "right",
-    marginRight: "80px",
+    marginRight: "50px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
       marginBottom: "25px !important",
@@ -50,9 +53,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "15px",
   },
   imgContent: {
-    width: "240px",
+    width: "329px",
+    height: "265.58px",
     borderRadius: "16px",
-    overFlow: "hidden",
+    overflow: "hidden",
     display: "inline-block",
     [theme.breakpoints.down(769)]: {
       width: "100%",
@@ -60,20 +64,25 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   title: {
-    fontSize: "34px",
+    fontStyle: "normal",
     fontWeight: 600,
-    lineHeight: "42px",
-    textAlign: "left",
-    marginBottom: "8px",
+    fontSize: "35px",
+    lineHeight: "50px",
+    letterSpacing: "0.02em",
+    color: "#FFFFFF",
     [theme.breakpoints.down(769)]: {
       fontSize: "28px",
     },
   },
   subtitle: {
     marginBottom: "32px",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "14px",
+    lineHeight: "17px",
+    color: "#96A1DB",
   },
   form_field: {
-    maxWidth: "420px",
     marginBottom: "20px",
     [theme.breakpoints.down(769)]: {
       marginBottom: "30px",
@@ -91,18 +100,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
       fontSize: "20px",
       color: "white",
       paddingBottom: "15px",
-    },
-
-    "& .MuiInput-underline:before": {
-      borderBottom: "2px solid #28242b",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottom: "2px solid white",
-    },
-    "& .MuiInput-underline:hover": {
-      "&:before": {
-        borderBottom: "2px solid #28242b",
-      },
     },
   },
   date_container: {
@@ -159,20 +156,118 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
       display: "grid",
     },
+    marginBottom: "150px",
   },
   bidchange: {
     marginLeft: "16px",
-    minWidth: "64px",
+    minWidth: "160px",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#FFFFFF",
     [theme.breakpoints.down(769)]: {
       marginLeft: "0px",
       order: 1,
     },
   },
   cancelchange: {
-    minWidth: "64px",
+    minWidth: "160px",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#FFFFFF",
     [theme.breakpoints.down(769)]: {
       order: 2,
       marginTop: "15px",
     },
   },
 }));
+
+export const StyledInput = withStyles((theme) => ({
+  root: {
+    marginRight: "20px",
+    display: "flex",
+    height: "44px",
+    alignContent: "center",
+    padding: "10px",
+    border: "1px solid #373F66",
+    borderRadius: "100px",
+    alignItems: "center",
+    color: "white",
+    "&:before": {
+      border: "none",
+    },
+    "&:hover:not(.Mui-disabled):before": {
+      border: "none",
+    },
+    "&:after": {
+      border: "none",
+    },
+    "& .MuiInputBase-input": {
+      paddingLeft: "10px",
+      paddingTop: "15px",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "16px",
+      lineHeight: "19px",
+      color: "#FFFFFF",
+    },
+    "& img": {
+      fontWeight: 700,
+      fontSize: "16px",
+      lineHeight: "19px",
+      fontStyle: "normal",
+      padding: "0em 1em",
+      transform: "translateY(-0.06em)",
+      display: "inline-block",
+      marginTop: "2px",
+      background: "linear-gradient(to right, #FF7C4C 20%, #FFB03A 101.82%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      borderRight: "1px solid #373F66",
+    },
+  },
+}))(Input);
+
+export const StyledDateInput = withStyles((theme) => ({
+  root: {
+    marginRight: "20px",
+    display: "flex",
+    height: "44px",
+    alignContent: "center",
+    padding: "10px",
+    border: "1px solid #373F66",
+    borderRadius: "100px",
+    alignItems: "center",
+    color: "white",
+    "&:before": {
+      border: "none",
+    },
+    "&:hover:not(.Mui-disabled):before": {
+      border: "none",
+    },
+    "&:after": {
+      border: "none",
+    },
+    "& .MuiInputBase-input": {
+      paddingLeft: "10px",
+      paddingTop: "15px",
+    },
+    "& img": {
+      fontWeight: 700,
+      fontSize: "16px",
+      lineHeight: "19px",
+      fontStyle: "normal",
+      padding: "0em 1em",
+      transform: "translateY(-0.06em)",
+      display: "inline-block",
+      marginTop: "2px",
+      background: "linear-gradient(to right, #FF7C4C 20%, #FFB03A 101.82%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      borderLeft: "1px solid #373F66",
+    },
+  },
+}))(Input);

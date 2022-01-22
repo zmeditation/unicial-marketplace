@@ -5,7 +5,6 @@ import { BigNumber } from "ethers";
 
 import LandMap from "../../components/Admin/LandMap";
 import TobTab from "../../components/TopTab/TopTab";
-import Notifications from "../../components/Notifications";
 import { useStyles } from "./AuctionStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import LandAccordion from "./LandAccordion/LandAccordion";
@@ -61,9 +60,6 @@ const Auction = () => {
   const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuctionAuthorized, setIsAuctionAuthorized] = useState(false);
-  const [openAlert, setOpenAlert] = React.useState(false);
-  const msg = useAppSelector(alertMessage);
-  const severity = useAppSelector(alertSeverity);
 
   const loginAddress = useAppSelector(selectLoginAddress);
   const bidParcels = useAppSelector(selectparcels) || [];
@@ -90,12 +86,6 @@ const Auction = () => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
-
-  React.useEffect(() => {
-    if (msg.length !== 0) {
-      setOpenAlert(true);
-    }
-  }, [msg, severity]);
 
   useEffect(() => {
     signer = generateSigner(window.ethereum);
@@ -149,6 +139,12 @@ const Auction = () => {
   };
 
   const handleClear = () => {
+    dispatch(
+      showAlert({
+        message: "U have successfully registered!",
+        severity: "error",
+      })
+    );
     dispatch(getparcels([]));
   };
   const handleApprovedUCCToken = () => {};
@@ -252,22 +248,7 @@ const Auction = () => {
     return isAdmin;
   };
 
-  const handleAlertClose = (event?: React.SyntheticEvent, reason?: string) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    dispatch(showAlert({ message: "", severity: severity }));
-    setOpenAlert(false);
-  };
-
   const authorizeAuctionContract = async () => {
-    dispatch(
-      showAlert({
-        msg: "U have successfully registered!",
-        severity: "success",
-      })
-    );
     // authorizedDeployStatus show auction contract is authorized in SPACERegistry.sol to assign space tokens
     let authorizedDeployStatus = await spaceRegistryContract.authorizedDeploy(
       SpaceAuctionAddress
@@ -286,12 +267,6 @@ const Auction = () => {
 
   return (
     <>
-      <Notifications
-        showAlert={openAlert}
-        type={severity}
-        description={msg}
-        handleClose={handleAlertClose}
-      />
       <TobTab />
       <div className={classes.root}>
         <div className={classes.auctionInfo}>

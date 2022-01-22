@@ -1,13 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { showAlert } from './actions'
-import type { alertState } from './types'
+/** @format */
 
-const PREFIX = 'alert'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { showAlert } from "./actions";
+import type { alertState } from "./types";
+
+const PREFIX = "alert";
 
 const initialState: alertState = {
-  message: '',
-  severity: 'success',
-}
+  message: "",
+  severity: "success",
+};
 
 export const alertReducer = createSlice({
   name: PREFIX,
@@ -15,21 +17,24 @@ export const alertReducer = createSlice({
   reducers: {
     updateAlert: (state: alertState, action: PayloadAction<any>) => {
       if (action.payload !== null) {
-        state.message = action.payload.message
-        state.severity = action.payload.severity
+        state.message = action.payload.message;
+        state.severity = action.payload.severity;
       }
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(showAlert.fulfilled.type, (state: alertState, action: PayloadAction<any>) => {
-      state.message = action.payload.message
-      state.severity = action.payload.severity
-    })
+    builder.addCase(
+      showAlert.fulfilled.type,
+      (state: alertState, action: PayloadAction<any>) => {
+        state.message = action.payload.message;
+        state.severity = action.payload.severity;
+      }
+    );
   },
-})
+});
 
-export const { updateAlert } = alertReducer.actions
+export const { updateAlert } = alertReducer.actions;
 
-export { showAlert }
+export { showAlert };
 
-export default alertReducer.reducer
+export default alertReducer.reducer;

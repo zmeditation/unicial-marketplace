@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-const showAlert = createAsyncThunk('alert/show', async (msg: any, severity: any) => {
+const showAlert = createAsyncThunk('alert/show', async (msg: any) => {
   const payload = {
-    message: msg,
-    severity: severity,
+    message: msg.message,
+    severity: msg.severity,
   }
   return payload
 })
