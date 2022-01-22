@@ -183,9 +183,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
       marginTop: "15px",
     },
   },
-  backBtnPosition: {
-    marginBottom: "5px",
-  },
 }));
 
 export const StyledInput = withStyles((theme) => ({
