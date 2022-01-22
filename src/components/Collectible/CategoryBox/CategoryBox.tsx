@@ -5,29 +5,44 @@ import {
   StyledAccordionSummary,
   StyledAccordionDetails,
 } from "../../Collectible/CollectibleSidebar/CollectibleSidebarStyle";
-import SidebarTree from "../../SidebarTree/SidebarTree";
-import { WearablesData } from "../../../pages/Collectibles/SidebarData";
+import CategoryWearables from "../../CategoryWearables/CategoryWearables";
 import { Typography } from "@material-ui/core";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { category } from "../../../config/constant";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 
 export default function CategoryBox() {
   const classes = CategoryBoxStyle();
-  const { t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const [expanded, setExpanded] = React.useState<string | false>(
     category.wearable
   );
+  const [activeCategory, setActiveCategory] = React.useState<string | false>(
+    ""
+  );
   const query = new URLSearchParams(location.search);
 
-  const handleChange =
-    (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
+  const handleRoute = (search: string) => {
+    query.set("section", search);
+    navigate({
+      pathname: location.pathname,
+      search: query.toString(),
+    });
+  };
 
   useEffect(() => {
-    if (query.get("section") === category.name) setExpanded(category.name);
+    if (query.get("section") === category.name) {
+      setExpanded(category.name);
+      setActiveCategory(category.name);
+    } else if (query.get("section") === category.wearable) {
+      setActiveCategory(category.wearable);
+      setExpanded(category.wearable);
+    } else {
+      setExpanded(category.wearable);
+    }
   }, [location]);
 
   return (
@@ -38,30 +53,38 @@ export default function CategoryBox() {
           <StyledAccordion
             square
             expanded={expanded === category.wearable}
-            onChange={handleChange(category.wearable)}
-            className={classes.firstAccordion}
+            onChange={() => handleRoute(category.wearable)}
+            className={clsx(classes.firstAccordion, {
+              [classes.active]: activeCategory === category.wearable,
+            })}
           >
             <StyledAccordionSummary
               aria-controls="panel1d-content"
               id="panel1d-header"
             >
-              <Typography className={classes.maintitle}>{t("Wearables")}</Typography>
+              <Typography className={classes.maintitle}>
+                {t("Wearables")}
+              </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
-              <SidebarTree data={WearablesData} />
+              <CategoryWearables />
             </StyledAccordionDetails>
           </StyledAccordion>
           <StyledAccordion
             square
             expanded={expanded === category.name}
-            onChange={handleChange(category.name)}
-            className={classes.firstAccordion}
+            onChange={() => handleRoute(category.name)}
+            className={clsx(classes.firstAccordion, {
+              [classes.active]: activeCategory === category.name,
+            })}
           >
             <StyledAccordionSummary
               aria-controls="panel2d-content"
               id="panel2d-header"
             >
-              <Typography className={classes.maintitle}>{t("Names")}</Typography>
+              <Typography className={classes.maintitle}>
+                {t("Names")}
+              </Typography>
             </StyledAccordionSummary>
           </StyledAccordion>
         </div>

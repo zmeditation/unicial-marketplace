@@ -1,34 +1,53 @@
-import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
+import {
+  Theme,
+  makeStyles,
+  withStyles,
+  createStyles,
+} from "@material-ui/core/styles";
 //accordion relate
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 
-export const CollectibleSidebarStyle = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: "#282E4E",
-    width: "265px",
-    borderRadius: "15px",
-    paddingBottom: "10px",
-  },
-  categoryBox: {
-    backgroundColor: "transparent",
-    height: "fit-content",
-  },
-  accordionRoot: {
-    height: "fit-content",
-  },
-  firstAccordion: {},
-  maintitle: {},
-  categoryTitle: {
-    fontSize: "14px",
-    lineHeight: "17px",
-    color: "#96A1DB",
-    marginLeft: "40px",
-    marginTop: "35px",
-    marginBottom: "20px",
-  },
-}));
+export const CategoryWearablesStyle = makeStyles((theme: Theme) =>
+  createStyles({
+    categoryBox: {
+      backgroundColor: "transparent",
+      height: "fit-content",
+    },
+    accordionRoot: {
+      height: "fit-content",
+    },
+    firstAccordion: {},
+    maintitle: {},
+    subCategoryItem: {
+      fontSize: "16px",
+      lineHeight: "40px",
+      textDecoration: "none",
+      color: "#70708F",
+      borderLeft: "2px solid transparent",
+      display: "block",
+      alignItems: "center",
+      width: "100%",
+      "&:hover": {
+        color: "white",
+      },
+    },
+    active: {
+      "& > :first-child.MuiAccordionSummary-root": {
+        backgroundColor: "#21263f",
+        borderLeft: "2px solid #7f64e2",
+      },
+    },
+    subCategoryTitle: {
+      marginLeft: "68px",
+    },
+    activeSubCategory: {
+      backgroundColor: "#21263f",
+      borderLeft: "2px solid #7f64e2",
+    },
+  })
+);
 
 //accordion relate
 export const StyledAccordion = withStyles((theme) => ({
@@ -50,7 +69,7 @@ export const StyledAccordion = withStyles((theme) => ({
 
 export const StyledAccordionSummary = withStyles((theme) => ({
   root: {
-    padding: "0px 40px 0px 38px",
+    padding: "0px 60px 0px 58px",
     fontSize: "16px",
     lineHeight: "40px",
     color: "white",
@@ -72,7 +91,8 @@ export const StyledAccordionSummary = withStyles((theme) => ({
 export const StyledAccordionDetails = withStyles((theme) => ({
   root: {
     display: "block",
-    width: "100%",
     padding: "0px 0px",
+    width: "100%",
+    cursor: "pointer",
   },
 }))(MuiAccordionDetails);

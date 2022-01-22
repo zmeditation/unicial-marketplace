@@ -5,8 +5,7 @@ import {
   StyledAccordionSummary,
   StyledAccordionDetails,
 } from "../../Collectible/CollectibleSidebar/CollectibleSidebarStyle";
-import SidebarTree from "../../SidebarTree/SidebarTree";
-import { WearablesData } from "../../../pages/Collectibles/SidebarData";
+import CategoryWearables from "../../CategoryWearables/CategoryWearables";
 import { Typography } from "@material-ui/core";
 import { useLocation } from "react-router";
 import { category } from "../../../config/constant";
@@ -48,7 +47,7 @@ export default function MobileCategoryBox() {
               <Typography className={classes.maintitle}>{t("Wearables")}</Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
-              <SidebarTree data={WearablesData} />
+              <CategoryWearables />
             </StyledAccordionDetails>
           </StyledAccordion>
           <StyledAccordion

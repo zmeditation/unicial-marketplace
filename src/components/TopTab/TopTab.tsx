@@ -96,7 +96,11 @@ export default function TopTab() {
 
                   <StyledTopTabBtn
                     disableRipple
-                    onClick={() => handleLand("/browse")}
+                    onClick={() =>
+                      handleLand(
+                        "/browse?section=wearables&vendor=decentraland&page=1&sortBy=recently_listed&onlyOnSale=true"
+                      )
+                    }
                     disabled={toptab_index === topTabIndex.collectibles}
                   >
                     {t("Collectibles")}

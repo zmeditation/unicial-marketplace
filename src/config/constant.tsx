@@ -75,3 +75,23 @@ export const category = {
   wearable: "wearables",
   name: "ens",
 };
+
+export const categoryWearables = {
+  head: "wearables_head",
+  facialhair: "wearables_facial_hair",
+  hair: "wearables_hair",
+  eyes: "wearables_eyes",
+  eyebrows: "wearables_eyebrows",
+  mouth: "wearables_mouth",
+  upperBody: "wearables_upper_body",
+  lowerBody: "wearables_lower_body",
+  feet: "wearables_feet",
+  accessories: "wearables_accessories",
+  earring: "wearables_erring",
+  eyewear: "wearables_eyewear",
+  hat: "wearables_hat",
+  helmet: "wearables_helmet",
+  mask: "wearables_mask",
+  tiara: "wearables_tiara",
+  topHead: "wearables_top_head",
+};

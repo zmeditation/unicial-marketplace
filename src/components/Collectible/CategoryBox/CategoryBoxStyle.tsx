@@ -20,5 +20,11 @@ export const CategoryBoxStyle = makeStyles((theme: Theme) =>
       marginBottom: "20px",
       opacity: "50%",
     },
+    active: {
+      "& > :first-child": {
+        backgroundColor: "#21263f",
+        borderLeft: "2px solid #7f64e2",
+      },
+    },
   })
 );
