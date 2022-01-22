@@ -47,7 +47,6 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       maxWidth: "80%",
     },
     productName: {
-      fontFamily: "Monserrat",
       fontStyle: "normal",
       fontWeight: 600,
       fontSize: "18px",

@@ -271,9 +271,9 @@ const Auction = () => {
         </div>
         <div className={classes.LandMap}>
           <div className={classes.LandMapContent}>
-            <BackButton />
             <LandMap height={400} width={width} initialX={1} initialY={1} />
           </div>
+          <BackButton className={classes.backBtnPosition} />
           <div className={classes.actionButton}>
             <ActionButton
               color="light"

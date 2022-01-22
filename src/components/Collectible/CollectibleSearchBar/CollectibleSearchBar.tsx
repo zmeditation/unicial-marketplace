@@ -13,7 +13,8 @@ import Switch from "@material-ui/core/Switch";
 import { Box } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
-
+import FilterTiltShiftIcon from "@material-ui/icons/FilterTiltShift";
+import CollectibleFilterDialog from "../CollectibleFilterDialog/CollectibleFilterDialog";
 const PurpleSwitch = withStyles({
   root: {
     height: "36px",
@@ -161,7 +162,6 @@ export default function CollectibleSearchBar() {
                 </StyledListPopover>
               </div>
               {/* select end */}
-
               <div className={classes.topbarFilter}>
                 <StyledFormControlLabel
                   control={
@@ -175,14 +175,13 @@ export default function CollectibleSearchBar() {
                   className={classes.switch}
                 />
               </div>
-              <div className={classes.openfilter}>
+              {/* <div className={classes.openfilter}>
                 <div className={classes.openfilterLabel}>FILTER</div>
-                <img
-                  src={filter_svg}
-                  className={classes.filterIcon}
-                  alt="symbol"
-                />
-              </div>
+                <div className={classes.filtericonContainer}>
+                  <FilterTiltShiftIcon />
+                </div>
+              </div> */}
+              <CollectibleFilterDialog />
             </div>
           </div>
         </div>

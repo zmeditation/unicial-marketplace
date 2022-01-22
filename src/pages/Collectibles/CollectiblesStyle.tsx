@@ -22,6 +22,14 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
   leftPart: {
     width: "264px",
     marginRight: "20px",
+    [theme.breakpoints.down(768)]: {
+      display: "none",
+    },
+  },
+  CollectibleFilterContainer: {
+    [theme.breakpoints.down(768)]: {
+      display: "none",
+    },
   },
   rightPart: {
     width: "100%",

@@ -24,4 +24,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   priceCell: {
     display: "flex",
   },
+  normalshape: {
+    marginRight: "5px",
+  },
 }));

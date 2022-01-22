@@ -86,7 +86,9 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       },
     },
     openfilterLabel: {
-      color: "#ff2d55",
+      background: "linear-gradient(to right, #7F64E2 10%, #41A6EF 100%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
       marginRight: "10px",
       fontWeight: 500,
     },
@@ -147,6 +149,13 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       WebkitTextFillColor: "transparent",
       marginLeft: "3px",
       marginTop: "4px",
+    },
+    filtericonContainer: {
+      "& .MuiSvgIcon-root": {
+        width: "18px",
+        height: "18px",
+        fill: "#41A6EF",
+      },
     },
   })
 );

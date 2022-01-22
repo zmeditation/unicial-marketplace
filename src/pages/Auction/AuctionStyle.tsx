@@ -121,4 +121,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       margin: "15px 0px",
     },
   },
+  backBtnPosition: {
+    marginTop: '5px',
+  },
 }));

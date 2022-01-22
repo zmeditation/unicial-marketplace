@@ -16,7 +16,7 @@ import { Switch } from "@material-ui/core";
 import book_svg from "../../assets/svg/book.svg";
 import location_svg from "../../assets/svg/location.svg";
 
-const PurpleSwitch = withStyles({
+export const PurpleSwitch = withStyles({
   root: {
     height: "36px",
     width: "55px",

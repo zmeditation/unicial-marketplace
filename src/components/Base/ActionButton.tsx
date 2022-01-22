@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "16px",
     lineHeight: "20px",
     justifyContent: "center",
+    color: "white",
   },
   darkColor: {
     border: "double 1px transparent",

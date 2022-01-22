@@ -5,12 +5,17 @@ import GeneralSaleCard from "../../components/Mystore/GeneralSaleCard/GeneralSal
 import GradientEarningCard from "../../components/Mystore/GradientEarningCard/GradientEarningCard";
 import SalesStagingTable from "../MyStore/SalesStagingTable/SalesStagingTable";
 import { headerData, stagingData } from "./SalesStagingData";
+import MobileSidebar from "../../components/Mystore/MobileSidebar/MobileSidebar";
 import Grid from "@material-ui/core/Grid";
 export default function MyStore() {
   const classes = MyStoreStyle();
   return (
     <>
       <TopTab />
+      <div className={classes.MobileSidebarContainer}>
+        <MobileSidebar />
+      </div>
+
       <div className={classes.root}>
         <div className={classes.leftPart}>
           <MystoreSidebar />

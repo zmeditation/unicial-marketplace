@@ -46,11 +46,6 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       border: "1px solid #373F66",
       borderRadius: "100px",
       padding: "1px 20px",
-      // transform: "translateY(-4px)",
-      // display: "inline-block",
-      // outline: 0,
-      // textAlign: "center",
-      //
       [theme.breakpoints.down(1025)]: {
         marginBottom: "18px",
       },

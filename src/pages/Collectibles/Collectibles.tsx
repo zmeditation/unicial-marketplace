@@ -17,7 +17,10 @@ export default function Collectibles() {
           <CollectibleSidebar />
         </div>
         <div className={classes.rightPart}>
-          <CollectibleFilter />
+          <div className={classes.CollectibleFilterContainer}>
+            <CollectibleFilter />
+          </div>
+
           {/* /// */}
           <Grid container spacing={1}>
             <Grid item xs={12} sm={4}>

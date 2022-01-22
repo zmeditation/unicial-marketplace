@@ -22,6 +22,9 @@ export const MyStoreStyle = makeStyles((theme: Theme) => ({
   leftPart: {
     width: "264px",
     marginRight: "20px",
+    [theme.breakpoints.down(769)]: {
+      display: "none",
+    },
   },
   rightPart: {
     width: "100%",
@@ -41,4 +44,10 @@ export const MyStoreStyle = makeStyles((theme: Theme) => ({
     marginBottom: "20px",
   },
   staginContainer: {},
+  MobileSidebarContainer: {
+    display: "none",
+    [theme.breakpoints.down(769)]: {
+      display: "block",
+    },
+  },
 }));

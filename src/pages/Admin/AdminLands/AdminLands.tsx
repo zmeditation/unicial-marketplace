@@ -40,11 +40,11 @@ export default function AdminLands() {
     <>
       <AdminTopTab />
       <div className={classes.root}>
-        <BackButton className={classes.backBtnPosition} />
         <div className={classes.LandMap}>
           <div className={classes.LandMapContent}>
             <LandMap height={400} width={width} initialX={1} initialY={1} />
           </div>
+          <BackButton className={classes.backBtnPosition} />
           <LandAccordion />
         </div>
       </div>
