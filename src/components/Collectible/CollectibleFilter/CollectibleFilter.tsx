@@ -101,9 +101,10 @@ export default function CollectibleFilter() {
                   horizontal: "right",
                 }}
               >
-                {collectionData.map((data) => (
+                {collectionData.map((data, index) => (
                   <StyledMenuItem
                     onClick={() => handleCollectionItem(data.index)}
+                    key={index}
                   >
                     <Box className={classes.listContainer}>
                       <Box className={classes.listLabel}>{data.catatory}</Box>
@@ -154,8 +155,11 @@ export default function CollectibleFilter() {
                   horizontal: "right",
                 }}
               >
-                {networkData.map((data) => (
-                  <StyledMenuItem onClick={() => handleNetworkItem(data.index)}>
+                {networkData.map((data, index) => (
+                  <StyledMenuItem
+                    onClick={() => handleNetworkItem(data.index)}
+                    key={index}
+                  >
                     <Box className={classes.listContainer}>
                       <Box className={classes.listLabel}>{data.category}</Box>
                     </Box>

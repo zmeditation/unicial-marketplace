@@ -17,19 +17,24 @@ import ChinaSvg from "./../../assets/svg/China.svg";
 import EnglandSvg from "./../../assets/svg/England.svg";
 import SpainSvg from "./../../assets/svg/Spain.svg";
 import FooterTexture from "../../assets/svg/footer_texture.svg";
+import { useTranslation, withTranslation, Trans } from "react-i18next";
+
 export default function Footer() {
   const classes = FooterStyle();
   const [countryLanguage, setCountryLanguage] = React.useState("");
   const [countryFlag, setCountryFlag] = React.useState("");
   const [languageIndex, setlanguageIndex] = React.useState(1);
+  const { t, i18n } = useTranslation();
 
   const handleEnglish = () => {
+    i18n.changeLanguage("en");
     setlanguageIndex(1);
   };
   const handleSpanish = () => {
     setlanguageIndex(2);
   };
   const handleChinese = () => {
+    i18n.changeLanguage("ch");
     setlanguageIndex(3);
   };
 
@@ -159,7 +164,7 @@ export default function Footer() {
                   horizontal: "right",
                 }}
               >
-                <StyledMenuItem onClick={handleEnglish}>
+                <StyledMenuItem onClick={handleEnglish} disableRipple>
                   <Box className={classes.flagLanContainer}>
                     <Box className={classes.languageLabel}>English</Box>
                   </Box>
