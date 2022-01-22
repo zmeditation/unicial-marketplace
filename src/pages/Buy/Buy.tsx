@@ -1,7 +1,12 @@
+/** @format */
+
 import { useNavigate } from "react-router";
 import NeedSignIn from "../../components/NoSign/NeedSignIn";
 import ActionButton from "../../components/Base/ActionButton";
 import TokenImg from "../../assets/img/1.png";
+import settingicon from "../../assets/svg/bidpage_settingicon.svg";
+import raiseicon from "../../assets/svg/bid_raiseicon.svg";
+
 import { useStyles } from "./BuyStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 
@@ -21,35 +26,32 @@ const Buy = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt="token"
-                ></img>
+                  alt='token'></img>
               </div>
             </div>
 
             <div className={classes.rightCard}>
               <div className={classes.title}>Buy Estate</div>
               <div className={classes.subtitle}>
-                You don't have enough MANA to buy
-                <b> Hanzo-Gate1 </b>
-                for<i className={classes.symbol}>⏣</i>
-                1,000,000.
+                You don't have enough MANA to buy Hanzo-Gate1 for
+                <img src={settingicon} className={classes.symbol} />
+                <b> 1,000,000.</b>
               </div>
 
               {/* buttons */}
               <div className={classes.buttons}>
                 <ActionButton
-                  color="dark"
+                  color='dark'
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}
-                >
+                  onClick={() => navigate(-1)}>
                   CANCEL
                 </ActionButton>
                 <ActionButton
                   disabled
-                  color="red"
-                  className={classes.bidchange}
-                >
+                  color='light'
+                  className={classes.bidchange}>
                   BUY
+                  <img src={raiseicon} />
                 </ActionButton>
               </div>
             </div>

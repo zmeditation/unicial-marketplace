@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState, useEffect } from "react";
 import { BigNumber } from "ethers";
 
@@ -13,6 +15,8 @@ import ActionButton from "../../components/Base/ActionButton";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { selectparcels } from "../../store/selectedparcels/selectors";
+import { alertMessage, alertSeverity } from "../../store/alert/selectors";
+import { showAlert } from "../../store/alert";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 // import contracts information
 import {
@@ -135,6 +139,12 @@ const Auction = () => {
   };
 
   const handleClear = () => {
+    dispatch(
+      showAlert({
+        message: "U have successfully registered!",
+        severity: "error",
+      })
+    );
     dispatch(getparcels([]));
   };
   const handleApprovedUCCToken = () => {};
@@ -276,39 +286,36 @@ const Auction = () => {
           <BackButton className={classes.backBtnPosition} />
           <div className={classes.actionButton}>
             <ActionButton
-              color="light"
+              color='light'
               className={classes.normalBtn}
               onClick={handleApprovedUCCToken}
-              disabled
-            >
+              disabled>
               Approve
-              <CallMadeIcon fontSize="small" />
+              <CallMadeIcon fontSize='small' />
             </ActionButton>
             <ActionButton
-              color="light"
+              color='light'
               className={classes.normalBtn}
-              onClick={handleBidSpace}
-            >
+              onClick={handleBidSpace}>
               Bid
-              <CallMadeIcon fontSize="small" />
+              <CallMadeIcon fontSize='small' />
             </ActionButton>
             <ActionButton
-              color="dark"
+              color='dark'
               className={classes.gradientBtn}
-              onClick={handleClear}
-            >
+              onClick={handleClear}>
               Clear
             </ActionButton>
-            <ActionButton color="dark" className={classes.gradientBtn}>
+            <ActionButton color='dark' className={classes.gradientBtn}>
               Authorize Auction
             </ActionButton>
             {isAdmin ? (
               isAuctionAuthorized ? (
-                <ActionButton color="dark" onClick={authorizeAuctionContract}>
+                <ActionButton color='dark' onClick={authorizeAuctionContract}>
                   Auction Authorized
                 </ActionButton>
               ) : (
-                <ActionButton color="dark">Authorize Auction</ActionButton>
+                <ActionButton color='dark'>Authorize Auction</ActionButton>
               )
             ) : (
               <></>
