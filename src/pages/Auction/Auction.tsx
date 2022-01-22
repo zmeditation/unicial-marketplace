@@ -1,8 +1,11 @@
+/** @format */
+
 import React, { useState, useEffect } from "react";
 import { BigNumber } from "ethers";
 
 import LandMap from "../../components/Admin/LandMap";
 import TobTab from "../../components/TopTab/TopTab";
+import Notifications from "../../components/Notifications";
 import { useStyles } from "./AuctionStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import LandAccordion from "./LandAccordion/LandAccordion";
@@ -13,6 +16,8 @@ import ActionButton from "../../components/Base/ActionButton";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { selectparcels } from "../../store/selectedparcels/selectors";
+import { alertMessage, alertSeverity } from "../../store/alert/selectors";
+import { showAlert } from "../../store/alert";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 // import contracts information
 import {
@@ -56,6 +61,9 @@ const Auction = () => {
   const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuctionAuthorized, setIsAuctionAuthorized] = useState(false);
+  const [openAlert, setOpenAlert] = React.useState(false);
+  const msg = useAppSelector(alertMessage);
+  const severity = useAppSelector(alertSeverity);
 
   const loginAddress = useAppSelector(selectLoginAddress);
   const bidParcels = useAppSelector(selectparcels) || [];
@@ -82,6 +90,12 @@ const Auction = () => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
+
+  React.useEffect(() => {
+    if (msg.length !== 0) {
+      setOpenAlert(true);
+    }
+  }, [msg, severity]);
 
   useEffect(() => {
     signer = generateSigner(window.ethereum);
@@ -238,7 +252,22 @@ const Auction = () => {
     return isAdmin;
   };
 
+  const handleAlertClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    dispatch(showAlert({ message: "", severity: severity }));
+    setOpenAlert(false);
+  };
+
   const authorizeAuctionContract = async () => {
+    dispatch(
+      showAlert({
+        msg: "U have successfully registered!",
+        severity: "success",
+      })
+    );
     // authorizedDeployStatus show auction contract is authorized in SPACERegistry.sol to assign space tokens
     let authorizedDeployStatus = await spaceRegistryContract.authorizedDeploy(
       SpaceAuctionAddress
@@ -257,6 +286,12 @@ const Auction = () => {
 
   return (
     <>
+      <Notifications
+        showAlert={openAlert}
+        type={severity}
+        description={msg}
+        handleClose={handleAlertClose}
+      />
       <TobTab />
       <div className={classes.root}>
         <div className={classes.auctionInfo}>
@@ -276,39 +311,36 @@ const Auction = () => {
           </div>
           <div className={classes.actionButton}>
             <ActionButton
-              color="light"
+              color='light'
               className={classes.normalBtn}
               onClick={handleApprovedUCCToken}
-              disabled
-            >
+              disabled>
               Approve
-              <CallMadeIcon fontSize="small" />
+              <CallMadeIcon fontSize='small' />
             </ActionButton>
             <ActionButton
-              color="light"
+              color='light'
               className={classes.normalBtn}
-              onClick={handleBidSpace}
-            >
+              onClick={handleBidSpace}>
               Bid
-              <CallMadeIcon fontSize="small" />
+              <CallMadeIcon fontSize='small' />
             </ActionButton>
             <ActionButton
-              color="dark"
+              color='dark'
               className={classes.gradientBtn}
-              onClick={handleClear}
-            >
+              onClick={handleClear}>
               Clear
             </ActionButton>
-            <ActionButton color="dark" className={classes.gradientBtn}>
+            <ActionButton color='dark' className={classes.gradientBtn}>
               Authorize Auction
             </ActionButton>
             {isAdmin ? (
               isAuctionAuthorized ? (
-                <ActionButton color="dark" onClick={authorizeAuctionContract}>
+                <ActionButton color='dark' onClick={authorizeAuctionContract}>
                   Auction Authorized
                 </ActionButton>
               ) : (
-                <ActionButton color="dark">Authorize Auction</ActionButton>
+                <ActionButton color='dark'>Authorize Auction</ActionButton>
               )
             ) : (
               <></>
