@@ -45,7 +45,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   backBtnPosition: {
-    position: "absolute",
+    // position: "absolute",
+    display: "flex",
+    justifyContent: "start",
+    margin: "10px 0px",
   },
   contractDescription: {
     marginTop: "35px",
@@ -72,6 +75,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
   items: {
     marginBottom: "40px",
   },
+  divideLine: {
+    border: "1px solid #282E4E",
+    marginBottom: "37px",
+    marginTop: "40px",
+  },
   tableRoot: {
     // width: "820px ",
     width: "100%",
@@ -80,11 +88,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   BidsTitle: {
-    fontSize: "13px",
-    fontWeight: 400,
-    lineHeight: "18px",
-    textTransform: "uppercase",
-    marginBottom: "16px",
-    color: "#676370",
+    fontSize: "24px",
+    fontWeight: 600,
+    lineHeight: "50px",
+    color: "white",
+  },
+  BidboxContainer: {
+    marginBottom: "30px",
   },
 }));

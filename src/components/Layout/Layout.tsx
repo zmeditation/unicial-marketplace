@@ -14,7 +14,6 @@ import Footer from "../Footer/Footer";
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 //
-import Test from "../../pages/Test/Test";
 import Collectibles from "../../pages/Collectibles/Collectibles";
 import { setloginAddress } from "../../store/auth/actions";
 import { useAppDispatch } from "../../store/hooks";
@@ -50,7 +49,7 @@ export default function Layout() {
         />
         <Route path="/admin/lands" element={<AdminLands />} />
         <Route path="/admin/estate" element={<AdminEstate />} />
-        <Route path="/test" element={<Test />} />
+
         <Route path="/signin" element={<SignIn />} />
       </Routes>
       <Footer />

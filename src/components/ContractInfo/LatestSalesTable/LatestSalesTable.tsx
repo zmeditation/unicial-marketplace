@@ -40,6 +40,7 @@ const LatestSalesTable = ({ columns, rows, stepIndex }: Props) => {
   ));
   return (
     <>
+      <div className={classes.title}>Latest Sales.</div>
       <StageMarket columns={columns} rows={tableRows} />
     </>
   );

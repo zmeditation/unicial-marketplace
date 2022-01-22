@@ -32,8 +32,9 @@ interface TagProps {
   color: string;
   className?: any;
   letter: string;
+  onClick?: () => void;
 }
-const Tag = ({ color, className, letter }: TagProps) => {
+const Tag = ({ color, className, letter, onClick }: TagProps) => {
   const classes = useStyles();
   return (
     <>
@@ -46,6 +47,7 @@ const Tag = ({ color, className, letter }: TagProps) => {
           [classes.RareColor]: color === "RareColor",
           [classes.DefaultColor]: color === "DefaultColor",
         })}
+        onClick={onClick}
       >
         <span>{letter}</span>
       </div>

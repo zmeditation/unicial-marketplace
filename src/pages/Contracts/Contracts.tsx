@@ -50,33 +50,42 @@ const Contract = () => {
     <>
       <TobTab />
       <div className={classes.root}>
-        <BackButton className={classes.backBtnPosition} />
         <div className={classes.LandMap}>
           <div className={classes.LandMapContent}>
             <LandMap height={400} width={width} initialX={1} initialY={1} />
           </div>
+
+          <BackButton className={classes.backBtnPosition} />
+
           <div className={classes.contractDescription}>
             <div className={classes.leftDescription}>
               <div className={classes.items}>
                 <Title />
               </div>
-              <div className={classes.items}>
+              <div className={classes.divideLine}></div>
+              {/* <div className={classes.items}>
                 <Description />
-              </div>
+              </div> */}
               <Owner />
+              <div className={classes.divideLine}></div>
               <Highlight />
+              <div className={classes.divideLine}></div>
             </div>
             <div className={classes.rightDescription}>
-              <Bidbox />
+              <div className={classes.BidboxContainer}>
+                <Bidbox />
+              </div>
               <Buybox />
             </div>
           </div>
           <Parcels />
+
           <div className={classes.tableRoot}>
             {/* <TransactionHistoryTable
               columns={headerData}
               rows={transactionData}
             /> */}
+
             <LatestSalesTable
               columns={headerData}
               rows={transactionData}
@@ -84,7 +93,7 @@ const Contract = () => {
             />
           </div>
           <div>
-            <div className={classes.BidsTitle}>BIDS</div>
+            <div className={classes.BidsTitle}>Bids.</div>
             {BidRecordData.map((row, index) => (
               <BidRecord
                 fromName={row.fromName}

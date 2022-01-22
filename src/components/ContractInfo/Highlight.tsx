@@ -11,12 +11,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "45px",
   },
   title: {
-    fontSize: "13px",
+    fontSize: "12px",
     fontWeight: 400,
-    lineHeight: "18px",
+    lineHeight: "14.4px",
     textTransform: "uppercase",
-    marginBottom: "8px",
-    color: "#676370",
+    marginBottom: "21px",
+    color: "#96A1DB",
   },
   cards: {
     width: "100%",
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     marginBottom: "20px",
     marginRight: "30px",
+    alignItems: "center",
   },
   addressImg: {
     marginRight: "8px",
@@ -42,14 +43,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: "12px",
   },
   name: {
-    fontSize: "15px",
-    lineHeight: "24px",
-    fontWeight: 600,
+    fontSize: "16px",
+    lineHeight: "19.2px",
+    fontWeight: 400,
   },
   description: {
-    fontSize: "15px",
-    lineHeight: "24px",
-    color: "#676370",
+    fontSize: "14px",
+    lineHeight: "16.8px",
+    fontWeight: 400,
+    color: "#96A1DB",
   },
   unviewPlaza: {
     display: "none",
@@ -59,6 +61,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   unviewDistrict: {
     display: "none",
+  },
+  imgContainer: {
+    width: "44px",
+    height: "44px",
+    backgroundColor: "#282E4E",
+    borderRadius: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 }));
 
@@ -77,8 +88,9 @@ const Highlight: React.FC = () => {
               : classes.card
           }
         >
-          <img src={plaza_svg} className={classes.addressImg} alt="A" />
-
+          <div className={classes.imgContainer}>
+            <img src={plaza_svg} alt="A" />
+          </div>
           <div className={classes.rightPart}>
             <div className={classes.name}>Plaza</div>
             <div className={classes.description}>
@@ -93,7 +105,9 @@ const Highlight: React.FC = () => {
               : classes.card
           }
         >
-          <img src={road_svg} className={classes.addressImg} alt="A" />
+          <div className={classes.imgContainer}>
+            <img src={road_svg} alt="A" />
+          </div>
 
           <div className={classes.rightPart}>
             <div className={classes.name}>Road</div>
@@ -109,7 +123,9 @@ const Highlight: React.FC = () => {
               : classes.card
           }
         >
-          <img src={distirct_svg} className={classes.addressImg} alt="A" />
+          <div className={classes.imgContainer}>
+            <img src={distirct_svg} alt="A" />
+          </div>
 
           <div className={classes.rightPart}>
             <div className={classes.name}>District</div>

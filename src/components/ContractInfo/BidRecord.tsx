@@ -8,8 +8,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: "16px 41px",
-    marginTop: "13px",
-    marginBottom: "20px",
+    margin: "13px 0px",
     position: "relative",
     overflow: "hidden",
     backgroundColor: "#282E4E",
@@ -58,9 +57,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: "14px",
     lineHeight: "17px",
-    marginBottom: "8px",
-    color: "#96A1DB",
     fontWeight: 400,
+    color: "#96A1DB",
+    opacity: "50%",
+    marginBottom: "10px",
   },
 
   fromIamge: {
@@ -101,7 +101,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
       {
         <div className={classes.container}>
           <div className={classes.fromPart}>
-            <div className={classes.title}>FROM</div>
+            <div className={classes.title}>From</div>
             <div className={classes.content}>
               <img
                 src={fromImg}
@@ -113,7 +113,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
           </div>
 
           <div className={classes.pricePart}>
-            <div className={classes.title}>PRICE</div>
+            <div className={classes.title}>Price</div>
             <div className={classes.content}>
               <i className={classes.symbol}>⏣</i>
               {price}
@@ -121,7 +121,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
           </div>
 
           <div className={classes.timePart}>
-            <div className={classes.title}>TIME LEFT</div>
+            <div className={classes.title}>Time Left</div>
             <div className={classes.content}>{time} days</div>
           </div>
         </div>

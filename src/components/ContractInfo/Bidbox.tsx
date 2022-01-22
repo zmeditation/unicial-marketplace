@@ -14,17 +14,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "#282E4E",
   },
   title: {
-    fontSize: "13px",
+    fontSize: "14px",
     fontWeight: 400,
-    lineHeight: "18px",
-    textTransform: "uppercase",
+    lineHeight: "17px",
     marginBottom: "8px",
-    color: "#676370",
+    color: "#96A1DB",
+    opacity: "50%",
   },
   subtitle: {
-    fontSize: "20px",
+    fontSize: "16px",
     marginTop: "4px",
-    lineHeight: "28px",
+    lineHeight: "40px",
+    marginBottom: "13px",
   },
   callmadeicon: {
     width: "20px",
@@ -40,7 +41,7 @@ const Bidbox: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.title}>network</div>
+      <div className={classes.title}>Network</div>
       <div className={classes.subtitle}>Zilionixx</div>
       <ActionButton color="light" onClick={() => navigate("bid")}>
         BID
