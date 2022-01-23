@@ -13,10 +13,12 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";
 import raiseicon from "../../assets/svg/bid_raiseicon.svg";
 import { Grid } from "@material-ui/core";
+import { useTranslation } from "react-i18next";
 
 const Bid = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   var isSignIn = 1;
 
   const handleChange = () => {};
@@ -36,16 +38,18 @@ const Bid = () => {
               </div>
             </div>
             <div className={classes.rightCard}>
-              <div className={classes.title}>Place a bid</div>
+              <div className={classes.title}>{t("placeabid")}</div>
               <div className={classes.subtitle}>
-                Set a price and expiration date for your bid on{" "}
-                <span>Genesis Plaza</span>.
+                {t("setapriceandexpirationdateforyourbidon")}{" "}
+                <span>{t("genesisplaza")}</span>.
               </div>
               <div className={classes.form_field}>
                 <div className={classes.price_container}>
                   <Grid container>
                     <Grid md={6} sm={6} xs={6}>
-                      <div className={classes.subheader_label}>PRICE</div>
+                      <div className={classes.subheader_label}>
+                        {t("PRICE")}
+                      </div>
                       <FormControl>
                         <StyledInput
                           placeholder='0'
@@ -60,7 +64,7 @@ const Bid = () => {
                     </Grid>
                     <Grid md={6} sm={6} xs={6}>
                       <div className={classes.subheader_label}>
-                        EXPIRATION DATE
+                        {t("EXPIRATION DATE")}
                       </div>
                       <FormControl>
                         <StyledDateInput
@@ -80,13 +84,13 @@ const Bid = () => {
                   color='dark'
                   className={classes.cancelchange}
                   onClick={() => navigate(-1)}>
-                  Cancel
+                  {t("Cancel")}
                 </ActionButton>
                 <ActionButton
                   disabled
                   color='light'
                   className={classes.bidchange}>
-                  Bid &nbsp;
+                  {t("Bid")} &nbsp;
                   <img src={raiseicon} />
                 </ActionButton>
               </div>

@@ -6,6 +6,7 @@ import plaza_svg from "../../assets/svg/plaza.svg";
 import road_svg from "../../assets/svg/road.svg";
 import distirct_svg from "../../assets/svg/district.svg";
 import { highlight, parcelInfo } from "../../config/hightLightData";
+import { useTranslation } from "react-i18next";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: "45px",
@@ -77,9 +78,10 @@ interface DescriptionProps {}
 
 const Highlight: React.FC = () => {
   const classes = useStyles();
+  const {t,i18n} = useTranslation();
   return (
     <div className={classes.root}>
-      <div className={classes.title}>Highlight</div>
+      <div className={classes.title}>{t("Highlight")}</div>
       <div className={classes.cards}>
         <div
           className={
@@ -92,9 +94,9 @@ const Highlight: React.FC = () => {
             <img src={plaza_svg} alt="A" />
           </div>
           <div className={classes.rightPart}>
-            <div className={classes.name}>Plaza</div>
+            <div className={classes.name}>{t("Plaza")}</div>
             <div className={classes.description}>
-              {parcelInfo.plaza} parcel away
+              {parcelInfo.plaza} {t("parcel away")}
             </div>
           </div>
         </div>
@@ -110,9 +112,9 @@ const Highlight: React.FC = () => {
           </div>
 
           <div className={classes.rightPart}>
-            <div className={classes.name}>Road</div>
+            <div className={classes.name}>{t("Road")}</div>
             <div className={classes.description}>
-              {parcelInfo.road} parcel away
+              {parcelInfo.road} {t("parcel away")}
             </div>
           </div>
         </div>
@@ -128,9 +130,9 @@ const Highlight: React.FC = () => {
           </div>
 
           <div className={classes.rightPart}>
-            <div className={classes.name}>District</div>
+            <div className={classes.name}>{t("District")}</div>
             <div className={classes.description}>
-              {parcelInfo.district} parcel away
+              {parcelInfo.district} {t("parcel away")}
             </div>
           </div>
         </div>

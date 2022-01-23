@@ -8,9 +8,11 @@ import {
 import { Typography } from "@material-ui/core";
 import SidebarTree from "../../SidebarTree/SidebarTree";
 import { WearablesData } from "../../../pages/Collectibles/SidebarData";
+import { useTranslation } from "react-i18next";
 import { LandsData } from "../../../pages/MyStore/SidebarData";
 export default function AssetsBox() {
   const classes = AssetsBoxStyle();
+  const { t, i18n} = useTranslation();
   //popover relate
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
   const handleChange =
@@ -22,7 +24,7 @@ export default function AssetsBox() {
     <>
       <div className={classes.categoryBox}>
         {/* <div className={classes.categoryTitle}>Categories</div> */}
-        <div className={classes.categoryTitle}>Assets</div>
+        <div className={classes.categoryTitle}>{t("Assets")}</div>
         <div className={classes.accordionRoot}>
           {/*--- add collection ---*/}
           <StyledAccordion
@@ -35,7 +37,7 @@ export default function AssetsBox() {
               aria-controls="panel1d-content"
               id="panel1d-header"
             >
-              <Typography className={classes.maintitle}>Collections</Typography>
+              <Typography className={classes.maintitle}>{t("Collections")}</Typography>
             </StyledAccordionSummary>
           </StyledAccordion>
           {/* -- add land-- */}
@@ -49,7 +51,7 @@ export default function AssetsBox() {
               aria-controls="panel2d-content"
               id="panel2d-header"
             >
-              <Typography className={classes.maintitle}>Lands</Typography>
+              <Typography className={classes.maintitle}>{t("Lands")}</Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
               <SidebarTree data={LandsData} />
@@ -66,7 +68,7 @@ export default function AssetsBox() {
               aria-controls="panel3d-content"
               id="panel3d-header"
             >
-              <Typography className={classes.maintitle}>Wearables</Typography>
+              <Typography className={classes.maintitle}>{t("Wearables")}</Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
               <SidebarTree data={WearablesData} />
@@ -83,7 +85,7 @@ export default function AssetsBox() {
               aria-controls="panel4d-content"
               id="panel4d-header"
             >
-              <Typography className={classes.maintitle}>Names</Typography>
+              <Typography className={classes.maintitle}>{t("Names")}</Typography>
             </StyledAccordionSummary>
           </StyledAccordion>
         </div>

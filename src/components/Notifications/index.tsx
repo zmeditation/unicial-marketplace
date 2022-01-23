@@ -6,6 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useTranslation } from "react-i18next";
 
 import { alertMessage, alertSeverity } from "../../store/alert/selectors";
 import { showAlert } from "../../store/alert";
@@ -104,6 +105,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function Notifications() {
   const classes = useStyles();
+  const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
   const msg = useAppSelector(alertMessage);
   const severity = useAppSelector(alertSeverity);
@@ -132,7 +134,7 @@ export default function Notifications() {
               <img src={check} className={classes.checkIcon} />
             </div>
             <div className={classes.notificationText}>
-              <div className={classes.notificationTitle}>Success</div>
+              <div className={classes.notificationTitle}>{t("Success")}</div>
               <div className={classes.notificationDescription}>{msg}</div>
             </div>
             <IconButton onClick={handleCloseClick} size='small'>
@@ -145,7 +147,9 @@ export default function Notifications() {
               <img src={error} className={classes.checkIcon} />
             </div>
             <div className={classes.notificationText}>
-              <div className={classes.notificationTitle_error}>Error</div>
+              <div className={classes.notificationTitle_error}>
+                {t("Error")}
+              </div>
               <div className={classes.notificationDescription}>{msg}</div>
             </div>
             <IconButton onClick={handleCloseClick} size='small'>

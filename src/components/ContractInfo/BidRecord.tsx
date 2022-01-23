@@ -1,6 +1,7 @@
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import fromImg from "../../assets/img/1.png";
+import { useTranslation } from "react-i18next";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flex: "1 0 auto",
@@ -95,13 +96,14 @@ interface data {
 
 const BidRecord = ({ fromName, price, time }: data) => {
   const classes = useStyles();
+  const {t, i18n} = useTranslation();
 
   return (
     <div className={classes.root}>
       {
         <div className={classes.container}>
           <div className={classes.fromPart}>
-            <div className={classes.title}>From</div>
+            <div className={classes.title}>{t("From")}</div>
             <div className={classes.content}>
               <img
                 src={fromImg}
@@ -113,7 +115,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
           </div>
 
           <div className={classes.pricePart}>
-            <div className={classes.title}>Price</div>
+            <div className={classes.title}>{t("Price")}</div>
             <div className={classes.content}>
               <i className={classes.symbol}>⏣</i>
               {price}
@@ -121,8 +123,8 @@ const BidRecord = ({ fromName, price, time }: data) => {
           </div>
 
           <div className={classes.timePart}>
-            <div className={classes.title}>Time Left</div>
-            <div className={classes.content}>{time} days</div>
+            <div className={classes.title}>{t("Time Left")}</div>
+            <div className={classes.content}>{time} {t("days")}</div>
           </div>
         </div>
       }

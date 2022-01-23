@@ -1,12 +1,14 @@
 import React from "react";
 import { MobileSidebarStyle } from "./MobileSidebarStyle";
 import { StyledTopTabBtn } from "../../TopTab/TopTabStyle";
+import { useTranslation } from "react-i18next";
 export default function MobileSidebar() {
   const classes = MobileSidebarStyle();
   const [menuIndex, setmenuIndex] = React.useState("Collections");
   const handlemenu = (index: string) => {
     setmenuIndex(index);
   };
+  const {t, i18n} = useTranslation();
   return (
     <>
       <div className={classes.root}>
@@ -15,35 +17,35 @@ export default function MobileSidebar() {
           onClick={() => handlemenu("Collections")}
           disabled={menuIndex === "Collections"}
         >
-          Collections
+          {t("Collections")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
           onClick={() => handlemenu("Land")}
           disabled={menuIndex === "Land"}
         >
-          Land
+          {t("Land")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
           onClick={() => handlemenu("Wearables")}
           disabled={menuIndex === "Wearables"}
         >
-          Wearables
+          {t("Wearables")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
           onClick={() => handlemenu("Names")}
           disabled={menuIndex === "Names"}
         >
-          Names
+          {t("Names")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
           onClick={() => handlemenu("Sales")}
           disabled={menuIndex === "Sales"}
         >
-          Sales
+          {t("Sales")}
         </StyledTopTabBtn>
 
         <StyledTopTabBtn
@@ -51,7 +53,7 @@ export default function MobileSidebar() {
           onClick={() => handlemenu("Bids")}
           disabled={menuIndex === "Bids"}
         >
-          Bids
+          {t("Bids")}
         </StyledTopTabBtn>
 
         <StyledTopTabBtn
@@ -59,7 +61,7 @@ export default function MobileSidebar() {
           onClick={() => handlemenu("Settings")}
           disabled={menuIndex === "Settings"}
         >
-          Settings
+          {t("Settings")}
         </StyledTopTabBtn>
       </div>
     </>

@@ -7,9 +7,11 @@ import TopEllipse2 from "../../assets/svg/top_ellipse2.svg";
 import TopEllipse3 from "../../assets/svg/top_ellipse3.svg";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function MarketPlace() {
   const classes = useStyles();
+  const {t,i18n}=useTranslation();
   return (
     <>
       <div className={classes.root}>
@@ -20,17 +22,16 @@ export default function MarketPlace() {
         <img src={TopEllipse3} className={classes.topEllipse3}></img>
         <div className={classes.content}>
           <div className={classes.itemContainer}>
-            <div className={classes.title}>Unicial Marketplace</div>
+            <div className={classes.title}>{t("Unicial Marketplace")}</div>
           </div>
           <div className={classes.itemContainer}>
             <div className={classes.subtitle}>
-              Welcome to the virtual world’s one-stop-shop for the very best
-              digital assets.
+              {t("Welcometothevirtualworldsone-stop-shopfortheverybestdigitalassets")}..
             </div>
           </div>
           <div className={classes.hero_action}>
             <Link className={classes.browsebtn} to="/lands">
-              Start Browsing&nbsp;
+              {t("Start Browsing")}&nbsp;
               <CallMadeIcon fontSize="small" />
             </Link>
           </div>

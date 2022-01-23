@@ -16,9 +16,11 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import closeSvg from "../../../assets/svg/close.svg";
+import { useTranslation } from "react-i18next";
 
 export default function CollectibleFilter() {
   const classes = CollectibleFilterStyle();
+  const { t, i18n}= useTranslation();
   const [anchorCollection, setAnchorCollection] =
     React.useState<null | HTMLElement>(null);
   const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
@@ -66,7 +68,7 @@ export default function CollectibleFilter() {
       <div className={classes.root}>
         <div className={classes.selectPart}>
           <div className={classes.collectionSelectContainer}>
-            <div className={classes.title}>Collections</div>
+            <div className={classes.title}>{t("Collections")}</div>
             {/* collection select start */}
             <div>
               <Box
@@ -120,7 +122,7 @@ export default function CollectibleFilter() {
             className={classes.collectionSelectContainer}
             style={{ marginLeft: "30px" }}
           >
-            <div className={classes.title}>Network</div>
+            <div className={classes.title}>{t("Network")}</div>
             {/* network select start */}
             <div>
               <Box
@@ -175,7 +177,7 @@ export default function CollectibleFilter() {
           {/* gender part */}
           <div className={classes.rarityPart}>
             <div className={classes.rarityPartContainer}>
-              <div className={classes.title}>GENDER</div>
+              <div className={classes.title}>{t("GENDER")}</div>
               {/* radio realte */}
               <RadioGroup
                 aria-label="gender"
@@ -200,7 +202,7 @@ export default function CollectibleFilter() {
           {/* rarity part */}
           <div className={classes.rarityPart}>
             <div className={classes.rarityPartContainer}>
-              <div className={classes.title}>RARITY</div>
+              <div className={classes.title}>{t("RARITY")}</div>
               <div className={classes.options}>
                 <Tag color="CommonColor" letter="COMMON" />
                 <Tag color="RareColor" letter="RARE" />
@@ -214,7 +216,7 @@ export default function CollectibleFilter() {
         </div>
         <div className={classes.footer}>
           <div className={classes.clearFilterContainer}>
-            <div className={classes.clearFilterLabel}>Clear Filter</div>
+            <div className={classes.clearFilterLabel}>{t("Clear Filter")}</div>
             <img src={closeSvg} />
           </div>
         </div>

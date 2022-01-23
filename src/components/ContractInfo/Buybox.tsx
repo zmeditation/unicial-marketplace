@@ -5,6 +5,7 @@ import ActionButton from "../Base/ActionButton";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import { useNavigate } from "react-router";
 import cloccheckSvg from "../../assets/svg/clockcheck.svg";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -71,18 +72,19 @@ interface BuyboxProps {}
 const Buybox: React.FC = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const  {t,i18n} = useTranslation();
 
   return (
     <div className={classes.root}>
-      <div className={classes.title}>Price</div>
+      <div className={classes.title}>{t("Price")}</div>
       <div className={classes.priceValueContainer}>
         <i className={classes.symbol}>⏣</i>
         1,000,000
       </div>
-      <div className={classes.title}>Network</div>
-      <div className={classes.subtitle}>Zilionixx</div>
+      <div className={classes.title}>{t("Network")}</div>
+      <div className={classes.subtitle}>{t("Zilionixx")}</div>
       <ActionButton color="light" onClick={() => navigate("buy")}>
-        BUY
+        {t("BUY")}
         <CallMadeIcon className={classes.callmadeicon} />
       </ActionButton>
       <ActionButton
@@ -90,11 +92,11 @@ const Buybox: React.FC = () => {
         onClick={() => navigate("bid")}
         className={classes.bidBtn}
       >
-        BID
+        {t("BID")}
       </ActionButton>
       <div className={classes.expireContainer}>
         <img src={cloccheckSvg} className={classes.clockcheck} />
-        <div className={classes.expireDescription}>Expires in 12 months</div>
+        <div className={classes.expireDescription}>{t("Expires in 12 months")}</div>
       </div>
     </div>
   );

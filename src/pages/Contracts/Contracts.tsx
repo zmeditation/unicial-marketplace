@@ -17,12 +17,14 @@ import { BidRecordData } from "./ContractsData";
 import { useStyles } from "./ContractsStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/LatestSalesTable";
+import { useTranslation } from "react-i18next";
 
 const Contract = () => {
   const classes = useStyles();
   const { contractaddress, tokensId } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(0);
+  const { t, i18n }= useTranslation();
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
@@ -92,7 +94,7 @@ const Contract = () => {
             />
           </div>
           <div>
-            <div className={classes.BidsTitle}>Bids.</div>
+            <div className={classes.BidsTitle}>{t("Bids")}.</div>
             {BidRecordData.map((row, index) => (
               <BidRecord
                 fromName={row.fromName}

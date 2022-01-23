@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { TypeBoxStyle } from "./TypeBoxStyle";
 import { useLocation } from "react-router";
 import { typebox } from "../../../config/constant";
+import { useTranslation } from "react-i18next";
 
 export default function TypeBox() {
   const classes = TypeBoxStyle();
+  const {t, i18n} = useTranslation();
   const [itemIndex, setitemIndex] = React.useState(typebox.store);
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -20,7 +22,7 @@ export default function TypeBox() {
   return (
     <>
       <div className={classes.typeBoxRoot}>
-        <div className={classes.headerTitle}>Type </div>
+        <div className={classes.headerTitle}>{t("Type")}</div>
         <div className={classes.boxBody}>
           <div
             className={
@@ -30,9 +32,9 @@ export default function TypeBox() {
             }
             onClick={handleStore}
           >
-            <div className={classes.itemTitle}>Store</div>
+            <div className={classes.itemTitle}>{t("Store")}</div>
             <div className={classes.itemDescription}>
-              Items available for minting
+              {t("Items available for minting")}
             </div>
           </div>
           {/* // */}
@@ -44,8 +46,8 @@ export default function TypeBox() {
             }
             onClick={handleListings}
           >
-            <div className={classes.itemTitle}>Listings</div>
-            <div className={classes.itemDescription}>Items being resold</div>
+            <div className={classes.itemTitle}>{t("Listings")}</div>
+            <div className={classes.itemDescription}>{t("Items being resold")}</div>
           </div>
         </div>
         <div className={classes.divideline}></div>

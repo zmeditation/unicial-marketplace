@@ -18,6 +18,7 @@ import { selectparcels } from "../../store/selectedparcels/selectors";
 import { alertMessage, alertSeverity } from "../../store/alert/selectors";
 import { showAlert } from "../../store/alert";
 import CallMadeIcon from "@material-ui/icons/CallMade";
+import { useTranslation } from "react-i18next";
 // import contracts information
 import {
   UccContractAbi,
@@ -60,6 +61,7 @@ const Auction = () => {
   const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuctionAuthorized, setIsAuctionAuthorized] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const loginAddress = useAppSelector(selectLoginAddress);
   const bidParcels = useAppSelector(selectparcels) || [];
@@ -270,9 +272,9 @@ const Auction = () => {
       <TobTab />
       <div className={classes.root}>
         <div className={classes.auctionInfo}>
-          <span className={classes.title}>Left Time.</span>
+          <span className={classes.title}>{t("lefttime")}.</span>
           <CountDown />
-          <span className={classes.title}>Staging.</span>
+          <span className={classes.title}>{t("staging")}.</span>
           <StagingTable
             columns={headerData}
             rows={transactionData}
@@ -290,32 +292,34 @@ const Auction = () => {
               className={classes.normalBtn}
               onClick={handleApprovedUCCToken}
               disabled>
-              Approve
+              {t("approve")}
               <CallMadeIcon fontSize='small' />
             </ActionButton>
             <ActionButton
               color='light'
               className={classes.normalBtn}
               onClick={handleBidSpace}>
-              Bid
+              {t("bid")}
               <CallMadeIcon fontSize='small' />
             </ActionButton>
             <ActionButton
               color='dark'
               className={classes.gradientBtn}
               onClick={handleClear}>
-              Clear
+              {t("clear")}
             </ActionButton>
             <ActionButton color='dark' className={classes.gradientBtn}>
-              Authorize Auction
+              {t("authorizeauction")}
             </ActionButton>
             {isAdmin ? (
               isAuctionAuthorized ? (
                 <ActionButton color='dark' onClick={authorizeAuctionContract}>
-                  Auction Authorized
+                  {t("auctionauthorized")}
                 </ActionButton>
               ) : (
-                <ActionButton color='dark'>Authorize Auction</ActionButton>
+                <ActionButton color='dark'>
+                  {t("authorizeauction")}
+                </ActionButton>
               )
             ) : (
               <></>

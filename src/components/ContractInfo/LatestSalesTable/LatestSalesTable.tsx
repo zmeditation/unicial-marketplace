@@ -1,5 +1,7 @@
 import { useStyles } from "./LatestSalesTableStyle";
 import StageMarket from "../../../components/StageMarket/StageMarket";
+import { useTranslation } from "react-i18next";
+
 import { TableRow, TableCell } from "@material-ui/core";
 
 import clsx from "clsx";
@@ -12,6 +14,7 @@ interface Props {
 
 const LatestSalesTable = ({ columns, rows, stepIndex }: Props) => {
   const classes = useStyles();
+  const {t, i18n} = useTranslation();
 
   const tableRows = rows?.map((row: any, key: any) => (
     <TableRow
@@ -40,7 +43,7 @@ const LatestSalesTable = ({ columns, rows, stepIndex }: Props) => {
   ));
   return (
     <>
-      <div className={classes.title}>Latest Sales.</div>
+      <div className={classes.title}>{t("Latest Sales")}.</div>
       <StageMarket columns={columns} rows={tableRows} />
     </>
   );

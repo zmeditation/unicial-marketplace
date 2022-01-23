@@ -2,6 +2,7 @@ import { GeneralSaleCardStyle } from "./GeneralSaleCardStyle";
 import penSvg from "./../../../assets/svg/pen.svg";
 import moneybagSvg from "./../../../assets/svg/moneybag.svg";
 import crownSvg from "./../../../assets/svg/crown.svg";
+import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 interface GeneralSaleCardProps {
   iconSrc: string;
@@ -17,6 +18,7 @@ export default function GeneralSaleCard({
   className,
 }: GeneralSaleCardProps) {
   const classes = GeneralSaleCardStyle();
+  const {t, i18n} = useTranslation();
   return (
     <>
       <div className={classes.root}>
@@ -33,7 +35,7 @@ export default function GeneralSaleCard({
             />
           </div>
           <div className={classes.infoContainer}>
-            <div className={classes.title}>TOTAL SALES</div>
+            <div className={classes.title}>{t("TOTAL SALES")}</div>
             <div
               className={clsx(classes.price, className, {
                 [classes.yellow]: priceColor === "yellow",

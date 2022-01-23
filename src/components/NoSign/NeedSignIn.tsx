@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   descriptionContainer: {
@@ -21,14 +22,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function NeedSignIn() {
   const classes = useStyles();
+  const {t, i18n} = useTranslation();
   return (
     <div className={classes.descriptionContainer}>
       <p className={classes.text}>
-        You need to{" "}
+        {t("You need to")}{" "}
         <a href="/signin" className={classes.link}>
-          Sign In
+          {t("Sign In")}
         </a>{" "}
-        to access this page
+        {t("to access this page")}
       </p>
     </div>
   );

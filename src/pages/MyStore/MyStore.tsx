@@ -7,8 +7,10 @@ import SalesStagingTable from "../MyStore/SalesStagingTable/SalesStagingTable";
 import { headerData, stagingData } from "./SalesStagingData";
 import MobileSidebar from "../../components/Mystore/MobileSidebar/MobileSidebar";
 import Grid from "@material-ui/core/Grid";
+import { useTranslation } from "react-i18next";
 export default function MyStore() {
   const classes = MyStoreStyle();
+  const {t,i18n} = useTranslation();
   return (
     <>
       <TopTab />
@@ -22,7 +24,7 @@ export default function MyStore() {
         </div>
         <div className={classes.rightPart}>
           <div className={classes.statsContainer}>
-            <div className={classes.title}>Stats.</div>
+            <div className={classes.title}>{t("Stats")}.</div>
             <div className={classes.generalStats}>
               <Grid container spacing={1}>
                 <Grid item xs={12} sm={4}>
@@ -69,7 +71,7 @@ export default function MyStore() {
             </Grid>
           </div>
           <div className={classes.staginContainer}>
-            <div className={classes.title}>Staging.</div>
+            <div className={classes.title}>{t("Staging")}.</div>
             <SalesStagingTable
               columns={headerData}
               rows={stagingData}

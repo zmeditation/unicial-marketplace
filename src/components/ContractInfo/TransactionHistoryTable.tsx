@@ -11,6 +11,7 @@ import {
   Theme,
 } from "@material-ui/core";
 import { isEmptyObject } from "../../common/utils";
+import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
 interface StyledTableleProps {
@@ -143,6 +144,7 @@ function TransactionHistoryTable({
   emptyTableRows,
 }: StyledTableleProps) {
   const classes = useStyles();
+  const {t, i18n } =  useTranslation();
 
   const tableColumns = columns?.map((column: any, key: any) => (
     <TableCell key={column} className={classes.tableHeaderCell}>
@@ -209,7 +211,7 @@ function TransactionHistoryTable({
 
   return (
     <>
-      <div className={classes.title}>Latest Sales</div>
+      <div className={classes.title}>{t("Latest Sales")}</div>
       <TableContainer className={classes.tableContainer}>
         <Table
           stickyHeader

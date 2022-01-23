@@ -9,10 +9,12 @@ import raiseicon from "../../assets/svg/bid_raiseicon.svg";
 
 import { useStyles } from "./BuyStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
+import { useTranslation } from "react-i18next";
 
 const Buy = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   var isSignIn = 1;
 
   return (
@@ -31,9 +33,9 @@ const Buy = () => {
             </div>
 
             <div className={classes.rightCard}>
-              <div className={classes.title}>Buy Estate</div>
+              <div className={classes.title}>{t("Buy Estate")}</div>
               <div className={classes.subtitle}>
-                You don't have enough MANA to buy Hanzo-Gate1 for
+                {t("You don't have enough MANA to buy Hanzo-Gate1 for")}
                 <img src={settingicon} className={classes.symbol} />
                 <b> 1,000,000.</b>
               </div>
@@ -44,13 +46,13 @@ const Buy = () => {
                   color='dark'
                   className={classes.cancelchange}
                   onClick={() => navigate(-1)}>
-                  CANCEL
+                  {t("CANCEL")}
                 </ActionButton>
                 <ActionButton
                   disabled
                   color='light'
                   className={classes.bidchange}>
-                  BUY
+                  {t("BUY")}
                   <img src={raiseicon} />
                 </ActionButton>
               </div>

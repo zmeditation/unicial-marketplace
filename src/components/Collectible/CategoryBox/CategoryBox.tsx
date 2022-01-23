@@ -10,9 +10,11 @@ import { WearablesData } from "../../../pages/Collectibles/SidebarData";
 import { Typography } from "@material-ui/core";
 import { useLocation } from "react-router";
 import { category } from "../../../config/constant";
+import { useTranslation } from "react-i18next";
 
 export default function CategoryBox() {
   const classes = CategoryBoxStyle();
+  const { t, i18n} = useTranslation();
   const location = useLocation();
   const [expanded, setExpanded] = React.useState<string | false>(
     category.wearable
@@ -31,7 +33,7 @@ export default function CategoryBox() {
   return (
     <>
       <div className={classes.categoryBox}>
-        <div className={classes.categoryTitle}>Categories</div>
+        <div className={classes.categoryTitle}>{t("Categories")}</div>
         <div className={classes.accordionRoot}>
           <StyledAccordion
             square
@@ -43,7 +45,7 @@ export default function CategoryBox() {
               aria-controls="panel1d-content"
               id="panel1d-header"
             >
-              <Typography className={classes.maintitle}>Wearables</Typography>
+              <Typography className={classes.maintitle}>{t("Wearables")}</Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
               <SidebarTree data={WearablesData} />
@@ -59,7 +61,7 @@ export default function CategoryBox() {
               aria-controls="panel2d-content"
               id="panel2d-header"
             >
-              <Typography className={classes.maintitle}>Names</Typography>
+              <Typography className={classes.maintitle}>{t("Names")}</Typography>
             </StyledAccordionSummary>
           </StyledAccordion>
         </div>

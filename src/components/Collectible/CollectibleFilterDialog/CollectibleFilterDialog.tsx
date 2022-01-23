@@ -25,10 +25,12 @@ import Tag from "../../Base/Tag";
 import { StyledListPopover } from "../CollectibleSearchBar/CollectibleSearchBarStyle";
 import MobileCategoryBox from "../MobileCategoryBox/MobileCategoryBox";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
+import { useTranslation } from "react-i18next";
 import ActionButton from "../../Base/ActionButton";
 export default function CollectibleFilterDialog() {
   const classes = CollectibleFilterDialogStyle();
   const [open, setOpen] = React.useState(false);
+  const {t, i18n} = useTranslation();
 
   const handleDialogOpen = () => {
     setOpen(true);
@@ -133,7 +135,7 @@ export default function CollectibleFilterDialog() {
         onClick={handleDialogOpen}
         className={classes.openfilter}
       >
-        <div className={classes.openfilterLabel}>FILTER</div>
+        <div className={classes.openfilterLabel}>{t("FILTER")}</div>
         <div className={classes.filtericonContainer}>
           <FilterTiltShiftIcon />
         </div>
@@ -145,11 +147,11 @@ export default function CollectibleFilterDialog() {
         className={classes.dialogContainer}
       >
         <DialogTitle id="form-dialog-title" className={classes.maintitle}>
-          Subscribe
+         {t("Subscribe")}
         </DialogTitle>
         <DialogContent>
           <div className={classes.collectionSelectContainer}>
-            <div className={classes.title}>Collections</div>
+            <div className={classes.title}>{t("Collections")}</div>
             {/* collection select start */}
             <div>
               <Box
@@ -200,7 +202,7 @@ export default function CollectibleFilterDialog() {
           </div>
           {/* // */}
           <div className={classes.collectionSelectContainer}>
-            <div className={classes.title}>Network</div>
+            <div className={classes.title}>{t("Network")}</div>
             {/* network select start */}
             <div>
               <Box
@@ -266,7 +268,7 @@ export default function CollectibleFilterDialog() {
           {/* gender part */}
           <div className={classes.rarityPart}>
             <div className={classes.rarityPartContainer}>
-              <div className={classes.title}>GENDER</div>
+              <div className={classes.title}>{t("GENDER")}</div>
               {/* radio realte */}
               <RadioGroup
                 aria-label="gender"
@@ -291,7 +293,7 @@ export default function CollectibleFilterDialog() {
           {/* rarity part */}
           <div className={classes.rarityPart}>
             <div className={classes.rarityPartContainer}>
-              <div className={classes.title}>RARITY</div>
+              <div className={classes.title}>{t("RARITY")}</div>
               <div className={classes.options}>
                 <Tag color="CommonColor" letter="COMMON" />
                 <Tag color="RareColor" letter="RARE" />
@@ -304,7 +306,7 @@ export default function CollectibleFilterDialog() {
           </div>
           {/* orderby select start */}
           <div className={classes.orderbyContainer}>
-            <div className={classes.orderbyTitle}>Order By</div>
+            <div className={classes.orderbyTitle}>{t("Order By")}</div>
             <Box
               aria-controls="simple-menu"
               aria-haspopup="true"
@@ -340,7 +342,7 @@ export default function CollectibleFilterDialog() {
             >
               <StyledMenuItem onClick={() => handleOrderByItem("Cheapest")}>
                 <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>Cheapest</Box>
+                  <Box className={classes.listLabel}>{t("Cheapest")}</Box>
                 </Box>
               </StyledMenuItem>
 
@@ -348,7 +350,7 @@ export default function CollectibleFilterDialog() {
                 onClick={() => handleOrderByItem("Recently listed")}
               >
                 <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>Recently listed</Box>
+                  <Box className={classes.listLabel}>{t("Recently listed")}</Box>
                 </Box>
               </StyledMenuItem>
 
@@ -356,19 +358,19 @@ export default function CollectibleFilterDialog() {
                 onClick={() => handleOrderByItem("Recently sold")}
               >
                 <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>Recently sold</Box>
+                  <Box className={classes.listLabel}>{t("Recently sold")}</Box>
                 </Box>
               </StyledMenuItem>
 
               <StyledMenuItem onClick={() => handleOrderByItem("Newest")}>
                 <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>Newest</Box>
+                  <Box className={classes.listLabel}>{t("Newest")}</Box>
                 </Box>
               </StyledMenuItem>
 
               <StyledMenuItem onClick={() => handleOrderByItem("Name")}>
                 <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>Name</Box>
+                  <Box className={classes.listLabel}>{t("Name")}</Box>
                 </Box>
               </StyledMenuItem>
             </StyledListPopover>
@@ -394,7 +396,7 @@ export default function CollectibleFilterDialog() {
         </DialogContent>
         <DialogActions className={classes.actionBtnContainer}>
           <ActionButton color="light" className={classes.actionBtn}>
-            APPLY
+            {t("APPLY")}
           </ActionButton>
         </DialogActions>
       </Dialog>

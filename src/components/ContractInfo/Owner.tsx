@@ -1,6 +1,7 @@
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import makeBlockie from "ethereum-blockies-base64";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -39,9 +40,10 @@ interface DescriptionProps {}
 
 const Owner: React.FC = () => {
   const classes = useStyles();
+  const {t,i18n} = useTranslation();
   return (
     <div>
-      <div className={classes.title}>Owner</div>
+      <div className={classes.title}>{t("Owner")}</div>
       <div className={classes.descript}>
         <div className={classes.avatarContainer}>
           <img

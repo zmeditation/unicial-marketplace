@@ -83,19 +83,19 @@ export default function Footer() {
           <div className={classes.mainfooter}>
             <div className={classes.links}>
               <a href="/" className={classes.link}>
-                Home
+                {t("Home")}
               </a>
               <a href="/" className={classes.link}>
-                Privacy Policy
+                {t("Privacy Policy")}
               </a>
               <a href="/" className={classes.link}>
-                Terms of Use
+                {t("Terms of Use")}
               </a>
               <a href="/" className={classes.link}>
-                Content Policy
+                {t("Content Policy")}
               </a>
               <a href="/" className={classes.link}>
-                Code of Ethics
+                {t("Code of Ethics")}
               </a>
             </div>
             <div className={classes.socialLinks}>
@@ -129,7 +129,7 @@ export default function Footer() {
             </div>
           </div>
           <div className={classes.secondaryFooter}>
-            <div className={classes.copyright}>© 2022 Unicial</div>
+            <div className={classes.copyright}>© 2022 {t("Unicial")}</div>
             {/* flag start */}
             <div>
               <Box
@@ -166,19 +166,19 @@ export default function Footer() {
               >
                 <StyledMenuItem onClick={handleEnglish} disableRipple>
                   <Box className={classes.flagLanContainer}>
-                    <Box className={classes.languageLabel}>English</Box>
+                    <Box className={classes.languageLabel}>{t("English")}</Box>
                   </Box>
                 </StyledMenuItem>
 
                 <StyledMenuItem onClick={handleSpanish}>
                   <Box className={classes.flagLanContainer}>
-                    <Box className={classes.languageLabel}>Spanish</Box>
+                    <Box className={classes.languageLabel}>{t("Spanish")}</Box>
                   </Box>
                 </StyledMenuItem>
 
                 <StyledMenuItem onClick={handleChinese}>
                   <Box className={classes.flagLanContainer}>
-                    <Box className={classes.languageLabel}>Chinese</Box>
+                    <Box className={classes.languageLabel}>{t("Chinese")}</Box>
                   </Box>
                 </StyledMenuItem>
               </StyledLanguagePopover>

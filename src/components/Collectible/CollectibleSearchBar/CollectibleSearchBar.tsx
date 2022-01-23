@@ -15,6 +15,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 import FilterTiltShiftIcon from "@material-ui/icons/FilterTiltShift";
 import CollectibleFilterDialog from "../CollectibleFilterDialog/CollectibleFilterDialog";
+import { useTranslation } from "react-i18next";
 const PurpleSwitch = withStyles({
   root: {
     height: "36px",
@@ -39,6 +40,7 @@ export default function CollectibleSearchBar() {
   const [state, setState] = React.useState({
     checkedA: true,
   });
+  const { t, i18n}= useTranslation();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -132,31 +134,31 @@ export default function CollectibleSearchBar() {
                 >
                   <StyledMenuItem onClick={handleCheapest}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Cheapest</Box>
+                      <Box className={classes.listLabel}>{t("Cheapest")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlyListied}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Recently listed</Box>
+                      <Box className={classes.listLabel}>{t("Recently listed")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlySold}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Recently sold</Box>
+                      <Box className={classes.listLabel}>{t("Recently sold")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleNewest}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Newest</Box>
+                      <Box className={classes.listLabel}>{t("Newest")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleName}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Name</Box>
+                      <Box className={classes.listLabel}>{t("Name")}</Box>
                     </Box>
                   </StyledMenuItem>
                 </StyledListPopover>

@@ -14,9 +14,11 @@ import { useAppDispatch } from "../../../store/hooks";
 import { getparcels } from "../../../store/selectedparcels";
 import { fetchTiles } from "../../../hooks/tiles";
 import { Tile } from "../../../components/Atlas/Atlas.types";
+import { useTranslation } from "react-i18next";
 
 export default function LandAccordion() {
   const classes = LandAccordionStyle();
+  const { t, i18n} = useTranslation();
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
   const [x1, setx1] = useState<number>(0);
   const [x2, setx2] = useState<number>(0);
@@ -130,7 +132,7 @@ export default function LandAccordion() {
               id="panel1d-header"
             >
               <Typography className={classes.title}>
-                Select AreaLands
+                {t("selectarealands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -144,7 +146,7 @@ export default function LandAccordion() {
                           onChange={(e) => inputx1(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span>X1</span>
+                              <span>{t("x1")}</span>
                             </InputAdornment>
                           }
                         />
@@ -157,7 +159,7 @@ export default function LandAccordion() {
                           onChange={(e) => inputy1(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span>Y1</span>
+                              <span>{t("y1")}</span>
                             </InputAdornment>
                           }
                         />
@@ -173,7 +175,7 @@ export default function LandAccordion() {
                           onChange={(e) => inputx2(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span>X2</span>
+                              <span>{t("x2")}</span>
                             </InputAdornment>
                           }
                         />
@@ -187,7 +189,7 @@ export default function LandAccordion() {
                           onChange={(e) => inputy2(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span>Y2</span>
+                              <span>{t("y2")}</span>
                             </InputAdornment>
                           }
                         />
@@ -201,11 +203,11 @@ export default function LandAccordion() {
                     onClick={showmapArea}
                     className={classes.showmapBtn}
                   >
-                    Show Map
+                    {t("showmap")}
                   </ActionButton>
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      Selected Lands:
+                      {t("selectedlands")}:
                     </div>
                     <div className={classes.selectedLandResult}>
                       {countArea}
@@ -227,7 +229,7 @@ export default function LandAccordion() {
               id="panel2d-header"
             >
               <Typography className={classes.title}>
-                Select Multiple Lands
+                {t("selectmultiplelands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -251,11 +253,11 @@ export default function LandAccordion() {
                     onClick={showmapMultiland}
                     className={classes.showmapBtn}
                   >
-                    Show Map
+                    {t("showmap")}
                   </ActionButton>
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      Selected Lands:
+                      {t("selectedlands")}:
                     </div>
                     <div className={classes.selectedLandResult}>
                       {countMulti}

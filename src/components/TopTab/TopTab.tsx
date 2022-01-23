@@ -15,6 +15,7 @@ import { withStyles } from "@material-ui/styles";
 import { Switch } from "@material-ui/core";
 import book_svg from "../../assets/svg/book.svg";
 import location_svg from "../../assets/svg/location.svg";
+import { useTranslation } from "react-i18next";
 
 export const PurpleSwitch = withStyles({
   root: {
@@ -36,6 +37,7 @@ export const PurpleSwitch = withStyles({
 export default function TopTab() {
   const classes = TopTabStyle();
   const location = useLocation();
+  const {t, i18n} = useTranslation();
   const navigate = useNavigate();
   const [toptab_index, setToptabIndex] = React.useState(1);
   const [searchbar_index, setSearchbarIndex] = React.useState(1);
@@ -89,7 +91,7 @@ export default function TopTab() {
                     onClick={() => handleLand("/lands")}
                     disabled={toptab_index === topTabIndex.land}
                   >
-                    Lands
+                    {t("Lands")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
@@ -97,7 +99,7 @@ export default function TopTab() {
                     onClick={() => handleLand("/browse")}
                     disabled={toptab_index === topTabIndex.collectibles}
                   >
-                    Collectibles
+                    {t("Collectibles")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
@@ -105,7 +107,7 @@ export default function TopTab() {
                     onClick={() => handleLand("/account")}
                     disabled={toptab_index === topTabIndex.mystore}
                   >
-                    My Store
+                    {t("My Store")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
@@ -113,7 +115,7 @@ export default function TopTab() {
                     onClick={() => handleLand("/auction")}
                     disabled={toptab_index === topTabIndex.auction}
                   >
-                    Auction
+                    {t("Auction")}
                   </StyledTopTabBtn>
                 </div>
 

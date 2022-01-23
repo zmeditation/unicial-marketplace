@@ -2,6 +2,7 @@ import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Button from "../Base/Button";
 import ActionButton from "../Base/ActionButton";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
@@ -33,15 +34,16 @@ interface TitleProps {}
 
 const Title: React.FC = () => {
   const classes = useStyles();
+  const { t, i18n} =  useTranslation();
   return (
     <div>
-      <div className={classes.title}>Genesis Plaza</div>
-      <div className={classes.smalltitle}>Unicial Genesis Plaza</div>
+      <div className={classes.title}>{t("Genesis Plaza")}</div>
+      <div className={classes.smalltitle}>{t("Unicial Genesis Plaza")}</div>
       <div className={classes.buttonGroup}>
-        <ActionButton color="dark">400 LAND</ActionButton>
+        <ActionButton color="dark">400 {t("LAND")}</ActionButton>
         {/* <div className={classes.jumpbtn}> */}
         <ActionButton color="light" className={classes.jumpbtn}>
-          JUMP IN
+          {t("JUMP IN")}
         </ActionButton>
         {/* </div> */}
       </div>

@@ -6,10 +6,12 @@ import {
 } from "./MystoreSearchBarStyle";
 import search_svg from "./../../../assets/svg/search.svg";
 import { Box } from "@material-ui/core";
+import { useTranslation } from "react-i18next";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 
 export default function MystoreSearchBar() {
   const classes = MystoreSearchBarStyle();
+  const { t, i18n} = useTranslation();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -99,31 +101,31 @@ export default function MystoreSearchBar() {
                 >
                   <StyledMenuItem onClick={handleCheapest}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Cheapest</Box>
+                      <Box className={classes.listLabel}>{t("Cheapest")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlyListied}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Recently listed</Box>
+                      <Box className={classes.listLabel}>{t("Recently listed")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlySold}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Recently sold</Box>
+                      <Box className={classes.listLabel}>{t("Recently sold")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleNewest}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Newest</Box>
+                      <Box className={classes.listLabel}>{t("Newest")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleName}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Name</Box>
+                      <Box className={classes.listLabel}>{t("Name")}</Box>
                     </Box>
                   </StyledMenuItem>
                 </StyledListPopover>

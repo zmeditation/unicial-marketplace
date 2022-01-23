@@ -1,6 +1,7 @@
 import { GradientEarningCardStyle } from "./GradientEarningCardStyle";
 import cubeSvg from "./../../../assets/svg/cube.svg";
 import shapeSvg from "./../../../assets/svg/shape.svg";
+import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 interface GradientEarningCardProps {
   iconSrc: string;
@@ -18,6 +19,7 @@ export default function GradientEarningCard({
   className,
 }: GradientEarningCardProps) {
   const classes = GradientEarningCardStyle();
+  const { t, i18n} = useTranslation();
   return (
     <>
       <div
@@ -32,7 +34,7 @@ export default function GradientEarningCard({
           </div>
           <div className={classes.infoContainer}>
             <div className={classes.title}>
-              {title === "ethereum" ? "ETHEREUM" : "POLYGON"} Earnings
+              {title === "ethereum" ? "ETHEREUM" : "POLYGON"} {t("Earnings")}
             </div>
             <div className={classes.price}>{price}</div>
           </div>

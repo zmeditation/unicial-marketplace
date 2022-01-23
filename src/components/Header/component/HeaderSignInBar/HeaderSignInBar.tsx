@@ -15,11 +15,13 @@ import {
 import { StyledMenuItem } from "../../../Footer/FooterStyle";
 import { setlogoutAddress } from "../../../../store/auth/actions";
 import { useAppDispatch } from "../../../../store/hooks";
+import { useTranslation } from "react-i18next";
 
 export default function HeaderSignInBar() {
   const classes = HeaderSignInBarStyle();
   const [tmp, setTmp] = React.useState(0);
   const dispatch = useAppDispatch();
+  const { t, i18n} = useTranslation();
   const handleRingButton = () => {
     setTmp(1);
   };
@@ -101,19 +103,19 @@ export default function HeaderSignInBar() {
                   alt="symbol"
                 />
               </div>
-              <div className={classes.imageLabel}>Guest</div>
+              <div className={classes.imageLabel}>{t("Guest")}</div>
             </div>
             <StyledMenuItem onClick={handleAccount}>
               <Box className={classes.itemContainer}>
                 <PersonOutlineIcon className={classes.itemIcon} />
-                <Box className={classes.itemLabel}>Account</Box>
+                <Box className={classes.itemLabel}>{t("Account")}</Box>
               </Box>
             </StyledMenuItem>
 
             <StyledMenuItem onClick={handleSettings}>
               <Box className={classes.itemContainer}>
                 <SettingsIcon className={classes.itemIcon} />
-                <Box className={classes.itemLabel}>Settings</Box>
+                <Box className={classes.itemLabel}>{t("Settings")}</Box>
               </Box>
             </StyledMenuItem>
 
@@ -121,7 +123,7 @@ export default function HeaderSignInBar() {
               <Box className={classes.itemContainer}>
                 <ExitToAppIcon className={classes.itemIcon} />
                 <Box className={classes.itemLabel} onClick={handleSignOut}>
-                  Sign Out
+                  {t("Sign Out")}
                 </Box>
               </Box>
             </StyledMenuItem>

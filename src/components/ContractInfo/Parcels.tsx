@@ -4,6 +4,7 @@ import Button from "../Base/Button";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import LocationBtn from "../Base/LocationBtn";
 import { ShowMoreLessBtn } from "../ShowMoreLessBtn/ShowMoreLessBtn";
+import { useTranslation } from "react-i18next";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: "35px",
@@ -59,9 +60,10 @@ interface ParcelsProps {}
 
 const Parcels: React.FC = () => {
   const classes = useStyles();
+  const { t, i18n } =  useTranslation();
   return (
     <div className={classes.root}>
-      <div className={classes.title}>Parcels</div>
+      <div className={classes.title}>{t("Parcels")}</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>
           <LocationBtn axisX={12} axisY={45} />
