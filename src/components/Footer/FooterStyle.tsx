@@ -96,7 +96,6 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       },
     },
     socialLinks: {
-      // marginRight: "24px",
       marginTop: "2px",
       [theme.breakpoints.down(769)]: {
         display: "flex",
@@ -204,8 +203,5 @@ export const StyledMenuItem = withStyles({
     padding: "10px 16px",
     cursor: "pointer",
     position: "relative",
-    // "&:hover": {
-    //   backgroundColor: "#24212933",
-    // },
   },
 })(MenuItem);

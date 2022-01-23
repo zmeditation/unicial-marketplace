@@ -151,7 +151,6 @@ export const StyledMenuItem = withStyles({
     cursor: "pointer",
     position: "relative",
     "&:hover": {
-      // backgroundColor: "#24212933",
       color: "white",
     },
   },

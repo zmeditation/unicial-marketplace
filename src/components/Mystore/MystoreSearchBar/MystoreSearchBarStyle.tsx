@@ -63,7 +63,6 @@ export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
     },
 
     listDropdown: {
-      // width: "120px",
       height: "30px",
       transform: "translateY(-4px)",
       cursor: "pointer",
@@ -71,14 +70,12 @@ export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
       display: "inline-block",
       outline: 0,
       textAlign: "center",
-      //
       border: "double 1px transparent",
       borderRadius: "100px",
       backgroundImage:
         "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
       backgroundClip: "content-box, border-box",
       backgroundOrigin: "border-box",
-      //
       [theme.breakpoints.down(1025)]: {
         marginBottom: "18px",
       },

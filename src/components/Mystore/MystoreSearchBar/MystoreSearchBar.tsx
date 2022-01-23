@@ -70,7 +70,6 @@ export default function MystoreSearchBar() {
                   aria-controls="simple-menu"
                   aria-haspopup="true"
                   onClick={handleClick}
-                  // className={classes.listDropdown}
                 >
                   <Box className={classes.listRoot}>
                     <Box className={classes.listContainer}>

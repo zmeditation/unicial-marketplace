@@ -13,6 +13,7 @@ export const TypeBoxStyle = makeStyles((theme: Theme) => ({
     color: "#96A1DB",
     fontWeight: 400,
     fontSize: "14px",
+    opacity: "50%",
   },
   boxBody: {
     marginBottom: "8px",
@@ -24,9 +25,6 @@ export const TypeBoxStyle = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     marginBottom: "8px",
     borderLeft: "2px solid #282E4E",
-    // "&:hover": {
-    //   backgroundColor: "#3e4461",
-    // },
   },
   activeItem: {
     display: "flex",

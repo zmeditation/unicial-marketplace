@@ -19,7 +19,6 @@ export default function AssetsBox() {
     (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
-  //
   return (
     <>
       <div className={classes.categoryBox}>

@@ -18,6 +18,7 @@ export const CategoryBoxStyle = makeStyles((theme: Theme) =>
       marginLeft: "40px",
       marginTop: "35px",
       marginBottom: "20px",
+      opacity: "50%",
     },
   })
 );

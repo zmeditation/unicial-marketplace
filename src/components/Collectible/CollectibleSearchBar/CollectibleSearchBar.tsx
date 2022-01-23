@@ -5,15 +5,12 @@ import {
   StyledListPopover,
   StyledMenuItem,
 } from "./CollectibleSearchBarStyle";
-import filter_svg from "./../../../assets/svg/filter.svg";
 import search_svg from "./../../../assets/svg/search.svg";
 import { withStyles } from "@material-ui/core/styles";
 
 import Switch from "@material-ui/core/Switch";
 import { Box } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
-import FilterTiltShiftIcon from "@material-ui/icons/FilterTiltShift";
 import CollectibleFilterDialog from "../CollectibleFilterDialog/CollectibleFilterDialog";
 import { useTranslation } from "react-i18next";
 const PurpleSwitch = withStyles({
@@ -177,12 +174,6 @@ export default function CollectibleSearchBar() {
                   className={classes.switch}
                 />
               </div>
-              {/* <div className={classes.openfilter}>
-                <div className={classes.openfilterLabel}>FILTER</div>
-                <div className={classes.filtericonContainer}>
-                  <FilterTiltShiftIcon />
-                </div>
-              </div> */}
               <CollectibleFilterDialog />
             </div>
           </div>

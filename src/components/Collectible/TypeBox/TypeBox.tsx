@@ -11,8 +11,9 @@ export default function TypeBox() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
 
-  const handleStore = () => {};
-  const handleListings = () => {};
+  const handleItem = (index: string) => {
+    setitemIndex(index);
+  };
 
   useEffect(() => {
     if (query.get("assetType") === typebox.listing)
@@ -30,7 +31,7 @@ export default function TypeBox() {
                 ? classes.activeItem
                 : classes.normalItem
             }
-            onClick={handleStore}
+            onClick={() => handleItem(typebox.store)}
           >
             <div className={classes.itemTitle}>{t("Store")}</div>
             <div className={classes.itemDescription}>
@@ -44,7 +45,7 @@ export default function TypeBox() {
                 ? classes.activeItem
                 : classes.normalItem
             }
-            onClick={handleListings}
+            onClick={() => handleItem(typebox.listing)}
           >
             <div className={classes.itemTitle}>{t("Listings")}</div>
             <div className={classes.itemDescription}>{t("Items being resold")}</div>

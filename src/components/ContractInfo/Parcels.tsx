@@ -79,7 +79,6 @@ const Parcels: React.FC = () => {
           <LocationBtn axisX={12} axisY={-45} />
         </div>
         <div className={classes.showmoreContent}>
-          {/* <span className={classes.showmoreBtn}>SHOW LESS</span> */}
           <ShowMoreLessBtn />
         </div>
       </div>

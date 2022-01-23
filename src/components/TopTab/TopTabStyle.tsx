@@ -96,7 +96,6 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     letterSpacing: "-0.2px",
     cursor: "pointer",
     textTransform: "none",
-    // borderBottom: "3px solid #18141a",
     marginBottom: "-2px",
     minWidth: "35px",
     width: "100px",
@@ -161,8 +160,6 @@ export const StyledTableButton = withStyles({
       backgroundColor: "#333B67 !important",
       "& svg": {
         fill: "red",
-        // background: "linear-gradient(#7F64E2 100%, #41A6EF 100%)",
-        //
       },
     },
     "&.MuiButton-root:hover": {

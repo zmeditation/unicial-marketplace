@@ -10,7 +10,6 @@ import Bidbox from "../../components/ContractInfo/Bidbox";
 import Buybox from "../../components/ContractInfo/Buybox";
 import Parcels from "../../components/ContractInfo/Parcels";
 import TobTab from "../../components/TopTab/TopTab";
-import TransactionHistoryTable from "../../components/ContractInfo/TransactionHistoryTable";
 import BidRecord from "../../components/ContractInfo/BidRecord";
 import { headerData, transactionData } from "./ContractsData";
 import { BidRecordData } from "./ContractsData";
@@ -64,9 +63,6 @@ const Contract = () => {
                 <Title />
               </div>
               <div className={classes.divideLine}></div>
-              {/* <div className={classes.items}>
-                <Description />
-              </div> */}
               <Owner />
               <div className={classes.divideLine}></div>
               <Highlight />
@@ -82,11 +78,6 @@ const Contract = () => {
           <Parcels />
 
           <div className={classes.tableRoot}>
-            {/* <TransactionHistoryTable
-              columns={headerData}
-              rows={transactionData}
-            /> */}
-
             <LatestSalesTable
               columns={headerData}
               rows={transactionData}

@@ -34,7 +34,8 @@ const Bid = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -52,10 +53,10 @@ const Bid = () => {
                       </div>
                       <FormControl>
                         <StyledInput
-                          placeholder='0'
+                          placeholder="0"
                           onChange={handleChange}
                           startAdornment={
-                            <InputAdornment position='start'>
+                            <InputAdornment position="start">
                               <img src={settingicon} />
                             </InputAdornment>
                           }
@@ -68,9 +69,9 @@ const Bid = () => {
                       </div>
                       <FormControl>
                         <StyledDateInput
-                          placeholder='0'
+                          placeholder="0"
                           onChange={handleChange}
-                          type='date'
+                          type="date"
                         />
                       </FormControl>
                     </Grid>
@@ -81,15 +82,17 @@ const Bid = () => {
               {/* buttons */}
               <div className={classes.buttons}>
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
+                  onClick={() => navigate(-1)}
+                >
                   {t("Cancel")}
                 </ActionButton>
                 <ActionButton
                   disabled
-                  color='light'
-                  className={classes.bidchange}>
+                  color="light"
+                  className={classes.bidchange}
+                >
                   {t("Bid")} &nbsp;
                   <img src={raiseicon} />
                 </ActionButton>

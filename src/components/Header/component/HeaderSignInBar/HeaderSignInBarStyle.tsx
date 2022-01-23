@@ -118,11 +118,6 @@ export const StyledRingButton = withStyles({
     minWidth: "35px",
     marginRight: "7px",
     cursor: "default",
-    // "&.Mui-disabled": {
-    //   "& svg": {
-    //     fill: "#ff2d55 !important",
-    //   },
-    // },
   },
 })(Button);
 

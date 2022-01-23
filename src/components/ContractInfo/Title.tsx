@@ -45,7 +45,6 @@ const Title: React.FC = () => {
         <ActionButton color="light" className={classes.jumpbtn}>
           {t("JUMP IN")}
         </ActionButton>
-        {/* </div> */}
       </div>
     </div>
   );
