@@ -2,18 +2,19 @@ import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Button from "../Base/Button";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-
+import LocationBtn from "../Base/LocationBtn";
+import { ShowMoreLessBtn } from "../ShowMoreLessBtn/ShowMoreLessBtn";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: "35px",
+    marginBottom: "47px",
   },
   title: {
-    fontSize: "13px",
-    fontWeight: 400,
-    lineHeight: "18px",
-    textTransform: "uppercase",
+    fontSize: "24px",
+    fontWeight: 600,
+    lineHeight: "50px",
     marginBottom: "8px",
-    color: "#676370",
+    color: "white",
   },
   parcels: {
     display: "flex",
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   buttonGroup: {
     display: "grid",
     justifyContent: "space-between",
-    gridTemplateColumns: "repeat(auto-fill, 110px)",
+    gridTemplateColumns: "repeat(auto-fill, 83px)",
     marginTop: "13px",
     overflow: "hidden",
   },
@@ -35,6 +36,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   parcelbtn: {
     margin: "6px",
+    borderRadius: "20px",
+    width: "79px",
+    padding: "5.5px 11px",
+    backgroundColor: "#282E4E",
   },
   showmoreContent: {
     marginTop: "15px",
@@ -56,44 +61,24 @@ const Parcels: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className={classes.title}>parcels</div>
+      <div className={classes.title}>Parcels</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>
-          <Button color="dark" className={classes.parcelbtn}>
-            <LocationOnIcon className={classes.pin} />
-            -9, -9
-          </Button>
-          <Button color="dark" className={classes.parcelbtn}>
-            <LocationOnIcon className={classes.pin} />
-            -9, -8
-          </Button>
-          <Button color="dark" className={classes.parcelbtn}>
-            <LocationOnIcon className={classes.pin} />
-            -9, -7
-          </Button>
-          <Button color="dark" className={classes.parcelbtn}>
-            <LocationOnIcon className={classes.pin} />
-            -9, -6
-          </Button>
-          <Button color="dark" className={classes.parcelbtn}>
-            <LocationOnIcon className={classes.pin} />
-            -9, -5
-          </Button>
-          <Button color="dark" className={classes.parcelbtn}>
-            <LocationOnIcon className={classes.pin} />
-            -9, -5
-          </Button>
-          <Button color="dark" className={classes.parcelbtn}>
-            <LocationOnIcon className={classes.pin} />
-            -9, -5
-          </Button>
-          <Button color="dark" className={classes.parcelbtn}>
-            <LocationOnIcon className={classes.pin} />
-            -9, -5
-          </Button>
+          <LocationBtn axisX={12} axisY={45} />
+          <LocationBtn axisX={32} axisY={11} />
+          <LocationBtn axisX={33} axisY={9} />
+          <LocationBtn axisX={30} axisY={-45} />
+          <LocationBtn axisX={12} axisY={-45} />
+          <LocationBtn axisX={12} axisY={-45} />
+          <LocationBtn axisX={12} axisY={-45} />
+          <LocationBtn axisX={12} axisY={-45} />
+          <LocationBtn axisX={12} axisY={-45} />
+          <LocationBtn axisX={12} axisY={-45} />
+          <LocationBtn axisX={12} axisY={-45} />
         </div>
         <div className={classes.showmoreContent}>
-          <span className={classes.showmoreBtn}>SHOW LESS</span>
+          {/* <span className={classes.showmoreBtn}>SHOW LESS</span> */}
+          <ShowMoreLessBtn />
         </div>
       </div>
     </div>

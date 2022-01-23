@@ -26,5 +26,19 @@ export const MyStoreStyle = makeStyles((theme: Theme) => ({
   rightPart: {
     width: "100%",
   },
-  statsContainer: {},
+  statsContainer: {
+    marginBottom: "42px",
+  },
+  title: {
+    fontWeight: 600,
+    fontSize: "24px",
+    lineHeight: "50px",
+    letterSpacing: "2%",
+    marginTop: "-7px",
+    marginBottom: "16px",
+  },
+  generalStats: {
+    marginBottom: "20px",
+  },
+  staginContainer: {},
 }));

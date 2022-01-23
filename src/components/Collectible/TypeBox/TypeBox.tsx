@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TypeBoxStyle } from "./TypeBoxStyle";
+import { useLocation } from "react-router";
+import { typebox } from "../../../config/constant";
+
 export default function TypeBox() {
   const classes = TypeBoxStyle();
-  const [itemIndex, setitemIndex] = React.useState(1);
-  const handleStore = () => {
-    setitemIndex(1);
-  };
-  const handleListings = () => {
-    setitemIndex(2);
-  };
+  const [itemIndex, setitemIndex] = React.useState(typebox.store);
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+
+  const handleStore = () => {};
+  const handleListings = () => {};
+
+  useEffect(() => {
+    if (query.get("assetType") === typebox.listing)
+      setitemIndex(typebox.listing);
+  }, [location]);
+
   return (
     <>
       <div className={classes.typeBoxRoot}>
@@ -16,7 +24,9 @@ export default function TypeBox() {
         <div className={classes.boxBody}>
           <div
             className={
-              itemIndex === 2 ? classes.normalItem : classes.activeItem
+              itemIndex === typebox.store
+                ? classes.activeItem
+                : classes.normalItem
             }
             onClick={handleStore}
           >
@@ -28,7 +38,9 @@ export default function TypeBox() {
           {/* // */}
           <div
             className={
-              itemIndex === 1 ? classes.normalItem : classes.activeItem
+              itemIndex === typebox.listing
+                ? classes.activeItem
+                : classes.normalItem
             }
             onClick={handleListings}
           >

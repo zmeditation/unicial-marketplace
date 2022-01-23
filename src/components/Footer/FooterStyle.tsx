@@ -187,11 +187,10 @@ export const StyledLanguagePopover = withStyles({
   paper: {
     backgroundColor: "#1A1F37",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05 )",
-    marginBottom: "70px",
     borderRadius: "15px",
     position: "absolute",
     minWidth: "168px",
-    top: "419px",
+    marginTop: "-5px",
   },
 })(Popover);
 

@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CategoryBoxStyle } from "./CategoryBoxStyle";
 import {
   StyledAccordion,
   StyledAccordionSummary,
   StyledAccordionDetails,
 } from "../../Collectible/CollectibleSidebar/CollectibleSidebarStyle";
-import { Typography } from "@material-ui/core";
 import SidebarTree from "../../SidebarTree/SidebarTree";
 import { WearablesData } from "../../../pages/Collectibles/SidebarData";
+import { Typography } from "@material-ui/core";
+import { useLocation } from "react-router";
+import { category } from "../../../config/constant";
+
 export default function CategoryBox() {
   const classes = CategoryBoxStyle();
-  //popover relate
-  const [expanded, setExpanded] = React.useState<string | false>("panel1");
+  const location = useLocation();
+  const [expanded, setExpanded] = React.useState<string | false>(
+    category.wearable
+  );
+  const query = new URLSearchParams(location.search);
+
   const handleChange =
     (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
-  //
+
+  useEffect(() => {
+    if (query.get("section") === category.name) setExpanded(category.name);
+  }, [location]);
+
   return (
     <>
       <div className={classes.categoryBox}>
@@ -24,8 +35,8 @@ export default function CategoryBox() {
         <div className={classes.accordionRoot}>
           <StyledAccordion
             square
-            expanded={expanded === "panel1"}
-            onChange={handleChange("panel1")}
+            expanded={expanded === category.wearable}
+            onChange={handleChange(category.wearable)}
             className={classes.firstAccordion}
           >
             <StyledAccordionSummary
@@ -38,11 +49,10 @@ export default function CategoryBox() {
               <SidebarTree data={WearablesData} />
             </StyledAccordionDetails>
           </StyledAccordion>
-          {/* // */}
           <StyledAccordion
             square
-            expanded={expanded === "panel2"}
-            onChange={handleChange("panel2")}
+            expanded={expanded === category.name}
+            onChange={handleChange(category.name)}
             className={classes.firstAccordion}
           >
             <StyledAccordionSummary

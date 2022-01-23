@@ -7,13 +7,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "24px",
-    marginTop: "13px",
-    marginBottom: "20px",
+    padding: "16px 41px",
+    margin: "13px 0px",
     position: "relative",
     overflow: "hidden",
-    backgroundColor: "#242129",
-    borderRadius: "10px",
+    backgroundColor: "#282E4E",
+    borderRadius: "15px",
   },
   container: {
     flex: "1 1 auto",
@@ -56,32 +55,35 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   title: {
-    fontSize: "13px",
-    lineHeight: "18px",
-    marginBottom: "8px",
-    color: "#676370",
+    fontSize: "14px",
+    lineHeight: "17px",
     fontWeight: 400,
+    color: "#96A1DB",
+    opacity: "50%",
+    marginBottom: "10px",
   },
 
   fromIamge: {
     marginRight: "6px",
     borderRadius: "3px",
-    width: "18px",
-    height: "18px",
+    width: "20px",
+    height: "20px",
   },
   content: {
-    fontSize: "17px",
-    lineHeight: "26px",
+    fontSize: "16px",
+    lineHeight: "19px",
     display: "flex",
     alignItems: "center",
     marginTop: "4px",
-    fontWeight: 500,
+    fontWeight: 400,
   },
   symbol: {
-    fontSize: "normal",
+    fontSize: "20px",
     paddingRight: "0.3em",
     transform: "translateY(-0.06em)",
-    color: "#ff2d55",
+    background: "linear-gradient(to right, #FF7C4C 0%, #FFB03A 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
   },
 }));
 
@@ -99,7 +101,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
       {
         <div className={classes.container}>
           <div className={classes.fromPart}>
-            <div className={classes.title}>FROM</div>
+            <div className={classes.title}>From</div>
             <div className={classes.content}>
               <img
                 src={fromImg}
@@ -111,7 +113,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
           </div>
 
           <div className={classes.pricePart}>
-            <div className={classes.title}>PRICE</div>
+            <div className={classes.title}>Price</div>
             <div className={classes.content}>
               <i className={classes.symbol}>⏣</i>
               {price}
@@ -119,7 +121,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
           </div>
 
           <div className={classes.timePart}>
-            <div className={classes.title}>TIME LEFT</div>
+            <div className={classes.title}>Time Left</div>
             <div className={classes.content}>{time} days</div>
           </div>
         </div>

@@ -14,17 +14,24 @@ export const useStyles = makeStyles((theme: Theme) => ({
       height: "calc(100vh - 272px)",
     },
   },
-  itemContainer: {
+  content: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    height: "100%",
+    minHeight: "500px",
     width: "1064px",
-    maxWidth: "100% !important",
     marginLeft: "auto !important",
     marginRight: "auto !important",
     [theme.breakpoints.down(768)]: {
       width: "80%",
     },
   },
+  itemContainer: {
+    maxWidth: "100% !important",
+  },
   title: {
-    margin: "calc(2rem - 0.14286em) 0 1rem",
+    marginBottom: "1rem",
     position: "relative",
     fontSize: "45px",
     lineHeight: "48px",
@@ -33,7 +40,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: "#fff",
     fontWeight: 600,
     fontStretch: "normal",
-    marginTop: "20%",
     [theme.breakpoints.down(550)]: {
       fontSize: "30px",
     },

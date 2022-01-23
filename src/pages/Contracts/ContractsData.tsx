@@ -1,5 +1,6 @@
 import fromImg from "../../assets/img/logo512.png";
-import toImg from "../../assets/img/1.png";
+// import toImg from "../../assets/img/1.png";
+import toImg from "../../assets/img/Pussyhair.png";
 export const headerData = ["From", "To", "Type", "When", "Price"];
 
 export const transactionData = [

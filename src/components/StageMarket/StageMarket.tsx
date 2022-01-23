@@ -65,7 +65,8 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       lineHeight: "17px",
       fontWeight: 400,
-      color: "#676370",
+      color: "#96A1DB",
+      opacity: "50%",
       fontFamily:
         '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
       "&.MuiTableCell-root": {

@@ -8,6 +8,7 @@ import { headerId } from "../../config/constant";
 import HeaderSignInBtn from "./component/HeaderSignInBtn/HeaderSignInBtn";
 import { useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
+import { useTranslation, withTranslation, Trans } from "react-i18next";
 
 export default function Header() {
   const classes = HeaderStyle();
@@ -15,6 +16,7 @@ export default function Header() {
   const location = useLocation();
   const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
   const loginAddress = useAppSelector(selectLoginAddress);
+  const { t, i18n } = useTranslation();
 
   const handleSignIn = () => {
     navigate(`/signin`);
@@ -45,7 +47,7 @@ export default function Header() {
           <div className={classes.headermenuContainer}>
             <Link to="/" className={classes.logoContent}>
               <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
-              <span className={classes.logoName}>UNICIAL</span>
+              <span className={classes.logoName}>{t("unicial")}</span>
             </Link>
             <Button
               className={
