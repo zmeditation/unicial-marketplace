@@ -17,11 +17,9 @@ export default function AssetsBox() {
     (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
-  //
   return (
     <>
       <div className={classes.categoryBox}>
-        {/* <div className={classes.categoryTitle}>Categories</div> */}
         <div className={classes.categoryTitle}>Assets</div>
         <div className={classes.accordionRoot}>
           {/*--- add collection ---*/}

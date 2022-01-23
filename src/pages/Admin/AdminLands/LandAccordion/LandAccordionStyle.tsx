@@ -3,8 +3,6 @@ import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
-//
-
 export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 160px)",
@@ -44,7 +42,6 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   secondAccordion: {
     "&.MuiPaper-root": {
       borderRadius: "0px 0px 8px 8px",
-      // boderTop: "2px solid #242129 !important",
       "& .MuiAccordionSummary-root": {
         boderTop: "1px solid #242129 ",
       },
@@ -103,7 +100,6 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
 
   buttons: {
     display: "flex",
-    // width: "400px",
     [theme.breakpoints.down(769)]: {
       width: "100%",
       display: "grid",

@@ -114,7 +114,6 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 500,
       "&.MuiTableCell-root": {
         padding: "7px 0px",
-        // borderTop: "solid 1px #242129",
       },
     },
     whenCell: {

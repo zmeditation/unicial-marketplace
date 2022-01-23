@@ -8,7 +8,6 @@ export const CollectibleSidebarStyle = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: "#282E4E",
     width: "265px",
-    // height: "auto",
     borderRadius: "15px",
     paddingBottom: "10px",
   },

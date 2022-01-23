@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: "uppercase",
     marginBottom: "21px",
     color: "#96A1DB",
+    opacity: "50%",
   },
   descript: {
     display: "flex",

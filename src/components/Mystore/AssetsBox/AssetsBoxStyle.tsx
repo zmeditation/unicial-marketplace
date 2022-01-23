@@ -18,6 +18,7 @@ export const AssetsBoxStyle = makeStyles((theme: Theme) =>
       marginLeft: "40px",
       marginTop: "35px",
       marginBottom: "20px",
+      opacity: "50%",
     },
     divideline: {
       borderBottom: "2px solid #373F66",

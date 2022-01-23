@@ -19,7 +19,6 @@ export default function TypeBox() {
           >
             On Sale
           </div>
-          {/* // */}
           <div
             className={
               itemIndex !== "Sales" ? classes.normalItem : classes.activeItem

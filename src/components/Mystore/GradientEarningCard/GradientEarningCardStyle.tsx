@@ -8,7 +8,6 @@ import {
 export const GradientEarningCardStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      //   backgroundColor: "#282E4E",
       borderRadius: "30px",
       padding: "25px",
       height: "109px",
@@ -36,7 +35,6 @@ export const GradientEarningCardStyle = makeStyles((theme: Theme) =>
       fontSize: "12px",
       lineHeight: "14px",
       color: "white",
-      //   textAlign: 'left',
     },
     price: {
       fontFamily: "Montserrat",

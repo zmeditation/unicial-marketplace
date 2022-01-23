@@ -26,12 +26,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     "&.MuiTableCell-root": {
       padding: "10px 10px 10px 20px !important",
     },
-    // display: "flex",
     alignItems: "center",
   },
-  imageCell: {
-    // display: "flex",
-  },
+  imageCell: {},
   symbol: {
     fontSize: "20px",
     paddingRight: "0.3em",
@@ -39,6 +36,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     background: "linear-gradient(to right, #FF7C4C 0%, #FFB03A 100%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
+    marginTop: "3px",
   },
   avatarContainer: {
     width: "20px",
@@ -47,9 +45,21 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "100%",
     marginRight: "12px",
     float: "left",
+    marginTop: "3px",
   },
   avatar: {
     width: "100%",
     height: "100%",
+  },
+  symbolCell: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  price: {
+    fontSize: "16px",
+    fontWeight: 400,
+    lineHeight: "19.2px",
+    color: "white",
   },
 }));

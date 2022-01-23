@@ -32,9 +32,9 @@ const LatestSalesTable = ({ columns, rows, stepIndex }: Props) => {
       </TableCell>
       <TableCell className={clsx(classes.tableCell)}>{row.type}</TableCell>
       <TableCell className={clsx(classes.tableCell)}>{row.when}</TableCell>
-      <TableCell className={clsx(classes.tableCell, classes.imageCell)}>
+      <TableCell className={clsx(classes.tableCell, classes.symbolCell)}>
         <i className={classes.symbol}>⏣</i>
-        {row.price}
+        <div className={classes.price}>{row.price}</div>
       </TableCell>
     </TableRow>
   ));

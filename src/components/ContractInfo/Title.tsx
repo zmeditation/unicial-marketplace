@@ -38,12 +38,10 @@ const Title: React.FC = () => {
       <div className={classes.title}>Genesis Plaza</div>
       <div className={classes.smalltitle}>Unicial Genesis Plaza</div>
       <div className={classes.buttonGroup}>
-        <ActionButton color="dark">400 LAND</ActionButton>
-        {/* <div className={classes.jumpbtn}> */}
+        <ActionButton disabled>400 LAND</ActionButton>
         <ActionButton color="light" className={classes.jumpbtn}>
           JUMP IN
         </ActionButton>
-        {/* </div> */}
       </div>
     </div>
   );

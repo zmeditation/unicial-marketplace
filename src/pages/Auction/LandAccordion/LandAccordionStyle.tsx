@@ -4,7 +4,6 @@ import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import { Input } from "@material-ui/core";
-//
 
 export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   root: {

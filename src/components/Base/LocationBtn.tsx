@@ -18,10 +18,14 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       margin: "5px",
     },
+    icon: {
+      marginTop: "3px",
+    },
     info: {
       fontSize: "14px",
       lineHeight: "17px",
       fontWeight: 400,
+      lineHeightStep: "16.8px",
       color: "#96A1DB !important",
     },
   })
@@ -38,7 +42,7 @@ export default function LacationBtn({ axisX, axisY, onClick }: Props) {
   return (
     <>
       <div className={classes.root}>
-        <img src={pinlocationSvg} />
+        <img src={pinlocationSvg} className={classes.icon} />
         <div className={classes.info}>
           {axisX},{axisY}
         </div>

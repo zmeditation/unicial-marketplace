@@ -32,7 +32,6 @@ export const CollectibleFilterDialogStyle = makeStyles((theme: Theme) =>
     dialogRoot: {},
     dialogContainer: {
       "& .MuiPaper-root": {
-        // maxwidth: "calc(100% - 26px)",
         backgroundColor: "#282E4E",
         borderRadius: "5px",
         width: "100%",

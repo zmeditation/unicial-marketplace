@@ -1,6 +1,5 @@
-//material-ui
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-//style
+
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     labelNav: {
@@ -30,13 +29,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       minWidth: "200px",
       width: "100%",
       zIndex: 1,
-      // [theme.breakpoints.down("md")]: {
-      //   width: "180px",
-      //   minWidth: "180px",
-      // },
-      // [theme.breakpoints.down(768)]: {
-      //   display: "none",
-      // },
     },
     sidebarWrap: {
       width: "100%",
@@ -52,10 +44,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       cursor: "pointer",
       padding: "0px 21px 0px 59px",
-      // "&:hover": {
-      //   background: "#f5f5f5",
-      //   cursor: "pointer",
-      // },
     },
     activeSidebarLink: {
       display: "flex",
@@ -68,10 +56,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       background: "#f5f5f5",
       padding: "0px 21px 0px 59px",
-      // "&:hover": {
-      //   background: "#f5f5f5",
-      //   cursor: "pointer",
-      // },
     },
     dropdownLink: {
       fontSize: "16px",
@@ -82,10 +66,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       borderLeft: "2px solid transparent",
       display: "flex",
       alignItems: "center",
-      // "&:hover": {
-      //   background: "#f5f5f5",
-      //   cursor: "pointer",
-      // },
     },
     activeDropdownLink: {
       height: "40px",
@@ -97,10 +77,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       fontWeight: 500,
       background: "#f5f5f5",
-      // "&:hover": {
-      //   background: "#f5f5f5",
-      //   cursor: "pointer",
-      // },
     },
   })
 );

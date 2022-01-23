@@ -35,7 +35,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   backBtnPosition: {
-    // position: "absolute",
     display: "flex",
     justifyContent: "start",
     margin: "10px 0px",
@@ -71,7 +70,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "40px",
   },
   tableRoot: {
-    // width: "820px ",
     width: "100%",
     "& .MuiTableContainer-root": {
       width: "auto",

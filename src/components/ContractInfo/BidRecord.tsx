@@ -1,4 +1,3 @@
-import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import fromImg from "../../assets/img/1.png";
 const useStyles = makeStyles((theme: Theme) => ({
@@ -84,6 +83,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: "linear-gradient(to right, #FF7C4C 0%, #FFB03A 100%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
+    marginTop: "0.5px",
   },
 }));
 

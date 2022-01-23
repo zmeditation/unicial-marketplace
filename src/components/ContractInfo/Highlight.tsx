@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: "uppercase",
     marginBottom: "21px",
     color: "#96A1DB",
+    opacity: "50%",
   },
   cards: {
     width: "100%",
     display: "flex",
-    // justifyContent: "space-between",
     [theme.breakpoints.down(769)]: {
       display: "block",
     },
@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "16px",
     lineHeight: "19.2px",
     fontWeight: 400,
+    marginBottom: "7px",
   },
   description: {
     fontSize: "14px",

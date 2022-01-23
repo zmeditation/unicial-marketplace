@@ -8,9 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "110px",
       justifyContent: "center",
     },
-    imgcontainer: {
-      //   display: "flex",
-    },
+    imgcontainer: {},
     description: {
       fontSize: "16px",
       lineHeight: "40px",

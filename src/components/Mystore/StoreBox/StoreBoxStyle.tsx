@@ -11,6 +11,7 @@ export const StoreBoxStyle = makeStyles((theme: Theme) => ({
     marginLeft: "40px",
     marginBottom: "13px",
     color: "#96A1DB",
+    opacity: "50%",
     fontWeight: 400,
     fontSize: "14px",
   },
@@ -23,7 +24,6 @@ export const StoreBoxStyle = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     marginBottom: "8px",
     borderLeft: "2px solid #282E4E",
-    //
     fontStyle: "normal",
     fontWeight: 400,
     fontSize: "16px",
@@ -39,7 +39,6 @@ export const StoreBoxStyle = makeStyles((theme: Theme) => ({
     borderLeft: "2px solid #7F64E2",
 
     backgroundColor: "#21263F",
-    //
     fontStyle: "normal",
     fontWeight: 400,
     fontSize: "16px",
