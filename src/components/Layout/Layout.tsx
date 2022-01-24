@@ -18,6 +18,7 @@ import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 import Collectibles from "../../pages/Collectibles/Collectibles";
 import { setloginAddress } from "../../store/auth/actions";
 import { useAppDispatch } from "../../store/hooks";
+import ProtectedRoute from "./ProtectedRoute";
 
 export default function Layout() {
   const dispatch = useAppDispatch();
@@ -50,8 +51,9 @@ export default function Layout() {
         />
         <Route path="/admin/lands" element={<AdminLands />} />
         <Route path="/admin/estate" element={<AdminEstate />} />
-
-        <Route path="/signin" element={<SignIn />} />
+        <Route path='/signin' element={<ProtectedRoute/>}>
+            <Route path='/signin' element={<SignIn/>}/>
+          </Route>
       </Routes>
       <Footer />
       <Notification/>
