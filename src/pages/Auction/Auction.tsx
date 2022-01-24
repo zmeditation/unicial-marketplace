@@ -39,6 +39,7 @@ import {
   generateSigner,
 } from "../../common/contract";
 import { getparcels } from "../../store/selectedparcels";
+import { Typography } from "@material-ui/core";
 
 declare var window: any;
 var signer: any,
@@ -47,18 +48,20 @@ var signer: any,
   spaceRegistryContract: any;
 
 // define consts
-var uccPricePerSpace: number;
 var spacesLimitPerBid: number;
-
+const uccApprovalAmount = BigNumber.from(
+  "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+);
 const Auction = () => {
   const classes = useStyles();
 
   const [width, setWidth] = useState(0);
-  const [uccAllowance, setUccAllowance] = useState(BigNumber.from(0)); // This shows current allowed ucc allowance
-  const [uccApprovalAmount, setUccApprovalAmount] = useState(BigNumber.from(0)); // This shows current allowed ucc allowance
-  const [ttlSpacesPrice, setTtlSpacePrice] = useState(BigNumber.from(0)); // This shows current allowed ucc allowance
+  const [uccPricePerSpace, setUccPricePerSpace] = useState(0);
+  const [uccAllowance, setUccAllowance] = useState(BigNumber.from(0)); // This shows current appoved ucc allowance
+  const [ttlSpacesPrice, setTtlSpacePrice] = useState(BigNumber.from(0)); // This shows current total space price
   const [uccBalance, setUccBalance] = useState(BigNumber.from(0));
   const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
+  const [isBiddable, setIsBiddable] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuctionAuthorized, setIsAuctionAuthorized] = useState(false);
   const { t, i18n } = useTranslation();
@@ -108,23 +111,18 @@ const Auction = () => {
 
   useEffect(() => {
     convertToBidData();
-    console.log(bidParcels.length * uccPricePerSpace);
     let ttl =
       (uccPricePerSpace &&
         BigNumber.from(bidParcels.length * uccPricePerSpace)) ||
       BigNumber.from(0);
     setTtlSpacePrice(ttl);
-    setUccApprovalAmount(ttl);
   }, [bidParcels.length]);
 
-  useEffect(() => {
-    console.log("Ucc allowance changed!", uccAllowance.toString());
-  }, [uccAllowance.toString()]);
+  useEffect(() => {}, [uccAllowance.toString()]);
 
   useEffect(() => {}, []);
   // approve UCC token to buy Space token
   const handleApproveUCCToken = async () => {
-    console.log(uccApprovalAmount + " in handleApprovedUCCToken");
     // generate approve tx and wait until tx finihes
     let uccApproveTx = await uccContract.approve(
       SpaceAuctionAddress,
@@ -140,6 +138,18 @@ const Auction = () => {
     setUccAllowance(allowance);
   };
 
+  const handleCancelApprove = async () => {
+    // generate cancel approve tx and wait until tx finihes
+    let uccCancelApproveTx = await uccContract.approve(SpaceAuctionAddress, 0);
+
+    await uccCancelApproveTx.wait();
+
+    let allowance = await uccContract.allowance(
+      loginAddress,
+      SpaceAuctionAddress
+    );
+    setUccAllowance(allowance);
+  };
   const handleClear = () => {
     dispatch(
       showAlert({
@@ -149,9 +159,7 @@ const Auction = () => {
     );
     dispatch(getparcels([]));
   };
-  const handleApprovedUCCToken = () => {};
   const handleBidSpace = async () => {
-    console.log("ttlSpacesPrice", ttlSpacesPrice);
     if (bidParcels.length === 0) {
       window.alert("No space selected for bid. Please select first.");
     } else {
@@ -163,11 +171,25 @@ const Auction = () => {
         );
       } else {
         if (uccBalance.gte(ttlSpacesPrice)) {
-          // check able to approve
-          window.alert(
-            "Not enough allowance for ucc token. Will you approve the auction contract to use some of your UCC for your bid?"
-          );
-          await handleApproveUCCToken();
+          if (uccAllowance.gt(0)) {
+            // call bid function to get space token by offering ucc token
+            let bidTx = await spaceAuctionContract.bid(
+              bid.xs,
+              bid.ys,
+              loginAddress
+            );
+
+            await bidTx.wait();
+            window.alert("Bid was successful");
+
+            await initUccBalAndAllowance();
+          } else {
+            // check able to approve
+            window.alert(
+              "Auction contract is not allowed to use your UCC token. Click Approve button to approve auction contract."
+            );
+            // await handleApproveUCCToken();
+          }
         } else {
           window.alert(
             "You don't have enought UCC token to bid for space tokens"
@@ -175,13 +197,6 @@ const Auction = () => {
         }
       }
     }
-    // call bid function to get space token by offering ucc token
-    let bidTx = await spaceAuctionContract.bid(bid.xs, bid.ys, loginAddress);
-
-    await bidTx.wait();
-    window.alert("Bid was successful");
-
-    await initUccBalAndAllowance();
   };
 
   const convertToBidData = () => {
@@ -198,6 +213,7 @@ const Auction = () => {
     data.ys = ys;
     setBid(data);
   };
+
   const initialize = async () => {
     // initialize contracts
     signer = generateSigner(window.ethereum);
@@ -218,9 +234,11 @@ const Auction = () => {
     await proxyOwnerWorker();
     await initUccBalAndAllowance();
     // get ucc price per space and maximum spaces per bid
-    uccPricePerSpace = parseInt(
+    let uccPricePerSpaceTmp = parseInt(
       (await spaceAuctionContract.getCurrentPrice()).toString()
     );
+    setUccPricePerSpace(uccPricePerSpaceTmp);
+    console.log("uccPricePerSpace", uccPricePerSpace);
     spacesLimitPerBid = parseInt(
       (await spaceAuctionContract.spacesLimitPerBid()).toString()
     );
@@ -237,6 +255,11 @@ const Auction = () => {
       SpaceAuctionAddress
     );
     setUccAllowance(allowance);
+    if (allowance.gt(BigNumber.from(0)) && uccBal.gt(BigNumber.from(0))) {
+      setIsBiddable(true);
+    } else {
+      setIsBiddable(false);
+    }
   };
 
   const proxyOwnerWorker = async () => {
@@ -281,43 +304,81 @@ const Auction = () => {
             stepIndex={1}
           />
         </div>
+        <div>
+          <Typography>My UCC Balance: {uccBalance.toString()}</Typography>
+          <Typography>
+            Current Space Price in UCC Token: {uccPricePerSpace}
+          </Typography>
+          <Typography>
+            Buyable Maximum Spaces:{" "}
+            {uccPricePerSpace > 0 &&
+              uccBalance.div(BigNumber.from(uccPricePerSpace)).toString()}
+          </Typography>
+        </div>
         <div className={classes.LandMap}>
           <div className={classes.LandMapContent}>
             <LandMap height={400} width={width} initialX={1} initialY={1} />
           </div>
           <BackButton className={classes.backBtnPosition} />
           <div className={classes.actionButton}>
+            {uccAllowance.gt(BigNumber.from(0)) ? (
+              <ActionButton
+                color="light"
+                className={classes.normalBtn}
+                onClick={handleCancelApprove}
+              >
+                {t("Cancel Approve")}
+                <CallMadeIcon fontSize="small" />
+              </ActionButton>
+            ) : (
+              <ActionButton
+                color="light"
+                className={classes.normalBtn}
+                onClick={handleApproveUCCToken}
+              >
+                {t("Approve")}
+                <CallMadeIcon fontSize="small" />
+              </ActionButton>
+            )}
+
+            {isBiddable ? (
+              <ActionButton
+                color="light"
+                className={classes.normalBtn}
+                onClick={handleBidSpace}
+              >
+                {t("Bid")}
+                <CallMadeIcon fontSize="small" />
+              </ActionButton>
+            ) : (
+              <ActionButton
+                color="light"
+                className={classes.normalBtn}
+                disabled
+              >
+                {t("Bid")}
+                <CallMadeIcon fontSize="small" />
+              </ActionButton>
+            )}
+
             <ActionButton
-              color='light'
-              className={classes.normalBtn}
-              onClick={handleApprovedUCCToken}
-              disabled>
-              {t("Approve")}
-              <CallMadeIcon fontSize='small' />
-            </ActionButton>
-            <ActionButton
-              color='light'
-              className={classes.normalBtn}
-              onClick={handleBidSpace}>
-              {t("Bid")}
-              <CallMadeIcon fontSize='small' />
-            </ActionButton>
-            <ActionButton
-              color='dark'
+              color="dark"
               className={classes.gradientBtn}
-              onClick={handleClear}>
+              onClick={handleClear}
+            >
               {t("clear")}
-            </ActionButton>
-            <ActionButton color='dark' className={classes.gradientBtn}>
-              {t("Authorize Auction")}
             </ActionButton>
             {isAdmin ? (
               isAuctionAuthorized ? (
-                <ActionButton color='dark' onClick={authorizeAuctionContract}>
+                <ActionButton
+                  color="dark"
+                  className={classes.gradientBtn}
+                  onClick={authorizeAuctionContract}
+                >
                   {t("Auction Authorized")}
                 </ActionButton>
               ) : (
-                <ActionButton color='dark'>
+                <ActionButton color="dark">
                   {t("Authorize Auction")}
                 </ActionButton>
               )
