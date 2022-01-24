@@ -272,9 +272,9 @@ const Auction = () => {
       <TobTab />
       <div className={classes.root}>
         <div className={classes.auctionInfo}>
-          <span className={classes.title}>{t("lefttime")}.</span>
+          <span className={classes.title}>{t("Left Time")}.</span>
           <CountDown />
-          <span className={classes.title}>{t("staging")}.</span>
+          <span className={classes.title}>{t("Staging")}.</span>
           <StagingTable
             columns={headerData}
             rows={transactionData}
@@ -292,14 +292,14 @@ const Auction = () => {
               className={classes.normalBtn}
               onClick={handleApprovedUCCToken}
               disabled>
-              {t("approve")}
+              {t("Approve")}
               <CallMadeIcon fontSize='small' />
             </ActionButton>
             <ActionButton
               color='light'
               className={classes.normalBtn}
               onClick={handleBidSpace}>
-              {t("bid")}
+              {t("Bid")}
               <CallMadeIcon fontSize='small' />
             </ActionButton>
             <ActionButton
@@ -309,16 +309,16 @@ const Auction = () => {
               {t("clear")}
             </ActionButton>
             <ActionButton color='dark' className={classes.gradientBtn}>
-              {t("authorizeauction")}
+              {t("Authorize Auction")}
             </ActionButton>
             {isAdmin ? (
               isAuctionAuthorized ? (
                 <ActionButton color='dark' onClick={authorizeAuctionContract}>
-                  {t("auctionauthorized")}
+                  {t("Auction Authorized")}
                 </ActionButton>
               ) : (
                 <ActionButton color='dark'>
-                  {t("authorizeauction")}
+                  {t("Authorize Auction")}
                 </ActionButton>
               )
             ) : (

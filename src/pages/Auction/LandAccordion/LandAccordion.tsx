@@ -132,7 +132,7 @@ export default function LandAccordion() {
               id="panel1d-header"
             >
               <Typography className={classes.title}>
-                {t("selectarealands")}
+                {t("Select AreaLands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -203,11 +203,11 @@ export default function LandAccordion() {
                     onClick={showmapArea}
                     className={classes.showmapBtn}
                   >
-                    {t("showmap")}
+                    {t("Show Map")}
                   </ActionButton>
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      {t("selectedlands")}:
+                      {t("Selected Lands")}:
                     </div>
                     <div className={classes.selectedLandResult}>
                       {countArea}
@@ -229,7 +229,7 @@ export default function LandAccordion() {
               id="panel2d-header"
             >
               <Typography className={classes.title}>
-                {t("selectmultiplelands")}
+                {t("Select Multiple Lands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -253,11 +253,11 @@ export default function LandAccordion() {
                     onClick={showmapMultiland}
                     className={classes.showmapBtn}
                   >
-                    {t("showmap")}
+                    {t("Show Map")}
                   </ActionButton>
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      {t("selectedlands")}:
+                      {t("Selected Lands")}:
                     </div>
                     <div className={classes.selectedLandResult}>
                       {countMulti}

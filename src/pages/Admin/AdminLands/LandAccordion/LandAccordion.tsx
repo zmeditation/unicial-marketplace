@@ -37,7 +37,7 @@ export default function LandAccordion() {
               id="panel1d-header"
             >
               <Typography className={classes.title}>
-                {t("selectarealands")}
+                {t("Select AreaLands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -104,7 +104,7 @@ export default function LandAccordion() {
                   {/* selected lands */}
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      {t("selectedlands")}:
+                      {t("Selected Lands")}:
                     </div>
                     <div className={classes.selectedLandResult}>9000000</div>
                   </div>
@@ -112,7 +112,7 @@ export default function LandAccordion() {
                   {/* buttons */}
                   <div className={classes.buttons}>
                     <ActionButton color="red" className={classes.btnchange}>
-                      {t("showmap")}
+                      {t("Show Map")}
                     </ActionButton>
                     <ActionButton color="dark" className={classes.btnchange}>
                       {t("assign")}
@@ -134,7 +134,7 @@ export default function LandAccordion() {
               id="panel2d-header"
             >
               <Typography className={classes.title}>
-                {t("selectmultiplelands")}
+                {t("Select Multiple Lands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -154,7 +154,7 @@ export default function LandAccordion() {
                   {/* selected lands */}
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      {t("selectedlands")}:
+                      {t("Selected Lands")}:
                     </div>
                     <div className={classes.selectedLandResult}>9000000</div>
                   </div>
@@ -162,7 +162,7 @@ export default function LandAccordion() {
                   {/* buttons */}
                   <div className={classes.buttons}>
                     <ActionButton color="red" className={classes.btnchange}>
-                      {t("showmap")}
+                      {t("Show Map")}
                     </ActionButton>
                     <ActionButton color="dark" className={classes.btnchange}>
                       {t("assign")}
