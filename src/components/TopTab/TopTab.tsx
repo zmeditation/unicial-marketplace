@@ -37,7 +37,7 @@ export const PurpleSwitch = withStyles({
 export default function TopTab() {
   const classes = TopTabStyle();
   const location = useLocation();
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [toptab_index, setToptabIndex] = React.useState(1);
   const [searchbar_index, setSearchbarIndex] = React.useState(1);
@@ -45,7 +45,7 @@ export default function TopTab() {
   const handleLand = (url: string) => {
     navigate(url);
   };
-
+  console.log("this is search section", location.search);
   useEffect(() => {
     if (location.pathname.includes("/lands")) {
       setToptabIndex(topTabIndex.land);

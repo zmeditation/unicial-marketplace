@@ -10,6 +10,7 @@ import { Typography } from "@material-ui/core";
 import { useLocation, useNavigate } from "react-router";
 import { category } from "../../../config/constant";
 import { useTranslation } from "react-i18next";
+import { WearablesData } from "../../CategoryWearables/SidebarData";
 import clsx from "clsx";
 
 export default function CategoryBox() {
@@ -42,6 +43,7 @@ export default function CategoryBox() {
       setExpanded(category.wearable);
     } else {
       setExpanded(category.wearable);
+      setActiveCategory("");
     }
   }, [location]);
 
@@ -67,7 +69,7 @@ export default function CategoryBox() {
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
-              <CategoryWearables />
+              <CategoryWearables data={WearablesData} />
             </StyledAccordionDetails>
           </StyledAccordion>
           <StyledAccordion

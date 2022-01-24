@@ -10,8 +10,20 @@ import { useLocation } from "react-router";
 import clsx from "clsx";
 import { Link, useNavigate } from "react-router-dom";
 import { WearablesData } from "./SidebarData";
+// interface SubNabData {
+//   title: string,
+//   path: string
+// }
 
-export default function CategoryWearables() {
+// interface PropsData {
+//   title: string,
+//   subNab: SubNabData
+// }
+interface PropsData {
+  data: any;
+}
+export default function CategoryWearables(props: any) {
+  // console.log(props);
   const classes = CategoryWearablesStyle();
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,18 +42,22 @@ export default function CategoryWearables() {
   };
 
   useEffect(() => {
+    setExpanded("");
+    setActiveCategory("");
     const category = query.get("section");
-    WearablesData.forEach((items) => {
+    // console.log(category);
+    props.data.forEach((items: any) => {
       if (items.path === category) {
         setExpanded(items.path);
         setActiveCategory(items.path);
+      } else {
+        items.subNav?.forEach((item: any) => {
+          if (item.path === category) {
+            setExpanded(items.path);
+            setActiveCategory(item.path);
+          }
+        });
       }
-      items.subNav?.forEach((item) => {
-        if (item.path === category) {
-          setExpanded(items.path);
-          setActiveCategory(item.path);
-        }
-      });
     });
   }, [location]);
 
@@ -49,7 +65,7 @@ export default function CategoryWearables() {
     <>
       <div className={classes.categoryBox}>
         <div className={classes.accordionRoot}>
-          {WearablesData.map((item: any, index: any) => {
+          {props.data.map((item: any, index: any) => {
             return (
               <StyledAccordion
                 square

@@ -24,5 +24,11 @@ export const AssetsBoxStyle = makeStyles((theme: Theme) =>
       borderBottom: "2px solid #373F66",
       margin: "5px 18px",
     },
+    active: {
+      "& > :first-child.MuiAccordionSummary-root": {
+        backgroundColor: "#21263f",
+        borderLeft: "2px solid #7f64e2",
+      },
+    },
   })
 );

@@ -72,6 +72,8 @@ export const typebox = {
 };
 
 export const category = {
+  collections: "collections",
+  land: "land",
   wearable: "wearables",
   name: "ens",
 };

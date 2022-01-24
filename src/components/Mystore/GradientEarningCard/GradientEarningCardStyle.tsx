@@ -8,7 +8,7 @@ import {
 export const GradientEarningCardStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      borderRadius: "30px",
+      borderRadius: "15px",
       padding: "25px",
       height: "109px",
       display: "flex",

@@ -39,13 +39,14 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
     textfilter: {
       display: "flex",
       width: "175px",
-      [theme.breakpoints.down(768)]: {
-        display: "none",
-      },
+      // alignItems: "center",
+      // [theme.breakpoints.down(768)]: {
+      //   display: "none",
+      // },
     },
     searchIcon: {
-      height: "14px",
-      marginTop: "8px",
+      // height: "14px",
+      // marginTop: "8px",
       marginRight: "10px",
     },
     searchinput: {

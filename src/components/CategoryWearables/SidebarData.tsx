@@ -1,5 +1,17 @@
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
 import ArrowDropUpRoundedIcon from "@material-ui/icons/ArrowDropUpRounded";
+export const LandData = [
+  {
+    title: "Parcels",
+    path: "parcels",
+    number: "100",
+  },
+  {
+    title: "Estates",
+    path: "estates",
+    number: "200",
+  },
+];
 export const WearablesData = [
   {
     title: "Head",

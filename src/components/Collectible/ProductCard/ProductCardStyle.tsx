@@ -36,14 +36,12 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       marginTop: "23px",
       marginBottom: "17px",
       textAlign: "center",
-      // paddingTop: "16px",
-      //
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
     },
     image: {
-      width: "80%",
+      // width: "80%",
       maxWidth: "80%",
     },
     productName: {

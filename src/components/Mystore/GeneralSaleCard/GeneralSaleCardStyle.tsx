@@ -9,7 +9,7 @@ export const GeneralSaleCardStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: "#282E4E",
-      borderRadius: "30px",
+      borderRadius: "15px",
       padding: "25px",
       height: "109px",
       display: "flex",
@@ -31,6 +31,12 @@ export const GeneralSaleCardStyle = makeStyles((theme: Theme) =>
     },
     infoContainer: {
       marginLeft: "25px",
+      [theme.breakpoints.down(992)]: {
+        marginLeft: "11px",
+      },
+      [theme.breakpoints.down(960)]: {
+        marginLeft: "25px",
+      },
     },
     title: {
       fontSize: "12px",

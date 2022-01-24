@@ -27,10 +27,13 @@ import MobileCategoryBox from "../MobileCategoryBox/MobileCategoryBox";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 import { useTranslation } from "react-i18next";
 import ActionButton from "../../Base/ActionButton";
+import CategoryWearables from "../../CategoryWearables/CategoryWearables";
+import { WearablesData, LandData } from "./../../CategoryWearables/SidebarData";
+import AssetsBox from "../../Mystore/AssetsBox/AssetsBox";
 export default function CollectibleFilterDialog() {
   const classes = CollectibleFilterDialogStyle();
   const [open, setOpen] = React.useState(false);
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleDialogOpen = () => {
     setOpen(true);
@@ -147,7 +150,7 @@ export default function CollectibleFilterDialog() {
         className={classes.dialogContainer}
       >
         <DialogTitle id="form-dialog-title" className={classes.maintitle}>
-         {t("Subscribe")}
+          {t("Subscribe")}
         </DialogTitle>
         <DialogContent>
           <div className={classes.collectionSelectContainer}>
@@ -350,7 +353,9 @@ export default function CollectibleFilterDialog() {
                 onClick={() => handleOrderByItem("Recently listed")}
               >
                 <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>{t("Recently listed")}</Box>
+                  <Box className={classes.listLabel}>
+                    {t("Recently listed")}
+                  </Box>
                 </Box>
               </StyledMenuItem>
 
@@ -391,7 +396,8 @@ export default function CollectibleFilterDialog() {
           </div>
           {/* mobile categorybox */}
           <div>
-            <MobileCategoryBox />
+            {/* <MobileCategoryBox /> */}
+            <AssetsBox />
           </div>
         </DialogContent>
         <DialogActions className={classes.actionBtnContainer}>

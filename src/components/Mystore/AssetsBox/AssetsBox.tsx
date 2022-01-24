@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { WearablesData, LandData } from "./../../CategoryWearables/SidebarData";
 import { AssetsBoxStyle } from "./AssetsBoxStyle";
 import {
   StyledAccordion,
@@ -8,87 +9,118 @@ import {
 import { Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import CategoryWearables from "../../CategoryWearables/CategoryWearables";
+import { category } from "../../../config/constant";
+
 import { LandsData } from "../../../pages/MyStore/SidebarData";
+import clsx from "clsx";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 export default function AssetsBox() {
   const classes = AssetsBoxStyle();
   const { t, i18n } = useTranslation();
-  //popover relate
-  const [expanded, setExpanded] = React.useState<string | false>("panel1");
-  const handleChange =
-    (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [expanded, setExpanded] = React.useState<string | false>();
+  // category.wearable
+  const [activeCategory, setActiveCategory] = React.useState<string | false>(
+    category.collections
+  );
+  const query = new URLSearchParams(location.search);
+
+  const handleRoute = (search: string) => {
+    query.set("section", search);
+    navigate({
+      pathname: location.pathname,
+      search: query.toString(),
+    });
+  };
+
+  useEffect(() => {
+    if (query.get("section") === category.collections) {
+      setActiveCategory(category.collections);
+    } else if (query.get("section") === category.land) {
+      setExpanded(category.land);
+      setActiveCategory(category.land);
+    } else if (query.get("section") === category.name) {
+      setExpanded(category.name);
+      setActiveCategory(category.name);
+    } else if (query.get("section") === category.wearable) {
+      setActiveCategory(category.wearable);
+      setExpanded(category.wearable);
+    } else {
+      // setExpanded(category.wearable);
+      setActiveCategory("");
+    }
+  }, [location]);
+
   return (
     <>
       <div className={classes.categoryBox}>
         {/* <div className={classes.categoryTitle}>Categories</div> */}
         <div className={classes.categoryTitle}>{t("Assets")}</div>
         <div className={classes.accordionRoot}>
-          {/*--- add collection ---*/}
           <StyledAccordion
             square
-            expanded={expanded === "panel1"}
-            onChange={handleChange("panel1")}
-            className={classes.firstAccordion}
+            expanded={expanded === category.collections}
+            onChange={() => handleRoute(category.collections)}
+            className={clsx(classes.firstAccordion, {
+              [classes.active]: activeCategory === category.collections,
+            })}
           >
             <StyledAccordionSummary
-              aria-controls="panel1d-content"
-              id="panel1d-header"
+              aria-controls="panelCollections"
+              id="panelCollections"
             >
               <Typography className={classes.maintitle}>
                 {t("Collections")}
               </Typography>
             </StyledAccordionSummary>
           </StyledAccordion>
-          {/* -- add land-- */}
+          {/* /// */}
           <StyledAccordion
             square
-            expanded={expanded === "panel2"}
-            onChange={handleChange("panel2")}
-            className={classes.firstAccordion}
+            expanded={expanded === category.land}
+            onChange={() => handleRoute(category.land)}
+            className={clsx(classes.firstAccordion, {
+              [classes.active]: activeCategory === category.land,
+            })}
           >
-            <StyledAccordionSummary
-              aria-controls="panel2d-content"
-              id="panel2d-header"
-            >
-              <Typography className={classes.maintitle}>
-                {t("Lands")}
-              </Typography>
+            <StyledAccordionSummary aria-controls="panelLand" id="panel1Land">
+              <Typography className={classes.maintitle}>{t("Land")}</Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
-              <CategoryWearables />
+              <CategoryWearables data={LandData} />
             </StyledAccordionDetails>
           </StyledAccordion>
-          {/* --wearables tree--- */}
+          {/* /// */}
           <StyledAccordion
             square
-            expanded={expanded === "panel3"}
-            onChange={handleChange("panel3")}
-            className={classes.firstAccordion}
+            expanded={expanded === category.wearable}
+            onChange={() => handleRoute(category.wearable)}
+            className={clsx(classes.firstAccordion, {
+              [classes.active]: activeCategory === category.wearable,
+            })}
           >
             <StyledAccordionSummary
-              aria-controls="panel3d-content"
-              id="panel3d-header"
+              aria-controls="panelWearables"
+              id="panelWearables"
             >
               <Typography className={classes.maintitle}>
                 {t("Wearables")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
-              <CategoryWearables />
+              <CategoryWearables data={WearablesData} />
             </StyledAccordionDetails>
           </StyledAccordion>
-          {/* --Name--- */}
           <StyledAccordion
             square
-            expanded={expanded === "panel4"}
-            onChange={handleChange("panel4")}
-            className={classes.firstAccordion}
+            expanded={expanded === category.name}
+            onChange={() => handleRoute(category.name)}
+            className={clsx(classes.firstAccordion, {
+              [classes.active]: activeCategory === category.name,
+            })}
           >
-            <StyledAccordionSummary
-              aria-controls="panel4d-content"
-              id="panel4d-header"
-            >
+            <StyledAccordionSummary aria-controls="panelName" id="panelName">
               <Typography className={classes.maintitle}>
                 {t("Names")}
               </Typography>

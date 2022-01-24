@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import { useTranslation } from "react-i18next";
 export default function MyStore() {
   const classes = MyStoreStyle();
-  const {t,i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <>
       <TopTab />
@@ -27,21 +27,21 @@ export default function MyStore() {
             <div className={classes.title}>{t("Stats")}.</div>
             <div className={classes.generalStats}>
               <Grid container spacing={1}>
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={12} md={4}>
                   <GeneralSaleCard
                     iconSrc="pen"
                     priceColor="yellow"
                     price={121}
                   />
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={12} md={4}>
                   <GeneralSaleCard
                     iconSrc="moneybag"
                     priceColor="purple"
                     price={111}
                   />
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={12} md={4}>
                   <GeneralSaleCard
                     iconSrc="crown"
                     priceColor="green"
@@ -52,7 +52,7 @@ export default function MyStore() {
             </div>
 
             <Grid container spacing={1}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={12} md={6}>
                 <GradientEarningCard
                   iconSrc="cube"
                   backgroundColor="yellow"
@@ -60,7 +60,7 @@ export default function MyStore() {
                   price={100}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={12} md={6}>
                 <GradientEarningCard
                   iconSrc="shape"
                   backgroundColor="purple"

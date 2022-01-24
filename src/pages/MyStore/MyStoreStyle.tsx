@@ -27,7 +27,10 @@ export const MyStoreStyle = makeStyles((theme: Theme) => ({
     },
   },
   rightPart: {
-    width: "100%",
+    width: "calc(100% - 268px)",
+    [theme.breakpoints.down(769)]: {
+      width: "100%",
+    },
   },
   statsContainer: {
     marginBottom: "42px",
