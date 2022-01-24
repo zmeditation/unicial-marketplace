@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { topTabIndex, searchBarIndex } from "../../config/constant";
+import { topTabIndex, searchbarIndex } from "../../config/constant";
 import {
   TopTabStyle,
   StyledTopTabBtn,
@@ -7,8 +7,10 @@ import {
   StyledTableButton,
   StyledLocationButton,
 } from "./TopTabStyle";
+import LandSearchbar from "../Mystore/LandSearchbar/LandSearchbar";
 import CollectibleSearchBar from "../Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import MystoreSearchBar from "../Mystore/MystoreSearchBar/MystoreSearchBar";
+import NamesSearchBar from "../Mystore/NamesSearchbar/NamesSearchbar";
 import { searchbarBtn } from "../../config/constant";
 import { useLocation, useNavigate } from "react-router";
 import { withStyles } from "@material-ui/styles";
@@ -45,22 +47,53 @@ export default function TopTab() {
   const handleLand = (url: string) => {
     navigate(url);
   };
-  console.log("this is search section", location.search);
+  const query = new URLSearchParams(location.search);
+  const category = query.get("section");
+  console.log("here is TopTab", category);
   useEffect(() => {
+    console.log("path name=", location.pathname);
     if (location.pathname.includes("/lands")) {
       setToptabIndex(topTabIndex.land);
-      setSearchbarIndex(searchBarIndex.land);
+      setSearchbarIndex(searchbarIndex.land);
     } else if (location.pathname.includes("/auction")) {
       setToptabIndex(topTabIndex.auction);
-      setSearchbarIndex(searchBarIndex.default);
+      setSearchbarIndex(searchbarIndex.auction);
     } else if (location.pathname.includes("/browse")) {
       setToptabIndex(topTabIndex.collectibles);
-      setSearchbarIndex(searchBarIndex.collectibles);
+      setSearchbarIndex(searchbarIndex.collections);
     } else if (location.pathname.includes("/account")) {
       setToptabIndex(topTabIndex.mystore);
-      setSearchbarIndex(searchBarIndex.mystore);
+      switch (category) {
+        case "collections":
+          setSearchbarIndex(searchbarIndex.collections);
+          break;
+        case "land":
+          setSearchbarIndex(searchbarIndex.land);
+          break;
+        case "parcels":
+          setSearchbarIndex(searchbarIndex.parcels);
+          break;
+        case "estate":
+          setSearchbarIndex(searchbarIndex.estate);
+          break;
+
+        case "wearables":
+          setSearchbarIndex(searchbarIndex.wearables);
+
+          console.log("oh yes", searchbar_index);
+          break;
+        case "ens":
+          setSearchbarIndex(searchbarIndex.ens);
+          break;
+        case "on_sale":
+          setSearchbarIndex(searchbarIndex.on_sale);
+          break;
+        case "sales":
+          setSearchbarIndex(searchbarIndex.sales);
+          break;
+      }
     }
-  }, [location.pathname]);
+  }, [searchbar_index, location]);
 
   //on sale
   const [state, setState] = React.useState({
@@ -123,9 +156,7 @@ export default function TopTab() {
                   </StyledTopTabBtn>
                 </div>
 
-                {searchbar_index === 0 ? (
-                  <></>
-                ) : searchbar_index === 1 ? (
+                {toptab_index === 1 ? (
                   /* //Land */
                   <div style={{ display: "flex" }}>
                     <StyledFormControlLabel
@@ -155,12 +186,21 @@ export default function TopTab() {
                       </StyledLocationButton>
                     </div>
                   </div>
+                ) : toptab_index === 2 ? (
+                  <CollectibleSearchBar />
+                ) : searchbar_index === 0 ? (
+                  <></>
+                ) : searchbar_index === 1 ? (
+                  <MystoreSearchBar />
                 ) : searchbar_index === 2 ? (
                   //  Collctibles
                   <CollectibleSearchBar />
                 ) : searchbar_index === 3 ? (
-                  //My store
-                  <MystoreSearchBar />
+                  //My store MystoreSearchBar
+                  // <MystoreSearchBar />
+                  <LandSearchbar />
+                ) : searchbar_index === 4 ? (
+                  <NamesSearchBar />
                 ) : (
                   <></>
                 )}

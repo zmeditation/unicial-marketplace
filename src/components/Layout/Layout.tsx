@@ -54,7 +54,7 @@ export default function Layout() {
         <Route path="/signin" element={<SignIn />} />
       </Routes>
       <Footer />
-      <Notification/>
+      <Notification />
     </Router>
   );
 }

@@ -1,65 +1,91 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MobileSidebarStyle } from "./MobileSidebarStyle";
 import { StyledTopTabBtn } from "../../TopTab/TopTabStyle";
 import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router";
 export default function MobileSidebar() {
   const classes = MobileSidebarStyle();
-  const [menuIndex, setmenuIndex] = React.useState("Collections");
+  const { t, i18n } = useTranslation();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const query = new URLSearchParams(location.search);
+
+  const category = query.get("section");
+  // console.log("here is mobilesidebar..", category);
+
+  const [menuIndex, setmenuIndex] = React.useState(category);
+  // console.log("this is menuindex..", menuIndex);
   const handlemenu = (index: string) => {
     setmenuIndex(index);
+    query.set("section", index);
+    navigate({
+      pathname: location.pathname,
+      search: query.toString(),
+    });
   };
-  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+    setmenuIndex(category);
+  }, [location]);
   return (
     <>
       <div className={classes.root}>
         <StyledTopTabBtn
           disableRipple
-          onClick={() => handlemenu("Collections")}
-          disabled={menuIndex === "Collections"}
+          onClick={() => handlemenu("collections")}
+          disabled={menuIndex === "collections"}
         >
           {t("Collections")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
-          onClick={() => handlemenu("Land")}
-          disabled={menuIndex === "Land"}
+          onClick={() => handlemenu("land")}
+          disabled={menuIndex === "land"}
         >
           {t("Land")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
-          onClick={() => handlemenu("Wearables")}
-          disabled={menuIndex === "Wearables"}
+          onClick={() => handlemenu("wearables")}
+          disabled={menuIndex === "wearables"}
         >
           {t("Wearables")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
-          onClick={() => handlemenu("Names")}
-          disabled={menuIndex === "Names"}
+          onClick={() => handlemenu("ens")}
+          disabled={menuIndex === "ens"}
         >
           {t("Names")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
-          onClick={() => handlemenu("Sales")}
-          disabled={menuIndex === "Sales"}
+          onClick={() => handlemenu("on_sale")}
+          disabled={menuIndex === "on_sale"}
+        >
+          {t("On Sale")}
+        </StyledTopTabBtn>
+        <StyledTopTabBtn
+          disableRipple
+          onClick={() => handlemenu("sales")}
+          disabled={menuIndex === "sales"}
         >
           {t("Sales")}
         </StyledTopTabBtn>
 
         <StyledTopTabBtn
           disableRipple
-          onClick={() => handlemenu("Bids")}
-          disabled={menuIndex === "Bids"}
+          onClick={() => handlemenu("bids")}
+          disabled={menuIndex === "bids"}
         >
           {t("Bids")}
         </StyledTopTabBtn>
 
         <StyledTopTabBtn
           disableRipple
-          onClick={() => handlemenu("Settings")}
-          disabled={menuIndex === "Settings"}
+          onClick={() => handlemenu("settings")}
+          disabled={menuIndex === "settings"}
         >
           {t("Settings")}
         </StyledTopTabBtn>
