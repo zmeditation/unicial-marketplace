@@ -34,15 +34,14 @@ const Bid = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt="token"
-                ></img>
+                  alt='token'></img>
               </div>
             </div>
             <div className={classes.rightCard}>
-              <div className={classes.title}>{t("placeabid")}</div>
+              <div className={classes.title}>{t("Place a bid")}</div>
               <div className={classes.subtitle}>
-                {t("setapriceandexpirationdateforyourbidon")}{" "}
-                <span>{t("genesisplaza")}</span>.
+                {t("Set a price and expiration date for your bid on")}{" "}
+                <span>{t("Genesis Plaza")}</span>.
               </div>
               <div className={classes.form_field}>
                 <div className={classes.price_container}>
@@ -53,10 +52,10 @@ const Bid = () => {
                       </div>
                       <FormControl>
                         <StyledInput
-                          placeholder="0"
+                          placeholder='0'
                           onChange={handleChange}
                           startAdornment={
-                            <InputAdornment position="start">
+                            <InputAdornment position='start'>
                               <img src={settingicon} />
                             </InputAdornment>
                           }
@@ -69,9 +68,9 @@ const Bid = () => {
                       </div>
                       <FormControl>
                         <StyledDateInput
-                          placeholder="0"
+                          placeholder='0'
                           onChange={handleChange}
-                          type="date"
+                          type='date'
                         />
                       </FormControl>
                     </Grid>
@@ -82,17 +81,15 @@ const Bid = () => {
               {/* buttons */}
               <div className={classes.buttons}>
                 <ActionButton
-                  color="dark"
+                  color='dark'
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}
-                >
+                  onClick={() => navigate(-1)}>
                   {t("Cancel")}
                 </ActionButton>
                 <ActionButton
                   disabled
-                  color="light"
-                  className={classes.bidchange}
-                >
+                  color='light'
+                  className={classes.bidchange}>
                   {t("Bid")} &nbsp;
                   <img src={raiseicon} />
                 </ActionButton>
