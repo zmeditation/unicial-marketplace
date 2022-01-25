@@ -46,28 +46,28 @@ const CountDown = () => {
           alt="texture"
         ></img>
         <div className={classes.countdownItem}>
-          <div className={classes.timeDesc}>{t("Days")}</div>
+          <div className={classes.timeDesc}>{t("DAYS")}</div>
           <div className={classes.timeItem}>
             {timeLeft.days < 10 ? "0" + timeLeft.days : timeLeft.days}
           </div>
         </div>
         <span className={classes.semicon}></span>
         <div className={classes.countdownItem}>
-          <div className={classes.timeDesc}>{t("Hours")}</div>
+          <div className={classes.timeDesc}>{t("HOURS")}</div>
           <div className={classes.timeItem}>
             {timeLeft.hours < 10 ? "0" + timeLeft.hours : timeLeft.hours}
           </div>
         </div>
         <span className={classes.semicon}></span>
         <div className={classes.countdownItem}>
-          <div className={classes.timeDesc}>{t("Minutes")}</div>
+          <div className={classes.timeDesc}>{t("MINUTES")}</div>
           <div className={classes.timeItem}>
             {timeLeft.minutes < 10 ? "0" + timeLeft.minutes : timeLeft.minutes}
           </div>
         </div>
         <span className={classes.semicon}></span>
         <div className={classes.countdownItem}>
-          <div className={classes.timeDesc}>{t("Seconds")}</div>
+          <div className={classes.timeDesc}>{t("SECONDS")}</div>
           <div className={classes.timeItem}>
             {timeLeft.seconds < 10 ? "0" + timeLeft.seconds : timeLeft.seconds}
           </div>

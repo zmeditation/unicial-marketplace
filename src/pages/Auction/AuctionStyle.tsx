@@ -99,15 +99,24 @@ export const useStyles = makeStyles((theme: Theme) => ({
     margin: "20px 0px",
     display: "block",
   },
-  actionButton: {
+  actionButtonContainer: {
     display: "flex",
-    justifyContent: "end",
+    justifyContent: "space-between",
     marginTop: "35px",
     [theme.breakpoints.down(769)]: {
       display: "grid",
       width: "100%",
       justifyContent: "space-around",
     },
+  },
+  actionButtons: {
+    display: "flex",
+    justifyContent: "end",
+    // [theme.breakpoints.down(769)]: {
+    //   display: "grid",
+    //   width: "100%",
+    //   justifyContent: "space-around",
+    // },
   },
   normalBtn: {
     margin: "20px 10px",
