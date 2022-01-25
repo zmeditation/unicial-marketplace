@@ -319,72 +319,68 @@ const Auction = () => {
           <div className={classes.LandMapContent}>
             <LandMap height={400} width={width} initialX={1} initialY={1} />
           </div>
-          <BackButton className={classes.backBtnPosition} />
-          <div className={classes.actionButton}>
-            {uccAllowance.gt(BigNumber.from(0)) ? (
-              <ActionButton
-                color="light"
-                className={classes.normalBtn}
-                onClick={handleCancelApprove}
-              >
-                {t("Cancel Approve")}
-                <CallMadeIcon fontSize="small" />
-              </ActionButton>
-            ) : (
-              <ActionButton
-                color="light"
-                className={classes.normalBtn}
-                onClick={handleApproveUCCToken}
-              >
-                {t("Approve")}
-                <CallMadeIcon fontSize="small" />
-              </ActionButton>
-            )}
-
-            {isBiddable ? (
-              <ActionButton
-                color="light"
-                className={classes.normalBtn}
-                onClick={handleBidSpace}
-              >
-                {t("Bid")}
-                <CallMadeIcon fontSize="small" />
-              </ActionButton>
-            ) : (
-              <ActionButton
-                color="light"
-                className={classes.normalBtn}
-                disabled
-              >
-                {t("Bid")}
-                <CallMadeIcon fontSize="small" />
-              </ActionButton>
-            )}
-
-            <ActionButton
-              color="dark"
-              className={classes.gradientBtn}
-              onClick={handleClear}
-            >
-              {t("clear")}
-            </ActionButton>
-            {isAdmin ? (
-              isAuctionAuthorized ? (
+          <div className={classes.actionButtonContainer}>
+            <BackButton className={classes.backBtnPosition} />
+            <div className={classes.actionButtons}>
+              {uccAllowance.gt(BigNumber.from(0)) ? (
                 <ActionButton
-                  color="dark"
-                  className={classes.gradientBtn}
-                  onClick={authorizeAuctionContract}
-                >
-                  {t("Auction Authorized")}
+                  color='light'
+                  className={classes.normalBtn}
+                  onClick={handleCancelApprove}>
+                  {t("Cancel Approve")}
+                  <CallMadeIcon fontSize='small' />
                 </ActionButton>
               ) : (
-                <ActionButton color="dark">
-                  {t("Authorize Auction")}
+                <ActionButton
+                  color='light'
+                  className={classes.normalBtn}
+                  onClick={handleApproveUCCToken}>
+                  {t("Approve")}
+                  <CallMadeIcon fontSize='small' />
                 </ActionButton>
-              )
-            ) : (
-              <></>
-            )}
+              )}
+
+              {isBiddable ? (
+                <ActionButton
+                  color='light'
+                  className={classes.normalBtn}
+                  onClick={handleBidSpace}>
+                  {t("Bid")}
+                  <CallMadeIcon fontSize='small' />
+                </ActionButton>
+              ) : (
+                <ActionButton
+                  color='light'
+                  className={classes.normalBtn}
+                  disabled>
+                  {t("Bid")}
+                  <CallMadeIcon fontSize='small' />
+                </ActionButton>
+              )}
+
+              <ActionButton
+                color='dark'
+                className={classes.gradientBtn}
+                onClick={handleClear}>
+                {t("clear")}
+              </ActionButton>
+              {isAdmin ? (
+                isAuctionAuthorized ? (
+                  <ActionButton
+                    color='dark'
+                    className={classes.gradientBtn}
+                    onClick={authorizeAuctionContract}>
+                    {t("Auction Authorized")}
+                  </ActionButton>
+                ) : (
+                  <ActionButton color='dark'>
+                    {t("Authorize Auction")}
+                  </ActionButton>
+                )
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
           <LandAccordion />
         </div>

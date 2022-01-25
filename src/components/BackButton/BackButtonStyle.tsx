@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     background: "linear-gradient(to right, #7F64E2 20%, #41A6EF 80%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    alignItems: "end",
+    alignItems: "center",
     cursor: "pointer",
     "&:hover": {
       transform: "translateY(-2px)",

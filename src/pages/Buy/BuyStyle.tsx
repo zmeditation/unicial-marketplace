@@ -25,7 +25,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   backBtn: {
-    marginBottom: "60px",
+    marginBottom: "42px",
   },
   bidCard: {
     display: "flex",

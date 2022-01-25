@@ -13,6 +13,18 @@ export const GradientEarningCardStyle = makeStyles((theme: Theme) =>
       height: "109px",
       display: "flex",
       alignItems: "center",
+      position: "relative",
+      overflow: "hidden",
+    },
+    maskEffectYel:{
+      position: "absolute",
+      top: "-143px",
+      left: "135px",
+    },
+    maskEffectPur:{
+      position: "absolute",
+      top: "-75px",
+      left: "112px",
     },
     container: {
       display: "flex",
@@ -43,8 +55,9 @@ export const GradientEarningCardStyle = makeStyles((theme: Theme) =>
       letterSpacing: "2%",
       color: "#21263F",
     },
-    yellow: {
+    yellow: { 
       backgroundImage: "linear-gradient(#FF7C4C 0%, #FFB03A 100%)",
+
     },
     purple: {
       backgroundImage: "linear-gradient(#7F64E2 0%, #41A6EF 100%)",
