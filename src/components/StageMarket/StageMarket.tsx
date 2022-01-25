@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: "right",
     },
     center: {
-      textAlign: "center",
+      // textAlign: "center",
     },
     targetRow: {
       backgroundColor: "#282e4e",

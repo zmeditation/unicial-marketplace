@@ -40,6 +40,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   disablestatus: {
     opacity: "60%",
     background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
+    border: "double 1px transparent",
+    borderRadius: "100px",
+    backgroundImage:
+      "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+    backgroundClip: "content-box, border-box",
+    backgroundOrigin: "border-box",
+    color: "white",
+    cursor: "default",
+    "&:hover": {
+      transform: "translateY(0px)",
+    },
   },
   text: {
     margin: "10px 32px",

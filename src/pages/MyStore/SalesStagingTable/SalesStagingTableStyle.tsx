@@ -2,7 +2,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   center: {
-    textAlign: "center",
+    // textAlign: "center",
   },
   targetRow: {
     backgroundColor: "#282e4e",

@@ -150,7 +150,7 @@ export default function CollectibleFilterDialog() {
         className={classes.dialogContainer}
       >
         <DialogTitle id="form-dialog-title" className={classes.maintitle}>
-          {t("Subscribe")}
+          {t("Filter")}
         </DialogTitle>
         <DialogContent>
           <div className={classes.collectionSelectContainer}>

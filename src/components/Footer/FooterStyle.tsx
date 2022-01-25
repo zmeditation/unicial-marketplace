@@ -179,6 +179,15 @@ export const FooterStyle = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
+    languagesettingContainer: {
+      marginTop: "8px",
+    },
+    activeitem: {
+      backgroundColor: "#282E4E",
+    },
+    activeLabel: {
+      color: "white",
+    },
   })
 );
 

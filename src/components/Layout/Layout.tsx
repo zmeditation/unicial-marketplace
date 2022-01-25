@@ -56,7 +56,7 @@ export default function Layout() {
           </Route>
       </Routes>
       <Footer />
-      <Notification/>
+      <Notification />
     </Router>
   );
 }

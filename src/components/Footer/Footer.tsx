@@ -131,7 +131,7 @@ export default function Footer() {
           <div className={classes.secondaryFooter}>
             <div className={classes.copyright}>© 2022 {t("Unicial")}</div>
             {/* flag start */}
-            <div>
+            <div className={classes.languagesettingContainer}>
               <Box
                 aria-controls="simple-menu"
                 aria-haspopup="true"
@@ -164,21 +164,39 @@ export default function Footer() {
                   horizontal: "right",
                 }}
               >
-                <StyledMenuItem onClick={handleEnglish} disableRipple>
+                <StyledMenuItem disableRipple onClick={handleEnglish}>
                   <Box className={classes.flagLanContainer}>
-                    <Box className={classes.languageLabel}>{t("English")}</Box>
+                    <Box
+                      className={clsx(classes.languageLabel, {
+                        [classes.activeLabel]: languageIndex === 1,
+                      })}
+                    >
+                      {t("English")}
+                    </Box>
                   </Box>
                 </StyledMenuItem>
 
-                <StyledMenuItem onClick={handleSpanish}>
+                <StyledMenuItem disableGutters onClick={handleSpanish}>
                   <Box className={classes.flagLanContainer}>
-                    <Box className={classes.languageLabel}>{t("Spanish")}</Box>
+                    <Box
+                      className={clsx(classes.languageLabel, {
+                        [classes.activeLabel]: languageIndex === 2,
+                      })}
+                    >
+                      {t("Spanish")}
+                    </Box>
                   </Box>
                 </StyledMenuItem>
 
                 <StyledMenuItem onClick={handleChinese}>
                   <Box className={classes.flagLanContainer}>
-                    <Box className={classes.languageLabel}>{t("Chinese")}</Box>
+                    <Box
+                      className={clsx(classes.languageLabel, {
+                        [classes.activeLabel]: languageIndex === 3,
+                      })}
+                    >
+                      {t("Chinese")}
+                    </Box>
                   </Box>
                 </StyledMenuItem>
               </StyledLanguagePopover>

@@ -22,12 +22,16 @@ export const searchbarBtn = {
   locationBtn: 2,
 };
 
-export const searchBarIndex = {
-  land: 1,
-  collectibles: 2,
-  mystore: 3,
-  auction: 4,
-  default: 0,
+export const searchbarIndex = {
+  collections: 1,
+  land: 3,
+  parcels: 3,
+  estate: 3,
+  wearables: 2,
+  ens: 4,
+  on_sale: 1,
+  sales: 0,
+  auction: 0,
 };
 
 export const networkInfo = {

@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
+export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: "#282E4E",
@@ -113,7 +113,6 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "end",
       alignItems: "center",
-      cursor: "pointer",
     },
     clearFilterLabel: {
       fontFamily: "Lato",
@@ -125,10 +124,6 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       marginRight: "3px",
-    },
-    closeicon: {
-      width: "22px",
-      height: "26px",
     },
   })
 );

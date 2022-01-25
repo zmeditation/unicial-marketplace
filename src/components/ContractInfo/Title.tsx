@@ -34,13 +34,15 @@ interface TitleProps {}
 
 const Title: React.FC = () => {
   const classes = useStyles();
-  const { t, i18n} =  useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div>
       <div className={classes.title}>{t("Genesis Plaza")}</div>
       <div className={classes.smalltitle}>{t("Unicial Genesis Plaza")}</div>
       <div className={classes.buttonGroup}>
-        <ActionButton color="dark">400 {t("LAND")}</ActionButton>
+        <ActionButton disabled color="dark">
+          400 {t("LAND")}
+        </ActionButton>
         {/* <div className={classes.jumpbtn}> */}
         <ActionButton color="light" className={classes.jumpbtn}>
           {t("JUMP IN")}

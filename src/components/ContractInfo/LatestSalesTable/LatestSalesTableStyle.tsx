@@ -7,9 +7,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "50px",
     color: "white",
   },
-  center: {
-    textAlign: "center",
-  },
   targetRow: {
     backgroundColor: "#282e4e",
     borderLeft: "2px solid #7e64e2",
@@ -53,7 +50,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   symbolCell: {
     display: "flex",
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
   },
   price: {
