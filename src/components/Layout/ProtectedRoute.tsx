@@ -1,12 +1,11 @@
-import { useEffect } from "react";
-import { Navigate, Route, RouteProps, useLocation } from "react-router";
+import React from 'react';
+import { useAppSelector } from '../../store/hooks';
+import { Navigate, Outlet } from 'react-router-dom';
+import { selectLoginAddress } from "../../store/auth/selectors"
 
-export type ProtectedRouteProps = RouteProps;
+const ProtectedRoute = () => {
+  const signStage = useAppSelector(selectLoginAddress)
 
-export default function ProtectedRoute({ ...routeProps }: ProtectedRouteProps) {
-  if (true) {
-    return <Route {...routeProps} />;
-  } else {
-    return <Navigate to="/lands" />;
-  }
+    return signStage !== "" ? <Outlet /> : <Navigate to="/lands" />;
 }
+export default ProtectedRoute

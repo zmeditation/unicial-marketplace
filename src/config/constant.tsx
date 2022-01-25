@@ -15,6 +15,7 @@ export const topTabIndex = {
   partners: 5,
   myassets: 6,
   mybids: 7,
+  contracts: 8,
 };
 
 export const searchbarBtn = {
@@ -32,6 +33,7 @@ export const searchbarIndex = {
   on_sale: 1,
   sales: 0,
   auction: 0,
+  contracts: 0,
 };
 
 export const networkInfo = {
@@ -80,6 +82,11 @@ export const category = {
   land: "land",
   wearable: "wearables",
   name: "ens",
+};
+
+export const collectiblesTagsColor = {
+  DefaultColor : "DefaultColor",
+  RareColor : "RareColor",
 };
 
 export const categoryWearables = {

@@ -1,3 +1,5 @@
+/** @format */
+
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 const useStyles = makeStyles((theme: Theme) => ({
@@ -36,6 +38,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   disablestatus: {
+    opacity: "60%",
+    background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
     border: "double 1px transparent",
     borderRadius: "100px",
     backgroundImage:
@@ -55,6 +59,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     "& svg": {
       margin: "0px 5px",
     },
+    fontSize: "16px",
+    lineHeight: "19px",
+    align: "Left",
+    verticalAlign: "Top",
   },
 }));
 
@@ -83,8 +91,7 @@ const ActionButton = ({
           [classes.lightColor]: color === "light",
           [classes.disablestatus]: disabled,
         })}
-        onClick={onClick}
-      >
+        onClick={onClick}>
         <span className={classes.text}>{children}</span>
       </div>
     </>

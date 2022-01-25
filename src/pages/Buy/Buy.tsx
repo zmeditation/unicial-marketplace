@@ -21,7 +21,7 @@ const Buy = () => {
     <div className={classes.root}>
       {isSignIn === 1 ? (
         <div>
-          <BackButton />
+          <BackButton className={classes.backBtn} />
           <div className={classes.bidCard}>
             <div className={classes.leftCard}>
               <div className={classes.imgContent}>
@@ -37,7 +37,7 @@ const Buy = () => {
               <div className={classes.subtitle}>
                 {t("You don't have enough MANA to buy Hanzo-Gate1 for")}
                 <img src={settingicon} className={classes.symbol} />
-                <b> 1,000,000.</b>
+                <b className={classes.subtitleNumber}> 1,000,000.</b>
               </div>
 
               {/* buttons */}
@@ -46,13 +46,13 @@ const Buy = () => {
                   color='dark'
                   className={classes.cancelchange}
                   onClick={() => navigate(-1)}>
-                  {t("CANCEL")}
+                  {t("Cancel")}
                 </ActionButton>
                 <ActionButton
                   disabled
                   color='light'
                   className={classes.bidchange}>
-                  {t("BUY")}
+                  {t("Buy")}
                   <img src={raiseicon} />
                 </ActionButton>
               </div>

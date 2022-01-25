@@ -26,6 +26,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   LandMapContent: {
     height: "400px",
+    marginBottom: "53px",
     [theme.breakpoints.down(768)]: {
       margin: "0px calc( (100% - 400px) / 2)",
     },
