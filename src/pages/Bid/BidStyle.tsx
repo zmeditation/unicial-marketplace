@@ -2,6 +2,7 @@
 
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
 import { Input } from "@material-ui/core";
+import { KeyboardDatePicker } from "@material-ui/pickers";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -25,6 +26,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
       maxWidth: "calc(100% - 32px) !important",
     },
   },
+  container_root: {
+    width: "100%",
+  },
+  backButton: {
+    marginBottom: "60px",
+  },
   bidCard: {
     display: "flex",
     position: "relative",
@@ -36,7 +43,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   leftCard: {
     flex: "0.75 1 auto",
-    textAlign: "right",
+    textAlign: "left",
     marginRight: "50px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
@@ -75,7 +82,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   subtitle: {
-    marginBottom: "32px",
+    marginBottom: "24px",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: "14px",
@@ -96,46 +103,65 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     "& .MuiInputBase-input": {
       fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
-      fontWeight: 500,
-      fontSize: "20px",
-      color: "white",
-      paddingBottom: "15px",
-    },
-  },
-  date_container: {
-    minWidth: "auto",
-    //
-    "& .MuiFormControl-root": {
-      width: "100%",
-    },
-    "& .MuiInputBase-input": {
-      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
-      fontWeight: 500,
-      fontSize: "20px",
-      color: "white",
-      paddingBottom: "15px",
-    },
-    "& .MuiInput-underline:before": {
-      borderBottom: "2px solid #28242b",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottom: "2px solid white",
-    },
-    "& .MuiInput-underline:hover": {
-      "&:before": {
-        borderBottom: "2px solid #28242b",
-      },
+      fontStyle: "Regular",
+      fontSize: "16px",
+      lineHeight: "19px",
+      align: "Left",
+      verticalAlign: "Top",
     },
   },
   subheader_label: {
-    color: "#676370",
-    fontSize: "13px",
-    lineHeight: "18px",
-    fontWeight: 400,
-    marginBottom: "6px",
+    color: "#96A1DB",
+    fontStyle: "Regular",
+    fontSize: "12px",
+    lineHeight: "14px",
+    align: "Left",
+    verticalAlign: "Top",
+    opacity: "50%",
+    marginBottom: "8px",
   },
   manafield: {
     display: "flex",
+  },
+  datePicker: {
+    marginRight: "20px",
+    display: "flex",
+    height: "44px",
+    alignContent: "center",
+    padding: "5px",
+    border: "1px solid #373F66",
+    borderRadius: "100px",
+
+    color: "white",
+    "&:before": {
+      borderBottom: "none",
+    },
+    "&:hover:not(.Mui-disabled):before": {
+      borderBottom: "none",
+    },
+    "&:after": {
+      borderBottom: "none",
+    },
+    "& .MuiInput-underline:before": {
+      borderBottom: "none",
+    },
+    "& .MuiInputBase-input": {
+      paddingLeft: "10px",
+      borderBottom: "none",
+      fontSize: "16px",
+      lineHeight: "19px",
+      color: "#FFFFFF",
+    },
+    "&.MuiFormControl-marginNormal": {
+      marginTop: "0px",
+      marginBottom: "8px",
+    },
+    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+      borderBottom: "none",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottom: "none",
+    },
   },
   symbol: {
     fontWeight: 700,
@@ -156,7 +182,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
       display: "grid",
     },
-    marginBottom: "150px",
   },
   bidchange: {
     marginLeft: "16px",
@@ -207,7 +232,6 @@ export const StyledInput = withStyles((theme) => ({
     },
     "& .MuiInputBase-input": {
       paddingLeft: "10px",
-      paddingTop: "15px",
       fontStyle: "normal",
       fontWeight: "normal",
       fontSize: "16px",
@@ -227,47 +251,6 @@ export const StyledInput = withStyles((theme) => ({
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       borderRight: "1px solid #373F66",
-    },
-  },
-}))(Input);
-
-export const StyledDateInput = withStyles((theme) => ({
-  root: {
-    marginRight: "20px",
-    display: "flex",
-    height: "44px",
-    alignContent: "center",
-    padding: "10px",
-    border: "1px solid #373F66",
-    borderRadius: "100px",
-    alignItems: "center",
-    color: "white",
-    "&:before": {
-      border: "none",
-    },
-    "&:hover:not(.Mui-disabled):before": {
-      border: "none",
-    },
-    "&:after": {
-      border: "none",
-    },
-    "& .MuiInputBase-input": {
-      paddingLeft: "10px",
-      paddingTop: "15px",
-    },
-    "& img": {
-      fontWeight: 700,
-      fontSize: "16px",
-      lineHeight: "19px",
-      fontStyle: "normal",
-      padding: "0em 1em",
-      transform: "translateY(-0.06em)",
-      display: "inline-block",
-      marginTop: "2px",
-      background: "linear-gradient(to right, #FF7C4C 20%, #FFB03A 101.82%)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      borderLeft: "1px solid #373F66",
     },
   },
 }))(Input);

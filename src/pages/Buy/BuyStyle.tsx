@@ -24,6 +24,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
       maxWidth: "calc(100% - 32px) !important",
     },
   },
+  backBtn: {
+    marginBottom: "60px",
+  },
   bidCard: {
     display: "flex",
     position: "relative",
@@ -84,6 +87,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "14px",
     lineHeight: "17px",
     color: "#96A1DB",
+  },
+  subtitleNumber: {
+    color: "#ffffff",
+    fontSize: "14px",
+    lineHeight: "17px",
+    align: "Left",
+    verticalAlign: "Top",
   },
   form_field: {
     maxWidth: "420px",
