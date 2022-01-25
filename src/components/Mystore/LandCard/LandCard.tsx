@@ -32,7 +32,7 @@ export default function LandCard({
         <div className={classes.header}>
           {/* <Tag color={tagColor} letter={tagLetter} /> */}
           {/* <Tag color="LegendaryColor" letter="LEGENDARY" /> */}
-          <LocationBtn axisX={locationbtnX} axisY={locationbtnY} />
+          <LocationBtn axisX={locationbtnX} axisY={locationbtnY} dark />
           <div className={classes.iconContainer}>
             <img src={headSvg} className={classes.icon} />
             <img src={unisexSvg} className={classes.icon} />

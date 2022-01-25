@@ -4,6 +4,7 @@ import {
   Theme,
   withStyles,
 } from "@material-ui/core/styles";
+import clsx from "clsx";
 import pinlocationSvg from "../../assets/svg/pinlocation.svg";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,20 +29,35 @@ const useStyles = makeStyles((theme: Theme) =>
       lineHeightStep: "16.8px",
       color: "#96A1DB !important",
     },
+    darkbackground: {
+      backgroundColor: "#21263F",
+    },
   })
 );
 
 interface Props {
   axisX: number;
   axisY: number;
+  dark?: boolean;
+  className?: any;
   onClick?: () => void;
 }
 
-export default function LacationBtn({ axisX, axisY, onClick }: Props) {
+export default function LacationBtn({
+  axisX,
+  axisY,
+  dark,
+  className,
+  onClick,
+}: Props) {
   const classes = useStyles();
   return (
     <>
-      <div className={classes.root}>
+      <div
+        className={clsx(classes.root, className, {
+          [classes.darkbackground]: dark,
+        })}
+      >
         <img src={pinlocationSvg} className={classes.icon} />
         <div className={classes.info}>
           {axisX},{axisY}
