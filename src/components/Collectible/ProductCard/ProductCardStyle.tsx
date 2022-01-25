@@ -1,16 +1,17 @@
+/** @format */
+
 import { createStyles, Theme } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 
 export const ProductCardStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      // width: "360px",
-      height: "424px",
+      minWidth: "250px",
       borderRadius: "15px",
       backgroundColor: "#282E4E",
       boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
-      padding: "30px 12px",
-      marginBottom: "10px",
+      padding: "20px 8px 20px 8px",
+      margin: "10px",
     },
     header: {
       display: "flex",
@@ -30,10 +31,11 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
     },
     imageContainer: {
       width: "100%",
-      height: "249px",
+      minWidth: "180px",
+      height: "185px",
       backgroundImage: "linear-gradient(67.71deg, #39B8FD 0%, #AD2DFE 98.37%)",
       borderRadius: "15px",
-      marginTop: "23px",
+      marginTop: "20px",
       marginBottom: "17px",
       textAlign: "center",
       display: "flex",
@@ -41,8 +43,8 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       justifyContent: "center",
     },
     image: {
-      // width: "80%",
-      maxWidth: "80%",
+      maxWidth: "180px",
+      maxHeight: "180px",
     },
     productName: {
       fontStyle: "normal",

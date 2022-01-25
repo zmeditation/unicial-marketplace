@@ -31,3 +31,30 @@ export const networkData = [
     category: "Polygon",
   },
 ];
+
+export const filterListData = [
+  {
+    index: 0,
+    category: "COMMON",
+  },
+  {
+    index: 1,
+    category: "RARE",
+  },
+  {
+    index: 2,
+    category: "EPIC",
+  },
+  {
+    index: 3,
+    category: "LEGENDARY",
+  },
+  {
+    index: 4,
+    category: "MYTHIC",
+  },
+  {
+    index: 5,
+    category: "UNIQUE",
+  },
+];

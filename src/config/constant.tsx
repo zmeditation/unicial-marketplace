@@ -82,6 +82,11 @@ export const category = {
   name: "ens",
 };
 
+export const collectiblesTagsColor = {
+  DefaultColor : "DefaultColor",
+  RareColor : "RareColor",
+};
+
 export const categoryWearables = {
   head: "wearables_head",
   facialhair: "wearables_facial_hair",
