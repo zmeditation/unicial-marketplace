@@ -6,6 +6,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     margin: "40px auto",
     position: "relative",
   },
+  auctionBalance:{
+    marginBottom:"40px",
+  },
   root: {
     minHeight: "calc(100vh - 246px)",
     maxWidth: "1064px",

@@ -9,6 +9,7 @@ import { useStyles } from "./AuctionStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import LandAccordion from "./LandAccordion/LandAccordion";
 import CountDown from "../../components/CountDown/CountDown";
+import { Balance } from "../../components/Balance/Balance";
 import StagingTable from "./StagingTable/StagingTable";
 import { headerData, transactionData } from "./AuctionData";
 import ActionButton from "../../components/Base/ActionButton";
@@ -18,6 +19,7 @@ import { selectparcels } from "../../store/selectedparcels/selectors";
 import { alertMessage, alertSeverity } from "../../store/alert/selectors";
 import { showAlert } from "../../store/alert";
 import CallMadeIcon from "@material-ui/icons/CallMade";
+import { Grid } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 // import contracts information
 import {
@@ -304,8 +306,8 @@ const Auction = () => {
             stepIndex={1}
           />
         </div>
-        <div>
-          <Typography>My UCC Balance: {uccBalance.toString()}</Typography>
+        <div className={classes.auctionBalance}>
+          {/* <Typography>My UCC Balance: {uccBalance.toString()}</Typography>
           <Typography>
             Current Space Price in UCC Token: {uccPricePerSpace}
           </Typography>
@@ -313,7 +315,18 @@ const Auction = () => {
             Buyable Maximum Spaces:{" "}
             {uccPricePerSpace > 0 &&
               uccBalance.div(BigNumber.from(uccPricePerSpace)).toString()}
-          </Typography>
+          </Typography> */}
+          <Grid container spacing={2}>
+            <Grid item md={4} sm={4} xs={12}>
+              <Balance type='uccbalance' />
+            </Grid>
+            <Grid item md={4} sm={4} xs={12}>
+              <Balance type='currentspace' />
+            </Grid>
+            <Grid item md={4} sm={4} xs={12}>
+              <Balance type='buyable' />
+            </Grid>
+          </Grid>
         </div>
         <div className={classes.LandMap}>
           <div className={classes.LandMapContent}>

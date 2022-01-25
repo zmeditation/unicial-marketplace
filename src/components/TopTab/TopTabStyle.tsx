@@ -29,9 +29,6 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
         width: "933px",
       },
       [theme.breakpoints.down(992)]: {
-        width: "723px",
-      },
-      [theme.breakpoints.down(769)]: {
         marginLeft: "0px !important",
         marginRight: "0px !important",
         marginTop: "22px !important",
