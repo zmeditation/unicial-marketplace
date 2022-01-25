@@ -59,7 +59,6 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     category: {
-      fontFamily: "Lato",
       fontStyle: "normal",
       fontWeight: 400,
       fontSize: "14px",
@@ -73,7 +72,6 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     price: {
-      fontFamily: "Montserrat",
       fontStyle: "normal",
       fontWeight: 600,
       fontSize: "18px",

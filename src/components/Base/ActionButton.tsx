@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundOrigin: "border-box",
     color: "white",
     cursor: "default",
+    "&:hover": {
+      transform: "translateY(0px)",
+    },
   },
   text: {
     margin: "10px 32px",

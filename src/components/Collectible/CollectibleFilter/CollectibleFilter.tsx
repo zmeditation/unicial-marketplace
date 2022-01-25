@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 
 export default function CollectibleFilter() {
   const classes = CollectibleFilterStyle();
-  const { t, i18n}= useTranslation();
+  const { t, i18n } = useTranslation();
   const [anchorCollection, setAnchorCollection] =
     React.useState<null | HTMLElement>(null);
   const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
@@ -217,7 +217,7 @@ export default function CollectibleFilter() {
         <div className={classes.footer}>
           <div className={classes.clearFilterContainer}>
             <div className={classes.clearFilterLabel}>{t("Clear Filter")}</div>
-            <img src={closeSvg} />
+            <img src={closeSvg} className={classes.closeicon} />
           </div>
         </div>
       </div>
