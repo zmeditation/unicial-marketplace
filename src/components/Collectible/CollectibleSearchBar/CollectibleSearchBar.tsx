@@ -68,7 +68,7 @@ export default function CollectibleSearchBar() {
     handleClose();
   };
   const handleName = () => {
-    setlistIndex("Newest");
+    setlistIndex("Name");
     handleClose();
   };
 
@@ -131,31 +131,31 @@ export default function CollectibleSearchBar() {
                 >
                   <StyledMenuItem onClick={handleCheapest}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Cheapest")}</Box>
+                      <Box className={listIndex === "Cheapest" ? classes.selectedListLabel: classes.listLabel}>{t("Cheapest")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlyListied}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Recently listed")}</Box>
+                      <Box className={listIndex === "Recently listed" ? classes.selectedListLabel: classes.listLabel}>{t("Recently listed")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlySold}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Recently sold")}</Box>
+                      <Box className={listIndex === "Recently sold" ? classes.selectedListLabel: classes.listLabel}>{t("Recently sold")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleNewest}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Newest")}</Box>
+                      <Box className={listIndex === "Newest" ? classes.selectedListLabel: classes.listLabel}>{t("Newest")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleName}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Name")}</Box>
+                      <Box className={listIndex === "Name" ? classes.selectedListLabel: classes.listLabel}>{t("Name")}</Box>
                     </Box>
                   </StyledMenuItem>
                 </StyledListPopover>
