@@ -112,5 +112,8 @@
   "Show Less": "Show Less",
   "Collectibles": "Collectibles",
   "My Store": "My Store",
-  "Auction": "Auction"
+  "Auction": "Auction",
+  "My UCC Balance": "My UCC Balance",
+  "Current Space Price in UCC Token": "Current Space Price in UCC Token",
+  "Buyable Maximum Spaces": "Buyable Maximum Spaces"
 }
