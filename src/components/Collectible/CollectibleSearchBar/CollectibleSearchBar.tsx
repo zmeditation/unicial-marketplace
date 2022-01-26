@@ -5,15 +5,14 @@ import {
   StyledListPopover,
   StyledMenuItem,
 } from "./CollectibleSearchBarStyle";
-import filter_svg from "./../../../assets/svg/filter.svg";
 import search_svg from "./../../../assets/svg/search.svg";
 import { withStyles } from "@material-ui/core/styles";
 
 import Switch from "@material-ui/core/Switch";
 import { Box } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
-
+import CollectibleFilterDialog from "../CollectibleFilterDialog/CollectibleFilterDialog";
+import { useTranslation } from "react-i18next";
 const PurpleSwitch = withStyles({
   root: {
     height: "36px",
@@ -38,6 +37,7 @@ export default function CollectibleSearchBar() {
   const [state, setState] = React.useState({
     checkedA: true,
   });
+  const { t, i18n}= useTranslation();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -68,7 +68,7 @@ export default function CollectibleSearchBar() {
     handleClose();
   };
   const handleName = () => {
-    setlistIndex("Newest");
+    setlistIndex("Name");
     handleClose();
   };
 
@@ -100,7 +100,7 @@ export default function CollectibleSearchBar() {
                   aria-controls="simple-menu"
                   aria-haspopup="true"
                   onClick={handleClick}
-                  // className={classes.listDropdown}
+                  className={classes.listDropdown}
                 >
                   <Box className={classes.listRoot}>
                     <Box className={classes.listContainer}>
@@ -131,37 +131,36 @@ export default function CollectibleSearchBar() {
                 >
                   <StyledMenuItem onClick={handleCheapest}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Cheapest</Box>
+                      <Box className={listIndex === "Cheapest" ? classes.selectedListLabel: classes.listLabel}>{t("Cheapest")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlyListied}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Recently listed</Box>
+                      <Box className={listIndex === "Recently listed" ? classes.selectedListLabel: classes.listLabel}>{t("Recently listed")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlySold}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Recently sold</Box>
+                      <Box className={listIndex === "Recently sold" ? classes.selectedListLabel: classes.listLabel}>{t("Recently sold")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleNewest}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Newest</Box>
+                      <Box className={listIndex === "Newest" ? classes.selectedListLabel: classes.listLabel}>{t("Newest")}</Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleName}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>Name</Box>
+                      <Box className={listIndex === "Name" ? classes.selectedListLabel: classes.listLabel}>{t("Name")}</Box>
                     </Box>
                   </StyledMenuItem>
                 </StyledListPopover>
               </div>
               {/* select end */}
-
               <div className={classes.topbarFilter}>
                 <StyledFormControlLabel
                   control={
@@ -175,14 +174,7 @@ export default function CollectibleSearchBar() {
                   className={classes.switch}
                 />
               </div>
-              <div className={classes.openfilter}>
-                <div className={classes.openfilterLabel}>FILTER</div>
-                <img
-                  src={filter_svg}
-                  className={classes.filterIcon}
-                  alt="symbol"
-                />
-              </div>
+              <CollectibleFilterDialog />
             </div>
           </div>
         </div>

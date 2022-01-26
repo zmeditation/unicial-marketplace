@@ -4,7 +4,6 @@ import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import { Input } from "@material-ui/core";
-//
 
 export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   root: {
@@ -68,6 +67,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down(769)]: {
       width: "100%",
+      paddingRight: "0px",
     },
   },
   title: {
@@ -79,17 +79,16 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
   axisContainer: {
     display: "flex",
   },
-  buttons: {
-    padding: "0px 16px",
-    [theme.breakpoints.down(769)]: {
-      padding: "0px",
-    },
-  },
   selectedLandContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "end",
     [theme.breakpoints.down(769)]: {
       width: "100%",
-      display: "flex",
       alignItems: "center",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      marginTop: "20px",
     },
   },
   selectedLandLabelContainer: {
@@ -113,9 +112,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
     fontSize: "18px",
     fontWeight: 400,
   },
-  showmapBtn: {
-    lineHeight: "38px",
-  },
+  showmapBtn: {},
   inputLands: {
     width: "100%",
     "& .MuiFormControl-root": {
@@ -151,8 +148,9 @@ export const StyledAccordionSummary = withStyles((theme) => ({
     },
   },
   content: {
+    margin: "0px",
     "&$expanded": {
-      margin: "12px 0",
+      margin: "0px",
     },
   },
   expanded: {},
@@ -193,7 +191,7 @@ export const StyledInput = withStyles((theme) => ({
       transform: "translateY(-0.06em)",
       display: "inline-block",
       marginTop: "2px",
-      background: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
+      background: "linear-gradient(to right, #FF7C4C 20%, #FFB03A 101.82%)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       borderRight: "1px solid #373F66",

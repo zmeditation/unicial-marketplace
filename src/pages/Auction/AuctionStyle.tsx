@@ -6,6 +6,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     margin: "40px auto",
     position: "relative",
   },
+  auctionBalance:{
+    marginBottom:"40px",
+  },
   root: {
     minHeight: "calc(100vh - 246px)",
     maxWidth: "1064px",
@@ -25,7 +28,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   LandMap: {
-    // maxWidth: "945px",
     display: "grid",
     margin: "0px auto",
     width: "100%",
@@ -100,17 +102,38 @@ export const useStyles = makeStyles((theme: Theme) => ({
     margin: "20px 0px",
     display: "block",
   },
-  actionButton: {
+  actionButtonContainer: {
     display: "flex",
-    justifyContent: "end",
-    marginTop: "20px",
-    [theme.breakpoints.down(500)]: {
-      marginTop: "35px",
+    justifyContent: "space-between",
+    marginTop: "35px",
+    [theme.breakpoints.down(769)]: {
+      display: "grid",
       width: "100%",
       justifyContent: "space-around",
     },
   },
-  approveBtn: {
-    marginRight: "20px !important",
+  actionButtons: {
+    display: "flex",
+    justifyContent: "end",
+    // [theme.breakpoints.down(769)]: {
+    //   display: "grid",
+    //   width: "100%",
+    //   justifyContent: "space-around",
+    // },
+  },
+  normalBtn: {
+    margin: "20px 10px",
+    [theme.breakpoints.down(769)]: {
+      margin: "15px 0px",
+    },
+  },
+  gradientBtn: {
+    margin: "20px 10px",
+    [theme.breakpoints.down(769)]: {
+      margin: "15px 0px",
+    },
+  },
+  backBtnPosition: {
+    marginTop: '5px',
   },
 }));

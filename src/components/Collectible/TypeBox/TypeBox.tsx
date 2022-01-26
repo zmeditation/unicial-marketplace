@@ -1,41 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TypeBoxStyle } from "./TypeBoxStyle";
+import { useLocation } from "react-router";
+import { typebox } from "../../../config/constant";
+import { useTranslation } from "react-i18next";
+
 export default function TypeBox() {
   const classes = TypeBoxStyle();
-  const [itemIndex, setitemIndex] = React.useState(1);
-  const handleStore = () => {
-    setitemIndex(1);
+  const {t, i18n} = useTranslation();
+  const [itemIndex, setitemIndex] = React.useState(typebox.store);
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+
+  const handleItem = (index: string) => {
+    setitemIndex(index);
   };
-  const handleListings = () => {
-    setitemIndex(2);
-  };
+
+  useEffect(() => {
+    if (query.get("assetType") === typebox.listing)
+      setitemIndex(typebox.listing);
+  }, [location]);
+
   return (
     <>
       <div className={classes.typeBoxRoot}>
-        <div className={classes.headerTitle}>TYPE </div>
+        <div className={classes.headerTitle}>{t("Type")}</div>
         <div className={classes.boxBody}>
           <div
             className={
-              itemIndex === 2 ? classes.normalItem : classes.activeItem
+              itemIndex === typebox.store
+                ? classes.activeItem
+                : classes.normalItem
             }
-            onClick={handleStore}
+            onClick={() => handleItem(typebox.store)}
           >
-            <div className={classes.itemTitle}>Store</div>
+            <div className={classes.itemTitle}>{t("Store")}</div>
             <div className={classes.itemDescription}>
-              Items available for minting
+              {t("Items available for minting")}
             </div>
           </div>
           {/* // */}
           <div
             className={
-              itemIndex === 1 ? classes.normalItem : classes.activeItem
+              itemIndex === typebox.listing
+                ? classes.activeItem
+                : classes.normalItem
             }
-            onClick={handleListings}
+            onClick={() => handleItem(typebox.listing)}
           >
-            <div className={classes.itemTitle}>Listings</div>
-            <div className={classes.itemDescription}>Items being resold</div>
+            <div className={classes.itemTitle}>{t("Listings")}</div>
+            <div className={classes.itemDescription}>{t("Items being resold")}</div>
           </div>
         </div>
+        <div className={classes.divideline}></div>
       </div>
     </>
   );

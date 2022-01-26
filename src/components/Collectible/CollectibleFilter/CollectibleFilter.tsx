@@ -1,4 +1,6 @@
-import React from "react";
+/** @format */
+
+import React, { useState, useEffect } from "react";
 import {
   CollectibleFilterStyle,
   StyledCollectionPopover,
@@ -9,16 +11,25 @@ import StyledRadio from "../../Base/StyledRadio";
 import {
   collectionData,
   networkData,
+  filterListData,
 } from "../../../config/Collectible/collectionData";
+import { collectiblesTagsColor } from "../../../config/constant";
 import { Box } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 //
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import closeSvg from "../../../assets/svg/close.svg";
+import { useTranslation } from "react-i18next";
 
 export default function CollectibleFilter() {
   const classes = CollectibleFilterStyle();
+  const [tagColor, setTagColor] = useState(collectiblesTagsColor.DefaultColor);
+  const [selectedTag, setSelectedTag] = useState("");
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState(false);
+
+  const { t, i18n } = useTranslation();
   const [anchorCollection, setAnchorCollection] =
     React.useState<null | HTMLElement>(null);
   const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
@@ -41,6 +52,11 @@ export default function CollectibleFilter() {
     setAnchorNetwork(null);
   };
 
+  const handleClickTag = (e: number) => {
+    setSelectedTag(filterListData[e].category);
+    setSelectedStatus(!selectedStatus);
+  };
+
   const [collectionCategory, setcollectionCategory] =
     React.useState("All Collections");
   const handleCollectionItem = (index: number) => {
@@ -60,21 +76,26 @@ export default function CollectibleFilter() {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
+  console.log(selectedTag);
+  useEffect(() => {
+    selectedStatus === true
+      ? setTagColor(collectiblesTagsColor.RareColor)
+      : setTagColor(collectiblesTagsColor.DefaultColor);
+  }, [selectedStatus]);
 
   return (
     <>
       <div className={classes.root}>
         <div className={classes.selectPart}>
           <div className={classes.collectionSelectContainer}>
-            <div className={classes.title}>Collections</div>
+            <div className={classes.title}>{t("Collections")}</div>
             {/* collection select start */}
             <div>
               <Box
-                aria-controls="simple-menu"
-                aria-haspopup="true"
+                aria-controls='simple-menu'
+                aria-haspopup='true'
                 onClick={handleCollectionClick}
-                className={classes.listDropdown}
-              >
+                className={classes.listDropdown}>
                 <Box className={classes.listRoot}>
                   <Box className={classes.listContainer}>
                     <Box className={classes.mainlistLabel}>
@@ -87,24 +108,23 @@ export default function CollectibleFilter() {
                 </Box>
               </Box>
               <StyledCollectionPopover
-                id="simple-menu"
+                id='simple-menu'
                 anchorEl={anchorCollection}
                 keepMounted
                 open={Boolean(anchorCollection)}
                 onClose={handleCollectionClose}
                 anchorOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
+                  vertical: "bottom",
+                  horizontal: "right",
                 }}
                 transformOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
-                }}
-              >
-                {collectionData.map((data) => (
+                  vertical: "top",
+                  horizontal: "right",
+                }}>
+                {collectionData.map((data, index) => (
                   <StyledMenuItem
                     onClick={() => handleCollectionItem(data.index)}
-                  >
+                    key={index}>
                     <Box className={classes.listContainer}>
                       <Box className={classes.listLabel}>{data.catatory}</Box>
                     </Box>
@@ -117,17 +137,15 @@ export default function CollectibleFilter() {
           {/* // */}
           <div
             className={classes.collectionSelectContainer}
-            style={{ marginLeft: "30px" }}
-          >
-            <div className={classes.title}>Network</div>
+            style={{ marginLeft: "30px" }}>
+            <div className={classes.title}>{t("Network")}</div>
             {/* network select start */}
             <div>
               <Box
-                aria-controls="simple-menu"
-                aria-haspopup="true"
+                aria-controls='simple-menu'
+                aria-haspopup='true'
                 onClick={handleNetworkClick}
-                className={classes.listDropdown}
-              >
+                className={classes.listDropdown}>
                 <Box className={classes.listRoot}>
                   <Box className={classes.listContainer}>
                     <Box className={classes.mainlistLabel}>
@@ -140,22 +158,23 @@ export default function CollectibleFilter() {
                 </Box>
               </Box>
               <StyledCollectionPopover
-                id="simple-menu"
+                id='simple-menu'
                 anchorEl={anchorNetwork}
                 keepMounted
                 open={Boolean(anchorNetwork)}
                 onClose={handleNetworkClose}
                 anchorOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
+                  vertical: "bottom",
+                  horizontal: "right",
                 }}
                 transformOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
-                }}
-              >
-                {networkData.map((data) => (
-                  <StyledMenuItem onClick={() => handleNetworkItem(data.index)}>
+                  vertical: "top",
+                  horizontal: "right",
+                }}>
+                {networkData.map((data, index) => (
+                  <StyledMenuItem
+                    onClick={() => handleNetworkItem(data.index)}
+                    key={index}>
                     <Box className={classes.listContainer}>
                       <Box className={classes.listLabel}>{data.category}</Box>
                     </Box>
@@ -171,24 +190,23 @@ export default function CollectibleFilter() {
           {/* gender part */}
           <div className={classes.rarityPart}>
             <div className={classes.rarityPartContainer}>
-              <div className={classes.title}>GENDER</div>
+              <div className={classes.title}>{t("GENDER")}</div>
               {/* radio realte */}
               <RadioGroup
-                aria-label="gender"
-                name="gender1"
+                aria-label='gender'
+                name='gender1'
                 value={value}
                 onChange={handleRadioChange}
-                className={classes.genderRadioContainer}
-              >
+                className={classes.genderRadioContainer}>
                 <FormControlLabel
-                  value="Male"
+                  value='Male'
                   control={<StyledRadio />}
-                  label="Male"
+                  label='Male'
                 />
                 <FormControlLabel
-                  value="Female"
+                  value='Female'
                   control={<StyledRadio />}
-                  label="Female"
+                  label='Female'
                 />
               </RadioGroup>
             </div>
@@ -196,22 +214,26 @@ export default function CollectibleFilter() {
           {/* rarity part */}
           <div className={classes.rarityPart}>
             <div className={classes.rarityPartContainer}>
-              <div className={classes.title}>RARITY</div>
+              <div className={classes.title}>{t("RARITY")}</div>
               <div className={classes.options}>
-                <Tag color="CommonColor" letter="COMMON" />
-                <Tag color="RareColor" letter="RARE" />
-                <Tag color="EpicColor" letter="EPIC" />
-                <Tag color="LegendaryColor" letter="LEGENDARY" />
-                <Tag color="DefaultColor" letter="MYTHIC" />
-                <Tag color="DefaultColor" letter="UNIQUE" />
+                {filterListData?.map((data, index) => {
+                  return (
+                    <Tag
+                      key={index}
+                      color={tagColor}
+                      letter={data.category}
+                      onClick={() => handleClickTag(index)}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
         <div className={classes.footer}>
           <div className={classes.clearFilterContainer}>
-            <div className={classes.clearFilterLabel}>Clear Filter</div>
-            <img src={closeSvg} />
+            <div className={classes.clearFilterLabel}>{t("Clear Filter")}</div>
+            <img src={closeSvg} className={classes.closeicon} />
           </div>
         </div>
       </div>

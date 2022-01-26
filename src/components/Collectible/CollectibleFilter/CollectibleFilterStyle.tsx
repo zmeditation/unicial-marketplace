@@ -46,11 +46,6 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       border: "1px solid #373F66",
       borderRadius: "100px",
       padding: "1px 20px",
-      // transform: "translateY(-4px)",
-      // display: "inline-block",
-      // outline: 0,
-      // textAlign: "center",
-      //
       [theme.breakpoints.down(1025)]: {
         marginBottom: "18px",
       },
@@ -118,6 +113,7 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "end",
       alignItems: "center",
+      cursor: "pointer",
     },
     clearFilterLabel: {
       fontFamily: "Lato",
@@ -125,10 +121,14 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontSize: "14px",
       lineHeight: "17px",
-      background: "linear-gradient(#7F64E2 10%, #41A6EF 100%)",
+      background: "linear-gradient(to right, #7F64E2 10%, #41A6EF 100%)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       marginRight: "3px",
+    },
+    closeicon: {
+      width: "22px",
+      height: "26px",
     },
   })
 );
@@ -156,7 +156,6 @@ export const StyledMenuItem = withStyles({
     cursor: "pointer",
     position: "relative",
     "&:hover": {
-      // backgroundColor: "#24212933",
       color: "white",
     },
   },

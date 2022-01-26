@@ -10,14 +10,15 @@ import {
   StyledAccordionDetails,
   StyledInput,
 } from "./LandAccordionStyle";
-import { useAppSelector, useAppDispatch } from "../../../store/hooks";
-import { selectparcels } from "../../../store/selectedparcels/selectors";
+import { useAppDispatch } from "../../../store/hooks";
 import { getparcels } from "../../../store/selectedparcels";
 import { fetchTiles } from "../../../hooks/tiles";
 import { Tile } from "../../../components/Atlas/Atlas.types";
+import { useTranslation } from "react-i18next";
 
 export default function LandAccordion() {
   const classes = LandAccordionStyle();
+  const { t, i18n} = useTranslation();
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
   const [x1, setx1] = useState<number>(0);
   const [x2, setx2] = useState<number>(0);
@@ -25,7 +26,8 @@ export default function LandAccordion() {
   const [y2, sety2] = useState<number>(0);
   const [xy, setxy] = useState<string>();
   const [tiles, setTiles] = useState();
-  const [count, setCount] = useState(0);
+  const [countArea, setCountArea] = useState(0);
+  const [countMulti, setCountMulti] = useState(0);
   const dispatch = useAppDispatch();
 
   const handleChange =
@@ -62,12 +64,15 @@ export default function LandAccordion() {
       maxx,
       maxy,
       count = 0;
+
     maxx = x1 >= x2 ? x1 : x2;
     minx = x1 >= x2 ? x2 : x1;
     maxy = y1 >= y2 ? y1 : y2;
     miny = y1 >= y2 ? y2 : y1;
+
+    if (maxx === 0 && minx === 0 && maxy === 0 && miny === 0) return;
     for (let x = minx; x <= maxx; x++) {
-      for (let y = miny; y < maxy; y++) {
+      for (let y = miny; y <= maxy; y++) {
         const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
         if (tile.owner) {
         } else {
@@ -76,7 +81,8 @@ export default function LandAccordion() {
         }
       }
     }
-    setCount(count);
+
+    setCountArea(count);
     dispatch(getparcels(newSelectedTile));
   };
 
@@ -88,11 +94,11 @@ export default function LandAccordion() {
       .replace("]", "")
       .slice(1, -1)
       .split("','");
+
     content_str?.forEach((str) => {
       const tile: any = tiles && (tiles[str] as Tile);
       try {
-        if (tile.owner) {
-        } else {
+        if (!tile.owner) {
           newSelectedTile.push(str);
           count++;
         }
@@ -101,8 +107,7 @@ export default function LandAccordion() {
         return;
       }
     });
-    console.log(newSelectedTile);
-    setCount(count);
+    setCountMulti(count);
     dispatch(getparcels(newSelectedTile));
   };
 
@@ -127,7 +132,7 @@ export default function LandAccordion() {
               id="panel1d-header"
             >
               <Typography className={classes.title}>
-                Select AreaLands
+                {t("Select AreaLands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -141,7 +146,7 @@ export default function LandAccordion() {
                           onChange={(e) => inputx1(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span>X1</span>
+                              <span>{t("x1")}</span>
                             </InputAdornment>
                           }
                         />
@@ -154,7 +159,7 @@ export default function LandAccordion() {
                           onChange={(e) => inputy1(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span>Y1</span>
+                              <span>{t("y1")}</span>
                             </InputAdornment>
                           }
                         />
@@ -170,7 +175,7 @@ export default function LandAccordion() {
                           onChange={(e) => inputx2(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span>X2</span>
+                              <span>{t("x2")}</span>
                             </InputAdornment>
                           }
                         />
@@ -184,7 +189,7 @@ export default function LandAccordion() {
                           onChange={(e) => inputy2(e.target.value)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <span>Y2</span>
+                              <span>{t("y2")}</span>
                             </InputAdornment>
                           }
                         />
@@ -193,20 +198,20 @@ export default function LandAccordion() {
                   </div>
                 </div>
                 <div className={classes.selectedLandContainer}>
-                  <div className={classes.buttons}>
-                    <ActionButton
-                      color="dark"
-                      onClick={showmapArea}
-                      className={classes.showmapBtn}
-                    >
-                      Show Map
-                    </ActionButton>
-                  </div>
+                  <ActionButton
+                    color="dark"
+                    onClick={showmapArea}
+                    className={classes.showmapBtn}
+                  >
+                    {t("Show Map")}
+                  </ActionButton>
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      Selected Lands:
+                      {t("Selected Lands")}:
                     </div>
-                    <div className={classes.selectedLandResult}>{count}</div>
+                    <div className={classes.selectedLandResult}>
+                      {countArea}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -224,7 +229,7 @@ export default function LandAccordion() {
               id="panel2d-header"
             >
               <Typography className={classes.title}>
-                Select Multiple Lands
+                {t("Select Multiple Lands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -243,20 +248,20 @@ export default function LandAccordion() {
                   </FormControl>
                 </div>
                 <div className={classes.selectedLandContainer}>
-                  <div className={classes.buttons}>
-                    <ActionButton
-                      color="dark"
-                      onClick={showmapMultiland}
-                      className={classes.showmapBtn}
-                    >
-                      Show Map
-                    </ActionButton>
-                  </div>
+                  <ActionButton
+                    color="dark"
+                    onClick={showmapMultiland}
+                    className={classes.showmapBtn}
+                  >
+                    {t("Show Map")}
+                  </ActionButton>
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      Selected Lands:
+                      {t("Selected Lands")}:
                     </div>
-                    <div className={classes.selectedLandResult}>{count}</div>
+                    <div className={classes.selectedLandResult}>
+                      {countMulti}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -20,22 +20,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   LandMap: {
-    maxWidth: "945px",
     display: "grid",
     margin: "0px auto",
-    [theme.breakpoints.down(1200)]: {
-      maxWidth: "820px",
-    },
-    [theme.breakpoints.down(992)]: {
-      maxWidth: "600px",
-    },
-    [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
-      marginTop: "60px",
-    },
+    width: "100%",
   },
   LandMapContent: {
     height: "400px",
+    marginBottom: "53px",
     [theme.breakpoints.down(768)]: {
       margin: "0px calc( (100% - 400px) / 2)",
     },
@@ -45,7 +36,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   backBtnPosition: {
-    position: "absolute",
+    display: "flex",
+    justifyContent: "start",
+    margin: "10px 0px",
   },
   contractDescription: {
     marginTop: "35px",
@@ -63,7 +56,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   rightDescription: {
-    minWidth: "320px",
+    minWidth: "265px",
     [theme.breakpoints.down(992)]: {
       width: "100%",
       marginTop: "20px",
@@ -72,19 +65,24 @@ export const useStyles = makeStyles((theme: Theme) => ({
   items: {
     marginBottom: "40px",
   },
+  divideLine: {
+    border: "1px solid #282E4E",
+    marginBottom: "37px",
+    marginTop: "40px",
+  },
   tableRoot: {
-    // width: "820px ",
     width: "100%",
     "& .MuiTableContainer-root": {
       width: "auto",
     },
   },
   BidsTitle: {
-    fontSize: "13px",
-    fontWeight: 400,
-    lineHeight: "18px",
-    textTransform: "uppercase",
-    marginBottom: "16px",
-    color: "#676370",
+    fontSize: "24px",
+    fontWeight: 600,
+    lineHeight: "50px",
+    color: "white",
+  },
+  BidboxContainer: {
+    marginBottom: "30px",
   },
 }));

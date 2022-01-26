@@ -1,5 +1,4 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import { findByLabelText } from "@testing-library/react";
 export const CollectiblesStyle = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
@@ -13,20 +12,30 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(1200)]: {
       maxWidth: "933px",
     },
-    [theme.breakpoints.down(992)]: {
-      maxWidth: "723px",
-    },
     [theme.breakpoints.down(769)]: {
       maxWidth: "calc(100% - 32px) !important",
     },
   },
   leftPart: {
-    width: "256px",
+    width: "264px",
+    marginRight: "20px",
+    [theme.breakpoints.down(768)]: {
+      display: "none",
+    },
+  },
+  CollectibleFilterContainer: {
+    [theme.breakpoints.down(768)]: {
+      display: "none",
+    },
   },
   rightPart: {
     width: "100%",
   },
   products: {
-    display: "findByLabelText",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  product: {
+    width: "32%",
   },
 }));

@@ -1,3 +1,5 @@
+/** @format */
+
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 const useStyles = makeStyles((theme: Theme) => ({
@@ -12,9 +14,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     gap: "8px",
     minWidth: "128px",
     fontSize: "16px",
-    lineHeight: "19px",
+    lineHeight: "20px",
     justifyContent: "center",
-    margin: "20px 0px 10px 0px",
+    color: "white",
   },
   darkColor: {
     border: "double 1px transparent",
@@ -31,20 +33,36 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   lightColor: {
     background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
-    padding: "10px 32px",
     "&:hover": {
       transform: "translateY(-2px)",
     },
   },
   disablestatus: {
-    backgroundColor: "#7f1f34",
-    color: "#7f7d80",
+    opacity: "60%",
+    background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
+    border: "double 1px transparent",
+    borderRadius: "100px",
+    backgroundImage:
+      "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+    backgroundClip: "content-box, border-box",
+    backgroundOrigin: "border-box",
+    color: "white",
     cursor: "default",
     "&:hover": {
       transform: "translateY(0px)",
-      backgroundColor: "#7f1f34",
-      color: "#7f7d80",
     },
+  },
+  text: {
+    margin: "10px 32px",
+    display: "flex",
+    alignItems: "center",
+    "& svg": {
+      margin: "0px 5px",
+    },
+    fontSize: "16px",
+    lineHeight: "19px",
+    align: "Left",
+    verticalAlign: "Top",
   },
 }));
 
@@ -73,9 +91,8 @@ const ActionButton = ({
           [classes.lightColor]: color === "light",
           [classes.disablestatus]: disabled,
         })}
-        onClick={onClick}
-      >
-        {children}
+        onClick={onClick}>
+        <span className={classes.text}>{children}</span>
       </div>
     </>
   );

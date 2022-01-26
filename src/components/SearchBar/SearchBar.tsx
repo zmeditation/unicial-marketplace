@@ -11,6 +11,7 @@ import { searchbarBtn } from "../../config/constant";
 import filter_svg from "./../../assets/svg/filter.svg";
 import search_svg from "./../../assets/svg/search.svg";
 import { withStyles } from "@material-ui/core/styles";
+import { useTranslation } from "react-i18next";
 
 import Switch from "@material-ui/core/Switch";
 
@@ -34,6 +35,7 @@ const PurpleSwitch = withStyles({
 
 export default function SearchBar() {
   const classes = SearchBarStyle();
+  const {t, i18n} = useTranslation();
 
   const [state, setState] = React.useState({
     checkedA: true,
@@ -80,7 +82,7 @@ export default function SearchBar() {
                 />
               </div>
               <div className={classes.openfilter}>
-                <div className={classes.openfilterLabel}>FILTER</div>
+                <div className={classes.openfilterLabel}>{t("FILTER")}</div>
                 <img
                   src={filter_svg}
                   className={classes.filterIcon}

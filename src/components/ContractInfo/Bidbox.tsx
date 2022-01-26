@@ -1,29 +1,36 @@
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
+import CallMadeIcon from "@material-ui/icons/CallMade";
 import ActionButton from "../Base/ActionButton";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     padding: "20px 24px",
-    border: "2px solid #242129",
-    borderRadius: "12px",
+    borderRadius: "15px",
     display: "flex",
     flexDirection: "column",
     margin: "5px 0px",
+    backgroundColor: "#282E4E",
   },
   title: {
-    fontSize: "13px",
+    fontSize: "14px",
     fontWeight: 400,
-    lineHeight: "18px",
-    textTransform: "uppercase",
+    lineHeight: "17px",
     marginBottom: "8px",
-    color: "#676370",
+    color: "#96A1DB",
+    opacity: "50%",
   },
   subtitle: {
-    fontSize: "20px",
+    fontSize: "16px",
     marginTop: "4px",
-    lineHeight: "28px",
+    lineHeight: "40px",
+    marginBottom: "13px",
+  },
+  callmadeicon: {
+    width: "20px",
+    height: "20px",
   },
 }));
 
@@ -32,13 +39,15 @@ interface BidboxProps {}
 const Bidbox: React.FC = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const {t, i18n} = useTranslation();
 
   return (
     <div className={classes.root}>
-      <div className={classes.title}>network</div>
-      <div className={classes.subtitle}>Zilionixx</div>
-      <ActionButton color="red" onClick={() => navigate("bid")}>
-        BID
+      <div className={classes.title}>{t("Network")}</div>
+      <div className={classes.subtitle}>{t("Zilionixx")}</div>
+      <ActionButton color="light" onClick={() => navigate("bid")}>
+        {t("BID")}
+        <CallMadeIcon className={classes.callmadeicon} />
       </ActionButton>
     </div>
   );

@@ -96,7 +96,6 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       },
     },
     socialLinks: {
-      // marginRight: "24px",
       marginTop: "2px",
       [theme.breakpoints.down(769)]: {
         display: "flex",
@@ -180,6 +179,15 @@ export const FooterStyle = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
+    languagesettingContainer: {
+      marginTop: "8px",
+    },
+    activeitem: {
+      backgroundColor: "#282E4E",
+    },
+    activeLabel: {
+      color: "white",
+    },
   })
 );
 
@@ -187,11 +195,10 @@ export const StyledLanguagePopover = withStyles({
   paper: {
     backgroundColor: "#1A1F37",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05 )",
-    marginBottom: "70px",
     borderRadius: "15px",
     position: "absolute",
     minWidth: "168px",
-    top: "419px",
+    marginTop: "-5px",
   },
 })(Popover);
 
@@ -205,8 +212,5 @@ export const StyledMenuItem = withStyles({
     padding: "10px 16px",
     cursor: "pointer",
     position: "relative",
-    // "&:hover": {
-    //   backgroundColor: "#24212933",
-    // },
   },
 })(MenuItem);

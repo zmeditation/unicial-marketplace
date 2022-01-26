@@ -2,9 +2,11 @@ import React from "react";
 import { adminTopTabIndex } from "../../../config/adminConstant";
 import { AdminTopTabStyle, StyledTopTabBtn } from "./AdminTopTabStyle";
 import { useLocation } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export default function TopTab() {
   const classes = AdminTopTabStyle();
+  const {t, i18n} = useTranslation();
   const location = useLocation();
 
   const [toptab_index, setToptabIndex] = React.useState(1);
@@ -25,13 +27,13 @@ export default function TopTab() {
                 onClick={handleLand}
                 disabled={toptab_index === adminTopTabIndex.land}
               >
-                Land
+                {t("Land")}
               </StyledTopTabBtn>
               <StyledTopTabBtn
                 onClick={handleEstate}
                 disabled={toptab_index === adminTopTabIndex.estate}
               >
-                Estate
+                {t("Estate")}
               </StyledTopTabBtn>
             </div>
           </div>

@@ -21,7 +21,7 @@ export const AdminEstateStyle = makeStyles((theme: Theme) => ({
   },
 
   backBtnPosition: {
-    position: "absolute",
+    marginTop: "5px",
   },
 
   LandMap: {

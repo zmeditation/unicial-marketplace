@@ -6,22 +6,23 @@ import plaza_svg from "../../assets/svg/plaza.svg";
 import road_svg from "../../assets/svg/road.svg";
 import distirct_svg from "../../assets/svg/district.svg";
 import { highlight, parcelInfo } from "../../config/hightLightData";
+import { useTranslation } from "react-i18next";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: "45px",
   },
   title: {
-    fontSize: "13px",
+    fontSize: "12px",
     fontWeight: 400,
-    lineHeight: "18px",
+    lineHeight: "14.4px",
     textTransform: "uppercase",
-    marginBottom: "8px",
-    color: "#676370",
+    marginBottom: "21px",
+    color: "#96A1DB",
+    opacity: "50%",
   },
   cards: {
     width: "100%",
     display: "flex",
-    // justifyContent: "space-between",
     [theme.breakpoints.down(769)]: {
       display: "block",
     },
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     marginBottom: "20px",
     marginRight: "30px",
+    alignItems: "center",
   },
   addressImg: {
     marginRight: "8px",
@@ -42,14 +44,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: "12px",
   },
   name: {
-    fontSize: "15px",
-    lineHeight: "24px",
-    fontWeight: 600,
+    fontSize: "16px",
+    lineHeight: "19.2px",
+    fontWeight: 400,
+    marginBottom: "7px",
   },
   description: {
-    fontSize: "15px",
-    lineHeight: "24px",
-    color: "#676370",
+    fontSize: "14px",
+    lineHeight: "16.8px",
+    fontWeight: 400,
+    color: "#96A1DB",
   },
   unviewPlaza: {
     display: "none",
@@ -60,15 +64,25 @@ const useStyles = makeStyles((theme: Theme) => ({
   unviewDistrict: {
     display: "none",
   },
+  imgContainer: {
+    width: "44px",
+    height: "44px",
+    backgroundColor: "#282E4E",
+    borderRadius: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 
 interface DescriptionProps {}
 
 const Highlight: React.FC = () => {
   const classes = useStyles();
+  const {t,i18n} = useTranslation();
   return (
     <div className={classes.root}>
-      <div className={classes.title}>Highlight</div>
+      <div className={classes.title}>{t("Highlight")}</div>
       <div className={classes.cards}>
         <div
           className={
@@ -77,12 +91,13 @@ const Highlight: React.FC = () => {
               : classes.card
           }
         >
-          <img src={plaza_svg} className={classes.addressImg} alt="A" />
-
+          <div className={classes.imgContainer}>
+            <img src={plaza_svg} alt="A" />
+          </div>
           <div className={classes.rightPart}>
-            <div className={classes.name}>Plaza</div>
+            <div className={classes.name}>{t("Plaza")}</div>
             <div className={classes.description}>
-              {parcelInfo.plaza} parcel away
+              {parcelInfo.plaza} {t("parcel away")}
             </div>
           </div>
         </div>
@@ -93,12 +108,14 @@ const Highlight: React.FC = () => {
               : classes.card
           }
         >
-          <img src={road_svg} className={classes.addressImg} alt="A" />
+          <div className={classes.imgContainer}>
+            <img src={road_svg} alt="A" />
+          </div>
 
           <div className={classes.rightPart}>
-            <div className={classes.name}>Road</div>
+            <div className={classes.name}>{t("Road")}</div>
             <div className={classes.description}>
-              {parcelInfo.road} parcel away
+              {parcelInfo.road} {t("parcel away")}
             </div>
           </div>
         </div>
@@ -109,12 +126,14 @@ const Highlight: React.FC = () => {
               : classes.card
           }
         >
-          <img src={distirct_svg} className={classes.addressImg} alt="A" />
+          <div className={classes.imgContainer}>
+            <img src={distirct_svg} alt="A" />
+          </div>
 
           <div className={classes.rightPart}>
-            <div className={classes.name}>District</div>
+            <div className={classes.name}>{t("District")}</div>
             <div className={classes.description}>
-              {parcelInfo.district} parcel away
+              {parcelInfo.district} {t("parcel away")}
             </div>
           </div>
         </div>

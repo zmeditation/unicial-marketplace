@@ -39,10 +39,14 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
     textfilter: {
       display: "flex",
       width: "175px",
+      // alignItems: "center",
+      // [theme.breakpoints.down(768)]: {
+      //   display: "none",
+      // },
     },
     searchIcon: {
-      height: "14px",
-      marginTop: "8px",
+      // height: "14px",
+      // marginTop: "8px",
       marginRight: "10px",
     },
     searchinput: {
@@ -83,7 +87,9 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       },
     },
     openfilterLabel: {
-      color: "#ff2d55",
+      background: "linear-gradient(to right, #7F64E2 10%, #41A6EF 100%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
       marginRight: "10px",
       fontWeight: 500,
     },
@@ -92,24 +98,8 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       height: "20px",
     },
     listDropdown: {
-      // width: "120px",
-      height: "30px",
-      transform: "translateY(-4px)",
-      cursor: "pointer",
-      position: "relative",
-      display: "inline-block",
-      outline: 0,
-      textAlign: "center",
-      //
-      border: "double 1px transparent",
-      borderRadius: "100px",
-      backgroundImage:
-        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
-      backgroundClip: "content-box, border-box",
-      backgroundOrigin: "border-box",
-      //
-      [theme.breakpoints.down(1025)]: {
-        marginBottom: "18px",
+      [theme.breakpoints.down(768)]: {
+        display: "none",
       },
     },
     listRoot: {
@@ -142,6 +132,13 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
+    selectedListLabel:{
+      fontSize: "14px",
+      lineHeight: "20px",
+      fontWeight: 400,
+      fontStyle: "normal",
+      color: "#ffffff",
+    },
     switch: {
       "& .MuiSwitch-thumb": {
         width: "13px",
@@ -161,6 +158,13 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       marginLeft: "3px",
       marginTop: "4px",
     },
+    filtericonContainer: {
+      "& .MuiSvgIcon-root": {
+        width: "18px",
+        height: "18px",
+        fill: "#41A6EF",
+      },
+    },
   })
 );
 
@@ -170,7 +174,7 @@ export const StyledFormControlLabel = withStyles({
     fontStyle: "normal",
     fontWeight: 400,
     lineHeight: "19px",
-    background: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
+    background: "linear-gradient(to right, #FF7C4C, #FFB03A)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   },

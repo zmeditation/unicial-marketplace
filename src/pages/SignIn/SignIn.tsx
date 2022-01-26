@@ -9,7 +9,9 @@ import signinellipse2 from "../../assets/svg/signin_ellipse2.svg";
 import { CHAIN_INFO } from "../../config/constant";
 import { setloginAddress } from "../../store/auth/actions";
 import { useAppDispatch } from "../../store/hooks";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
 
 declare var window: any;
 var provider: any;
@@ -36,6 +38,7 @@ export default function SignIn() {
   const classes = SignInStyle();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {t,i18n} = useTranslation();
   var loginAddress: string;
 
   const getLoginAddress = async (signer: any, msgToSign: string) => {
@@ -138,25 +141,25 @@ export default function SignIn() {
           <div className={classes.starWalletIcon}>
             <img src={signinlogo} alt="wallet_img" />
           </div>
-          <div className={classes.headerText}>Get Started.</div>
+          <div className={classes.headerText}>{t("Get Started")}.</div>
           <div className={classes.descriptionContainer}>
-            You can use{" "}
+            {t("You can use")}{" "}
             <a
               href="https://metamask.io/"
               target="_blank"
               className={classes.browserLink}
             >
-              MetaMask
+              {t("MetaMask")}
             </a>{" "}
-            extension or your email account.
+            {t("extension or your email account")}.
           </div>
           <ActionButton
             color="light"
             className={classes.connectBtn}
             onClick={handleSignIn}
           >
-            Connect
-            <CallMadeIcon fontSize="small" />
+            {t("Connect")}
+            <CallMadeIcon className={classes.callmadeicon} />
           </ActionButton>
         </div>
       </div>

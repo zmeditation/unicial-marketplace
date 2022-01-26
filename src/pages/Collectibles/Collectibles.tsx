@@ -1,11 +1,11 @@
 import { CollectiblesStyle } from "./CollectiblesStyle";
 import TopTab from "../../components/TopTab/TopTab";
-import CategoryTree from "../../components/Collectible/CategoryTree/CategoryTree";
-import CollectibleSearchBar from "../../components/Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import CollectibleFilter from "../../components/Collectible/CollectibleFilter/CollectibleFilter";
 import ProductCard from "../../components/Collectible/ProductCard/ProductCard";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import { SidebarData } from "./SidebarData";
+import CollectibleSidebar from "../../components/Collectible/CollectibleSidebar/CollectibleSidebar";
+import NoResult from "../../components/NoResult/NoResult";
+
+import Grid from "@material-ui/core/Grid";
 
 export default function Collectibles() {
   const classes = CollectiblesStyle();
@@ -14,22 +14,88 @@ export default function Collectibles() {
       <TopTab />
       <div className={classes.root}>
         <div className={classes.leftPart}>
-          {/* <TypeBox /> */}
-          <CategoryTree />
-          <Sidebar data={SidebarData} />
+          <CollectibleSidebar />
         </div>
         <div className={classes.rightPart}>
-          <CollectibleSearchBar />
-          <CollectibleFilter />
-          <div className={classes.products}>
-            <ProductCard
-              tagColor="EpicColor"
-              tagLetter="EPIC"
-              productName="Pussy Hair"
-              category="Polygon"
-              price={1259}
-            />
+          <div className={classes.CollectibleFilterContainer}>
+            <CollectibleFilter />
           </div>
+
+          <Grid container spacing={1}>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProductCard
+                tagColor="EpicColor"
+                tagLetter="EPIC"
+                productName="Pussy Hair"
+                category="Polygon"
+                price={1259}
+              />
+            </Grid>
+          </Grid>
+          {/* <NoResult/> */}
         </div>
       </div>
     </>

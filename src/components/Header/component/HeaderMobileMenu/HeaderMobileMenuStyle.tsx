@@ -47,12 +47,6 @@ export const HeaderMobileMenuStyle = makeStyles((theme: Theme) =>
     },
     headerMobilemenu: {
       display: "none",
-
-      // [theme.breakpoints.down(768)]: {
-      //   display: "block",
-      //   width: "80%",
-      //   zIndex: 5,
-      // },
     },
     collapse: {
       width: "100vw",

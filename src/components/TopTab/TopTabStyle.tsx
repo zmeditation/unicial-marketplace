@@ -29,18 +29,17 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
         width: "933px",
       },
       [theme.breakpoints.down(992)]: {
-        width: "723px",
-      },
-      [theme.breakpoints.down(769)]: {
         marginLeft: "0px !important",
         marginRight: "0px !important",
         marginTop: "22px !important",
         marginBottom: "22px !important",
+
+        borderBottom: "1px solid #282E4E",
       },
     },
     nftfilter: {
       position: "relative",
-      height: "60px",
+      // height: "60px",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -77,9 +76,6 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       "& .MuiSwitch-root": {
         padding: "12.5px 12px",
       },
-      "& .MuiSwitch-track": {
-        // backgroundColor: "blue",
-      },
     },
   })
 );
@@ -90,7 +86,6 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     position: "relative",
     display: "inline-block",
     padding: "0px 0px",
-    marginRight: "14px",
     fontSize: "16px",
     fontFamily:
       '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
@@ -98,27 +93,36 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     letterSpacing: "-0.2px",
     cursor: "pointer",
     textTransform: "none",
-    // borderBottom: "3px solid #18141a",
     marginBottom: "-2px",
     minWidth: "35px",
-    width: "77px",
+    width: "100px",
     height: "30px",
     [theme.breakpoints.down(769)]: {
-      padding: "0px",
+      paddingLeft: "15px",
+      border: "2px solid #21263f",
       marginBottom: "6px",
     },
     "&.Mui-disabled": {
-      border: "double 1px transparent",
-      borderRadius: "100px",
-      backgroundImage:
-        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
-      backgroundClip: "content-box, border-box",
-      backgroundOrigin: "border-box",
       color: "white",
+      [theme.breakpoints.up(769)]: {
+        border: "double 1px transparent",
+        borderRadius: "100px",
+        backgroundImage:
+          "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+        backgroundClip: "content-box, border-box",
+        backgroundOrigin: "border-box",
+      },
+
+      [theme.breakpoints.down(769)]: {
+        paddingLeft: "15px",
+        borderLeft: "2px solid #7F64E2",
+        marginBottom: "6px",
+      },
     },
     "& .MuiButton-label": {
       textAlign: "center",
       [theme.breakpoints.down(769)]: {
+        textAlign: "left",
         fontWeight: 600,
         fontSize: "15px",
         marginRight: "32px",
@@ -135,7 +139,7 @@ export const StyledFormControlLabel = withStyles({
     fontStyle: "normal",
     fontWeight: 400,
     lineHeight: "19px",
-    background: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
+    background: "linear-gradient(to right, #FF7C4C, #FFB03A)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   },
@@ -153,8 +157,6 @@ export const StyledTableButton = withStyles({
       backgroundColor: "#333B67 !important",
       "& svg": {
         fill: "red",
-        // background: "linear-gradient(#7F64E2 100%, #41A6EF 100%)",
-        //
       },
     },
     "&.MuiButton-root:hover": {

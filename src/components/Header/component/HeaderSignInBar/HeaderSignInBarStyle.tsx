@@ -36,7 +36,6 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
     mana: {
       color: "#70708F",
       flex: "none",
-      cursor: "pointer",
       display: "flex",
       margin: "0 20px 0 0",
       fontSize: "14px",
@@ -118,17 +117,13 @@ export const StyledRingButton = withStyles({
     padding: "7px 11px",
     minWidth: "35px",
     marginRight: "7px",
-    "&.Mui-disabled": {
-      "& svg": {
-        fill: "#ff2d55 !important",
-      },
-    },
+    cursor: "default",
   },
 })(Button);
 
 export const StyledAvatarPopover = withStyles({
   paper: {
-    backgroundColor: "#676370",
+    backgroundColor: "#1a1f37",
     marginTop: "13px",
     borderRadius: "6px",
     position: "absolute",

@@ -1,7 +1,7 @@
 export const collectionData = [
   {
     index: 0,
-    catatory: "ALL COLLECTIONS",
+    catatory: "All Collections",
   },
   {
     index: 1,
@@ -20,7 +20,7 @@ export const collectionData = [
 export const networkData = [
   {
     index: 0,
-    category: "ALL NETWORK",
+    category: "All Network",
   },
   {
     index: 1,
@@ -29,5 +29,32 @@ export const networkData = [
   {
     index: 2,
     category: "Polygon",
+  },
+];
+
+export const filterListData = [
+  {
+    index: 0,
+    category: "COMMON",
+  },
+  {
+    index: 1,
+    category: "RARE",
+  },
+  {
+    index: 2,
+    category: "EPIC",
+  },
+  {
+    index: 3,
+    category: "LEGENDARY",
+  },
+  {
+    index: 4,
+    category: "MYTHIC",
+  },
+  {
+    index: 5,
+    category: "UNIQUE",
   },
 ];

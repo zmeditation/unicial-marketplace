@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useStyles } from "./CountDownStyle";
 import CountTexture from "../../assets/svg/count_texture.svg";
+import { useTranslation } from "react-i18next";
 
 const CountDown = () => {
   const classes = useStyles();
+  const {t, i18n} = useTranslation();
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
@@ -44,28 +46,28 @@ const CountDown = () => {
           alt="texture"
         ></img>
         <div className={classes.countdownItem}>
-          <div className={classes.timeDesc}>Days</div>
+          <div className={classes.timeDesc}>{t("DAYS")}</div>
           <div className={classes.timeItem}>
             {timeLeft.days < 10 ? "0" + timeLeft.days : timeLeft.days}
           </div>
         </div>
         <span className={classes.semicon}></span>
         <div className={classes.countdownItem}>
-          <div className={classes.timeDesc}>Hours</div>
+          <div className={classes.timeDesc}>{t("HOURS")}</div>
           <div className={classes.timeItem}>
             {timeLeft.hours < 10 ? "0" + timeLeft.hours : timeLeft.hours}
           </div>
         </div>
         <span className={classes.semicon}></span>
         <div className={classes.countdownItem}>
-          <div className={classes.timeDesc}>Minutes</div>
+          <div className={classes.timeDesc}>{t("MINUTES")}</div>
           <div className={classes.timeItem}>
             {timeLeft.minutes < 10 ? "0" + timeLeft.minutes : timeLeft.minutes}
           </div>
         </div>
         <span className={classes.semicon}></span>
         <div className={classes.countdownItem}>
-          <div className={classes.timeDesc}>Seconds</div>
+          <div className={classes.timeDesc}>{t("SECONDS")}</div>
           <div className={classes.timeItem}>
             {timeLeft.seconds < 10 ? "0" + timeLeft.seconds : timeLeft.seconds}
           </div>

@@ -9,10 +9,13 @@ export const headerId = {
 
 export const topTabIndex = {
   land: 1,
-  auction: 2,
-  partners: 3,
-  myassets: 4,
-  mybids: 5,
+  collectibles: 2,
+  mystore: 3,
+  auction: 4,
+  partners: 5,
+  myassets: 6,
+  mybids: 7,
+  contracts: 8,
 };
 
 export const searchbarBtn = {
@@ -20,12 +23,17 @@ export const searchbarBtn = {
   locationBtn: 2,
 };
 
-export const searchBarIndex = {
-  land: 1,
-  collectibles: 2,
-  mystore: 3,
-  auction: 4,
-  default: 0,
+export const searchbarIndex = {
+  collections: 1,
+  land: 3,
+  parcels: 3,
+  estate: 3,
+  wearables: 2,
+  ens: 4,
+  on_sale: 1,
+  sales: 0,
+  auction: 0,
+  contracts: 0,
 };
 
 export const networkInfo = {
@@ -62,4 +70,41 @@ export const CHAIN_INFO = {
     rpcUrls: ["http://54.255.250.212:80"],
     blockExplorerUrls: ["http://testnet.znxscan.com"],
   },
+};
+
+export const typebox = {
+  store: "item",
+  listing: "nft",
+};
+
+export const category = {
+  collections: "collections",
+  land: "land",
+  wearable: "wearables",
+  name: "ens",
+};
+
+export const collectiblesTagsColor = {
+  DefaultColor : "DefaultColor",
+  RareColor : "RareColor",
+};
+
+export const categoryWearables = {
+  head: "wearables_head",
+  facialhair: "wearables_facial_hair",
+  hair: "wearables_hair",
+  eyes: "wearables_eyes",
+  eyebrows: "wearables_eyebrows",
+  mouth: "wearables_mouth",
+  upperBody: "wearables_upper_body",
+  lowerBody: "wearables_lower_body",
+  feet: "wearables_feet",
+  accessories: "wearables_accessories",
+  earring: "wearables_erring",
+  eyewear: "wearables_eyewear",
+  hat: "wearables_hat",
+  helmet: "wearables_helmet",
+  mask: "wearables_mask",
+  tiara: "wearables_tiara",
+  topHead: "wearables_top_head",
 };

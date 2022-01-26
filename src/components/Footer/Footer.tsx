@@ -17,19 +17,24 @@ import ChinaSvg from "./../../assets/svg/China.svg";
 import EnglandSvg from "./../../assets/svg/England.svg";
 import SpainSvg from "./../../assets/svg/Spain.svg";
 import FooterTexture from "../../assets/svg/footer_texture.svg";
+import { useTranslation, withTranslation, Trans } from "react-i18next";
+
 export default function Footer() {
   const classes = FooterStyle();
   const [countryLanguage, setCountryLanguage] = React.useState("");
   const [countryFlag, setCountryFlag] = React.useState("");
   const [languageIndex, setlanguageIndex] = React.useState(1);
+  const { t, i18n } = useTranslation();
 
   const handleEnglish = () => {
+    i18n.changeLanguage("en");
     setlanguageIndex(1);
   };
   const handleSpanish = () => {
     setlanguageIndex(2);
   };
   const handleChinese = () => {
+    i18n.changeLanguage("ch");
     setlanguageIndex(3);
   };
 
@@ -78,19 +83,19 @@ export default function Footer() {
           <div className={classes.mainfooter}>
             <div className={classes.links}>
               <a href="/" className={classes.link}>
-                Home
+                {t("Home")}
               </a>
               <a href="/" className={classes.link}>
-                Privacy Policy
+                {t("Privacy Policy")}
               </a>
               <a href="/" className={classes.link}>
-                Terms of Use
+                {t("Terms of Use")}
               </a>
               <a href="/" className={classes.link}>
-                Content Policy
+                {t("Content Policy")}
               </a>
               <a href="/" className={classes.link}>
-                Code of Ethics
+                {t("Code of Ethics")}
               </a>
             </div>
             <div className={classes.socialLinks}>
@@ -124,9 +129,9 @@ export default function Footer() {
             </div>
           </div>
           <div className={classes.secondaryFooter}>
-            <div className={classes.copyright}>© 2022 Unicial</div>
+            <div className={classes.copyright}>© 2022 {t("Unicial")}</div>
             {/* flag start */}
-            <div>
+            <div className={classes.languagesettingContainer}>
               <Box
                 aria-controls="simple-menu"
                 aria-haspopup="true"
@@ -159,21 +164,39 @@ export default function Footer() {
                   horizontal: "right",
                 }}
               >
-                <StyledMenuItem onClick={handleEnglish}>
+                <StyledMenuItem disableRipple onClick={handleEnglish}>
                   <Box className={classes.flagLanContainer}>
-                    <Box className={classes.languageLabel}>English</Box>
+                    <Box
+                      className={clsx(classes.languageLabel, {
+                        [classes.activeLabel]: languageIndex === 1,
+                      })}
+                    >
+                      {t("English")}
+                    </Box>
                   </Box>
                 </StyledMenuItem>
 
-                <StyledMenuItem onClick={handleSpanish}>
+                <StyledMenuItem disableGutters onClick={handleSpanish}>
                   <Box className={classes.flagLanContainer}>
-                    <Box className={classes.languageLabel}>Spanish</Box>
+                    <Box
+                      className={clsx(classes.languageLabel, {
+                        [classes.activeLabel]: languageIndex === 2,
+                      })}
+                    >
+                      {t("Spanish")}
+                    </Box>
                   </Box>
                 </StyledMenuItem>
 
                 <StyledMenuItem onClick={handleChinese}>
                   <Box className={classes.flagLanContainer}>
-                    <Box className={classes.languageLabel}>Chinese</Box>
+                    <Box
+                      className={clsx(classes.languageLabel, {
+                        [classes.activeLabel]: languageIndex === 3,
+                      })}
+                    >
+                      {t("Chinese")}
+                    </Box>
                   </Box>
                 </StyledMenuItem>
               </StyledLanguagePopover>

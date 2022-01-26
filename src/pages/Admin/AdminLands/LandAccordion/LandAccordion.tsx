@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import { useTranslation } from "react-i18next";
 import {
   LandAccordionStyle,
   StyledAccordion,
@@ -14,6 +15,7 @@ import {
 export default function LandAccordion() {
   const classes = LandAccordionStyle();
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
+  const {t, i18n} = useTranslation();
 
   const handleChange =
     (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
@@ -35,7 +37,7 @@ export default function LandAccordion() {
               id="panel1d-header"
             >
               <Typography className={classes.title}>
-                Select AreaLands
+                {t("Select AreaLands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -49,7 +51,7 @@ export default function LandAccordion() {
                           id="input-with-icon-adornment"
                           startAdornment={
                             <InputAdornment position="start">
-                              <i className={classes.axisLabel}>X1</i>
+                              <i className={classes.axisLabel}> {t("x1")}</i>
                             </InputAdornment>
                           }
                         />
@@ -62,7 +64,7 @@ export default function LandAccordion() {
                           id="input-with-icon-adornment"
                           startAdornment={
                             <InputAdornment position="start">
-                              <i className={classes.axisLabel}>Y1</i>
+                              <i className={classes.axisLabel}>{t("y1")}</i>
                             </InputAdornment>
                           }
                         />
@@ -77,7 +79,7 @@ export default function LandAccordion() {
                           id="input-with-icon-adornment"
                           startAdornment={
                             <InputAdornment position="start">
-                              <i className={classes.axisLabel}>X2</i>
+                              <i className={classes.axisLabel}>{t("x2")}</i>
                             </InputAdornment>
                           }
                         />
@@ -90,7 +92,7 @@ export default function LandAccordion() {
                           id="input-with-icon-adornment"
                           startAdornment={
                             <InputAdornment position="start">
-                              <i className={classes.axisLabel}>Y2</i>
+                              <i className={classes.axisLabel}>{t("y2")}</i>
                             </InputAdornment>
                           }
                         />
@@ -102,7 +104,7 @@ export default function LandAccordion() {
                   {/* selected lands */}
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      Selected Lands:
+                      {t("Selected Lands")}:
                     </div>
                     <div className={classes.selectedLandResult}>9000000</div>
                   </div>
@@ -110,10 +112,10 @@ export default function LandAccordion() {
                   {/* buttons */}
                   <div className={classes.buttons}>
                     <ActionButton color="red" className={classes.btnchange}>
-                      Show Map
+                      {t("Show Map")}
                     </ActionButton>
                     <ActionButton color="dark" className={classes.btnchange}>
-                      Assign
+                      {t("assign")}
                     </ActionButton>
                   </div>
                 </div>
@@ -132,7 +134,7 @@ export default function LandAccordion() {
               id="panel2d-header"
             >
               <Typography className={classes.title}>
-                Select Multiple Lands
+                {t("Select Multiple Lands")}
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
@@ -152,7 +154,7 @@ export default function LandAccordion() {
                   {/* selected lands */}
                   <div className={classes.selectedLandLabelContainer}>
                     <div className={classes.selectedLandLabel}>
-                      Selected Lands:
+                      {t("Selected Lands")}:
                     </div>
                     <div className={classes.selectedLandResult}>9000000</div>
                   </div>
@@ -160,10 +162,10 @@ export default function LandAccordion() {
                   {/* buttons */}
                   <div className={classes.buttons}>
                     <ActionButton color="red" className={classes.btnchange}>
-                      Show Map
+                      {t("Show Map")}
                     </ActionButton>
                     <ActionButton color="dark" className={classes.btnchange}>
-                      Assign
+                      {t("assign")}
                     </ActionButton>
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -22,10 +23,11 @@ interface DescriptionProps {}
 
 const Description: React.FC = () => {
   const classes = useStyles();
+  const {t, i18n} = useTranslation();
   return (
     <div>
-      <div className={classes.title}>description</div>
-      <div className={classes.descript}>Unicial Genesis Plaza</div>
+      <div className={classes.title}>{t("Description")}</div>
+      <div className={classes.descript}>{t("Unicial Genesis Plaza")}</div>
     </div>
   );
 };

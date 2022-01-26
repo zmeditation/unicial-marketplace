@@ -33,7 +33,7 @@ export default function ProductCard({
           </div>
         </div>
         <div className={classes.imageContainer}>
-          <img src={PussyhairPng} />
+          <img src={PussyhairPng} className={classes.image} />
         </div>
         <div className={classes.productName}>{productName}</div>
         <div className={classes.bottom}>
