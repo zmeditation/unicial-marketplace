@@ -12,6 +12,7 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       padding: "20px 8px 20px 8px",
       margin: "10px",
       overflow: "hidden",
+      minWidth: "200px",
     },
     header: {
       display: "flex",
@@ -29,7 +30,6 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
     },
     imageContainer: {
       width: "100%",
-      minWidth: "200px",
       backgroundImage: "linear-gradient(67.71deg, #39B8FD 0%, #AD2DFE 98.37%)",
       borderRadius: "15px",
       marginTop: "20px",

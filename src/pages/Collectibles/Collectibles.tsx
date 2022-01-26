@@ -22,7 +22,7 @@ export default function Collectibles() {
           </div>
 
           <Grid container spacing={1}>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <ProductCard
                 tagColor="EpicColor"
                 tagLetter="EPIC"
@@ -31,7 +31,7 @@ export default function Collectibles() {
                 price={1259}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <ProductCard
                 tagColor="EpicColor"
                 tagLetter="EPIC"
@@ -40,7 +40,7 @@ export default function Collectibles() {
                 price={1259}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <ProductCard
                 tagColor="EpicColor"
                 tagLetter="EPIC"
@@ -49,7 +49,7 @@ export default function Collectibles() {
                 price={1259}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <ProductCard
                 tagColor="EpicColor"
                 tagLetter="EPIC"
@@ -58,7 +58,7 @@ export default function Collectibles() {
                 price={1259}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <ProductCard
                 tagColor="EpicColor"
                 tagLetter="EPIC"
@@ -67,7 +67,7 @@ export default function Collectibles() {
                 price={1259}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <ProductCard
                 tagColor="EpicColor"
                 tagLetter="EPIC"
@@ -76,7 +76,7 @@ export default function Collectibles() {
                 price={1259}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <ProductCard
                 tagColor="EpicColor"
                 tagLetter="EPIC"
@@ -85,7 +85,7 @@ export default function Collectibles() {
                 price={1259}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <ProductCard
                 tagColor="EpicColor"
                 tagLetter="EPIC"
