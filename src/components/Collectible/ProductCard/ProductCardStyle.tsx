@@ -6,33 +6,30 @@ import { makeStyles, withStyles } from "@material-ui/styles";
 export const ProductCardStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      minWidth: "250px",
       borderRadius: "15px",
       backgroundColor: "#282E4E",
       boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
       padding: "20px 8px 20px 8px",
       margin: "10px",
+      overflow: "hidden",
     },
     header: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
     },
-
     iconContainer: {
       display: "flex",
       width: "50px",
       justifyContent: "space-between",
     },
-
     icon: {
       width: "20px",
       height: "20px",
     },
     imageContainer: {
       width: "100%",
-      minWidth: "180px",
-      height: "185px",
+      minWidth: "200px",
       backgroundImage: "linear-gradient(67.71deg, #39B8FD 0%, #AD2DFE 98.37%)",
       borderRadius: "15px",
       marginTop: "20px",
@@ -43,8 +40,12 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       justifyContent: "center",
     },
     image: {
-      maxWidth: "180px",
-      maxHeight: "180px",
+      minWidth: "180px",
+      minHeight: "180px",
+      [theme.breakpoints.down(960)]: {
+        width: "100%",
+        alignSelf: "self-end",
+      },
     },
     productName: {
       fontStyle: "normal",

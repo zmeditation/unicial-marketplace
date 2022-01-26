@@ -23,7 +23,9 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         width: "933px",
       },
       [theme.breakpoints.down(992)]: {
-        width: "723px",
+        width: "100%",
+        padding: "0 16px",
+        margin: "0 !important",
       },
       [theme.breakpoints.down(769)]: {
         width: "100%",

@@ -317,13 +317,13 @@ const Auction = () => {
               uccBalance.div(BigNumber.from(uccPricePerSpace)).toString()}
           </Typography> */}
           <Grid container spacing={2}>
-            <Grid item md={4} sm={4} xs={4}>
+            <Grid item md={4} sm={4} xs={12}>
               <Balance type='uccbalance' />
             </Grid>
-            <Grid item md={4} sm={4} xs={4}>
+            <Grid item md={4} sm={4} xs={12}>
               <Balance type='currentspace' />
             </Grid>
-            <Grid item md={4} sm={4} xs={4}>
+            <Grid item md={4} sm={4} xs={12}>
               <Balance type='buyable' />
             </Grid>
           </Grid>
