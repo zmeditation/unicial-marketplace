@@ -13,7 +13,7 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       width: "100%",
       height: "65px",
       color: "#fff",
-      marginTop: "30px",
+      padding: "40px",
       [theme.breakpoints.down(769)]: {
         marginTop: "22px",
         marginBottom: "22px",
@@ -51,6 +51,9 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       fontSize: "12px",
+      [theme.breakpoints.down(769)]: {
+        padding: "0px 16px 0px 0px ",
+      },
     },
     tabsLeft: {
       flex: "1 0 auto",
@@ -59,6 +62,10 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(769)]: {
         display: "inline-grid",
       },
+    },
+    landtoptabRight: {
+      display: "flex",
+      alignItems: "center",
     },
     //
     topbarFilter: {
@@ -166,7 +173,7 @@ export const StyledTableButton = withStyles({
       },
     },
     "&.MuiButton-root:hover": {
-      // backgroundColor: "#392d38",
+      backgroundColor: "#282E4E",
     },
   },
 })(Button);
@@ -186,7 +193,7 @@ export const StyledLocationButton = withStyles({
       },
     },
     "&.MuiButton-root:hover": {
-      // backgroundColor: "#392d38",
+      backgroundColor: "#282E4E",
     },
   },
 })(Button);

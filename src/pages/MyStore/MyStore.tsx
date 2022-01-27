@@ -7,8 +7,8 @@ import GradientEarningCard from "../../components/Mystore/GradientEarningCard/Gr
 import SalesStagingTable from "../MyStore/SalesStagingTable/SalesStagingTable";
 import { headerData, stagingData } from "./SalesStagingData";
 import MobileSidebar from "../../components/Mystore/MobileSidebar/MobileSidebar";
-import LandCard from "../../components/Mystore/LandCard/LandCard";
 import LandParcels from "../../components/Mystore/LandParcels/LandParcels";
+import LandEstates from "../../components/Mystore/LandEstates/LandEstates";
 import NoResult from "../../components/NoResult/NoResult";
 import Grid from "@material-ui/core/Grid";
 import { useTranslation } from "react-i18next";
@@ -31,6 +31,9 @@ export default function MyStore() {
       case "sales":
         setrightPartIndex("sales");
         break;
+      case "estates":
+        setrightPartIndex("estates");
+        break;
       default:
         setrightPartIndex("");
     }
@@ -50,14 +53,9 @@ export default function MyStore() {
         <div className={classes.rightPart}>
           {rightPartIndex === "parcels" ? (
             <LandParcels />
-          ) : // <LandCard
-          //   locationbtnX={-18}
-          //   locationbtnY={23}
-          //   landName="Plaza Area Sale"
-          //   category="Ethereum"
-          //   price={5500}
-          // />
-          rightPartIndex === "sales" ? (
+          ) : rightPartIndex === "estates" ? (
+            <LandEstates />
+          ) : rightPartIndex === "sales" ? (
             <>
               <div className={classes.statsContainer}>
                 <div className={classes.title}>{t("Stats")}.</div>

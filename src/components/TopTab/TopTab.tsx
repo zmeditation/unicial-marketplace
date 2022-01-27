@@ -127,7 +127,8 @@ export default function TopTab() {
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handleLand("/lands")}
-                    disabled={toptab_index === topTabIndex.land}>
+                    disabled={toptab_index === topTabIndex.land}
+                  >
                     {t("Lands")}
                   </StyledTopTabBtn>
 
@@ -138,49 +139,54 @@ export default function TopTab() {
                         "/browse?section=wearables&vendor=decentraland&page=1&sortBy=recently_listed&onlyOnSale=true"
                       )
                     }
-                    disabled={toptab_index === topTabIndex.collectibles}>
+                    disabled={toptab_index === topTabIndex.collectibles}
+                  >
                     {t("Collectibles")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handleLand("/account")}
-                    disabled={toptab_index === topTabIndex.mystore}>
+                    disabled={toptab_index === topTabIndex.mystore}
+                  >
                     {t("My Store")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handleLand("/auction")}
-                    disabled={toptab_index === topTabIndex.auction}>
+                    disabled={toptab_index === topTabIndex.auction}
+                  >
                     {t("Auction")}
                   </StyledTopTabBtn>
                 </div>
 
                 {toptab_index === 1 ? (
                   /* //Land */
-                  <div style={{ display: "flex" }}>
+                  <div className={classes.landtoptabRight}>
                     <StyledFormControlLabel
                       control={
                         <PurpleSwitch
                           checked={state.checkedA}
                           onChange={handleChange}
-                          name='checkedA'
+                          name="checkedA"
                         />
                       }
-                      label='ON SALE'
+                      label="ON SALE"
                       className={classes.switch}
                     />
                     <div style={{ marginLeft: "20px" }}>
                       <StyledTableButton
                         disabled={filter_index === searchbarBtn.tableBtn}
-                        onClick={handletable}>
+                        onClick={handletable}
+                      >
                         <img src={book_svg} />
                       </StyledTableButton>
 
                       <StyledLocationButton
                         disabled={filter_index === searchbarBtn.locationBtn}
-                        onClick={handlelocation}>
+                        onClick={handlelocation}
+                      >
                         <img src={location_svg} />
                       </StyledLocationButton>
                     </div>

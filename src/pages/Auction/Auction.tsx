@@ -155,7 +155,7 @@ const Auction = () => {
   const handleClear = () => {
     dispatch(
       showAlert({
-        message: "U have successfully registered!",
+        message: "You have successfully registered!",
         severity: "error",
       })
     );
