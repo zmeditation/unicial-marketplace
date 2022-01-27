@@ -3,7 +3,7 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
     maxWidth: "1064px",
-    margin: "30px auto",
+    margin: "10px auto",
     position: "relative",
     display: "flex",
     "& canvas, .react-tile-map ": {

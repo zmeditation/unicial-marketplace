@@ -19,21 +19,6 @@ interface StyledTableleProps {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    "@global": {
-      "*::-webkit-scrollbar": {
-        width: "5px !important",
-        height: "6px",
-        background: "#141b31",
-      },
-      "*::-webkit-scrollbar-track": {
-        borderRadius: "0px",
-        background: "rgba(0, 0, 0, 0.05)",
-      },
-      "*::-webkit-scrollbar-thumb": {
-        background: "#3d3a46",
-        borderRadius: "3px",
-      },
-    },
     title: {
       fontSize: "13px",
       fontWeight: 400,

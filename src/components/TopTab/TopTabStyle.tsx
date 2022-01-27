@@ -5,16 +5,13 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: "#21263F",
-      marginBottom: "0px",
       display: "flex",
       alignItems: "center",
       width: "100%",
       height: "65px",
       color: "#fff",
-      padding: "40px",
+      margin: "20px auto",
       [theme.breakpoints.down(769)]: {
-        marginTop: "22px",
-        marginBottom: "22px",
         display: "contents",
       },
     },

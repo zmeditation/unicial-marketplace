@@ -3,28 +3,28 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
   auctionInfo: {
     maxWidth: "1064px",
-    margin: "40px auto",
+    margin: "10px auto 40px auto",
     position: "relative",
   },
-  auctionBalance:{
-    marginBottom:"40px",
+  auctionBalance: {
+    marginBottom: "40px",
   },
   root: {
     minHeight: "calc(100vh - 246px)",
-    maxWidth: "1064px",
-    margin: "40px auto",
+    width: "1064px",
+    margin: "10px auto",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
-      maxWidth: "933px",
+      width: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      maxWidth: "723px",
+      width: "723px",
     },
     [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      width: "calc(100% - 32px) !important",
     },
   },
   LandMap: {
@@ -134,6 +134,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   backBtnPosition: {
-    marginTop: '5px',
+    marginTop: "5px",
   },
 }));
