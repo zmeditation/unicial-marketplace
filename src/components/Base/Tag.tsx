@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "14px",
     fontWeight: 400,
     lineHeight: "16.8px",
+    cursor: "pointer",
   },
   EpicColor: {
     backgroundImage: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",

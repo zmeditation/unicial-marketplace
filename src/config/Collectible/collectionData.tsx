@@ -1,3 +1,5 @@
+/** @format */
+
 export const collectionData = [
   {
     index: 0,
