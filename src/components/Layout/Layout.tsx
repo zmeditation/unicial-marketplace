@@ -29,7 +29,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "100vh",
+    minHeight: "100vh",
   },
 }));
 

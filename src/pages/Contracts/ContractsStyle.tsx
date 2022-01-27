@@ -3,20 +3,20 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
-    maxWidth: "1064px",
+    width: "1064px",
     margin: "40px auto",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
-      maxWidth: "933px",
+      width: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      maxWidth: "723px",
+      width: "723px",
     },
     [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      width: "calc(100% - 32px) !important",
     },
   },
   LandMap: {
