@@ -28,7 +28,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   LandMap: {
-    display: "grid",
+    // display: "grid",
     margin: "0px auto",
     width: "100%",
   },
