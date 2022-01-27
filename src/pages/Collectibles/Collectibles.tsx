@@ -12,7 +12,6 @@ export default function Collectibles() {
   return (
     <>
       <TopTab />
-      <></>
       <div className={classes.root}>
         <div className={classes.leftPart}>
           <CollectibleSidebar />
