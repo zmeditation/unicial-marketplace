@@ -33,7 +33,7 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
         marginLeft: "0px !important",
         marginRight: "0px !important",
         marginTop: "22px !important",
-        marginBottom: "22px !important",
+        // marginBottom: "22px !important",
       },
       [theme.breakpoints.down(769)]: {
         borderBottom: "1px solid #282E4E",

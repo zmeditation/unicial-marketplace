@@ -51,6 +51,7 @@ export const MyStoreStyle = makeStyles((theme: Theme) => ({
     display: "none",
     [theme.breakpoints.down(769)]: {
       display: "block",
+      marginTop: "22px",
     },
   },
 }));
