@@ -46,7 +46,7 @@ export default function TopTab() {
   const [toptab_index, setToptabIndex] = React.useState(1);
   const [searchbar_index, setSearchbarIndex] = React.useState(1);
 
-  const handleLand = (url: string) => {
+  const handlehead = (url: string) => {
     navigate(url);
   };
   const query = new URLSearchParams(location.search);
@@ -126,7 +126,7 @@ export default function TopTab() {
                 <div className={classes.tabsLeft}>
                   <StyledTopTabBtn
                     disableRipple
-                    onClick={() => handleLand("/lands")}
+                    onClick={() => handlehead("/lands")}
                     disabled={toptab_index === topTabIndex.land}
                   >
                     {t("Lands")}
@@ -135,7 +135,7 @@ export default function TopTab() {
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() =>
-                      handleLand(
+                      handlehead(
                         "/browse?section=wearables&vendor=decentraland&page=1&sortBy=recently_listed&onlyOnSale=true"
                       )
                     }
@@ -146,7 +146,7 @@ export default function TopTab() {
 
                   <StyledTopTabBtn
                     disableRipple
-                    onClick={() => handleLand("/account")}
+                    onClick={() => handlehead("/account")}
                     disabled={toptab_index === topTabIndex.mystore}
                   >
                     {t("My Store")}
@@ -154,7 +154,7 @@ export default function TopTab() {
 
                   <StyledTopTabBtn
                     disableRipple
-                    onClick={() => handleLand("/auction")}
+                    onClick={() => handlehead("/auction")}
                     disabled={toptab_index === topTabIndex.auction}
                   >
                     {t("Auction")}

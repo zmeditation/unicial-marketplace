@@ -25,7 +25,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   backBtn: {
-    marginBottom: "42px",
+    marginBottom: "30px",
   },
   bidCard: {
     display: "flex",
@@ -41,7 +41,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flex: "0.75 1 auto",
     textAlign: "right",
     marginRight: "80px",
-    paddingTop: "20px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
       marginBottom: "25px !important",
