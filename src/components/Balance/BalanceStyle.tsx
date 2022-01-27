@@ -5,7 +5,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
   balanceRoot: {
     display: "flex",
-    padding: "16px 20px 22px 30px",
+    padding: "19px 20px 19px 30px",
     background: "#282E4E",
     borderRadius: "15px",
     alignItems: "center",

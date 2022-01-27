@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
     width: "1064px",
-    margin: "10px auto",
+    margin: "10px auto 60px auto",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",

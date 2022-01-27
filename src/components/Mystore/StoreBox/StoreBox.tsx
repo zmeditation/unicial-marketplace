@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StoreBoxStyle } from "./StoreBoxStyle";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -18,6 +18,15 @@ export default function TypeBox() {
       search: query.toString(),
     });
   };
+  useEffect(() => {
+    if (query.get("section") === "on_sale") {
+      setitemIndex("on_sale");
+    } else if (query.get("section") === "sales") {
+      setitemIndex("sales");
+    } else {
+      setitemIndex("");
+    }
+  }, [location]);
 
   return (
     <>
