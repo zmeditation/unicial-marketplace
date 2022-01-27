@@ -6,6 +6,7 @@ export const TypeBoxStyle = makeStyles((theme: Theme) => ({
     width: "264px",
     height: "auto",
     paddingTop: "26px",
+    fontFamily: "Lato",
   },
   headerTitle: {
     marginLeft: "40px",

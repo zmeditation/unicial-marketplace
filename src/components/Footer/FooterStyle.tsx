@@ -35,8 +35,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       flexFlow: "row nowrap",
       alignItems: "center",
       maxWidth: "100% !important",
-      fontFamily:
-        'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+      fontFamily: "Lato",
       width: "1064px",
       marginLeft: "auto !important",
       marginRight: "auto !important",
@@ -66,8 +65,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       },
     },
     links: {
-      fontFamily:
-        'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+      fontFamily: "Lato",
       display: "flex",
       flexFlow: "row wrap",
       justifyContent: "center",
@@ -131,8 +129,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
     copyright: {
       color: "#96A1DB",
       fontSize: "14px",
-      fontFamily:
-        'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+      fontFamily: "Lato",
       lineHeight: "1.7em",
       [theme.breakpoints.down(769)]: {
         marginBottom: "15px",

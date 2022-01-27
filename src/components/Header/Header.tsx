@@ -59,7 +59,7 @@ export default function Header() {
               onClick={handleMarketPlace}
             >
               <span></span>
-              <span>Marketplace</span>
+              <span className={classes.headerLink}>Marketplace</span>
               <span className={"active-border"}></span>
             </Button>
             {/* <Button

@@ -49,6 +49,10 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       textDecoration: "none",
       display: "flex",
       alignItems: "center",
+      marginRight: "110px",
+      [theme.breakpoints.down(769)]: {
+        marginRight: "40px",
+      },
     },
     logo: {
       cursor: "pointer",
@@ -57,6 +61,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       marginTop: "2px",
     },
     logoName: {
+      fontFamily: "Montserrat",
       color: "#fff",
       fontSize: "16px",
       fontWeight: 600,
@@ -66,6 +71,12 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(500)]: {
         display: "none",
       },
+    },
+    headerLink: {
+      fontFamily: "Lato",
+      fontSize: "16px",
+      fontWeight: 400,
+      lineHeight: "19.2px",
     },
     accountRoot: {
       position: "relative",
@@ -92,16 +103,12 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
     },
 
     headerBtn: {
-      fontWeight: "normal",
       color: "#ffffff",
       borderRadius: "6px",
       textTransform: "uppercase",
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
-      marginLeft: "24px",
+      fontFamily: "Lato",
+      marginRight: "24px",
       padding: "0px",
-      fontSize: "16px",
-      lineHeight: "18px",
       minWidth: "33px",
       "&:hover": {
         cursor: "pointer",
@@ -111,9 +118,8 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       fontWeight: "normal",
       color: "#ffffff",
       textTransform: "uppercase",
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
-      marginLeft: "24px",
+      fontFamily: "Lato",
+      // marginLeft: "24px",
       padding: "2px 0px 0px 0px!important",
       fontSize: "16px",
       lineHeight: "18px",

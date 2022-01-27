@@ -48,6 +48,7 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       },
     },
     productName: {
+      fontFamily: "Montserrat",
       fontStyle: "normal",
       fontWeight: 600,
       fontSize: "18px",

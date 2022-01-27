@@ -16,12 +16,12 @@ export const GradientEarningCardStyle = makeStyles((theme: Theme) =>
       position: "relative",
       overflow: "hidden",
     },
-    maskEffectYel:{
+    maskEffectYel: {
       position: "absolute",
       top: "-143px",
       left: "135px",
     },
-    maskEffectPur:{
+    maskEffectPur: {
       position: "absolute",
       top: "-75px",
       left: "112px",
@@ -54,10 +54,11 @@ export const GradientEarningCardStyle = makeStyles((theme: Theme) =>
       fontSize: "40px",
       letterSpacing: "2%",
       color: "#21263F",
+      lineHeight: "70px",
+      fontWeight: 600,
     },
-    yellow: { 
+    yellow: {
       backgroundImage: "linear-gradient(#FF7C4C 0%, #FFB03A 100%)",
-
     },
     purple: {
       backgroundImage: "linear-gradient(#7F64E2 0%, #41A6EF 100%)",

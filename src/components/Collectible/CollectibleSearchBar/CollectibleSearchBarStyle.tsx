@@ -132,7 +132,7 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
-    selectedListLabel:{
+    selectedListLabel: {
       fontSize: "14px",
       lineHeight: "20px",
       fontWeight: 400,
@@ -170,6 +170,7 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
 
 export const StyledFormControlLabel = withStyles({
   label: {
+    fontFamily: "Lato",
     fontSize: "16px",
     fontStyle: "normal",
     fontWeight: 400,

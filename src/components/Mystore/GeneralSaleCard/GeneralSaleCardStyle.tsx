@@ -48,6 +48,8 @@ export const GeneralSaleCardStyle = makeStyles((theme: Theme) =>
       fontFamily: "Montserrat",
       fontStyle: "Semi Bold",
       fontSize: "40px",
+      fontWeight: 600,
+      lineHeight: "70px",
       letterSpacing: "2%",
     },
     yellow: {

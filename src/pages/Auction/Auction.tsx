@@ -299,12 +299,6 @@ const Auction = () => {
         <div className={classes.auctionInfo}>
           <span className={classes.title}>{t("Left Time")}.</span>
           <CountDown />
-          <span className={classes.title}>{t("Staging")}.</span>
-          <StagingTable
-            columns={headerData}
-            rows={transactionData}
-            stepIndex={1}
-          />
         </div>
         <div className={classes.auctionBalance}>
           {/* <Typography>My UCC Balance: {uccBalance.toString()}</Typography>
@@ -318,13 +312,13 @@ const Auction = () => {
           </Typography> */}
           <Grid container spacing={2}>
             <Grid item md={4} sm={4} xs={12}>
-              <Balance type='uccbalance' />
+              <Balance type="uccbalance" />
             </Grid>
             <Grid item md={4} sm={4} xs={12}>
-              <Balance type='currentspace' />
+              <Balance type="currentspace" />
             </Grid>
             <Grid item md={4} sm={4} xs={12}>
-              <Balance type='buyable' />
+              <Balance type="buyable" />
             </Grid>
           </Grid>
         </div>
@@ -337,56 +331,62 @@ const Auction = () => {
             <div className={classes.actionButtons}>
               {uccAllowance.gt(BigNumber.from(0)) ? (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  onClick={handleCancelApprove}>
+                  onClick={handleCancelApprove}
+                >
                   {t("Cancel Approve")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               ) : (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  onClick={handleApproveUCCToken}>
+                  onClick={handleApproveUCCToken}
+                >
                   {t("Approve")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               )}
 
               {isBiddable ? (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  onClick={handleBidSpace}>
+                  onClick={handleBidSpace}
+                >
                   {t("Bid")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               ) : (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  disabled>
+                  disabled
+                >
                   {t("Bid")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               )}
 
               <ActionButton
-                color='dark'
+                color="dark"
                 className={classes.gradientBtn}
-                onClick={handleClear}>
+                onClick={handleClear}
+              >
                 {t("clear")}
               </ActionButton>
               {isAdmin ? (
                 isAuctionAuthorized ? (
                   <ActionButton
-                    color='dark'
+                    color="dark"
                     className={classes.gradientBtn}
-                    onClick={authorizeAuctionContract}>
+                    onClick={authorizeAuctionContract}
+                  >
                     {t("Auction Authorized")}
                   </ActionButton>
                 ) : (
-                  <ActionButton color='dark'>
+                  <ActionButton color="dark">
                     {t("Authorize Auction")}
                   </ActionButton>
                 )

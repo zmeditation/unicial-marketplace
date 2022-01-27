@@ -18,8 +18,7 @@ export const SignInStyle = makeStyles((theme: Theme) =>
       alignItems: "center",
       maxWidth: "100% !important",
       height: "auto",
-      fontFamily:
-        'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+      fontFamily: "Lato",
       display: "flex",
       flexFlow: "column",
       width: "1064px",

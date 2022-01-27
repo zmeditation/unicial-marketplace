@@ -12,12 +12,9 @@ interface Props {
 export const ShowMoreLessBtn = ({ className }: Props) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { t, i18n} =  useTranslation();
+  const { t, i18n } = useTranslation();
   return (
-    <span
-      className={clsx(classes.backBtn, className)}
-      onClick={() => navigate(-1)}
-    >
+    <span className={clsx(classes.backBtn, className)}>
       <i className={clsx("fas fa-arrow-up", classes.revertIcon)}></i>
       {t("Show Less")}
     </span>

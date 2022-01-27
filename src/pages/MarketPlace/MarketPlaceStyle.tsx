@@ -2,7 +2,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    height: "calc(100vh - 203px)",
+    height: "calc(100vh - 211px)",
     display: "flex",
     flexFlow: "column nowrap",
     justifyContent: "start",
@@ -31,6 +31,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "100% !important",
   },
   title: {
+    fontFamily: "Montserrat",
     marginBottom: "1rem",
     position: "relative",
     fontSize: "45px",
@@ -73,8 +74,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "18px",
     minWidth: "128px",
     fontStretch: "normal",
-    fontFamily:
-      'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    fontFamily: "Lato",
     textAlign: "center",
     fontWeight: 500,
     cursor: "pointer",

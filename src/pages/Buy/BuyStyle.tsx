@@ -109,7 +109,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
     "& .MuiInputBase-input": {
-      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontFamily: "Lato",
       fontWeight: 500,
       fontSize: "20px",
       color: "white",
@@ -135,7 +135,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
     "& .MuiInputBase-input": {
-      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontFamily: "Lato",
       fontWeight: 500,
       fontSize: "20px",
       color: "white",

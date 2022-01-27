@@ -23,7 +23,7 @@ const Contract = () => {
   const { contractaddress, tokensId } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(0);
-  const { t, i18n }= useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
@@ -51,11 +51,15 @@ const Contract = () => {
       <TobTab />
       <div className={classes.root}>
         <div className={classes.LandMap}>
-          <div className={classes.LandMapContent}>
-            <LandMap height={400} width={width} initialX={1} initialY={1} />
+          <div>
+            <div className={classes.LandMapContent}>
+              <LandMap height={400} width={width} initialX={1} initialY={1} />
+            </div>
+            <div className={classes.backbtnContainer}>
+              <BackButton className={classes.backBtnPosition} />
+              <></>
+            </div>
           </div>
-
-          <BackButton className={classes.backBtnPosition} />
 
           <div className={classes.contractDescription}>
             <div className={classes.leftDescription}>

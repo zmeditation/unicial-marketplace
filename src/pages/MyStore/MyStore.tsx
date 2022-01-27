@@ -9,6 +9,7 @@ import { headerData, stagingData } from "./SalesStagingData";
 import MobileSidebar from "../../components/Mystore/MobileSidebar/MobileSidebar";
 import LandCard from "../../components/Mystore/LandCard/LandCard";
 import LandParcels from "../../components/Mystore/LandParcels/LandParcels";
+import NoResult from "../../components/NoResult/NoResult";
 import Grid from "@material-ui/core/Grid";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
@@ -115,7 +116,8 @@ export default function MyStore() {
               </div>
             </>
           ) : (
-            <div>this is other part</div>
+            // <div>this is other part</div>
+            <NoResult />
           )}
         </div>
       </div>

@@ -19,8 +19,14 @@ export const CategoryWearablesStyle = makeStyles((theme: Theme) =>
       height: "fit-content",
     },
     firstAccordion: {},
-    maintitle: {},
+    maintitle: {
+      fontSize: "16px",
+      fontWeight: 400,
+      lineHeight: "40px",
+      fontFamily: "Lato",
+    },
     subCategoryItem: {
+      fontFamily: "Lato",
       fontSize: "16px",
       lineHeight: "40px",
       textDecoration: "none",

@@ -2,7 +2,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   landMap: {
-    minHeight: "calc(100vh - 268px)",
+    minHeight: "calc(100vh - 306px)",
     [theme.breakpoints.down(768)]: {
       minHeight: "calc(100vh - 376px)",
     },

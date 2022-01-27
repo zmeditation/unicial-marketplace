@@ -13,6 +13,7 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       width: "100%",
       height: "65px",
       color: "#fff",
+      marginTop: "30px",
       [theme.breakpoints.down(769)]: {
         marginTop: "22px",
         marginBottom: "22px",
@@ -33,7 +34,8 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
         marginRight: "0px !important",
         marginTop: "22px !important",
         marginBottom: "22px !important",
-
+      },
+      [theme.breakpoints.down(769)]: {
         borderBottom: "1px solid #282E4E",
       },
     },
@@ -87,8 +89,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     display: "inline-block",
     padding: "0px 0px",
     fontSize: "16px",
-    fontFamily:
-      '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+    fontFamily: "Lato",
     lineHeight: "26px",
     letterSpacing: "-0.2px",
     cursor: "pointer",
@@ -121,6 +122,10 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     },
     "& .MuiButton-label": {
       textAlign: "center",
+      fontSize: "16px",
+      fontWeight: 400,
+      lineHeight: "19.2px",
+      fontFamily: "Lato",
       [theme.breakpoints.down(769)]: {
         textAlign: "left",
         fontWeight: 600,
@@ -135,6 +140,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
 //from searchbarstyle.tsx
 export const StyledFormControlLabel = withStyles({
   label: {
+    fontFamily: "Lato",
     fontSize: "16px",
     fontStyle: "normal",
     fontWeight: 400,
@@ -160,7 +166,7 @@ export const StyledTableButton = withStyles({
       },
     },
     "&.MuiButton-root:hover": {
-      backgroundColor: "#392d38",
+      // backgroundColor: "#392d38",
     },
   },
 })(Button);
@@ -180,7 +186,7 @@ export const StyledLocationButton = withStyles({
       },
     },
     "&.MuiButton-root:hover": {
-      backgroundColor: "#392d38",
+      // backgroundColor: "#392d38",
     },
   },
 })(Button);

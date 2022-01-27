@@ -5,13 +5,20 @@ export const CategoryBoxStyle = makeStyles((theme: Theme) =>
     categoryBox: {
       backgroundColor: "transparent",
       height: "fit-content",
+      fontFamily: "Lato",
     },
     accordionRoot: {
       height: "fit-content",
     },
     firstAccordion: {},
-    maintitle: {},
+    maintitle: {
+      fontSize: "16px",
+      fontWeight: 400,
+      lineHeight: "40px",
+      fontFamily: "Lato",
+    },
     categoryTitle: {
+      fontFamily: "Lato",
       fontSize: "14px",
       lineHeight: "17px",
       color: "#96A1DB",

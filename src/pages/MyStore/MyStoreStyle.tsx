@@ -3,7 +3,7 @@ export const MyStoreStyle = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
     maxWidth: "1064px",
-    margin: "40px auto",
+    margin: "30px auto",
     position: "relative",
     display: "flex",
     "& canvas, .react-tile-map ": {

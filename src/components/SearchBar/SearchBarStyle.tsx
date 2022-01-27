@@ -22,8 +22,7 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
       maxWidth: "100% !important",
       fontSize: "14px",
       color: "#fff",
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+      fontFamily: "Lato",
       lineHeight: "1.4285em",
 
       [theme.breakpoints.down(1200)]: {
@@ -111,6 +110,7 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
 
 export const StyledFormControlLabel = withStyles({
   label: {
+    fontFamily: "Lato",
     fontSize: "12px",
     color: "#ff2d55",
   },
@@ -129,7 +129,7 @@ export const StyledTableButton = withStyles({
       },
     },
     "&.MuiButton-root:hover": {
-      backgroundColor: "#392d38",
+      // backgroundColor: "#392d38",
     },
   },
 })(Button);
@@ -147,7 +147,7 @@ export const StyledLocationButton = withStyles({
       },
     },
     "&.MuiButton-root:hover": {
-      backgroundColor: "#392d38",
+      // backgroundColor: "#392d38",
     },
   },
 })(Button);

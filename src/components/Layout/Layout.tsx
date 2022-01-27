@@ -14,6 +14,8 @@ import Notification from "../Notifications";
 
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
+import Sale from "../../pages/Sale/Sale";
+import Transfer from "../../pages/Transfer/Transfer";
 //
 import Collectibles from "../../pages/Collectibles/Collectibles";
 import { setloginAddress } from "../../store/auth/actions";
@@ -51,9 +53,17 @@ export default function Layout() {
         />
         <Route path="/admin/lands" element={<AdminLands />} />
         <Route path="/admin/estate" element={<AdminEstate />} />
-        <Route path='/signin' element={<ProtectedRoute/>}>
-            <Route path='/signin' element={<SignIn/>}/>
-          </Route>
+        <Route path="/signin" element={<ProtectedRoute />}>
+          <Route path="/signin" element={<SignIn />} />
+        </Route>
+        <Route
+          path="/contracts/:contractaddress/tokens/:tokensid/sale"
+          element={<Sale />}
+        />
+        <Route
+          path="/contracts/:contractaddress/tokens/:tokensid/transfer"
+          element={<Transfer />}
+        />
       </Routes>
       <Footer />
       <Notification />

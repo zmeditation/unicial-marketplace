@@ -67,8 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       color: "#96A1DB",
       opacity: "50%",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+      fontFamily: "Lato",
       "&.MuiTableCell-root": {
         padding: "10px 10px 10px 20px",
         borderBottom: "solid 1px #282E4E",
@@ -76,8 +75,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     tableCell: {
       fontSize: "16px",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+      fontFamily: "Lato",
       color: "white",
       fontWeight: "normal",
     },

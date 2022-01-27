@@ -13,8 +13,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   tableCell: {
     fontSize: "16px !important",
-    fontFamily:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important',
+    fontFamily: "Lato",
     color: "white !important",
     fontWeight: "normal",
     "&.MuiTableCell-root": {

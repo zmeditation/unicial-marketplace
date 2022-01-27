@@ -85,4 +85,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
   BidboxContainer: {
     marginBottom: "30px",
   },
+  backbtnContainer: {
+    display: "flex",
+    justifyContent: "start",
+  },
 }));

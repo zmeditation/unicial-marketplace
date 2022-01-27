@@ -167,6 +167,7 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
 
 export const StyledFormControlLabel = withStyles({
   label: {
+    fontFamily: "Lato",
     fontSize: "16px",
     fontStyle: "normal",
     fontWeight: 400,

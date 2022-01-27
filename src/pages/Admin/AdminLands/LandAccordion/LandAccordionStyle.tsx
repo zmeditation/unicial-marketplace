@@ -62,7 +62,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
       padding: "16px",
     },
     "& .MuiInputBase-input": {
-      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontFamily: "Lato",
       fontWeight: 500,
       fontSize: "20px",
       color: "white",
@@ -140,7 +140,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
       padding: "16px 0px",
     },
     "& .MuiInputBase-input": {
-      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontFamily: "Lato",
       fontWeight: 500,
       fontSize: "20px",
       color: "white",

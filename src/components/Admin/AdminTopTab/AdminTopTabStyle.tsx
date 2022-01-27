@@ -55,8 +55,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     padding: "16px 0px",
     marginRight: "32px",
     fontSize: "17px",
-    fontFamily:
-      '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+    fontFamily: "Lato",
     lineHeight: "26px",
     letterSpacing: "-0.2px",
     cursor: "pointer",

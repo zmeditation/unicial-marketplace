@@ -11,8 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   text: {
     fontSize: "14px",
     color: "#676370",
-    fontFamily:
-      '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+    fontFamily: "Lato",
   },
   link: {
     color: "#ff2d55",
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function NeedSignIn() {
   const classes = useStyles();
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div className={classes.descriptionContainer}>
       <p className={classes.text}>

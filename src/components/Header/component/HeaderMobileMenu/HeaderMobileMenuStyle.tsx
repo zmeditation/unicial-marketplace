@@ -7,8 +7,7 @@ export const HeaderMobileMenuStyle = makeStyles((theme: Theme) =>
       color: "white",
       position: "relative",
       "& .MuiTypography-root": {
-        fontFamily:
-          '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+        fontFamily: "Lato",
         fontWeight: 700,
         color: "#ffffff",
         cursor: "pointer",
