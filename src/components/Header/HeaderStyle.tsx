@@ -73,6 +73,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       },
     },
     headerLink: {
+      textTransform: "none",
       fontFamily: "Lato",
       fontSize: "16px",
       fontWeight: 400,

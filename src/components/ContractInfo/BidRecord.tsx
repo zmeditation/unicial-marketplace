@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "100%",
     [theme.breakpoints.down(769)]: {
       width: "80%",
+      marginBottom: "15px",
     },
   },
   pricePart: {
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(769)]: {
       marginLeft: "0px",
       width: "100%",
+      marginBottom: "15px",
     },
   },
   timePart: {
@@ -52,6 +54,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(769)]: {
       marginLeft: "0px",
       width: "100%",
+      marginBottom: "15px",
     },
   },
   title: {
@@ -96,7 +99,7 @@ interface data {
 
 const BidRecord = ({ fromName, price, time }: data) => {
   const classes = useStyles();
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <div className={classes.root}>
@@ -124,7 +127,9 @@ const BidRecord = ({ fromName, price, time }: data) => {
 
           <div className={classes.timePart}>
             <div className={classes.title}>{t("Time Left")}</div>
-            <div className={classes.content}>{time} {t("days")}</div>
+            <div className={classes.content}>
+              {time} {t("days")}
+            </div>
           </div>
         </div>
       }
