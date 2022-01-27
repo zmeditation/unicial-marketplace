@@ -1,7 +1,5 @@
 import { createStyles, FormControlLabel, Theme } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
-import TableChartIcon from "@material-ui/icons/TableChart";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Button } from "@material-ui/core";
 export const TopTabStyle = makeStyles((theme: Theme) =>
   createStyles({
