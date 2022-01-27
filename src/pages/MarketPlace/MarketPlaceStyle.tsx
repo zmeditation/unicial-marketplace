@@ -2,17 +2,14 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    height: "calc(100vh - 211px)",
     display: "flex",
+    flexGrow: 2,
     flexFlow: "column nowrap",
     justifyContent: "start",
     position: "relative",
     overflow: "hidden",
     backgroundColor: " #21263f",
     textAlign: "center",
-    [theme.breakpoints.down(768)]: {
-      height: "calc(100vh - 272px)",
-    },
   },
   content: {
     display: "flex",
@@ -20,7 +17,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "column",
     height: "100%",
     minHeight: "500px",
-    width: "1064px",
+    maxWidth: "1064px",
     marginLeft: "auto !important",
     marginRight: "auto !important",
     [theme.breakpoints.down(768)]: {

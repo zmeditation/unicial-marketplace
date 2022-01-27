@@ -21,9 +21,21 @@ import Collectibles from "../../pages/Collectibles/Collectibles";
 import { setloginAddress } from "../../store/auth/actions";
 import { useAppDispatch } from "../../store/hooks";
 import ProtectedRoute from "./ProtectedRoute";
+import { Theme, makeStyles } from "@material-ui/core/styles";
+import { Box } from "@material-ui/core";
+
+export const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "100vh",
+  },
+}));
 
 export default function Layout() {
   const dispatch = useAppDispatch();
+  const classes = useStyles();
 
   if (localStorage.loginAddress) {
     dispatch(setloginAddress(localStorage.loginAddress));
@@ -31,42 +43,44 @@ export default function Layout() {
 
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<MarketPlace />} />
-        <Route path="/need" element={<MarketPlace />} />
-        <Route path="/lands" element={<Lands />} />
-        <Route path="/auction" element={<Auction />} />
-        <Route path="/browse" element={<Collectibles />} />
-        <Route path="/account" element={<MyStore />} />
-        <Route
-          path="/contracts/:contractaddress/tokens/:tokensid"
-          element={<Contracts />}
-        />
-        <Route
-          path="/contracts/:contractaddress/tokens/:tokensid/bid"
-          element={<Bid />}
-        />
-        <Route
-          path="/contracts/:contractaddress/tokens/:tokensid/buy"
-          element={<Buy />}
-        />
-        <Route path="/admin/lands" element={<AdminLands />} />
-        <Route path="/admin/estate" element={<AdminEstate />} />
-        <Route path="/signin" element={<ProtectedRoute />}>
-          <Route path="/signin" element={<SignIn />} />
-        </Route>
-        <Route
-          path="/contracts/:contractaddress/tokens/:tokensid/sale"
-          element={<Sale />}
-        />
-        <Route
-          path="/contracts/:contractaddress/tokens/:tokensid/transfer"
-          element={<Transfer />}
-        />
-      </Routes>
-      <Footer />
-      <Notification />
+      <Box className={classes.root}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<MarketPlace />} />
+          <Route path="/need" element={<MarketPlace />} />
+          <Route path="/lands" element={<Lands />} />
+          <Route path="/auction" element={<Auction />} />
+          <Route path="/browse" element={<Collectibles />} />
+          <Route path="/account" element={<MyStore />} />
+          <Route
+            path="/contracts/:contractaddress/tokens/:tokensid"
+            element={<Contracts />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:tokensid/bid"
+            element={<Bid />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:tokensid/buy"
+            element={<Buy />}
+          />
+          <Route path="/admin/lands" element={<AdminLands />} />
+          <Route path="/admin/estate" element={<AdminEstate />} />
+          <Route path="/signin" element={<ProtectedRoute />}>
+            <Route path="/signin" element={<SignIn />} />
+          </Route>
+          <Route
+            path="/contracts/:contractaddress/tokens/:tokensid/sale"
+            element={<Sale />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:tokensid/transfer"
+            element={<Transfer />}
+          />
+        </Routes>
+        <Footer />
+        <Notification />
+      </Box>
     </Router>
   );
 }
