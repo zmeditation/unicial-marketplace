@@ -20,7 +20,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   LandMap: {
-    display: "grid",
+    // display: "grid",
     margin: "0px auto",
     width: "100%",
   },
@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(768)]: {
       margin: "0px calc( (100% - 400px) / 2)",
     },
-    [theme.breakpoints.down(500)]: {
+    [theme.breakpoints.down(501)]: {
       margin: "0px calc( (100% - 300px) / 2)",
     },
   },
