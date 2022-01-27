@@ -21,7 +21,7 @@ export default function Collectibles() {
             <CollectibleFilter />
           </div>
 
-          <Grid container spacing={1}>
+          <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={4}>
               <ProductCard
                 tagColor="EpicColor"
