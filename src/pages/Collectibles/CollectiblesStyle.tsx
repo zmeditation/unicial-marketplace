@@ -16,7 +16,7 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down(960)]: {
       maxWidth: "calc(100% - 32px) !important",
-      margin: "0px 16px",
+      margin: "0px 16px 60px 16px",
     },
     [theme.breakpoints.down(769)]: {
       maxWidth: "calc(100% - 32px) !important",
@@ -43,5 +43,12 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
   },
   product: {
     width: "32%",
+  },
+  showmoreContent: {
+    marginTop: "15px",
+    justifyContent: "center",
+    width: "100%",
+    flexFlow: "row nowrap",
+    display: "flex",
   },
 }));

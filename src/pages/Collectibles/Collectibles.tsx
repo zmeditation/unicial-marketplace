@@ -6,6 +6,7 @@ import CollectibleSidebar from "../../components/Collectible/CollectibleSidebar/
 import NoResult from "../../components/NoResult/NoResult";
 
 import Grid from "@material-ui/core/Grid";
+import { ShowMoreLessBtn } from "../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 
 export default function Collectibles() {
   const classes = CollectiblesStyle();
@@ -95,6 +96,9 @@ export default function Collectibles() {
               />
             </Grid>
           </Grid>
+          <div className={classes.showmoreContent}>
+            <ShowMoreLessBtn />
+          </div>
           {/* <NoResult/> */}
         </div>
       </div>

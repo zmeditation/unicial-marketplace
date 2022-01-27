@@ -54,7 +54,9 @@ export default function TopTab() {
   console.log("here is TopTab", category);
   useEffect(() => {
     console.log("path name=", location.pathname);
-    if (location.pathname.includes("/lands")) {
+    if (location.pathname.includes("/contracts")) {
+      setToptabIndex(topTabIndex.land);
+    } else if (location.pathname.includes("/lands")) {
       setToptabIndex(topTabIndex.land);
       setSearchbarIndex(searchbarIndex.land);
     } else if (location.pathname.includes("/auction")) {

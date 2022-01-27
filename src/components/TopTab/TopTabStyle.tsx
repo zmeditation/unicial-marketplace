@@ -11,6 +11,7 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       height: "65px",
       color: "#fff",
       margin: "20px auto",
+      paddingRight: "16px",
       [theme.breakpoints.down(769)]: {
         display: "contents",
       },

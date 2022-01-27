@@ -23,8 +23,10 @@ export default function TypeBox() {
       setitemIndex("on_sale");
     } else if (query.get("section") === "sales") {
       setitemIndex("sales");
-    } else {
-      setitemIndex("");
+    } else if (query.get("bids") === "bids") {
+      setitemIndex("bids");
+    } else if (query.get("settings") === "settings") {
+      setitemIndex("settings");
     }
   }, [location]);
 
@@ -48,6 +50,22 @@ export default function TypeBox() {
             onClick={() => handleItem("sales")}
           >
             {t("Sales")}
+          </div>
+          <div
+            className={
+              itemIndex !== "bids" ? classes.normalItem : classes.activeItem
+            }
+            onClick={() => handleItem("bids")}
+          >
+            {t("Bids")}
+          </div>
+          <div
+            className={
+              itemIndex !== "settings" ? classes.normalItem : classes.activeItem
+            }
+            onClick={() => handleItem("settings")}
+          >
+            {t("Settings")}
           </div>
         </div>
       </div>
