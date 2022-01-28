@@ -55,10 +55,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   text: {
     margin: "10px 32px",
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     "& svg": {
       margin: "0px 5px",
     },
+    fontFamily: "Lato",
+    fontWeight: 500,
     fontSize: "16px",
     lineHeight: "19px",
     align: "Left",

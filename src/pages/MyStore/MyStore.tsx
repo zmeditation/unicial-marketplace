@@ -21,7 +21,6 @@ export default function MyStore() {
   const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
   var category = query.get("section");
-  // console.log("here is Mystore...", category);
   const [rightPartIndex, setrightPartIndex] = React.useState("");
   useEffect(() => {
     switch (category) {

@@ -30,7 +30,6 @@ const generateSignature = () => {
     "  - Signature: " +
     rndString;
 
-  console.log("Signature string: " + signature);
   return signature;
 };
 
@@ -47,7 +46,6 @@ export default function SignIn() {
     // Make sure you arrayify the message if you want the bytes to be used as the message
     const recoveredAddress = ethers.utils.verifyMessage(msgToSign, signature);
 
-    console.log("recoveredAddress", recoveredAddress);
     dispatch(setloginAddress(recoveredAddress));
     navigate("/auction");
     return recoveredAddress;
@@ -159,7 +157,7 @@ export default function SignIn() {
             onClick={handleSignIn}
           >
             {t("Connect")}
-            <CallMadeIcon className={classes.callmadeicon} />
+            <CallMadeIcon fontSize="small" />
           </ActionButton>
         </div>
       </div>
