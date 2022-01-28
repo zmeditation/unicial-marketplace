@@ -6,6 +6,6 @@ import { selectLoginAddress } from "../../store/auth/selectors"
 const ProtectedRoute = () => {
   const signStage = useAppSelector(selectLoginAddress)
 
-    return signStage !== "" ? <Outlet /> : <Navigate to="/lands" />;
+    return signStage === "" ? <Outlet /> : <Navigate to="/lands" />;
 }
 export default ProtectedRoute
