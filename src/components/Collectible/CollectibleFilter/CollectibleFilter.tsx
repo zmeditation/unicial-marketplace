@@ -13,7 +13,7 @@ import {
   networkData,
   filterListData,
 } from "../../../config/Collectible/collectionData";
-import { collectiblesTagsColor } from "../../../config/constant";
+import { category, collectiblesTagsColor } from "../../../config/constant";
 import { Box } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 //
@@ -21,6 +21,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import closeSvg from "../../../assets/svg/close.svg";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 
 export default function CollectibleFilter() {
   const classes = CollectibleFilterStyle();
@@ -110,10 +111,11 @@ export default function CollectibleFilter() {
             {/* collection select start */}
             <div>
               <Box
-                aria-controls='simple-menu'
-                aria-haspopup='true'
+                aria-controls="simple-menu"
+                aria-haspopup="true"
                 onClick={handleCollectionClick}
-                className={classes.listDropdown}>
+                className={classes.listDropdown}
+              >
                 <Box className={classes.listRoot}>
                   <Box className={classes.listContainer}>
                     <Box className={classes.mainlistLabel}>
@@ -126,7 +128,7 @@ export default function CollectibleFilter() {
                 </Box>
               </Box>
               <StyledCollectionPopover
-                id='simple-menu'
+                id="simple-menu"
                 anchorEl={anchorCollection}
                 keepMounted
                 open={Boolean(anchorCollection)}
@@ -138,13 +140,22 @@ export default function CollectibleFilter() {
                 transformOrigin={{
                   vertical: "top",
                   horizontal: "right",
-                }}>
+                }}
+              >
                 {collectionData.map((data, index) => (
                   <StyledMenuItem
                     onClick={() => handleCollectionItem(data.index)}
-                    key={index}>
+                    key={index}
+                  >
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{data.catatory}</Box>
+                      <Box
+                        className={clsx(classes.listLabel, {
+                          [classes.activeLabel]:
+                            collectionCategory === data.catatory,
+                        })}
+                      >
+                        {data.catatory}
+                      </Box>
                     </Box>
                   </StyledMenuItem>
                 ))}
@@ -155,15 +166,17 @@ export default function CollectibleFilter() {
           {/* // */}
           <div
             className={classes.collectionSelectContainer}
-            style={{ marginLeft: "30px" }}>
+            style={{ marginLeft: "30px" }}
+          >
             <div className={classes.title}>{t("Network")}</div>
             {/* network select start */}
             <div>
               <Box
-                aria-controls='simple-menu'
-                aria-haspopup='true'
+                aria-controls="simple-menu"
+                aria-haspopup="true"
                 onClick={handleNetworkClick}
-                className={classes.listDropdown}>
+                className={classes.listDropdown}
+              >
                 <Box className={classes.listRoot}>
                   <Box className={classes.listContainer}>
                     <Box className={classes.mainlistLabel}>
@@ -176,7 +189,7 @@ export default function CollectibleFilter() {
                 </Box>
               </Box>
               <StyledCollectionPopover
-                id='simple-menu'
+                id="simple-menu"
                 anchorEl={anchorNetwork}
                 keepMounted
                 open={Boolean(anchorNetwork)}
@@ -188,13 +201,22 @@ export default function CollectibleFilter() {
                 transformOrigin={{
                   vertical: "top",
                   horizontal: "right",
-                }}>
+                }}
+              >
                 {networkData.map((data, index) => (
                   <StyledMenuItem
                     onClick={() => handleNetworkItem(data.index)}
-                    key={index}>
+                    key={index}
+                  >
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{data.category}</Box>
+                      <Box
+                        className={clsx(classes.listLabel, {
+                          [classes.activeLabel]:
+                            networkCategory === data.category,
+                        })}
+                      >
+                        {data.category}
+                      </Box>
                     </Box>
                   </StyledMenuItem>
                 ))}
@@ -211,20 +233,21 @@ export default function CollectibleFilter() {
               <div className={classes.title}>{t("GENDER")}</div>
               {/* radio realte */}
               <RadioGroup
-                aria-label='gender'
-                name='gender1'
+                aria-label="gender"
+                name="gender1"
                 value={value}
                 onChange={handleRadioChange}
-                className={classes.genderRadioContainer}>
+                className={classes.genderRadioContainer}
+              >
                 <FormControlLabel
-                  value='Male'
+                  value="Male"
                   control={<StyledRadio />}
-                  label='Male'
+                  label="Male"
                 />
                 <FormControlLabel
-                  value='Female'
+                  value="Female"
                   control={<StyledRadio />}
-                  label='Female'
+                  label="Female"
                 />
               </RadioGroup>
             </div>
@@ -238,14 +261,14 @@ export default function CollectibleFilter() {
                   return selectedArray.indexOf(data.category) >= 0 ? (
                     <Tag
                       key={index}
-                      color='EpicColor'
+                      color="EpicColor"
                       letter={data.category}
                       onClick={() => handleClickTag(index)}
                     />
                   ) : (
                     <Tag
                       key={index}
-                      color='DefaultColor'
+                      color="DefaultColor"
                       letter={data.category}
                       onClick={() => handleClickTag(index)}
                     />
@@ -261,10 +284,12 @@ export default function CollectibleFilter() {
               showClearFilterBtn === true
                 ? classes.clearFilterContainer
                 : classes.clearFilterContainerNone
-            }>
+            }
+          >
             <div
               className={classes.clearFilterLabel}
-              onClick={handleClickClear}>
+              onClick={handleClickClear}
+            >
               {t("Clear Filter")}
             </div>
             <img src={closeSvg} className={classes.closeicon} />

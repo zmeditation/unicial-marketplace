@@ -19,14 +19,21 @@ export default function TypeBox() {
     });
   };
   useEffect(() => {
-    if (query.get("section") === "on_sale") {
-      setitemIndex("on_sale");
-    } else if (query.get("section") === "sales") {
-      setitemIndex("sales");
-    } else if (query.get("bids") === "bids") {
-      setitemIndex("bids");
-    } else if (query.get("settings") === "settings") {
-      setitemIndex("settings");
+    switch (query.get("section")) {
+      case "on_sale":
+        setitemIndex("on_sale");
+        break;
+      case "sales":
+        setitemIndex("sales");
+        break;
+      case "bids":
+        setitemIndex("bids");
+        break;
+      case "settings":
+        setitemIndex("settings");
+        break;
+      default:
+        setitemIndex("");
     }
   }, [location]);
 

@@ -43,6 +43,7 @@ export const GeneralSaleCardStyle = makeStyles((theme: Theme) =>
       lineHeight: "14px",
       color: "#96A1DB",
       opacity: "50%",
+      marginTop: "18px",
     },
     price: {
       fontFamily: "Montserrat",
