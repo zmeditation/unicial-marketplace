@@ -1,3 +1,5 @@
+/** @format */
+
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
 //accordion relate
 import MuiAccordion from "@material-ui/core/Accordion";
@@ -83,6 +85,7 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "end",
+    marginTop: "20px",
     [theme.breakpoints.down(769)]: {
       width: "100%",
       alignItems: "center",
