@@ -129,6 +129,7 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       marginRight: "3px",
+      marginBottom: "3px",
     },
     closeicon: {
       width: "22px",
