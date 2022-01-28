@@ -33,6 +33,13 @@ export default function AssetsBox() {
       search: query.toString(),
     });
   };
+  useEffect(() => {
+    query.set("section", "collections");
+    navigate({
+      pathname: location.pathname,
+      search: query.toString(),
+    });
+  }, []);
 
   useEffect(() => {
     if (query.get("section") === category.collections) {

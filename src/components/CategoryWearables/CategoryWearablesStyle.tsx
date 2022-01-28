@@ -75,7 +75,7 @@ export const StyledAccordion = withStyles((theme) => ({
 
 export const StyledAccordionSummary = withStyles((theme) => ({
   root: {
-    padding: "0px 60px 0px 58px",
+    padding: "0px 35px 0px 58px",
     fontSize: "16px",
     lineHeight: "40px",
     color: "white",
@@ -87,8 +87,14 @@ export const StyledAccordionSummary = withStyles((theme) => ({
     },
   },
   content: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
     "&$expanded": {
       margin: "0px 0",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
     },
   },
   expanded: {},

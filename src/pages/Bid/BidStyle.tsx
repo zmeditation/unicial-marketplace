@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
   },
   backButton: {
-    marginBottom: "60px",
+    marginBottom: "30px",
   },
   bidCard: {
     display: "flex",
