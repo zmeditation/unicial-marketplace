@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "16px",
     lineHeight: "20px",
     justifyContent: "center",
-    paddingBottom: "3px",
     color: "white",
   },
   darkColor: {
@@ -56,10 +55,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   text: {
     margin: "10px 32px",
     display: "flex",
-    alignItems: "flex-end",
+    alignItems: "flex-start",
     "& svg": {
       margin: "0px 5px",
     },
+    fontFamily: "Lato",
+    fontWeight: 500,
     fontSize: "16px",
     lineHeight: "19px",
     align: "Left",
