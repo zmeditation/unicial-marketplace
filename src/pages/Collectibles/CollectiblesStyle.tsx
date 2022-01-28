@@ -1,3 +1,5 @@
+/** @format */
+
 import { Theme, makeStyles } from "@material-ui/core/styles";
 export const CollectiblesStyle = makeStyles((theme: Theme) => ({
   root: {
@@ -11,6 +13,10 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down(1200)]: {
       maxWidth: "933px",
+    },
+    [theme.breakpoints.down(960)]: {
+      maxWidth: "calc(100% - 32px) !important",
+      margin: "0px 16px",
     },
     [theme.breakpoints.down(769)]: {
       maxWidth: "calc(100% - 32px) !important",
