@@ -47,6 +47,7 @@ export const GradientEarningCardStyle = makeStyles((theme: Theme) =>
       fontSize: "12px",
       lineHeight: "14px",
       color: "white",
+      marginTop:"8px",
     },
     price: {
       fontFamily: "Montserrat",
@@ -54,7 +55,6 @@ export const GradientEarningCardStyle = makeStyles((theme: Theme) =>
       fontSize: "40px",
       letterSpacing: "2%",
       color: "#21263F",
-      lineHeight: "70px",
       fontWeight: 600,
     },
     yellow: {
