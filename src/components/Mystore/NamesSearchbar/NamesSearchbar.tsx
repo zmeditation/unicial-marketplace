@@ -26,6 +26,12 @@ const PurpleSwitch = withStyles({
     "&$checked + $track": {
       backgroundColor: "#333B67",
     },
+    "&.Mui-checked:hover": {
+      backgroundColor: "unset",
+    },
+    "&.MuiIconButton-root:hover": {
+      backgroundColor: "unset",
+    },
   },
   checked: {},
   track: {},

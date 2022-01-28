@@ -5,8 +5,8 @@ export default function LandParcels() {
   const classes = LandParcelsStyle();
   return (
     <>
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={4}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6} md={4}>
           <LandCard
             locationbtnX={23}
             locationbtnY={12}
@@ -15,7 +15,7 @@ export default function LandParcels() {
             price={3999}
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <LandCard
             locationbtnX={23}
             locationbtnY={12}
@@ -24,7 +24,7 @@ export default function LandParcels() {
             price={3999}
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <LandCard
             locationbtnX={23}
             locationbtnY={12}
@@ -33,7 +33,7 @@ export default function LandParcels() {
             price={3999}
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <LandCard
             locationbtnX={23}
             locationbtnY={12}

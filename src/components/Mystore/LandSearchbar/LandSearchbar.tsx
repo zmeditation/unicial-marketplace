@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import {
   CollectibleSearchBarStyle,
@@ -32,6 +34,12 @@ const PurpleSwitch = withStyles({
     },
     "&$checked + $track": {
       backgroundColor: "#333B67",
+    },
+    "&.Mui-checked:hover": {
+      backgroundColor: "unset",
+    },
+    "&.MuiIconButton-root:hover": {
+      backgroundColor: "unset",
     },
   },
   checked: {},
@@ -85,21 +93,20 @@ export default function LandSearchbar() {
                 <img
                   src={search_svg}
                   className={classes.searchIcon}
-                  alt="symbol"
+                  alt='symbol'
                 />
                 <input
                   className={classes.searchinput}
-                  placeholder="Search 25 results..."
+                  placeholder='Search 25 results...'
                 />
               </div>
               {/* select start */}
               <div>
                 <Box
-                  aria-controls="simple-menu"
-                  aria-haspopup="true"
+                  aria-controls='simple-menu'
+                  aria-haspopup='true'
                   onClick={handleClick}
-                  className={classes.listDropdown}
-                >
+                  className={classes.listDropdown}>
                   <Box className={classes.listRoot}>
                     <Box className={classes.listContainer}>
                       <Box className={classes.gradientlistLabel}>
@@ -113,7 +120,7 @@ export default function LandSearchbar() {
                   </Box>
                 </Box>
                 <StyledListPopover
-                  id="simple-menu"
+                  id='simple-menu'
                   anchorEl={anchorEl}
                   keepMounted
                   open={Boolean(anchorEl)}
@@ -125,8 +132,7 @@ export default function LandSearchbar() {
                   transformOrigin={{
                     vertical: "top",
                     horizontal: "right",
-                  }}
-                >
+                  }}>
                   <StyledMenuItem onClick={() => handleItem("Recently sold")}>
                     <Box className={classes.listContainer}>
                       <Box className={classes.listLabel}>
@@ -155,10 +161,10 @@ export default function LandSearchbar() {
                     <PurpleSwitch
                       checked={state.checkedA}
                       onChange={handleChange}
-                      name="checkedA"
+                      name='checkedA'
                     />
                   }
-                  label="ON SALE"
+                  label='ON SALE'
                   className={classes.switch}
                 />
               </div>
@@ -169,14 +175,14 @@ export default function LandSearchbar() {
                 <StyledTableButton
                   disabled={filter_index === searchbarBtn.tableBtn}
                   onClick={handletable}
-                >
+                  disableRipple={true}>
                   <img src={book_svg} />
                 </StyledTableButton>
 
                 <StyledLocationButton
                   disabled={filter_index === searchbarBtn.locationBtn}
                   onClick={handlelocation}
-                >
+                  disableRipple={true}>
                   <img src={location_svg} />
                 </StyledLocationButton>
               </div>

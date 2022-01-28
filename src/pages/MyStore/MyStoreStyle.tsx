@@ -14,7 +14,7 @@ export const MyStoreStyle = makeStyles((theme: Theme) => ({
       width: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      width: "723px",
+      width: "calc(100% - 32px) !important",
     },
     [theme.breakpoints.down(769)]: {
       width: "calc(100% - 32px) !important",
