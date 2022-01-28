@@ -4,6 +4,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 export const CollectiblesStyle = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
+    minWidth: "1064px",
     maxWidth: "1064px",
     margin: "10px auto 60px auto",
     position: "relative",
@@ -11,15 +12,19 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
+    [theme.breakpoints.up(1366)]: {
+      maxWidth: "1064px",
+    },
     [theme.breakpoints.down(1200)]: {
+      minWidth: "933px",
       maxWidth: "933px",
     },
     [theme.breakpoints.down(960)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      minWidth: "calc(100% - 32px) !important",
       margin: "16px 16px 60px 16px",
     },
     [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      minWidth: "calc(100% - 32px) !important",
     },
   },
   leftPart: {
