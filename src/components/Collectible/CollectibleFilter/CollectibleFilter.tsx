@@ -238,7 +238,7 @@ export default function CollectibleFilter() {
                   return selectedArray.indexOf(data.category) >= 0 ? (
                     <Tag
                       key={index}
-                      color='RareColor'
+                      color='EpicColor'
                       letter={data.category}
                       onClick={() => handleClickTag(index)}
                     />
