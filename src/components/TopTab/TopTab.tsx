@@ -51,9 +51,7 @@ export default function TopTab() {
   };
   const query = new URLSearchParams(location.search);
   const category = query.get("section");
-  console.log("here is TopTab", category);
   useEffect(() => {
-    console.log("path name=", location.pathname);
     if (location.pathname.includes("/contracts")) {
       setToptabIndex(topTabIndex.land);
     } else if (location.pathname.includes("/lands")) {
@@ -86,8 +84,6 @@ export default function TopTab() {
 
         case "wearables":
           setSearchbarIndex(searchbarIndex.wearables);
-
-          console.log("oh yes", searchbar_index);
           break;
         case "ens":
           setSearchbarIndex(searchbarIndex.ens);
@@ -129,8 +125,7 @@ export default function TopTab() {
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handlehead("/lands")}
-                    disabled={toptab_index === topTabIndex.land}
-                  >
+                    disabled={toptab_index === topTabIndex.land}>
                     {t("Lands")}
                   </StyledTopTabBtn>
 
@@ -141,24 +136,21 @@ export default function TopTab() {
                         "/browse?section=wearables&vendor=decentraland&page=1&sortBy=recently_listed&onlyOnSale=true"
                       )
                     }
-                    disabled={toptab_index === topTabIndex.collectibles}
-                  >
+                    disabled={toptab_index === topTabIndex.collectibles}>
                     {t("Collectibles")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handlehead("/account")}
-                    disabled={toptab_index === topTabIndex.mystore}
-                  >
+                    disabled={toptab_index === topTabIndex.mystore}>
                     {t("My Store")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handlehead("/auction")}
-                    disabled={toptab_index === topTabIndex.auction}
-                  >
+                    disabled={toptab_index === topTabIndex.auction}>
                     {t("Auction")}
                   </StyledTopTabBtn>
                 </div>
@@ -171,24 +163,22 @@ export default function TopTab() {
                         <PurpleSwitch
                           checked={state.checkedA}
                           onChange={handleChange}
-                          name="checkedA"
+                          name='checkedA'
                         />
                       }
-                      label="ON SALE"
+                      label='ON SALE'
                       className={classes.switch}
                     />
                     <div style={{ marginLeft: "20px" }}>
                       <StyledTableButton
                         disabled={filter_index === searchbarBtn.tableBtn}
-                        onClick={handletable}
-                      >
+                        onClick={handletable}>
                         <img src={book_svg} />
                       </StyledTableButton>
 
                       <StyledLocationButton
                         disabled={filter_index === searchbarBtn.locationBtn}
-                        onClick={handlelocation}
-                      >
+                        onClick={handlelocation}>
                         <img src={location_svg} />
                       </StyledLocationButton>
                     </div>

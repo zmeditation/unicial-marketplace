@@ -23,7 +23,6 @@ interface PropsData {
   data: any;
 }
 export default function CategoryWearables(props: any) {
-  // console.log(props);
   const classes = CategoryWearablesStyle();
   const location = useLocation();
   const navigate = useNavigate();
@@ -45,7 +44,6 @@ export default function CategoryWearables(props: any) {
     setExpanded("");
     setActiveCategory("");
     const category = query.get("section");
-    // console.log(category);
     props.data.forEach((items: any) => {
       if (items.path === category) {
         setExpanded(items.path);

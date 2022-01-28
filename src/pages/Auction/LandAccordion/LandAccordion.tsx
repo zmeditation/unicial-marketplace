@@ -103,7 +103,6 @@ export default function LandAccordion() {
           count++;
         }
       } catch (error) {
-        console.log("please input correct form");
         return;
       }
     });

@@ -41,7 +41,6 @@ const LandMap: React.FC<LandMapProps> = ({
         return;
       }
       if (tile.estateId) {
-        console.log("tile.estateId", tile.estateId);
         setEstateid(tile.estateId);
         navigate(
           "/contracts/0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d/tokens/115792089237316195423570985008687907843061513658012410135556345784960083296262"
@@ -49,7 +48,6 @@ const LandMap: React.FC<LandMapProps> = ({
       } else {
         setEstateid(null);
         try {
-          console.log("parcel");
           navigate(
             "/contracts/0x959e104e1a4db6317fa58f8295f586e1a978c297/tokens/735"
           );
