@@ -38,14 +38,12 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      // minWidth: "248pxpx",
-      padding: "0px 10px",
-      // minHeight: "180px",
+      padding: "20px",
     },
     image: {
       [theme.breakpoints.up(1200)]: {
-        maxWidth: "180px",
-        maxHeight: "180px",
+        maxWidth: "150px",
+        maxHeight: "150px",
       },
       [theme.breakpoints.down(1200)]: {
         width: "100%",

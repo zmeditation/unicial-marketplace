@@ -16,7 +16,7 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down(960)]: {
       maxWidth: "calc(100% - 32px) !important",
-      margin: "0px 16px 60px 16px",
+      margin: "16px 16px 60px 16px",
     },
     [theme.breakpoints.down(769)]: {
       maxWidth: "calc(100% - 32px) !important",
