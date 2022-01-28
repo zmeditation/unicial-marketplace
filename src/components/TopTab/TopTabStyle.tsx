@@ -82,6 +82,13 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
         padding: "12.5px 12px",
       },
     },
+    activeSwitch: {
+      "& .MuiTypography-root": {
+        background: "linear-gradient(#7F64E2 20%, #41A6EF 80%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+      },
+    },
   })
 );
 
