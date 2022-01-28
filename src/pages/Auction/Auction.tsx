@@ -240,7 +240,7 @@ const Auction = () => {
       (await spaceAuctionContract.getCurrentPrice()).toString()
     );
     setUccPricePerSpace(uccPricePerSpaceTmp);
-    console.log("uccPricePerSpace", uccPricePerSpace);
+
     spacesLimitPerBid = parseInt(
       (await spaceAuctionContract.spacesLimitPerBid()).toString()
     );

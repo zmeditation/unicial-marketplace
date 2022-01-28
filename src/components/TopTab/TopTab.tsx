@@ -53,7 +53,7 @@ export default function TopTab() {
   const category = query.get("section");
   console.log("here is TopTab", category);
   useEffect(() => {
-    console.log("path name=", location.pathname);
+    // console.log("path name=", location.pathname);
     if (location.pathname.includes("/contracts")) {
       setToptabIndex(topTabIndex.land);
     } else if (location.pathname.includes("/lands")) {
@@ -86,8 +86,6 @@ export default function TopTab() {
 
         case "wearables":
           setSearchbarIndex(searchbarIndex.wearables);
-
-          console.log("oh yes", searchbar_index);
           break;
         case "ens":
           setSearchbarIndex(searchbarIndex.ens);

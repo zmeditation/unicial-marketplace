@@ -12,10 +12,8 @@ export default function MobileSidebar() {
   const query = new URLSearchParams(location.search);
 
   const category = query.get("section");
-  // console.log("here is mobilesidebar..", category);
 
   const [menuIndex, setmenuIndex] = React.useState(category);
-  // console.log("this is menuindex..", menuIndex);
   const handlemenu = (index: string) => {
     setmenuIndex(index);
     query.set("section", index);
