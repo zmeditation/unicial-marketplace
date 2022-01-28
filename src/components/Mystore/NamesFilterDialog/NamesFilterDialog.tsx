@@ -165,6 +165,7 @@ export default function CollectibleFilterDialog() {
                   checked={stateOnSale.checkedA}
                   onChange={handleOnSaleChange}
                   name="checkedA"
+                  disableRipple={true}
                 />
               }
               label="ON SALE"

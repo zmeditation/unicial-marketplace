@@ -262,6 +262,7 @@ export default function CollectibleFilterDialog() {
                   checked={stateWearables.checkedA}
                   onChange={handleWearablesChange}
                   name="checkedA"
+                  disableRipple={true}
                 />
               }
               label="SMART WEARABLES"
@@ -388,6 +389,7 @@ export default function CollectibleFilterDialog() {
                   checked={stateOnSale.checkedA}
                   onChange={handleOnSaleChange}
                   name="checkedA"
+                  disableRipple={true}
                 />
               }
               label="ON SALE"

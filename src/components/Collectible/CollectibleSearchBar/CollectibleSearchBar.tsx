@@ -174,6 +174,7 @@ export default function CollectibleSearchBar() {
                       checked={state.checkedA}
                       onChange={handleChange}
                       name="checkedA"
+                      disableRipple={true}
                     />
                   }
                   label="ON SALE"

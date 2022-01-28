@@ -148,6 +148,7 @@ export default function NamesSearchBar() {
                       checked={state.checkedA}
                       onChange={handleChange}
                       name="checkedA"
+                      disableRipple={true}
                     />
                   }
                   label="ON SALE"
