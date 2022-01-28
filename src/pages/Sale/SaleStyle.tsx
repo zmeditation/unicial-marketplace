@@ -6,24 +6,28 @@ import { KeyboardDatePicker } from "@material-ui/pickers";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minHeight: "calc(100vh - 160px)",
-    maxWidth: "1064px",
-    marginTop: "40px",
+    minWidth: "1064px",
+    marginTop: "50px",
     marginLeft: "auto",
     marginRight: "auto",
+    marginBottom: "267px",
     display: "flex",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
-      maxWidth: "933px",
+      minWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      maxWidth: "723px",
+      minWidth: "723px",
     },
     [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      minWidth: "calc(100% - 32px) !important",
+    },
+    [theme.breakpoints.down(550)]: {
+      minWidth: "calc(100% - 32px) !important",
+      padding: "0 16px",
     },
   },
   container_root: {
