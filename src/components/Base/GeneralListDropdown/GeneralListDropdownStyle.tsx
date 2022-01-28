@@ -8,7 +8,7 @@ import {
 import { makeStyles } from "@material-ui/styles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
+export const GeneralListDropdownStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       position: "relative",
@@ -66,8 +66,8 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       overflow: "visible",
     },
     topbarFilter: {
-      marginLeft: "20px",
-      [theme.breakpoints.down(992)]: {
+      marginLeft: "2px",
+      [theme.breakpoints.down(768)]: {
         display: "none",
       },
       "& .MuiSwitch-thumb": {
@@ -97,11 +97,6 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       width: "20px",
       height: "20px",
     },
-    listDropdown: {
-      [theme.breakpoints.down(992)]: {
-        display: "none",
-      },
-    },
     listRoot: {
       textTransform: "none",
       display: "inline-block",
@@ -111,6 +106,7 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
     listContainer: {
       display: "flex",
       alignItems: "center",
+      marginRight: "10px",
     },
     gradientlistLabel: {
       fontFamily: "Lato",
@@ -131,6 +127,14 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       "&:hover": {
         color: "white",
       },
+    },
+    selectedListLabel: {
+      fontFamily: "Lato",
+      fontSize: "14px",
+      lineHeight: "20px",
+      fontWeight: 400,
+      fontStyle: "normal",
+      color: "#ffffff",
     },
     switch: {
       "& .MuiSwitch-thumb": {
@@ -158,25 +162,8 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
         fill: "#41A6EF",
       },
     },
-    fiterBtns: {
-      marginLeft: "20px",
-      display: "flex",
-    },
-    listdropdownContainer: {
-      [theme.breakpoints.down(992)]: {
-        display: "none",
-      },
-    },
-    OnSaleSwitchContainer: {
-      [theme.breakpoints.down(860)]: {
-        display: "none",
-      },
-    },
-    filterContainer: {
-      display: "none",
-      [theme.breakpoints.down(860)]: {
-        display: "flex",
-      },
+    activeLabel: {
+      color: "white",
     },
   })
 );

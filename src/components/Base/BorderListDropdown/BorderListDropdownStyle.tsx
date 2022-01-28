@@ -125,6 +125,9 @@ export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
       WebkitTextFillColor: "transparent",
       marginRight: "3px",
     },
+    activeLabel: {
+      color: "white",
+    },
   })
 );
 

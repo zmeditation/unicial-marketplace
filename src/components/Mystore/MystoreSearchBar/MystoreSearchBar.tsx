@@ -8,6 +8,8 @@ import search_svg from "./../../../assets/svg/search.svg";
 import { Box } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
+import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";
+import { ListdropdownData2 } from "../../../config/ListdropdownData/ListdropdownData";
 
 export default function MystoreSearchBar() {
   const classes = MystoreSearchBarStyle();
@@ -66,80 +68,7 @@ export default function MystoreSearchBar() {
               </div>
               {/* select start */}
               <div>
-                <Box
-                  aria-controls="simple-menu"
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                >
-                  <Box className={classes.listRoot}>
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.gradientlistLabel}>
-                        {listIndex}
-                      </Box>
-                      <img
-                        src={filterDownArrowSvg}
-                        className={classes.filterDownArrow}
-                      />
-                    </Box>
-                  </Box>
-                </Box>
-                <StyledListPopover
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "right",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                >
-                  <StyledMenuItem onClick={handleCheapest}>
-                    <Box className={classes.listContainer}>
-                      <Box
-                        className={
-                          listIndex === "Cheapest"
-                            ? classes.selectedListLabel
-                            : classes.listLabel
-                        }
-                      >
-                        {t("Cheapest")}
-                      </Box>
-                    </Box>
-                  </StyledMenuItem>
-
-                  <StyledMenuItem onClick={handleRecentlyListied}>
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>
-                        {t("Recently listed")}
-                      </Box>
-                    </Box>
-                  </StyledMenuItem>
-
-                  <StyledMenuItem onClick={handleRecentlySold}>
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>
-                        {t("Recently sold")}
-                      </Box>
-                    </Box>
-                  </StyledMenuItem>
-
-                  <StyledMenuItem onClick={handleNewest}>
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Newest")}</Box>
-                    </Box>
-                  </StyledMenuItem>
-
-                  <StyledMenuItem onClick={handleName}>
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Name")}</Box>
-                    </Box>
-                  </StyledMenuItem>
-                </StyledListPopover>
+                <GeneralListDropdown data={ListdropdownData2} />
               </div>
               {/* select end */}
             </div>

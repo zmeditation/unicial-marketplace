@@ -166,6 +166,24 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
         fill: "#41A6EF",
       },
     },
+    listdropdownContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    OnSaleSwitchContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    filterDialogbtn: {
+      display: "none",
+      [theme.breakpoints.down(860)]: {
+        display: "flex",
+        cursor: "pointer",
+        position: "relative",
+      },
+    },
   })
 );
 

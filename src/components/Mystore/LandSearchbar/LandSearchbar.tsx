@@ -22,6 +22,9 @@ import {
 import { searchbarBtn } from "../../../config/constant";
 import book_svg from "../../../assets/svg/book.svg";
 import location_svg from "../../../assets/svg/location.svg";
+import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";
+import { ListdropdownData3 } from "../../../config/ListdropdownData/ListdropdownData";
+import OnSaleSwitch from "../../Base/OnSaleSwitch";
 const PurpleSwitch = withStyles({
   root: {
     height: "36px",
@@ -93,97 +96,40 @@ export default function LandSearchbar() {
                 <img
                   src={search_svg}
                   className={classes.searchIcon}
-                  alt='symbol'
+                  alt="symbol"
                 />
                 <input
                   className={classes.searchinput}
-                  placeholder='Search 25 results...'
+                  placeholder="Search 25 results..."
                 />
               </div>
               {/* select start */}
-              <div>
-                <Box
-                  aria-controls='simple-menu'
-                  aria-haspopup='true'
-                  onClick={handleClick}
-                  className={classes.listDropdown}>
-                  <Box className={classes.listRoot}>
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.gradientlistLabel}>
-                        {listIndex}
-                      </Box>
-                      <img
-                        src={filterDownArrowSvg}
-                        className={classes.filterDownArrow}
-                      />
-                    </Box>
-                  </Box>
-                </Box>
-                <StyledListPopover
-                  id='simple-menu'
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "right",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}>
-                  <StyledMenuItem onClick={() => handleItem("Recently sold")}>
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>
-                        {t("Recently sold")}
-                      </Box>
-                    </Box>
-                  </StyledMenuItem>
-
-                  <StyledMenuItem onClick={() => handleItem("Newest")}>
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Newest")}</Box>
-                    </Box>
-                  </StyledMenuItem>
-
-                  <StyledMenuItem onClick={() => handleItem("Name")}>
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Name")}</Box>
-                    </Box>
-                  </StyledMenuItem>
-                </StyledListPopover>
+              <div className={classes.listdropdownContainer}>
+                <GeneralListDropdown data={ListdropdownData3} />
               </div>
               {/* select end */}
-              <div className={classes.topbarFilter}>
-                <StyledFormControlLabel
-                  control={
-                    <PurpleSwitch
-                      checked={state.checkedA}
-                      onChange={handleChange}
-                      name='checkedA'
-                      disableRipple={true}
-                    />
-                  }
-                  label='ON SALE'
-                  className={classes.switch}
-                />
+              <div className={classes.OnSaleSwitchContainer}>
+                <OnSaleSwitch />
               </div>
-              <NamesFilterDialog />
+              <div className={classes.filterContainer}>
+                <NamesFilterDialog />
+              </div>
 
               {/* --table & location button-- */}
               <div className={classes.fiterBtns}>
                 <StyledTableButton
                   disabled={filter_index === searchbarBtn.tableBtn}
                   onClick={handletable}
-                  disableRipple={true}>
+                  disableRipple={true}
+                >
                   <img src={book_svg} />
                 </StyledTableButton>
 
                 <StyledLocationButton
                   disabled={filter_index === searchbarBtn.locationBtn}
                   onClick={handlelocation}
-                  disableRipple={true}>
+                  disableRipple={true}
+                >
                   <img src={location_svg} />
                 </StyledLocationButton>
               </div>

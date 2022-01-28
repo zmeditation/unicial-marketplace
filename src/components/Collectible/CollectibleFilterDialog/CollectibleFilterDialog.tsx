@@ -69,13 +69,13 @@ export default function CollectibleFilterDialog() {
   const [collectionCategory, setcollectionCategory] =
     React.useState("All Collections");
   const handleCollectionItem = (index: number) => {
-    setcollectionCategory(collectionData[index].catatory);
+    setcollectionCategory(collectionData[index].content);
     handleCollectionClose();
   };
 
   const [networkCategory, setnetworkCategory] = React.useState("All Network");
   const handleNetworkItem = (index: number) => {
-    setnetworkCategory(networkData[index].category);
+    setnetworkCategory(networkData[index].content);
     handleNetworkClose();
   };
 
@@ -130,9 +130,6 @@ export default function CollectibleFilterDialog() {
 
   return (
     <div className={classes.dialogRoot}>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
       <div
         color="primary"
         onClick={handleDialogOpen}
@@ -195,7 +192,7 @@ export default function CollectibleFilterDialog() {
                     key={index}
                   >
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{data.catatory}</Box>
+                      <Box className={classes.listLabel}>{data.content}</Box>
                     </Box>
                   </StyledMenuItem>
                 ))}
@@ -246,7 +243,7 @@ export default function CollectibleFilterDialog() {
                     key={index}
                   >
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{data.category}</Box>
+                      <Box className={classes.listLabel}>{data.content}</Box>
                     </Box>
                   </StyledMenuItem>
                 ))}

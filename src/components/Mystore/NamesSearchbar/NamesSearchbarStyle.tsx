@@ -39,14 +39,8 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
     textfilter: {
       display: "flex",
       width: "175px",
-      // alignItems: "center",
-      // [theme.breakpoints.down(768)]: {
-      //   display: "none",
-      // },
     },
     searchIcon: {
-      // height: "14px",
-      // marginTop: "8px",
       marginRight: "10px",
     },
     searchinput: {
@@ -156,6 +150,24 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
         width: "18px",
         height: "18px",
         fill: "#41A6EF",
+      },
+    },
+    listDropdownContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    OnSaleContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    filterDialogbtn: {
+      display: "none",
+      [theme.breakpoints.down(860)]: {
+        display: "flex",
+        cursor: "pointer",
+        position: "relative",
       },
     },
   })

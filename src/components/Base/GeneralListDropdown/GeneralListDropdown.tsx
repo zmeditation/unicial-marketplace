@@ -1,24 +1,20 @@
 import React from "react";
 import { Box } from "@material-ui/core";
 import {
-  BorderListDropdownStyle,
-  StyledCollectionPopover,
+  GeneralListDropdownStyle,
+  StyledListPopover,
   StyledMenuItem,
-} from "./BorderListDropdownStyle";
-
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+} from "./GeneralListDropdownStyle";
+import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 import clsx from "clsx";
-
-export default function BorderListDropdown(props: any) {
-  const classes = BorderListDropdownStyle();
-  const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
-    null
-  );
+export default function GeneralListDropdown(props: any) {
+  const classes = GeneralListDropdownStyle();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorNetwork(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    setAnchorNetwork(null);
+    setAnchorEl(null);
   };
   const [itemContent, setitemContent] = React.useState(props.data[1].content);
 
@@ -29,25 +25,23 @@ export default function BorderListDropdown(props: any) {
   };
   return (
     <>
-      {/* network select start */}
       <Box
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleOpen}
-        className={classes.listDropdown}
       >
         <Box className={classes.listRoot}>
           <Box className={classes.listContainer}>
-            <Box className={classes.mainlistLabel}>{itemContent}</Box>
-            <ExpandMoreIcon style={{ color: "#96A1DB", marginLeft: "3px" }} />
+            <Box className={classes.gradientlistLabel}>{itemContent}</Box>
+            <img src={filterDownArrowSvg} className={classes.filterDownArrow} />
           </Box>
         </Box>
       </Box>
-      <StyledCollectionPopover
+      <StyledListPopover
         id="simple-menu"
-        anchorEl={anchorNetwork}
+        anchorEl={anchorEl}
         keepMounted
-        open={Boolean(anchorNetwork)}
+        open={Boolean(anchorEl)}
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
@@ -71,7 +65,7 @@ export default function BorderListDropdown(props: any) {
             </Box>
           </StyledMenuItem>
         ))}
-      </StyledCollectionPopover>
+      </StyledListPopover>
     </>
   );
 }

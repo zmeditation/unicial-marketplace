@@ -150,7 +150,7 @@ export default function TopTab() {
 
                   <StyledTopTabBtn
                     disableRipple
-                    onClick={() => handlehead("/account")}
+                    onClick={() => handlehead("/account?section=collections")}
                     disabled={toptab_index === topTabIndex.mystore}
                   >
                     {t("My Store")}
@@ -206,6 +206,7 @@ export default function TopTab() {
                   <MystoreSearchBar />
                 ) : searchbar_index === 2 ? (
                   //  Collctibles
+
                   <CollectibleSearchBar />
                 ) : searchbar_index === 3 ? (
                   //My store MystoreSearchBar

@@ -8,12 +8,10 @@ import {
 export const CollectibleFilterDialogStyle = makeStyles((theme: Theme) =>
   createStyles({
     openfilter: {
-      display: "none",
-      [theme.breakpoints.down(992)]: {
-        display: "flex",
-        position: "relative",
-        cursor: "pointer",
-      },
+      display: "flex",
+      position: "relative",
+      cursor: "pointer",
+      alignItems: "center",
     },
     openfilterLabel: {
       background: "linear-gradient(to right, #7F64E2 10%, #41A6EF 100%)",
@@ -27,6 +25,7 @@ export const CollectibleFilterDialogStyle = makeStyles((theme: Theme) =>
         width: "18px",
         height: "18px",
         fill: "#41A6EF",
+        marginTop: "2.5px",
       },
     },
     dialogRoot: {},
