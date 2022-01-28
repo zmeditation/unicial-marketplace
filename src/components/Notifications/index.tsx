@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   notificationRoot: {
     position: "fixed",
-    top: "123px",
-    right: "170px",
+    top: "30px",
+    right: "50px",
     flexDirection: "column",
   },
   notificationContainer: {
@@ -100,6 +100,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "15px",
     height: "15px",
     cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "white",
+      borderRadius: "100px",
+    },
   },
 }));
 
@@ -122,6 +126,18 @@ export default function Notifications() {
     dispatch(showAlert({ message: "", severity: severity }));
     setOpenAlert(false);
   };
+
+  useEffect(() => {
+    let timeId = setTimeout(() => {
+      dispatch(showAlert({ message: "", severity: severity }));
+      setOpenAlert(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [msg]);
+
   return (
     <>
       <div
