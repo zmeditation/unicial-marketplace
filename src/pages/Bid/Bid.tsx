@@ -5,6 +5,8 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
+import CallMadeIcon from "@material-ui/icons/CallMade";
+
 import ActionButton from "../../components/Base/ActionButton";
 import TokenImg from "../../assets/img/1.png";
 import NeedSignIn from "../../components/NoSign/NeedSignIn";
@@ -86,11 +88,9 @@ const Bid = () => {
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                           <KeyboardDatePicker
                             className={classes.datePicker}
-                            disableToolbar
-                            variant='inline'
                             format='MM/dd/yyyy'
                             margin='normal'
-                            id='date-picker-inline'
+                            id='date-picker-dialog'
                             value={selectedDate}
                             onChange={handleDateChange}
                             KeyboardButtonProps={{
@@ -114,8 +114,8 @@ const Bid = () => {
                   {t("Cancel")}
                 </ActionButton>
                 <ActionButton color='light' className={classes.bidchange}>
-                  {t("Bid")} &nbsp;
-                  <img src={raiseicon} />
+                  {t("Bid")}
+                  <CallMadeIcon fontSize='small' />
                 </ActionButton>
               </div>
             </div>
