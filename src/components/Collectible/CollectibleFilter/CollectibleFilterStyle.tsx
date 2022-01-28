@@ -115,6 +115,9 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       alignItems: "center",
       cursor: "pointer",
     },
+    clearFilterContainerNone:{
+      display: "none",
+    },
     clearFilterLabel: {
       fontFamily: "Lato",
       fontStyle: "normal",

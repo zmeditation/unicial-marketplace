@@ -24,10 +24,8 @@ import { useTranslation } from "react-i18next";
 
 export default function CollectibleFilter() {
   const classes = CollectibleFilterStyle();
-  const [tagColor, setTagColor] = useState(collectiblesTagsColor.DefaultColor);
-  const [selectedTag, setSelectedTag] = useState("");
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [selectedStatus, setSelectedStatus] = useState(false);
+  const [selectedArray, setSelectedArray] = useState([""]);
+  const [showClearFilterBtn, setShowClearFilterBtn] = useState(false);
 
   const { t, i18n } = useTranslation();
   const [anchorCollection, setAnchorCollection] =
@@ -53,9 +51,35 @@ export default function CollectibleFilter() {
   };
 
   const handleClickTag = (e: number) => {
-    setSelectedTag(filterListData[e].category);
-    setSelectedStatus(!selectedStatus);
+    let newSelectedTile: string[] = [];
+    const selectedIndex = selectedArray.indexOf(filterListData[e].category);
+    if (selectedIndex === -1) {
+      newSelectedTile = newSelectedTile.concat(
+        selectedArray,
+        filterListData[e].category
+      );
+    } else if (selectedIndex === 0) {
+      newSelectedTile = newSelectedTile.concat(selectedArray.slice(1));
+    } else if (selectedIndex === selectedArray.length - 1) {
+      newSelectedTile = newSelectedTile.concat(selectedArray.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelectedTile = newSelectedTile.concat(
+        selectedArray.slice(0, selectedIndex),
+        selectedArray.slice(selectedIndex + 1)
+      );
+    }
+    setSelectedArray(newSelectedTile);
   };
+
+  const handleClickClear = () => {
+    setSelectedArray([""]);
+  };
+
+  useEffect(() => {
+    selectedArray.length !== 1
+      ? setShowClearFilterBtn(true)
+      : setShowClearFilterBtn(false);
+  }, [selectedArray]);
 
   const [collectionCategory, setcollectionCategory] =
     React.useState("All Collections");
@@ -76,12 +100,6 @@ export default function CollectibleFilter() {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
-  console.log(selectedTag);
-  useEffect(() => {
-    selectedStatus === true
-      ? setTagColor(collectiblesTagsColor.RareColor)
-      : setTagColor(collectiblesTagsColor.DefaultColor);
-  }, [selectedStatus]);
 
   return (
     <>
@@ -217,10 +235,17 @@ export default function CollectibleFilter() {
               <div className={classes.title}>{t("RARITY")}</div>
               <div className={classes.options}>
                 {filterListData?.map((data, index) => {
-                  return (
+                  return selectedArray.indexOf(data.category) >= 0 ? (
                     <Tag
                       key={index}
-                      color={tagColor}
+                      color='RareColor'
+                      letter={data.category}
+                      onClick={() => handleClickTag(index)}
+                    />
+                  ) : (
+                    <Tag
+                      key={index}
+                      color='DefaultColor'
                       letter={data.category}
                       onClick={() => handleClickTag(index)}
                     />
@@ -231,8 +256,17 @@ export default function CollectibleFilter() {
           </div>
         </div>
         <div className={classes.footer}>
-          <div className={classes.clearFilterContainer}>
-            <div className={classes.clearFilterLabel}>{t("Clear Filter")}</div>
+          <div
+            className={
+              showClearFilterBtn === true
+                ? classes.clearFilterContainer
+                : classes.clearFilterContainerNone
+            }>
+            <div
+              className={classes.clearFilterLabel}
+              onClick={handleClickClear}>
+              {t("Clear Filter")}
+            </div>
             <img src={closeSvg} className={classes.closeicon} />
           </div>
         </div>
