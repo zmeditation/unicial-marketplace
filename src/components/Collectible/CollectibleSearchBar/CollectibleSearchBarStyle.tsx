@@ -66,7 +66,7 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       overflow: "visible",
     },
     topbarFilter: {
-      marginLeft: "20px",
+      marginLeft: "2px",
       [theme.breakpoints.down(768)]: {
         display: "none",
       },
