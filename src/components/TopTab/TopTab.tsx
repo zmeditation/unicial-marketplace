@@ -34,6 +34,12 @@ export const PurpleSwitch = withStyles({
     "&$checked + $track": {
       backgroundColor: "#333B67",
     },
+    "&.Mui-checked:hover": {
+      backgroundColor: "unset",
+    },
+    "&.MuiIconButton-root:hover": {
+      backgroundColor: "unset",
+    },
   },
   checked: {},
   track: {},
@@ -164,6 +170,7 @@ export default function TopTab() {
                           checked={state.checkedA}
                           onChange={handleChange}
                           name='checkedA'
+                          disableRipple={true}
                         />
                       }
                       label='ON SALE'
@@ -172,13 +179,15 @@ export default function TopTab() {
                     <div style={{ marginLeft: "20px" }}>
                       <StyledTableButton
                         disabled={filter_index === searchbarBtn.tableBtn}
-                        onClick={handletable}>
+                        onClick={handletable}
+                        disableRipple={true}>
                         <img src={book_svg} />
                       </StyledTableButton>
 
                       <StyledLocationButton
                         disabled={filter_index === searchbarBtn.locationBtn}
-                        onClick={handlelocation}>
+                        onClick={handlelocation}
+                        disableRipple={true}>
                         <img src={location_svg} />
                       </StyledLocationButton>
                     </div>
