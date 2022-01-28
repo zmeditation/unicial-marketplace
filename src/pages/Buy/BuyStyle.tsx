@@ -4,28 +4,32 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minHeight: "calc(100vh - 160px)",
-    maxWidth: "1064px",
-    marginTop: "40px",
+    minWidth: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
+    marginBottom: "267px",
+    marginTop: "60px",
     display: "flex",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
-      maxWidth: "933px",
+      minWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      maxWidth: "723px",
+      minWidth: "700px",
+      padding: "0 16px",
     },
     [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      minWidth: "calc(100% - 32px) !important",
     },
   },
   backBtn: {
-    marginBottom: "30px",
+    marginBottom: "50px",
+  },
+  root_container: {
+    width: "100%",
   },
   bidCard: {
     display: "flex",
@@ -39,8 +43,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   leftCard: {
     flex: "0.75 1 auto",
-    textAlign: "right",
-    marginRight: "80px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
       marginBottom: "25px !important",

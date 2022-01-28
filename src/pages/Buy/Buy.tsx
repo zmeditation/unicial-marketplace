@@ -6,6 +6,7 @@ import ActionButton from "../../components/Base/ActionButton";
 import TokenImg from "../../assets/img/1.png";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";
 import raiseicon from "../../assets/svg/bid_raiseicon.svg";
+import CallMadeIcon from "@material-ui/icons/CallMade";
 
 import { useStyles } from "./BuyStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
@@ -20,7 +21,7 @@ const Buy = () => {
   return (
     <div className={classes.root}>
       {isSignIn === 1 ? (
-        <div>
+        <div className={classes.root_container}>
           <BackButton className={classes.backBtn} />
           <div className={classes.bidCard}>
             <div className={classes.leftCard}>
@@ -53,7 +54,7 @@ const Buy = () => {
                   color='light'
                   className={classes.bidchange}>
                   {t("Buy")}
-                  <img src={raiseicon} />
+                  <CallMadeIcon fontSize='small' />
                 </ActionButton>
               </div>
             </div>
