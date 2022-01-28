@@ -11,7 +11,7 @@ import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 
 export default function MystoreSearchBar() {
   const classes = MystoreSearchBarStyle();
-  const { t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -100,19 +100,31 @@ export default function MystoreSearchBar() {
                 >
                   <StyledMenuItem onClick={handleCheapest}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Cheapest")}</Box>
+                      <Box
+                        className={
+                          listIndex === "Cheapest"
+                            ? classes.selectedListLabel
+                            : classes.listLabel
+                        }
+                      >
+                        {t("Cheapest")}
+                      </Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlyListied}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Recently listed")}</Box>
+                      <Box className={classes.listLabel}>
+                        {t("Recently listed")}
+                      </Box>
                     </Box>
                   </StyledMenuItem>
 
                   <StyledMenuItem onClick={handleRecentlySold}>
                     <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{t("Recently sold")}</Box>
+                      <Box className={classes.listLabel}>
+                        {t("Recently sold")}
+                      </Box>
                     </Box>
                   </StyledMenuItem>
 

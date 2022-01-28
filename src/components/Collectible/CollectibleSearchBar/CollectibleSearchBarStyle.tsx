@@ -133,6 +133,7 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       },
     },
     selectedListLabel: {
+      fontFamily: "Lato",
       fontSize: "14px",
       lineHeight: "20px",
       fontWeight: 400,
