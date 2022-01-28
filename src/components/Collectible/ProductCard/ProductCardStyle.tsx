@@ -83,6 +83,7 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       width: "70px",
       justifyContent: "space-between",
       alignItems: "center",
+      marginRight: "10px",
     },
     price: {
       fontStyle: "normal",
