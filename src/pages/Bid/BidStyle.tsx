@@ -74,6 +74,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontStyle: "normal",
     fontWeight: 600,
     fontSize: "35px",
+    fontFamily: "Montserrat",
     lineHeight: "50px",
     letterSpacing: "0.02em",
     color: "#FFFFFF",
@@ -82,6 +83,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   subtitle: {
+    fontFamily: "Lato",
+
     marginBottom: "24px",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -111,6 +114,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   subheader_label: {
+    fontFamily: "Lato",
     color: "#96A1DB",
     fontStyle: "Regular",
     fontSize: "12px",

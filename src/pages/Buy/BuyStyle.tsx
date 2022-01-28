@@ -73,9 +73,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 600,
     fontSize: "35px",
     lineHeight: "50px",
-
+    fontFamily: "Montserrat",
     letterSpacing: "0.02em",
-
     marginBottom: "8px",
     [theme.breakpoints.down(769)]: {
       fontSize: "28px",
@@ -87,6 +86,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: "normal",
     fontSize: "14px",
     lineHeight: "17px",
+    fontFamily: "Lato",
+
     color: "#96A1DB",
   },
   subtitleNumber: {
@@ -95,6 +96,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "17px",
     align: "Left",
     verticalAlign: "Top",
+    fontFamily: "Lato",
   },
   form_field: {
     maxWidth: "420px",
@@ -160,6 +162,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "18px",
     fontWeight: 400,
     marginBottom: "6px",
+    fontFamily: "Lato",
   },
   manafield: {
     display: "flex",
