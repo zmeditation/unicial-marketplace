@@ -117,6 +117,14 @@ export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
       marginLeft: "3px",
       marginTop: "4px",
     },
+    selectedListLabel: {
+      fontFamily: "Lato",
+      fontSize: "14px",
+      lineHeight: "20px",
+      fontWeight: 400,
+      fontStyle: "normal",
+      color: "#ffffff",
+    },
   })
 );
 

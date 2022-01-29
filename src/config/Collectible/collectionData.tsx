@@ -3,34 +3,34 @@
 export const collectionData = [
   {
     index: 0,
-    catatory: "All Collections",
+    content: "All Collections",
   },
   {
     index: 1,
-    catatory: "Chinese traditional clothing",
+    content: "Chinese traditional clothing",
   },
   {
     index: 2,
-    catatory: "#shadowysuper coder",
+    content: "#shadowysuper coder",
   },
   {
     index: 3,
-    catatory: "Angel Wings",
+    content: "Angel Wings",
   },
 ];
 
 export const networkData = [
   {
     index: 0,
-    category: "All Network",
+    content: "All Network",
   },
   {
     index: 1,
-    category: "Ethereum",
+    content: "Ethereum",
   },
   {
     index: 2,
-    category: "Polygon",
+    content: "Polygon",
   },
 ];
 

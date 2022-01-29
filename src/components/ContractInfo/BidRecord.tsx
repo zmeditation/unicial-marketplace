@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
+    [theme.breakpoints.down(769)]: {
+      display: "block",
+    },
   },
   fromPart: {
     width: "30%",

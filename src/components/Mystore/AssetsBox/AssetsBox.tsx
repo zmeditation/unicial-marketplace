@@ -33,13 +33,6 @@ export default function AssetsBox() {
       search: query.toString(),
     });
   };
-  useEffect(() => {
-    query.set("section", "collections");
-    navigate({
-      pathname: location.pathname,
-      search: query.toString(),
-    });
-  }, []);
 
   useEffect(() => {
     if (query.get("section") === category.collections) {
@@ -54,7 +47,7 @@ export default function AssetsBox() {
       setActiveCategory(category.wearable);
       setExpanded(category.wearable);
     } else {
-      // setExpanded(category.wearable);
+      setExpanded("");
       setActiveCategory("");
     }
   }, [location]);

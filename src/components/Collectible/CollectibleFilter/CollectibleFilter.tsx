@@ -85,13 +85,13 @@ export default function CollectibleFilter() {
   const [collectionCategory, setcollectionCategory] =
     React.useState("All Collections");
   const handleCollectionItem = (index: number) => {
-    setcollectionCategory(collectionData[index].catatory);
+    setcollectionCategory(collectionData[index].content);
     handleCollectionClose();
   };
 
   const [networkCategory, setnetworkCategory] = React.useState("All Network");
   const handleNetworkItem = (index: number) => {
-    setnetworkCategory(networkData[index].category);
+    setnetworkCategory(networkData[index].content);
     handleNetworkClose();
   };
 
@@ -151,10 +151,10 @@ export default function CollectibleFilter() {
                       <Box
                         className={clsx(classes.listLabel, {
                           [classes.activeLabel]:
-                            collectionCategory === data.catatory,
+                            collectionCategory === data.content,
                         })}
                       >
-                        {data.catatory}
+                        {data.content}
                       </Box>
                     </Box>
                   </StyledMenuItem>
@@ -212,10 +212,10 @@ export default function CollectibleFilter() {
                       <Box
                         className={clsx(classes.listLabel, {
                           [classes.activeLabel]:
-                            networkCategory === data.category,
+                            networkCategory === data.content,
                         })}
                       >
-                        {data.category}
+                        {data.content}
                       </Box>
                     </Box>
                   </StyledMenuItem>

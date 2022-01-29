@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   disablestatus: {
     opacity: "60%",
-    background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
+    // background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
     border: "double 1px transparent",
     borderRadius: "100px",
     backgroundClip: "content-box, border-box",
@@ -53,7 +53,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   text: {
     margin: "10px 32px",
     display: "flex",
-    alignItems: "flex-start",
+    alignItems: "center",
+    // alignItems: "flex-start",
     "& svg": {
       margin: "0px 5px",
     },
@@ -91,7 +92,8 @@ const ActionButton = ({
           [classes.lightColor]: color === "light",
           [classes.disablestatus]: disabled,
         })}
-        onClick={onClick}>
+        onClick={onClick}
+      >
         <span className={classes.text}>{children}</span>
       </div>
     </>

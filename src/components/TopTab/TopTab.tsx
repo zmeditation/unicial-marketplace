@@ -20,6 +20,7 @@ import { Switch } from "@material-ui/core";
 import book_svg from "../../assets/svg/book.svg";
 import location_svg from "../../assets/svg/location.svg";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 
 export const PurpleSwitch = withStyles({
   root: {
@@ -131,7 +132,8 @@ export default function TopTab() {
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handlehead("/lands")}
-                    disabled={toptab_index === topTabIndex.land}>
+                    disabled={toptab_index === topTabIndex.land}
+                  >
                     {t("Lands")}
                   </StyledTopTabBtn>
 
@@ -142,21 +144,24 @@ export default function TopTab() {
                         "/browse?section=wearables&vendor=decentraland&page=1&sortBy=recently_listed&onlyOnSale=true"
                       )
                     }
-                    disabled={toptab_index === topTabIndex.collectibles}>
+                    disabled={toptab_index === topTabIndex.collectibles}
+                  >
                     {t("Collectibles")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
                     disableRipple
-                    onClick={() => handlehead("/account")}
-                    disabled={toptab_index === topTabIndex.mystore}>
+                    onClick={() => handlehead("/account?section=collections")}
+                    disabled={toptab_index === topTabIndex.mystore}
+                  >
                     {t("My Store")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handlehead("/auction")}
-                    disabled={toptab_index === topTabIndex.auction}>
+                    disabled={toptab_index === topTabIndex.auction}
+                  >
                     {t("Auction")}
                   </StyledTopTabBtn>
                 </div>
@@ -169,25 +174,29 @@ export default function TopTab() {
                         <PurpleSwitch
                           checked={state.checkedA}
                           onChange={handleChange}
-                          name='checkedA'
+                          name="checkedA"
                           disableRipple={true}
                         />
                       }
-                      label='ON SALE'
-                      className={classes.switch}
+                      label="ON SALE"
+                      className={clsx(classes.switch, {
+                        [classes.activeSwitch]: state.checkedA,
+                      })}
                     />
                     <div style={{ marginLeft: "20px" }}>
                       <StyledTableButton
                         disabled={filter_index === searchbarBtn.tableBtn}
                         onClick={handletable}
-                        disableRipple={true}>
+                        disableRipple={true}
+                      >
                         <img src={book_svg} />
                       </StyledTableButton>
 
                       <StyledLocationButton
                         disabled={filter_index === searchbarBtn.locationBtn}
                         onClick={handlelocation}
-                        disableRipple={true}>
+                        disableRipple={true}
+                      >
                         <img src={location_svg} />
                       </StyledLocationButton>
                     </div>
@@ -200,6 +209,7 @@ export default function TopTab() {
                   <MystoreSearchBar />
                 ) : searchbar_index === 2 ? (
                   //  Collctibles
+
                   <CollectibleSearchBar />
                 ) : searchbar_index === 3 ? (
                   //My store MystoreSearchBar

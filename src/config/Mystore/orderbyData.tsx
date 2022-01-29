@@ -1,14 +1,14 @@
 export const namesOrderByData = [
   {
     index: 1,
-    category: "Recently sold",
+    content: "Recently sold",
   },
   {
     index: 2,
-    category: "Newest",
+    content: "Newest",
   },
   {
     index: 3,
-    category: "Name",
+    content: "Name",
   },
 ];

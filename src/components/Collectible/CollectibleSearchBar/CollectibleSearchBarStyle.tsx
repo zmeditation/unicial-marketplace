@@ -133,6 +133,7 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       },
     },
     selectedListLabel: {
+      fontFamily: "Lato",
       fontSize: "14px",
       lineHeight: "20px",
       fontWeight: 400,
@@ -163,6 +164,24 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
         width: "18px",
         height: "18px",
         fill: "#41A6EF",
+      },
+    },
+    listdropdownContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    OnSaleSwitchContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    filterDialogbtn: {
+      display: "none",
+      [theme.breakpoints.down(860)]: {
+        display: "flex",
+        cursor: "pointer",
+        position: "relative",
       },
     },
   })
