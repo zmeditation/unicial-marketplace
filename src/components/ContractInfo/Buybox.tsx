@@ -71,7 +71,7 @@ interface BuyboxProps {}
 const Buybox: React.FC = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const  {t,i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <div className={classes.root}>
@@ -83,7 +83,7 @@ const Buybox: React.FC = () => {
       <div className={classes.title}>{t("Network")}</div>
       <div className={classes.subtitle}>{t("Zilionixx")}</div>
       <ActionButton color="light" onClick={() => navigate("buy")}>
-        {t("BUY")}
+        {t("Buy")}
         <CallMadeIcon className={classes.callmadeicon} />
       </ActionButton>
       <ActionButton
@@ -91,11 +91,13 @@ const Buybox: React.FC = () => {
         onClick={() => navigate("bid")}
         className={classes.bidBtn}
       >
-        {t("BID")}
+        {t("Bid")}
       </ActionButton>
       <div className={classes.expireContainer}>
         <img src={cloccheckSvg} className={classes.clockcheck} />
-        <div className={classes.expireDescription}>{t("Expires in 12 months")}</div>
+        <div className={classes.expireDescription}>
+          {t("Expires in 12 months")}
+        </div>
       </div>
     </div>
   );

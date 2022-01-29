@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-var tmp = 0;
 const StyledFormControlLabel = withStyles({
   label: {
     fontFamily: "Lato",
@@ -76,8 +75,11 @@ const PurpleSwitch = withStyles({
   checked: {},
   track: {},
 })(Switch);
+interface Props {
+  letter: string;
+}
 
-export default function OnSaleSwitch() {
+export default function OnSaleSwitch({ letter }: Props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     checkedA: true,
@@ -97,7 +99,7 @@ export default function OnSaleSwitch() {
             disableRipple={true}
           />
         }
-        label="ON SALE"
+        label={letter}
         className={clsx(classes.switch, {
           [classes.activeSwitch]: state.checkedA,
         })}

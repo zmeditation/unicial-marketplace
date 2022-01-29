@@ -173,6 +173,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontStyle: "normal",
       color: "#96A1DB",
+      marginTop: "3px",
       "&:hover": {
         color: "white",
       },

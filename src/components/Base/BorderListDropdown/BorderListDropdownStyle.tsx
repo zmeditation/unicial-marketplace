@@ -39,7 +39,7 @@ export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
     //select round
     listDropdown: {
       marginTop: "5px",
-      width: "100%",
+      // width: "100%",
       height: "32px",
       cursor: "pointer",
       position: "relative",
@@ -64,6 +64,9 @@ export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
       fontSize: "16px",
       lineHeight: "19px",
       color: "white",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
     },
     listLabel: {
       fontSize: "14px",

@@ -9,7 +9,15 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import clsx from "clsx";
 
-export default function BorderListDropdown(props: any) {
+interface BorderListDropdownProps {
+  className?: any;
+  data: any;
+}
+
+export default function BorderListDropdown({
+  className,
+  data,
+}: BorderListDropdownProps) {
   const classes = BorderListDropdownStyle();
   const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
     null
@@ -20,11 +28,11 @@ export default function BorderListDropdown(props: any) {
   const handleClose = () => {
     setAnchorNetwork(null);
   };
-  const [itemContent, setitemContent] = React.useState(props.data[1].content);
+  const [itemContent, setitemContent] = React.useState(data[0].content);
 
   const handleItem = (index: number) => {
-    // alert(index + props.data[index - 1].content);
-    setitemContent(props.data[index - 1].content);
+    // alert(index + data[index - 1].content);
+    setitemContent(data[index - 1].content);
     handleClose();
   };
   return (
@@ -58,7 +66,7 @@ export default function BorderListDropdown(props: any) {
           horizontal: "right",
         }}
       >
-        {props.data.map((item: any, index: any) => (
+        {data.map((item: any, index: any) => (
           <StyledMenuItem onClick={() => handleItem(item.index)} key={index}>
             <Box className={classes.listContainer}>
               <Box

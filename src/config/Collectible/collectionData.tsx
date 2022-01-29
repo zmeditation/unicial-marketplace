@@ -1,35 +1,50 @@
+export const namesOrderByData = [
+  {
+    index: 1,
+    content: "Recently sold",
+  },
+  {
+    index: 2,
+    content: "Newest",
+  },
+  {
+    index: 3,
+    content: "Name",
+  },
+];
+
 /** @format */
 
 export const collectionData = [
   {
-    index: 0,
+    index: 1,
     content: "All Collections",
   },
   {
-    index: 1,
+    index: 2,
     content: "Chinese traditional clothing",
   },
   {
-    index: 2,
+    index: 3,
     content: "#shadowysuper coder",
   },
   {
-    index: 3,
+    index: 4,
     content: "Angel Wings",
   },
 ];
 
 export const networkData = [
   {
-    index: 0,
+    index: 1,
     content: "All Network",
   },
   {
-    index: 1,
+    index: 2,
     content: "Ethereum",
   },
   {
-    index: 2,
+    index: 3,
     content: "Polygon",
   },
 ];

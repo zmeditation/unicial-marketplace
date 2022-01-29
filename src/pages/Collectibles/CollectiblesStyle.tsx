@@ -21,15 +21,14 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down(960)]: {
       minWidth: "calc(100% - 32px) !important",
-      margin: "16px 16px 60px 16px",
+      margin: "10px 16px",
     },
-    [theme.breakpoints.down(769)]: {
+    [theme.breakpoints.down(768)]: {
       minWidth: "calc(100% - 32px) !important",
     },
   },
   leftPart: {
     width: "264px",
-    marginRight: "20px",
     [theme.breakpoints.down(768)]: {
       display: "none",
     },
@@ -40,7 +39,12 @@ export const CollectiblesStyle = makeStyles((theme: Theme) => ({
     },
   },
   rightPart: {
-    width: "100%",
+    width: "calc(100% - 264px)",
+    paddingLeft: "20px",
+    [theme.breakpoints.down(768)]: {
+      width: "100%",
+      paddingLeft: "0px",
+    },
   },
   products: {
     display: "flex",

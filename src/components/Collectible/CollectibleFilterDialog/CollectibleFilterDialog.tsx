@@ -1,7 +1,5 @@
 import React from "react";
 import { CollectibleFilterDialogStyle } from "./CollectibleFilterDialogStyle";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -14,21 +12,14 @@ import {
   collectionData,
   networkData,
 } from "../../../config/Collectible/collectionData";
-import {
-  StyledCollectionPopover,
-  StyledMenuItem,
-} from "../CollectibleFilter/CollectibleFilterStyle";
-import { StyledFormControlLabel } from "./../../TopTab/TopTabStyle";
-import { PurpleSwitch } from "./../../TopTab/TopTab";
+import { ListdropdownData1 } from "../../../config/ListdropdownData/ListdropdownData";
+
+import BorderListDropdown from "../../Base/BorderListDropdown/BorderListDropdown";
 import StyledRadio from "../../Base/StyledRadio";
 import Tag from "../../Base/Tag";
-import { StyledListPopover } from "../CollectibleSearchBar/CollectibleSearchBarStyle";
-import MobileCategoryBox from "../MobileCategoryBox/MobileCategoryBox";
-import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
+import OnSaleSwitch from "../../Base/OnSaleSwitch";
 import { useTranslation } from "react-i18next";
 import ActionButton from "../../Base/ActionButton";
-import CategoryWearables from "../../CategoryWearables/CategoryWearables";
-import { WearablesData, LandData } from "./../../CategoryWearables/SidebarData";
 import AssetsBox from "../../Mystore/AssetsBox/AssetsBox";
 export default function CollectibleFilterDialog() {
   const classes = CollectibleFilterDialogStyle();
@@ -44,88 +35,12 @@ export default function CollectibleFilterDialog() {
   };
 
   //dialog relate
-  const [anchorCollection, setAnchorCollection] =
-    React.useState<null | HTMLElement>(null);
-  const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
-    null
-  );
-  const handleCollectionClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    setAnchorCollection(event.currentTarget);
-  };
-  const handleNetworkClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorNetwork(event.currentTarget);
-  };
-
-  const handleCollectionClose = () => {
-    setAnchorCollection(null);
-  };
-
-  const handleNetworkClose = () => {
-    setAnchorNetwork(null);
-  };
-
-  const [collectionCategory, setcollectionCategory] =
-    React.useState("All Collections");
-  const handleCollectionItem = (index: number) => {
-    setcollectionCategory(collectionData[index].content);
-    handleCollectionClose();
-  };
-
-  const [networkCategory, setnetworkCategory] = React.useState("All Network");
-  const handleNetworkItem = (index: number) => {
-    setnetworkCategory(networkData[index].content);
-    handleNetworkClose();
-  };
 
   //radio relate
   const [value, setValue] = React.useState("Male");
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
-  };
-
-  //smart wearables switch relate
-
-  const [stateWearables, setStateWearables] = React.useState({
-    checkedA: true,
-  });
-
-  const handleWearablesChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setStateWearables({
-      ...stateWearables,
-      [event.target.name]: event.target.checked,
-    });
-  };
-  //on sale switch relate
-  const [stateOnSale, setStateOnSale] = React.useState({
-    checkedA: true,
-  });
-
-  const handleOnSaleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setStateOnSale({
-      ...stateOnSale,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  //order by
-  const [anchorOrderBy, setAnchorOrderBy] = React.useState<null | HTMLElement>(
-    null
-  );
-  const handleOrderByOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorOrderBy(event.currentTarget);
-  };
-  const handleOrderByClose = () => {
-    setAnchorOrderBy(null);
-  };
-  const [orderbyIndex, setorderbyIndex] = React.useState("Cheapest");
-  const handleOrderByItem = (index: string) => {
-    setorderbyIndex(index);
-    handleOrderByClose();
   };
 
   return (
@@ -154,49 +69,7 @@ export default function CollectibleFilterDialog() {
             <div className={classes.title}>{t("Collections")}</div>
             {/* collection select start */}
             <div>
-              <Box
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleCollectionClick}
-                className={classes.listDropdown}
-              >
-                <Box className={classes.listRoot}>
-                  <Box className={classes.listContainer}>
-                    <Box className={classes.mainlistLabel}>
-                      {collectionCategory}
-                    </Box>
-                    <ExpandMoreIcon
-                      style={{ color: "#96A1DB", marginLeft: "3px" }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-              <StyledCollectionPopover
-                id="simple-menu"
-                anchorEl={anchorCollection}
-                keepMounted
-                open={Boolean(anchorCollection)}
-                onClose={handleCollectionClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-              >
-                {collectionData.map((data, index) => (
-                  <StyledMenuItem
-                    onClick={() => handleCollectionItem(data.index)}
-                    key={index}
-                  >
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{data.content}</Box>
-                    </Box>
-                  </StyledMenuItem>
-                ))}
-              </StyledCollectionPopover>
+              <BorderListDropdown data={collectionData} />
             </div>
             {/*collection select end */}
           </div>
@@ -205,66 +78,13 @@ export default function CollectibleFilterDialog() {
             <div className={classes.title}>{t("Network")}</div>
             {/* network select start */}
             <div>
-              <Box
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleNetworkClick}
-                className={classes.listDropdown}
-              >
-                <Box className={classes.listRoot}>
-                  <Box className={classes.listContainer}>
-                    <Box className={classes.mainlistLabel}>
-                      {networkCategory}
-                    </Box>
-                    <ExpandMoreIcon
-                      style={{ color: "#96A1DB", marginLeft: "3px" }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-              <StyledCollectionPopover
-                id="simple-menu"
-                anchorEl={anchorNetwork}
-                keepMounted
-                open={Boolean(anchorNetwork)}
-                onClose={handleNetworkClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-              >
-                {networkData.map((data, index) => (
-                  <StyledMenuItem
-                    onClick={() => handleNetworkItem(data.index)}
-                    key={index}
-                  >
-                    <Box className={classes.listContainer}>
-                      <Box className={classes.listLabel}>{data.content}</Box>
-                    </Box>
-                  </StyledMenuItem>
-                ))}
-              </StyledCollectionPopover>
+              <BorderListDropdown data={networkData} />
             </div>
             {/*network select end */}
           </div>
           {/* /smart wearables part/ */}
           <div>
-            <StyledFormControlLabel
-              control={
-                <PurpleSwitch
-                  checked={stateWearables.checkedA}
-                  onChange={handleWearablesChange}
-                  name="checkedA"
-                  disableRipple={true}
-                />
-              }
-              label="SMART WEARABLES"
-              className={classes.switch}
-            />
+            <OnSaleSwitch letter="SMART WEARABLES" />
           </div>
           {/* gender part */}
           <div className={classes.rarityPart}>
@@ -308,90 +128,11 @@ export default function CollectibleFilterDialog() {
           {/* orderby select start */}
           <div className={classes.orderbyContainer}>
             <div className={classes.orderbyTitle}>{t("Order By")}</div>
-            <Box
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleOrderByOpen}
-              className={classes.listDropdown}
-            >
-              <Box className={classes.listRoot}>
-                <Box className={classes.listContainer}>
-                  <Box className={classes.gradientlistLabel}>
-                    {orderbyIndex}
-                  </Box>
-                  <img
-                    src={filterDownArrowSvg}
-                    className={classes.filterDownArrow}
-                  />
-                </Box>
-              </Box>
-            </Box>
-            <StyledListPopover
-              id="simple-menu"
-              anchorEl={anchorOrderBy}
-              keepMounted
-              open={Boolean(anchorOrderBy)}
-              onClose={handleOrderByClose}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-            >
-              <StyledMenuItem onClick={() => handleOrderByItem("Cheapest")}>
-                <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>{t("Cheapest")}</Box>
-                </Box>
-              </StyledMenuItem>
-
-              <StyledMenuItem
-                onClick={() => handleOrderByItem("Recently listed")}
-              >
-                <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>
-                    {t("Recently listed")}
-                  </Box>
-                </Box>
-              </StyledMenuItem>
-
-              <StyledMenuItem
-                onClick={() => handleOrderByItem("Recently sold")}
-              >
-                <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>{t("Recently sold")}</Box>
-                </Box>
-              </StyledMenuItem>
-
-              <StyledMenuItem onClick={() => handleOrderByItem("Newest")}>
-                <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>{t("Newest")}</Box>
-                </Box>
-              </StyledMenuItem>
-
-              <StyledMenuItem onClick={() => handleOrderByItem("Name")}>
-                <Box className={classes.listContainer}>
-                  <Box className={classes.listLabel}>{t("Name")}</Box>
-                </Box>
-              </StyledMenuItem>
-            </StyledListPopover>
+            <BorderListDropdown data={ListdropdownData1} />
           </div>
           {/* / on sale part/ */}
           <div>
-            <StyledFormControlLabel
-              control={
-                <PurpleSwitch
-                  checked={stateOnSale.checkedA}
-                  onChange={handleOnSaleChange}
-                  name="checkedA"
-                  disableRipple={true}
-                />
-              }
-              label="ON SALE"
-              className={classes.switch}
-            />
+            <OnSaleSwitch letter="ON SALE" />
           </div>
           {/* mobile categorybox */}
           <div>

@@ -23,6 +23,7 @@ import { searchbarBtn } from "../../../config/constant";
 import book_svg from "../../../assets/svg/book.svg";
 import location_svg from "../../../assets/svg/location.svg";
 import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";
+import SearchInputFilter from "../../Base/SearchInputFilter";
 import { ListdropdownData3 } from "../../../config/ListdropdownData/ListdropdownData";
 import OnSaleSwitch from "../../Base/OnSaleSwitch";
 const PurpleSwitch = withStyles({
@@ -92,16 +93,8 @@ export default function LandSearchbar() {
         <div className={classes.container}>
           <div className={classes.nftfillter}>
             <div className={classes.topbar}>
-              <div className={classes.textfilter}>
-                <img
-                  src={search_svg}
-                  className={classes.searchIcon}
-                  alt="symbol"
-                />
-                <input
-                  className={classes.searchinput}
-                  placeholder="Search 25 results..."
-                />
+              <div>
+                <SearchInputFilter />
               </div>
               {/* select start */}
               <div className={classes.listdropdownContainer}>
@@ -109,7 +102,7 @@ export default function LandSearchbar() {
               </div>
               {/* select end */}
               <div className={classes.OnSaleSwitchContainer}>
-                <OnSaleSwitch />
+                <OnSaleSwitch letter="ON SALE" />
               </div>
               <div className={classes.filterContainer}>
                 <NamesFilterDialog />

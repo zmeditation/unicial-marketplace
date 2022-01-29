@@ -29,8 +29,13 @@ export const MyStoreStyle = makeStyles((theme: Theme) => ({
   },
   rightPart: {
     width: "calc(100% - 268px)",
+    [theme.breakpoints.down(885)]: {
+      paddingRight: "16px",
+    },
+
     [theme.breakpoints.down(769)]: {
       width: "100%",
+      paddingRight: "0px",
     },
   },
   statsContainer: {

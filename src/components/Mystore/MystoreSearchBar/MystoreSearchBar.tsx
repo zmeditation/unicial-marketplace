@@ -9,6 +9,7 @@ import { Box } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";
+import SearchInputFilter from "../../Base/SearchInputFilter";
 import { ListdropdownData2 } from "../../../config/ListdropdownData/ListdropdownData";
 
 export default function MystoreSearchBar() {
@@ -55,16 +56,8 @@ export default function MystoreSearchBar() {
         <div className={classes.container}>
           <div className={classes.nftfillter}>
             <div className={classes.topbar}>
-              <div className={classes.textfilter}>
-                <img
-                  src={search_svg}
-                  className={classes.searchIcon}
-                  alt="symbol"
-                />
-                <input
-                  className={classes.searchinput}
-                  placeholder="Search 0 items..."
-                />
+              <div>
+                <SearchInputFilter />
               </div>
               {/* select start */}
               <div>

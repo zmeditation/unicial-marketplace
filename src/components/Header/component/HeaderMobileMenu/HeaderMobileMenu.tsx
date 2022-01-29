@@ -34,11 +34,7 @@ export default function HeaderMobileMenu() {
         >
           <ListItem className={classes.headerlistItem}>
             <a href="/">
-              <img
-                src={"/Unicial_logo.svg"}
-                className={classes.logo}
-                alt="symbol"
-              />
+              <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
             </a>
             <div className={classes.firstItem}>
               <ListItemText primary="MARKETPLACE" onClick={handleClick} />

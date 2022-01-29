@@ -52,7 +52,7 @@ export default function CollectibleFilterDialog() {
           </div>
           {/* / on sale part/ */}
           <div>
-            <OnSaleSwitch />
+            <OnSaleSwitch letter="ON SALE" />
           </div>
         </DialogContent>
         <DialogActions className={classes.actionBtnContainer}>

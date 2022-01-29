@@ -35,22 +35,6 @@ export default function AssetsBox() {
   };
 
   useEffect(() => {
-    // if (query.get("section") === category.collections) {
-    //   setActiveCategory(category.collections);
-    // } else if (query.get("section") === category.land) {
-    //   setExpanded(category.land);
-    //   setActiveCategory(category.land);
-    // } else if (query.get("section") === category.name) {
-    //   setExpanded(category.name);
-    //   setActiveCategory(category.name);
-    // } else if (query.get("section") === category.wearable) {
-    //   setActiveCategory(category.wearable);
-    //   setExpanded(category.wearable);
-    // } else {
-    //   setActiveCategory("");
-    //   setExpanded("");
-    // }
-
     if (query.get("section")?.includes("wearables_")) {
       setActiveCategory("");
       setExpanded(category.wearable);

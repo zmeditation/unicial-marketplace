@@ -4,6 +4,7 @@ import NamesFilterDialog from "../NamesFilterDialog/NamesFilterDialog";
 import { useTranslation } from "react-i18next";
 import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";
 import OnSaleSwitch from "../../Base/OnSaleSwitch";
+import SearchInputFilter from "../../Base/SearchInputFilter";
 import { ListdropdownData3 } from "../../../config/ListdropdownData/ListdropdownData";
 
 export default function NamesSearchBar() {
@@ -17,16 +18,8 @@ export default function NamesSearchBar() {
         <div className={classes.container}>
           <div className={classes.nftfillter}>
             <div className={classes.topbar}>
-              <div className={classes.textfilter}>
-                <img
-                  src={search_svg}
-                  className={classes.searchIcon}
-                  alt="symbol"
-                />
-                <input
-                  className={classes.searchinput}
-                  placeholder="Search 25 results..."
-                />
+              <div>
+                <SearchInputFilter />
               </div>
               {/* select start */}
               <div className={classes.listDropdownContainer}>
@@ -34,7 +27,7 @@ export default function NamesSearchBar() {
               </div>
               {/* select end */}
               <div className={classes.OnSaleContainer}>
-                <OnSaleSwitch />
+                <OnSaleSwitch letter="ON SALE" />
               </div>
               <div className={classes.filterDialogbtn}>
                 <NamesFilterDialog />

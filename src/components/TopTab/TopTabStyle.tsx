@@ -12,6 +12,7 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       color: "#fff",
       margin: "20px auto",
       paddingRight: "16px",
+      paddingLeft: "16px",
       [theme.breakpoints.down(769)]: {
         display: "contents",
       },
@@ -28,10 +29,11 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(992)]: {
         marginLeft: "0px !important",
         marginRight: "0px !important",
-        marginTop: "22px !important",
+
         // marginBottom: "22px !important",
       },
       [theme.breakpoints.down(769)]: {
+        marginTop: "22px !important",
         borderBottom: "1px solid #282E4E",
       },
     },

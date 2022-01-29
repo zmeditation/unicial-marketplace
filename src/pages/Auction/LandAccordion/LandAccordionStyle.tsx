@@ -93,6 +93,9 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
       justifyContent: "space-around",
       marginTop: "20px",
     },
+    [theme.breakpoints.down(550)]: {
+      display: "block",
+    },
   },
   selectedLandLabelContainer: {
     display: "flex",
@@ -115,7 +118,11 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
     fontSize: "18px",
     fontWeight: 400,
   },
-  showmapBtn: {},
+  showmapBtn: {
+    [theme.breakpoints.down(550)]: {
+      marginBottom: "20px",
+    },
+  },
   inputLands: {
     width: "100%",
     "& .MuiFormControl-root": {

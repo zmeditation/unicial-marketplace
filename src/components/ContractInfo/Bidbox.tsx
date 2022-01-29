@@ -39,14 +39,14 @@ interface BidboxProps {}
 const Bidbox: React.FC = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <div className={classes.root}>
       <div className={classes.title}>{t("Network")}</div>
       <div className={classes.subtitle}>{t("Zilionixx")}</div>
       <ActionButton color="light" onClick={() => navigate("bid")}>
-        {t("BID")}
+        {t("Bid")}
         <CallMadeIcon className={classes.callmadeicon} />
       </ActionButton>
     </div>

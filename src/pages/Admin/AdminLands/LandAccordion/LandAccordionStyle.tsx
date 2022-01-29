@@ -118,6 +118,9 @@ export const LandAccordionStyle = makeStyles((theme: Theme) => ({
       display: "grid",
       justifyContent: "unset",
     },
+    [theme.breakpoints.down(550)]: {
+      display: "block",
+    },
   },
   selectedLandLabelContainer: {
     display: "flex",

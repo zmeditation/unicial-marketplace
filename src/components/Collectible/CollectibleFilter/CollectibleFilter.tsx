@@ -22,6 +22,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import closeSvg from "../../../assets/svg/close.svg";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import BorderListDropdown from "../../Base/BorderListDropdown/BorderListDropdown";
 
 export default function CollectibleFilter() {
   const classes = CollectibleFilterStyle();
@@ -29,27 +30,6 @@ export default function CollectibleFilter() {
   const [showClearFilterBtn, setShowClearFilterBtn] = useState(false);
 
   const { t, i18n } = useTranslation();
-  const [anchorCollection, setAnchorCollection] =
-    React.useState<null | HTMLElement>(null);
-  const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
-    null
-  );
-  const handleCollectionClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    setAnchorCollection(event.currentTarget);
-  };
-  const handleNetworkClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorNetwork(event.currentTarget);
-  };
-
-  const handleCollectionClose = () => {
-    setAnchorCollection(null);
-  };
-
-  const handleNetworkClose = () => {
-    setAnchorNetwork(null);
-  };
 
   const handleClickTag = (e: number) => {
     let newSelectedTile: string[] = [];
@@ -82,19 +62,6 @@ export default function CollectibleFilter() {
       : setShowClearFilterBtn(false);
   }, [selectedArray]);
 
-  const [collectionCategory, setcollectionCategory] =
-    React.useState("All Collections");
-  const handleCollectionItem = (index: number) => {
-    setcollectionCategory(collectionData[index].content);
-    handleCollectionClose();
-  };
-
-  const [networkCategory, setnetworkCategory] = React.useState("All Network");
-  const handleNetworkItem = (index: number) => {
-    setnetworkCategory(networkData[index].content);
-    handleNetworkClose();
-  };
-
   //radio relate
   const [value, setValue] = React.useState("Male");
 
@@ -110,117 +77,16 @@ export default function CollectibleFilter() {
             <div className={classes.title}>{t("Collections")}</div>
             {/* collection select start */}
             <div>
-              <Box
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleCollectionClick}
-                className={classes.listDropdown}
-              >
-                <Box className={classes.listRoot}>
-                  <Box className={classes.listContainer}>
-                    <Box className={classes.mainlistLabel}>
-                      {collectionCategory}
-                    </Box>
-                    <ExpandMoreIcon
-                      style={{ color: "#96A1DB", marginLeft: "3px" }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-              <StyledCollectionPopover
-                id="simple-menu"
-                anchorEl={anchorCollection}
-                keepMounted
-                open={Boolean(anchorCollection)}
-                onClose={handleCollectionClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-              >
-                {collectionData.map((data, index) => (
-                  <StyledMenuItem
-                    onClick={() => handleCollectionItem(data.index)}
-                    key={index}
-                  >
-                    <Box className={classes.listContainer}>
-                      <Box
-                        className={clsx(classes.listLabel, {
-                          [classes.activeLabel]:
-                            collectionCategory === data.content,
-                        })}
-                      >
-                        {data.content}
-                      </Box>
-                    </Box>
-                  </StyledMenuItem>
-                ))}
-              </StyledCollectionPopover>
+              <BorderListDropdown data={collectionData} />
             </div>
             {/*collection select end */}
           </div>
           {/* // */}
-          <div
-            className={classes.collectionSelectContainer}
-            style={{ marginLeft: "30px" }}
-          >
+          <div className={classes.collectionSelectContainer}>
             <div className={classes.title}>{t("Network")}</div>
             {/* network select start */}
             <div>
-              <Box
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleNetworkClick}
-                className={classes.listDropdown}
-              >
-                <Box className={classes.listRoot}>
-                  <Box className={classes.listContainer}>
-                    <Box className={classes.mainlistLabel}>
-                      {networkCategory}
-                    </Box>
-                    <ExpandMoreIcon
-                      style={{ color: "#96A1DB", marginLeft: "3px" }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-              <StyledCollectionPopover
-                id="simple-menu"
-                anchorEl={anchorNetwork}
-                keepMounted
-                open={Boolean(anchorNetwork)}
-                onClose={handleNetworkClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-              >
-                {networkData.map((data, index) => (
-                  <StyledMenuItem
-                    onClick={() => handleNetworkItem(data.index)}
-                    key={index}
-                  >
-                    <Box className={classes.listContainer}>
-                      <Box
-                        className={clsx(classes.listLabel, {
-                          [classes.activeLabel]:
-                            networkCategory === data.content,
-                        })}
-                      >
-                        {data.content}
-                      </Box>
-                    </Box>
-                  </StyledMenuItem>
-                ))}
-              </StyledCollectionPopover>
+              <BorderListDropdown data={networkData} />
             </div>
             {/*network select end */}
           </div>

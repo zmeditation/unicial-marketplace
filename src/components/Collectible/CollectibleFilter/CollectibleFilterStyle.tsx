@@ -25,7 +25,7 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
     },
     collectionSelectContainer: {
-      flex: "1 0 auto",
+      // flex: "1 0 auto",
       width: "45%",
     },
     title: {
