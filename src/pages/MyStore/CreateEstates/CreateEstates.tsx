@@ -4,8 +4,12 @@ import { CreateEstatesStyle } from "./CreateEstatesStyles";
 import { Grid } from "@material-ui/core";
 import LandCard from "../../../components/Mystore/LandCard/LandCard";
 import LandMap from "../../../components/Admin/LandMap";
+import ParcelCard from "../../../components/ParcelCard/ParcelCard";
+
 import TobTab from "../../../components/TopTab/TopTab";
-// import ActionButton from "../../../components/Base/ActionButton";
+import ActionButton from "../../../components/Base/ActionButton";
+import CallMadeIcon from "@material-ui/icons/CallMade";
+
 import { useTranslation } from "react-i18next";
 export default function CreateEstates() {
   const classes = CreateEstatesStyle();
@@ -44,22 +48,48 @@ export default function CreateEstates() {
           </div>
         </div>
         <div className={classes.cardContainer}>
-          <div className={classes.cardTitle}></div>
-          <div className={classes.cardSelect}></div>
+          <div className={classes.cardTitle}>
+            {t("Select the parcels on the map for your new Estate")}
+          </div>
+          <div className={classes.cardSelect}>{t("Selected parcels")}</div>
           <div className={classes.cards}>
-            <Grid container spacing={1}>
+            <Grid container spacing={2}>
               <Grid item xs={4} sm={4} md={4}>
-                <div className={classes.card}>
-                  <div className={classes.cardLabel}></div>
-                  <div className={classes.cardDescription}></div>
-
-                  <div className={classes.cardPrice}></div>
-                </div>
+                <ParcelCard
+                  cardlabel='Parcel'
+                  carddescription='Acquired at August 2nd, 2018'
+                  axisX={-44}
+                  axisY={-147}
+                />
               </Grid>
-              <Grid item xs={4} sm={4} md={4}></Grid>
-              <Grid item xs={4} sm={4} md={4}></Grid>
+              <Grid item xs={4} sm={4} md={4}>
+                <ParcelCard
+                  cardlabel='Parcel'
+                  carddescription='Acquired at August 2nd, 2018'
+                  axisX={-44}
+                  axisY={-147}
+                />
+              </Grid>
+              <Grid item xs={4} sm={4} md={4}>
+                <ParcelCard
+                  cardlabel='Parcel'
+                  carddescription='Acquired at August 2nd, 2018'
+                  axisX={-44}
+                  axisY={-147}
+                />
+              </Grid>
             </Grid>
-            <div className={classes.btns}></div>
+            <div className={classes.btns}>
+              <div className={classes.buttons}>
+                <ActionButton color='dark' className={classes.cancelchange}>
+                  {t("CANCEL")}
+                </ActionButton>
+                <ActionButton color='light' className={classes.bidchange}>
+                  {t("CONTINUE")}
+                  <CallMadeIcon fontSize='small' />
+                </ActionButton>
+              </div>
+            </div>
           </div>
         </div>
       </div>
