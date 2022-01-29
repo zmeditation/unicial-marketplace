@@ -7,8 +7,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     minWidth: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: "267px",
-    marginTop: "60px",
     display: "flex",
     position: "relative",
     "& canvas, .react-tile-map ": {
@@ -34,7 +32,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   bidCard: {
     display: "flex",
     position: "relative",
-    marginBottom: "150px",
     flexFlow: "row nowrap",
     width: "100%",
     [theme.breakpoints.down(769)]: {

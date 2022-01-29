@@ -5,6 +5,7 @@ import {
   Theme,
   withStyles,
 } from "@material-ui/core/styles";
+import clsx from "clsx";
 import React from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -28,6 +29,13 @@ const useStyles = makeStyles((theme: Theme) =>
       "& .MuiSwitch-root": {
         padding: "12.5px 12px",
         marginTop: "1px",
+      },
+    },
+    activeSwitch: {
+      "& .MuiTypography-root": {
+        background: "linear-gradient(#7F64E2 20%, #41A6EF 80%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
       },
     },
   })
@@ -90,7 +98,9 @@ export default function OnSaleSwitch() {
           />
         }
         label="ON SALE"
-        className={classes.switch}
+        className={clsx(classes.switch, {
+          [classes.activeSwitch]: state.checkedA,
+        })}
       />
     </div>
   );

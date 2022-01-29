@@ -80,13 +80,15 @@ export const typebox = {
 export const category = {
   collections: "collections",
   land: "land",
+  parcels: "parcels",
+  estates: "estates",
   wearable: "wearables",
   name: "ens",
 };
 
 export const collectiblesTagsColor = {
-  DefaultColor : "DefaultColor",
-  RareColor : "RareColor",
+  DefaultColor: "DefaultColor",
+  RareColor: "RareColor",
 };
 
 export const categoryWearables = {

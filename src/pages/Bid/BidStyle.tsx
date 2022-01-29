@@ -9,7 +9,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     minWidth: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: "267px",
     display: "flex",
     position: "relative",
     "& canvas, .react-tile-map ": {

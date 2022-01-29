@@ -51,6 +51,7 @@ export const CategoryWearablesStyle = makeStyles((theme: Theme) =>
     activeSubCategory: {
       backgroundColor: "#21263f",
       borderLeft: "2px solid #7f64e2",
+      color: "white",
     },
   })
 );
