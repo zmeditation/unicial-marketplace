@@ -4,7 +4,9 @@ import Auction from "../../pages/Auction/Auction";
 import MyStore from "../../pages/MyStore/MyStore";
 import Contracts from "../../pages/Contracts/Contracts";
 import MarketPlace from "../../pages/MarketPlace/MarketPlace";
-import CreateEstates from "../../pages/MyStore/CreateEstates/CreateEstates"
+import CreateEstates from "../../pages/MyStore/CreateEstate/CreateEstate"
+import Estates from "../../pages/MyStore/Estate/Estate"
+
 
 import Bid from "../../pages/Bid/Bid";
 import Buy from "../../pages/Buy/Buy";
@@ -53,7 +55,8 @@ export default function Layout() {
           <Route path="/auction" element={<Auction />} />
           <Route path="/browse" element={<Collectibles />} />
           <Route path="/account" element={<MyStore />} />
-          <Route path="/account/estate/create" element={<CreateEstates />} />
+          <Route path="/account/estate/createestate" element={<CreateEstates />} />
+          <Route path="/account/estate/create" element={<Estates />} />
 
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid"

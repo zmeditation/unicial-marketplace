@@ -13,7 +13,7 @@ export default function LandEstates() {
   const navigate = useNavigate();
 
   const handleCreateClick = () => {
-    navigate("/account/estate/create");
+    navigate("/account/estate/createestate");
   };
   return (
     <>

@@ -1,6 +1,6 @@
 /** @format */
 import { useState, useEffect } from "react";
-import { CreateEstatesStyle } from "./CreateEstatesStyles";
+import { EstateStyle } from "./EstateStyles";
 import { Grid } from "@material-ui/core";
 import LandCard from "../../../components/Mystore/LandCard/LandCard";
 import LandMap from "../../../components/Admin/LandMap";
@@ -11,8 +11,8 @@ import ActionButton from "../../../components/Base/ActionButton";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 
 import { useTranslation } from "react-i18next";
-export default function CreateEstates() {
-  const classes = CreateEstatesStyle();
+export default function Estates() {
+  const classes = EstateStyle();
   const { t, i18n } = useTranslation();
   const [width, setWidth] = useState(0);
   const handleResize = () => {

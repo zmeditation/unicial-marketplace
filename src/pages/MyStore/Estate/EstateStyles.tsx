@@ -7,7 +7,7 @@ import {
   withStyles,
 } from "@material-ui/core/styles";
 
-export const CreateEstatesStyle = makeStyles((theme: Theme) =>
+export const EstateStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: "1064px",
