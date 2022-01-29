@@ -1,25 +1,68 @@
+/** @format */
+
 import { LandEstatesStyle } from "./LandEstatesStyle";
-import LandMap from "./../../../components/Admin/LandMap";
-import ActionButton from "../../Base/ActionButton";
-import raiseicon from "../../../assets/svg/bid_raiseicon.svg";
-import { t } from "i18next";
+import { Grid } from "@material-ui/core";
+import LandCard from "../LandCard/LandCard";
+import ActionButton from "../../../components/Base/ActionButton";
+import { useNavigate } from "react-router-dom";
+
+import { useTranslation } from "react-i18next";
 export default function LandEstates() {
   const classes = LandEstatesStyle();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleCreateClick = () => {
+    navigate("/account/estate/createestate");
+  };
   return (
     <>
-      <div className={classes.root}>
-        <LandMap height={400} initialX={1} initialY={1} />
-        {/* buttons */}
-        <div className={classes.buttons}>
-          <ActionButton color="dark" className={classes.cancelchange}>
-            {t("Cancel")}
-          </ActionButton>
-          <ActionButton color="light" className={classes.bidchange}>
-            {t("Bid")} &nbsp;
-            <img src={raiseicon} />
-          </ActionButton>
-        </div>
+      <div className={classes.createBtnContainer}>
+        <ActionButton
+          color='light'
+          className={classes.createBtn}
+          onClick={handleCreateClick}>
+          {t("Create Estates")}
+        </ActionButton>
       </div>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6} md={4}>
+          <LandCard
+            locationbtnX={23}
+            locationbtnY={12}
+            landName='Plaza Area Sale'
+            category='Ethereum'
+            price={3999}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <LandCard
+            locationbtnX={23}
+            locationbtnY={12}
+            landName='Plaza Area Sale'
+            category='Ethereum'
+            price={3999}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <LandCard
+            locationbtnX={23}
+            locationbtnY={12}
+            landName='Plaza Area Sale'
+            category='Ethereum'
+            price={3999}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <LandCard
+            locationbtnX={23}
+            locationbtnY={12}
+            landName='Plaza Area Sale'
+            category='Ethereum'
+            price={3999}
+          />
+        </Grid>
+      </Grid>
     </>
   );
 }
