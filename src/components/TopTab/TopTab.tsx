@@ -20,6 +20,7 @@ import { Switch } from "@material-ui/core";
 import book_svg from "../../assets/svg/book.svg";
 import location_svg from "../../assets/svg/location.svg";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 
 export const PurpleSwitch = withStyles({
   root: {
@@ -178,7 +179,9 @@ export default function TopTab() {
                         />
                       }
                       label="ON SALE"
-                      className={classes.switch}
+                      className={clsx(classes.switch, {
+                        [classes.activeSwitch]: state.checkedA,
+                      })}
                     />
                     <div style={{ marginLeft: "20px" }}>
                       <StyledTableButton
