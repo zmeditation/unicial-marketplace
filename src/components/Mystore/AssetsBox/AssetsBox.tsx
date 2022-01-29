@@ -47,7 +47,7 @@ export default function AssetsBox() {
       setActiveCategory(category.wearable);
       setExpanded(category.wearable);
     } else {
-      // setExpanded(category.wearable);
+      setExpanded("");
       setActiveCategory("");
     }
   }, [location]);

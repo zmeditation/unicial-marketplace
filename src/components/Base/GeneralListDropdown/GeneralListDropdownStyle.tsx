@@ -119,12 +119,15 @@ export const GeneralListDropdownStyle = makeStyles((theme: Theme) =>
       WebkitTextFillColor: "transparent",
     },
     listLabel: {
+      fontFamily: "Lato",
       fontSize: "14px",
       lineHeight: "20px",
       fontWeight: 400,
       fontStyle: "normal",
       color: "#96A1DB",
+      opacity: "70%",
       "&:hover": {
+        opacity: "100%",
         color: "white",
       },
     },
@@ -164,6 +167,7 @@ export const GeneralListDropdownStyle = makeStyles((theme: Theme) =>
     },
     activeLabel: {
       color: "white",
+      opacity: "100%",
     },
   })
 );
@@ -183,7 +187,7 @@ export const StyledFormControlLabel = withStyles({
 
 export const StyledListPopover = withStyles({
   paper: {
-    backgroundColor: "#171b30",
+    backgroundColor: "#1A1F37",
     marginBottom: "70px",
     borderRadius: "6px",
     position: "absolute",

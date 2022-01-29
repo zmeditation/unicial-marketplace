@@ -24,7 +24,7 @@ const SalesStagingTable = ({ columns, rows, stepIndex }: StagingTableProps) => {
       <TableCell className={clsx(classes.tableCell)}>{row.type}</TableCell>
       <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
         {<img src={normalshapeSvg} className={classes.normalshape} />}
-        {row.price}
+        {<div>{row.price}</div>}
       </TableCell>
     </TableRow>
   ));

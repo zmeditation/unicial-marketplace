@@ -166,6 +166,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       height: "16px",
     },
     languageLabel: {
+      fontFamily: "Lato",
       fontSize: "14px",
       lineHeight: "20px",
       marginLeft: "8px",

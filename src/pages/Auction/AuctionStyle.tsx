@@ -107,7 +107,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "space-between",
     marginTop: "35px",
     [theme.breakpoints.down(769)]: {
-      display: "grid",
+      display: "block",
       width: "100%",
       justifyContent: "space-around",
     },
@@ -115,11 +115,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
   actionButtons: {
     display: "flex",
     justifyContent: "end",
-    // [theme.breakpoints.down(769)]: {
-    //   display: "grid",
-    //   width: "100%",
-    //   justifyContent: "space-around",
-    // },
+    [theme.breakpoints.down(769)]: {
+      display: "block",
+      width: "100%",
+      justifyContent: "space-around",
+    },
   },
   normalBtn: {
     margin: "20px 10px",

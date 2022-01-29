@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
+var tmp = 0;
 const StyledFormControlLabel = withStyles({
   label: {
     fontFamily: "Lato",
