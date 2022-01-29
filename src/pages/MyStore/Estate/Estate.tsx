@@ -1,5 +1,6 @@
 /** @format */
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { EstateStyle } from "./EstateStyles";
 import { Grid } from "@material-ui/core";
 import LandCard from "../../../components/Mystore/LandCard/LandCard";
@@ -9,10 +10,12 @@ import ParcelCard from "../../../components/ParcelCard/ParcelCard";
 import TobTab from "../../../components/TopTab/TopTab";
 import ActionButton from "../../../components/Base/ActionButton";
 import CallMadeIcon from "@material-ui/icons/CallMade";
+import { BackButton } from "../../../components/BackButton/BackButton";
 
 import { useTranslation } from "react-i18next";
 export default function Estates() {
   const classes = EstateStyle();
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const [width, setWidth] = useState(0);
   const handleResize = () => {
@@ -29,6 +32,9 @@ export default function Estates() {
     }
   };
 
+  const handleContinue = () => {
+    navigate("/account/estate/createestate");
+  };
   useEffect(() => {
     handleResize();
   }, []);
@@ -47,6 +53,8 @@ export default function Estates() {
             <LandMap height={400} width={width} initialX={1} initialY={1} />
           </div>
         </div>
+        <BackButton className={classes.backButton} />
+
         <div className={classes.cardContainer}>
           <div className={classes.cardTitle}>
             {t("Select the parcels on the map for your new Estate")}
@@ -81,10 +89,16 @@ export default function Estates() {
             </Grid>
             <div className={classes.btns}>
               <div className={classes.buttons}>
-                <ActionButton color='dark' className={classes.cancelchange}>
+                <ActionButton
+                  color='dark'
+                  className={classes.cancelchange}
+                  onClick={() => navigate("/account?section=estates")}>
                   {t("CANCEL")}
                 </ActionButton>
-                <ActionButton color='light' className={classes.bidchange}>
+                <ActionButton
+                  color='light'
+                  className={classes.bidchange}
+                  onClick={handleContinue}>
                   {t("CONTINUE")}
                   <CallMadeIcon fontSize='small' />
                 </ActionButton>

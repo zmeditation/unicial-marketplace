@@ -26,6 +26,11 @@ export const EstateStyle = makeStyles((theme: Theme) =>
         width: "calc(100% - 32px) !important",
       },
     },
+    backButton: {
+      marginTop: "50px",
+      marginBottom: "30px",
+      marginLeft: "10px",
+    },
     createBtnContainer: {
       display: "flex",
       justifyContent: "end",

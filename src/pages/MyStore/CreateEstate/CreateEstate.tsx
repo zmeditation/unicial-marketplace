@@ -28,6 +28,8 @@ const CreateEstate = () => {
     <div className={classes.root}>
       {isSignIn === 1 ? (
         <div className={classes.container_root}>
+          <BackButton className={classes.backButton} />
+
           <div className={classes.bidCard}>
             <div className={classes.leftCard}>
               <div className={classes.imgContent}>
@@ -74,7 +76,7 @@ const CreateEstate = () => {
                 <ActionButton
                   color='dark'
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
+                  onClick={() => navigate("/account/estate/create")}>
                   {t("CANCEL")}
                 </ActionButton>
                 <ActionButton color='light' className={classes.bidchange}>
