@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: "hidden",
     backgroundColor: "#282E4E",
     borderRadius: "15px",
+    [theme.breakpoints.down(769)]: {
+      paddingTop: "25px",
+    },
   },
   container: {
     flex: "1 1 auto",

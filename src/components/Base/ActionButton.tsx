@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontFamily: "Lato",
     fontWeight: 500,
     fontSize: "16px",
-    lineHeight: "19px",
+    lineHeight: "20px",
     align: "Left",
     verticalAlign: "Top",
   },

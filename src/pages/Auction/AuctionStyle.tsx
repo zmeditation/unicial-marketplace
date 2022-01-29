@@ -136,4 +136,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
   backBtnPosition: {
     marginTop: "5px",
   },
+  callmadeicon: {
+    width: "20px",
+    height: "20px",
+  },
 }));
