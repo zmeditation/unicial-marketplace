@@ -11,6 +11,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   displayNone: {
     display: "none",
   },
+  loaderWrapper: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+  },
   notificationRoot: {
     position: "fixed",
     top: "50%",
@@ -78,9 +89,15 @@ export default function Spinner() {
     <>
       <div
         className={
-          openSpinner === true ? classes.notificationRoot : classes.displayNone
+          openSpinner === true ? classes.loaderWrapper : classes.displayNone
         }>
-        <SemipolarSpinner color='red' className={classes.spinner} size={100} />
+        <div className={classes.notificationRoot}>
+          <SemipolarSpinner
+            color='red'
+            className={classes.spinner}
+            size={100}
+          />
+        </div>
       </div>
     </>
   );
