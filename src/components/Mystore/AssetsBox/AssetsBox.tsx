@@ -35,20 +35,54 @@ export default function AssetsBox() {
   };
 
   useEffect(() => {
-    if (query.get("section") === category.collections) {
-      setActiveCategory(category.collections);
-    } else if (query.get("section") === category.land) {
-      setExpanded(category.land);
-      setActiveCategory(category.land);
-    } else if (query.get("section") === category.name) {
-      setExpanded(category.name);
-      setActiveCategory(category.name);
-    } else if (query.get("section") === category.wearable) {
-      setActiveCategory(category.wearable);
+    // if (query.get("section") === category.collections) {
+    //   setActiveCategory(category.collections);
+    // } else if (query.get("section") === category.land) {
+    //   setExpanded(category.land);
+    //   setActiveCategory(category.land);
+    // } else if (query.get("section") === category.name) {
+    //   setExpanded(category.name);
+    //   setActiveCategory(category.name);
+    // } else if (query.get("section") === category.wearable) {
+    //   setActiveCategory(category.wearable);
+    //   setExpanded(category.wearable);
+    // } else {
+    //   setActiveCategory("");
+    //   setExpanded("");
+    // }
+
+    if (query.get("section")?.includes("wearables_")) {
+      setActiveCategory("");
       setExpanded(category.wearable);
     } else {
-      setExpanded("");
-      setActiveCategory("");
+      switch (query.get("section")) {
+        case category.collections:
+          setActiveCategory(category.collections);
+          break;
+        case category.land:
+          setExpanded(category.land);
+          setActiveCategory(category.land);
+          break;
+        case category.parcels:
+          setActiveCategory(category.parcels);
+          break;
+        case category.estates:
+          setActiveCategory(category.estates);
+          break;
+        case category.wearable:
+          setActiveCategory(category.wearable);
+          setExpanded(category.wearable);
+          break;
+        case category.name:
+          setActiveCategory(category.name);
+          setExpanded(category.name);
+          break;
+
+        default:
+          setActiveCategory("");
+          setExpanded("");
+        // }
+      }
     }
   }, [location]);
 

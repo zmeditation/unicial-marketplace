@@ -46,7 +46,11 @@ export default function Header() {
         <div className={classes.container}>
           <div className={classes.headermenuContainer}>
             <Link to="/" className={classes.logoContent}>
-              <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
+              <img
+                src={"/Unicial_logo.svg"}
+                className={classes.logo}
+                alt="symbol"
+              />
               <span className={classes.logoName}>{t("UNICIAL")}</span>
             </Link>
             <Button

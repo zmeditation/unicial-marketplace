@@ -81,7 +81,6 @@ export default function CategoryWearables(props: any) {
                   <Typography className={classes.maintitle}>
                     {item.title}
                   </Typography>
-                  {item.iconClosed}
                 </StyledAccordionSummary>
                 <StyledAccordionDetails>
                   {item.subNav?.map((subitem: any, key: any) => {
