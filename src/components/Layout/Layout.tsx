@@ -14,6 +14,7 @@ import SignIn from "../../pages/SignIn/SignIn";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Notification from "../Notifications";
+import Spinner from "../Spinner"
 
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
@@ -86,6 +87,8 @@ export default function Layout() {
         </Routes>
         <Footer />
         <Notification />
+        <Spinner />
+
       </Box>
     </Router>
   );
