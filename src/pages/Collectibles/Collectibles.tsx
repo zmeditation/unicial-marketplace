@@ -1,7 +1,7 @@
 import { CollectiblesStyle } from "./CollectiblesStyle";
 import TopTab from "../../components/TopTab/TopTab";
 import CollectibleFilter from "../../components/Collectible/CollectibleFilter/CollectibleFilter";
-import ProductCard from "../../components/Collectible/ProductCard/ProductCard";
+import ProductCard from "../../components/Base/ProductCard/ProductCard";
 import CollectibleSidebar from "../../components/Collectible/CollectibleSidebar/CollectibleSidebar";
 import NoResult from "../../components/NoResult/NoResult";
 
