@@ -72,16 +72,16 @@ export default function Spinner() {
     }
   }, [spinner]);
 
-  useEffect(() => {
-    let timeId = setTimeout(() => {
-      dispatch(showSpinner(false));
-      setOpenSpinner(false);
-    }, 5000);
+  // useEffect(() => {
+  //   let timeId = setTimeout(() => {
+  //     dispatch(showSpinner(false));
+  //     setOpenSpinner(false);
+  //   }, 5000);
 
-    return () => {
-      clearTimeout(timeId);
-    };
-  }, [spinner]);
+  //   return () => {
+  //     clearTimeout(timeId);
+  //   };
+  // }, [spinner]);
 
   return (
     <>
