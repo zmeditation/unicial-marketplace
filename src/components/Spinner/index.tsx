@@ -22,10 +22,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "center",
     backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
-  notificationRoot: {
+  spinnerRoot: {
     position: "fixed",
-    top: "50%",
-    right: "50%",
     flexDirection: "column",
     zIndex: 99999,
   },
@@ -91,7 +89,7 @@ export default function Spinner() {
         className={
           openSpinner === true ? classes.loaderWrapper : classes.displayNone
         }>
-        <div className={classes.notificationRoot}>
+        <div className={classes.spinnerRoot}>
           <SemipolarSpinner
             color='red'
             className={classes.spinner}

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { EstateStyle } from "./EstateStyles";
 import { Grid } from "@material-ui/core";
 import LandCard from "../../../components/Mystore/LandCard/LandCard";
-import LandMap from "../../../components/Admin/LandMap";
+import CreateEstateMap from "../../../components/CreateEstateMap";
 import ParcelCard from "../../../components/ParcelCard/ParcelCard";
 
 import TobTab from "../../../components/TopTab/TopTab";
@@ -50,7 +50,12 @@ export default function Estates() {
       <div className={classes.root}>
         <div className={classes.LandMap}>
           <div className={classes.LandMapContent}>
-            <LandMap height={400} width={width} initialX={1} initialY={1} />
+            <CreateEstateMap
+              height={400}
+              width={width}
+              initialX={1}
+              initialY={1}
+            />
           </div>
         </div>
         <BackButton className={classes.backButton} />
