@@ -2,14 +2,14 @@
 
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
 import { Input } from "@material-ui/core";
-import { KeyboardDatePicker } from "@material-ui/pickers";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
+    paddingTop: "50px",
     minWidth: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
-    display: "flex",
+    flexGrow: 1,
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",

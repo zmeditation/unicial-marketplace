@@ -8,6 +8,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     display: "flex",
+    flexGrow: 1,
+    paddingTop: "50px",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
