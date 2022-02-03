@@ -1,3 +1,5 @@
+export const ApiUrl = "http://192.168.112.107:8080"
+
 export const tabs = {
   land: 1,
 };
