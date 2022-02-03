@@ -48,9 +48,11 @@ export default function AssetsBox() {
           setActiveCategory(category.land);
           break;
         case category.parcels:
+          setExpanded(category.land);
           setActiveCategory(category.parcels);
           break;
         case category.estates:
+          setExpanded(category.land);
           setActiveCategory(category.estates);
           break;
         case category.wearable:
