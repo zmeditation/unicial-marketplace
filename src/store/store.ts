@@ -1,19 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import auth from "./auth";
 import mapparceldataReducer from "./selectedparcels";
 import mapestatedataReducer from "./selectedestates";
-
 
 import testReducer from "./Test/index";
 import authReducer from "./auth/index";
 import alertReducer from "./alert/index";
-import spinnerReducer from "./spinner/index"
+import spinnerReducer from "./spinner/index";
 
 export const store = configureStore({
   reducer: {
     test: testReducer,
     selectedparcels: mapparceldataReducer,
-    spinner:spinnerReducer,
+    spinner: spinnerReducer,
     auth: authReducer,
     alert: alertReducer,
     selectedestates: mapestatedataReducer,

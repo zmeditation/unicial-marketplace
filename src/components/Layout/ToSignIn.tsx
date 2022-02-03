@@ -3,9 +3,8 @@ import { useAppSelector } from "../../store/hooks";
 import { Navigate, Outlet } from "react-router-dom";
 import { selectLoginAddress } from "../../store/auth/selectors";
 
-const ProtectedRoute = () => {
-  const signStage = useAppSelector(selectLoginAddress);
-
-  return signStage === "" ? <Outlet /> : <Navigate to="/lands" />;
+const ToSignIn = () => {
+  const signState = useAppSelector(selectLoginAddress);
+  return signState !== "" ? <Outlet /> : <Navigate to="/signin" />;
 };
-export default ProtectedRoute;
+export default ToSignIn;

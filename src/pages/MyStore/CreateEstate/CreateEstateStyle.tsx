@@ -9,9 +9,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     minWidth: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: "50px",
-    marginBottom: "50px",
-
+    paddingTop: "50px",
+    paddingBottom: "50px",
+    flexGrow: 1,
     display: "flex",
     position: "relative",
     "& canvas, .react-tile-map ": {
@@ -167,6 +167,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "#21263f",
     minHeight: "100px",
     align: "Left",
+    resize: "none",
     verticalAlign: "Top",
     "&:focus-visible": {
       outline: "none",

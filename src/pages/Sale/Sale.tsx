@@ -7,7 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import ActionButton from "../../components/Base/ActionButton";
 import TokenImg from "../../assets/img/1.png";
-import NeedSignIn from "../../components/NoSign/NeedSignIn";
+import NeedSignIn from "../NeedSignIn";
 import { useStyles, StyledInput } from "./SaleStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";

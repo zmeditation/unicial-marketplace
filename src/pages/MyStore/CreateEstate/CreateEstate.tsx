@@ -6,7 +6,7 @@ import CallMadeIcon from "@material-ui/icons/CallMade";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import ActionButton from "../../../components/Base/ActionButton";
 import TokenImg from "../../../assets/img/1.png";
-import NeedSignIn from "../../../components/NoSign/NeedSignIn";
+import NeedSignIn from "../../NeedSignIn";
 import { useStyles, StyledInput } from "./CreateEstateStyle";
 import { BackButton } from "../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";

@@ -14,15 +14,19 @@ import NoResult from "../../components/NoResult/NoResult";
 import Grid from "@material-ui/core/Grid";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
+import { useAppSelector } from "../../store/hooks";
+import { selectLoginAddress } from "../../store/auth/selectors";
+
 export default function MyStore() {
   const classes = MyStoreStyle();
   const { t, i18n } = useTranslation();
-  //
   const location = useLocation();
   const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
   var category = query.get("section");
   const [rightPartIndex, setrightPartIndex] = React.useState("");
+  const loginAddress = useAppSelector(selectLoginAddress)
+
   useEffect(() => {
     switch (category) {
       case "parcels":

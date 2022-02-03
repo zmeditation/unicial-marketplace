@@ -65,17 +65,10 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
               getCoords(x, y)
             );
           } else {
-            newSelectedTile = newSelectedTile.concat(selectedTile);
+            newSelectedTile = selectedTile;
           }
-        } else if (selectedIndex === 0) {
-          newSelectedTile = newSelectedTile.concat(selectedTile.slice(1));
-        } else if (selectedIndex === selectedTile.length - 1) {
-          newSelectedTile = newSelectedTile.concat(selectedTile.slice(0, -1));
-        } else if (selectedIndex > 0) {
-          newSelectedTile = newSelectedTile.concat(
-            selectedTile.slice(0, selectedIndex),
-            selectedTile.slice(selectedIndex + 1)
-          );
+        } else {
+          newSelectedTile = selectedTile;
         }
         dispatch(getestates(newSelectedTile));
       }
