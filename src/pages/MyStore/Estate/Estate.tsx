@@ -13,12 +13,14 @@ import CallMadeIcon from "@material-ui/icons/CallMade";
 import { BackButton } from "../../../components/BackButton/BackButton";
 
 import { selectestates } from "../../../store/selectedestates/selectors";
+import { getestates } from "../../../store/selectedestates";
 
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../../store/hooks";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 export default function Estates() {
   const classes = EstateStyle();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const estates = useAppSelector(selectestates);
   const { t, i18n } = useTranslation();
   const [width, setWidth] = useState(0);
@@ -39,6 +41,11 @@ export default function Estates() {
   const handleContinue = () => {
     navigate("/account/estate/createestate");
   };
+
+  const handleClear = () => {
+    dispatch(getestates([]));
+  };
+
   useEffect(() => {
     handleResize();
   }, []);
@@ -62,7 +69,16 @@ export default function Estates() {
             />
           </div>
         </div>
-        <BackButton className={classes.backButton} />
+        <div className={classes.btnPart}>
+          <BackButton className={classes.backButton} />
+          <ActionButton
+            color='light'
+            className={classes.clearBtn}
+            onClick={handleClear}>
+            {t("Clear")}
+            <CallMadeIcon fontSize='small' />
+          </ActionButton>
+        </div>
 
         <div className={classes.cardContainer}>
           <div className={classes.cardTitle}>

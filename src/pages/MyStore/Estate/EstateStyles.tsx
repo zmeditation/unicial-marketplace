@@ -26,10 +26,29 @@ export const EstateStyle = makeStyles((theme: Theme) =>
         width: "calc(100% - 32px) !important",
       },
     },
-    backButton: {
+    btnPart: {
       marginTop: "50px",
       marginBottom: "30px",
+      display: "flex",
+      justifyContent: "space-between",
+    },
+    backButton: {
       marginLeft: "10px",
+      display: "flex",
+    },
+    clearBtn: {
+      marginLeft: "16px",
+      minWidth: "160px",
+      width: "160px",
+      fontStyle: "normal",
+      fontWeight: 500,
+      fontSize: "16px",
+      lineHeight: "19px",
+      color: "#FFFFFF",
+      [theme.breakpoints.down(769)]: {
+        marginLeft: "0px",
+        order: 1,
+      },
     },
     createBtnContainer: {
       display: "flex",
@@ -52,6 +71,7 @@ export const EstateStyle = makeStyles((theme: Theme) =>
         margin: "0px calc( (100% - 300px) / 2)",
       },
     },
+
     cardContainer: {
       marginTop: "20px",
       padding: "10px",
