@@ -16,7 +16,7 @@ export default function GeneralListDropdown(props: any) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const [itemContent, setitemContent] = React.useState(props.data[1].content);
+  const [itemContent, setitemContent] = React.useState(props.data[0].content);
 
   const handleItem = (index: number) => {
     // alert(index + props.data[index - 1].content);
