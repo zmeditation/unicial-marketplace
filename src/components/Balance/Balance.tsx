@@ -10,7 +10,7 @@ import clsx from "clsx";
 interface BalanceProps {
   className?: any;
   type: string;
-  value: number;
+  value: any;
 }
 
 export const Balance = ({ className, type, value }: BalanceProps) => {
