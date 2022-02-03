@@ -4,9 +4,8 @@ import Auction from "../../pages/Auction/Auction";
 import MyStore from "../../pages/MyStore/MyStore";
 import Contracts from "../../pages/Contracts/Contracts";
 import MarketPlace from "../../pages/MarketPlace/MarketPlace";
-import CreateEstates from "../../pages/MyStore/CreateEstate/CreateEstate"
-import Estates from "../../pages/MyStore/Estate/Estate"
-
+import CreateEstates from "../../pages/MyStore/CreateEstate/CreateEstate";
+import Estates from "../../pages/MyStore/Estate/Estate";
 
 import Bid from "../../pages/Bid/Bid";
 import Buy from "../../pages/Buy/Buy";
@@ -14,7 +13,7 @@ import SignIn from "../../pages/SignIn/SignIn";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Notification from "../Notifications";
-import Spinner from "../Spinner"
+import Spinner from "../Spinner";
 
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
@@ -24,7 +23,8 @@ import Transfer from "../../pages/Transfer/Transfer";
 import Collectibles from "../../pages/Collectibles/Collectibles";
 import { setloginAddress } from "../../store/auth/actions";
 import { useAppDispatch } from "../../store/hooks";
-import ProtectedRoute from "./ProtectedRoute";
+import ToLands from "./ToLands";
+import ToSignIn from "./ToSignIn";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 
@@ -55,8 +55,10 @@ export default function Layout() {
           <Route path="/lands" element={<Lands />} />
           <Route path="/auction" element={<Auction />} />
           <Route path="/browse" element={<Collectibles />} />
-          <Route path="/account" element={<MyStore />} />
-          <Route path="/account/estate/createestate" element={<CreateEstates />} />
+          <Route
+            path="/account/estate/createestate"
+            element={<CreateEstates />}
+          />
           <Route path="/account/estate/create" element={<Estates />} />
 
           <Route
@@ -73,9 +75,6 @@ export default function Layout() {
           />
           <Route path="/admin/lands" element={<AdminLands />} />
           <Route path="/admin/estate" element={<AdminEstate />} />
-          <Route path="/signin" element={<ProtectedRoute />}>
-            <Route path="/signin" element={<SignIn />} />
-          </Route>
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid/sale"
             element={<Sale />}
@@ -84,11 +83,16 @@ export default function Layout() {
             path="/contracts/:contractaddress/tokens/:tokensid/transfer"
             element={<Transfer />}
           />
+          <Route path="/signin" element={<ToLands />}>
+            <Route path="/signin" element={<SignIn />} />
+          </Route>
+          <Route path="/account" element={<ToSignIn />}>
+            <Route path="/account" element={<MyStore />} />
+          </Route>
         </Routes>
         <Footer />
         <Notification />
         <Spinner />
-
       </Box>
     </Router>
   );

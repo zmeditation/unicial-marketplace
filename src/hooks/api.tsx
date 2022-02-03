@@ -1,8 +1,9 @@
 import {ApiUrl} from '../config/constant'
+import axios from 'axios'
 
 export const getParcelsByOwner = async (owner: any) => {
   try {
-    const response = await axios.get(`${ApiUrl}/email/forgot_password/confirm/${owner}`)
+    const response = await axios.get(`${ApiUrl}/api/v1/parcel/owner/${owner}`)
     return response.data
   } catch (error: any) {
     return console.log(error)
