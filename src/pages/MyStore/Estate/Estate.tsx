@@ -12,10 +12,14 @@ import ActionButton from "../../../components/Base/ActionButton";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import { BackButton } from "../../../components/BackButton/BackButton";
 
+import { selectestates } from "../../../store/selectedestates/selectors";
+
 import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../../../store/hooks";
 export default function Estates() {
   const classes = EstateStyle();
   const navigate = useNavigate();
+  const estates = useAppSelector(selectestates);
   const { t, i18n } = useTranslation();
   const [width, setWidth] = useState(0);
   const handleResize = () => {
@@ -67,30 +71,17 @@ export default function Estates() {
           <div className={classes.cardSelect}>{t("Selected parcels")}</div>
           <div className={classes.cards}>
             <Grid container spacing={2}>
-              <Grid item xs={4} sm={4} md={4}>
-                <ParcelCard
-                  cardlabel='Parcel'
-                  carddescription='Acquired at August 2nd, 2018'
-                  axisX={-44}
-                  axisY={-147}
-                />
-              </Grid>
-              <Grid item xs={4} sm={4} md={4}>
-                <ParcelCard
-                  cardlabel='Parcel'
-                  carddescription='Acquired at August 2nd, 2018'
-                  axisX={-44}
-                  axisY={-147}
-                />
-              </Grid>
-              <Grid item xs={4} sm={4} md={4}>
-                <ParcelCard
-                  cardlabel='Parcel'
-                  carddescription='Acquired at August 2nd, 2018'
-                  axisX={-44}
-                  axisY={-147}
-                />
-              </Grid>
+              {estates.map((items: any, key: any) => {
+                return (
+                  <Grid key={key} item xs={2} sm={2} md={2}>
+                    <ParcelCard
+                      cardlabel='Parcel'
+                      carddescription='Acquired at August 2nd, 2018'
+                      location={items}
+                    />
+                  </Grid>
+                );
+              })}
             </Grid>
             <div className={classes.btns}>
               <div className={classes.buttons}>

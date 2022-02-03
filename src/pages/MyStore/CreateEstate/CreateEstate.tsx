@@ -14,11 +14,14 @@ import { useStyles, StyledInput } from "./CreateEstateStyle";
 import { BackButton } from "../../../components/BackButton/BackButton";
 import { Grid } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../../../store/hooks";
+import { selectestates } from "../../../store/selectedestates/selectors";
 
 const CreateEstate = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const estates = useAppSelector(selectestates);
 
   var isSignIn = 1;
 

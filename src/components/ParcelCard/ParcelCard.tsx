@@ -6,16 +6,14 @@ import LocationBtn from "../../components/Base/LocationBtn";
 interface ParcelCardProps {
   cardlabel: string;
   carddescription: string;
-  axisX: number;
-  axisY: number;
+  location: string;
   onClick?: () => void;
 }
 
 export default function ParcelCard({
   cardlabel,
   carddescription,
-  axisX,
-  axisY,
+  location,
   onClick,
 }: ParcelCardProps) {
   const classes = ParcelCardStyle();
@@ -24,7 +22,7 @@ export default function ParcelCard({
       <div className={classes.card}>
         <Tag color="RareColor" letter="Parcel" className={classes.cardLabel}/>
         <div className={classes.cardDescription}>{carddescription}</div>
-        <LocationBtn axisX={axisX} axisY={axisY} dark className={classes.location}/>
+        <LocationBtn position={location} dark className={classes.location}/>
       </div>
     </>
   );

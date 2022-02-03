@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Button from "../Base/Button";
@@ -60,23 +62,23 @@ interface ParcelsProps {}
 
 const Parcels: React.FC = () => {
   const classes = useStyles();
-  const { t, i18n } =  useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div className={classes.root}>
       <div className={classes.title}>{t("Parcels")}</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>
-          <LocationBtn axisX={12} axisY={45} />
-          <LocationBtn axisX={32} axisY={11} />
-          <LocationBtn axisX={33} axisY={9} />
-          <LocationBtn axisX={30} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='32,-45' />
+          <LocationBtn position='33,-45' />
+          <LocationBtn position='30,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
         </div>
         <div className={classes.showmoreContent}>
           <ShowMoreLessBtn />
