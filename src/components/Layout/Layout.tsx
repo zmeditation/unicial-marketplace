@@ -15,14 +15,14 @@ import Notification from "../Notifications";
 import Spinner from "../Spinner";
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
-import Sale from "../../pages/Sale/Sale";
-import Transfer from "../../pages/Transfer/Transfer";
+import ParcelSell from "../../pages/MyStore/ParcelSell/ParcelSell";
+import ParcelTransfer from "../../pages/MyStore/ParcelTransfer/ParcelTransfer";
 import Collectibles from "../../pages/Collectibles/Collectibles";
 import ToLands from "./ToLands";
 import ToSignIn from "./ToSignIn";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
-import ParcelDetail from "../../pages/ParcelDetail/ParcelDetail";
+import ParcelDetail from "../../pages/MyStore/ParcelDetail/ParcelDetail";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -67,12 +67,12 @@ export default function Layout() {
           <Route path="/admin/lands" element={<AdminLands />} />
           <Route path="/admin/estate" element={<AdminEstate />} />
           <Route
-            path="/contracts/:contractaddress/tokens/:tokensid/sale"
-            element={<Sale />}
+            path="/contracts/:contractaddress/tokens/:tokensid/sell"
+            element={<ParcelSell />}
           />
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid/transfer"
-            element={<Transfer />}
+            element={<ParcelTransfer />}
           />
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid/parcel_detail"

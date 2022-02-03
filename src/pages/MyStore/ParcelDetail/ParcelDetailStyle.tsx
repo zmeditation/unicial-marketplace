@@ -5,6 +5,8 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minWidth: "1064px",
+    paddingTop: "50px",
+    flexGrow: 1,
     marginLeft: "auto",
     marginRight: "auto",
     display: "flex",

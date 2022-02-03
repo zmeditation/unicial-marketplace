@@ -12,6 +12,7 @@ export const LandCardStyle = makeStyles((theme: Theme) =>
       boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
       marginBottom: "10px",
       padding: "20px 8px",
+      cursor: "pointer",
     },
     header: {
       display: "flex",
@@ -39,7 +40,6 @@ export const LandCardStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      cursor: "pointer",
     },
     image: {
       // width: "80%",

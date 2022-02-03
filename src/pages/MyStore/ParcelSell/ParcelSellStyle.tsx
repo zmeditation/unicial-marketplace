@@ -2,12 +2,12 @@
 
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
 import { Input } from "@material-ui/core";
-import { KeyboardDatePicker } from "@material-ui/pickers";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minWidth: "1064px",
-    marginTop: "40px",
+    paddingTop: "50px",
+    flexGrow: 1,
     marginLeft: "auto",
     marginRight: "auto",
     marginBottom: "267px",
@@ -24,6 +24,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
+    },
+    [theme.breakpoints.down(550)]: {
+      minWidth: "calc(100% - 32px) !important",
+      padding: "0 16px",
     },
   },
   container_root: {
