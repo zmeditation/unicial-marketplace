@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import auth from "./auth";
 import mapparceldataReducer from "./selectedparcels";
+import mapestatedataReducer from "./selectedestates";
+
 
 import testReducer from "./Test/index";
 import authReducer from "./auth/index";
@@ -14,6 +16,7 @@ export const store = configureStore({
     spinner:spinnerReducer,
     auth: authReducer,
     alert: alertReducer,
+    selectedestates: mapestatedataReducer,
   },
 });
 

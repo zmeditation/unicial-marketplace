@@ -1,3 +1,5 @@
+/** @format */
+
 import { LandCardStyle } from "./LandCardStyle";
 import Tag from "../../Base/Tag";
 import headSvg from "../../../assets/svg/head.svg";
@@ -30,9 +32,7 @@ export default function LandCard({
     <>
       <div className={classes.root}>
         <div className={classes.header}>
-          {/* <Tag color={tagColor} letter={tagLetter} /> */}
-          {/* <Tag color="LegendaryColor" letter="LEGENDARY" /> */}
-          <LocationBtn axisX={locationbtnX} axisY={locationbtnY} dark />
+          <LocationBtn position={`${locationbtnX} , ${locationbtnY}`} dark />
           <div className={classes.iconContainer}>
             <img src={headSvg} className={classes.icon} />
             <img src={unisexSvg} className={classes.icon} />

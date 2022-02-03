@@ -10,9 +10,10 @@ import clsx from "clsx";
 interface BalanceProps {
   className?: any;
   type: string;
+  value: any;
 }
 
-export const Balance = ({ className, type }: BalanceProps) => {
+export const Balance = ({ className, type, value }: BalanceProps) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -24,7 +25,7 @@ export const Balance = ({ className, type }: BalanceProps) => {
           <div className={classes.balanceDescriptionUcc}>
             {t("My UCC Balance")}:
           </div>
-          <div className={classes.balancePercentUcc}>100</div>
+          <div className={classes.balancePercentUcc}>{value}</div>
         </>
       )}
       {type === "currentspace" && (
@@ -33,7 +34,7 @@ export const Balance = ({ className, type }: BalanceProps) => {
           <div className={classes.balanceDescriptionCurrent}>
             {t("Current Space Price in UCC Token")}:
           </div>
-          <div className={classes.balancePercentCurrent}>0</div>
+          <div className={classes.balancePercentCurrent}>{value}</div>
         </>
       )}
       {type === "buyable" && (
@@ -42,7 +43,7 @@ export const Balance = ({ className, type }: BalanceProps) => {
           <div className={classes.balanceDescriptionBuyable}>
             {t("Buyable Maximum Spaces")}:
           </div>
-          <div className={classes.balancePercentBuyable}>100</div>
+          <div className={classes.balancePercentBuyable}>{value}</div>
         </>
       )}
     </div>

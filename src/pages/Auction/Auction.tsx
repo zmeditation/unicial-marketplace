@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { BigNumber } from "ethers";
+import { BigNumber, ethers } from "ethers";
 
 import LandMap from "../../components/Admin/LandMap";
 import TobTab from "../../components/TopTab/TopTab";
@@ -314,14 +314,19 @@ const Auction = () => {
           </Typography> */}
           <Grid container spacing={2}>
             <Grid item md={4} sm={4} xs={12}>
-              <Balance type="uccbalance" />
+              <Balance
+                type="uccbalance"
+                value={parseFloat(ethers.utils.formatEther(uccBalance)).toFixed(
+                  4
+                )}
+              />
             </Grid>
             <Grid item md={4} sm={4} xs={12}>
-              <Balance type="currentspace" />
+              <Balance type="currentspace" value={uccPricePerSpace} />
             </Grid>
-            <Grid item md={4} sm={4} xs={12}>
-              <Balance type="buyable" />
-            </Grid>
+            {/* <Grid item md={4} sm={4} xs={12}>
+              <Balance type="buyable" value={100} />
+            </Grid> */}
           </Grid>
         </div>
         <div className={classes.LandMap}>

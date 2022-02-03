@@ -36,16 +36,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-  axisX: number;
-  axisY: number;
+  position: string;
   dark?: boolean;
   className?: any;
   onClick?: () => void;
 }
 
 export default function LacationBtn({
-  axisX,
-  axisY,
+  position,
   dark,
   className,
   onClick,
@@ -60,7 +58,7 @@ export default function LacationBtn({
       >
         <img src={pinlocationSvg} className={classes.icon} />
         <div className={classes.info}>
-          {axisX},{axisY}
+          {position}
         </div>
       </div>
     </>
