@@ -3,8 +3,16 @@ import { setloginAddress, setlogoutAddress } from "./actions";
 
 // const PREFIX = 'trade/orderHsitory'
 const PREFIX = "auth";
+
+let initLoginAddress;
+if (localStorage.loginAddress) {
+  initLoginAddress = localStorage.loginAddress;
+} else {
+  initLoginAddress = "";
+}
+
 const initialState: any = {
-  loginAddress: "",
+  loginAddress: initLoginAddress,
 };
 
 const setAuth = (state: any, loginAddress: any) => {
