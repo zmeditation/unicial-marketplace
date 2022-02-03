@@ -155,13 +155,13 @@ const Auction = () => {
     setUccAllowance(allowance);
   };
   const handleClear = () => {
-    dispatch(
-      showAlert({
-        message: "You have successfully registered!",
-        severity: "error",
-      })
-    );
-    dispatch(showSpinner(true));
+    // dispatch(
+    //   showAlert({
+    //     message: "You have successfully registered!",
+    //     severity: "error",
+    //   })
+    // );
+    // dispatch(showSpinner(true));
     dispatch(getparcels([]));
   };
   const handleBidSpace = async () => {

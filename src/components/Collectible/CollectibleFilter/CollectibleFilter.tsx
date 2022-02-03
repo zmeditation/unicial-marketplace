@@ -33,7 +33,8 @@ export default function CollectibleFilter() {
 
   const handleClickTag = (e: number) => {
     let newSelectedTile: string[] = [];
-    const selectedIndex = selectedArray.indexOf(filterListData[e].category);
+    const selectedIndex = selectedArray.indexOf(filterListData[e].category, 0);
+    console.log("seleted array = ", selectedIndex);
     if (selectedIndex === -1) {
       newSelectedTile = newSelectedTile.concat(
         selectedArray,
@@ -151,13 +152,9 @@ export default function CollectibleFilter() {
                 ? classes.clearFilterContainer
                 : classes.clearFilterContainerNone
             }
+            onClick={handleClickClear}
           >
-            <div
-              className={classes.clearFilterLabel}
-              onClick={handleClickClear}
-            >
-              {t("Clear Filter")}
-            </div>
+            <div className={classes.clearFilterLabel}>{t("Clear Filter")}</div>
             <img src={closeSvg} className={classes.closeicon} />
           </div>
         </div>
