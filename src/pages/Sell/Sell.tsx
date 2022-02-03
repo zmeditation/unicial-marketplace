@@ -1,14 +1,12 @@
 /** @format */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
 import ActionButton from "../../components/Base/ActionButton";
 import TokenImg from "../../assets/img/1.png";
 import NeedSignIn from "../NeedSignIn";
-import { useStyles, StyledInput } from "./SaleStyle";
+import { useStyles, StyledInput } from "./SellStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";
 import raiseicon from "../../assets/svg/bid_raiseicon.svg";
@@ -23,7 +21,7 @@ import {
 
 import { useTranslation } from "react-i18next";
 
-const Sale = () => {
+const Sell = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -129,4 +127,4 @@ const Sale = () => {
   );
 };
 
-export default Sale;
+export default Sell;
