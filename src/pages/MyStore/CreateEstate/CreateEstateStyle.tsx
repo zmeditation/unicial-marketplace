@@ -9,6 +9,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     minWidth: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
+    marginTop: "50px",
+    marginBottom: "50px",
 
     display: "flex",
     position: "relative",
@@ -84,8 +86,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   subtitle: {
     fontFamily: "Lato",
-
-    marginBottom: "24px",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: "14px",
@@ -101,17 +101,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   price_container: {
     minWidth: "auto",
     marginBottom: "-5px",
-    "& .MuiFormControl-root": {
-      width: "100%",
-    },
-    "& .MuiInputBase-input": {
-      fontFamily: "Lato",
-      fontStyle: "Regular",
-      fontSize: "16px",
-      lineHeight: "19px",
-      align: "Left",
-      verticalAlign: "Top",
-    },
   },
   subheader_label: {
     fontFamily: "Lato",
@@ -124,61 +113,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     opacity: "50%",
     marginBottom: "8px",
     marginLeft: "15px",
-  },
-  manafield: {
-    display: "flex",
-  },
-  datePicker: {
-    marginRight: "20px",
-    display: "flex",
-    height: "44px",
-    alignContent: "center",
-    padding: "5px",
-    border: "1px solid #373F66",
-    borderRadius: "100px",
-
-    color: "white",
-    "&:before": {
-      borderBottom: "none",
-    },
-    "&:hover:not(.Mui-disabled):before": {
-      borderBottom: "none",
-    },
-    "&:after": {
-      borderBottom: "none",
-    },
-    "& .MuiInput-underline:before": {
-      borderBottom: "none",
-    },
-    "& .MuiInputBase-input": {
-      paddingLeft: "10px",
-      borderBottom: "none",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#FFFFFF",
-    },
-    "&.MuiFormControl-marginNormal": {
-      marginTop: "0px",
-      marginBottom: "8px",
-    },
-    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-      borderBottom: "none",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottom: "none",
-    },
-  },
-  symbol: {
-    fontWeight: 700,
-    fontSize: "21px",
-    color: "#ff2d55",
-    fontStyle: "normal",
-    paddingRight: "0.3em",
-    transform: "translateY(-0.06em)",
-    display: "inline-block",
-    // marginRight: "4px",
-    marginLeft: "5px",
-    marginBottom: "6px",
+    marginTop: "24px",
   },
   buttons: {
     display: "flex",
@@ -213,6 +148,33 @@ export const useStyles = makeStyles((theme: Theme) => ({
       marginTop: "15px",
     },
   },
+  descriptionTextField: {
+    width: "100%",
+    marginRight: "20px",
+    display: "flex",
+    alignContent: "center",
+    padding: "10px",
+    border: "1px solid #373F66",
+    borderRadius: "20px",
+    alignItems: "center",
+    color: "white",
+    paddingLeft: "18px",
+    fontFamily: "Lato",
+    fontStyle: "Regular",
+    fontWeight: "normal",
+    fontSize: "16px",
+    lineHeight: "19px",
+    backgroundColor: "#21263f",
+    minHeight: "100px",
+    align: "Left",
+    verticalAlign: "Top",
+    "&:focus-visible": {
+      outline: "none",
+    },
+  },
+  widthFull: {
+    width: "100%",
+  },
 }));
 
 export const StyledInput = withStyles((theme) => ({
@@ -226,6 +188,7 @@ export const StyledInput = withStyles((theme) => ({
     borderRadius: "100px",
     alignItems: "center",
     color: "white",
+    width: "100%",
     "&:before": {
       border: "none",
     },
@@ -237,25 +200,14 @@ export const StyledInput = withStyles((theme) => ({
     },
     "& .MuiInputBase-input": {
       paddingLeft: "10px",
-      fontStyle: "normal",
       fontWeight: "normal",
       fontSize: "16px",
-      lineHeight: "19px",
       color: "#FFFFFF",
-    },
-    "& img": {
-      fontWeight: 700,
-      fontSize: "16px",
+      fontFamily: "Lato",
+      fontStyle: "Regular",
       lineHeight: "19px",
-      fontStyle: "normal",
-      padding: "0em 1em",
-      transform: "translateY(-0.06em)",
-      display: "inline-block",
-      marginTop: "2px",
-      background: "linear-gradient(to right, #FF7C4C 20%, #FFB03A 101.82%)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      borderRight: "1px solid #373F66",
+      align: "Left",
+      verticalAlign: "Top",
     },
   },
 }))(Input);
