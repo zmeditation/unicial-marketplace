@@ -30,7 +30,7 @@ export const searchbarIndex = {
   estate: 3,
   wearables: 2,
   ens: 4,
-  on_sale: 1,
+  on_sale: 5,
   sales: 0,
   auction: 0,
   contracts: 0,

@@ -1,8 +1,16 @@
 import { LandParcelsStyle } from "./LandParcelsStyle";
 import { Grid } from "@material-ui/core";
 import LandCard from "../LandCard/LandCard";
+import { useLocation, useNavigate } from "react-router";
 export default function LandParcels() {
   const classes = LandParcelsStyle();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleCard = (url: string) => {
+    alert("ok");
+    console.log("okdes");
+    // navigate(url);
+  };
   return (
     <>
       <Grid container spacing={2}>
@@ -13,6 +21,7 @@ export default function LandParcels() {
             landName="Plaza Area Sale"
             category="Ethereum"
             price={3999}
+            onClick={() => handleCard("/parcel_detail")}
           />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>

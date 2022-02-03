@@ -4,9 +4,8 @@ import Auction from "../../pages/Auction/Auction";
 import MyStore from "../../pages/MyStore/MyStore";
 import Contracts from "../../pages/Contracts/Contracts";
 import MarketPlace from "../../pages/MarketPlace/MarketPlace";
-import CreateEstates from "../../pages/MyStore/CreateEstate/CreateEstate"
-import Estates from "../../pages/MyStore/Estate/Estate"
-
+import CreateEstates from "../../pages/MyStore/CreateEstate/CreateEstate";
+import Estates from "../../pages/MyStore/Estate/Estate";
 
 import Bid from "../../pages/Bid/Bid";
 import Buy from "../../pages/Buy/Buy";
@@ -14,7 +13,7 @@ import SignIn from "../../pages/SignIn/SignIn";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Notification from "../Notifications";
-import Spinner from "../Spinner"
+import Spinner from "../Spinner";
 
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
@@ -27,6 +26,7 @@ import { useAppDispatch } from "../../store/hooks";
 import ProtectedRoute from "./ProtectedRoute";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
+import ParcelDetail from "../../pages/ParcelDetail/ParcelDetail";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -56,7 +56,10 @@ export default function Layout() {
           <Route path="/auction" element={<Auction />} />
           <Route path="/browse" element={<Collectibles />} />
           <Route path="/account" element={<MyStore />} />
-          <Route path="/account/estate/createestate" element={<CreateEstates />} />
+          <Route
+            path="/account/estate/createestate"
+            element={<CreateEstates />}
+          />
           <Route path="/account/estate/create" element={<Estates />} />
 
           <Route
@@ -84,11 +87,14 @@ export default function Layout() {
             path="/contracts/:contractaddress/tokens/:tokensid/transfer"
             element={<Transfer />}
           />
+          <Route
+            path="/contracts/:contractaddress/tokens/:tokensid/parcel_detail"
+            element={<ParcelDetail />}
+          />
         </Routes>
         <Footer />
         <Notification />
         <Spinner />
-
       </Box>
     </Router>
   );

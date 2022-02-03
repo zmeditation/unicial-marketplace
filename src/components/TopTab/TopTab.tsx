@@ -12,6 +12,7 @@ import {
 import LandSearchbar from "../Mystore/LandSearchbar/LandSearchbar";
 import CollectibleSearchBar from "../Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import MystoreSearchBar from "../Mystore/MystoreSearchBar/MystoreSearchBar";
+import OnSaleSearchBar from "../Mystore/OnSaleSearchbar/OnSaleSearchbar"
 import NamesSearchBar from "../Mystore/NamesSearchbar/NamesSearchbar";
 import { searchbarBtn } from "../../config/constant";
 import { useLocation, useNavigate } from "react-router";
@@ -217,6 +218,8 @@ export default function TopTab() {
                   <LandSearchbar />
                 ) : searchbar_index === 4 ? (
                   <NamesSearchBar />
+                ) : searchbar_index === 5 ? (
+                  <OnSaleSearchBar />
                 ) : (
                   <></>
                 )}

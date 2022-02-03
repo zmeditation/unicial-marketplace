@@ -9,6 +9,7 @@ import { headerData, stagingData } from "./SalesStagingData";
 import MobileSidebar from "../../components/Mystore/MobileSidebar/MobileSidebar";
 import LandParcels from "../../components/Mystore/LandParcels/LandParcels";
 import LandEstates from "../../components/Mystore/LandEstates/LandEstates";
+import OnSale from "../../components/Mystore/OnSale/OnSale";
 import NoResult from "../../components/NoResult/NoResult";
 import Grid from "@material-ui/core/Grid";
 import { useTranslation } from "react-i18next";
@@ -32,6 +33,9 @@ export default function MyStore() {
         break;
       case "estates":
         setrightPartIndex("estates");
+        break;
+      case "on_sale":
+        setrightPartIndex("on_sale");
         break;
       default:
         setrightPartIndex("");
@@ -112,8 +116,9 @@ export default function MyStore() {
                 />
               </div>
             </>
+          ) : rightPartIndex === "on_sale" ? (
+            <OnSale />
           ) : (
-            // <div>this is other part</div>
             <NoResult />
           )}
         </div>
