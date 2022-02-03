@@ -9,6 +9,7 @@ import {
   StyledTableButton,
   StyledLocationButton,
 } from "./TopTabStyle";
+import LandFilterBtns from '../../components/Base/LandFilterBtns'
 import LandSearchbar from "../Mystore/LandSearchbar/LandSearchbar";
 import CollectibleSearchBar from "../Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import MystoreSearchBar from "../Mystore/MystoreSearchBar/MystoreSearchBar";
@@ -185,21 +186,7 @@ export default function TopTab() {
                       })}
                     />
                     <div style={{ marginLeft: "20px" }}>
-                      <StyledTableButton
-                        disabled={filter_index === searchbarBtn.tableBtn}
-                        onClick={handletable}
-                        disableRipple={true}
-                      >
-                        <img src={book_svg} />
-                      </StyledTableButton>
-
-                      <StyledLocationButton
-                        disabled={filter_index === searchbarBtn.locationBtn}
-                        onClick={handlelocation}
-                        disableRipple={true}
-                      >
-                        <img src={location_svg} />
-                      </StyledLocationButton>
+                      <LandFilterBtns />
                     </div>
                   </div>
                 ) : toptab_index === 2 ? (

@@ -24,6 +24,7 @@ import book_svg from "../../../assets/svg/book.svg";
 import location_svg from "../../../assets/svg/location.svg";
 import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";
 import SearchInputFilter from "../../Base/SearchInputFilter";
+import LandFilterBtns from "../../Base/LandFilterBtns";
 import { ListdropdownData3 } from "../../../config/ListdropdownData/ListdropdownData";
 import OnSaleSwitch from "../../Base/OnSaleSwitch";
 const PurpleSwitch = withStyles({
@@ -110,21 +111,7 @@ export default function LandSearchbar() {
 
               {/* --table & location button-- */}
               <div className={classes.fiterBtns}>
-                <StyledTableButton
-                  disabled={filter_index === searchbarBtn.tableBtn}
-                  onClick={handletable}
-                  disableRipple={true}
-                >
-                  <img src={book_svg} />
-                </StyledTableButton>
-
-                <StyledLocationButton
-                  disabled={filter_index === searchbarBtn.locationBtn}
-                  onClick={handlelocation}
-                  disableRipple={true}
-                >
-                  <img src={location_svg} />
-                </StyledLocationButton>
+                <LandFilterBtns />
               </div>
             </div>
           </div>
