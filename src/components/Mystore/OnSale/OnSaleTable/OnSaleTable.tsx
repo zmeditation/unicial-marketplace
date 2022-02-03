@@ -1,7 +1,7 @@
 import { useStyles } from "./OnSaleTableStyle";
 import StageMarket from "../../../../components/StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";
-import normalshapeSvg from "../../../assets/svg/normalshape.svg";
+import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
 import clsx from "clsx";
 
 interface StagingTableProps {
@@ -21,7 +21,10 @@ const OnSaleTable = ({ columns, rows, stepIndex }: StagingTableProps) => {
       <TableCell className={clsx(classes.tableCell)}>{row.type}</TableCell>
       <TableCell className={clsx(classes.tableCell)}>{row.token_id}</TableCell>
       <TableCell className={clsx(classes.tableCell)}>{row.sale_type}</TableCell>
-      <TableCell className={clsx(classes.tableCell)}>{row.sale_price}</TableCell>
+      <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
+        {<img src={normalshapeSvg} className={classes.normalshape} />}
+        {<div>{row.sale_price}</div>}
+      </TableCell>
       <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
         {row.action}
       </TableCell>
