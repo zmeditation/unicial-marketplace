@@ -30,7 +30,7 @@ export default function LandCard({
   const classes = LandCardStyle();
   return (
     <>
-      <div className={classes.root}>
+      <div className={classes.root} onClick={onClick}>
         <div className={classes.header}>
           <LocationBtn position={`${locationbtnX} , ${locationbtnY}`} dark />
           <div className={classes.iconContainer}>
