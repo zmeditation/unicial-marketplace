@@ -7,7 +7,8 @@ import { KeyboardDatePicker } from "@material-ui/pickers";
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minWidth: "1064px",
-    marginTop: "40px",
+    paddingTop: "50px",
+    flewGrow: 1,
     marginLeft: "auto",
     marginRight: "auto",
     marginBottom: "267px",

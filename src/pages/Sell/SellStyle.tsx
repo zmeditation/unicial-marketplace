@@ -6,7 +6,8 @@ import { Input } from "@material-ui/core";
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minWidth: "1064px",
-    marginTop: "50px",
+    paddingTop: "50px",
+    flexGrow: 1,
     marginLeft: "auto",
     marginRight: "auto",
     marginBottom: "267px",
