@@ -1,13 +1,13 @@
 /** @format */
 
 import { useNavigate } from "react-router";
-import NeedSignIn from "../NeedSignIn";
-import ActionButton from "../../components/Base/ActionButton";
-import TokenImg from "../../assets/img/1.png";
+import NeedSignIn from "../../NeedSignIn";
+import ActionButton from "../../../components/Base/ActionButton";
+import TokenImg from "../../../assets/img/1.png";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import { useParams } from "react-router-dom";
 import { useStyles } from "./ParcelDetailStyle";
-import { BackButton } from "../../components/BackButton/BackButton";
+import { BackButton } from "../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 
 const ParcelDetail = () => {
@@ -26,8 +26,7 @@ const ParcelDetail = () => {
               <img
                 src={TokenImg}
                 className={classes.tokenImg}
-                alt="token"
-              ></img>
+                alt='token'></img>
             </div>
           </div>
 
@@ -35,34 +34,31 @@ const ParcelDetail = () => {
             <div className={classes.title}>{t("Parcel detail")}</div>
             <div className={classes.buttons}>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${tokensid}/sell`
                   )
-                }
-              >
+                }>
                 {t("Sell")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${tokensid}/transfer`
                   )
-                }
-              >
+                }>
                 {t("Transfer")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
               <ActionButton
-                color="dark"
+                color='dark'
                 className={classes.cancelchange}
-                onClick={() => navigate(-1)}
-              >
+                onClick={() => navigate(-1)}>
                 {t("Cancel")}
               </ActionButton>
             </div>

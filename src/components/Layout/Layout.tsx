@@ -15,14 +15,14 @@ import Notification from "../Notifications";
 import Spinner from "../Spinner";
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
-import Sell from "../../pages/Sell/Sell";
-import Transfer from "../../pages/Transfer/Transfer";
+import Sell from "../../pages/MyStore/Sell/Sell";
+import Transfer from "../../pages/MyStore/Transfer/Transfer";
 import Collectibles from "../../pages/Collectibles/Collectibles";
 import ToLands from "./ToLands";
 import ToSignIn from "./ToSignIn";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
-import ParcelDetail from "../../pages/ParcelDetail/ParcelDetail";
+import ParcelDetail from "../../pages/MyStore/ParcelDetail/ParcelDetail";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {

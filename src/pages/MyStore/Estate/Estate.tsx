@@ -1,9 +1,7 @@
-/** @format */
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { EstateStyle } from "./EstateStyles";
 import { Grid } from "@material-ui/core";
-import LandCard from "../../../components/Mystore/LandCard/LandCard";
 import CreateEstateMap from "../../../components/CreateEstateMap";
 import ParcelCard from "../../../components/ParcelCard/ParcelCard";
 
