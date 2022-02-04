@@ -119,7 +119,7 @@ export default function Collectibles() {
                 </Grid>
               </Grid>
               <div className={classes.showmoreContent}>
-                <ShowMoreLessBtn />
+                <ShowMoreLessBtn letter="Show More" />
               </div>
             </>
           ) : (

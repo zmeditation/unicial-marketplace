@@ -6,17 +6,19 @@ import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
 interface Props {
+  letter: string;
   className?: any;
+  onClick?: () => void;
 }
 
-export const ShowMoreLessBtn = ({ className }: Props) => {
+export const ShowMoreLessBtn = ({ letter, className, onClick }: Props) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   return (
-    <span className={clsx(classes.backBtn, className)}>
+    <span className={clsx(classes.backBtn, className)} onClick={onClick}>
       <i className={clsx("fas fa-arrow-up", classes.revertIcon)}></i>
-      {t("Show Less")}
+      {letter}
     </span>
   );
 };
