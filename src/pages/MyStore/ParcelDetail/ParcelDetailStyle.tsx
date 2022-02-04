@@ -18,8 +18,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       minWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      minWidth: "700px",
-      padding: "50 16px",
+      padding: "50px 16px",
     },
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
@@ -175,35 +174,42 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   buttons: {
     display: "flex",
-    width: "400px",
-    [theme.breakpoints.down(769)]: {
+    [theme.breakpoints.up(769)]: {
+      maxWidth: "380px",
+    },
+    [theme.breakpoints.down(960)]: {
+      flexFlow: "column",
       width: "100%",
       display: "grid",
     },
   },
   bidchange: {
     marginRight: "16px",
+    marginTop: "16px",
     minWidth: "160px",
     fontStyle: "normal",
     fontWeight: 500,
     fontSize: "16px",
     lineHeight: "19px",
     color: "#FFFFFF",
-    [theme.breakpoints.down(769)]: {
+    [theme.breakpoints.down(960)]: {
+      minWidth: "100%",
       marginLeft: "0px",
       order: 1,
     },
   },
   cancelchange: {
+    marginTop: "16px",
     minWidth: "160px",
     fontStyle: "normal",
     fontWeight: 500,
     fontSize: "16px",
     lineHeight: "19px",
+    marginRight: "16px",
     color: "#FFFFFF",
-    [theme.breakpoints.down(769)]: {
+    [theme.breakpoints.down(960)]: {
       order: 2,
-      marginTop: "15px",
+      minWidth: "100%",
     },
   },
   viewNeedSignIn: {
