@@ -2,6 +2,8 @@ import { useStyles } from "./OnSaleTableStyle";
 import StageMarket from "../../../../components/StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";
 import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
+import ActionButton from "../../../Base/ActionButton";
+import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
 interface StagingTableProps {
@@ -18,6 +20,7 @@ const OnSaleTable = ({
   stepIndex,
 }: StagingTableProps) => {
   const classes = useStyles();
+  const {t, i18n} = useTranslation();
   const tableRows =
     rows !== undefined ? (
       rows.slice((curPage - 1) * 2, curPage * 2).map((row: any, key: any) => (
@@ -37,12 +40,14 @@ const OnSaleTable = ({
             {<div>{row.sale_price}</div>}
           </TableCell>
           <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-            {row.action}
+          <ActionButton color='dark' className={classes.actionBtn}>
+                {t("Cancel")}
+              </ActionButton>
           </TableCell>
         </TableRow>
       ))
     ) : (
-      <div>dfdfdf</div>
+      <></>
     );
   return (
     <>

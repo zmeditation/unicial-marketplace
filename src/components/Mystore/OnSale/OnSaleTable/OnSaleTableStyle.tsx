@@ -25,4 +25,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginRight: "5px",
     float: "left",
   },
+  actionBtn: {
+    minWidth: "0px",
+    "& span": {
+      margin: "2px 11px",
+      display: "flex",
+      fontSize: "12px",
+      alignItems: "center",
+      fontFamily: "Lato",
+      fontWeight: 500,
+      lineHeight: "20px",
+      verticalAlign: "Top",
+    },
+  },
 }));
