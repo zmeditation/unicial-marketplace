@@ -34,8 +34,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
   const [y, setY] = useState(0);
   const dispatch = useAppDispatch();
   const selectedTile = useAppSelector(selectestates);
-  // const mineAddress = useAppSelector(selectLoginAddress);
-  const mineAddress = "0x8734CB972d36a740Cc983d5515e160C373A4a016";
+  const mineAddress = useAppSelector(selectLoginAddress);
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
