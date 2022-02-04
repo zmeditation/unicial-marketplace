@@ -19,7 +19,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down(992)]: {
       minWidth: "700px",
-      padding: "0 16px",
+      padding: "50 16px",
     },
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
@@ -41,7 +41,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   leftCard: {
-    flex: "0.75 1 auto",
+    marginRight: "50px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
       marginBottom: "25px !important",
@@ -74,7 +74,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "50px",
     fontFamily: "Montserrat",
     letterSpacing: "0.02em",
-    marginBottom: "8px",
+    marginBottom: "16px",
     [theme.breakpoints.down(769)]: {
       fontSize: "28px",
     },
