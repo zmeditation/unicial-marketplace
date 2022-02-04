@@ -87,7 +87,7 @@ export default function Estates() {
             <Grid container spacing={2}>
               {estates.map((items: any, key: any) => {
                 return (
-                  <Grid key={key} item xs={2} sm={2} md={2}>
+                  <Grid key={key} item xs={6} sm={4} md={2}>
                     <ParcelCard
                       cardlabel='Parcel'
                       carddescription='Acquired at August 2nd, 2018'
