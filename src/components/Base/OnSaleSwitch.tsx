@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
         height: "13px",
         marginTop: "2.5px",
         marginLeft: "3px",
-        background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
+        background: "linear-gradient(to right, #7F64E2, #41A6EF)",
       },
       "& .MuiSwitch-root": {
         padding: "12.5px 12px",
@@ -37,6 +37,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
+      },
+      "& .MuiSwitch-thumb": {
+        width: "13px",
+        height: "13px",
+        marginTop: "2.5px",
+        marginLeft: "3px",
+        background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
       },
     },
   })

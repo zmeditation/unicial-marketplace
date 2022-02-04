@@ -23,6 +23,7 @@ import book_svg from "../../assets/svg/book.svg";
 import location_svg from "../../assets/svg/location.svg";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import OnSaleSwitch from "../Base/OnSaleSwitch";
 
 export const PurpleSwitch = withStyles({
   root: {
@@ -167,20 +168,7 @@ export default function TopTab() {
                 {toptab_index === 1 ? (
                   /* //Land */
                   <div className={classes.landtoptabRight}>
-                    <StyledFormControlLabel
-                      control={
-                        <PurpleSwitch
-                          checked={state.checkedA}
-                          onChange={handleChange}
-                          name='checkedA'
-                          disableRipple={true}
-                        />
-                      }
-                      label='ON SALE'
-                      className={clsx(classes.switch, {
-                        [classes.activeSwitch]: state.checkedA,
-                      })}
-                    />
+                    <OnSaleSwitch letter='ON SALE' />
                     <div style={{ marginLeft: "20px" }}>
                       <LandFilterBtns />
                     </div>
