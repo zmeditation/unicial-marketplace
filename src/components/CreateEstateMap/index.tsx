@@ -216,11 +216,11 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
 
   useEffect(() => {
     if (window) {
-      fetchTiles()
-        .then((_tiles: any) => setTiles(_tiles))
-        .catch((error) => {
-          dispatch(showSpinner(true));
-        });
+      dispatch(showSpinner(true));
+      fetchTiles().then((_tiles: any) => {
+        setTiles(_tiles);
+        dispatch(showSpinner(false));
+      });
     }
   }, []);
 
