@@ -224,4 +224,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
   unviewBuy: {
     display: "none",
   },
+  bidDetail: {
+    marginTop: "50px",
+  },
+  bidsTitle: {
+    fontStyle: "normal",
+    fontFamily: "Montserrat",
+    fontSize: "24px",
+    fontWeight: 600,
+    lineHeight: "50px",
+    color: "white",
+  },
 }));

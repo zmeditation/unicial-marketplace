@@ -129,5 +129,8 @@
   "This is an estate": "This is an estate",
   "Create Estate": "Create Estate",
   "Set a name and description for your estate": "Set a name and description for your estate",
-  "SUBMIT": "SUBMIT"
+  "SUBMIT": "SUBMIT",
+  "Address": "Address",
+  "Time": "Time",
+  "Accept": "Accept"
 }
