@@ -1,5 +1,6 @@
 import { Button, withStyles } from "@material-ui/core";
-import React from "react";
+import React, {useEffect} from "react";
+import { useNavigate } from "react-router";
 import book_svg from "../../assets/svg/book.svg";
 import location_svg from "../../assets/svg/location.svg";
 
@@ -45,9 +46,13 @@ export const StyledLocationButton = withStyles({
 
 export default function LandFilterBtns() {
   const [filter_index, setFilterIndex] = React.useState(1);
+  const navigate = useNavigate();
   const handleBtn = (index: number) => {
     setFilterIndex(index);
   };
+  useEffect(()=> {
+    filter_index === 2 && navigate("/lands")
+  },[filter_index])
   return (
     <>
       <StyledTableButton

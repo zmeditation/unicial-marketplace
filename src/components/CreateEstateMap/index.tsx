@@ -215,13 +215,11 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
   }, [showPopup, mouseX, mouseY]);
 
   useEffect(() => {
+    dispatch(showSpinner(true));
     if (window) {
-      dispatch(showSpinner(true));
-      fetchTiles().then((_tiles: any) => {
-        setTiles(_tiles);
-        dispatch(showSpinner(false));
-      });
+      fetchTiles().then((_tiles: any) => setTiles(_tiles));
     }
+    dispatch(showSpinner(false));
   }, []);
 
   return (

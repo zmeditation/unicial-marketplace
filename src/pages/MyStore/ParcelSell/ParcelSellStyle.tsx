@@ -27,7 +27,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down(550)]: {
       minWidth: "calc(100% - 32px) !important",
-      padding: "0 16px",
     },
   },
   container_root: {
@@ -46,7 +45,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   leftCard: {
-    flex: "0.75 1 auto",
     textAlign: "left",
     marginRight: "50px",
     [theme.breakpoints.down(769)]: {
