@@ -61,7 +61,7 @@ const ParcelTransfer = () => {
               <div className={classes.form_field}>
                 <div className={classes.price_container}>
                   <Grid container>
-                    <Grid md={6} sm={6} xs={6} item>
+                    <Grid md={12} sm={12} xs={12} item>
                       <div className={classes.subheader_label}>
                         {t("RECEPIENT ADDRESS")}
                       </div>

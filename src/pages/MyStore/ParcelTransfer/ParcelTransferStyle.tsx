@@ -20,7 +20,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
       minWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      padding: "50px 16px",
+      paddingTop: "50px",
+      minWidth: "calc(100% - 32px) !important",
     },
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
@@ -51,9 +52,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       height: "100%",
     },
   },
-  rightCard: {
-    flex: "1.25 1 auto",
-  },
+  rightCard: {},
   tokenImg: {
     width: "100%",
     borderRadius: "15px",
@@ -211,7 +210,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 export const StyledInput = withStyles((theme) => ({
   root: {
-    marginRight: "20px",
     display: "flex",
     height: "44px",
     alignContent: "center",

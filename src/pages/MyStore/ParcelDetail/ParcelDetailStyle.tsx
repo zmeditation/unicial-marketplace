@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       minWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      padding: "50px 16px",
+      minWidth: "calc(100% - 32px) !important",
     },
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
