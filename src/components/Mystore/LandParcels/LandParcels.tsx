@@ -39,8 +39,8 @@ export default function LandParcels() {
             ownParcels.slice(0, 6).map((ownParcel: any, index: any) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <LandCard
-                  locationbtnX={23}
-                  locationbtnY={12}
+                  locationbtnX={ownParcel.x}
+                  locationbtnY={ownParcel.y}
                   landName="Plaza Area Sale"
                   category="Ethereum"
                   price={3999}
@@ -52,8 +52,8 @@ export default function LandParcels() {
             ownParcels.map((ownParcel: any, index: any) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <LandCard
-                  locationbtnX={23}
-                  locationbtnY={12}
+                  locationbtnX={ownParcel.x}
+                  locationbtnY={ownParcel.y}
                   landName="Plaza Area Sale"
                   category="Ethereum"
                   price={3999}
