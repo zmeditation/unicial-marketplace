@@ -41,7 +41,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   leftCard: {
-    flex: "0.75 1 auto",
+    marginRight: "50px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
       marginBottom: "25px !important",

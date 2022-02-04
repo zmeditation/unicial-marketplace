@@ -14,12 +14,18 @@ export const ParcelCardStyle = makeStyles((theme: Theme) =>
       padding: "20px",
       borderRadius: "10px",
       textAlign: "center",
+      [theme.breakpoints.down(996)]: {
+        padding: "20px 3px",
+      },
+      [theme.breakpoints.down(960)]: {
+        padding: "20px",
+      },
     },
     cardLabel: {
-      marginLeft: "13px",
       fontSize: "18px",
       fontFamily: "Montserrat",
       width: "90px",
+      margin: "auto",
     },
     cardDescription: {
       fontSize: "15px",
@@ -30,7 +36,7 @@ export const ParcelCardStyle = makeStyles((theme: Theme) =>
     },
     location: {
       marginTop: "30px",
-      marginLeft: "18px",
+      margin: "auto",
     },
   })
 );

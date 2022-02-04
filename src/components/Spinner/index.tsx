@@ -1,9 +1,7 @@
 /** @format */
-import React, { useState, useEffect } from "react";
 import { SemipolarSpinner } from "react-epic-spinners";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { showSpinner } from "../../store/spinner";
 
 import { spinnerStatus } from "../../store/spinner/selectors";
 
@@ -13,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   loaderWrapper: {
     position: "fixed",
+    zIndex: 99998,
     top: 0,
     left: 0,
     width: "100%",
@@ -61,33 +60,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function Spinner() {
   const classes = useStyles();
-  const dispatch = useAppDispatch();
   const spinner = useAppSelector(spinnerStatus);
-
-  const [openSpinner, setOpenSpinner] = React.useState(false);
-
-  React.useEffect(() => {
-    if (spinner == true) {
-      setOpenSpinner(true);
-    }
-  }, [spinner]);
-
-  // useEffect(() => {
-  //   let timeId = setTimeout(() => {
-  //     dispatch(showSpinner(false));
-  //     setOpenSpinner(false);
-  //   }, 5000);
-
-  //   return () => {
-  //     clearTimeout(timeId);
-  //   };
-  // }, [spinner]);
 
   return (
     <>
       <div
         className={
-          openSpinner === true ? classes.loaderWrapper : classes.displayNone
+          spinner === true ? classes.loaderWrapper : classes.displayNone
         }>
         <div className={classes.spinnerRoot}>
           <SemipolarSpinner
