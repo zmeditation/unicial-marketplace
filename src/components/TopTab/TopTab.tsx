@@ -9,11 +9,11 @@ import {
   StyledTableButton,
   StyledLocationButton,
 } from "./TopTabStyle";
-import LandFilterBtns from '../../components/Base/LandFilterBtns'
+import LandFilterBtns from "../../components/Base/LandFilterBtns";
 import LandSearchbar from "../Mystore/LandSearchbar/LandSearchbar";
 import CollectibleSearchBar from "../Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import MystoreSearchBar from "../Mystore/MystoreSearchBar/MystoreSearchBar";
-import OnSaleSearchBar from "../Mystore/OnSaleSearchbar/OnSaleSearchbar"
+import OnSaleSearchBar from "../Mystore/OnSaleSearchbar/OnSaleSearchbar";
 import NamesSearchBar from "../Mystore/NamesSearchbar/NamesSearchbar";
 import { searchbarBtn } from "../../config/constant";
 import { useLocation, useNavigate } from "react-router";
@@ -134,8 +134,7 @@ export default function TopTab() {
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handlehead("/lands")}
-                    disabled={toptab_index === topTabIndex.land}
-                  >
+                    disabled={toptab_index === topTabIndex.land}>
                     {t("Lands")}
                   </StyledTopTabBtn>
 
@@ -146,24 +145,21 @@ export default function TopTab() {
                         "/browse?section=wearables&vendor=decentraland&page=1&sortBy=recently_listed&onlyOnSale=true"
                       )
                     }
-                    disabled={toptab_index === topTabIndex.collectibles}
-                  >
+                    disabled={toptab_index === topTabIndex.collectibles}>
                     {t("Collectibles")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handlehead("/account?section=collections")}
-                    disabled={toptab_index === topTabIndex.mystore}
-                  >
+                    disabled={toptab_index === topTabIndex.mystore}>
                     {t("My Store")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
                     disableRipple
                     onClick={() => handlehead("/auction")}
-                    disabled={toptab_index === topTabIndex.auction}
-                  >
+                    disabled={toptab_index === topTabIndex.auction}>
                     {t("Auction")}
                   </StyledTopTabBtn>
                 </div>
@@ -176,11 +172,11 @@ export default function TopTab() {
                         <PurpleSwitch
                           checked={state.checkedA}
                           onChange={handleChange}
-                          name="checkedA"
+                          name='checkedA'
                           disableRipple={true}
                         />
                       }
-                      label="ON SALE"
+                      label='ON SALE'
                       className={clsx(classes.switch, {
                         [classes.activeSwitch]: state.checkedA,
                       })}
