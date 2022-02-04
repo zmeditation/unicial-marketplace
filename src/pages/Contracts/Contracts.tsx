@@ -17,6 +17,7 @@ import { useStyles } from "./ContractsStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/LatestSalesTable";
 import { useTranslation } from "react-i18next";
+import TablePagination from "../../components/Base/TablePagination";
 
 const Contract = () => {
   const classes = useStyles();
@@ -45,7 +46,13 @@ const Contract = () => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
-
+  //pagination reate
+  const [curPage, setCurPage] = useState<any>(1);
+  const handlepgnum = (value: number) => {
+    setCurPage(value);
+  };
+  var count = transactionData.length;
+  var totalPage = Math.ceil(count / 5);
   return (
     <>
       <TobTab />
@@ -85,8 +92,15 @@ const Contract = () => {
             <LatestSalesTable
               columns={headerData}
               rows={transactionData}
-              stepIndex={1}
+              curPage={curPage}
+              stepIndex={0}
             />
+            <div className={classes.paginationContainer}>
+              <TablePagination
+                handlepgnum={handlepgnum}
+                totalPage={totalPage}
+              />
+            </div>
           </div>
           <div>
             <div className={classes.BidsTitle}>{t("Bids")}.</div>

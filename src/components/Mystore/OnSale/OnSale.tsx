@@ -15,13 +15,15 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "#282E4E",
     },
     paginationContainer: {
-      "& .MuiPaginationItem-root": {
-        color: "white",
-      },
+      display: "flex",
+      justifyContent: "center",
+      // "& .MuiPaginationItem-root": {
+      //   color: "white",
+      // },
 
-      "& .MuiPaginationItem-page.Mui-selected": {
-        backgroundColor: "#e5080814",
-      },
+      // "& .MuiPaginationItem-page.Mui-selected": {
+      //   backgroundColor: "#e5080814",
+      // },
     },
   })
 );
@@ -30,7 +32,7 @@ var totalPage = Math.ceil(count / 2);
 
 export default function OnSale() {
   const classes = useStyles();
-  const [curPage, setCurPage] = useState<any>();
+  const [curPage, setCurPage] = useState<any>(1);
   const handlepgnum = (value: number) => {
     setCurPage(value);
   };

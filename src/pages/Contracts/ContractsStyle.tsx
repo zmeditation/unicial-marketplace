@@ -89,4 +89,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "start",
   },
+  paginationContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
 }));

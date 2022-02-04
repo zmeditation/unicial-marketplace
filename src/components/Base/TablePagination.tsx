@@ -8,6 +8,13 @@ const useStyles = makeStyles((theme) =>
       "& > *": {
         marginTop: theme.spacing(2),
       },
+      "& .MuiPaginationItem-root": {
+        color: "white",
+      },
+
+      "& .MuiPaginationItem-page.Mui-selected": {
+        backgroundColor: "#e5080814",
+      },
     },
   })
 );
