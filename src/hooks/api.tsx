@@ -13,7 +13,7 @@ export const getParcelsByOwner = async (owner: any) => {
 export const getEstatesByOwner = async (owner: any) => {
   try {
     const response = await axios.get(
-      `${ApiUrl}/email/forgot_password/confirm/${owner}`
+      `${ApiUrl}/api/v1/estate/owner/${owner}`
     );
     return response.data.data;
   } catch (error: any) {
