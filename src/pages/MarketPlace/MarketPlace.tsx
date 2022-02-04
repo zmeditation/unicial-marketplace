@@ -1,4 +1,3 @@
-import React from "react";
 import { useStyles } from "./MarketPlaceStyle";
 import TopLeftTexture from "../../assets/svg/top_left_texture.svg";
 import TopRightTexture from "../../assets/svg/top_right_texture.svg";

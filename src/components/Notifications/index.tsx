@@ -1,5 +1,5 @@
 /** @format */
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import check from "../../assets/svg/notification_check.svg";
 import error from "../../assets/svg/notification_error.svg";
 import CloseIcon from "@material-ui/icons/Close";

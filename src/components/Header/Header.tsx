@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { Box, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
@@ -8,7 +8,7 @@ import { headerId } from "../../config/constant";
 import HeaderSignInBtn from "./component/HeaderSignInBtn/HeaderSignInBtn";
 import { useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
-import { useTranslation, withTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const classes = HeaderStyle();

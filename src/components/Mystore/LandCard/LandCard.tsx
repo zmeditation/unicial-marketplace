@@ -1,11 +1,9 @@
 /** @format */
 
 import { LandCardStyle } from "./LandCardStyle";
-import Tag from "../../Base/Tag";
 import headSvg from "../../../assets/svg/head.svg";
 import unisexSvg from "../../../assets/svg/unisex.svg";
 import cubeSvg from "../../../assets/svg/cube.svg";
-import PussyhairPng from "../../../assets/img/Pussyhair.png";
 import landmap1Png from "../../../assets/img/landmap1.png";
 //
 import LocationBtn from "../../Base/LocationBtn";

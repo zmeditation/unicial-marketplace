@@ -8,17 +8,7 @@ import {
 import { Typography } from "@material-ui/core";
 import { useLocation } from "react-router";
 import clsx from "clsx";
-import { Link, useNavigate } from "react-router-dom";
-import { WearablesData } from "./SidebarData";
-// interface SubNabData {
-//   title: string,
-//   path: string
-// }
-
-// interface PropsData {
-//   title: string,
-//   subNab: SubNabData
-// }
+import { useNavigate } from "react-router-dom";
 interface PropsData {
   data: any;
 }

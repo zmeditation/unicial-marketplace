@@ -1,10 +1,8 @@
 /** @format */
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
-import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 
 import ActionButton from "../../components/Base/ActionButton";
@@ -13,7 +11,6 @@ import NeedSignIn from "..//NeedSignIn";
 import { useStyles, StyledInput } from "./BidStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";
-import raiseicon from "../../assets/svg/bid_raiseicon.svg";
 import calendar_icon from "../../assets/svg/calendar_icon.svg";
 import { Grid } from "@material-ui/core";
 import "date-fns";

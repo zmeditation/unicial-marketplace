@@ -11,9 +11,8 @@ import { useTranslation } from "react-i18next";
 import CategoryWearables from "../../CategoryWearables/CategoryWearables";
 import { category } from "../../../config/constant";
 
-import { LandsData } from "../../../pages/MyStore/SidebarData";
 import clsx from "clsx";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 export default function AssetsBox() {
   const classes = AssetsBoxStyle();
   const { t, i18n } = useTranslation();

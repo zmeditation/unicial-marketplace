@@ -1,4 +1,3 @@
-import React from "react";
 import { OnSaleSearchbarStyle } from "./OnSaleSearchbarStyle";
 import { useTranslation } from "react-i18next";
 import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";

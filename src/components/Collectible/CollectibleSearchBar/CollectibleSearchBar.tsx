@@ -1,14 +1,9 @@
-import React from "react";
 import {
   CollectibleSearchBarStyle,
-  StyledFormControlLabel,
 } from "./CollectibleSearchBarStyle";
 import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";
-import search_svg from "./../../../assets/svg/search.svg";
 
-import Switch from "@material-ui/core/Switch";
 import CollectibleFilterDialog from "../CollectibleFilterDialog/CollectibleFilterDialog";
-import { useTranslation } from "react-i18next";
 import { ListdropdownData1 } from "../../../config/ListdropdownData/ListdropdownData";
 import OnSaleSwitch from "../../Base/OnSaleSwitch";
 import SearchInputFilter from "../../Base/SearchInputFilter";

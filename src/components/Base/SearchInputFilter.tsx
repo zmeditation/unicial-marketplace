@@ -2,7 +2,6 @@ import {
   createStyles,
   makeStyles,
   Theme,
-  withStyles,
 } from "@material-ui/core/styles";
 import search_svg from "./../../assets/svg/search.svg";
 const useStyles = makeStyles((theme: Theme) =>

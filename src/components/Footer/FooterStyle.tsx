@@ -1,5 +1,4 @@
 import { createStyles, Popover, Theme } from "@material-ui/core";
-import { Menu } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 

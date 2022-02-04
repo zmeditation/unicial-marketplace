@@ -2,27 +2,17 @@
 
 import React, { useEffect } from "react";
 import { topTabIndex, searchbarIndex } from "../../config/constant";
-import {
-  TopTabStyle,
-  StyledTopTabBtn,
-  StyledFormControlLabel,
-  StyledTableButton,
-  StyledLocationButton,
-} from "./TopTabStyle";
+import { TopTabStyle, StyledTopTabBtn } from "./TopTabStyle";
 import LandFilterBtns from "../../components/Base/LandFilterBtns";
 import LandSearchbar from "../Mystore/LandSearchbar/LandSearchbar";
 import CollectibleSearchBar from "../Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import MystoreSearchBar from "../Mystore/MystoreSearchBar/MystoreSearchBar";
 import OnSaleSearchBar from "../Mystore/OnSaleSearchbar/OnSaleSearchbar";
 import NamesSearchBar from "../Mystore/NamesSearchbar/NamesSearchbar";
-import { searchbarBtn } from "../../config/constant";
 import { useLocation, useNavigate } from "react-router";
 import { withStyles } from "@material-ui/styles";
 import { Switch } from "@material-ui/core";
-import book_svg from "../../assets/svg/book.svg";
-import location_svg from "../../assets/svg/location.svg";
 import { useTranslation } from "react-i18next";
-import clsx from "clsx";
 import OnSaleSwitch from "../Base/OnSaleSwitch";
 
 export const PurpleSwitch = withStyles({

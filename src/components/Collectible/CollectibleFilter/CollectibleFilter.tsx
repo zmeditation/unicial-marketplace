@@ -1,11 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import {
-  CollectibleFilterStyle,
-  StyledCollectionPopover,
-  StyledMenuItem,
-} from "./CollectibleFilterStyle";
+import { CollectibleFilterStyle } from "./CollectibleFilterStyle";
 import Tag from "../../Base/Tag";
 import StyledRadio from "../../Base/StyledRadio";
 import {
@@ -13,15 +9,11 @@ import {
   networkData,
   filterListData,
 } from "../../../config/Collectible/collectionData";
-import { category, collectiblesTagsColor } from "../../../config/constant";
-import { Box } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 //
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import closeSvg from "../../../assets/svg/close.svg";
 import { useTranslation } from "react-i18next";
-import clsx from "clsx";
 import BorderListDropdown from "../../Base/BorderListDropdown/BorderListDropdown";
 
 export default function CollectibleFilter() {
@@ -100,21 +92,20 @@ export default function CollectibleFilter() {
               <div className={classes.title}>{t("GENDER")}</div>
               {/* radio realte */}
               <RadioGroup
-                aria-label="gender"
-                name="gender1"
+                aria-label='gender'
+                name='gender1'
                 value={value}
                 onChange={handleRadioChange}
-                className={classes.genderRadioContainer}
-              >
+                className={classes.genderRadioContainer}>
                 <FormControlLabel
-                  value="Male"
+                  value='Male'
                   control={<StyledRadio />}
-                  label="Male"
+                  label='Male'
                 />
                 <FormControlLabel
-                  value="Female"
+                  value='Female'
                   control={<StyledRadio />}
-                  label="Female"
+                  label='Female'
                 />
               </RadioGroup>
             </div>
@@ -128,14 +119,14 @@ export default function CollectibleFilter() {
                   return selectedArray.indexOf(data.category) >= 0 ? (
                     <Tag
                       key={index}
-                      color="EpicColor"
+                      color='EpicColor'
                       letter={data.category}
                       onClick={() => handleClickTag(index)}
                     />
                   ) : (
                     <Tag
                       key={index}
-                      color="DefaultColor"
+                      color='DefaultColor'
                       letter={data.category}
                       onClick={() => handleClickTag(index)}
                     />
@@ -152,8 +143,7 @@ export default function CollectibleFilter() {
                 ? classes.clearFilterContainer
                 : classes.clearFilterContainerNone
             }
-            onClick={handleClickClear}
-          >
+            onClick={handleClickClear}>
             <div className={classes.clearFilterLabel}>{t("Clear Filter")}</div>
             <img src={closeSvg} className={classes.closeicon} />
           </div>

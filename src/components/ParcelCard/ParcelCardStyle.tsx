@@ -1,11 +1,6 @@
 /** @format */
 
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  withStyles,
-} from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 export const ParcelCardStyle = makeStyles((theme: Theme) =>
   createStyles({

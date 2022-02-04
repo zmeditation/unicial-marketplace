@@ -5,7 +5,6 @@ import NeedSignIn from "../NeedSignIn";
 import ActionButton from "../../components/Base/ActionButton";
 import TokenImg from "../../assets/img/1.png";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";
-import raiseicon from "../../assets/svg/bid_raiseicon.svg";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 
 import { useStyles } from "./BuyStyle";

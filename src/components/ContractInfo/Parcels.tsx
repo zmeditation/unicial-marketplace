@@ -2,8 +2,6 @@
 
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import Button from "../Base/Button";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import LocationBtn from "../Base/LocationBtn";
 import { ShowMoreLessBtn } from "../ShowMoreLessBtn/ShowMoreLessBtn";
 import { useTranslation } from "react-i18next";
@@ -68,20 +66,20 @@ const Parcels: React.FC = () => {
       <div className={classes.title}>{t("Parcels")}</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>
-          <LocationBtn position="12,-45" />
-          <LocationBtn position="32,-45" />
-          <LocationBtn position="33,-45" />
-          <LocationBtn position="30,-45" />
-          <LocationBtn position="12,-45" />
-          <LocationBtn position="12,-45" />
-          <LocationBtn position="12,-45" />
-          <LocationBtn position="12,-45" />
-          <LocationBtn position="12,-45" />
-          <LocationBtn position="12,-45" />
-          <LocationBtn position="12,-45" />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='32,-45' />
+          <LocationBtn position='33,-45' />
+          <LocationBtn position='30,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
+          <LocationBtn position='12,-45' />
         </div>
         <div className={classes.showmoreContent}>
-          <ShowMoreLessBtn letter="Show More" />
+          <ShowMoreLessBtn letter='Show More' />
         </div>
       </div>
     </div>

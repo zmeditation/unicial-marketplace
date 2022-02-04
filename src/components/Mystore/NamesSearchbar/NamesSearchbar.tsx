@@ -1,5 +1,4 @@
 import { CollectibleSearchBarStyle } from "./NamesSearchbarStyle";
-import search_svg from "./../../../assets/svg/search.svg";
 import NamesFilterDialog from "../NamesFilterDialog/NamesFilterDialog";
 import { useTranslation } from "react-i18next";
 import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";

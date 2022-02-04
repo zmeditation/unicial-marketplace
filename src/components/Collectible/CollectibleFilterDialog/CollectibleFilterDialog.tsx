@@ -3,11 +3,9 @@ import { CollectibleFilterDialogStyle } from "./CollectibleFilterDialogStyle";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import FilterTiltShiftIcon from "@material-ui/icons/FilterTiltShift";
-import { Box, FormControlLabel, RadioGroup } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { FormControlLabel, RadioGroup } from "@material-ui/core";
 import {
   collectionData,
   networkData,

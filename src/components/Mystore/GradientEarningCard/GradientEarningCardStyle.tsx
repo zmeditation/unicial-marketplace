@@ -2,7 +2,6 @@ import {
   createStyles,
   makeStyles,
   Theme,
-  withStyles,
 } from "@material-ui/core/styles";
 
 export const GradientEarningCardStyle = makeStyles((theme: Theme) =>

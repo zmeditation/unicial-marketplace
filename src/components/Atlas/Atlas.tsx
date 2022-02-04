@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Layer, TileMap, Coord } from "react-tile-map";
 import "react-tile-map/lib/styles.css";
 import "./Atlas.css";

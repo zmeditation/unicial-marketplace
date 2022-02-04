@@ -17,7 +17,7 @@ import ChinaSvg from "./../../assets/svg/China.svg";
 import EnglandSvg from "./../../assets/svg/England.svg";
 import SpainSvg from "./../../assets/svg/Spain.svg";
 import FooterTexture from "../../assets/svg/footer_texture.svg";
-import { useTranslation, withTranslation, Trans } from "react-i18next";
+import { useTranslation} from "react-i18next";
 
 export default function Footer() {
   const classes = FooterStyle();

@@ -6,7 +6,6 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
   createStyles({

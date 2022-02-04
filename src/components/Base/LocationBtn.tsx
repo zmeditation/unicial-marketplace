@@ -2,7 +2,6 @@ import {
   createStyles,
   makeStyles,
   Theme,
-  withStyles,
 } from "@material-ui/core/styles";
 import clsx from "clsx";
 import pinlocationSvg from "../../assets/svg/pinlocation.svg";

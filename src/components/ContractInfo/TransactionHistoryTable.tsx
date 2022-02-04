@@ -1,4 +1,3 @@
-import React from "react";
 import {
   createStyles,
   makeStyles,
@@ -10,7 +9,6 @@ import {
   TableCell,
   Theme,
 } from "@material-ui/core";
-import { isEmptyObject } from "../../common/utils";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 

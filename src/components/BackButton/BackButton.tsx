@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import CallMadeIcon from "@material-ui/icons/CallMade";
 import { useStyles } from "./BackButtonStyle";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";

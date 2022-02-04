@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BigNumber, ethers } from "ethers";
 
 import LandMap from "../../components/Admin/LandMap";
@@ -10,15 +10,10 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import LandAccordion from "./LandAccordion/LandAccordion";
 import CountDown from "../../components/CountDown/CountDown";
 import { Balance } from "../../components/Balance/Balance";
-import StagingTable from "./StagingTable/StagingTable";
-import { headerData, transactionData } from "./AuctionData";
 import ActionButton from "../../components/Base/ActionButton";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { selectparcels } from "../../store/selectedparcels/selectors";
-import { alertMessage, alertSeverity } from "../../store/alert/selectors";
-import { showAlert } from "../../store/alert";
-import { showSpinner } from "../../store/spinner";
 
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import { Grid } from "@material-ui/core";
@@ -43,7 +38,6 @@ import {
   generateSigner,
 } from "../../common/contract";
 import { getparcels } from "../../store/selectedparcels";
-import { Typography } from "@material-ui/core";
 
 declare var window: any;
 var signer: any,

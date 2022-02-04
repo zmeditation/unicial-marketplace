@@ -1,55 +1,16 @@
 /** @format */
 
 import React from "react";
-import {
-  CollectibleSearchBarStyle,
-  StyledFormControlLabel,
-  StyledListPopover,
-  StyledMenuItem,
-} from "./LandSearchbarStyle";
-import search_svg from "./../../../assets/svg/search.svg";
-import { withStyles } from "@material-ui/core/styles";
+import { CollectibleSearchBarStyle } from "./LandSearchbarStyle";
 
-import Switch from "@material-ui/core/Switch";
-import { Box } from "@material-ui/core";
-import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 import NamesFilterDialog from "../NamesFilterDialog/NamesFilterDialog";
 import { useTranslation } from "react-i18next";
-import {
-  StyledLocationButton,
-  StyledTableButton,
-} from "../../TopTab/TopTabStyle";
-import { searchbarBtn } from "../../../config/constant";
-import book_svg from "../../../assets/svg/book.svg";
-import location_svg from "../../../assets/svg/location.svg";
+
 import GeneralListDropdown from "../../Base/GeneralListDropdown/GeneralListDropdown";
 import SearchInputFilter from "../../Base/SearchInputFilter";
 import LandFilterBtns from "../../Base/LandFilterBtns";
 import { ListdropdownData3 } from "../../../config/ListdropdownData/ListdropdownData";
 import OnSaleSwitch from "../../Base/OnSaleSwitch";
-const PurpleSwitch = withStyles({
-  root: {
-    height: "36px",
-    width: "55px",
-  },
-  switchBase: {
-    color: "#FF7C4C",
-    "&$checked": {
-      color: "#333B67",
-    },
-    "&$checked + $track": {
-      backgroundColor: "#333B67",
-    },
-    "&.Mui-checked:hover": {
-      backgroundColor: "unset",
-    },
-    "&.MuiIconButton-root:hover": {
-      backgroundColor: "unset",
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
 
 export default function LandSearchbar() {
   const classes = CollectibleSearchBarStyle();
@@ -103,7 +64,7 @@ export default function LandSearchbar() {
               </div>
               {/* select end */}
               <div className={classes.OnSaleSwitchContainer}>
-                <OnSaleSwitch letter="ON SALE" />
+                <OnSaleSwitch letter='ON SALE' />
               </div>
               <div className={classes.filterContainer}>
                 <NamesFilterDialog />

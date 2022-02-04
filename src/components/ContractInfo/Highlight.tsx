@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import makeBlockie from "ethereum-blockies-base64";
 import plaza_svg from "../../assets/svg/plaza.svg";
 import road_svg from "../../assets/svg/road.svg";
 import distirct_svg from "../../assets/svg/district.svg";
