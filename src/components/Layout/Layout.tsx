@@ -15,8 +15,8 @@ import Notification from "../Notifications";
 import Spinner from "../Spinner";
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
-import Sell from "../../pages/MyStore/Sell/Sell";
-import Transfer from "../../pages/MyStore/Transfer/Transfer";
+import ParcelSell from "../../pages/MyStore/ParcelSell/ParcelSell";
+import ParcelTransfer from "../../pages/MyStore/ParcelTransfer/ParcelTransfer";
 import Collectibles from "../../pages/Collectibles/Collectibles";
 import ToLands from "./ToLands";
 import ToSignIn from "./ToSignIn";
@@ -68,11 +68,11 @@ export default function Layout() {
           <Route path="/admin/estate" element={<AdminEstate />} />
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid/sell"
-            element={<Sell />}
+            element={<ParcelSell />}
           />
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid/transfer"
-            element={<Transfer />}
+            element={<ParcelTransfer />}
           />
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid/parcel_detail"

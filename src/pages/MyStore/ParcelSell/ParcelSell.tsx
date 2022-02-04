@@ -6,7 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import ActionButton from "../../../components/Base/ActionButton";
 import TokenImg from "../../../assets/img/1.png";
 import NeedSignIn from "../../NeedSignIn";
-import { useStyles, StyledInput } from "./SellStyle";
+import { useStyles, StyledInput } from "./ParcelSellStyle";
 import { BackButton } from "../../../components/BackButton/BackButton";
 import settingicon from "../../../assets/svg/bidpage_settingicon.svg";
 import raiseicon from "../../../assets/svg/bid_raiseicon.svg";
@@ -21,7 +21,7 @@ import {
 
 import { useTranslation } from "react-i18next";
 
-const Sell = () => {
+const ParcelSell = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -125,4 +125,4 @@ const Sell = () => {
   );
 };
 
-export default Sell;
+export default ParcelSell;

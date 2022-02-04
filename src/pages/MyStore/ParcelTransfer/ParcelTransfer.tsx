@@ -8,7 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import ActionButton from "../../../components/Base/ActionButton";
 import TokenImg from "../../../assets/img/1.png";
 import NeedSignIn from "../../NeedSignIn";
-import { useStyles, StyledInput } from "./TransferStyle";
+import { useStyles, StyledInput } from "./ParcelTransferStyle";
 import { BackButton } from "../../../components/BackButton/BackButton";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";
 import raiseicon from "../../../assets/svg/bid_raiseicon.svg";
@@ -23,7 +23,7 @@ import {
 
 import { useTranslation } from "react-i18next";
 
-const Transfer = () => {
+const ParcelTransfer = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -107,4 +107,4 @@ const Transfer = () => {
   );
 };
 
-export default Transfer;
+export default ParcelTransfer;
