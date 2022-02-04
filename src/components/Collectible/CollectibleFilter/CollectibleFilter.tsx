@@ -21,7 +21,7 @@ export default function CollectibleFilter() {
   const [selectedArray, setSelectedArray] = useState([""]);
   const [showClearFilterBtn, setShowClearFilterBtn] = useState(false);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const handleClickTag = (e: number) => {
     let newSelectedTile: string[] = [];

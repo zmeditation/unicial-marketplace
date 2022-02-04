@@ -15,7 +15,7 @@ import clsx from "clsx";
 import { useNavigate, useLocation } from "react-router-dom";
 export default function AssetsBox() {
   const classes = AssetsBoxStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [expanded, setExpanded] = React.useState<string | false>();

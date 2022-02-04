@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 const ParcelDetail = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
 
   return (

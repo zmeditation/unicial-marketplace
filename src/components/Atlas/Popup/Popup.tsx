@@ -8,7 +8,7 @@ import makeBlockie from "ethereum-blockies-base64";
 import { useTranslation } from "react-i18next";
 
 function Popup({ x, y, visible, tile, position }: Props) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const isEstate = !!tile.estateId;
   return (
     <div

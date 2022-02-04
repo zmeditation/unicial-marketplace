@@ -16,7 +16,7 @@ export default function Header() {
   const location = useLocation();
   const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
   const loginAddress = useAppSelector(selectLoginAddress);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const handleSignIn = () => {
     navigate(`/signin`);

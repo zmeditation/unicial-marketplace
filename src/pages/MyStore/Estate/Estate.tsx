@@ -20,7 +20,7 @@ export default function Estates() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const estates = useAppSelector(selectestates);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [width, setWidth] = useState(0);
   const handleResize = () => {
     if (window.innerWidth > 1200) {

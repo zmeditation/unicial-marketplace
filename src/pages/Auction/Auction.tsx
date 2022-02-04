@@ -62,7 +62,7 @@ const Auction = () => {
   const [isBiddable, setIsBiddable] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuctionAuthorized, setIsAuctionAuthorized] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const loginAddress = useAppSelector(selectLoginAddress);
   const bidParcels = useAppSelector(selectparcels) || [];

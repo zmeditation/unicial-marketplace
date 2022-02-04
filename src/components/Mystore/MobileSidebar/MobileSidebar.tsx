@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 export default function MobileSidebar() {
   const classes = MobileSidebarStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const location = useLocation();
   const navigate = useNavigate();

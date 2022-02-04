@@ -2,7 +2,6 @@
 
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
 import { Input } from "@material-ui/core";
-import { KeyboardDatePicker } from "@material-ui/pickers";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {

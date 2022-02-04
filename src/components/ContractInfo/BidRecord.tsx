@@ -102,7 +102,7 @@ interface data {
 
 const BidRecord = ({ fromName, price, time }: data) => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.root}>

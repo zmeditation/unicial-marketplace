@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function TypeBox() {
   const classes = StoreBoxStyle();
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const query = new URLSearchParams(location.search);

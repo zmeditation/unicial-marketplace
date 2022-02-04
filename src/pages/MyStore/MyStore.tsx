@@ -19,7 +19,7 @@ import { selectLoginAddress } from "../../store/auth/selectors";
 
 export default function MyStore() {
   const classes = MyStoreStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const query = new URLSearchParams(location.search);

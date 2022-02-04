@@ -15,7 +15,7 @@ import { dateConvert } from "../../../common/utils";
 const ParcelDetail = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
   const [ownParcels, setOwnParcels] = useState<[]>();
 

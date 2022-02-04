@@ -1,6 +1,5 @@
 /** @format */
 
-import { useNavigate } from "react-router";
 import { useStyles } from "./BalanceStyle";
 import { useTranslation } from "react-i18next";
 
@@ -12,8 +11,7 @@ interface BalanceProps {
 
 export const Balance = ({ className, type, value }: BalanceProps) => {
   const classes = useStyles();
-  const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={classes.balanceRoot}>
       {type === "uccbalance" && (

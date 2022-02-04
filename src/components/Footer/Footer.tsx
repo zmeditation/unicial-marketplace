@@ -24,7 +24,7 @@ export default function Footer() {
   const [countryLanguage, setCountryLanguage] = React.useState("");
   const [countryFlag, setCountryFlag] = React.useState("");
   const [languageIndex, setlanguageIndex] = React.useState(1);
-  const { t, i18n } = useTranslation();
+  const { t,i18n } = useTranslation();
 
   const handleEnglish = () => {
     i18n.changeLanguage("en");

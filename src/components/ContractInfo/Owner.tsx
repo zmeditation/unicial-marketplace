@@ -37,11 +37,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface DescriptionProps {}
-
 const Owner: React.FC = () => {
   const classes = useStyles();
-  const {t,i18n} = useTranslation();
+  const {t} = useTranslation();
   return (
     <div>
       <div className={classes.title}>{t("Owner")}</div>

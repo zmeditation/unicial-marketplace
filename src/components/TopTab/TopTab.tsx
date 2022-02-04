@@ -41,7 +41,7 @@ export const PurpleSwitch = withStyles({
 export default function TopTab() {
   const classes = TopTabStyle();
   const location = useLocation();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [toptab_index, setToptabIndex] = React.useState(1);
   const [searchbar_index, setSearchbarIndex] = React.useState(1);

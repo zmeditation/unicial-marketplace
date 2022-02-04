@@ -18,7 +18,7 @@ export default function LandSearchbar() {
   const [state, setState] = React.useState({
     checkedA: true,
   });
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });

@@ -15,7 +15,7 @@ interface Props {
 
 const LatestSalesTable = ({ columns, rows, curPage, stepIndex }: Props) => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const tableRows =
     rows !== undefined ? (

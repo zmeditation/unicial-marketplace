@@ -135,10 +135,9 @@ const useStyles = makeStyles((theme: Theme) =>
 function TransactionHistoryTable({
   columns,
   rows,
-  emptyTableRows,
 }: StyledTableleProps) {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const tableColumns = columns?.map((column: any, key: any) => (
     <TableCell key={column} className={classes.tableHeaderCell}>

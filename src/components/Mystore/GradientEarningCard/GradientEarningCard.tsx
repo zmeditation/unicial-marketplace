@@ -24,7 +24,7 @@ export default function GradientEarningCard({
   className,
 }: GradientEarningCardProps) {
   const classes = GradientEarningCardStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <div

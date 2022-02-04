@@ -29,11 +29,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface TitleProps {}
-
 const Title: React.FC = () => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div>
       <div className={classes.title}>{t("Genesis Plaza")}</div>

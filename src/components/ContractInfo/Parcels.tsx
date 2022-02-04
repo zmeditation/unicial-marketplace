@@ -56,11 +56,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface ParcelsProps {}
-
 const Parcels: React.FC = () => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={classes.root}>
       <div className={classes.title}>{t("Parcels")}</div>

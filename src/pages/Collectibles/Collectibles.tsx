@@ -13,7 +13,7 @@ import React, { useEffect } from "react";
 
 export default function Collectibles() {
   const classes = CollectiblesStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   //
   const location = useLocation();
   const navigate = useNavigate();

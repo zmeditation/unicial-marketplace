@@ -13,7 +13,7 @@ import OnSaleSwitch from "../../Base/OnSaleSwitch";
 export default function CollectibleFilterDialog() {
   const classes = CollectibleFilterDialogStyle();
   const [open, setOpen] = React.useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const handleDialogOpen = () => {
     setOpen(true);

@@ -9,7 +9,7 @@ import { ListdropdownData3 } from "../../../config/ListdropdownData/Listdropdown
 export default function NamesSearchBar() {
   const classes = CollectibleSearchBarStyle();
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <>

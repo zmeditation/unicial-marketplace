@@ -9,7 +9,7 @@ import { ListdropdownData2 } from "../../../config/ListdropdownData/Listdropdown
 
 export default function MystoreSearchBar() {
   const classes = MystoreSearchBarStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 

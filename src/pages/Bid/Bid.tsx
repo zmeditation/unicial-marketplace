@@ -25,7 +25,7 @@ import { useTranslation } from "react-i18next";
 const Bid = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [selectedDate, setSelectedDate] = useState<Date | null>(
     new Date("2022-01-02")
   );

@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 export default function NoResult() {
   const classes = useStyles();
-  const { t, i18n} =  useTranslation();
+  const { t} =  useTranslation();
   return (
     <>
       <div className={classes.root}>

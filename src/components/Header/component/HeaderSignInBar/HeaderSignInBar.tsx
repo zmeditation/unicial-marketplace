@@ -21,7 +21,7 @@ export default function HeaderSignInBar() {
   const classes = HeaderSignInBarStyle();
   const [tmp, setTmp] = React.useState(0);
   const dispatch = useAppDispatch();
-  const { t, i18n} = useTranslation();
+  const { t } = useTranslation();
   const handleRingButton = () => {
     setTmp(1);
   };

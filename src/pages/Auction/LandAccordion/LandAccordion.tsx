@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 
 export default function LandAccordion() {
   const classes = LandAccordionStyle();
-  const { t, i18n} = useTranslation();
+  const { t} = useTranslation();
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
   const [x1, setx1] = useState<number>(0);
   const [x2, setx2] = useState<number>(0);

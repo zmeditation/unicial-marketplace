@@ -16,7 +16,7 @@ import { selectestates } from "../../../store/selectedestates/selectors";
 const CreateEstate = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const estates = useAppSelector(selectestates);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");

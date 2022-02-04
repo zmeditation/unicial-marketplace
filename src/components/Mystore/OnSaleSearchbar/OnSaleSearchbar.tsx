@@ -6,7 +6,7 @@ import { ListdropdownData4 } from "../../../config/ListdropdownData/Listdropdown
 
 export default function MystoreSearchBar() {
   const classes = OnSaleSearchbarStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   //
   return (
     <>

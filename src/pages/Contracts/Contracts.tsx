@@ -23,7 +23,7 @@ const Contract = () => {
   const { contractaddress, tokensId } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(0);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {

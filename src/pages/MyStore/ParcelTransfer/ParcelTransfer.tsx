@@ -1,5 +1,4 @@
 /** @format */
-import { useState } from "react";
 import { useNavigate } from "react-router";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
@@ -17,14 +16,14 @@ import { useTranslation } from "react-i18next";
 const ParcelTransfer = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
-  const [selectedDate, setSelectedDate] = useState<Date | null>(
-    new Date("2022-01-02")
-  );
+  const { t } = useTranslation();
+  // const [selectedDate, setSelectedDate] = useState<Date | null>(
+  //   new Date("2022-01-02")
+  // );
 
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-  };
+  // const handleDateChange = (date: Date | null) => {
+  //   setSelectedDate(date);
+  // };
 
   var isSignIn = 1;
 
@@ -85,7 +84,7 @@ const ParcelTransfer = () => {
                   color='light'
                   className={classes.bidchange}>
                   {t("Transfer")} &nbsp;
-                  <img src={raiseicon} />
+                  <img src={raiseicon} alt='raiseicon' />
                 </ActionButton>
               </div>
             </div>

@@ -109,7 +109,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function Notifications() {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const msg = useAppSelector(alertMessage);
   const severity = useAppSelector(alertSeverity);

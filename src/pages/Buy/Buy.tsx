@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 const Buy = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   var isSignIn = 1;
 
   return (
