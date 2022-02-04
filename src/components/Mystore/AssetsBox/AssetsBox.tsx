@@ -41,6 +41,8 @@ export default function AssetsBox() {
     } else {
       switch (query.get("section")) {
         case category.collections:
+          setExpanded(category.collections);
+
           setActiveCategory(category.collections);
           break;
         case category.land:

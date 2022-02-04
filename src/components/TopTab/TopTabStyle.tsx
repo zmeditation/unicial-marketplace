@@ -165,40 +165,40 @@ export const StyledFormControlLabel = withStyles({
 
 export const StyledTableButton = withStyles({
   root: {
-    backgroundColor: "#282E4E",
+    backgroundColor: "#333b67",
     borderRadius: "100px 0px 0px 100px",
     padding: "7px 11px",
     minWidth: "35px",
     width: "38px",
     height: "30px",
     "&.Mui-disabled": {
-      backgroundColor: "#333B67 !important",
+      backgroundColor: "#282E4E !important",
       "& svg": {
         fill: "red",
       },
     },
     "&.MuiButton-root:hover": {
-      backgroundColor: "#282E4E",
+      backgroundColor: "#333b67",
     },
   },
 })(Button);
 
 export const StyledLocationButton = withStyles({
   root: {
-    backgroundColor: "#282E4E",
+    backgroundColor: "#333b67",
     borderRadius: "0px 100px 100px 0px",
     padding: "7px 11px",
     minWidth: "35px",
     width: "38px",
     height: "30px",
     "&.Mui-disabled": {
-      backgroundColor: "#333B67 !important",
+      backgroundColor: "#282E4E !important",
       "& svg": {
         fill: "#ff2d55",
       },
     },
     "&.MuiButton-root:hover": {
-      backgroundColor: "#282E4E",
+      backgroundColor: "#333b67",
     },
   },
 })(Button);

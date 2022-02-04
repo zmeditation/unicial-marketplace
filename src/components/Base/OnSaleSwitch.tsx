@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     activeSwitch: {
       "& .MuiTypography-root": {
-        background: "linear-gradient(#7F64E2 20%, #41A6EF 80%)",
+        background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
+
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
       },
@@ -47,7 +48,7 @@ const StyledFormControlLabel = withStyles({
     fontStyle: "normal",
     fontWeight: 400,
     lineHeight: "19px",
-    background: "linear-gradient(to right, #FF7C4C, #FFB03A)",
+    background: "linear-gradient(to right, #7F64E2, #41A6EF)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   },
@@ -58,10 +59,10 @@ const PurpleSwitch = withStyles({
     width: "55px",
   },
   switchBase: {
-    color: "#333B67",
+    color: "#333b67",
 
     "&$checked": {
-      color: "#FF7C4C",
+      color: "#ff7c4c",
     },
     "&$checked + $track": {
       backgroundColor: "#333B67",
