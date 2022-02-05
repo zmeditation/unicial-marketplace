@@ -106,7 +106,7 @@ export default function AssetsBox() {
             })}
           >
             <StyledAccordionSummary aria-controls="panelLand" id="panel1Land">
-              <Typography className={classes.maintitle}>{t("Land")}</Typography>
+              <Typography className={classes.maintitle}>{t("Space")}</Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
               <CategoryWearables data={LandData} />

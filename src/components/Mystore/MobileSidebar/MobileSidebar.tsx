@@ -38,10 +38,10 @@ export default function MobileSidebar() {
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
-          onClick={() => handlemenu("land")}
-          disabled={menuIndex === "land"}
+          onClick={() => handlemenu("space")}
+          disabled={menuIndex === "space"}
         >
-          {t("Land")}
+          {t("Space")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple

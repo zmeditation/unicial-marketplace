@@ -7,10 +7,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minWidth: "1064px",
     paddingTop: "50px",
-    flewGrow: 1,
+    flexGrow: 1,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: "267px",
     display: "flex",
     position: "relative",
     "& canvas, .react-tile-map ": {
@@ -20,7 +19,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
       minWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      minWidth: "723px",
+      paddingTop: "50px",
+      minWidth: "calc(100% - 32px) !important",
     },
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
   },
   backButton: {
-    marginBottom: "60px",
+    marginBottom: "50px",
   },
   bidCard: {
     display: "flex",
@@ -42,7 +42,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   leftCard: {
-    flex: "0.75 1 auto",
     textAlign: "left",
     marginRight: "50px",
     [theme.breakpoints.down(769)]: {
@@ -52,9 +51,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       height: "100%",
     },
   },
-  rightCard: {
-    flex: "1.25 1 auto",
-  },
+  rightCard: {},
   tokenImg: {
     width: "100%",
     borderRadius: "15px",
@@ -212,7 +209,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 export const StyledInput = withStyles((theme) => ({
   root: {
-    marginRight: "20px",
     display: "flex",
     height: "44px",
     alignContent: "center",

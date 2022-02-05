@@ -10,7 +10,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: "267px",
     display: "flex",
     position: "relative",
     "& canvas, .react-tile-map ": {
@@ -20,21 +19,21 @@ export const useStyles = makeStyles((theme: Theme) => ({
       minWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      minWidth: "723px",
+      minWidth: "700px",
+      padding: "50px 16px",
     },
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
     },
     [theme.breakpoints.down(550)]: {
       minWidth: "calc(100% - 32px) !important",
-      padding: "0 16px",
     },
   },
   container_root: {
     width: "100%",
   },
   backButton: {
-    marginBottom: "60px",
+    marginBottom: "50px",
   },
   bidCard: {
     display: "flex",
@@ -46,7 +45,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   leftCard: {
-    flex: "0.75 1 auto",
     textAlign: "left",
     marginRight: "50px",
     [theme.breakpoints.down(769)]: {
