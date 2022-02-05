@@ -111,7 +111,7 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/estate_updatemetadata`
                   )
                 }>
                 {t("Update Metadata")}

@@ -26,6 +26,7 @@ import ToSignIn from "./ToSignIn";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import ParcelDetail from "../../pages/MyStore/Parcel/ParcelDetail/ParcelDetail";
+import UpdateMetadata from "../../pages/MyStore/Estate/UpdateMetadata/UpdateMetadata";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -81,7 +82,7 @@ export default function Layout() {
             path="/contracts/:contractaddress/tokens/:tokensid/parcel_detail"
             element={<ParcelDetail />}
           />
-           <Route
+          <Route
             path="/contracts/:contractaddress/tokens/:estateid/estate_sell"
             element={<EstateSell />}
           />
@@ -89,9 +90,13 @@ export default function Layout() {
             path="/contracts/:contractaddress/tokens/:estateid/estate_transfer"
             element={<EstateTransfer />}
           />
-           <Route
+          <Route
             path="/contracts/:contractaddress/tokens/:estateid/estate_detail"
             element={<EstateDetail />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/estate_updatemetadata"
+            element={<UpdateMetadata />}
           />
           <Route path="/signin" element={<ToLands />}>
             <Route path="/signin" element={<SignIn />} />
