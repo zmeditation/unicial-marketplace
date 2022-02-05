@@ -124,10 +124,10 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/estate_updatemanager`
                   )
                 }>
-                {t("Update Marge")}
+                {t("Update Manager")}
                 <CallMadeIcon fontSize='small' />
               </ActionButton>
             </Grid>
