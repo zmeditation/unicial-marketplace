@@ -6,6 +6,7 @@ import Contracts from "../../pages/Contracts/Contracts";
 import MarketPlace from "../../pages/MarketPlace/MarketPlace";
 import CreateEstates from "../../pages/MyStore/Estate/CreateEstate/CreateEstate";
 import EstatesSelect from "../../pages/MyStore/Estate/EstateSelect/EstateSelect";
+import EstateDetail from "../../pages/MyStore/Estate/EstateDetail/EstateDetail"
 import Bid from "../../pages/Bid/Bid";
 import Buy from "../../pages/Buy/Buy";
 import SignIn from "../../pages/SignIn/SignIn";
@@ -77,6 +78,10 @@ export default function Layout() {
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid/parcel_detail"
             element={<ParcelDetail />}
+          />
+           <Route
+            path="/contracts/:contractaddress/tokens/:estateid/estate_detail"
+            element={<EstateDetail />}
           />
           <Route path="/signin" element={<ToLands />}>
             <Route path="/signin" element={<SignIn />} />

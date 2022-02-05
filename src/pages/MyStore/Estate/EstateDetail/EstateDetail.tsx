@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
 import CallMadeIcon from "@material-ui/icons/CallMade";
+import { Grid } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import { useStyles } from "./EstateDetailStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
@@ -17,8 +18,8 @@ const ParcelDetail = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.root_container}>
-        <BackButton className={classes.backBtn} />
+      <div className={classes.container_root}>
+        <BackButton className={classes.backButton} />
         <div className={classes.bidCard}>
           <div className={classes.leftCard}>
             <div className={classes.imgContent}>
@@ -28,10 +29,35 @@ const ParcelDetail = () => {
                 alt='token'></img>
             </div>
           </div>
-
           <div className={classes.rightCard}>
-            <div className={classes.title}>{t("Parcel detail")}</div>
-            <div className={classes.buttons}>
+            <div className={classes.title}>
+              {t("Estate Relative Information")}
+            </div>
+            <div className={classes.form_field}>
+              <div className={classes.price_container}>
+                <Grid container>
+                  <Grid md={6} sm={12} xs={12} item>
+                    <div className={classes.subheader_label}>
+                      {t("Operator")}:
+                      <span className={classes.operatorValue}>123123</span>
+                    </div>
+                  </Grid>
+                  <Grid md={6} sm={12} xs={12} item>
+                    <div className={classes.subheader_label}>
+                      {t("Estate Size")}:
+                      <span className={classes.operatorValue}>123123</span>
+                    </div>
+                  </Grid>
+                </Grid>
+              </div>
+              <p>&nbsp;</p>
+            </div>
+          </div>
+        </div>
+        <div className={classes.entireEstate}>
+          <div className={classes.entireLabel}>{t("Entire Estate")}</div>
+          <Grid container spacing={2}>
+            <Grid item md={4} sm={6} xs={12}>
               <ActionButton
                 color='light'
                 className={classes.bidchange}
@@ -43,25 +69,104 @@ const ParcelDetail = () => {
                 {t("Sell")}
                 <CallMadeIcon fontSize='small' />
               </ActionButton>
+            </Grid>
+            <Grid item md={4} sm={6} xs={12}>
               <ActionButton
                 color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${tokensid}/transfer`
+                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
                   )
                 }>
                 {t("Transfer")}
                 <CallMadeIcon fontSize='small' />
               </ActionButton>
+            </Grid>
+            <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='dark'
-                className={classes.cancelchange}
-                onClick={() => navigate(-1)}>
-                {t("Cancel")}
+                color='light'
+                className={classes.bidchange}
+                onClick={() =>
+                  navigate(
+                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                  )
+                }>
+                {t("Update Metadata")}
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
-            </div>
-          </div>
+            </Grid>
+            <Grid item md={4} sm={6} xs={12}>
+              <ActionButton
+                color='light'
+                className={classes.bidchange}
+                onClick={() =>
+                  navigate(
+                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                  )
+                }>
+                {t("Update Marge")}
+                <CallMadeIcon fontSize='small' />
+              </ActionButton>
+            </Grid>
+            <Grid item md={4} sm={6} xs={12}>
+              <ActionButton
+                color='light'
+                className={classes.bidchange}
+                onClick={() =>
+                  navigate(
+                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                  )
+                }>
+                {t("Update Operate")}
+                <CallMadeIcon fontSize='small' />
+              </ActionButton>
+            </Grid>
+          </Grid>
+        </div>
+        <div className={classes.entireEstate}>
+          <div className={classes.entireLabel}>{t("Partial Estate")}</div>
+          <Grid container spacing={2}>
+            <Grid item md={4} sm={6} xs={12}>
+              <ActionButton
+                color='light'
+                className={classes.bidchange}
+                onClick={() =>
+                  navigate(
+                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                  )
+                }>
+                {t("Transfer Spaces")}
+                <CallMadeIcon fontSize='small' />
+              </ActionButton>
+            </Grid>
+            <Grid item md={4} sm={6} xs={12}>
+              <ActionButton
+                color='light'
+                className={classes.bidchange}
+                onClick={() =>
+                  navigate(
+                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                  )
+                }>
+                {t("Update Operator")}
+                <CallMadeIcon fontSize='small' />
+              </ActionButton>
+            </Grid>
+            <Grid item md={4} sm={6} xs={12}>
+              <ActionButton
+                color='light'
+                className={classes.bidchange}
+                onClick={() =>
+                  navigate(
+                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                  )
+                }>
+                {t("Update LandData")}
+                <CallMadeIcon fontSize='small' />
+              </ActionButton>
+            </Grid>
+          </Grid>
         </div>
       </div>
     </div>

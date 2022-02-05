@@ -4,31 +4,33 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minWidth: "1064px",
     paddingTop: "50px",
-    flexGrow: 1,
+    paddingBottom: "50px",
+    maxWidth: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
-    display: "flex",
+    flexGrow: 1,
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
       minWidth: "933px",
+      maxWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      minWidth: "calc(100% - 32px) !important",
+      minWidth: "700px",
+      padding: "50px 16px",
     },
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
     },
   },
-  backBtn: {
-    marginBottom: "50px",
-  },
-  root_container: {
+  container_root: {
     width: "100%",
+  },
+  backButton: {
+    marginBottom: "50px",
   },
   bidCard: {
     display: "flex",
@@ -40,6 +42,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   leftCard: {
+    textAlign: "left",
     marginRight: "50px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
@@ -57,7 +60,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   imgContent: {
     width: "329px",
-    height: "265.85px",
+    height: "265.58px",
     borderRadius: "16px",
     overflow: "hidden",
     display: "inline-block",
@@ -70,34 +73,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontStyle: "normal",
     fontWeight: 600,
     fontSize: "35px",
-    lineHeight: "50px",
     fontFamily: "Montserrat",
+    lineHeight: "50px",
     letterSpacing: "0.02em",
-    marginBottom: "16px",
+    color: "#FFFFFF",
     [theme.breakpoints.down(769)]: {
       fontSize: "28px",
     },
   },
-  subtitle: {
-    marginBottom: "50px",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "14px",
-    lineHeight: "17px",
-    fontFamily: "Lato",
-
-    color: "#96A1DB",
-  },
-  subtitleNumber: {
-    color: "#ffffff",
-    fontSize: "14px",
-    lineHeight: "17px",
-    align: "Left",
-    verticalAlign: "Top",
-    fontFamily: "Lato",
-  },
   form_field: {
-    maxWidth: "420px",
+    marginTop: "50px",
     marginBottom: "20px",
     [theme.breakpoints.down(769)]: {
       marginBottom: "30px",
@@ -106,84 +91,56 @@ export const useStyles = makeStyles((theme: Theme) => ({
   price_container: {
     minWidth: "auto",
     marginBottom: "-5px",
-    "& .MuiFormControl-root": {
-      width: "100%",
-    },
-    "& .MuiInputBase-input": {
-      fontFamily: "Lato",
-      fontWeight: 500,
-      fontSize: "20px",
-      color: "white",
-      paddingBottom: "15px",
-    },
-
-    "& .MuiInput-underline:before": {
-      borderBottom: "2px solid #28242b",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottom: "2px solid white",
-    },
-    "& .MuiInput-underline:hover": {
-      "&:before": {
-        borderBottom: "2px solid #28242b",
-      },
-    },
-  },
-  date_container: {
-    minWidth: "auto",
-    //
-    "& .MuiFormControl-root": {
-      width: "100%",
-    },
-    "& .MuiInputBase-input": {
-      fontFamily: "Lato",
-      fontWeight: 500,
-      fontSize: "20px",
-      color: "white",
-      paddingBottom: "15px",
-    },
-    "& .MuiInput-underline:before": {
-      borderBottom: "2px solid #28242b",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottom: "2px solid white",
-    },
-    "& .MuiInput-underline:hover": {
-      "&:before": {
-        borderBottom: "2px solid #28242b",
-      },
-    },
   },
   subheader_label: {
-    color: "#676370",
-    fontSize: "13px",
-    lineHeight: "18px",
-    fontWeight: 400,
-    marginBottom: "6px",
     fontFamily: "Lato",
+    color: "#96A1DB",
+    fontStyle: "Regular",
+    fontSize: "24px",
+    lineHeight: "14px",
+    align: "Left",
+    verticalAlign: "Top",
+    marginTop: "30px",
+    marginBottom: "8px",
   },
-  manafield: {
+  operatorValue: {
+    fontFamily: "Lato",
+    color: "#ffffff",
+    fontStyle: "Regular",
+    fontSize: "24px",
+    lineHeight: "14px",
+    align: "Left",
+    verticalAlign: "Top",
+    marginBottom: "8px",
+    paddingLeft: "8px",
+  },
+  entireEstate: {
+    marginTop: "50px",
+    border: "1px solid #373F66",
+    position: "relative",
     display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "20px",
+    borderRadius: "20px",
   },
-  symbol: {
-    fontSize: "normal",
-    marginBottom: "-5px",
-    transform: "translateY(-0.06em)",
-    display: "inline-block",
-    marginLeft: "5px",
-  },
-  buttons: {
-    display: "flex",
-    [theme.breakpoints.up(769)]: {
-      maxWidth: "380px",
-    },
-    [theme.breakpoints.down(960)]: {
-      flexFlow: "column",
-      width: "100%",
-      display: "grid",
-    },
+  entireLabel: {
+    position: "absolute",
+    top: "-8px",
+    left: "30px",
+    fontFamily: "Lato",
+    color: "#ffffff",
+    fontStyle: "Regular",
+    fontSize: "24px",
+    lineHeight: "14px",
+    align: "Left",
+    verticalAlign: "Top",
+    padding: "0px 10px",
+    backgroundColor: "#21263f",
+    borderRadius: "50px",
   },
   bidchange: {
+    width: "100%",
     marginRight: "16px",
     marginTop: "16px",
     minWidth: "160px",
@@ -197,42 +154,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
       marginLeft: "0px",
       order: 1,
     },
-  },
-  cancelchange: {
-    marginTop: "16px",
-    minWidth: "160px",
-    fontStyle: "normal",
-    fontWeight: 500,
-    fontSize: "16px",
-    lineHeight: "19px",
-    marginRight: "16px",
-    color: "#FFFFFF",
-    [theme.breakpoints.down(960)]: {
-      order: 2,
-      minWidth: "100%",
-    },
-  },
-  viewNeedSignIn: {
-    display: "block",
-  },
-  unviewNeedSignIn: {
-    display: "none",
-  },
-  viewBuy: {
-    display: "block",
-  },
-  unviewBuy: {
-    display: "none",
-  },
-  bidDetail: {
-    marginTop: "50px",
-  },
-  bidsTitle: {
-    fontStyle: "normal",
-    fontFamily: "Montserrat",
-    fontSize: "24px",
-    fontWeight: 600,
-    lineHeight: "50px",
-    color: "white",
   },
 }));

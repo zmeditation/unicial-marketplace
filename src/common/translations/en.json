@@ -133,5 +133,16 @@
   "Address": "Address",
   "Time": "Time",
   "Accept": "Accept",
-  "Space": "Space"
+  "Space": "Space",
+  "Operator": "Operator",
+  "EstateSize": "EstateSize",
+  "Estate Relative Information": "Estate Relative Information",
+  "Entire Estate": "Entire Estate",
+  "Update Metadata": "UPdate Metadata",
+  "Update Marge": "Update Marge",
+  "Update Operator": "Update Operator",
+  "Transfer Spaces": "Transfer Spaces",
+  "Update Operate": "Update Operate",
+  "Update LandData": "Update LandData",
+  "Partial Estate": "Partial Estate"
 }

@@ -20,7 +20,7 @@ export default function LandEstates() {
 
   const handleNavigate = (url: string) => {
     navigate(
-      `/contracts/0xCf7c8979AFF022Aa478ee4D7BA538cd01FDB7DC0/tokens/${url}/parcel_detail`
+      `/contracts/0xCf7c8979AFF022Aa478ee4D7BA538cd01FDB7DC0/tokens/${url}/estate_detail`
     );
   };
 
@@ -63,6 +63,9 @@ export default function LandEstates() {
             landName='Plaza Area Sale'
             category='Ethereum'
             price={3999}
+            onClick={() =>
+              handleNavigate("340285089179873830971082314428627665602691657")
+            }
           />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
