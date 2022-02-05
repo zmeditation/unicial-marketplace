@@ -1,4 +1,3 @@
-/** @format */
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import ActionButton from "../../../../components/Base/ActionButton";
@@ -11,15 +10,15 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import { dateConvert } from "../../../../common/utils";
 import BidDetail from "../../../../components/Mystore/BidDetail";
-import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { getParcelsByOwner } from "../../../../hooks/api";
+import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
 
 const ParcelDetail = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { contractaddress, tokensid } = useParams();
+  const { contractaddress, estateid } = useParams();
   const [ownParcels, setOwnParcels] = useState<[]>();
   const [count, setCount] = useState(showMoreCount);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
@@ -86,7 +85,7 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/estate_sell`
                   )
                 }>
                 {t("Sell")}
@@ -99,7 +98,7 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/estate_transfer`
                   )
                 }>
                 {t("Transfer")}
@@ -112,7 +111,7 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
                   )
                 }>
                 {t("Update Metadata")}
@@ -125,7 +124,7 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
                   )
                 }>
                 {t("Update Marge")}
@@ -138,7 +137,7 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
                   )
                 }>
                 {t("Update Operate")}
@@ -156,7 +155,7 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
                   )
                 }>
                 {t("Transfer Spaces")}
@@ -169,7 +168,7 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
                   )
                 }>
                 {t("Update Operator")}
@@ -182,7 +181,7 @@ const ParcelDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${tokensid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
                   )
                 }>
                 {t("Update LandData")}
@@ -207,10 +206,7 @@ const ParcelDetail = () => {
                 ? classes.showmoreContent
                 : classes.displayNone
             }>
-            <ShowMoreLessBtn
-              letter={t("Show More")}
-              onClick={() => handleShowBtn()}
-            />
+            <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
           </div>
         </div>
       </div>

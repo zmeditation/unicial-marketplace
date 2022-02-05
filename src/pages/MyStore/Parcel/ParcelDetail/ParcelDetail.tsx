@@ -1,4 +1,3 @@
-/** @format */
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import ActionButton from "../../../../components/Base/ActionButton";
@@ -11,6 +10,8 @@ import { useTranslation } from "react-i18next";
 import BidDetail from "../../../../components/Mystore/BidDetail";
 import { getParcelsByOwner } from "../../../../hooks/api";
 import { dateConvert } from "../../../../common/utils";
+import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
+import { showMoreCount } from "../../../../config/constant";
 
 const ParcelDetail = () => {
   const classes = useStyles();
@@ -18,6 +19,8 @@ const ParcelDetail = () => {
   const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
   const [ownParcels, setOwnParcels] = useState<[]>();
+  const [count, setCount] = useState(showMoreCount);
+  const [showMoreBtn, setShowMoreBtn] = useState(true);
 
   useEffect(() => {
     getParcelsByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
@@ -26,6 +29,14 @@ const ParcelDetail = () => {
       }
     );
   }, []);
+
+  const handleShowBtn = () => {
+    setCount(count + showMoreCount);
+    if (ownParcels && count >= ownParcels?.length) {
+      setShowMoreBtn(false);
+    }
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.root_container}>
@@ -76,7 +87,7 @@ const ParcelDetail = () => {
         </div>
         <div className={classes.bidDetail}>
           <div className={classes.bidsTitle}>{t("Bids")}.</div>
-          {ownParcels?.map((row: any, index: any) => (
+          {ownParcels?.slice(0, count).map((row: any, index: any) => (
             <BidDetail
               key={index}
               address={row.owner}
@@ -84,6 +95,14 @@ const ParcelDetail = () => {
               time={dateConvert(row.updatedAt)}
             />
           ))}
+          <div
+            className={
+              showMoreBtn === true
+                ? classes.showmoreContent
+                : classes.displayNone
+            }>
+            <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
+          </div>
         </div>
       </div>
     </div>

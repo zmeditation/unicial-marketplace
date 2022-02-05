@@ -1,6 +1,4 @@
-/** @format */
 import { useNavigate } from "react-router";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
@@ -9,7 +7,6 @@ import { useStyles, StyledInput } from "./ParcelTransferStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import raiseicon from "../../../../assets/svg/bid_raiseicon.svg";
 import { Grid } from "@material-ui/core";
-import "date-fns";
 
 import { useTranslation } from "react-i18next";
 
@@ -17,13 +14,6 @@ const ParcelTransfer = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  // const [selectedDate, setSelectedDate] = useState<Date | null>(
-  //   new Date("2022-01-02")
-  // );
-
-  // const handleDateChange = (date: Date | null) => {
-  //   setSelectedDate(date);
-  // };
 
   var isSignIn = 1;
 
@@ -44,7 +34,7 @@ const ParcelTransfer = () => {
               </div>
             </div>
             <div className={classes.rightCard}>
-              <div className={classes.title}>{t("Transfer Estate")}</div>
+              <div className={classes.title}>{t("Transfer Parcels")}</div>
               <div className={classes.subtitle}>
                 {t("Your are not the owner of Roads.")}
               </div>
@@ -56,15 +46,7 @@ const ParcelTransfer = () => {
                         {t("RECEPIENT ADDRESS")}
                       </div>
                       <FormControl>
-                        <StyledInput
-                          placeholder='0x'
-                          onChange={handleChange}
-                          startAdornment={
-                            <InputAdornment position='start'>
-                              {/* <img src={settingicon} /> */}
-                            </InputAdornment>
-                          }
-                        />
+                        <StyledInput placeholder='0x' onChange={handleChange} />
                       </FormControl>
                     </Grid>
                   </Grid>

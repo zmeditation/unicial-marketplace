@@ -6,6 +6,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minWidth: "1064px",
     paddingTop: "50px",
+    paddingBottom: "50px",
     flexGrow: 1,
     marginLeft: "auto",
     marginRight: "auto",
@@ -234,5 +235,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 600,
     lineHeight: "50px",
     color: "white",
+  },
+  showmoreContent: {
+    marginTop: "15px",
+    justifyContent: "center",
+    width: "100%",
+    flexFlow: "row nowrap",
+    display: "flex",
+  },
+  displayNone: {
+    display: "none",
   },
 }));
