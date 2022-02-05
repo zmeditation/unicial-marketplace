@@ -155,4 +155,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
       order: 1,
     },
   },
+  bidDetail: {
+    marginTop: "50px",
+  },
+  bidsTitle: {
+    fontStyle: "normal",
+    fontFamily: "Montserrat",
+    fontSize: "24px",
+    fontWeight: 600,
+    lineHeight: "50px",
+    color: "white",
+  },
 }));

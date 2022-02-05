@@ -1,5 +1,5 @@
 /** @format */
-
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
@@ -9,12 +9,24 @@ import { useParams } from "react-router-dom";
 import { useStyles } from "./EstateDetailStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
+import { dateConvert } from "../../../../common/utils";
+import BidDetail from "../../../../components/Mystore/BidDetail";
+import { getParcelsByOwner } from "../../../../hooks/api";
 
 const ParcelDetail = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
+  const [ownParcels, setOwnParcels] = useState<[]>();
+
+  useEffect(() => {
+    getParcelsByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
+      (parcels) => {
+        setOwnParcels(parcels);
+      }
+    );
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -167,6 +179,17 @@ const ParcelDetail = () => {
               </ActionButton>
             </Grid>
           </Grid>
+        </div>
+        <div className={classes.bidDetail}>
+          <div className={classes.bidsTitle}>{t("Bids")}.</div>
+          {ownParcels?.map((row: any, index: any) => (
+            <BidDetail
+              key={index}
+              address={row.owner}
+              price={1399}
+              time={dateConvert(row.updatedAt)}
+            />
+          ))}
         </div>
       </div>
     </div>

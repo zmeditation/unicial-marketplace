@@ -96,6 +96,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     marginTop: "4px",
     fontWeight: 400,
+  },
+  contentAddress: {
+    fontSize: "16px",
+    lineHeight: "19px",
+    display: "flex",
+    alignItems: "center",
+    marginTop: "4px",
+    fontWeight: 400,
     overflow: "hidden",
   },
   symbol: {
@@ -138,7 +146,7 @@ const BidRecord = ({ address, price, time }: data) => {
         <div className={classes.container}>
           <div className={classes.fromPart}>
             <div className={classes.title}>{t("Address")}</div>
-            <div className={classes.content}>
+            <div className={classes.contentAddress}>
               <img
                 src={fromImg}
                 className={classes.fromIamge}
