@@ -13,6 +13,7 @@ import { dateConvert } from "../../../../common/utils";
 import BidDetail from "../../../../components/Mystore/BidDetail";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { getParcelsByOwner } from "../../../../hooks/api";
+import { showMoreCount } from "../../../../config/constant";
 
 const ParcelDetail = () => {
   const classes = useStyles();
@@ -20,9 +21,8 @@ const ParcelDetail = () => {
   const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
   const [ownParcels, setOwnParcels] = useState<[]>();
-  const [count, setCount] = useState(6);
-  const [showMoreBtn, setShowMoreBtn] = useState(false);
-  let showCount = 6;
+  const [count, setCount] = useState(showMoreCount);
+  const [showMoreBtn, setShowMoreBtn] = useState(true);
 
   useEffect(() => {
     getParcelsByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
@@ -33,10 +33,10 @@ const ParcelDetail = () => {
   }, []);
 
   const handleShowBtn = () => {
-    showCount += 6;
-    setCount(showCount);
-    console.log(count);
-    count === ownParcels?.length ? setShowMoreBtn(true) : setShowMoreBtn(false);
+    setCount(count + showMoreCount);
+    if (ownParcels && count >= ownParcels?.length) {
+      setShowMoreBtn(false);
+    }
   };
 
   return (
@@ -208,7 +208,7 @@ const ParcelDetail = () => {
                 : classes.displayNone
             }>
             <ShowMoreLessBtn
-              letter='Show All'
+              letter={t("Show More")}
               onClick={() => handleShowBtn()}
             />
           </div>
