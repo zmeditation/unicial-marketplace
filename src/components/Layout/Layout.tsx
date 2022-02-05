@@ -4,8 +4,8 @@ import Auction from "../../pages/Auction/Auction";
 import MyStore from "../../pages/MyStore/MyStore";
 import Contracts from "../../pages/Contracts/Contracts";
 import MarketPlace from "../../pages/MarketPlace/MarketPlace";
-import CreateEstates from "../../pages/MyStore/CreateEstate/CreateEstate";
-import Estates from "../../pages/MyStore/Estate/Estate";
+import CreateEstates from "../../pages/MyStore/Estate/CreateEstate/CreateEstate";
+import EstatesSelect from "../../pages/MyStore/Estate/EstateSelect/EstateSelect";
 import Bid from "../../pages/Bid/Bid";
 import Buy from "../../pages/Buy/Buy";
 import SignIn from "../../pages/SignIn/SignIn";
@@ -15,14 +15,14 @@ import Notification from "../Notifications";
 import Spinner from "../Spinner";
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
-import ParcelSell from "../../pages/MyStore/ParcelSell/ParcelSell";
-import ParcelTransfer from "../../pages/MyStore/ParcelTransfer/ParcelTransfer";
+import ParcelSell from "../../pages/MyStore/Parcel/ParcelSell/ParcelSell";
+import ParcelTransfer from "../../pages/MyStore/Parcel/ParcelTransfer/ParcelTransfer";
 import Collectibles from "../../pages/Collectibles/Collectibles";
 import ToLands from "./ToLands";
 import ToSignIn from "./ToSignIn";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
-import ParcelDetail from "../../pages/MyStore/ParcelDetail/ParcelDetail";
+import ParcelDetail from "../../pages/MyStore/Parcel/ParcelDetail/ParcelDetail";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -50,7 +50,7 @@ export default function Layout() {
             path="/account/estate/createestate"
             element={<CreateEstates />}
           />
-          <Route path="/account/estate/create" element={<Estates />} />
+          <Route path="/account/estate/create" element={<EstatesSelect />} />
 
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid"

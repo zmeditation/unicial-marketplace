@@ -2,12 +2,12 @@
 import { useNavigate } from "react-router";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
-import ActionButton from "../../../components/Base/ActionButton";
-import TokenImg from "../../../assets/img/1.png";
-import NeedSignIn from "../../NeedSignIn";
+import ActionButton from "../../../../components/Base/ActionButton";
+import TokenImg from "../../../../assets/img/1.png";
+import NeedSignIn from "../../../NeedSignIn";
 import { useStyles, StyledInput } from "./ParcelTransferStyle";
-import { BackButton } from "../../../components/BackButton/BackButton";
-import raiseicon from "../../../assets/svg/bid_raiseicon.svg";
+import { BackButton } from "../../../../components/BackButton/BackButton";
+import raiseicon from "../../../../assets/svg/bid_raiseicon.svg";
 import { Grid } from "@material-ui/core";
 import "date-fns";
 

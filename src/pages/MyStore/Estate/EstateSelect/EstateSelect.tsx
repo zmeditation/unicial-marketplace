@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { EstateStyle } from "./EstateStyles";
+import { EstateStyle } from "./EstateSelectStyles";
 import { Grid } from "@material-ui/core";
-import CreateEstateMap from "../../../components/CreateEstateMap";
-import ParcelCard from "../../../components/ParcelCard/ParcelCard";
+import CreateEstateMap from "../../../../components/CreateEstateMap";
+import ParcelCard from "../../../../components/ParcelCard/ParcelCard";
 
-import TobTab from "../../../components/TopTab/TopTab";
-import ActionButton from "../../../components/Base/ActionButton";
+import TobTab from "../../../../components/TopTab/TopTab";
+import ActionButton from "../../../../components/Base/ActionButton";
 import CallMadeIcon from "@material-ui/icons/CallMade";
-import { BackButton } from "../../../components/BackButton/BackButton";
+import { BackButton } from "../../../../components/BackButton/BackButton";
 
-import { selectestates } from "../../../store/selectedestates/selectors";
-import { getestates } from "../../../store/selectedestates";
+import { selectestates } from "../../../../store/selectedestates/selectors";
+import { getestates } from "../../../../store/selectedestates";
 
 import { useTranslation } from "react-i18next";
-import { useAppSelector, useAppDispatch } from "../../../store/hooks";
-export default function Estates() {
+import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
+export default function EstatesSelect() {
   const classes = EstateStyle();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

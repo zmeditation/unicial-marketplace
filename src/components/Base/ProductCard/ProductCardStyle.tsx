@@ -1,7 +1,7 @@
 /** @format */
 
 import { createStyles, Theme } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 
 export const ProductCardStyle = makeStyles((theme: Theme) =>
   createStyles({

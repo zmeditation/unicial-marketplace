@@ -1,16 +1,16 @@
 /** @format */
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import ActionButton from "../../../components/Base/ActionButton";
-import TokenImg from "../../../assets/img/1.png";
+import ActionButton from "../../../../components/Base/ActionButton";
+import TokenImg from "../../../../assets/img/1.png";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import { useParams } from "react-router-dom";
 import { useStyles } from "./ParcelDetailStyle";
-import { BackButton } from "../../../components/BackButton/BackButton";
+import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
-import BidDetail from "../../../components/Mystore/BidDetail";
-import { getParcelsByOwner } from "../../../hooks/api";
-import { dateConvert } from "../../../common/utils";
+import BidDetail from "../../../../components/Mystore/BidDetail";
+import { getParcelsByOwner } from "../../../../hooks/api";
+import { dateConvert } from "../../../../common/utils";
 
 const ParcelDetail = () => {
   const classes = useStyles();
