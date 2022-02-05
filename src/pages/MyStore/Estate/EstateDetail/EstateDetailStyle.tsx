@@ -166,4 +166,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "50px",
     color: "white",
   },
+  showmoreContent: {
+    marginTop: "15px",
+    justifyContent: "center",
+    width: "100%",
+    flexFlow: "row nowrap",
+    display: "flex",
+  },
+  displayNone: {
+    display: "none",
+  },
 }));

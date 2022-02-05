@@ -11,6 +11,7 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import { dateConvert } from "../../../../common/utils";
 import BidDetail from "../../../../components/Mystore/BidDetail";
+import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { getParcelsByOwner } from "../../../../hooks/api";
 
 const ParcelDetail = () => {
@@ -19,6 +20,9 @@ const ParcelDetail = () => {
   const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
   const [ownParcels, setOwnParcels] = useState<[]>();
+  const [count, setCount] = useState(6);
+  const [showMoreBtn, setShowMoreBtn] = useState(false);
+  let showCount = 6;
 
   useEffect(() => {
     getParcelsByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
@@ -27,6 +31,13 @@ const ParcelDetail = () => {
       }
     );
   }, []);
+
+  const handleShowBtn = () => {
+    showCount += 6;
+    setCount(showCount);
+    console.log(count);
+    count === ownParcels?.length ? setShowMoreBtn(true) : setShowMoreBtn(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -182,7 +193,7 @@ const ParcelDetail = () => {
         </div>
         <div className={classes.bidDetail}>
           <div className={classes.bidsTitle}>{t("Bids")}.</div>
-          {ownParcels?.map((row: any, index: any) => (
+          {ownParcels?.slice(0, count).map((row: any, index: any) => (
             <BidDetail
               key={index}
               address={row.owner}
@@ -190,6 +201,17 @@ const ParcelDetail = () => {
               time={dateConvert(row.updatedAt)}
             />
           ))}
+          <div
+            className={
+              showMoreBtn === true
+                ? classes.showmoreContent
+                : classes.displayNone
+            }>
+            <ShowMoreLessBtn
+              letter='Show All'
+              onClick={() => handleShowBtn()}
+            />
+          </div>
         </div>
       </div>
     </div>
