@@ -25,6 +25,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
     },
+    [theme.breakpoints.down(560)]: {
+      width: "calc(100% - 32px) !important",
+    },
   },
   container_root: {
     width: "100%",
