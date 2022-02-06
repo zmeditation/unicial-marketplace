@@ -3,13 +3,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
+import CallMadeIcon from "@material-ui/icons/CallMade";
+
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
 import NeedSignIn from "../../../NeedSignIn";
 import { useStyles, StyledInput } from "./EstateSellStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import settingicon from "../../../../assets/svg/bidpage_settingicon.svg";
-import raiseicon from "../../../../assets/svg/bid_raiseicon.svg";
 import calendar_icon from "../../../../assets/svg/calendar_icon.svg";
 import { Grid } from "@material-ui/core";
 import "date-fns";
@@ -21,7 +22,7 @@ import {
 
 import { useTranslation } from "react-i18next";
 
-const ParcelSell = () => {
+const EstateSell = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -54,7 +55,8 @@ const ParcelSell = () => {
             <div className={classes.rightCard}>
               <div className={classes.title}>{t("List for sale")}</div>
               <div className={classes.subtitle}>
-                {t("Set a price and expiration date for Roads")}
+                {t("Set a price and expiration date for your bid on")}{" "}
+                <span>{t("Genesis Plaza")}</span>.
               </div>
               <div className={classes.form_field}>
                 <div className={classes.price_container}>
@@ -83,11 +85,9 @@ const ParcelSell = () => {
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                           <KeyboardDatePicker
                             className={classes.datePicker}
-                            disableToolbar
-                            variant='inline'
                             format='MM/dd/yyyy'
                             margin='normal'
-                            id='date-picker-inline'
+                            id='date-picker-dialog'
                             value={selectedDate}
                             onChange={handleDateChange}
                             KeyboardButtonProps={{
@@ -111,8 +111,8 @@ const ParcelSell = () => {
                   {t("Cancel")}
                 </ActionButton>
                 <ActionButton color='light' className={classes.bidchange}>
-                  {t("List for sale")} &nbsp;
-                  <img src={raiseicon} />
+                  {t("Sell")}
+                  <CallMadeIcon fontSize='small' />
                 </ActionButton>
               </div>
             </div>
@@ -125,4 +125,4 @@ const ParcelSell = () => {
   );
 };
 
-export default ParcelSell;
+export default EstateSell;
