@@ -12,9 +12,7 @@ export const getParcelsByOwner = async (owner: any) => {
 
 export const getEstatesByOwner = async (owner: any) => {
   try {
-    const response = await axios.get(
-      `${ApiUrl}/api/v1/estate/owner/${owner}`
-    );
+    const response = await axios.get(`${ApiUrl}/api/v1/estate/owner/${owner}`);
     return response.data.data;
   } catch (error: any) {
     return console.log(error);

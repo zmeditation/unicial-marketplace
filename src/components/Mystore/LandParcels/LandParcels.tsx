@@ -7,6 +7,7 @@ import { getParcelsByOwner } from "../../../hooks/api";
 import { useAppSelector } from "../../../store/hooks";
 import { selectLoginAddress } from "../../../store/auth/selectors";
 import { useNavigate } from "react-router";
+import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
 
 export default function LandParcels() {
   const classes = LandParcelsStyle();
@@ -15,10 +16,8 @@ export default function LandParcels() {
   const loginAddress = useAppSelector(selectLoginAddress);
   const navigate = useNavigate();
 
-  const handleNavigate = (url: string) => {
-    navigate(
-      `/contracts/0xCf7c8979AFF022Aa478ee4D7BA538cd01FDB7DC0/tokens/${url}/parcel_detail`
-    );
+  const handleNavigate = (tokenId: string) => {
+    navigate(`/contracts/${SpaceProxyAddress}/tokens/${tokenId}/parcel_detail`);
   };
 
   useEffect(() => {

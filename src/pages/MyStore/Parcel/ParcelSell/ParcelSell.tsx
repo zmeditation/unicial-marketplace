@@ -1,6 +1,7 @@
 /** @format */
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { BigNumber, ethers } from "ethers";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import ActionButton from "../../../../components/Base/ActionButton";
@@ -20,6 +21,23 @@ import {
 } from "@material-ui/pickers";
 
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import {
+  MarketplaceAddress,
+  MarketplaceAbi,
+} from "../../../../config/contracts/MarketPlaceContract";
+
+import {
+  SpaceProxyAddress,
+  SpaceRegistryAbi,
+} from "../../../../config/contracts/SpaceRegistryContract";
+
+declare var window: any;
+var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 
 const ParcelSell = () => {
   const classes = useStyles();
@@ -28,6 +46,7 @@ const ParcelSell = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(
     new Date("2022-01-02")
   );
+  const { contractaddress, tokensid } = useParams();
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
@@ -36,6 +55,57 @@ const ParcelSell = () => {
   var isSignIn = 1;
 
   const handleChange = () => {};
+
+  // occur a transaction to create sale order on marketplace for this parcel
+  const handleCreateOrder = async () => {
+    console.log("contractaddress: ", contractaddress);
+    console.log("tokensid: ", tokensid);
+
+    signer = generateSigner(window.ethereum);
+    marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    spaceRegistryContract = generateContractInstance(
+      SpaceProxyAddress,
+      SpaceRegistryAbi,
+      signer
+    );
+
+    // check if this token is approved for marketplace contract
+    let isApproved = false;
+    isApproved = await spaceRegistryContract.isAuthorized(
+      MarketplaceAddress,
+      BigNumber.from(tokensid)
+    );
+    if (!isApproved) {
+      // approve marketplace contract to transfer this asset
+
+      window.alert(
+        "You have to first approve the marketplace contract to operate your asset."
+      );
+      let approveMarketTx = await spaceRegistryContract.approve(
+        MarketplaceAddress,
+        tokensid
+      );
+      await approveMarketTx.wait();
+
+      window.alert(
+        "Successfully approved. You have to confirm order creation transaction to finally publich your order."
+      );
+    }
+
+    let createOrderTx = await marketplaceContract.createOrder(
+      contractaddress,
+      BigNumber.from(tokensid),
+      BigNumber.from(10000), // price in wei
+      BigNumber.from(100000000000) // expireAt to UTC timestamp
+    );
+
+    await createOrderTx.wait();
+    window.alert("Sales order is successfully published.");
+  };
 
   return (
     <div className={classes.root}>
@@ -48,7 +118,8 @@ const ParcelSell = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -65,10 +136,10 @@ const ParcelSell = () => {
                       </div>
                       <FormControl>
                         <StyledInput
-                          placeholder='0'
+                          placeholder="0"
                           onChange={handleChange}
                           startAdornment={
-                            <InputAdornment position='start'>
+                            <InputAdornment position="start">
                               <img src={settingicon} />
                             </InputAdornment>
                           }
@@ -84,10 +155,10 @@ const ParcelSell = () => {
                           <KeyboardDatePicker
                             className={classes.datePicker}
                             disableToolbar
-                            variant='inline'
-                            format='MM/dd/yyyy'
-                            margin='normal'
-                            id='date-picker-inline'
+                            variant="inline"
+                            format="MM/dd/yyyy"
+                            margin="normal"
+                            id="date-picker-inline"
                             value={selectedDate}
                             onChange={handleDateChange}
                             KeyboardButtonProps={{
@@ -105,12 +176,17 @@ const ParcelSell = () => {
               {/* buttons */}
               <div className={classes.buttons}>
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
+                  onClick={() => navigate(-1)}
+                >
                   {t("Cancel")}
                 </ActionButton>
-                <ActionButton color='light' className={classes.bidchange}>
+                <ActionButton
+                  color="light"
+                  className={classes.bidchange}
+                  onClick={handleCreateOrder}
+                >
                   {t("List for sale")} &nbsp;
                   <img src={raiseicon} />
                 </ActionButton>
