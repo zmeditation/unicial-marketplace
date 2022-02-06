@@ -28,6 +28,7 @@ import { Box } from "@material-ui/core";
 import ParcelDetail from "../../pages/MyStore/Parcel/ParcelDetail/ParcelDetail";
 import UpdateMetadata from "../../pages/MyStore/Estate/UpdateMetadata/UpdateMetadata";
 import UpdateManager from "../../pages/MyStore/Estate/UpdateManager/UpdateManager";
+import UpdateOperate from "../../pages/MyStore/Estate/UpdateOperate/UpdateOperate";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -102,6 +103,10 @@ export default function Layout() {
           <Route
             path="/contracts/:contractaddress/tokens/:estateid/estate_updatemanager"
             element={<UpdateManager />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/estate_updateoperate"
+            element={<UpdateOperate />}
           />
           <Route path="/signin" element={<ToLands />}>
             <Route path="/signin" element={<SignIn />} />
