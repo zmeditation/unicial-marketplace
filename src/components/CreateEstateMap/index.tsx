@@ -42,33 +42,23 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
 
-      if (tile.owner === mineAddress && tile.estatename === undefined) {
+      if (tile.owner === mineAddress && tile.estateId === undefined) {
         let newSelectedTile: string[] = [];
-        const selectedIndex = selectedTile?.indexOf(getCoords(x, y));
-
+        const selectedIndex = selectedTile.indexOf(getCoords(x, y));
         if (selectedIndex === -1) {
-          const selectedIndexLeft = selectedTile?.indexOf(getCoords(x - 1, y));
-          const selectedIndexTop = selectedTile?.indexOf(getCoords(x, y - 1));
-          const selectedIndexRight = selectedTile?.indexOf(getCoords(x + 1, y));
-          const selectedIndexBottom = selectedTile?.indexOf(
-            getCoords(x, y + 1)
+          newSelectedTile = newSelectedTile.concat(
+            selectedTile,
+            getCoords(x, y)
           );
-          if (
-            selectedIndexLeft !== -1 ||
-            selectedIndexTop !== -1 ||
-            selectedIndexRight !== -1 ||
-            selectedIndexBottom !== -1 ||
-            selectedTile.length === 0
-          ) {
-            newSelectedTile = newSelectedTile.concat(
-              selectedTile,
-              getCoords(x, y)
-            );
-          } else {
-            newSelectedTile = selectedTile;
-          }
-        } else {
-          newSelectedTile = selectedTile;
+        } else if (selectedIndex === 0) {
+          newSelectedTile = newSelectedTile.concat(selectedTile.slice(1));
+        } else if (selectedIndex === selectedTile.length - 1) {
+          newSelectedTile = newSelectedTile.concat(selectedTile.slice(0, -1));
+        } else if (selectedIndex > 0) {
+          newSelectedTile = newSelectedTile.concat(
+            selectedTile.slice(0, selectedIndex),
+            selectedTile.slice(selectedIndex + 1)
+          );
         }
         dispatch(getestates(newSelectedTile));
       }
@@ -99,7 +89,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (tile?.owner && tile?.estatename !== undefined) {
+      if (tile?.owner && tile?.estateId !== undefined) {
         return true;
       } else return false;
     },
@@ -125,7 +115,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
       if (
         tile?.owner &&
         tile?.owner === mineAddress &&
-        tile?.estatename !== undefined
+        tile?.estateId !== undefined
       ) {
         return true;
       } else return false;

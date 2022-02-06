@@ -1,3 +1,5 @@
+/** @format */
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { EstateStyle } from "./EstateSelectStyles";
@@ -12,6 +14,7 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 
 import { selectestates } from "../../../../store/selectedestates/selectors";
 import { getestates } from "../../../../store/selectedestates";
+import { showAlert } from "../../../../store/alert";
 
 import { useTranslation } from "react-i18next";
 import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
@@ -22,6 +25,10 @@ export default function EstatesSelect() {
   const estates = useAppSelector(selectestates);
   const { t } = useTranslation();
   const [width, setWidth] = useState(0);
+  const [result, setResult] = useState(true);
+
+  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
+
   const handleResize = () => {
     if (window.innerWidth > 1200) {
       setWidth(1064);
@@ -37,7 +44,33 @@ export default function EstatesSelect() {
   };
 
   const handleContinue = () => {
-    navigate("/account/estate/createestate");
+    let status = true;
+    for (let i = 0; i < estates.length; i++) {
+      var x: number = +estates[i].substring(0, estates[i].indexOf(","));
+      var y: number = +estates[i].substring(estates[i].indexOf(",") + 1);
+
+      const leftIndex = estates.indexOf(getCoords(x - 1, y));
+      const topIndex = estates.indexOf(getCoords(x, y - 1));
+      const rightIndex = estates.indexOf(getCoords(x + 1, y));
+      const bottomIndex = estates.indexOf(getCoords(x, y + 1));
+
+      if (leftIndex < 0 && topIndex < 0 && rightIndex < 0 && bottomIndex < 0) {
+        status = false;
+      }
+    }
+
+    if (estates.length === 1) {
+      status = true;
+    }
+
+    status === true
+      ? navigate("/account/estate/createestate")
+      : dispatch(
+          showAlert({
+            message: "You have to select correct parcels!",
+            severity: "error",
+          })
+        );
   };
 
   const handleClear = () => {

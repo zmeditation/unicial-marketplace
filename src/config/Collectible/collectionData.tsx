@@ -41,7 +41,7 @@ export const networkData = [
   },
   {
     index: 2,
-    content: "Ethereum",
+    content: "Zilionixx",
   },
   {
     index: 3,
