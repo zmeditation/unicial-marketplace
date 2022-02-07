@@ -1,5 +1,10 @@
+/** @format */
+
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import FormControl from "@material-ui/core/FormControl";
+import { BigNumber, ethers } from "ethers";
+
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
 import NeedSignIn from "../../../NeedSignIn";
@@ -9,16 +14,71 @@ import raiseicon from "../../../../assets/svg/bid_raiseicon.svg";
 import { Grid } from "@material-ui/core";
 
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+
+import { selectLoginAddress } from "../../../../store/auth/selectors";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+
+import {
+  MarketplaceAddress,
+  MarketplaceAbi,
+} from "../../../../config/contracts/MarketPlaceContract";
+
+import {
+  SpaceProxyAddress,
+  SpaceRegistryAbi,
+} from "../../../../config/contracts/SpaceRegistryContract";
+import { useAppSelector } from "../../../../store/hooks";
+
+declare var window: any;
+var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 
 const ParcelTransfer = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [transferAddress, setTransferAddress] = useState("");
+  const [isCorrectAddress, setIsCorrectAddress] = useState(false);
+  const { contractaddress, tokensid } = useParams();
+  const customerAddress = useAppSelector(selectLoginAddress);
+
+  const handleTransferOrder = async () => {
+    console.log("contractaddress: ", contractaddress);
+    console.log("tokensid: ", tokensid);
+
+    signer = generateSigner(window.ethereum);
+    marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    spaceRegistryContract = generateContractInstance(
+      SpaceProxyAddress,
+      SpaceRegistryAbi,
+      signer
+    );
+
+    // check if this token is approved for marketplace contract
+    let transferTx = await spaceRegistryContract.safeTransferFrom(
+      customerAddress,
+      transferAddress,
+      BigNumber.from(tokensid)
+    );
+    await transferTx.wait();
+    window.alert("Transfer order is successfully published.");
+  };
 
   var isSignIn = 1;
 
-  const handleChange = () => {};
-
+  const handleChange = (e: any) => {
+    setTransferAddress(e.target.value);
+  };
+  useEffect(() => {
+    console.log(transferAddress);
+  }, [transferAddress]);
   return (
     <div className={classes.root}>
       {isSignIn === 1 ? (
@@ -46,7 +106,10 @@ const ParcelTransfer = () => {
                         {t("RECEPIENT ADDRESS")}
                       </div>
                       <FormControl>
-                        <StyledInput placeholder='0x' onChange={handleChange} />
+                        <StyledInput
+                          placeholder='0x'
+                          onChange={(e) => handleChange(e)}
+                        />
                       </FormControl>
                     </Grid>
                   </Grid>
@@ -55,18 +118,28 @@ const ParcelTransfer = () => {
               </div>
               {/* buttons */}
               <div className={classes.buttons}>
+                {isCorrectAddress === true ? (
+                  <ActionButton
+                    color='light'
+                    className={classes.bidchange}
+                    onClick={handleTransferOrder}>
+                    {t("Transfer")} &nbsp;
+                    <img src={raiseicon} alt='raiseicon' />
+                  </ActionButton>
+                ) : (
+                  <ActionButton
+                    disabled
+                    color='light'
+                    className={classes.bidchange}>
+                    {t("Transfer")} &nbsp;
+                    <img src={raiseicon} alt='raiseicon' />
+                  </ActionButton>
+                )}
                 <ActionButton
                   color='dark'
                   className={classes.cancelchange}
                   onClick={() => navigate(-1)}>
                   {t("Cancel")}
-                </ActionButton>
-                <ActionButton
-                  disabled
-                  color='light'
-                  className={classes.bidchange}>
-                  {t("Transfer")} &nbsp;
-                  <img src={raiseicon} alt='raiseicon' />
                 </ActionButton>
               </div>
             </div>

@@ -181,6 +181,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   bidchange: {
+    minWidth: "160px",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#FFFFFF",
+    [theme.breakpoints.down(769)]: {
+      order: 1,
+    },
+  },
+  cancelchange: {
     marginLeft: "16px",
     minWidth: "160px",
     fontStyle: "normal",
@@ -189,19 +200,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "19px",
     color: "#FFFFFF",
     [theme.breakpoints.down(769)]: {
-      marginLeft: "0px",
-      order: 1,
-    },
-  },
-  cancelchange: {
-    minWidth: "160px",
-    fontStyle: "normal",
-    fontWeight: 500,
-    fontSize: "16px",
-    lineHeight: "19px",
-    color: "#FFFFFF",
-    [theme.breakpoints.down(769)]: {
       order: 2,
+      marginLeft: "0px",
       marginTop: "15px",
     },
   },
