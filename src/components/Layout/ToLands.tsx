@@ -6,6 +6,6 @@ import { selectLoginAddress } from "../../store/auth/selectors";
 const ToLands = () => {
   const signStage = useAppSelector(selectLoginAddress);
 
-  return signStage === "" ? <Outlet /> : <Navigate to="/lands" />;
+  return signStage === "" ? <Outlet /> : <Navigate to="/account?section=collections" />;
 };
 export default ToLands;

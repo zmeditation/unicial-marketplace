@@ -41,8 +41,7 @@ export default function LandParcels() {
                   locationbtnX={ownParcel.x}
                   locationbtnY={ownParcel.y}
                   landName="Plaza Area Sale"
-                  category="Ethereum"
-                  price={3999}
+                  category="Zilionixx"
                   onClick={() => handleNavigate(ownParcel.tokenId)}
                 />
               </Grid>
@@ -54,8 +53,7 @@ export default function LandParcels() {
                   locationbtnX={ownParcel.x}
                   locationbtnY={ownParcel.y}
                   landName="Plaza Area Sale"
-                  category="Ethereum"
-                  price={3999}
+                  category="Zilionixx"
                   onClick={() => handleNavigate(ownParcel.tokenId)}
                 />
               </Grid>

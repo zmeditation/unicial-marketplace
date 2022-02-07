@@ -49,8 +49,7 @@ export default function LandEstates() {
                 locationbtnX={23}
                 locationbtnY={12}
                 landName='Plaza Area Sale'
-                category='Ethereum'
-                price={3999}
+                category='Zilionixx'
                 onClick={() => handleNavigate(item.estateId)}
               />
             </Grid>
@@ -61,8 +60,7 @@ export default function LandEstates() {
             locationbtnX={23}
             locationbtnY={12}
             landName='Plaza Area Sale'
-            category='Ethereum'
-            price={3999}
+            category='Zilionixx'
             onClick={() =>
               handleNavigate("340285089179873830971082314428627665602691657")
             }
@@ -73,8 +71,7 @@ export default function LandEstates() {
             locationbtnX={23}
             locationbtnY={12}
             landName='Plaza Area Sale'
-            category='Ethereum'
-            price={3999}
+            category='Zilionixx'
           />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
@@ -82,8 +79,7 @@ export default function LandEstates() {
             locationbtnX={23}
             locationbtnY={12}
             landName='Plaza Area Sale'
-            category='Ethereum'
-            price={3999}
+            category='Zilionixx'
           />
         </Grid>
       </Grid>

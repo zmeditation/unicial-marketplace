@@ -13,7 +13,7 @@ interface LandCardProps {
   locationbtnY: number;
   landName: string;
   category: string;
-  price: number;
+  // price?: number;
   onClick?: () => void;
 }
 
@@ -22,7 +22,7 @@ export default function LandCard({
   locationbtnY,
   landName,
   category,
-  price,
+  // price,
   onClick,
 }: LandCardProps) {
   const classes = LandCardStyle();
@@ -42,10 +42,10 @@ export default function LandCard({
         <div className={classes.productName}>{landName}</div>
         <div className={classes.bottom}>
           <div className={classes.category}>{category}</div>
-          <div className={classes.priceContainer}>
+          {/* <div className={classes.priceContainer}>
             <img src={cubeSvg} className={classes.icon} />
             <div className={classes.price}>{price}</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
