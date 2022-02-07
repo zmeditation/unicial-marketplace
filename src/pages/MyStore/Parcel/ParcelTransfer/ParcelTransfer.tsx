@@ -61,7 +61,28 @@ const ParcelTransfer = () => {
       signer
     );
 
-    // check if this token is approved for marketplace contract
+    let isApproved = false;
+    isApproved = await spaceRegistryContract.isAuthorized(
+      MarketplaceAddress,
+      BigNumber.from(tokensid)
+    );
+    if (!isApproved) {
+      // approve marketplace contract to transfer this asset
+
+      window.alert(
+        "You have to first approve the marketplace contract to operate your asset."
+      );
+      let approveMarketTx = await spaceRegistryContract.approve(
+        MarketplaceAddress,
+        tokensid
+      );
+      await approveMarketTx.wait();
+
+      window.alert(
+        "Successfully approved. You have to confirm order creation transaction to finally publich your order."
+      );
+    }
+
     let transferTx = await spaceRegistryContract.safeTransferFrom(
       customerAddress,
       transferAddress,
