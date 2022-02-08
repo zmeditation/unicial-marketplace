@@ -49,6 +49,7 @@ export default function Layout() {
 
   window.ethereum.on("accountsChanged", function (account: Array<string>) {
     dispatch(setloginAddress(account[0]))
+    window.location.href = "/account"
   });
 
   return (

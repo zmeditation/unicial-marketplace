@@ -163,6 +163,12 @@ const ParcelSell = () => {
       BigNumber.from(tokensid)
     );
     await cancelOrderTx.wait();
+    dispatch(
+      showAlert({
+        message: "Sales order cancel is successfully published.",
+        severity: "success",
+      })
+    );
   };
 
   return (
