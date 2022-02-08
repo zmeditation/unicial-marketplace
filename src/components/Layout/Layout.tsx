@@ -29,6 +29,8 @@ import ParcelDetail from "../../pages/MyStore/Parcel/ParcelDetail/ParcelDetail";
 import UpdateMetadata from "../../pages/MyStore/Estate/UpdateMetadata/UpdateMetadata";
 import UpdateManager from "../../pages/MyStore/Estate/UpdateManager/UpdateManager";
 import UpdateOperate from "../../pages/MyStore/Estate/UpdateOperate/UpdateOperate";
+import { setloginAddress } from "../../store/auth";
+import { useAppDispatch } from "../../store/hooks";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -39,8 +41,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+declare var window: any;
+
 export default function Layout() {
   const classes = useStyles();
+  const dispatch = useAppDispatch()
+
+  window.ethereum.on("accountsChanged", function (account: Array<string>) {
+    dispatch(setloginAddress(account[0]))
+  });
 
   return (
     <Router>
