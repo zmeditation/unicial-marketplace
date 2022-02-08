@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     transform: "rotate(-180deg)",
   },
   notificationText: {
-    margin: "10px 70px 10px 15px",
+    margin: "10px 0px",
   },
   notificationTitle: {
     fontStyle: "normal",
@@ -87,6 +87,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: "#FF7C4C",
   },
   notificationDescription: {
+    maxWidth: "270px",
+    overflowWrap: "break-word",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: "14px",

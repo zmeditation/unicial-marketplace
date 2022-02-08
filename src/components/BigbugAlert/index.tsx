@@ -1,8 +1,15 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ActionButton from "../Base/ActionButton";
 import { bigbugAlertStatus } from "../../store/bigbugalert/selectors";
 import { useTranslation } from "react-i18next";
+import { nanoid } from "nanoid";
+import { ethers } from "ethers";
+import { CHAIN_INFO } from "../../config/constant";
+import { setloginAddress } from "../../store/auth";
+import { useNavigate } from "react-router";
+import { showBigbugAlert } from "../../store/bigbugalert";
+import { showAlert } from "../../store/alert";
 
 const useStyles = makeStyles((theme: Theme) => ({
   displayNone: {
@@ -75,14 +82,136 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+declare var window: any;
+var provider: any;
+var signer: any;
 
+const generateSignature = () => {
+  let currentTimestamp: string = Math.floor(
+    new Date().getTime() / 1000
+  ).toString();
+  let rndString: string = nanoid();
+  let signature: string =
+    "Unicial: Verify your signin:\n\n" +
+    "  - Current UTC timestamp: " +
+    currentTimestamp +
+    "\n" +
+    "  - Signature: " +
+    rndString;
+
+  return signature;
+};
 
 export default function BigbugAlert() {
   const classes = useStyles();
   const showBigbug = useAppSelector(bigbugAlertStatus);
   const { t } = useTranslation();
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  var loginAddress: string;
 
-  
+
+  const getLoginAddress = async (signer: any, msgToSign: string) => {
+    let signature = await signer.signMessage(msgToSign);
+
+    // Make sure you arrayify the message if you want the bytes to be used as the message
+    const recoveredAddress = ethers.utils.verifyMessage(msgToSign, signature);
+
+    dispatch(setloginAddress(recoveredAddress));
+    dispatch(showBigbugAlert(false))
+    navigate("/auction");
+    return recoveredAddress;
+  };
+
+  const handleSignIn = async () => {
+    if (window.ethereum) {
+      provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+      await provider.send("eth_requestAccounts", []);
+      signer = provider.getSigner();
+    } else {
+      dispatch(
+        showAlert({
+          message: "Metamask seem to be not installed. Please install metamask first and try again.",
+          severity: "error",
+        })
+      );
+    }
+
+    // get current network id
+    const { chainId } = await provider.getNetwork();
+    let znxChainId: number = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
+
+    // check current chain id is equal to Zilionixx Mainnet
+    if (chainId === znxChainId) {
+      loginAddress = await getLoginAddress(signer, generateSignature());
+      // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
+      dispatch(
+        showAlert({
+          message: `Recovered address: ${loginAddress}`,
+          severity: "success",
+        })
+      );
+    } else {
+      let ethereum = window.ethereum;
+      try {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: CHAIN_INFO.TESTNET.chainId }],
+        });
+
+        // switch provider and signer to zilionixx network
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        signer = provider.getSigner();
+
+        loginAddress = await getLoginAddress(signer, generateSignature());
+        // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
+        dispatch(
+          showAlert({
+            message: `Switched chain done & Recovered address: ${loginAddress}`,
+            severity: "success",
+          })
+        );
+      } catch (switchError: any) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        if (switchError.code === 4902) {
+          try {
+            await ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: CHAIN_INFO.TESTNET.chainId,
+                  chainName: CHAIN_INFO.TESTNET.chainName,
+                  rpcUrls: CHAIN_INFO.TESTNET.rpcUrls /* ... */,
+                },
+              ],
+            });
+
+            // switch provider and signer to zilionixx network
+            provider = new ethers.providers.Web3Provider(window.ethereum);
+            signer = provider.getSigner();
+
+            loginAddress = await getLoginAddress(signer, generateSignature());
+            // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
+            dispatch(
+              showAlert({
+                message: `Add chain done & Recovered address: ${loginAddress}`,
+                severity: "success",
+              })
+            );
+          } catch (addError) {
+            // handle "add" error
+            dispatch(
+              showAlert({
+                message: "Can not add Zilionixx network. Please add Zilionixx network.",
+                severity: "error",
+              })
+            );
+          }
+        }
+        // handle other "switch" errors
+      }
+    }
+  };
 
   return (
     <>
@@ -95,7 +224,7 @@ export default function BigbugAlert() {
             &nbsp; &nbsp;
             {t("to use this app, please switch your network to continue")}.
           </div>
-          <ActionButton color='light' className={classes.bidchange}>
+          <ActionButton color='light' className={classes.bidchange} onClick={handleSignIn}>
             {t("SWITCH TO Zilionixx MAINNET")}
           </ActionButton>
         </div>

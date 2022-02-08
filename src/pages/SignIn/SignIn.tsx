@@ -10,8 +10,8 @@ import { CHAIN_INFO } from "../../config/constant";
 import { setloginAddress } from "../../store/auth/actions";
 import { useAppDispatch } from "../../store/hooks";
 import { useTranslation } from "react-i18next";
+import { showAlert } from "../../store/alert";
 import { useNavigate } from "react-router-dom";
-
 
 declare var window: any;
 var provider: any;
@@ -57,8 +57,11 @@ export default function SignIn() {
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
     } else {
-      window.alert(
-        "Metamask seem to be not installed. Please install metamask first and try again."
+      dispatch(
+        showAlert({
+          message: "Metamask seem to be not installed. Please install metamask first and try again.",
+          severity: "error",
+        })
       );
     }
 
@@ -70,7 +73,12 @@ export default function SignIn() {
     if (chainId === znxChainId) {
       loginAddress = await getLoginAddress(signer, generateSignature());
       // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
-      window.alert("Recovered address: " + loginAddress);
+      dispatch(
+        showAlert({
+          message: `Recovered address: ${loginAddress}`,
+          severity: "success",
+        })
+      );
     } else {
       let ethereum = window.ethereum;
       try {
@@ -85,8 +93,11 @@ export default function SignIn() {
 
         loginAddress = await getLoginAddress(signer, generateSignature());
         // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
-        window.alert(
-          "Switched chain done & Recovered address: " + loginAddress
+        dispatch(
+          showAlert({
+            message: `Switched chain done & Recovered address: ${loginAddress}`,
+            severity: "success",
+          })
         );
       } catch (switchError: any) {
         // This error code indicates that the chain has not been added to MetaMask.
@@ -109,11 +120,19 @@ export default function SignIn() {
 
             loginAddress = await getLoginAddress(signer, generateSignature());
             // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
-            window.alert("Add chain done & Recovered address: " + loginAddress);
+            dispatch(
+              showAlert({
+                message: `Add chain done & Recovered address: ${loginAddress}`,
+                severity: "success",
+              })
+            );
           } catch (addError) {
             // handle "add" error
-            window.alert(
-              "Can not add Zilionixx network. Please add Zilionixx network."
+            dispatch(
+              showAlert({
+                message: "Can not add Zilionixx network. Please add Zilionixx network.",
+                severity: "error",
+              })
             );
           }
         }
