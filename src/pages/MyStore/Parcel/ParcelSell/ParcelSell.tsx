@@ -87,6 +87,15 @@ const ParcelSell = () => {
       );
       navigate("/signin");
     }
+
+    if (price === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to set price value to sell.",
+          severity: "error",
+        })
+      );
+    }
     signer = generateSigner(window.ethereum);
     marketplaceContract = generateContractInstance(
       MarketplaceAddress,

@@ -90,10 +90,9 @@ const ActionButton = ({
         className={clsx(classes.root, className, {
           [classes.darkColor]: color === "dark",
           [classes.lightColor]: color === "light",
-          [classes.disablestatus]: disabled,
+          [classes.disablestatus]: disabled === true,
         })}
-        onClick={onClick}
-      >
+        onClick={onClick}>
         <span className={classes.text}>{children}</span>
       </div>
     </>
