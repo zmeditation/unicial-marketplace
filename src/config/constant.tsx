@@ -4,7 +4,7 @@ export const tabs = {
   land: 1,
 };
 
-export const showMoreCount = 5
+export const showMoreCount = 6
 
 export const headerId = {
   marketplace: 1,

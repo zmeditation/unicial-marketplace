@@ -78,9 +78,16 @@ const ParcelSell = () => {
     console.log("tokensid: ", tokensid);
     console.log("customerAddress: ", customerAddress);
 
-    if (customerAddress.length !== 0) {
-      signer = generateSigner(window.ethereum);
+    if (customerAddress.length === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to connect Meta mask wallet.",
+          severity: "error",
+        })
+      );
+      navigate("/signin");
     }
+    signer = generateSigner(window.ethereum);
     marketplaceContract = generateContractInstance(
       MarketplaceAddress,
       MarketplaceAbi,
@@ -121,7 +128,6 @@ const ParcelSell = () => {
         })
       );
     }
-    console.log(timeStamp);
 
     let createOrderTx = await marketplaceContract.createOrder(
       contractaddress,

@@ -8,6 +8,8 @@ import { useAppSelector } from "../../../store/hooks";
 import { selectLoginAddress } from "../../../store/auth/selectors";
 import { useNavigate } from "react-router";
 import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
+import { showMoreCount } from "../../../config/constant";
+
 
 export default function LandParcels() {
   const classes = LandParcelsStyle();
@@ -35,7 +37,7 @@ export default function LandParcels() {
       <Grid container spacing={2}>
         {cardStatus === 1
           ? ownParcels &&
-            ownParcels.slice(0, 6).map((ownParcel: any, index: any) => (
+            ownParcels.slice(0, showMoreCount).map((ownParcel: any, index: any) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <LandCard
                   locationbtnX={ownParcel.x}
