@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   notificationContainer: {
     marginTop: "10px",
     width: "407px",
-    height: "60px",
+    minHeight: "103px",
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "7px",
@@ -48,8 +48,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
   },
   notificationPicture_error: {
-    width: "44px",
-    height: "44px",
+    minWidth: "44px",
+    minHeight: "44px",
     left: "1206px",
     top: "175px",
     background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
@@ -70,8 +70,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     transform: "rotate(-180deg)",
   },
   notificationText: {
-    marginLeft: "15px",
-    marginRight: "70px",
+    margin: "10px 70px 10px 15px",
   },
   notificationTitle: {
     fontStyle: "normal",

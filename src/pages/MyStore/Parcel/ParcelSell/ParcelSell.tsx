@@ -16,6 +16,8 @@ import calendar_icon from "../../../../assets/svg/calendar_icon.svg";
 import { Grid } from "@material-ui/core";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
+import { selectLoginAddress } from "../../../../store/auth/selectors";
+import { showAlert } from "../../../../store/alert";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -37,6 +39,7 @@ import {
   SpaceProxyAddress,
   SpaceRegistryAbi,
 } from "../../../../config/contracts/SpaceRegistryContract";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 
 declare var window: any;
 var signer: any, marketplaceContract: any, spaceRegistryContract: any;
@@ -44,15 +47,24 @@ var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 const ParcelSell = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [price, setPrice] = useState(0);
+  const customerAddress = useAppSelector(selectLoginAddress);
+  const [timeStamp, setTimeStamp] = useState(0);
 
   const { contractaddress, tokensid } = useParams();
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
   };
+
+  useEffect(() => {
+    let time =
+      selectedDate !== null && Math.round(selectedDate.getTime() / 1000);
+    time !== false && setTimeStamp(time);
+  }, [selectedDate]);
 
   var isSignIn = 1;
 
@@ -64,8 +76,11 @@ const ParcelSell = () => {
   const handleCreateOrder = async () => {
     console.log("contractaddress: ", contractaddress);
     console.log("tokensid: ", tokensid);
+    console.log("customerAddress: ", customerAddress);
 
-    signer = generateSigner(window.ethereum);
+    if (customerAddress.length !== 0) {
+      signer = generateSigner(window.ethereum);
+    }
     marketplaceContract = generateContractInstance(
       MarketplaceAddress,
       MarketplaceAbi,
@@ -85,9 +100,12 @@ const ParcelSell = () => {
     );
     if (!isApproved) {
       // approve marketplace contract to transfer this asset
-
-      window.alert(
-        "You have to first approve the marketplace contract to operate your asset."
+      dispatch(
+        showAlert({
+          message:
+            "You have to first approve the marketplace contract to operate your asset.",
+          severity: "error",
+        })
       );
       let approveMarketTx = await spaceRegistryContract.approve(
         MarketplaceAddress,
@@ -95,48 +113,50 @@ const ParcelSell = () => {
       );
       await approveMarketTx.wait();
 
-      window.alert(
-        "Successfully approved. You have to confirm order creation transaction to finally publich your order."
+      dispatch(
+        showAlert({
+          message:
+            "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+          severity: "success",
+        })
       );
     }
+    console.log(timeStamp);
 
     let createOrderTx = await marketplaceContract.createOrder(
       contractaddress,
       BigNumber.from(tokensid),
-      BigNumber.from(price * Math.pow(10, 18)), // price in wei
-      BigNumber.from(
-        selectedDate !== null &&
-          Math.floor(selectedDate.getTime() / 1000) * Math.pow(10, 18)
-      ) // expireAt to UTC timestamp
+      ethers.utils.parseEther(price.toString()), // price in wei
+      BigNumber.from(timeStamp.toString()) // expireAt to UTC timestamp
     );
 
     await createOrderTx.wait();
-    window.alert("Sales order is successfully published.");
+    dispatch(
+      showAlert({
+        message: "Sales order is successfully published.",
+        severity: "success",
+      })
+    );
   };
 
   const handleCancelOrder = async () => {
-    // signer = generateSigner(window.ethereum);
-    // marketplaceContract = generateContractInstance(
-    //   MarketplaceAddress,
-    //   MarketplaceAbi,
-    //   signer
-    // );
-    // spaceRegistryContract = generateContractInstance(
-    //   SpaceProxyAddress,
-    //   SpaceRegistryAbi,
-    //   signer
-    // );
-    // // check if this token is approved for marketplace contract
-    // let cancelOrderTx = await marketplaceContract.safeTransferFrom(
-    //   contractaddress,
-    //   BigNumber.from(tokensid),
-    //   BigNumber.from(price * Math.pow(10, 18)), // price in wei
-    //   BigNumber.from(
-    //     selectedDate !== null &&
-    //       Math.floor(selectedDate.getTime() / 1000) * Math.pow(10, 18)
-    //   ) // expireAt to UTC timestamp
-    // );
-    // await cancelOrderTx.wait();
+    signer = generateSigner(window.ethereum);
+    marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    spaceRegistryContract = generateContractInstance(
+      SpaceProxyAddress,
+      SpaceRegistryAbi,
+      signer
+    );
+    // check if this token is approved for marketplace contract
+    let cancelOrderTx = await marketplaceContract.cancelOrder(
+      contractaddress,
+      BigNumber.from(tokensid)
+    );
+    await cancelOrderTx.wait();
   };
 
   return (

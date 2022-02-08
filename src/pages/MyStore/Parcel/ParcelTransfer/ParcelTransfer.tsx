@@ -117,7 +117,7 @@ const ParcelTransfer = () => {
             <div className={classes.rightCard}>
               <div className={classes.title}>{t("Transfer Parcels")}</div>
               <div className={classes.subtitle}>
-                {t("Your are not the owner of Roads.")}
+                {t("You are not the owner of Roads.")}
               </div>
               <div className={classes.form_field}>
                 <div className={classes.price_container}>

@@ -13,7 +13,7 @@ export default function LandParcels() {
   const classes = LandParcelsStyle();
   const [ownParcels, setOwnParcels] = useState<[]>();
   const [cardStatus, setcardStatus] = useState(1);
-  const loginAddress = useAppSelector(selectLoginAddress);
+  const customerAddress = useAppSelector(selectLoginAddress);
   const navigate = useNavigate();
 
   const handleNavigate = (tokenId: string) => {
@@ -21,7 +21,7 @@ export default function LandParcels() {
   };
 
   useEffect(() => {
-    getParcelsByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
+    getParcelsByOwner(customerAddress).then(
       (parcels) => {
         setOwnParcels(parcels);
       }
