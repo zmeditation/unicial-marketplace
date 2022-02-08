@@ -89,7 +89,7 @@ export const EstateStyle = makeStyles((theme: Theme) =>
 
     buttons: {
       display: "flex",
-      width: "400px",
+
       [theme.breakpoints.down(769)]: {
         width: "100%",
         display: "grid",
