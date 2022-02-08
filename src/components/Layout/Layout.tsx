@@ -16,6 +16,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Notification from "../Notifications";
 import Spinner from "../Spinner";
+import BigbugAlert from "../BigbugAlert";
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 import ParcelSell from "../../pages/MyStore/Parcel/ParcelSell/ParcelSell";
@@ -29,8 +30,10 @@ import ParcelDetail from "../../pages/MyStore/Parcel/ParcelDetail/ParcelDetail";
 import UpdateMetadata from "../../pages/MyStore/Estate/UpdateMetadata/UpdateMetadata";
 import UpdateManager from "../../pages/MyStore/Estate/UpdateManager/UpdateManager";
 import UpdateOperate from "../../pages/MyStore/Estate/UpdateOperate/UpdateOperate";
-import { setloginAddress } from "../../store/auth";
+import { setloginAddress, setlogoutAddress } from "../../store/auth";
 import { useAppDispatch } from "../../store/hooks";
+import { CHAIN_INFO } from "../../config/constant";
+import { showBigbugAlert } from "../../store/bigbugalert";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -50,6 +53,15 @@ export default function Layout() {
   window.ethereum.on("accountsChanged", function (account: Array<string>) {
     dispatch(setloginAddress(account[0]))
     window.location.href = "/account"
+  });
+
+  window.ethereum.on("chainChanged", function (chainId: string) {
+    let projectChainId = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
+    let changedChainId = parseInt(chainId, 16);
+    if ( changedChainId !== projectChainId){
+      dispatch(setlogoutAddress());
+      dispatch(showBigbugAlert(true))   
+    }
   });
 
   return (
@@ -127,6 +139,7 @@ export default function Layout() {
         </Routes>
         <Footer />
         <Notification />
+        <BigbugAlert/>
         <Spinner />
       </Box>
     </Router>

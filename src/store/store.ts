@@ -6,6 +6,8 @@ import testReducer from "./Test/index";
 import authReducer from "./auth/index";
 import alertReducer from "./alert/index";
 import spinnerReducer from "./spinner/index";
+import bigbugAlertReducer from "./bigbugalert/index";
+
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +17,7 @@ export const store = configureStore({
     auth: authReducer,
     alert: alertReducer,
     selectedestates: mapestatedataReducer,
+    bigbugAlert:bigbugAlertReducer,
   },
 });
 
