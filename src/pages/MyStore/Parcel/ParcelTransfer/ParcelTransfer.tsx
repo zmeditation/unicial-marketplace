@@ -1,5 +1,3 @@
-/** @format */
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import FormControl from "@material-ui/core/FormControl";
@@ -17,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import { selectLoginAddress } from "../../../../store/auth/selectors";
+import { showAlert } from "../../../../store/alert";
 import {
   generateContractInstance,
   generateSigner,
@@ -31,7 +30,7 @@ import {
   SpaceProxyAddress,
   SpaceRegistryAbi,
 } from "../../../../config/contracts/SpaceRegistryContract";
-import { useAppSelector } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 
 declare var window: any;
 var signer: any, marketplaceContract: any, spaceRegistryContract: any;
@@ -39,11 +38,21 @@ var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 const ParcelTransfer = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const [transferAddress, setTransferAddress] = useState("");
   const [isCorrectAddress, setIsCorrectAddress] = useState(false);
   const { contractaddress, tokensid } = useParams();
   const customerAddress = useAppSelector(selectLoginAddress);
+
+  const isAddress = (address: string) => {
+    try {
+      ethers.utils.getAddress(address);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  };
 
   const handleTransferOrder = async () => {
     console.log("contractaddress: ", contractaddress);
@@ -60,7 +69,6 @@ const ParcelTransfer = () => {
       SpaceRegistryAbi,
       signer
     );
-
     let isApproved = false;
     isApproved = await spaceRegistryContract.isAuthorized(
       MarketplaceAddress,
@@ -68,28 +76,38 @@ const ParcelTransfer = () => {
     );
     if (!isApproved) {
       // approve marketplace contract to transfer this asset
-
-      window.alert(
-        "You have to first approve the marketplace contract to operate your asset."
+      dispatch(
+        showAlert({
+          message: "You have to first approve the marketplace contract to operate your asset.",
+          severity: "error",
+        })
       );
       let approveMarketTx = await spaceRegistryContract.approve(
         MarketplaceAddress,
         tokensid
       );
       await approveMarketTx.wait();
-
-      window.alert(
-        "Successfully approved. You have to confirm order creation transaction to finally publich your order."
+      dispatch(
+        showAlert({
+          message: "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+          severity: "success",
+        })
       );
     }
 
-    let transferTx = await spaceRegistryContract.safeTransferFrom(
+    let transferTx = await spaceRegistryContract["safeTransferFrom(address,address,uint256)"](
       customerAddress,
       transferAddress,
       BigNumber.from(tokensid)
     );
     await transferTx.wait();
-    window.alert("Transfer order is successfully published.");
+    dispatch(
+      showAlert({
+        message: "Transfer order is successfully published.",
+        severity: "success",
+      })
+    );
+    
   };
 
   var isSignIn = 1;
@@ -98,7 +116,8 @@ const ParcelTransfer = () => {
     setTransferAddress(e.target.value);
   };
   useEffect(() => {
-    console.log(transferAddress);
+    let result = isAddress(transferAddress);
+    result === true ? setIsCorrectAddress(true) : setIsCorrectAddress(false);
   }, [transferAddress]);
   return (
     <div className={classes.root}>

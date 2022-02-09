@@ -1,4 +1,3 @@
-/** @format */
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { BigNumber, ethers } from "ethers";
@@ -146,6 +145,7 @@ const ParcelSell = () => {
     );
 
     await createOrderTx.wait();
+
     dispatch(
       showAlert({
         message: "Sales order is successfully published.",
