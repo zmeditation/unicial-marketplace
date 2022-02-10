@@ -71,7 +71,7 @@ export const CHAIN_INFO = {
       symbol: "ZNX",
       decimals: 18,
     },
-    rpcUrls: ["http://54.255.250.212:80"],
+    rpcUrls: ["https://testrpc1.znxscan.com"],
     blockExplorerUrls: ["http://testnet.znxscan.com"],
   },
 };
