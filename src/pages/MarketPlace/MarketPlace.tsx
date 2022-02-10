@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useStyles } from "./MarketPlaceStyle";
 import TopLeftTexture from "../../assets/svg/top_left_texture.svg";
 import TopRightTexture from "../../assets/svg/top_right_texture.svg";
@@ -10,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 export default function MarketPlace() {
   const classes = useStyles();
-  const {t,i18n}=useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <div className={classes.root}>
@@ -25,7 +26,10 @@ export default function MarketPlace() {
           </div>
           <div className={classes.itemContainer}>
             <div className={classes.subtitle}>
-              {t("Welcometothevirtualworldsone-stop-shopfortheverybestdigitalassets")}..
+              {t(
+                "Welcometothevirtualworldsone-stop-shopfortheverybestdigitalassets"
+              )}
+              ..
             </div>
           </div>
           <div className={classes.hero_action}>

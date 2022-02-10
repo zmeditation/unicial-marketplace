@@ -7,7 +7,7 @@ import authReducer from "./auth/index";
 import alertReducer from "./alert/index";
 import spinnerReducer from "./spinner/index";
 import bigbugAlertReducer from "./bigbugalert/index";
-
+import saleParcelsReducer from "./saleparcels";
 
 export const store = configureStore({
   reducer: {
@@ -17,7 +17,8 @@ export const store = configureStore({
     auth: authReducer,
     alert: alertReducer,
     selectedestates: mapestatedataReducer,
-    bigbugAlert:bigbugAlertReducer,
+    bigbugAlert: bigbugAlertReducer,
+    saleparcels: saleParcelsReducer,
   },
 });
 

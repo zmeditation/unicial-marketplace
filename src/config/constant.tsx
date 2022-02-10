@@ -1,10 +1,12 @@
-export const ApiUrl = "http://192.168.112.107:8080"
+export const ApiUrl = "http://192.168.112.107:8080";
+// export const ApiUrl = "http://localhost:3000";
+export const REQUEST_API_URL = `${ApiUrl}/api/v1`;
 
 export const tabs = {
   land: 1,
 };
 
-export const showMoreCount = 6
+export const showMoreCount = 6;
 
 export const headerId = {
   marketplace: 1,
