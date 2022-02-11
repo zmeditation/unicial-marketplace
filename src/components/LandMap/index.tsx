@@ -1,11 +1,15 @@
+/** @format */
+
 import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 import { Atlas, Layer, Coord } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import Popup from "../Atlas/Popup";
 import { fetchTiles } from "../../hooks/tiles";
 import { Theme, makeStyles } from "@material-ui/core/styles";
+import { useAppSelector } from "../../store/hooks";
+import { selectSaleParcels } from "../../store/saleparcels/selectors";
 
 const useStyles = makeStyles((theme: Theme) => ({}));
 
@@ -25,12 +29,17 @@ const LandMap: React.FC<LandMapProps> = ({
   const [tiles, setTiles] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
+  const [onSale, setOnSale] = useState(false);
   const [mouseX, setMouseX] = useState(-1);
   const [mouseY, setMouseY] = useState(-1);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [estateid, setEstateid] = useState(null);
   let navigate = useNavigate();
+  const location = useLocation();
+  const saleParcels = useAppSelector(selectSaleParcels);
+
+  const query = new URLSearchParams(location.search);
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
@@ -56,6 +65,21 @@ const LandMap: React.FC<LandMapProps> = ({
             `Couldn't fetch parcel ${tile.x},${tile.y}: ${error.message}`
           );
         }
+      }
+    },
+    [tiles]
+  );
+
+  const isSaleParcel = useCallback(
+    (x: number, y: number) => {
+      if (!tiles) return false;
+      const isSaleParcelIndex = Object.keys(saleParcels).indexOf(
+        getCoords(x, y)
+      );
+      if (isSaleParcelIndex < 0) {
+        return false;
+      } else {
+        return true;
       }
     },
     [tiles]
@@ -142,6 +166,14 @@ const LandMap: React.FC<LandMapProps> = ({
       fetchTiles().then((_tiles: any) => setTiles(_tiles));
     }
   }, []);
+
+  useEffect(() => {
+    if (query.get("onlyOnSale") === "true") {
+      setOnSale(true);
+    } else {
+      setOnSale(false);
+    }
+  }, [location]);
   return (
     <div onMouseLeave={handleHidePopup}>
       <Atlas

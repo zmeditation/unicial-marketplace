@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core/styles";
 import clsx from "clsx";
 import React from "react";
+import { useLocation, useNavigate } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -90,19 +91,30 @@ interface Props {
 
 export default function OnSaleSwitch({ letter }: Props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    checkedA: true,
-  });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [switchStatus, setSwitchStatus] = React.useState(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const query = new URLSearchParams(location.search);
+
+  const handleRoute = (search: string) => {
+    query.set("onlyOnSale", search);
+    navigate({
+      pathname: location.pathname,
+      search: query.toString(),
+    });
+  };
+
+  const handleChange = () => {
+    handleRoute(switchStatus.toString())
+    setSwitchStatus(!switchStatus);
   };
   return (
     <div className={classes.OnSaleSwicthRoot}>
       <StyledFormControlLabel
         control={
           <PurpleSwitch
-            checked={state.checkedA}
+            checked={switchStatus}
             onChange={handleChange}
             name="checkedA"
             disableRipple={true}
@@ -110,7 +122,7 @@ export default function OnSaleSwitch({ letter }: Props) {
         }
         label={letter}
         className={clsx(classes.switch, {
-          [classes.activeSwitch]: state.checkedA,
+          [classes.activeSwitch]: switchStatus,
         })}
       />
     </div>
