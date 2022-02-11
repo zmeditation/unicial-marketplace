@@ -1,19 +1,19 @@
-import SearchBar from "../../components/SearchBar/SearchBar";
 import React, { useEffect, useState } from "react";
 import LandMap from "../../components/LandMap";
 import TobTab from "../../components/TopTab/TopTab";
 import { useStyles } from "./LandsStyle";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { useAppSelector } from "../../store/hooks";
 import { selectSaleParcels } from "../../store/saleparcels/selectors";
-import { setSaleParcels } from "../../store/saleparcels";
+import { parcels } from "../../store/parcels/selectors";
 
 const Lands: React.FC = () => {
   const classes = useStyles();
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
-  const dispatch = useAppDispatch();
   const saleParcels = useAppSelector(selectSaleParcels);
+  const parcel = useAppSelector(parcels);
 
+  console.log("parcels: ",parcel)
   console.log(saleParcels);
   const handleResize = () => {
     setWidth(window.innerWidth);
@@ -22,7 +22,6 @@ const Lands: React.FC = () => {
   useEffect(() => {
     setHeight(window.innerHeight - 246);
     setWidth(window.innerWidth);
-    dispatch(setSaleParcels());
   }, []);
 
   useEffect(() => {

@@ -34,6 +34,10 @@ import { setloginAddress, setlogoutAddress } from "../../store/auth";
 import { useAppDispatch } from "../../store/hooks";
 import { CHAIN_INFO } from "../../config/constant";
 import { showBigbugAlert } from "../../store/bigbugalert";
+import { useEffect } from "react";
+import { setSaleParcels } from "../../store/saleparcels";
+import { setParcels } from "../../store/parcels";
+import { showSpinner } from "../../store/spinner";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -63,6 +67,18 @@ export default function Layout() {
       dispatch(showBigbugAlert(true))   
     }
   });
+
+   const initSet = async() => {
+    await dispatch(showSpinner(true));
+    await dispatch(setSaleParcels());
+    await dispatch(setParcels());
+    await dispatch(showSpinner(false));
+  }
+
+  useEffect(() => {
+    initSet();
+  }, []);
+
 
   return (
     <Router>

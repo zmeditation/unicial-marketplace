@@ -8,6 +8,8 @@ import alertReducer from "./alert/index";
 import spinnerReducer from "./spinner/index";
 import bigbugAlertReducer from "./bigbugalert/index";
 import saleParcelsReducer from "./saleparcels";
+import parcelsReducer from "./parcels";
+
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +21,7 @@ export const store = configureStore({
     selectedestates: mapestatedataReducer,
     bigbugAlert: bigbugAlertReducer,
     saleparcels: saleParcelsReducer,
+    parcels: parcelsReducer, 
   },
 });
 
