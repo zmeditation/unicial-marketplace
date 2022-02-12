@@ -306,7 +306,7 @@ const Auction = () => {
               uccBalance.div(BigNumber.from(uccPricePerSpace)).toString()}
           </Typography> */}
           <Grid container spacing={2}>
-            <Grid item md={4} sm={4} xs={12}>
+            <Grid item md={4} sm={12} xs={12}>
               <Balance
                 type='uccbalance'
                 value={parseFloat(ethers.utils.formatEther(uccBalance)).toFixed(
@@ -314,7 +314,7 @@ const Auction = () => {
                 )}
               />
             </Grid>
-            <Grid item md={4} sm={4} xs={12}>
+            <Grid item md={4} sm={12} xs={12}>
               <Balance type='currentspace' value={uccPricePerSpace} />
             </Grid>
             {/* <Grid item md={4} sm={4} xs={12}>

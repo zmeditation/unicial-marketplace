@@ -36,7 +36,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     height: "400px",
     [theme.breakpoints.down(768)]: {
-      margin: "0px calc( (100% - 400px) / 2)",
+      margin: "0px calc( (100% - 420px) / 2)",
     },
     [theme.breakpoints.down(501)]: {
       margin: "0px calc( (100% - 300px) / 2)",
@@ -115,6 +115,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
   actionButtons: {
     display: "flex",
     justifyContent: "end",
+    
+    [theme.breakpoints.down(992)]: {
+      display: "block",
+    },
     [theme.breakpoints.down(769)]: {
       display: "block",
       width: "100%",
