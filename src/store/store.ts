@@ -9,7 +9,7 @@ import spinnerReducer from "./spinner/index";
 import netModalReducer from "./netmodal/index";
 import saleParcelsReducer from "./saleparcels";
 import parcelsReducer from "./parcels";
-
+import { getSaleParcelsAPI } from "./api/parcels";
 
 export const store = configureStore({
   reducer: {
@@ -21,8 +21,15 @@ export const store = configureStore({
     selectedestates: mapestatedataReducer,
     netModal: netModalReducer,
     saleparcels: saleParcelsReducer,
-    parcels: parcelsReducer, 
+    parcels: parcelsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: getSaleParcelsAPI,
+      },
+      serializableCheck: false,
+    }),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
