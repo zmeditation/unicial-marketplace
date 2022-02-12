@@ -16,7 +16,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Notification from "../Notifications";
 import Spinner from "../Spinner";
-import BigbugAlert from "../BigbugAlert";
+import NetModal from "../NetModal";
 import AdminLands from "../../pages/Admin/AdminLands/AdminLands";
 import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 import ParcelSell from "../../pages/MyStore/Parcel/ParcelSell/ParcelSell";
@@ -33,7 +33,7 @@ import UpdateOperate from "../../pages/MyStore/Estate/UpdateOperate/UpdateOperat
 import { setloginAddress, setlogoutAddress } from "../../store/auth";
 import { useAppDispatch } from "../../store/hooks";
 import { CHAIN_INFO } from "../../config/constant";
-import { showBigbugAlert } from "../../store/bigbugalert";
+import { showNetModal } from "../../store/netmodal";
 import { useEffect } from "react";
 import { setSaleParcels } from "../../store/saleparcels";
 import { setParcels } from "../../store/parcels";
@@ -64,7 +64,7 @@ export default function Layout() {
     let changedChainId = parseInt(chainId, 16);
     if ( changedChainId !== projectChainId){
       dispatch(setlogoutAddress());
-      dispatch(showBigbugAlert(true))   
+      dispatch(showNetModal(true))   
     }
   });
 
@@ -155,7 +155,7 @@ export default function Layout() {
         </Routes>
         <Footer />
         <Notification />
-        <BigbugAlert/>
+        <NetModal/>
         <Spinner />
       </Box>
     </Router>

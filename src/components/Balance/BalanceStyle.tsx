@@ -10,6 +10,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "15px",
     alignItems: "center",
     width: "100%",
+    minHeight: "80px",
   },
   balanceDotUcc: {
     minWidth: "6px",

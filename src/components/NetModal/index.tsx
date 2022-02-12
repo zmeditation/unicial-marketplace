@@ -1,14 +1,14 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ActionButton from "../Base/ActionButton";
-import { bigbugAlertStatus } from "../../store/bigbugalert/selectors";
+import { bigbugAlertStatus } from "../../store/netmodal/selectors";
 import { useTranslation } from "react-i18next";
 import { nanoid } from "nanoid";
 import { ethers } from "ethers";
 import { CHAIN_INFO } from "../../config/constant";
 import { setloginAddress } from "../../store/auth";
 import { useNavigate } from "react-router";
-import { showBigbugAlert } from "../../store/bigbugalert";
+import { showNetModal } from "../../store/netmodal";
 import { showAlert } from "../../store/alert";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -102,7 +102,7 @@ const generateSignature = () => {
   return signature;
 };
 
-export default function BigbugAlert() {
+export default function NetModal() {
   const classes = useStyles();
   const showBigbug = useAppSelector(bigbugAlertStatus);
   const { t } = useTranslation();
@@ -118,7 +118,7 @@ export default function BigbugAlert() {
     const recoveredAddress = ethers.utils.verifyMessage(msgToSign, signature);
 
     dispatch(setloginAddress(recoveredAddress));
-    dispatch(showBigbugAlert(false))
+    dispatch(showNetModal(false))
     navigate("/auction");
     return recoveredAddress;
   };
@@ -147,7 +147,7 @@ export default function BigbugAlert() {
       // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
       dispatch(
         showAlert({
-          message: `Recovered address: ${loginAddress}`,
+          message: `Recovered address: ${loginAddress.slice(0,6)}`,
           severity: "success",
         })
       );
@@ -167,7 +167,7 @@ export default function BigbugAlert() {
         // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
         dispatch(
           showAlert({
-            message: `Switched chain done & Recovered address: ${loginAddress}`,
+            message: `Switched chain done & Recovered address: ${loginAddress.slice(0,6)}`,
             severity: "success",
           })
         );
@@ -194,8 +194,8 @@ export default function BigbugAlert() {
             // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
             dispatch(
               showAlert({
-                message: `Add chain done & Recovered address: ${loginAddress}`,
-                severity: "success",
+                message: `Add chain done & Recovered address: ${loginAddress.slice(0,6)}`,
+                severity: "success", 
               })
             );
           } catch (addError) {

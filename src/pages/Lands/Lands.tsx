@@ -13,8 +13,6 @@ const Lands: React.FC = () => {
   const saleParcels = useAppSelector(selectSaleParcels);
   const parcel = useAppSelector(parcels);
 
-  console.log("parcels: ",parcel)
-  console.log(saleParcels);
   const handleResize = () => {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight - 246);

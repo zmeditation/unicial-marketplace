@@ -75,7 +75,7 @@ export default function SignIn() {
       // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
       dispatch(
         showAlert({
-          message: `Recovered address: ${loginAddress}`,
+          message: `Recovered address: ${loginAddress.slice(0,6)}`,
           severity: "success",
         })
       );
@@ -95,7 +95,7 @@ export default function SignIn() {
         // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
         dispatch(
           showAlert({
-            message: `Switched chain done & Recovered address: ${loginAddress}`,
+            message: `Switched chain done & Recovered address: ${loginAddress.slice(0,6)}`,
             severity: "success",
           })
         );
@@ -122,7 +122,7 @@ export default function SignIn() {
             // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
             dispatch(
               showAlert({
-                message: `Add chain done & Recovered address: ${loginAddress}`,
+                message: `Add chain done & Recovered address: ${loginAddress.slice(0,6)}`,
                 severity: "success",
               })
             );

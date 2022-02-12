@@ -23,16 +23,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   notificationContainer: {
     marginTop: "10px",
-    width: "407px",
-    minHeight: "103px",
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "7px",
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
-    paddingLeft: "20px",
-    paddingRight: "20px",
+    padding: "8px 20px 8px 20px",
     zIndex: 99999,
   },
   notificationPicture: {
@@ -70,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     transform: "rotate(-180deg)",
   },
   notificationText: {
-    margin: "10px 0px",
+    margin: "10px 12px",
   },
   notificationTitle: {
     fontStyle: "normal",
@@ -87,8 +84,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: "#FF7C4C",
   },
   notificationDescription: {
-    maxWidth: "270px",
-    overflowWrap: "break-word",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: "14px",
@@ -98,12 +93,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   closeIcon: {
     color: "#96A1DB",
-    width: "15px",
-    height: "15px",
+    width: "18px",
+    height: "18px",
     cursor: "pointer",
-    "&:hover": {
-      backgroundColor: "white",
-      borderRadius: "100px",
+    "& .MuiIconButton-root:hover": {
+      backgroundColor: "transparent",
     },
   },
 }));
