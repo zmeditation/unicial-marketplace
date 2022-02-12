@@ -97,6 +97,8 @@ export default function OnSaleSwitch({ letter }: Props) {
 
   const query = new URLSearchParams(location.search);
 
+  const status = query.get("onlyOnSale") === "true";
+
   const handleRoute = (search: string) => {
     query.set("onlyOnSale", search);
     navigate({
@@ -106,7 +108,7 @@ export default function OnSaleSwitch({ letter }: Props) {
   };
 
   const handleChange = () => {
-    handleRoute(switchStatus.toString())
+    handleRoute((!switchStatus).toString())
     setSwitchStatus(!switchStatus);
   };
   return (
@@ -114,7 +116,7 @@ export default function OnSaleSwitch({ letter }: Props) {
       <StyledFormControlLabel
         control={
           <PurpleSwitch
-            checked={switchStatus}
+            checked={status}
             onChange={handleChange}
             name="checkedA"
             disableRipple={true}
@@ -122,7 +124,7 @@ export default function OnSaleSwitch({ letter }: Props) {
         }
         label={letter}
         className={clsx(classes.switch, {
-          [classes.activeSwitch]: switchStatus,
+          [classes.activeSwitch]: status,
         })}
       />
     </div>

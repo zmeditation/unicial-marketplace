@@ -1,17 +1,17 @@
 /** @format */
 
 import React, { useCallback, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 
-import { Atlas, Layer, Coord } from "../Atlas/Atlas";
+import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import Popup from "../Atlas/Popup";
-import { fetchTiles } from "../../hooks/tiles";
-import { Theme, makeStyles } from "@material-ui/core/styles";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectSaleParcels } from "../../store/saleparcels/selectors";
-
-const useStyles = makeStyles((theme: Theme) => ({}));
+import { parcels } from "../../store/parcels/selectors";
+import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
+import { setSaleParcels } from "../../store/saleparcels";
+import { setParcels } from "../../store/parcels";
 
 interface LandMapProps {
   height?: any;
@@ -26,20 +26,23 @@ const LandMap: React.FC<LandMapProps> = ({
   initialX,
   initialY,
 }) => {
-  const [tiles, setTiles] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
-  const [onSale, setOnSale] = useState(false);
   const [mouseX, setMouseX] = useState(-1);
   const [mouseY, setMouseY] = useState(-1);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const [estateid, setEstateid] = useState(null);
+  const [onSale, setOnSale] = useState(false);
+  const [, setEstateid] = useState(null);
   let navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
-  const saleParcels = useAppSelector(selectSaleParcels);
+  const { tokensid } = useParams();
 
   const query = new URLSearchParams(location.search);
+
+  const saleParcels: any = useAppSelector(selectSaleParcels);
+  const tiles: any = useAppSelector(parcels);
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
@@ -51,15 +54,15 @@ const LandMap: React.FC<LandMapProps> = ({
       }
       if (tile.estateId) {
         setEstateid(tile.estateId);
-        navigate(
-          "/contracts/0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d/tokens/115792089237316195423570985008687907843061513658012410135556345784960083296262"
-        );
+        navigate(`/contracts/${SpaceProxyAddress}/tokens/${tile.estateId}`);
       } else {
         setEstateid(null);
         try {
-          navigate(
-            "/contracts/0x959e104e1a4db6317fa58f8295f586e1a978c297/tokens/735"
-          );
+          query.set("onlyOnSale", onSale.toString());
+          navigate({
+            pathname: `/contracts/${SpaceProxyAddress}/tokens/${tile.tokenId}`,
+            search: query.toString(),
+          });
         } catch (error: any) {
           console.warn(
             `Couldn't fetch parcel ${tile.x},${tile.y}: ${error.message}`
@@ -72,29 +75,32 @@ const LandMap: React.FC<LandMapProps> = ({
 
   const isSaleParcel = useCallback(
     (x: number, y: number) => {
-      if (!tiles) return false;
-      const isSaleParcelIndex = Object.keys(saleParcels).indexOf(
-        getCoords(x, y)
-      );
-      if (isSaleParcelIndex < 0) {
-        return false;
+      if (!saleParcels) return false;
+      const tile: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
+
+      if (onSale === true) {
+        if (tile) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
-        return true;
+        return false;
       }
     },
-    [tiles]
+    [saleParcels, onSale]
   );
 
   const isSelected = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
-      const tile = tiles[getCoords(x, y)] as Tile;
-      if (estateid && tile && tile.estateId && estateid === tile.estateId) {
+      const tile: any = tiles[getCoords(x, y)] as Tile;
+      if (tokensid && tile && tile.tokenId && tokensid === tile.tokenId) {
         return true;
       }
       return false;
     },
-    [estateid, tiles]
+    [tokensid, tiles]
   );
 
   const handleHidePopup = useCallback(() => {
@@ -105,14 +111,22 @@ const LandMap: React.FC<LandMapProps> = ({
 
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y) ? { color: "#ff0044", scale: 1.4 } : null;
+      return isSelected(x, y)
+        ? { color: "#ff0044", scale: 1.4 }
+        : isSaleParcel(x, y)
+        ? { color: "transparent", scale: 1.4 }
+        : null;
     },
     [isSelected]
   );
 
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y) ? { color: "#ff9990", scale: 1.2 } : null;
+      return isSelected(x, y)
+        ? { color: "#ff9990", scale: 1.2 }
+        : isSaleParcel(x, y)
+        ? { color: "#6ad3fe", scale: 1.2 }
+        : null;
     },
     [isSelected]
   );
@@ -122,7 +136,7 @@ const LandMap: React.FC<LandMapProps> = ({
       if (!tiles) return;
       const id = getCoords(x, y);
       const tile: Tile = tiles && tiles[id];
-      if (tile?.estateId && estateid === tile?.estateId) {
+      if (tile?.estateId && tokensid === tile?.estateId) {
         setShowPopup(false);
         return;
       }
@@ -162,18 +176,16 @@ const LandMap: React.FC<LandMapProps> = ({
   }, [showPopup, mouseX, mouseY]);
 
   useEffect(() => {
-    if (window) {
-      fetchTiles().then((_tiles: any) => setTiles(_tiles));
-    }
-  }, []);
-
-  useEffect(() => {
+    console.log(query.get("onlyOnSale"));
     if (query.get("onlyOnSale") === "true") {
       setOnSale(true);
     } else {
       setOnSale(false);
     }
+    dispatch(setSaleParcels());
+    dispatch(setParcels());
   }, [location]);
+
   return (
     <div onMouseLeave={handleHidePopup}>
       <Atlas

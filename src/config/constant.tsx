@@ -1,4 +1,4 @@
-export const ApiUrl = "http://192.168.112.107:8080";
+export const ApiUrl = "http://192.168.112.98:3000";
 // export const ApiUrl = "http://localhost:3000";
 export const REQUEST_API_URL = `${ApiUrl}/api/v1`;
 
