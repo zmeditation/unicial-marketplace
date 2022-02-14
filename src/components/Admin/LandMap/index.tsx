@@ -15,12 +15,7 @@ interface LandMapProps {
   initialY?: number;
 }
 
-const LandMap: React.FC<LandMapProps> = ({
-  height,
-  width,
-  initialX,
-  initialY,
-}) => {
+const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const [tiles, setTiles] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
@@ -165,8 +160,6 @@ const LandMap: React.FC<LandMapProps> = ({
         onClick={handleClick}
         height={height}
         width={width}
-        initialX={initialX}
-        initialY={initialY}
       />
       {hoveredTile ? (
         <Popup

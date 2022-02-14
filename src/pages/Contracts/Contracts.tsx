@@ -102,7 +102,7 @@ const Contract = () => {
         <div className={classes.LandMap}>
           <div>
             <div className={classes.LandMapContent}>
-              <LandMap height={400} width={width} initialX={1} initialY={1} />
+              <LandMap height={400} width={width} />
             </div>
             <div className={classes.backbtnContainer}>
               <BackButton className={classes.backBtnPosition} />
@@ -131,7 +131,8 @@ const Contract = () => {
                   itemInSale && itemInSale?.assetId === tokensid
                     ? classes.displayNone
                     : classes.BidboxContainer
-                }>
+                }
+              >
                 <Bidbox />
               </div>
               <Buybox

@@ -19,12 +19,7 @@ interface CreateEstateMapProps {
   initialY?: number;
 }
 
-const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
-  height,
-  width,
-  initialX,
-  initialY,
-}) => {
+const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
   const [tiles, setTiles] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
@@ -221,8 +216,6 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
         onClick={handleClick}
         height={height}
         width={width}
-        initialX={initialX}
-        initialY={initialY}
       />
       {hoveredTile ? (
         <Popup

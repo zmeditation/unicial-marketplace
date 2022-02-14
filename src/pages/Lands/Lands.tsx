@@ -35,7 +35,7 @@ const Lands: React.FC = () => {
         <SearchBar />
       </div> */}
       <div className={classes.landMap}>
-        <LandMap height={height} width={width} initialX={50} initialY={50} />
+        <LandMap height={height} width={width} />
       </div>
     </>
   );

@@ -16,16 +16,9 @@ import { setParcels } from "../../store/parcels";
 interface LandMapProps {
   height?: any;
   width?: any;
-  initialX?: number;
-  initialY?: number;
 }
 
-const LandMap: React.FC<LandMapProps> = ({
-  height,
-  width,
-  initialX,
-  initialY,
-}) => {
+const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
   const [mouseX, setMouseX] = useState(-1);
@@ -194,8 +187,8 @@ const LandMap: React.FC<LandMapProps> = ({
         onClick={handleClick}
         height={height}
         width={width}
-        initialX={initialX}
-        initialY={initialY}
+        x={x}
+        y={y}
       />
       {hoveredTile ? (
         <Popup
