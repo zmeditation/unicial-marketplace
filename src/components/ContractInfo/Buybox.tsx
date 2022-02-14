@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import ActionButton from "../Base/ActionButton";
@@ -66,29 +68,48 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Buybox: React.FC = () => {
+interface BuyboxProps {
+  price?: string;
+}
+
+const addCommas = (nStr: any) => {
+  nStr += "";
+  var x = nStr.split(".");
+  var x1 = x[0];
+  var x2 = x.length > 1 ? "." + x[1] : "";
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, "$1" + "," + "$2");
+  }
+  return x1 + x2;
+};
+
+const Buybox = ({ price }: BuyboxProps) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   return (
     <div className={classes.root}>
-      <div className={classes.title}>{t("Price")}</div>
-      <div className={classes.priceValueContainer}>
-        <i className={classes.symbol}>⏣</i>
-        1,000,000
-      </div>
+      {price !== undefined && (
+        <>
+          <div className={classes.title}>{t("Price")}</div>
+          <div className={classes.priceValueContainer}>
+            <i className={classes.symbol}>⏣</i>
+            {addCommas(price)}
+          </div>
+        </>
+      )}
       <div className={classes.title}>{t("Network")}</div>
       <div className={classes.subtitle}>{t("Zilionixx")}</div>
-      <ActionButton color="light" onClick={() => navigate("buy")}>
+      <ActionButton color='light' onClick={() => navigate("buy")}>
         {t("Buy")}
         <CallMadeIcon className={classes.callmadeicon} />
       </ActionButton>
       <ActionButton
-        color="dark"
+        color='dark'
         onClick={() => navigate("bid")}
-        className={classes.bidBtn}
-      >
+        className={classes.bidBtn}>
         {t("Bid")}
       </ActionButton>
       <div className={classes.expireContainer}>

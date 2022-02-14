@@ -72,9 +72,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  displayNone:{
+    display: "none",
+  },
 }));
 
-const Highlight: React.FC = () => {
+interface HighlightProps {
+  type?: string;
+}
+
+const Highlight = ({ type }: HighlightProps)=> {
   const classes = useStyles();
   const { t } = useTranslation();
   return (
@@ -83,9 +90,9 @@ const Highlight: React.FC = () => {
       <div className={classes.cards}>
         <div
           className={
-            highlight.plaza === 0
-              ? clsx(classes.card, classes.unviewPlaza)
-              : classes.card
+            type === "owned"
+            ? classes.card
+            : clsx(classes.card, classes.unviewPlaza)
           }
         >
           <div className={classes.imgContainer}>
@@ -100,9 +107,9 @@ const Highlight: React.FC = () => {
         </div>
         <div
           className={
-            highlight.road === 0
-              ? clsx(classes.card, classes.unviewRoad)
-              : classes.card
+            type === "road"
+            ? classes.card
+            : clsx(classes.card, classes.unviewRoad)
           }
         >
           <div className={classes.imgContainer}>
@@ -118,9 +125,9 @@ const Highlight: React.FC = () => {
         </div>
         <div
           className={
-            highlight.district === 0
-              ? clsx(classes.card, classes.unviewDistrict)
-              : classes.card
+            type === "district"
+            ? classes.card
+            : clsx(classes.card, classes.unviewDistrict)
           }
         >
           <div className={classes.imgContainer}>

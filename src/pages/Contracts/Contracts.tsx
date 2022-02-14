@@ -1,3 +1,5 @@
+/** @format */
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
@@ -17,13 +19,50 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/LatestSalesTable";
 import { useTranslation } from "react-i18next";
 import TablePagination from "../../components/Base/TablePagination";
+import { useAppSelector } from "../../store/hooks";
+import { selectSaleParcels } from "../../store/saleparcels/selectors";
+import { parcels } from "../../store/parcels/selectors";
 
 const Contract = () => {
   const classes = useStyles();
-  const { contractaddress, tokensId } = useParams();
+  const { contractaddress, tokensid } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(0);
   const { t } = useTranslation();
+  const [itemInSale, setItemInSale] = useState<any>();
+  const [itemInAll, setItemInAll] = useState<any>();
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [saleArray, setSaleArray] = useState<any>();
+
+  const saleParcels: any = useAppSelector(selectSaleParcels);
+  const tiles: any = useAppSelector(parcels);
+
+  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
+
+  useEffect(() => {
+    Object.keys(saleParcels).forEach((index: any) => {
+      let newSelectedTile: any = [];
+
+      const saleParcel = saleParcels[index];
+      newSelectedTile = newSelectedTile.concat(saleArray, saleParcels[index]);
+      if (saleParcel.assetId === tokensid) {
+        setItemInSale(saleParcel);
+      }
+      setSaleArray(newSelectedTile);
+    });
+  }, [saleParcels, tokensid]);
+
+  useEffect(() => {
+    Object.keys(tiles).forEach((index: any) => {
+      const allParcel = tiles[index];
+      if (allParcel.tokenId === tokensid) {
+        setItemInAll(allParcel);
+        setX(allParcel.x);
+        setY(allParcel.y);
+      }
+    });
+  }, [tiles, tokensid]);
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
@@ -52,6 +91,10 @@ const Contract = () => {
   };
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
+
+  console.log(saleParcels);
+  console.log(saleArray);
+
   return (
     <>
       <TobTab />
@@ -72,20 +115,35 @@ const Contract = () => {
               <div className={classes.items}>
                 <Title />
               </div>
+              {itemInAll?.owner !== undefined && (
+                <>
+                  <div className={classes.divideLine}></div>
+                  <Owner ownerAddress={itemInAll?.owner} />
+                </>
+              )}
               <div className={classes.divideLine}></div>
-              <Owner />
-              <div className={classes.divideLine}></div>
-              <Highlight />
+              <Highlight type={itemInAll?.type} />
               <div className={classes.divideLine}></div>
             </div>
             <div className={classes.rightDescription}>
-              <div className={classes.BidboxContainer}>
+              <div
+                className={
+                  itemInSale && itemInSale?.assetId === tokensid
+                    ? classes.displayNone
+                    : classes.BidboxContainer
+                }>
                 <Bidbox />
               </div>
-              <Buybox />
+              <Buybox
+                price={
+                  itemInSale && itemInSale?.assetId === tokensid
+                    ? itemInSale?.priceInWei
+                    : "Not yet"
+                }
+              />
             </div>
           </div>
-          <Parcels />
+          <Parcels location={getCoords(x, y)} />
 
           <div className={classes.tableRoot}>
             <LatestSalesTable
@@ -103,12 +161,12 @@ const Contract = () => {
           </div>
           <div>
             <div className={classes.BidsTitle}>{t("Bids")}.</div>
-            {BidRecordData.map((row, index) => (
+            {Object.entries(saleParcels).map((key: any, val: any) => (
               <BidRecord
-                fromName={row.fromName}
-                price={row.price}
-                time={row.time}
-                key={index}
+                fromName={val?.seller}
+                price={val?.priceInWei}
+                time={val?.expiresAt}
+                key={key}
               />
             ))}
           </div>

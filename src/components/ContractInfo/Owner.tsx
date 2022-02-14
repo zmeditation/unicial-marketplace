@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import makeBlockie from "ethereum-blockies-base64";
@@ -35,26 +37,35 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
     height: "100%",
   },
+  displayNone: {
+    display: "none",
+  },
 }));
 
-const Owner: React.FC = () => {
-  const classes = useStyles();
-  const {t} = useTranslation();
-  return (
-    <div>
-      <div className={classes.title}>{t("Owner")}</div>
-      <div className={classes.descript}>
-        <div className={classes.avatarContainer}>
-          <img
-            src={makeBlockie("0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d")}
-            className={classes.addressImg}
-            alt="A"
-          />
-        </div>
+interface OwnerProps {
+  ownerAddress: any;
+}
 
-        <div className={classes.name}>0x4eac</div>
+const Owner = ({ ownerAddress }: OwnerProps) => {
+  const classes = useStyles();
+  const { t } = useTranslation();
+  return (
+    <>
+      <div>
+        <div className={classes.title}>{t("Owner")}</div>
+        <div className={classes.descript}>
+          <div className={classes.avatarContainer}>
+            <img
+              src={makeBlockie(ownerAddress)}
+              className={classes.addressImg}
+              alt='A'
+            />
+          </div>
+
+          <div className={classes.name}>{ownerAddress}</div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

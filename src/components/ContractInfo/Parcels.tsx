@@ -56,7 +56,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Parcels: React.FC = () => {
+interface ParcelsProps {
+  location: string;
+}
+
+const Parcels = ({ location }: ParcelsProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
   return (
@@ -64,17 +68,7 @@ const Parcels: React.FC = () => {
       <div className={classes.title}>{t("Parcels")}</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>
-          <LocationBtn position='12,-45' />
-          <LocationBtn position='32,-45' />
-          <LocationBtn position='33,-45' />
-          <LocationBtn position='30,-45' />
-          <LocationBtn position='12,-45' />
-          <LocationBtn position='12,-45' />
-          <LocationBtn position='12,-45' />
-          <LocationBtn position='12,-45' />
-          <LocationBtn position='12,-45' />
-          <LocationBtn position='12,-45' />
-          <LocationBtn position='12,-45' />
+          <LocationBtn position={location} />
         </div>
         <div className={classes.showmoreContent}>
           <ShowMoreLessBtn letter='Show More' />

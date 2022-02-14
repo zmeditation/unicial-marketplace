@@ -93,4 +93,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  displayNone: {
+    display: "none",
+  },
 }));

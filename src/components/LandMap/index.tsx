@@ -176,7 +176,6 @@ const LandMap: React.FC<LandMapProps> = ({
   }, [showPopup, mouseX, mouseY]);
 
   useEffect(() => {
-    console.log(query.get("onlyOnSale"));
     if (query.get("onlyOnSale") === "true") {
       setOnSale(true);
     } else {
