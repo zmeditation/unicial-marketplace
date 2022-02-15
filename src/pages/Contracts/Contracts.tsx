@@ -31,7 +31,6 @@ const Contract = () => {
   const [itemInAll, setItemInAll] = useState<any>();
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const [saleArray, setSaleArray] = useState<any>();
   const [highDivLine, setHighDivLine] = useState(false);
 
   const saleParcels: any = useAppSelector(selectSaleParcels);
@@ -41,14 +40,10 @@ const Contract = () => {
 
   useEffect(() => {
     Object.keys(saleParcels).forEach((index: any) => {
-      let newSelectedTile: any = [];
-
       const saleParcel = saleParcels[index];
-      newSelectedTile = newSelectedTile.concat(saleArray, saleParcels[index]);
       if (saleParcel.assetId === tokensid) {
         setItemInSale(saleParcel);
       }
-      setSaleArray(newSelectedTile);
     });
   }, [saleParcels, tokensid]);
 
@@ -106,7 +101,7 @@ const Contract = () => {
         <div className={classes.LandMap}>
           <div>
             <div className={classes.LandMapContent}>
-              <LandMap height={400} width={width} />
+              <LandMap height={400} width={width} centerX={x} centerY={y}/>
             </div>
             <div className={classes.backbtnContainer}>
               <BackButton className={classes.backBtnPosition} />

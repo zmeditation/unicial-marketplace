@@ -16,17 +16,22 @@ import { setParcels } from "../../store/parcels";
 interface LandMapProps {
   height?: any;
   width?: any;
+  centerX?: any;
+  centerY?: any;
 }
 
-const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
+const LandMap: React.FC<LandMapProps> = ({
+  height,
+  width,
+  centerX,
+  centerY,
+}) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
   const [mouseX, setMouseX] = useState(-1);
   const [mouseY, setMouseY] = useState(-1);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const [centerX, setCenterX] = useState(0);
-  const [centerY, setCenterY] = useState(0);
   const [onSale, setOnSale] = useState(true);
   const [, setEstateid] = useState(null);
   let navigate = useNavigate();
@@ -44,8 +49,6 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      setCenterX(x);
-      setCenterY(y);
       if (!tile) {
         return;
       }

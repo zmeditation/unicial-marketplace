@@ -55,8 +55,6 @@ const ParcelTransfer = () => {
   };
 
   const handleTransferOrder = async () => {
-    console.log("contractaddress: ", contractaddress);
-    console.log("tokensid: ", tokensid);
 
     signer = generateSigner(window.ethereum);
     marketplaceContract = generateContractInstance(

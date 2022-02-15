@@ -26,7 +26,6 @@ export default function CollectibleFilter() {
   const handleClickTag = (e: number) => {
     let newSelectedTile: string[] = [];
     const selectedIndex = selectedArray.indexOf(filterListData[e].category, 0);
-    console.log("seleted array = ", selectedIndex);
     if (selectedIndex === -1) {
       newSelectedTile = newSelectedTile.concat(
         selectedArray,

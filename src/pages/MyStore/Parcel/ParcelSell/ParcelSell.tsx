@@ -73,9 +73,6 @@ const ParcelSell = () => {
 
   // occur a transaction to create sale order on marketplace for this parcel
   const handleCreateOrder = async () => {
-    console.log("contractaddress: ", contractaddress);
-    console.log("tokensid: ", tokensid);
-    console.log("customerAddress: ", customerAddress);
 
     if (customerAddress.length === 0) {
       dispatch(
