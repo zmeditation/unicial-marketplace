@@ -90,7 +90,7 @@ const Highlight = ({ type }: HighlightProps)=> {
       <div className={classes.cards}>
         <div
           className={
-            type === "owned"
+            type === "plaza"
             ? classes.card
             : clsx(classes.card, classes.unviewPlaza)
           }

@@ -53,7 +53,8 @@ export default function TopTab() {
   const category = query.get("section");
   useEffect(() => {
     if (location.pathname.includes("/contracts")) {
-      setToptabIndex(topTabIndex.land);
+      setToptabIndex(topTabIndex.contracts);
+      setSearchbarIndex(searchbarIndex.contracts);
     } else if (location.pathname.includes("/lands")) {
       setToptabIndex(topTabIndex.land);
       setSearchbarIndex(searchbarIndex.land);
@@ -63,9 +64,6 @@ export default function TopTab() {
     } else if (location.pathname.includes("/browse")) {
       setToptabIndex(topTabIndex.collectibles);
       setSearchbarIndex(searchbarIndex.collections);
-    } else if (location.pathname.includes("/contracts")) {
-      setToptabIndex(topTabIndex.contracts);
-      setSearchbarIndex(searchbarIndex.contracts);
     } else if (location.pathname.includes("/account")) {
       setToptabIndex(topTabIndex.mystore);
       switch (category) {
@@ -81,7 +79,6 @@ export default function TopTab() {
         case "estate":
           setSearchbarIndex(searchbarIndex.estate);
           break;
-
         case "wearables":
           setSearchbarIndex(searchbarIndex.wearables);
           break;
@@ -171,7 +168,6 @@ export default function TopTab() {
                   <MystoreSearchBar />
                 ) : searchbar_index === 2 ? (
                   //  Collctibles
-
                   <CollectibleSearchBar />
                 ) : searchbar_index === 3 ? (
                   //My store MystoreSearchBar

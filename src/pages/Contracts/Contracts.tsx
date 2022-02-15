@@ -34,6 +34,7 @@ const Contract = () => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [saleArray, setSaleArray] = useState<any>();
+  const [highDivLine, setHighDivLine] = useState(false);
 
   const saleParcels: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
@@ -82,6 +83,14 @@ const Contract = () => {
   }, []);
 
   useEffect(() => {
+    if (itemInAll !== undefined) {
+      ["road", "district", "plaza"].indexOf(itemInAll.type) < 0
+        ? setHighDivLine(true)
+        : setHighDivLine(false);
+    }
+  }, [itemInAll]);
+
+  useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
   //pagination reate
@@ -91,9 +100,6 @@ const Contract = () => {
   };
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
-
-  console.log(saleParcels);
-  console.log(saleArray);
 
   return (
     <>
@@ -121,9 +127,14 @@ const Contract = () => {
                   <Owner ownerAddress={itemInAll?.owner} />
                 </>
               )}
-              <div className={classes.divideLine}></div>
-              <Highlight type={itemInAll?.type} />
-              <div className={classes.divideLine}></div>
+              <div
+                className={
+                  highDivLine === true ? classes.displayNone : classes.highLIght
+                }>
+                <div className={classes.divideLine}></div>
+                <Highlight type={itemInAll?.type} />
+                <div className={classes.divideLine}></div>
+              </div>
             </div>
             <div className={classes.rightDescription}>
               <div
@@ -131,17 +142,17 @@ const Contract = () => {
                   itemInSale && itemInSale?.assetId === tokensid
                     ? classes.displayNone
                     : classes.BidboxContainer
-                }
-              >
+                }>
                 <Bidbox />
               </div>
-              <Buybox
-                price={
+              <div
+                className={
                   itemInSale && itemInSale?.assetId === tokensid
-                    ? itemInSale?.priceInWei
-                    : "Not yet"
-                }
-              />
+                    ? classes.BuyboxContainer
+                    : classes.displayNone
+                }>
+                <Buybox price={itemInSale && itemInSale?.priceInWei} />
+              </div>
             </div>
           </div>
           <Parcels location={getCoords(x, y)} />
@@ -162,11 +173,11 @@ const Contract = () => {
           </div>
           <div>
             <div className={classes.BidsTitle}>{t("Bids")}.</div>
-            {Object.entries(saleParcels).map((key: any, val: any) => (
+            {Object.entries(saleParcels).map((key: any) => (
               <BidRecord
-                fromName={val?.seller}
-                price={val?.priceInWei}
-                time={val?.expiresAt}
+                fromName={saleParcels[key]?.seller}
+                price={saleParcels[key]?.priceInWei}
+                time={saleParcels[key]?.expiresAt}
                 key={key}
               />
             ))}
