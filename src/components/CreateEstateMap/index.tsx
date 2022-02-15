@@ -96,7 +96,10 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
 
-      if (tile?.owner && tile?.owner === mineAddress) {
+      if (
+        tile?.owner &&
+        tile?.owner.toLowercase() === mineAddress.toLowerCase()
+      ) {
         return true;
       } else return false;
     },

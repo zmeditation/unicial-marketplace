@@ -12,6 +12,7 @@ import { parcels } from "../../store/parcels/selectors";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { setSaleParcels } from "../../store/saleparcels";
 import { setParcels } from "../../store/parcels";
+import { selectLoginAddress } from "../../store/auth/selectors";
 
 interface LandMapProps {
   height?: any;
@@ -43,6 +44,7 @@ const LandMap: React.FC<LandMapProps> = ({
 
   const saleParcels: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
+  const customerAddress: any = useAppSelector(selectLoginAddress);
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
@@ -78,15 +80,36 @@ const LandMap: React.FC<LandMapProps> = ({
       if (!saleParcels) return false;
       const tile: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
 
-      if (onSale === true) {
-        if (tile) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
+      if (onSale === true && tile) {
+        return true;
       }
+      return false;
+    },
+    [saleParcels, onSale]
+  );
+
+  const isOwned = useCallback(
+    (x: number, y: number) => {
+      if (!tiles) return false;
+      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      if (tile?.owner) {
+        return true;
+      } else return false;
+    },
+    [tiles]
+  );
+
+  const isCustomerSaleParcel = useCallback(
+    (x: number, y: number) => {
+      if (!saleParcels) return false;
+      const tile: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
+      if (
+        onSale === true &&
+        tile?.seller.toLowerCase() === customerAddress.toLowerCase()
+      ) {
+        return true;
+      }
+      return false;
     },
     [saleParcels, onSale]
   );
@@ -113,7 +136,11 @@ const LandMap: React.FC<LandMapProps> = ({
     (x: any, y: any) => {
       return isSelected(x, y)
         ? { color: "#ff0044", scale: 1.4 }
+        : isCustomerSaleParcel(x, y)
+        ? { color: "transparent", scale: 1.4 }
         : isSaleParcel(x, y)
+        ? { color: "transparent", scale: 1.4 }
+        : isOwned(x, y)
         ? { color: "transparent", scale: 1.4 }
         : null;
     },
@@ -124,8 +151,12 @@ const LandMap: React.FC<LandMapProps> = ({
     (x: any, y: any) => {
       return isSelected(x, y)
         ? { color: "#ff9990", scale: 1.2 }
-        : isSaleParcel(x, y)
+        : isCustomerSaleParcel(x, y)
         ? { color: "#6ad3fe", scale: 1.2 }
+        : isSaleParcel(x, y)
+        ? { color: "#d5ed11", scale: 1.2 }
+        : isOwned(x, y)
+        ? { color: "#1e69c7", scale: 1.2 }
         : null;
     },
     [isSelected]
