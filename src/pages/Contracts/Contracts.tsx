@@ -1,5 +1,3 @@
-/** @format */
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +11,7 @@ import Parcels from "../../components/ContractInfo/Parcels";
 import TobTab from "../../components/TopTab/TopTab";
 import BidRecord from "../../components/ContractInfo/BidRecord";
 import { headerData, transactionData } from "./ContractsData";
-import { BidRecordData } from "./ContractsData";
+import { parcelTypes } from "../../config/constant";
 import { useStyles } from "./ContractsStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/LatestSalesTable";
@@ -84,7 +82,7 @@ const Contract = () => {
 
   useEffect(() => {
     if (itemInAll !== undefined) {
-      ["road", "district", "plaza"].indexOf(itemInAll.type) < 0
+      parcelTypes.indexOf(itemInAll.type) < 0
         ? setHighDivLine(true)
         : setHighDivLine(false);
     }

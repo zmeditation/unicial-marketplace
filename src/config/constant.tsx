@@ -82,6 +82,7 @@ export const typebox = {
   store: "item",
   listing: "nft",
 };
+export const parcelTypes = ["road", "district", "plaza"]
 
 export const category = {
   collections: "collections",

@@ -78,8 +78,8 @@ export const Atlas = (props: AtlasProps) => {
       layers={[layer, ...layers]}
       height={height}
       width={width}
-      x={0}
-      y={0}
+      x={x}
+      y={y}
     />
   );
 };

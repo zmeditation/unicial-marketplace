@@ -25,7 +25,9 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const [mouseY, setMouseY] = useState(-1);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const [onSale, setOnSale] = useState(false);
+  const [centerX, setCenterX] = useState(0);
+  const [centerY, setCenterY] = useState(0);
+  const [onSale, setOnSale] = useState(true);
   const [, setEstateid] = useState(null);
   let navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -42,6 +44,8 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      setCenterX(x);
+      setCenterY(y);
       if (!tile) {
         return;
       }
@@ -169,6 +173,10 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   }, [showPopup, mouseX, mouseY]);
 
   useEffect(() => {
+    if (query.get("onlyOnSale") === null) {
+      setOnSale(true);
+      return;
+    }
     if (query.get("onlyOnSale") === "true") {
       setOnSale(true);
     } else {
@@ -187,8 +195,8 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
         onClick={handleClick}
         height={height}
         width={width}
-        x={x}
-        y={y}
+        y={centerY}
+        x={centerX}
       />
       {hoveredTile ? (
         <Popup
