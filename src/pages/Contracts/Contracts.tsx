@@ -1,3 +1,5 @@
+/** @format */
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +22,8 @@ import TablePagination from "../../components/Base/TablePagination";
 import { useAppSelector } from "../../store/hooks";
 import { selectSaleParcels } from "../../store/saleparcels/selectors";
 import { parcels } from "../../store/parcels/selectors";
+import { ethers } from "ethers";
+import { dateConvert } from "../../common/utils";
 
 const Contract = () => {
   const classes = useStyles();
@@ -101,7 +105,7 @@ const Contract = () => {
         <div className={classes.LandMap}>
           <div>
             <div className={classes.LandMapContent}>
-              <LandMap height={400} width={width} centerX={x} centerY={y}/>
+              <LandMap height={400} width={width} centerX={x} centerY={y} />
             </div>
             <div className={classes.backbtnContainer}>
               <BackButton className={classes.backBtnPosition} />
@@ -144,7 +148,12 @@ const Contract = () => {
                     ? classes.BuyboxContainer
                     : classes.displayNone
                 }>
-                <Buybox price={itemInSale && itemInSale?.priceInWei} />
+                <Buybox
+                  price={
+                    itemInSale &&
+                    ethers.utils.formatUnits(itemInSale?.priceInWei, 18)
+                  }
+                />
               </div>
             </div>
           </div>
@@ -166,14 +175,19 @@ const Contract = () => {
           </div>
           <div>
             <div className={classes.BidsTitle}>{t("Bids")}.</div>
-            {Object.entries(saleParcels).map((key: any) => (
-              <BidRecord
-                fromName={saleParcels[key]?.seller}
-                price={saleParcels[key]?.priceInWei}
-                time={saleParcels[key]?.expiresAt}
-                key={key}
-              />
-            ))}
+            {Object.keys(saleParcels).map((key: any) => {
+              return (
+                <BidRecord
+                  key={key}
+                  fromName={saleParcels[key]?.seller.slice(0, 6)}
+                  price={ethers.utils.formatUnits(
+                    saleParcels[key]?.priceInWei,
+                    18
+                  )}
+                  time={dateConvert(saleParcels[key]?.expiresAt)}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

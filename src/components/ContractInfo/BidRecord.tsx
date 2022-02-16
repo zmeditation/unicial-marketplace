@@ -96,9 +96,20 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface data {
   fromName: string;
-  price: number;
-  time: number;
+  price: string;
+  time: string;
 }
+const addCommas = (nStr: any) => {
+  nStr += "";
+  var x = nStr.split(".");
+  var x1 = x[0];
+  var x2 = x.length > 1 ? "." + x[1] : "";
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, "$1" + "," + "$2");
+  }
+  return x1 + x2;
+};
 
 const BidRecord = ({ fromName, price, time }: data) => {
   const classes = useStyles();
@@ -114,7 +125,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
               <img
                 src={fromImg}
                 className={classes.fromIamge}
-                alt="fromimage!"
+                alt='fromimage!'
               />
               {fromName}
             </div>
@@ -124,14 +135,15 @@ const BidRecord = ({ fromName, price, time }: data) => {
             <div className={classes.title}>{t("Price")}</div>
             <div className={classes.content}>
               <i className={classes.symbol}>⏣</i>
-              {price}
+              {addCommas(price)}
             </div>
           </div>
 
           <div className={classes.timePart}>
             <div className={classes.title}>{t("Time Left")}</div>
             <div className={classes.content}>
-              {time} {t("days")}
+              {time} 
+              {/* {t("days")} */}
             </div>
           </div>
         </div>
