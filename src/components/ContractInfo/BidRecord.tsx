@@ -1,6 +1,7 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import fromImg from "../../assets/img/1.png";
 import { useTranslation } from "react-i18next";
+import { addCommas } from "../../common/utils";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flex: "1 0 auto",
@@ -99,17 +100,6 @@ interface data {
   price: string;
   time: string;
 }
-const addCommas = (nStr: any) => {
-  nStr += "";
-  var x = nStr.split(".");
-  var x1 = x[0];
-  var x2 = x.length > 1 ? "." + x[1] : "";
-  var rgx = /(\d+)(\d{3})/;
-  while (rgx.test(x1)) {
-    x1 = x1.replace(rgx, "$1" + "," + "$2");
-  }
-  return x1 + x2;
-};
 
 const BidRecord = ({ fromName, price, time }: data) => {
   const classes = useStyles();

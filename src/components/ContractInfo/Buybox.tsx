@@ -7,6 +7,7 @@ import CallMadeIcon from "@material-ui/icons/CallMade";
 import { useNavigate } from "react-router";
 import cloccheckSvg from "../../assets/svg/clockcheck.svg";
 import { useTranslation } from "react-i18next";
+import { addCommas } from "../../common/utils";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -71,18 +72,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface BuyboxProps {
   price?: string;
 }
-
-const addCommas = (nStr: any) => {
-  nStr += "";
-  var x = nStr.split(".");
-  var x1 = x[0];
-  var x2 = x.length > 1 ? "." + x[1] : "";
-  var rgx = /(\d+)(\d{3})/;
-  while (rgx.test(x1)) {
-    x1 = x1.replace(rgx, "$1" + " , " + "$2");
-  }
-  return x1 + x2;
-};
 
 const Buybox = ({ price }: BuyboxProps) => {
   const classes = useStyles();
