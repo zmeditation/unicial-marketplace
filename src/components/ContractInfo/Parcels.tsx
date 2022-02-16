@@ -70,9 +70,9 @@ const Parcels = ({ location }: ParcelsProps) => {
         <div className={classes.buttonGroup}>
           <LocationBtn position={location} />
         </div>
-        <div className={classes.showmoreContent}>
+        {/* <div className={classes.showmoreContent}>
           <ShowMoreLessBtn letter='Show More' />
-        </div>
+        </div> */}
       </div>
     </div>
   );

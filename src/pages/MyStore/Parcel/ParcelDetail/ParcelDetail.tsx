@@ -21,6 +21,8 @@ const ParcelDetail = () => {
   const [ownParcels, setOwnParcels] = useState<[]>();
   const [count, setCount] = useState(showMoreCount);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
+  const [showLessBtn, setShowLessBtn] = useState(false);
+
 
   useEffect(() => {
     getParcelsByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
@@ -30,6 +32,7 @@ const ParcelDetail = () => {
     );
     if (ownParcels && ownParcels?.length <= showMoreCount) {
       setShowMoreBtn(false);
+      setShowLessBtn(false);
     }
   }, []);
 
@@ -37,7 +40,14 @@ const ParcelDetail = () => {
     setCount(count + showMoreCount);
     if (ownParcels && count >= ownParcels?.length) {
       setShowMoreBtn(false);
+      setShowLessBtn(true);
     }
+  };
+
+  const handleShowLessBtn = () => {
+    setCount(showMoreCount);
+    setShowMoreBtn(true)
+    setShowLessBtn(false)
   };
 
   return (
@@ -105,6 +115,14 @@ const ParcelDetail = () => {
                 : classes.displayNone
             }>
             <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
+          </div>
+          <div
+            className={
+              showLessBtn === true
+                ? classes.showmoreContent
+                : classes.displayNone
+            }>
+            <ShowMoreLessBtn letter={t("Show Less")} onClick={handleShowLessBtn} />
           </div>
         </div>
       </div>
