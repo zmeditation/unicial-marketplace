@@ -28,6 +28,9 @@ const ParcelDetail = () => {
         setOwnParcels(parcels);
       }
     );
+    if (ownParcels && ownParcels?.length <= showMoreCount) {
+      setShowMoreBtn(false);
+    }
   }, []);
 
   const handleShowBtn = () => {
