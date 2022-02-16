@@ -189,6 +189,8 @@ const LandMap: React.FC<LandMapProps> = ({
       }
       if (sale?.seller){
         setPrice(ethers.utils.formatUnits(sale?.priceInWei, 18))
+      }else{
+        setPrice("")
       }
       if (tile && !showPopup) {
         setShowPopup(true);
