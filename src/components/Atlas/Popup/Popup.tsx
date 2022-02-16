@@ -7,7 +7,19 @@ import "./Popup.css";
 import makeBlockie from "ethereum-blockies-base64";
 import { useTranslation } from "react-i18next";
 
-function Popup({ x, y, visible, tile, position }: Props) {
+const addCommas = (nStr: any) => {
+  nStr += "";
+  var x = nStr.split(".");
+  var x1 = x[0];
+  var x2 = x.length > 1 ? "." + x[1] : "";
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, "$1" + " , " + "$2");
+  }
+  return x1 + x2;
+};
+
+function Popup({ x, y, visible, tile, position, price }: Props) {
   const { t } = useTranslation();
   const isEstate = !!tile.estateId;
   return (
@@ -39,10 +51,10 @@ function Popup({ x, y, visible, tile, position }: Props) {
         </div>
       </div>
 
-      {tile.price ? (
+      {price ? (
         <div className='price'>
           <div className={"owner-price-title"}>{t("PRICE")}</div>
-          <div>{tile?.price.toLocaleString()}</div>
+          <div>{addCommas(price)}</div>
         </div>
       ) : null}
     </div>

@@ -6,6 +6,7 @@ export type Props = {
   visible: boolean;
   tile: Tile;
   position: "left" | "right";
+  price? : string;
 };
 
 export type MapStateProps = {};

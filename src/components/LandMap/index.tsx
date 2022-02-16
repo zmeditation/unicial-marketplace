@@ -12,6 +12,7 @@ import { setSaleParcels } from "../../store/saleparcels";
 import { setParcels } from "../../store/parcels";
 import { showAlert } from "../../store/alert";
 import { selectLoginAddress } from "../../store/auth/selectors";
+import { ethers } from "ethers";
 
 interface LandMapProps {
   height?: any;
@@ -32,6 +33,7 @@ const LandMap: React.FC<LandMapProps> = ({
   const [mouseY, setMouseY] = useState(-1);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
+  const [price, setPrice] = useState("");
   const [onSale, setOnSale] = useState(true);
   const [, setEstateid] = useState(null);
   let navigate = useNavigate();
@@ -180,9 +182,13 @@ const LandMap: React.FC<LandMapProps> = ({
       if (!tiles) return;
       const id = getCoords(x, y);
       const tile: Tile = tiles && tiles[id];
+      const sale: any = saleParcels && saleParcels[id]
       if (tile?.estateId && tokensid === tile?.estateId) {
         setShowPopup(false);
         return;
+      }
+      if (sale?.seller){
+        setPrice(ethers.utils.formatUnits(sale?.priceInWei, 18))
       }
       if (tile && !showPopup) {
         setShowPopup(true);
@@ -251,6 +257,7 @@ const LandMap: React.FC<LandMapProps> = ({
           y={y}
           visible={showPopup}
           tile={hoveredTile}
+          price={price}
           position={x > window.innerWidth - 550 ? "left" : "right"}
         />
       ) : null}
