@@ -47,7 +47,7 @@ export default function SignIn() {
     const recoveredAddress = ethers.utils.verifyMessage(msgToSign, signature);
 
     dispatch(setloginAddress(recoveredAddress));
-    navigate("/auction");
+    navigate("/account");
     return recoveredAddress;
   };
 

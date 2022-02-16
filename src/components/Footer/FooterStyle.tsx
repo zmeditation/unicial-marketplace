@@ -135,7 +135,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       },
     },
     languageDropdown: {
-      width: "90px",
+      width: "100px",
       height: "30px",
       transform: "translateY(-4px)",
       cursor: "pointer",

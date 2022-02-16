@@ -119,7 +119,7 @@ export default function NetModal() {
 
     dispatch(setloginAddress(recoveredAddress));
     dispatch(showNetModal(false))
-    navigate("/auction");
+    navigate("/account");
     return recoveredAddress;
   };
 

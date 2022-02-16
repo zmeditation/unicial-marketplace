@@ -11,7 +11,6 @@ export const SearchBarStyle = makeStyles((theme: Theme) =>
       position: "relative",
       background: "#16141abf",
       backdropFilter: "blur(20)",
-      zIndex: 1,
       display: "flex",
     },
     container: {

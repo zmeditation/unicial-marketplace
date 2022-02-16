@@ -14,7 +14,6 @@ export const GeneralListDropdownStyle = makeStyles((theme: Theme) =>
       position: "relative",
       background: "#21263f",
       backdropFilter: "blur(20)",
-      zIndex: 1,
       display: "flex",
       width: "100%",
       height: "auto",
