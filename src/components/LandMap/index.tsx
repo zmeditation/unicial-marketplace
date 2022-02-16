@@ -174,7 +174,7 @@ const LandMap: React.FC<LandMapProps> = ({
         : isSaleParcel(x, y)
         ? { color: "#d5ed11", scale: 1.2 }
         : isOwned(x, y)
-        ? { color: "#1e69c7", scale: 1.2 }
+        ? { color: "#313960", scale: 1.2 }
         : null;
     },
     [isSelected]
