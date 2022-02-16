@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 
@@ -61,8 +59,6 @@ const LandMap: React.FC<LandMapProps> = ({
         navigate(`/contracts/${SpaceProxyAddress}/tokens/${tile.estateId}`);
       } else {
         setEstateid(null);
-        console.log(sale?.seller.toLowerCase());
-        console.log(customerAddress.toLowerCase());
 
         if (sale?.seller.toLowerCase() !== customerAddress.toLowerCase()) {
           try {
@@ -134,7 +130,6 @@ const LandMap: React.FC<LandMapProps> = ({
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles[getCoords(x, y)] as Tile;
-      const sale: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
 
       if (tokensid && tile && tokensid === tile?.tokenId) {
         return true;

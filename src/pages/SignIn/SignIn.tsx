@@ -37,7 +37,7 @@ export default function SignIn() {
   const classes = SignInStyle();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {t,i18n} = useTranslation();
+  const {t} = useTranslation();
   var loginAddress: string;
 
   const getLoginAddress = async (signer: any, msgToSign: string) => {
