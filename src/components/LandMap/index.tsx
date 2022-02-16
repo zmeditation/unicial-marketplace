@@ -12,6 +12,7 @@ import { parcels } from "../../store/parcels/selectors";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { setSaleParcels } from "../../store/saleparcels";
 import { setParcels } from "../../store/parcels";
+import { showAlert } from "../../store/alert";
 import { selectLoginAddress } from "../../store/auth/selectors";
 
 interface LandMapProps {
@@ -51,6 +52,7 @@ const LandMap: React.FC<LandMapProps> = ({
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      const sale: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
       if (!tile) {
         return;
       }
@@ -59,17 +61,30 @@ const LandMap: React.FC<LandMapProps> = ({
         navigate(`/contracts/${SpaceProxyAddress}/tokens/${tile.estateId}`);
       } else {
         setEstateid(null);
-        try {
-          query.set("onlyOnSale", onSale.toString());
-          navigate({
-            pathname: `/contracts/${SpaceProxyAddress}/tokens/${tile.tokenId}`,
-            search: query.toString(),
-          });
-        } catch (error: any) {
-          console.warn(
-            `Couldn't fetch parcel ${tile.x},${tile.y}: ${error.message}`
-          );
+        console.log(sale?.seller.toLowerCase());
+        console.log(customerAddress.toLowerCase());
+
+        if (sale?.seller.toLowerCase() !== customerAddress.toLowerCase()) {
+          try {
+            query.set("onlyOnSale", onSale.toString());
+            navigate({
+              pathname: `/contracts/${SpaceProxyAddress}/tokens/${tile.tokenId}`,
+              search: query.toString(),
+            });
+          } catch (error: any) {
+            console.warn(
+              `Couldn't fetch parcel ${tile.x},${tile.y}: ${error.message}`
+            );
+          }
+          return;
         }
+        dispatch(
+          showAlert({
+            message: "You have to select other's sale parcel.",
+            severity: "error",
+          })
+        );
+        return;
       }
     },
     [tiles]
@@ -102,10 +117,11 @@ const LandMap: React.FC<LandMapProps> = ({
   const isCustomerSaleParcel = useCallback(
     (x: number, y: number) => {
       if (!saleParcels) return false;
-      const tile: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
+      const sale: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
+
       if (
         onSale === true &&
-        tile?.seller.toLowerCase() === customerAddress.toLowerCase()
+        sale?.seller.toLowerCase() === customerAddress.toLowerCase()
       ) {
         return true;
       }
@@ -118,7 +134,9 @@ const LandMap: React.FC<LandMapProps> = ({
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles[getCoords(x, y)] as Tile;
-      if (tokensid && tile && tile.tokenId && tokensid === tile.tokenId) {
+      const sale: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
+
+      if (tokensid && tile && tokensid === tile?.tokenId) {
         return true;
       }
       return false;
