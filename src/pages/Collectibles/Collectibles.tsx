@@ -99,24 +99,6 @@ export default function Collectibles() {
                     price={1259}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <ProductCard
-                    tagColor="EpicColor"
-                    tagLetter="EPIC"
-                    productName="Pussy Hair"
-                    category="Polygon"
-                    price={1259}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <ProductCard
-                    tagColor="EpicColor"
-                    tagLetter="EPIC"
-                    productName="Pussy Hair"
-                    category="Polygon"
-                    price={1259}
-                  />
-                </Grid>
               </Grid>
               <div className={classes.showmoreContent}>
                 <ShowMoreLessBtn letter="Show More" />

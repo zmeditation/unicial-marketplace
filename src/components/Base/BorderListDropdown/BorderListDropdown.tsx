@@ -1,4 +1,6 @@
-import React from "react";
+/** @format */
+
+import React, { useState } from "react";
 import { Box } from "@material-ui/core";
 import {
   BorderListDropdownStyle,
@@ -7,6 +9,8 @@ import {
 } from "./BorderListDropdownStyle";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import CancelIcon from "@material-ui/icons/Cancel";
+import { IconButton } from "@material-ui/core";
 import clsx from "clsx";
 
 interface BorderListDropdownProps {
@@ -22,37 +26,58 @@ export default function BorderListDropdown({
   const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
     null
   );
+  const [showIcon, setShowIcon] = useState(false);
+  const [itemContent, setitemContent] = React.useState(data[0].content);
+
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorNetwork(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorNetwork(null);
   };
-  const [itemContent, setitemContent] = React.useState(data[0].content);
 
   const handleItem = (index: number) => {
-    // alert(index + data[index - 1].content);
+    setShowIcon(true);
     setitemContent(data[index - 1].content);
     handleClose();
   };
+
+  const handleIconClick = () => {
+    setShowIcon(false);
+    setitemContent(data[0].content);
+    handleClose();
+  };
+
   return (
     <>
       {/* network select start */}
       <Box
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={handleOpen}
-        className={classes.listDropdown}
-      >
+        aria-controls='simple-menu'
+        aria-haspopup='true'
+        className={classes.listDropdown}>
         <Box className={classes.listRoot}>
           <Box className={classes.listContainer}>
             <Box className={classes.mainlistLabel}>{itemContent}</Box>
-            <ExpandMoreIcon style={{ color: "#96A1DB", marginLeft: "3px" }} />
+            <IconButton
+              onClick={handleOpen}
+              className={
+                showIcon === false ? classes.moreIcon : classes.displayNone
+              }>
+              <ExpandMoreIcon />
+            </IconButton>
+            <IconButton
+              onClick={handleIconClick}
+              className={
+                showIcon === false ? classes.displayNone : classes.cancelIcon
+              }>
+              <CancelIcon />
+            </IconButton>
           </Box>
         </Box>
       </Box>
       <StyledCollectionPopover
-        id="simple-menu"
+        id='simple-menu'
         anchorEl={anchorNetwork}
         keepMounted
         open={Boolean(anchorNetwork)}
@@ -64,16 +89,14 @@ export default function BorderListDropdown({
         transformOrigin={{
           vertical: "top",
           horizontal: "right",
-        }}
-      >
+        }}>
         {data.map((item: any, index: any) => (
           <StyledMenuItem onClick={() => handleItem(item.index)} key={index}>
             <Box className={classes.listContainer}>
               <Box
                 className={clsx(classes.listLabel, {
                   [classes.activeLabel]: itemContent === item.content,
-                })}
-              >
+                })}>
                 {item.content}
               </Box>
             </Box>

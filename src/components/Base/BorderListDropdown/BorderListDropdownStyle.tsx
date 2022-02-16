@@ -41,7 +41,6 @@ export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
       marginTop: "5px",
       // width: "100%",
       height: "32px",
-      cursor: "pointer",
       position: "relative",
       border: "1px solid #373F66",
       borderRadius: "100px",
@@ -54,6 +53,7 @@ export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
       transform: "translateY(2px)",
       textTransform: "none",
       transition: "none",
+      marginTop: "1px",
     },
     listContainer: {
       display: "flex",
@@ -130,6 +130,25 @@ export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
     },
     activeLabel: {
       color: "white",
+    },
+    moreIcon: {
+      color: "#96A1DB !important",
+      marginLeft: "3px !important",
+      padding: "0px !important",
+      "& .MuiSvgIcon-root":{
+        fontSize: "20px",
+      },
+    },
+    cancelIcon: {
+      color: "#96A1DB !important",
+      marginLeft: "3px !important",
+      padding: "0px !important",
+      "& .MuiSvgIcon-root":{
+        fontSize: "15px",
+      },
+    },
+    displayNone: {
+      display: 'none'
     },
   })
 );
