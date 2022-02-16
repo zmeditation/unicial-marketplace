@@ -13,6 +13,9 @@ export const LandCardStyle = makeStyles((theme: Theme) =>
       marginBottom: "10px",
       padding: "20px 8px",
       cursor: "pointer",
+      "&:hover": {
+        transform: "translateY(-2px)",
+      },
     },
     header: {
       display: "flex",

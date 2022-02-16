@@ -13,6 +13,9 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       overflow: "hidden",
       minWidth: "200px",
       marginBottom: "20px",
+      "&:hover": {
+        transform: "translateY(-2px)",
+      },
     },
     header: {
       display: "flex",

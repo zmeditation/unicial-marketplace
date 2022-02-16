@@ -15,6 +15,9 @@ export const ParcelCardStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(960)]: {
         padding: "20px",
       },
+      "&:hover": {
+        transform: "translateY(-2px)",
+      },
     },
     cardLabel: {
       fontSize: "18px",
