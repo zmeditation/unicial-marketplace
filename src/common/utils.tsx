@@ -63,16 +63,16 @@ export const isoDatetoString = (newDate: any) => {
 };
 
 export const addCommas = (nStr: any) => {
-  nStr += "";
-  var x = nStr.split(".");
+  var inputValue = nStr.toString();
+  var x = inputValue.split(".");
   var x1 = x[0];
   var x2 = x.length > 1 ? "." + x[1] : "";
-  var x3 = x2 === ".0" ? " " : x;
+  x2 = x2 === ".0" ? " " : x2;
   var rgx = /(\d+)(\d{3})/;
   while (rgx.test(x1)) {
-    x1 = x1.replace(rgx, "$1" + " , " + "$2");
+    x1 = x1.replace(rgx, "$1" + "," + "$2");
   }
-  return x1 + x3;
+  return x1 + x2;
 };
 
 export const addSpace = (nStr: any) => {

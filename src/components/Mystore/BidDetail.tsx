@@ -4,6 +4,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 import fromImg from "../../assets/img/1.png";
 import ActionButton from "../Base/ActionButton";
 import { useTranslation } from "react-i18next";
+import { addCommas } from "../../common/utils";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flex: "1 0 auto",
@@ -160,7 +161,7 @@ const BidRecord = ({ address, price, time }: data) => {
             <div className={classes.title}>{t("Price")}</div>
             <div className={classes.content}>
               <i className={classes.symbol}>⏣</i>
-              {price}
+              {addCommas(price)}
             </div>
           </div>
 
