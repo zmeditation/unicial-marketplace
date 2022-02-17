@@ -127,7 +127,8 @@ const Contract = () => {
               <div
                 className={
                   highDivLine === true ? classes.displayNone : classes.highLIght
-                }>
+                }
+              >
                 <div className={classes.divideLine}></div>
                 <Highlight type={itemInAll?.type} />
                 <div className={classes.divideLine}></div>
@@ -139,7 +140,8 @@ const Contract = () => {
                   itemInSale && itemInSale?.assetId === tokensid
                     ? classes.displayNone
                     : classes.BidboxContainer
-                }>
+                }
+              >
                 <Bidbox />
               </div>
               <div
@@ -147,7 +149,8 @@ const Contract = () => {
                   itemInSale && itemInSale?.assetId === tokensid
                     ? classes.BuyboxContainer
                     : classes.displayNone
-                }>
+                }
+              >
                 <Buybox
                   price={
                     itemInSale &&

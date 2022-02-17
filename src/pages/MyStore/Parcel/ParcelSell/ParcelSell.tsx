@@ -39,6 +39,7 @@ import {
   SpaceRegistryAbi,
 } from "../../../../config/contracts/SpaceRegistryContract";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { time } from "console";
 
 declare var window: any;
 var signer: any, marketplaceContract: any, spaceRegistryContract: any;
@@ -73,7 +74,15 @@ const ParcelSell = () => {
 
   // occur a transaction to create sale order on marketplace for this parcel
   const handleCreateOrder = async () => {
-
+    let currenttime = new Date().getTime() / 1000;
+    if (timeStamp <= currenttime) {
+      dispatch(
+        showAlert({
+          message: "You have to select  correct expiration date.",
+          severity: "error",
+        })
+      );
+    }
     if (customerAddress.length === 0) {
       dispatch(
         showAlert({
@@ -188,7 +197,8 @@ const ParcelSell = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -206,10 +216,10 @@ const ParcelSell = () => {
                       </div>
                       <FormControl>
                         <StyledInput
-                          placeholder='0'
+                          placeholder="0"
                           onChange={(e) => handleChange(e)}
                           startAdornment={
-                            <InputAdornment position='start'>
+                            <InputAdornment position="start">
                               <img src={settingicon} />
                             </InputAdornment>
                           }
@@ -224,9 +234,9 @@ const ParcelSell = () => {
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                           <KeyboardDatePicker
                             className={classes.datePicker}
-                            format='MM/dd/yyyy'
-                            margin='normal'
-                            id='date-picker-dialog'
+                            format="MM/dd/yyyy"
+                            margin="normal"
+                            id="date-picker-dialog"
                             value={selectedDate}
                             onChange={handleDateChange}
                             KeyboardButtonProps={{
@@ -244,16 +254,18 @@ const ParcelSell = () => {
               {/* buttons */}
               <div className={classes.buttons}>
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.bidchange}
-                  onClick={handleCreateOrder}>
+                  onClick={handleCreateOrder}
+                >
                   {t("List Sell")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={handleCancelOrder}>
+                  onClick={handleCancelOrder}
+                >
                   {t("Cancel Orders")}
                 </ActionButton>
               </div>
