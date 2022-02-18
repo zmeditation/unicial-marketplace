@@ -182,7 +182,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   bidchange: {
-    marginLeft: "16px",
     minWidth: "160px",
     fontStyle: "normal",
     fontWeight: 500,
@@ -195,6 +194,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   cancelchange: {
+    marginLeft: "16px",
     minWidth: "160px",
     fontStyle: "normal",
     fontWeight: 500,

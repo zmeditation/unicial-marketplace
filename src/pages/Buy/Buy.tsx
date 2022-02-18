@@ -161,19 +161,19 @@ const Buy = () => {
                 {/* buttons */}
                 <div className={classes.buttons}>
                   <ActionButton
-                    color="dark"
-                    className={classes.cancelchange}
-                    onClick={() => navigate(-1)}
-                  >
-                    {t("Cancel")}
-                  </ActionButton>
-                  <ActionButton
                     color="light"
                     className={classes.bidchange}
                     onClick={handleBuy}
                   >
                     {t("Buy")}
                     <CallMadeIcon fontSize="small" />
+                  </ActionButton>
+                  <ActionButton
+                    color="dark"
+                    className={classes.cancelchange}
+                    onClick={() => navigate(-1)}
+                  >
+                    {t("Cancel")}
                   </ActionButton>
                 </div>
               </div>
