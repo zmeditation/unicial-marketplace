@@ -1,5 +1,4 @@
-/** @format */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import FormControl from "@material-ui/core/FormControl";
 import CallMadeIcon from "@material-ui/icons/CallMade";
@@ -10,27 +9,129 @@ import NeedSignIn from "../../../NeedSignIn";
 import { useStyles, StyledInput } from "./CreateEstateStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../../../store/hooks";
+import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
 import { selectestates } from "../../../../store/selectedestates/selectors";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import {
+  MarketplaceAddress,
+  MarketplaceAbi,
+} from "../../../../config/contracts/MarketPlaceContract";
+
+import {
+  SpaceProxyAddress,
+  SpaceRegistryAbi,
+} from "../../../../config/contracts/SpaceRegistryContract";
+import { showAlert } from "../../../../store/alert";
+import { selectLoginAddress } from "../../../../store/auth/selectors";
+import { BigNumber } from "ethers";
+
+declare var window: any;
+var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 
 const CreateEstate = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const estates = useAppSelector(selectestates);
   const [name, setName] = useState("");
+  const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
   const [description, setDescription] = useState("");
+  const customerAddress = useAppSelector(selectLoginAddress)
 
   var isSignIn = 1;
 
   const handleNameChange = (e: any) => {
     setName(e.target.value);
   };
+
   const handleDescriptionChange = (e: any) => {
     setDescription(e.target.value);
   };
 
-  const handleSubmitBtn = () => {};
+  const handleSubmitBtn = async () => {
+
+    if (customerAddress.length === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to connect Meta mask wallet.",
+          severity: "error",
+        })
+      );
+      navigate("/signin");
+    }
+
+    if (description === "") {
+      dispatch(
+        showAlert({
+          message: "You have to write your estate description.",
+          severity: "error",
+        })
+      );
+    }
+
+    if (name === "") {
+      dispatch(
+        showAlert({
+          message: "You have to write your estate name.",
+          severity: "error",
+        })
+      );
+    }
+
+    signer = generateSigner(window.ethereum);
+    marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    spaceRegistryContract = generateContractInstance(
+      SpaceProxyAddress,
+      SpaceRegistryAbi,
+      signer
+    );
+
+    let createEstateOrderTx = await spaceRegistryContract.createEstate(
+      bid.xs,
+      bid.ys,
+      customerAddress
+    );
+
+    await createEstateOrderTx.wait();
+
+    dispatch(
+      showAlert({
+        message: "Create estate order is successfully published.",
+        severity: "success",
+      })
+    );
+  };
+
+  const convertToBidData = () => {
+    let xs: any = [],
+      ys: any = [];
+
+    estates.forEach((parcel: string) => {
+      xs.push(parseInt(parcel.split(",")[0]));
+      ys.push(parseInt(parcel.split(",")[1]));
+    });
+
+    let data = bid;
+    data.xs = xs;
+    data.ys = ys;
+    setBid(data);
+  };
+
+  useEffect(() => {
+    if( estates.length === 0){
+      navigate("/account/estate/create")
+    }
+    convertToBidData();
+  }, [estates]);
+
 
   return (
     <div className={classes.root}>
@@ -75,17 +176,17 @@ const CreateEstate = () => {
               </div>
               <div className={classes.buttons}>
                 <ActionButton
-                  color='dark'
-                  className={classes.cancelchange}
-                  onClick={() => navigate("/account/estate/create")}>
-                  {t("CANCEL")}
-                </ActionButton>
-                <ActionButton
                   color='light'
                   className={classes.bidchange}
                   onClick={handleSubmitBtn}>
                   {t("SUBMIT")}
                   <CallMadeIcon fontSize='small' />
+                </ActionButton>
+                <ActionButton
+                  color='dark'
+                  className={classes.cancelchange}
+                  onClick={() => navigate("/account/estate/create")}>
+                  {t("CANCEL")}
                 </ActionButton>
               </div>
             </div>

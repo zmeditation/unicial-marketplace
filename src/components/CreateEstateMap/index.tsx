@@ -1,16 +1,14 @@
-/** @format */
-
 import React, { useCallback, useEffect, useState } from "react";
 
 import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import Popup from "../Atlas/Popup";
-import { fetchTiles } from "../../hooks/tiles";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { showSpinner } from "../../store/spinner";
 import { selectestates } from "../../store/selectedestates/selectors";
 import { getestates } from "../../store/selectedestates";
+import { parcels } from "../../store/parcels/selectors";
+import { showAlert } from "../../store/alert";
 
 interface CreateEstateMapProps {
   height?: any;
@@ -20,7 +18,6 @@ interface CreateEstateMapProps {
 }
 
 const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
-  const [tiles, setTiles] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
   const [mouseX, setMouseX] = useState(-1);
@@ -29,6 +26,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
   const [y, setY] = useState(0);
   const dispatch = useAppDispatch();
   const selectedTile = useAppSelector(selectestates);
+  const tiles: any = useAppSelector(parcels);
   const mineAddress = useAppSelector(selectLoginAddress);
 
   const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
@@ -36,8 +34,11 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-
-      if (tile.owner === mineAddress && tile.estateId === undefined) {
+      if (
+        tile.owner &&
+        tile.owner.toLowerCase() === mineAddress.toLowerCase() &&
+        tile.estateId === undefined
+      ) {
         let newSelectedTile: string[] = [];
         const selectedIndex = selectedTile.indexOf(getCoords(x, y));
         if (selectedIndex === -1) {
@@ -56,6 +57,13 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
           );
         }
         dispatch(getestates(newSelectedTile));
+      } else {
+        dispatch(
+          showAlert({
+            message: "You have to select your parcels!",
+            severity: "error",
+          })
+        );
       }
     },
     [tiles, selectedTile]
@@ -98,7 +106,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
 
       if (
         tile?.owner &&
-        tile?.owner.toLowercase() === mineAddress.toLowerCase()
+        tile?.owner?.toLowerCase() === mineAddress.toLowerCase()
       ) {
         return true;
       } else return false;
@@ -112,7 +120,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
       if (
         tile?.owner &&
-        tile?.owner === mineAddress &&
+        tile?.owner?.toLowerCase() === mineAddress.toLowerCase() &&
         tile?.estateId !== undefined
       ) {
         return true;
@@ -201,14 +209,6 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
       }
     };
   }, [showPopup, mouseX, mouseY]);
-
-  useEffect(() => {
-    dispatch(showSpinner(true));
-    if (window) {
-      fetchTiles().then((_tiles: any) => setTiles(_tiles));
-    }
-    dispatch(showSpinner(false));
-  }, []);
 
   return (
     <div onMouseLeave={handleHidePopup}>

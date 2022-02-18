@@ -1,5 +1,3 @@
-/** @format */
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { EstateStyle } from "./EstateSelectStyles";
@@ -44,7 +42,7 @@ export default function EstatesSelect() {
   };
 
   const handleContinue = () => {
-    let status = true;
+    let status = false;
     for (let i = 0; i < estates.length; i++) {
       var x: number = +estates[i].substring(0, estates[i].indexOf(","));
       var y: number = +estates[i].substring(estates[i].indexOf(",") + 1);
@@ -53,6 +51,8 @@ export default function EstatesSelect() {
       const topIndex = estates.indexOf(getCoords(x, y - 1));
       const rightIndex = estates.indexOf(getCoords(x + 1, y));
       const bottomIndex = estates.indexOf(getCoords(x, y + 1));
+
+      status = true;
 
       if (leftIndex < 0 && topIndex < 0 && rightIndex < 0 && bottomIndex < 0) {
         status = false;
@@ -67,7 +67,7 @@ export default function EstatesSelect() {
       ? navigate("/account/estate/createestate")
       : dispatch(
           showAlert({
-            message: "You have to select correct parcels!",
+            message: "You have to select neighborhood parcels exactly!",
             severity: "error",
           })
         );
@@ -133,17 +133,17 @@ export default function EstatesSelect() {
             <div className={classes.btns}>
               <div className={classes.buttons}>
                 <ActionButton
-                  color='dark'
-                  className={classes.cancelchange}
-                  onClick={() => navigate("/account?section=estates")}>
-                  {t("CANCEL")}
-                </ActionButton>
-                <ActionButton
                   color='light'
                   className={classes.bidchange}
                   onClick={handleContinue}>
                   {t("CONTINUE")}
                   <CallMadeIcon fontSize='small' />
+                </ActionButton>
+                <ActionButton
+                  color='dark'
+                  className={classes.cancelchange}
+                  onClick={() => navigate("/account?section=estates")}>
+                  {t("CANCEL")}
                 </ActionButton>
               </div>
             </div>

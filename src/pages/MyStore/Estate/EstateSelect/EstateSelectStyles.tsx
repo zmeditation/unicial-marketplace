@@ -96,7 +96,6 @@ export const EstateStyle = makeStyles((theme: Theme) =>
       },
     },
     bidchange: {
-      marginLeft: "16px",
       minWidth: "160px",
       fontStyle: "normal",
       fontWeight: 500,
@@ -109,6 +108,7 @@ export const EstateStyle = makeStyles((theme: Theme) =>
       },
     },
     cancelchange: {
+      marginLeft: "16px",
       minWidth: "160px",
       fontStyle: "normal",
       fontWeight: 500,

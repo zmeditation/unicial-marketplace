@@ -9,6 +9,7 @@ export const ParcelCardStyle = makeStyles((theme: Theme) =>
       padding: "20px",
       borderRadius: "10px",
       textAlign: "center",
+      cursor: "pointer",
       [theme.breakpoints.down(996)]: {
         padding: "20px 3px",
       },
