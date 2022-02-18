@@ -16,6 +16,7 @@ import { showAlert } from "../../../../store/alert";
 
 import { useTranslation } from "react-i18next";
 import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
+import { getCoords } from "../../../../common/utils";
 export default function EstatesSelect() {
   const classes = EstateStyle();
   const navigate = useNavigate();
@@ -24,8 +25,6 @@ export default function EstatesSelect() {
   const { t } = useTranslation();
   const [width, setWidth] = useState(0);
   const [result, setResult] = useState(true);
-
-  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {

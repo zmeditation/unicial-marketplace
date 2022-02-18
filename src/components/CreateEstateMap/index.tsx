@@ -9,6 +9,7 @@ import { selectestates } from "../../store/selectedestates/selectors";
 import { getestates } from "../../store/selectedestates";
 import { parcels } from "../../store/parcels/selectors";
 import { showAlert } from "../../store/alert";
+import { getCoords } from "../../common/utils";
 
 interface CreateEstateMapProps {
   height?: any;
@@ -28,8 +29,6 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
   const selectedTile = useAppSelector(selectestates);
   const tiles: any = useAppSelector(parcels);
   const mineAddress = useAppSelector(selectLoginAddress);
-
-  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
   const handleClick = useCallback(
     async (x: number, y: number) => {

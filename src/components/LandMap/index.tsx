@@ -13,6 +13,7 @@ import { setParcels } from "../../store/parcels";
 import { showAlert } from "../../store/alert";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { ethers } from "ethers";
+import { getCoords } from "../../common/utils";
 
 interface LandMapProps {
   height?: any;
@@ -46,8 +47,6 @@ const LandMap: React.FC<LandMapProps> = ({
   const saleParcels: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
   const customerAddress: any = useAppSelector(selectLoginAddress);
-
-  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
   const handleClick = useCallback(
     async (x: number, y: number) => {

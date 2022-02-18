@@ -83,3 +83,6 @@ export const addSpace = (nStr: any) => {
   x1 = x1 + " , ";
   return x1 + x2;
 };
+
+export const getCoords = (x: number | string, y: number | string) =>
+  `${x},${y}`;

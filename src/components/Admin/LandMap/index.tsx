@@ -7,6 +7,7 @@ import { fetchTiles } from "../../../hooks/tiles";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { selectparcels } from "../../../store/selectedparcels/selectors";
 import { getparcels } from "../../../store/selectedparcels";
+import { getCoords } from "../../../common/utils";
 
 interface LandMapProps {
   height?: any;
@@ -25,8 +26,6 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const [y, setY] = useState(0);
   const dispatch = useAppDispatch();
   const selectedTile = useAppSelector(selectparcels);
-
-  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
   const handleClick = useCallback(
     async (x: number, y: number) => {

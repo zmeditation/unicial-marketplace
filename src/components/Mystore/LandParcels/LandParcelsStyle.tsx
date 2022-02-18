@@ -13,5 +13,8 @@ export const LandParcelsStyle = makeStyles((theme: Theme) =>
       flexFlow: "row nowrap",
       display: "flex",
     },
+    displayNone: {
+      display: "none",
+    }
   })
 );

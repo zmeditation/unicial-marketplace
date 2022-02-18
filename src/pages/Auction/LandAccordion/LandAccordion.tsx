@@ -15,6 +15,7 @@ import { getparcels } from "../../../store/selectedparcels";
 import { fetchTiles } from "../../../hooks/tiles";
 import { Tile } from "../../../components/Atlas/Atlas.types";
 import { useTranslation } from "react-i18next";
+import { getCoords } from "../../../common/utils";
 
 export default function LandAccordion() {
   const classes = LandAccordionStyle();
@@ -54,8 +55,6 @@ export default function LandAccordion() {
   const inputxy = (data: string) => {
     setxy(data);
   };
-
-  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
   const showmapArea = () => {
     let newSelectedTile: string[] = [];

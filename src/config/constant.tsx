@@ -8,12 +8,6 @@ export const tabs = {
 
 export const showMoreCount = 6;
 
-export const LandStatus = {
-  ShowPartResult: 1,
-  ShowAllResult: 2,
-  NoneResult: 3,
-};
-
 export const headerId = {
   marketplace: 1,
   admin: 2,

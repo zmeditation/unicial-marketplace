@@ -23,11 +23,11 @@ import { useAppSelector } from "../../store/hooks";
 import { selectSaleParcels } from "../../store/saleparcels/selectors";
 import { parcels } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
-import { dateConvert } from "../../common/utils";
+import { dateConvert, getCoords } from "../../common/utils";
 
 const Contract = () => {
   const classes = useStyles();
-  const { contractaddress, tokensid } = useParams();
+  const { tokensid } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(0);
   const { t } = useTranslation();
@@ -39,8 +39,6 @@ const Contract = () => {
 
   const saleParcels: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
-
-  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
   useEffect(() => {
     Object.keys(saleParcels).forEach((index: any) => {
@@ -127,8 +125,7 @@ const Contract = () => {
               <div
                 className={
                   highDivLine === true ? classes.displayNone : classes.highLIght
-                }
-              >
+                }>
                 <div className={classes.divideLine}></div>
                 <Highlight type={itemInAll?.type} />
                 <div className={classes.divideLine}></div>
@@ -140,8 +137,7 @@ const Contract = () => {
                   itemInSale && itemInSale?.assetId === tokensid
                     ? classes.displayNone
                     : classes.BidboxContainer
-                }
-              >
+                }>
                 <Bidbox />
               </div>
               <div
@@ -149,8 +145,7 @@ const Contract = () => {
                   itemInSale && itemInSale?.assetId === tokensid
                     ? classes.BuyboxContainer
                     : classes.displayNone
-                }
-              >
+                }>
                 <Buybox
                   price={
                     itemInSale &&
