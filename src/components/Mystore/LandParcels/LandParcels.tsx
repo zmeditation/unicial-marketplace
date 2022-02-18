@@ -31,8 +31,6 @@ export default function LandParcels() {
   };
 
   const getResult = async () => {
-    await dispatch(setSaleParcels());
-
     await getParcelsByOwner(customerAddress).then((parcels) => {
       if (
         query.get("onlyOnSale") === null ||

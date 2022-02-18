@@ -225,7 +225,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
           y={y}
           visible={showPopup}
           tile={hoveredTile}
-          position={x > window.innerWidth - 280 ? "left" : "right"}
+          position={x > window.innerWidth - 550 ? "left" : "right"}
         />
       ) : null}
     </div>
