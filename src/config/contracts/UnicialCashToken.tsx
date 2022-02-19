@@ -1,8 +1,14 @@
 export const UccContractAbi = [
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "chainId_",
+        type: "uint256"
+      }
+    ],
     stateMutability: "nonpayable",
-    type: "constructor",
+    type: "constructor"
   },
   {
     anonymous: false,
@@ -11,29 +17,29 @@ export const UccContractAbi = [
         indexed: true,
         internalType: "address",
         name: "owner",
-        type: "address",
+        type: "address"
       },
       {
         indexed: true,
         internalType: "address",
         name: "spender",
-        type: "address",
+        type: "address"
       },
       {
         indexed: false,
         internalType: "uint256",
         name: "value",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "Approval",
-    type: "event",
+    type: "event"
   },
   {
     anonymous: false,
     inputs: [],
     name: "MintFinished",
-    type: "event",
+    type: "event"
   },
   {
     anonymous: false,
@@ -42,17 +48,17 @@ export const UccContractAbi = [
         indexed: true,
         internalType: "address",
         name: "previousOwner",
-        type: "address",
+        type: "address"
       },
       {
         indexed: true,
         internalType: "address",
         name: "newOwner",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "OwnershipTransferred",
-    type: "event",
+    type: "event"
   },
   {
     anonymous: false,
@@ -61,11 +67,11 @@ export const UccContractAbi = [
         indexed: false,
         internalType: "address",
         name: "account",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "Paused",
-    type: "event",
+    type: "event"
   },
   {
     anonymous: false,
@@ -74,23 +80,23 @@ export const UccContractAbi = [
         indexed: true,
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
+        type: "bytes32"
       },
       {
         indexed: true,
         internalType: "bytes32",
         name: "previousAdminRole",
-        type: "bytes32",
+        type: "bytes32"
       },
       {
         indexed: true,
         internalType: "bytes32",
         name: "newAdminRole",
-        type: "bytes32",
-      },
+        type: "bytes32"
+      }
     ],
     name: "RoleAdminChanged",
-    type: "event",
+    type: "event"
   },
   {
     anonymous: false,
@@ -99,23 +105,23 @@ export const UccContractAbi = [
         indexed: true,
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
+        type: "bytes32"
       },
       {
         indexed: true,
         internalType: "address",
         name: "account",
-        type: "address",
+        type: "address"
       },
       {
         indexed: true,
         internalType: "address",
         name: "sender",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "RoleGranted",
-    type: "event",
+    type: "event"
   },
   {
     anonymous: false,
@@ -124,23 +130,23 @@ export const UccContractAbi = [
         indexed: true,
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
+        type: "bytes32"
       },
       {
         indexed: true,
         internalType: "address",
         name: "account",
-        type: "address",
+        type: "address"
       },
       {
         indexed: true,
         internalType: "address",
         name: "sender",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "RoleRevoked",
-    type: "event",
+    type: "event"
   },
   {
     anonymous: false,
@@ -149,23 +155,23 @@ export const UccContractAbi = [
         indexed: true,
         internalType: "address",
         name: "from",
-        type: "address",
+        type: "address"
       },
       {
         indexed: true,
         internalType: "address",
         name: "to",
-        type: "address",
+        type: "address"
       },
       {
         indexed: false,
         internalType: "uint256",
         name: "value",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "Transfer",
-    type: "event",
+    type: "event"
   },
   {
     anonymous: false,
@@ -174,11 +180,11 @@ export const UccContractAbi = [
         indexed: false,
         internalType: "address",
         name: "account",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "Unpaused",
-    type: "event",
+    type: "event"
   },
   {
     inputs: [],
@@ -187,12 +193,24 @@ export const UccContractAbi = [
       {
         internalType: "bytes32",
         name: "",
-        type: "bytes32",
-      },
+        type: "bytes32"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
+  },
+  {
+    inputs: [],
+    name: "DOMAIN_SEPARATOR",
+    outputs: [
+      {
+        internalType: "bytes32",
+        name: "",
+        type: "bytes32"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
   },
   {
     inputs: [],
@@ -201,12 +219,11 @@ export const UccContractAbi = [
       {
         internalType: "bytes32",
         name: "",
-        type: "bytes32",
-      },
+        type: "bytes32"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [],
@@ -215,112 +232,135 @@ export const UccContractAbi = [
       {
         internalType: "bytes32",
         name: "",
-        type: "bytes32",
-      },
+        type: "bytes32"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
+  },
+  {
+    inputs: [],
+    name: "PERMIT_TYPEHASH",
+    outputs: [
+      {
+        internalType: "bytes32",
+        name: "",
+        type: "bytes32"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    inputs: [],
+    name: "TRANSFER_TYPEHASH",
+    outputs: [
+      {
+        internalType: "bytes32",
+        name: "",
+        type: "bytes32"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "owner",
-        type: "address",
+        type: "address"
       },
       {
         internalType: "address",
         name: "spender",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "allowance",
     outputs: [
       {
         internalType: "uint256",
         name: "",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "spender",
-        type: "address",
+        type: "address"
       },
       {
         internalType: "uint256",
         name: "amount",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "approve",
     outputs: [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "account",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "balanceOf",
     outputs: [
       {
         internalType: "uint256",
         name: "",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "uint256",
         name: "amount",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "burn",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "account",
-        type: "address",
+        type: "address"
       },
       {
         internalType: "uint256",
         name: "amount",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "burnFrom",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [],
@@ -329,186 +369,181 @@ export const UccContractAbi = [
       {
         internalType: "uint8",
         name: "",
-        type: "uint8",
-      },
+        type: "uint8"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "spender",
-        type: "address",
+        type: "address"
       },
       {
         internalType: "uint256",
         name: "subtractedValue",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "decreaseAllowance",
     outputs: [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
-      },
+        type: "bytes32"
+      }
     ],
     name: "getRoleAdmin",
     outputs: [
       {
         internalType: "bytes32",
         name: "",
-        type: "bytes32",
-      },
+        type: "bytes32"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
+        type: "bytes32"
       },
       {
         internalType: "uint256",
         name: "index",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "getRoleMember",
     outputs: [
       {
         internalType: "address",
         name: "",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
-      },
+        type: "bytes32"
+      }
     ],
     name: "getRoleMemberCount",
     outputs: [
       {
         internalType: "uint256",
         name: "",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
+        type: "bytes32"
       },
       {
         internalType: "address",
         name: "account",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "grantRole",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
+        type: "bytes32"
       },
       {
         internalType: "address",
         name: "account",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "hasRole",
     outputs: [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "spender",
-        type: "address",
+        type: "address"
       },
       {
         internalType: "uint256",
         name: "addedValue",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "increaseAllowance",
     outputs: [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "to",
-        type: "address",
+        type: "address"
       },
       {
         internalType: "uint256",
         name: "amount",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "mint",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [],
@@ -517,12 +552,11 @@ export const UccContractAbi = [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [],
@@ -531,12 +565,30 @@ export const UccContractAbi = [
       {
         internalType: "string",
         name: "",
-        type: "string",
-      },
+        type: "string"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address"
+      }
+    ],
+    name: "nonces",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
   },
   {
     inputs: [],
@@ -545,19 +597,18 @@ export const UccContractAbi = [
       {
         internalType: "address",
         name: "",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [],
     name: "pause",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [],
@@ -566,75 +617,73 @@ export const UccContractAbi = [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [],
     name: "renounceOwnership",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
+        type: "bytes32"
       },
       {
         internalType: "address",
         name: "account",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "renounceRole",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "bytes32",
         name: "role",
-        type: "bytes32",
+        type: "bytes32"
       },
       {
         internalType: "address",
         name: "account",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "revokeRole",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "bytes4",
         name: "interfaceId",
-        type: "bytes4",
-      },
+        type: "bytes4"
+      }
     ],
     name: "supportsInterface",
     outputs: [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [],
@@ -643,12 +692,11 @@ export const UccContractAbi = [
       {
         internalType: "string",
         name: "",
-        type: "string",
-      },
+        type: "string"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [],
@@ -657,85 +705,189 @@ export const UccContractAbi = [
       {
         internalType: "uint256",
         name: "",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     stateMutability: "view",
-    type: "function",
-    constant: true,
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "recipient",
-        type: "address",
+        type: "address"
       },
       {
         internalType: "uint256",
         name: "amount",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "transfer",
     outputs: [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "sender",
-        type: "address",
+        type: "address"
       },
       {
         internalType: "address",
         name: "recipient",
-        type: "address",
+        type: "address"
       },
       {
         internalType: "uint256",
         name: "amount",
-        type: "uint256",
-      },
+        type: "uint256"
+      }
     ],
     name: "transferFrom",
     outputs: [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [
       {
         internalType: "address",
         name: "newOwner",
-        type: "address",
-      },
+        type: "address"
+      }
     ],
     name: "transferOwnership",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
   {
     inputs: [],
     name: "unpause",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
+  },
+  {
+    inputs: [],
+    name: "version",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address"
+      },
+      {
+        internalType: "address",
+        name: "spender",
+        type: "address"
+      },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256"
+      },
+      {
+        internalType: "uint256",
+        name: "deadline",
+        type: "uint256"
+      },
+      {
+        internalType: "uint8",
+        name: "v",
+        type: "uint8"
+      },
+      {
+        internalType: "bytes32",
+        name: "r",
+        type: "bytes32"
+      },
+      {
+        internalType: "bytes32",
+        name: "s",
+        type: "bytes32"
+      }
+    ],
+    name: "permit",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address"
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address"
+      },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256"
+      },
+      {
+        internalType: "uint256",
+        name: "deadline",
+        type: "uint256"
+      },
+      {
+        internalType: "uint8",
+        name: "v",
+        type: "uint8"
+      },
+      {
+        internalType: "bytes32",
+        name: "r",
+        type: "bytes32"
+      },
+      {
+        internalType: "bytes32",
+        name: "s",
+        type: "bytes32"
+      }
+    ],
+    name: "transferWithPermit",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool"
+      }
+    ],
+    stateMutability: "nonpayable",
+    type: "function"
   },
   {
     inputs: [],
@@ -744,12 +896,38 @@ export const UccContractAbi = [
       {
         internalType: "bool",
         name: "",
-        type: "bool",
-      },
+        type: "bool"
+      }
     ],
     stateMutability: "nonpayable",
-    type: "function",
+    type: "function"
   },
-];
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "newMinter",
+        type: "address"
+      }
+    ],
+    name: "addMinter",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "existingMinter",
+        type: "address"
+      }
+    ],
+    name: "revokeMinter",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  }
+]
 
-export const UccContractAddress = "0x00F40F0014713f527E3e9ABa89aB45adaD0DfCe1";
+export const UccContractAddress = "0x8A2AA3F73402972FeBBE74a1f99390158C8802Be";

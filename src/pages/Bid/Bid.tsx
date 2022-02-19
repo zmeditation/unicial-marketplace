@@ -1,6 +1,6 @@
 /** @format */
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import CallMadeIcon from "@material-ui/icons/CallMade";
@@ -19,16 +19,48 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import {
+  SpaceProxyAddress,
+  SpaceRegistryAbi,
+} from "../../config/contracts/SpaceRegistryContract";
+
+import {
+  BidContractAddress,
+  BidContractAbi,
+} from "../../config/contracts/BidContract";
 
 import { useTranslation } from "react-i18next";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { showAlert } from "../../store/alert";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../common/contract";
+import { BigNumber, ethers } from "ethers";
+import { selectLoginAddress } from "../../store/auth/selectors";
+import {
+  UccContractAbi,
+  UccContractAddress,
+} from "../../config/contracts/UnicialCashToken";
+
+declare var window: any;
+var signer: any, bidContract: any, uccContract: any;
+
+const uccApprovalAmount = BigNumber.from(
+  "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+);
 
 const Bid = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const [selectedDate, setSelectedDate] = useState<Date | null>(
-    new Date("2022-01-02")
-  );
+  const { contractaddress, tokensid } = useParams();
+  const customerAddress = useAppSelector(selectLoginAddress);
+  const [price, setPrice] = useState(0);
+  const [timeStamp, setTimeStamp] = useState(0);
+  const [uccAllowance, setUccAllowance] = useState(BigNumber.from(0));
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
@@ -36,7 +68,118 @@ const Bid = () => {
 
   var isSignIn = 1;
 
-  const handleChange = () => {};
+  const handleChange = (e: any) => {
+    setPrice(e.target.value);
+  };
+
+  useEffect(() => {
+    let time =
+      selectedDate !== null && Math.round(selectedDate.getTime() / 1000);
+    time !== false && setTimeStamp(time);
+  }, [selectedDate]);
+
+  const handleBid = async () => {
+    let currenttime = new Date().getTime() / 1000;
+    if (timeStamp <= currenttime) {
+      dispatch(
+        showAlert({
+          message: "You have to select  correct expiration date.",
+          severity: "error",
+        })
+      );
+      return;
+    }
+    if (customerAddress.length === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to connect Meta mask wallet.",
+          severity: "error",
+        })
+      );
+      navigate("/signin");
+      return;
+    }
+
+    if (price === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to set price value to sell.",
+          severity: "error",
+        })
+      );
+      return;
+    }
+    signer = generateSigner(window.ethereum);
+    uccContract = generateContractInstance(
+      UccContractAddress,
+      UccContractAbi,
+      signer
+    );
+
+    let allowance = await uccContract.allowance(
+      customerAddress,
+      BidContractAddress
+    );
+    console.log("Allowance before approve: ", allowance.toString());
+
+    setUccAllowance(allowance);
+    if (!allowance.gt(0)) {
+      // approve marketplace contract to transfer this asset
+      dispatch(
+        showAlert({
+          message:
+            "You have to first approve the marketplace contract to operate your asset.",
+          severity: "error",
+        })
+      );
+      let approveMarketTx = await uccContract.approve(
+        BidContractAddress,
+        uccApprovalAmount
+      );
+      await approveMarketTx.wait();
+
+      allowance = await uccContract.allowance(
+        customerAddress,
+        BidContractAddress
+      );
+      setUccAllowance(allowance);
+
+      console.log("Allowance after approve: ", allowance.toString());
+
+      dispatch(
+        showAlert({
+          message:
+            "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+          severity: "success",
+        })
+      );
+    }
+
+    bidContract = generateContractInstance(
+      BidContractAddress,
+      BidContractAbi,
+      signer
+    );
+
+    let bidOrderTx = await bidContract[
+      "placeBid(address,uint256,uint256,uint256)"
+    ](
+      contractaddress,
+      BigNumber.from(tokensid),
+      ethers.utils.parseEther(price.toString()), // price in wei
+      BigNumber.from(8640000),
+      { from: customerAddress } // expireAt to UTC timestamp
+    );
+    console.log(bidOrderTx);
+    await bidOrderTx.wait();
+
+    dispatch(
+      showAlert({
+        message: "Bid order is successfully published.",
+        severity: "success",
+      })
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -68,7 +211,7 @@ const Bid = () => {
                       <FormControl>
                         <StyledInput
                           placeholder='0'
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e)}
                           startAdornment={
                             <InputAdornment position='start'>
                               <img src={settingicon} />
@@ -100,11 +243,20 @@ const Bid = () => {
                     </Grid>
                   </Grid>
                 </div>
-                <p>&nbsp;</p>
               </div>
               {/* buttons */}
               <div className={classes.buttons}>
-                <ActionButton color='light' className={classes.bidchange}>
+                <ActionButton
+                  color='light'
+                  className={classes.approve}
+                  onClick={handleBid}>
+                  {t("Approve")}
+                  <CallMadeIcon fontSize='small' />
+                </ActionButton>
+                <ActionButton
+                  color='light'
+                  className={classes.bidchange}
+                  onClick={handleBid}>
                   {t("Bid")}
                   <CallMadeIcon fontSize='small' />
                 </ActionButton>
@@ -124,5 +276,4 @@ const Bid = () => {
     </div>
   );
 };
-
 export default Bid;

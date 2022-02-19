@@ -179,22 +179,37 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   buttons: {
     display: "flex",
-
-    [theme.breakpoints.down(769)]: {
+    marginTop: "50px",
+    [theme.breakpoints.down(960)]: {
+      marginTop: "0px",
       width: "100%",
       display: "grid",
     },
   },
-  bidchange: {
+  approve: {
     minWidth: "160px",
     fontStyle: "normal",
     fontWeight: 500,
     fontSize: "16px",
     lineHeight: "19px",
     color: "#FFFFFF",
-    [theme.breakpoints.down(769)]: {
-      marginLeft: "0px",
+    [theme.breakpoints.down(960)]: {
+      marginTop: "15px",
       order: 1,
+    },
+  },
+  bidchange: {
+    minWidth: "160px",
+    marginLeft: "16px",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#FFFFFF",
+    [theme.breakpoints.down(960)]: {
+      marginTop: "15px",
+      marginLeft: "0px",
+      order: 2,
     },
   },
   cancelchange: {
@@ -205,8 +220,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "16px",
     lineHeight: "19px",
     color: "#FFFFFF",
-    [theme.breakpoints.down(769)]: {
-      order: 2,
+    [theme.breakpoints.down(960)]: {
+      order: 3,
+      marginLeft: "0px",
       marginTop: "15px",
     },
   },

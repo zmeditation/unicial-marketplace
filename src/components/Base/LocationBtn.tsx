@@ -39,7 +39,7 @@ interface Props {
 }
 
 
-export default function LacationBtn({
+export default function LocationBtn({
   position,
   dark,
   className,
