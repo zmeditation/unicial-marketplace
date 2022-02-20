@@ -51,7 +51,7 @@ const ParcelSell = () => {
   const { t } = useTranslation();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [price, setPrice] = useState(0);
-  const customerAddress = useAppSelector(selectLoginAddress);
+  const loginAddress = useAppSelector(selectLoginAddress);
   const [timeStamp, setTimeStamp] = useState(0);
 
   const { contractaddress, tokensid } = useParams();
@@ -83,7 +83,7 @@ const ParcelSell = () => {
         })
       );
     }
-    if (customerAddress.length === 0) {
+    if (loginAddress.length === 0) {
       dispatch(
         showAlert({
           message: "You have to connect Meta mask wallet.",

@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState, useEffect } from "react";
 import { CollectibleFilterStyle } from "./CollectibleFilterStyle";
 import Tag from "../../Base/Tag";

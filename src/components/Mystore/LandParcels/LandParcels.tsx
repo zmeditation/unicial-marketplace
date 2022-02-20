@@ -18,7 +18,7 @@ export default function LandParcels() {
   const classes = LandParcelsStyle();
   const [resultParcels, setResultParcels] = useState<any>();
   const [showStatus, setShowStatus] = useState(false);
-  const customerAddress = useAppSelector(selectLoginAddress);
+  const loginAddress = useAppSelector(selectLoginAddress);
   const saleParcels: any = useAppSelector(selectSaleParcels);
   const dispatch = useAppDispatch();
 
@@ -31,7 +31,7 @@ export default function LandParcels() {
   };
 
   const getResult = async () => {
-    await getParcelsByOwner(customerAddress).then((parcels) => {
+    await getParcelsByOwner(loginAddress).then((parcels) => {
       if (
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "true"

@@ -1,5 +1,3 @@
-/** @format */
-
 import { useState, useEffect } from "react";
 import { BigNumber, ethers } from "ethers";
 

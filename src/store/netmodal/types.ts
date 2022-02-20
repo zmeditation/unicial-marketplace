@@ -1,5 +1,3 @@
-/** @format */
-
 interface netModalState {
   netModalShow: boolean;
 }

@@ -1,4 +1,3 @@
-/** @format */
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import InputAdornment from "@material-ui/core/InputAdornment";

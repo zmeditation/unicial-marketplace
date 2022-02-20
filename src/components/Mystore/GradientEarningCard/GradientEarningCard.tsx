@@ -1,5 +1,3 @@
-/** @format */
-
 import { GradientEarningCardStyle } from "./GradientEarningCardStyle";
 import cubeSvg from "./../../../assets/svg/cube.svg";
 import shapeSvg from "./../../../assets/svg/shape.svg";

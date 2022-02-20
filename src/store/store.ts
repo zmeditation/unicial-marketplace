@@ -9,6 +9,7 @@ import spinnerReducer from "./spinner/index";
 import netModalReducer from "./netmodal/index";
 import saleParcelsReducer from "./saleparcels";
 import parcelsReducer from "./parcels";
+import BidContractinfoReducer from "./bidContractData"
 import { getSaleParcelsAPI } from "./api/parcels";
 
 export const store = configureStore({
@@ -22,6 +23,7 @@ export const store = configureStore({
     netModal: netModalReducer,
     saleparcels: saleParcelsReducer,
     parcels: parcelsReducer,
+    bidcontract: BidContractinfoReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

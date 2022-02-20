@@ -1,5 +1,3 @@
-/** @format */
-
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
 import { Input } from "@material-ui/core";
 

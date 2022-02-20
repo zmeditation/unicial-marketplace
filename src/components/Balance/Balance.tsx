@@ -1,5 +1,3 @@
-/** @format */
-
 import { useStyles } from "./BalanceStyle";
 import { useTranslation } from "react-i18next";
 

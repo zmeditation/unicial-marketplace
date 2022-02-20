@@ -43,7 +43,7 @@ const ParcelTransfer = () => {
   const [transferAddress, setTransferAddress] = useState("");
   const [isCorrectAddress, setIsCorrectAddress] = useState(false);
   const { contractaddress, tokensid } = useParams();
-  const customerAddress = useAppSelector(selectLoginAddress);
+  const loginAddress = useAppSelector(selectLoginAddress);
 
   const isAddress = (address: string) => {
     try {
@@ -94,7 +94,7 @@ const ParcelTransfer = () => {
     }
 
     let transferTx = await spaceRegistryContract["safeTransferFrom(address,address,uint256)"](
-      customerAddress,
+      loginAddress,
       transferAddress,
       BigNumber.from(tokensid)
     );

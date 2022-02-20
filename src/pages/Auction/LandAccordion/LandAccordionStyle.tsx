@@ -1,5 +1,3 @@
-/** @format */
-
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
 //accordion relate
 import MuiAccordion from "@material-ui/core/Accordion";

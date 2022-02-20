@@ -46,7 +46,7 @@ const LandMap: React.FC<LandMapProps> = ({
 
   const saleParcels: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
-  const customerAddress: any = useAppSelector(selectLoginAddress);
+  const loginAddress: any = useAppSelector(selectLoginAddress);
 
   const handleClick = useCallback(
     async (x: number, y: number) => {
@@ -61,7 +61,7 @@ const LandMap: React.FC<LandMapProps> = ({
       } else {
         setEstateid(null);
 
-        if (sale?.seller.toLowerCase() !== customerAddress.toLowerCase()) {
+        if (sale?.seller.toLowerCase() !== loginAddress.toLowerCase()) {
           try {
             query.set("onlyOnSale", onSale.toString());
             navigate({
@@ -118,7 +118,7 @@ const LandMap: React.FC<LandMapProps> = ({
 
       if (
         onSale === true &&
-        sale?.seller.toLowerCase() === customerAddress.toLowerCase()
+        sale?.seller.toLowerCase() === loginAddress.toLowerCase()
       ) {
         return true;
       }
@@ -149,7 +149,7 @@ const LandMap: React.FC<LandMapProps> = ({
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
       return isSelected(x, y)
-        ? { color: "#ff0044", scale: 1.4 }
+        ? { color: "transparent", scale: 1.4 }
         : isCustomerSaleParcel(x, y)
         ? { color: "transparent", scale: 1.4 }
         : isSaleParcel(x, y)

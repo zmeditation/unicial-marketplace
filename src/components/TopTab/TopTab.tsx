@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect } from "react";
 import { topTabIndex, searchbarIndex } from "../../config/constant";
 import { TopTabStyle, StyledTopTabBtn } from "./TopTabStyle";

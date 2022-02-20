@@ -13,8 +13,6 @@ export const namesOrderByData = [
   },
 ];
 
-/** @format */
-
 export const collectionData = [
   {
     index: 1,

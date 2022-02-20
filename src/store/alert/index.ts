@@ -1,5 +1,3 @@
-/** @format */
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { showAlert } from "./actions";
 import type { alertState } from "./types";

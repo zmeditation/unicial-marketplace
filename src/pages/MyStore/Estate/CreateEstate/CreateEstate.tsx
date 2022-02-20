@@ -46,7 +46,7 @@ const CreateEstate = () => {
     beneficiary: "",
     metadata: "",
   });
-  const customerAddress = useAppSelector(selectLoginAddress);
+  const loginAddress = useAppSelector(selectLoginAddress);
 
   var isSignIn = 1;
   const handleBeneficiaryChange = (e: any) => {
@@ -61,7 +61,7 @@ const CreateEstate = () => {
   };
 
   const handleSubmitBtn = async () => {
-    if (customerAddress.length === 0) {
+    if (loginAddress.length === 0) {
       dispatch(
         showAlert({
           message: "You have to connect Meta mask wallet.",

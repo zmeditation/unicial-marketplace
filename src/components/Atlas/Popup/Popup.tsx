@@ -1,6 +1,3 @@
-/** @format */
-
-import * as React from "react";
 import Coordinate from "../../Coordinate/Coordinate";
 import { Props } from "./Popup.types";
 import "./Popup.css";

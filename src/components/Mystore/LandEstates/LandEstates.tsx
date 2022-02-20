@@ -1,4 +1,3 @@
-/** @format */
 import { useEffect, useState } from "react";
 import { LandEstatesStyle } from "./LandEstatesStyle";
 import { Grid } from "@material-ui/core";

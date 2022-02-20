@@ -1,5 +1,3 @@
-/** @format */
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
@@ -138,7 +136,7 @@ const Contract = () => {
                     ? classes.displayNone
                     : classes.BidboxContainer
                 }>
-                <Bidbox />
+                <Bidbox selectOwner={itemInAll?.owner} />
               </div>
               <div
                 className={

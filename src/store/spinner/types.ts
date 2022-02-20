@@ -1,5 +1,3 @@
-/** @format */
-
 interface spinnerState {
   spinnerShow: boolean;
 }
