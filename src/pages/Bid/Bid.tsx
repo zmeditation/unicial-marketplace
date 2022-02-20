@@ -51,7 +51,7 @@ const Bid = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
-  const customerAddress = useAppSelector(selectLoginAddress);
+  const loginAddress = useAppSelector(selectLoginAddress);
   const maxTime = useAppSelector(max);
   const minTime = useAppSelector(min);
   const [price, setPrice] = useState(0);
@@ -87,7 +87,7 @@ const Bid = () => {
     );
 
     let allowance = await uccContract.allowance(
-      customerAddress,
+      loginAddress,
       BidContractAddress
     );
 
@@ -107,10 +107,7 @@ const Bid = () => {
       );
       await approveMarketTx.wait();
 
-      allowance = await uccContract.allowance(
-        customerAddress,
-        BidContractAddress
-      );
+      allowance = await uccContract.allowance(loginAddress, BidContractAddress);
       setUccAllowance(allowance);
 
       dispatch(
@@ -135,7 +132,7 @@ const Bid = () => {
       );
       return;
     }
-    if (customerAddress.length === 0) {
+    if (loginAddress.length === 0) {
       dispatch(
         showAlert({
           message: "You have to connect Meta mask wallet.",
@@ -170,7 +167,7 @@ const Bid = () => {
       BigNumber.from(tokensid),
       ethers.utils.parseEther(price.toString()), // price in wei
       BigNumber.from(timeStamp),
-      { from: customerAddress } // expireAt to UTC timestamp
+      { from: loginAddress } // expireAt to UTC timestamp
     );
     await bidOrderTx.wait();
 

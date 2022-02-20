@@ -40,7 +40,7 @@ const CreateEstate = () => {
   const [name, setName] = useState("");
   const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
   const [description, setDescription] = useState("");
-  const customerAddress = useAppSelector(selectLoginAddress)
+  const loginAddress = useAppSelector(selectLoginAddress)
 
   var isSignIn = 1;
 
@@ -54,7 +54,7 @@ const CreateEstate = () => {
 
   const handleSubmitBtn = async () => {
 
-    if (customerAddress.length === 0) {
+    if (loginAddress.length === 0) {
       dispatch(
         showAlert({
           message: "You have to connect Meta mask wallet.",
@@ -97,7 +97,7 @@ const CreateEstate = () => {
     let createEstateOrderTx = await spaceRegistryContract.createEstate(
       bid.xs,
       bid.ys,
-      customerAddress
+      loginAddress
     );
 
     await createEstateOrderTx.wait();
