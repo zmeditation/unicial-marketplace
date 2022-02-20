@@ -51,13 +51,13 @@ const Bidbox = ({ selectOwner }: BidboxProps) => {
     if (selectOwner === undefined) {
       dispatch(
         showAlert({
-          message: "This parcel don't have owner yet.",
+          message: "This parcel doesn't have owner yet.",
           severity: "error",
         })
       );
       return;
     }
-    if (selectOwner !== loginAddress) {
+    if (selectOwner.toLowerCase() === loginAddress.toLowerCase()) {
       dispatch(
         showAlert({
           message: "You have to bid other's parcel.",
