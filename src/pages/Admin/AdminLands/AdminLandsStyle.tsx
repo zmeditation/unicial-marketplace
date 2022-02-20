@@ -48,4 +48,19 @@ export const AdminLandsStyle = makeStyles((theme: Theme) => ({
       margin: "0px calc( (100% - 300px) / 2)",
     },
   },
+  widthFull: {
+    width: "100%",
+  },
+  bidchange: {
+    minWidth: "160px",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#FFFFFF",
+    [theme.breakpoints.down(769)]: {
+      marginLeft: "0px",
+      order: 1,
+    },
+  },
 }));
