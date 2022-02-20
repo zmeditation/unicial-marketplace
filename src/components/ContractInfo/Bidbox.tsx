@@ -57,7 +57,7 @@ const Bidbox = ({ selectOwner }: BidboxProps) => {
       );
       return;
     }
-    if (selectOwner !== loginAddress) {
+    if (selectOwner.toLowerCase() === loginAddress.toLowerCase()) {
       dispatch(
         showAlert({
           message: "You have to bid other's parcel.",
