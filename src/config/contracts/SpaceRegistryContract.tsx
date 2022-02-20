@@ -159,6 +159,86 @@ export const SpaceRegistryAbi = [
         name: "assetId",
         type: "uint256",
       },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "bytes",
+        name: "userData",
+        type: "bytes",
+      },
+      {
+        indexed: false,
+        internalType: "bytes",
+        name: "operatorData",
+        type: "bytes",
+      },
+    ],
+    name: "Transfer",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "assetId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "bytes",
+        name: "userData",
+        type: "bytes",
+      },
+    ],
+    name: "Transfer",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "assetId",
+        type: "uint256",
+      },
     ],
     name: "Transfer",
     type: "event",
@@ -199,6 +279,37 @@ export const SpaceRegistryAbi = [
     inputs: [
       {
         indexed: true,
+        internalType: "address",
+        name: "_owner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "_operator",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "_caller",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "_approved",
+        type: "bool",
+      },
+    ],
+    name: "UpdateManager",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
         internalType: "uint256",
         name: "assetId",
         type: "uint256",
@@ -225,6 +336,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -262,6 +374,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -281,6 +394,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -294,6 +408,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -307,6 +422,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "pure",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -320,6 +436,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -333,6 +450,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -352,6 +470,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -371,6 +490,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -395,6 +515,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -419,6 +540,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -432,6 +554,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -445,6 +568,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -464,6 +588,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -477,6 +602,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -496,6 +622,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -585,6 +712,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -604,6 +732,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -617,6 +746,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -636,6 +766,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -660,6 +791,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -679,6 +811,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [],
@@ -692,6 +825,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -729,6 +863,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -748,6 +883,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -831,6 +967,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "pure",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -855,6 +992,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "pure",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -874,6 +1012,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -898,6 +1037,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -922,6 +1062,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -946,6 +1087,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -969,6 +1111,66 @@ export const SpaceRegistryAbi = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+    constant: true,
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "assetId",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+    ],
+    name: "setUpdateOperator",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256[]",
+        name: "_assetIds",
+        type: "uint256[]",
+      },
+      {
+        internalType: "address",
+        name: "_operator",
+        type: "address",
+      },
+    ],
+    name: "setManyUpdateOperator",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_owner",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_operator",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "_approved",
+        type: "bool",
+      },
+    ],
+    name: "setUpdateManager",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -1136,19 +1338,6 @@ export const SpaceRegistryAbi = [
     inputs: [
       {
         internalType: "address",
-        name: "_newSpaceBalance",
-        type: "address",
-      },
-    ],
-    name: "setSpaceBalanceToken",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
         name: "operator",
         type: "address",
       },
@@ -1168,6 +1357,7 @@ export const SpaceRegistryAbi = [
     ],
     stateMutability: "view",
     type: "function",
+    constant: true,
   },
   {
     inputs: [
@@ -1271,26 +1461,12 @@ export const SpaceRegistryAbi = [
     stateMutability: "nonpayable",
     type: "function",
   },
-  {
-    inputs: [],
-    name: "registerBalance",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "unregisterBalance",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
 ];
 
 export const SpaceRegistryAddress =
-  "0xa20e6D5d5cc0467Ed5caC4281804610b8cA06259";
+  "0xe9956Ec4643bb51A9538c38e8176487E0F6D13B9";
 
-export const SpaceProxyAddress = "0xE091e3C30e665213Aa33069e1301cD17938c1E8b";
+export const SpaceProxyAddress = "0x7099a6ca27d21124be4aAda49674e515e408B48c";
 
 export const SpaceProxyAbi = [
   {
