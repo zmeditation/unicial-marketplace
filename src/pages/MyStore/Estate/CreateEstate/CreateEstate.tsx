@@ -27,7 +27,7 @@ import {
 import { showAlert } from "../../../../store/alert";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { BigNumber } from "ethers";
-
+import { createEstateWithMetaData } from "./../../../../../src/hooks/InteractLand";
 declare var window: any;
 var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 
@@ -37,13 +37,21 @@ const CreateEstate = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const estates = useAppSelector(selectestates);
+  const [beneficiary, setBeneficiary] = useState("");
   const [name, setName] = useState("");
-  const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
   const [description, setDescription] = useState("");
-  const customerAddress = useAppSelector(selectLoginAddress)
+  const [bid, setBid] = useState({
+    xs: [],
+    ys: [],
+    beneficiary: "",
+    metadata: "",
+  });
+  const customerAddress = useAppSelector(selectLoginAddress);
 
   var isSignIn = 1;
-
+  const handleBeneficiaryChange = (e: any) => {
+    setBeneficiary(e.target.value);
+  };
   const handleNameChange = (e: any) => {
     setName(e.target.value);
   };
@@ -53,7 +61,6 @@ const CreateEstate = () => {
   };
 
   const handleSubmitBtn = async () => {
-
     if (customerAddress.length === 0) {
       dispatch(
         showAlert({
@@ -82,26 +89,35 @@ const CreateEstate = () => {
       );
     }
 
-    signer = generateSigner(window.ethereum);
-    marketplaceContract = generateContractInstance(
-      MarketplaceAddress,
-      MarketplaceAbi,
-      signer
-    );
-    spaceRegistryContract = generateContractInstance(
-      SpaceProxyAddress,
-      SpaceRegistryAbi,
-      signer
-    );
+    if (beneficiary === "") {
+      dispatch(
+        showAlert({
+          message: "You have to write the beneficiary address.",
+          severity: "error",
+        })
+      );
+    }
+    // signer = generateSigner(window.ethereum);
+    // marketplaceContract = generateContractInstance(
+    //   MarketplaceAddress,
+    //   MarketplaceAbi,
+    //   signer
+    // );
+    // spaceRegistryContract = generateContractInstance(
+    //   SpaceProxyAddress,
+    //   SpaceRegistryAbi,
+    //   signer
+    // );
 
-    let createEstateOrderTx = await spaceRegistryContract.createEstate(
-      bid.xs,
-      bid.ys,
-      customerAddress
-    );
+    // let createEstateOrderTx = await spaceRegistryContract.createEstate(
+    //   bid.xs,
+    //   bid.ys,
+    //   customerAddress
+    // );
 
-    await createEstateOrderTx.wait();
+    // await createEstateOrderTx.wait();
 
+    await createEstateWithMetaData(bid.xs, bid.ys, beneficiary, bid.metadata);
     dispatch(
       showAlert({
         message: "Create estate order is successfully published.",
@@ -122,16 +138,18 @@ const CreateEstate = () => {
     let data = bid;
     data.xs = xs;
     data.ys = ys;
+    data.beneficiary = beneficiary;
+    data.metadata = name + "," + description;
     setBid(data);
   };
+  console.log("bid##beneficiary", bid.xs);
 
   useEffect(() => {
-    if( estates.length === 0){
-      navigate("/account/estate/create")
+    if (estates.length === 0) {
+      navigate("/account/estate/create");
     }
     convertToBidData();
-  }, [estates]);
-
+  });
 
   return (
     <div className={classes.root}>
@@ -145,7 +163,8 @@ const CreateEstate = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -155,6 +174,17 @@ const CreateEstate = () => {
               </div>
               <div className={classes.form_field}>
                 <div className={classes.price_container}>
+                  {/* // */}
+                  <div className={classes.subheader_label}>
+                    {t("Beneficiary")}
+                  </div>
+                  <FormControl className={classes.widthFull}>
+                    <StyledInput
+                      placeholder={t("Beneficiary Address")}
+                      onChange={(e) => handleBeneficiaryChange(e)}
+                    />
+                  </FormControl>
+                  {/* // */}
                   <div className={classes.subheader_label}>{t("Name")}</div>
                   <FormControl className={classes.widthFull}>
                     <StyledInput
@@ -167,7 +197,7 @@ const CreateEstate = () => {
                   </div>
                   <TextareaAutosize
                     className={classes.descriptionTextField}
-                    aria-label='maximum height'
+                    aria-label="maximum height"
                     placeholder={t("This is an estate")}
                     onChange={(e) => handleDescriptionChange(e)}
                   />
@@ -176,16 +206,18 @@ const CreateEstate = () => {
               </div>
               <div className={classes.buttons}>
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.bidchange}
-                  onClick={handleSubmitBtn}>
+                  onClick={handleSubmitBtn}
+                >
                   {t("SUBMIT")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate("/account/estate/create")}>
+                  onClick={() => navigate("/account/estate/create")}
+                >
                   {t("CANCEL")}
                 </ActionButton>
               </div>
