@@ -84,15 +84,17 @@ const ActionButton = ({
 }: ButtonProps) => {
   const classes = useStyles();
 
+  const onEmpty = () => {};
+
   return (
     <>
       <div
         className={clsx(classes.root, className, {
           [classes.darkColor]: color === "dark",
           [classes.lightColor]: color === "light",
-          [classes.disablestatus]: disabled === true,
+          [classes.disablestatus]: disabled,
         })}
-        onClick={onClick}>
+        onClick={!disabled ? onClick : onEmpty}>
         <span className={classes.text}>{children}</span>
       </div>
     </>

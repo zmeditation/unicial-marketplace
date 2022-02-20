@@ -37,6 +37,7 @@ import { showNetModal } from "../../store/netmodal";
 import { useEffect } from "react";
 import { setSaleParcels } from "../../store/saleparcels";
 import { setParcels } from "../../store/parcels";
+import { setBidContractinfo } from "../../store/bidContractData"; 
 import { showSpinner } from "../../store/spinner";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -72,6 +73,7 @@ export default function Layout() {
     await dispatch(showSpinner(true));
     await dispatch(setSaleParcels());
     await dispatch(setParcels());
+    await dispatch(setBidContractinfo());
     await dispatch(showSpinner(false));
   }
 
