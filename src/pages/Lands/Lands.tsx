@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect, useState } from "react";
 import LandMap from "../../components/LandMap";
 import TobTab from "../../components/TopTab/TopTab";

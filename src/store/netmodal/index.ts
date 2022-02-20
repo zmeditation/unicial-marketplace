@@ -1,5 +1,3 @@
-/** @format */
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { showNetModal } from "./actions";
 import type { netModalState } from "./types";

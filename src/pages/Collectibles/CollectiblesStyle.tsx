@@ -1,5 +1,3 @@
-/** @format */
-
 import { Theme, makeStyles } from "@material-ui/core/styles";
 export const CollectiblesStyle = makeStyles((theme: Theme) => ({
   root: {

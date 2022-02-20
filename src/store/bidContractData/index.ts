@@ -1,5 +1,3 @@
-/** @format */
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { setBidContractinfo } from "./actions";
 import type { BidContractstate } from "./types";

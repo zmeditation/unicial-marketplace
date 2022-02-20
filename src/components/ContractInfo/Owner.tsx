@@ -1,5 +1,3 @@
-/** @format */
-
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import makeBlockie from "ethereum-blockies-base64";

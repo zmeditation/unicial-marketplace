@@ -21,7 +21,6 @@ export const getBidcontract = async () => {
 
   const txPromises = await Promise.all(promises);
 
-  console.log("txPromises: ", txPromises)
   const Limitinfo = {
     maxBidTime: txPromises[0].toString(),
     minBidTime: txPromises[1].toString(),

@@ -1,5 +1,3 @@
-/** @format */
-
 import { LandCardStyle } from "./LandCardStyle";
 import headSvg from "../../../assets/svg/head.svg";
 import unisexSvg from "../../../assets/svg/unisex.svg";

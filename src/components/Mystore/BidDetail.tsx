@@ -1,5 +1,3 @@
-/** @format */
-
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import fromImg from "../../assets/img/1.png";
 import ActionButton from "../Base/ActionButton";

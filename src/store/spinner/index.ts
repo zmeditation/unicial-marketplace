@@ -1,5 +1,3 @@
-/** @format */
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { showSpinner } from "./actions";
 import type { spinnerState } from "./types";

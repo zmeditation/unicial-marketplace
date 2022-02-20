@@ -1,4 +1,3 @@
-/** @format */
 import React, { useEffect } from "react";
 import check from "../../assets/svg/notification_check.svg";
 import error from "../../assets/svg/notification_error.svg";

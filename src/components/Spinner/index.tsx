@@ -1,4 +1,3 @@
-/** @format */
 import { SemipolarSpinner } from "react-epic-spinners";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";

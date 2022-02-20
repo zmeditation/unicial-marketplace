@@ -149,7 +149,7 @@ const LandMap: React.FC<LandMapProps> = ({
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
       return isSelected(x, y)
-        ? { color: "#ff0044", scale: 1.4 }
+        ? { color: "transparent", scale: 1.4 }
         : isCustomerSaleParcel(x, y)
         ? { color: "transparent", scale: 1.4 }
         : isSaleParcel(x, y)

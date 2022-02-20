@@ -1,5 +1,3 @@
-/** @format */
-
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 const useStyles = makeStyles((theme: Theme) => ({
