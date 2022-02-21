@@ -17,10 +17,9 @@ export default function OnSale() {
   const [sendCurPage, setSendCurPage] = useState<any>(1);
   const emptyTokens: any[] = [];
   const [allBidData, setAllBidData] = useState<any>(emptyTokens);
-  const [selectSendRow, setSelectSendRow] = useState(0);
   const [reciveData, setReciveData] = useState<any>();
-  var countRecive = reciveData?.length;
-  var totalRecivePage = Math.ceil(countRecive / onePageCount);
+  const [selectSendRow, setSelectSendRow] = useState(0);
+  const [selectReciveRow, setSelectReciveRow] = useState(0);
 
   useEffect(() => {
     // getParcelsByOwner(loginAddress).then(
@@ -36,9 +35,20 @@ export default function OnSale() {
     });
   }, []);
 
+  
+  var countRecive = ReciveData?.length;
+  var totalRecivePage = Math.ceil(countRecive / onePageCount);
+
+
   const recivepgnum = (value: number) => {
     setReciveCurPage(value);
   };
+
+  const handleReciveRow = (key: number) => {
+    setSelectReciveRow(key);
+  };
+
+  //------------------------send bid list function-------------------
 
   var countSend = allBidData?.length;
   var totalSendPage = Math.ceil(countSend / onePageCount);
@@ -65,7 +75,8 @@ export default function OnSale() {
               columns={headerData}
               rows={ReciveData}
               curPage={reciveCurPage}
-              stepIndex={0}
+              onRowClick={handleReciveRow}
+              stepIndex={selectReciveRow}
             />
             <div className={classes.paginationContainer}>
               <TablePagination

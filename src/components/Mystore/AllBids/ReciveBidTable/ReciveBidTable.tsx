@@ -12,6 +12,7 @@ interface StagingTableProps {
   rows: any;
   curPage: number;
   stepIndex?: number;
+  onRowClick(key: number) : any;
 }
 
 const ReciveBidTable = ({
@@ -19,6 +20,7 @@ const ReciveBidTable = ({
   rows,
   curPage,
   stepIndex,
+  onRowClick,
 }: StagingTableProps) => {
   const classes = useStyles();
   const {t, i18n} = useTranslation();
@@ -26,7 +28,8 @@ const ReciveBidTable = ({
     rows !== undefined ? (
       rows.slice((curPage - 1) * onePageCount, curPage * onePageCount).map((row: any, key: any) => (
         <TableRow
-          key={key}
+          key={key} 
+          onClick={() => onRowClick(key)}
           className={clsx({ [classes.targetRow]: stepIndex === key })}
         >
           <TableCell className={clsx(classes.tableCell)}>{row.type}</TableCell>

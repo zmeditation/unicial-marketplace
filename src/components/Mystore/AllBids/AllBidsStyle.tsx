@@ -14,7 +14,7 @@ export const AllBidsStyle = makeStyles((theme: Theme) =>
       paddingBottom: "20px",
     },
     reciveTitle: {
-      marginLeft: "50px",
+      marginLeft: "20px",
       marginBottom: "30px",
       fontStyle: "normal",
       fontWeight: 600,
@@ -31,7 +31,7 @@ export const AllBidsStyle = makeStyles((theme: Theme) =>
       paddingTop: "50px",
     },
     sendTitle: {
-      marginLeft: "50px",
+      marginLeft: "20px",
       marginBottom: "30px",
       fontStyle: "normal",
       fontWeight: 600,
