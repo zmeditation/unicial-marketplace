@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LandEstatesStyle } from "./LandEstatesStyle";
 import { Grid } from "@material-ui/core";
+import { useAppSelector } from "./../../../store/hooks";
 import LandCard from "../LandCard/LandCard";
 import ActionButton from "../../../components/Base/ActionButton";
 import { getEstatesByOwner } from "../../../hooks/api";
@@ -9,21 +10,14 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
 // import utility functions
-import {
-  generateContractInstance,
-  generateSigner,
-} from "../../../common/contract";
-import { SetStateAction } from "react";
 
-declare var window: any;
-var signer: any, estateRegistryContract: any;
-
-signer = generateSigner(window.ethereum);
+import { selectLoginAddress } from "./../../../store/auth/selectors";
 
 export default function LandEstates() {
   const classes = LandEstatesStyle();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const loginAddress = useAppSelector(selectLoginAddress);
   const emptyTokens: any[] = [];
   const [ownEstates, setOwnEstates] = useState(emptyTokens);
 
@@ -33,19 +27,17 @@ export default function LandEstates() {
 
   const handleNavigate = (tokenId: string) => {
     navigate(
-      `/contracts/0xCf7c8979AFF022Aa478ee4D7BA538cd01FDB7DC0/tokens/${tokenId}/estate_detail`
+      `/contracts/${EstateProxyAddress}/tokens/${tokenId}/estate_detail`
     );
   };
 
   useEffect(() => {
-    getEstatesByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
-      (estates: any[]) => {
-        console.log("Estates", estates);
-        console.log("Estates length", estates.length);
-        console.log("Estates 0", estates[0]);
-        setOwnEstates(estates);
-      }
-    );
+    getEstatesByOwner(loginAddress).then((estates: any[]) => {
+      console.log("Estates", estates);
+      console.log("Estates length", estates.length);
+      console.log("Estates 0", estates[0]);
+      setOwnEstates(estates);
+    });
   }, []);
 
   return (
