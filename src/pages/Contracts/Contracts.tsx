@@ -130,7 +130,6 @@ const Contract = () => {
   };
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
-  console.log(bidItems);
 
   return (
     <>
