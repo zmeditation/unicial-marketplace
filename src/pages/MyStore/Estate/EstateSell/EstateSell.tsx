@@ -1,9 +1,18 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 
+import { Grid } from "@material-ui/core";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+import { useTranslation } from "react-i18next";
+import { BigNumber, ethers } from "ethers";
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
 import NeedSignIn from "../../../NeedSignIn";
@@ -12,32 +21,40 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 import { showAlert } from "../../../../store/alert";
 import settingicon from "../../../../assets/svg/bidpage_settingicon.svg";
 import calendar_icon from "../../../../assets/svg/calendar_icon.svg";
-import { Grid } from "@material-ui/core";
-import "date-fns";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
 
-import { useTranslation } from "react-i18next";
 import { selectLoginAddress } from "./../../../../store/auth/selectors";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import {
+  MarketplaceAddress,
+  MarketplaceAbi,
+} from "../../../../config/contracts/MarketPlaceContract";
+declare var window: any;
+var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 
 const EstateSell = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { contractaddress, estateid } = useParams();
   const loginAddress = useAppSelector(selectLoginAddress);
+  const [timeStamp, setTimeStamp] = useState(0);
   const [price, setPrice] = useState(0);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(
-    new Date("2022-01-02")
-  );
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
   };
+
+  useEffect(() => {
+    let time =
+      selectedDate !== null && Math.round(selectedDate.getTime() / 1000);
+    time !== false && setTimeStamp(time);
+  }, [selectedDate]);
 
   var isSignIn = 1;
 
@@ -56,6 +73,35 @@ const EstateSell = () => {
       navigate("/signin");
       return;
     }
+    if (price === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to set price value to sell.",
+          severity: "error",
+        })
+      );
+      return;
+    }
+    signer = generateSigner(window.ethereum);
+    marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    console.log(contractaddress, estateid, price, timeStamp);
+    let createOrderTx = await marketplaceContract.createOrder(
+      contractaddress,
+      BigNumber.from(estateid),
+      ethers.utils.parseEther(price.toString()),
+      BigNumber.from(timeStamp.toString())
+    );
+    await createOrderTx.wait();
+    dispatch(
+      showAlert({
+        message: "Sales order is successfully published.",
+        severity: "success",
+      })
+    );
   };
 
   return (
@@ -125,7 +171,11 @@ const EstateSell = () => {
               </div>
               {/* buttons */}
               <div className={classes.buttons}>
-                <ActionButton color="light" className={classes.bidchange}>
+                <ActionButton
+                  color="light"
+                  className={classes.bidchange}
+                  onClick={handleSell}
+                >
                   {t("Sell")}
                   <CallMadeIcon fontSize="small" />
                 </ActionButton>
@@ -135,14 +185,6 @@ const EstateSell = () => {
                   onClick={() => navigate(-1)}
                 >
                   {t("Cancel")}
-                </ActionButton>
-                <ActionButton
-                  color="light"
-                  className={classes.bidchange}
-                  onClick={handleSell}
-                >
-                  {t("Sell")}
-                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               </div>
             </div>

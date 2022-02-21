@@ -28,14 +28,26 @@ export const getParcelsByOwner = async (owner: any) => {
     );
     const balance = (await parcelRegistryContract.balanceOf(owner)).toNumber();
     let tokenPromises = [];
+    let axisPromises = [];
     for (let i = 0; i < balance; i++) {
       let tokenPromise = parcelRegistryContract.tokenOfOwnerByIndex(owner, i);
-      tokenPromises.push(tokenPromise);
+      console.log("tokenPromise", tokenPromise);
+      let axisPromise = parcelRegistryContract.decodeTokenId(tokenPromise);
+      console.log("axisPromise", axisPromise);
+      axisPromises.push(axisPromise);
+      // tokenPromises.push(tokenPromise);
+      // let tokenPromises = parcelRegistryContract.decodeTokenId();
     }
-    let ownedTokens = await Promise.all(tokenPromises);
-    for (let i = 0; i < ownedTokens.length; i++) {
-      ownedTokens[i] = ownedTokens[i].toNumber();
-    }
+
+    // let ownedTokens = await Promise.all(tokenPromises);
+
+    // for (let i = 0; i < ownedTokens.length; i++) {
+    //   ownedTokens[i] = ownedTokens[i];
+    // }
+    // console.log("ownedTokens", ownedTokens);
+    // console.log("ownedTokens", ownedTokens.toString());
+    // return ownedTokens;
+    let ownedTokens = await Promise.all(axisPromises);
     return ownedTokens;
   } catch (error: any) {
     return [];
@@ -54,13 +66,14 @@ export const getEstatesByOwner = async (owner: any) => {
     let tokenPromises = [];
     for (let i = 0; i < balance; i++) {
       let tokenPromise = estateRegistryContract.tokenOfOwnerByIndex(owner, i);
+      console.log("tokenPromise", tokenPromise);
       tokenPromises.push(tokenPromise);
     }
     let ownedTokens = await Promise.all(tokenPromises);
     for (let i = 0; i < ownedTokens.length; i++) {
       ownedTokens[i] = ownedTokens[i].toNumber();
     }
-    console.log("ownedTokens", ownedTokens);
+    // console.log("ownedTokens", ownedTokens);
     return ownedTokens;
   } catch (error: any) {
     return [];
