@@ -158,5 +158,7 @@
   "SWITCH TO Zilionixx MAINNET": "SWITCH TO Zilionixx MAINNET",
   "Marketplace": "Marketplace",
   "BIDS RECEIVED": "BIDS RECEIVED",
-  "BIDS PLACED": "BIDS PLACED"
+  "BIDS PLACED": "BIDS PLACED",
+  "You haven't placed any bids yet": "You haven't placed any bids yet",
+  "You haven't received any bids yet": "You haven't received any bids yet"
 }

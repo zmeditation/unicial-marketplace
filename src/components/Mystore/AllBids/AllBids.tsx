@@ -2,85 +2,103 @@ import { useEffect, useState } from "react";
 import SendBidTable from "./SendBidTable/SendBidTable";
 import ReciveBidTable from "./ReciveBidTable/ReciveBidTable";
 import TablePagination from "../../Base/TablePagination";
-import {
-  headerData,
-  onsaleData,
-  ReciveData,
-  onePageCount,
-} from "./AllBidsData";
+import { headerData, ReciveData, onePageCount } from "./AllBidsData";
 import { selectLoginAddress } from "../../../store/auth/selectors";
 import { AllBidsStyle } from "./AllBidsStyle";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../../store/hooks";
-// import { getParcelsByOwner, getReciveBidByOwner } from "../../../hooks/api";
-
-var count = onsaleData.length;
-var totalPage = Math.ceil(count / onePageCount);
+import { getParcelsByOwner, getSendBidByOwner } from "../../../hooks/api";
 
 export default function OnSale() {
   const classes = AllBidsStyle();
   const { t } = useTranslation();
-  const loginAddress = useAppSelector(selectLoginAddress)
+  const loginAddress = useAppSelector(selectLoginAddress);
   const [reciveCurPage, setReciveCurPage] = useState<any>(1);
   const [sendCurPage, setSendCurPage] = useState<any>(1);
   const emptyTokens: any[] = [];
   const [allBidData, setAllBidData] = useState<any>(emptyTokens);
+  const [selectSendRow, setSelectSendRow] = useState(0);
   const [reciveData, setReciveData] = useState<any>();
+  var countRecive = reciveData?.length;
+  var totalRecivePage = Math.ceil(countRecive / onePageCount);
 
-  // useEffect(() => {
-  //   getParcelsByOwner(loginAddress).then(
-  //     (parcels: any[]) => {
-  //       console.log("Parcel", parcels);
-  //       console.log("Parcel length", parcels.length);
-  //       console.log("Parcel 0", parcels[0]);
-  //       setAllBidData(parcels);
-  //     }
-  //   );
-  //   console.log(loginAddress)
-  //   getReciveBidByOwner(loginAddress).then(
-  //     (recive: any[]) => {
-  //       console.log("recive: ", recive);
-  //       setReciveData(recive);
-  //     }
-  //   )
-  // }, []);
-
-  console.log(allBidData)
-  console.log("recivedata: ",reciveData)
+  useEffect(() => {
+    // getParcelsByOwner(loginAddress).then(
+    //   (parcels: any[]) => {
+    //     console.log("Parcel", parcels);
+    //     console.log("Parcel length", parcels.length);
+    //     console.log("Parcel 0", parcels[0]);
+    //     setAllBidData(parcels);
+    //   }
+    // );
+    getSendBidByOwner(loginAddress).then((recive: any[]) => {
+      setAllBidData(recive);
+    });
+  }, []);
 
   const recivepgnum = (value: number) => {
     setReciveCurPage(value);
   };
 
+  var countSend = allBidData?.length;
+  var totalSendPage = Math.ceil(countSend / onePageCount);
+
   const sendpgnum = (value: number) => {
     setSendCurPage(value);
+  };
+
+  const handleSendRow = (key: number) => {
+    setSelectSendRow(key);
   };
 
   return (
     <>
       <div className={classes.reciveBid}>
         <div className={classes.reciveTitle}>{t("BIDS RECEIVED")}</div>
-        <ReciveBidTable
-          columns={headerData}
-          rows={ReciveData}
-          curPage={reciveCurPage}
-          stepIndex={0}
-        />
-        <div className={classes.paginationContainer}>
-          <TablePagination handlepgnum={recivepgnum} totalPage={totalPage} />
-        </div>
+        {ReciveData?.length === 0 || ReciveData === undefined ? (
+          <div className={classes.emptyDisplay}>
+            {t("You haven't received any bids yet")}...
+          </div>
+        ) : (
+          <>
+            <ReciveBidTable
+              columns={headerData}
+              rows={ReciveData}
+              curPage={reciveCurPage}
+              stepIndex={0}
+            />
+            <div className={classes.paginationContainer}>
+              <TablePagination
+                handlepgnum={recivepgnum}
+                totalPage={totalRecivePage}
+              />
+            </div>
+          </>
+        )}
       </div>
       <div className={classes.sendBid}>
         <div className={classes.sendTitle}>{t("BIDS PLACED")}</div>
-        <SendBidTable
-          columns={headerData}
-          rows={onsaleData}
-          curPage={sendCurPage}
-          stepIndex={0}
-        />
-        <div className={classes.paginationContainer}>
-          <TablePagination handlepgnum={sendpgnum} totalPage={totalPage} />
-        </div>
+        {allBidData?.length === 0 || allBidData === undefined ? (
+          <div className={classes.emptyDisplay}>
+            {t("You haven't placed any bids yet")}...
+          </div>
+        ) : (
+          <>
+            <SendBidTable
+              columns={headerData}
+              rows={allBidData}
+              curPage={sendCurPage}
+              onRowClick={handleSendRow}
+              stepIndex={selectSendRow}
+            />
+            <div className={classes.paginationContainer}>
+              <TablePagination
+                handlepgnum={sendpgnum}
+                totalPage={totalSendPage}
+              />
+            </div>
+          </>
+        )}
       </div>
     </>
   );
