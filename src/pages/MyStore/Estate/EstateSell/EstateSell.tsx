@@ -125,6 +125,10 @@ const EstateSell = () => {
               </div>
               {/* buttons */}
               <div className={classes.buttons}>
+                <ActionButton color="light" className={classes.bidchange}>
+                  {t("Sell")}
+                  <CallMadeIcon fontSize="small" />
+                </ActionButton>
                 <ActionButton
                   color="dark"
                   className={classes.cancelchange}

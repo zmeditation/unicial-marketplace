@@ -74,17 +74,17 @@ const UpdateMetadata = () => {
               </div>
               <div className={classes.buttons}>
                 <ActionButton
-                  color='dark'
-                  className={classes.cancelchange}
-                  onClick={() => navigate("/account/estate/create")}>
-                  {t("CANCEL")}
-                </ActionButton>
-                <ActionButton
                   color='light'
                   className={classes.bidchange}
                   onClick={handleSubmitBtn}>
                   {t("SUBMIT")}
                   <CallMadeIcon fontSize='small' />
+                </ActionButton>
+                <ActionButton
+                  color='dark'
+                  className={classes.cancelchange}
+                  onClick={() => navigate("/account/estate/create")}>
+                  {t("CANCEL")}
                 </ActionButton>
               </div>
             </div>

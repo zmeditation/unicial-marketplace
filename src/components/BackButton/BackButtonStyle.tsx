@@ -19,6 +19,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
     background: "linear-gradient(#7F64E2 20%, #41A6EF 80%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    // cursor: "pointer",
   },
 }));

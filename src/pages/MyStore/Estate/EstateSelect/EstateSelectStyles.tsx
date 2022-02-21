@@ -116,6 +116,7 @@ export const EstateStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(769)]: {
         order: 2,
         marginTop: "15px",
+        marginLeft: "0px",
       },
     },
     btns: {
