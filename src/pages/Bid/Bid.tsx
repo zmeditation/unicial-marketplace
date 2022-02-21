@@ -95,7 +95,7 @@ const Bid = () => {
   useEffect(() => {
     initAllowance();
     uccAllowance.gt(0) ? setBidStatus(false) : setBidStatus(true);
-  }, [uccAllowance]);
+  }, [uccAllowance.toString()]);
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);

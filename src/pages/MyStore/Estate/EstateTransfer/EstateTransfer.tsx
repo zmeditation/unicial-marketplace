@@ -56,17 +56,17 @@ const ParcelTransfer = () => {
               {/* buttons */}
               <div className={classes.buttons}>
                 <ActionButton
-                  color='dark'
-                  className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
-                  {t("Cancel")}
-                </ActionButton>
-                <ActionButton
                   disabled
                   color='light'
                   className={classes.bidchange}>
                   {t("Transfer")} &nbsp;
                   <img src={raiseicon} alt='raiseicon' />
+                </ActionButton>
+                <ActionButton
+                  color='dark'
+                  className={classes.cancelchange}
+                  onClick={() => navigate(-1)}>
+                  {t("Cancel")}
                 </ActionButton>
               </div>
             </div>

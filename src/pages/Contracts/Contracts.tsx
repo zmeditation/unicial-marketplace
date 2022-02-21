@@ -22,6 +22,18 @@ import { selectSaleParcels } from "../../store/saleparcels/selectors";
 import { parcels } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
 import { dateConvert, getCoords } from "../../common/utils";
+import {
+  BidContractAddress,
+  BidContractAbi,
+} from "../../config/contracts/BidContract";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../common/contract";
+import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
+
+declare var window: any;
+var signer: any, bidContract: any;
 
 const Contract = () => {
   const classes = useStyles();
@@ -86,6 +98,30 @@ const Contract = () => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
+
+  useEffect(() => {
+    getAllBids();
+  }, [])
+
+  const getAllBids = async () => {
+  signer = generateSigner(window.ethereum);
+
+    bidContract = generateContractInstance(
+      BidContractAddress,
+      BidContractAbi,
+      signer
+    );
+
+    let bidsCount = (await bidContract.bidCounterByToken(SpaceProxyAddress, tokensid)).toNumber();
+    let bidPromises = []
+    
+    for (let i=0; i <bidsCount; i++) {
+      bidPromises.push(bidContract.getBidByToken(SpaceProxyAddress, tokensid, i))
+    }
+    let bids = await Promise.all(bidPromises);
+    console.log(bids);
+    return bids;
+  }
   //pagination reate
   const [curPage, setCurPage] = useState<any>(1);
   const handlepgnum = (value: number) => {

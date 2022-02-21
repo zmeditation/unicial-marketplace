@@ -179,7 +179,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   bidchange: {
-    marginLeft: "16px",
     minWidth: "160px",
     fontStyle: "normal",
     fontWeight: 500,
@@ -187,11 +186,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "19px",
     color: "#FFFFFF",
     [theme.breakpoints.down(769)]: {
-      marginLeft: "0px",
       order: 1,
     },
   },
   cancelchange: {
+    marginLeft: "16px",
     minWidth: "160px",
     fontStyle: "normal",
     fontWeight: 500,
@@ -201,6 +200,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(769)]: {
       order: 2,
       marginTop: "15px",
+      marginLeft: "0px",
     },
   },
 }));
