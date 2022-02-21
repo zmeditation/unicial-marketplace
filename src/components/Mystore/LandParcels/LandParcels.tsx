@@ -3,7 +3,7 @@ import { LandParcelsStyle } from "./LandParcelsStyle";
 import { Grid } from "@material-ui/core";
 import LandCard from "../LandCard/LandCard";
 import { ShowMoreLessBtn } from "../../ShowMoreLessBtn/ShowMoreLessBtn";
-import { getParcelsByOwner } from "../../../hooks/api";
+import { getParcelsByOwnerAsCoords } from "../../../hooks/api";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { selectLoginAddress } from "../../../store/auth/selectors";
 import { useLocation, useNavigate } from "react-router";
@@ -31,7 +31,8 @@ export default function LandParcels() {
   };
 
   const getResult = async () => {
-    await getParcelsByOwner(loginAddress).then((parcels) => {
+    await getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
+      console.log("parcels", parcels);
       if (
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "true"

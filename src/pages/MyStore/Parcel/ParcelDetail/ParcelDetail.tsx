@@ -8,7 +8,7 @@ import { useStyles } from "./ParcelDetailStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import BidDetail from "../../../../components/Mystore/BidDetail";
-import { getParcelsByOwner } from "../../../../hooks/api";
+import { getParcelsByOwnerAsCoords } from "../../../../hooks/api";
 import { dateConvert } from "../../../../common/utils";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
@@ -25,11 +25,11 @@ const ParcelDetail = () => {
   const [showLessBtn, setShowLessBtn] = useState(false);
 
   useEffect(() => {
-    getParcelsByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
-      (parcels) => {
-        setOwnParcels(parcels);
-      }
-    );
+    getParcelsByOwnerAsCoords(
+      "0x8734CB972d36a740Cc983d5515e160C373A4a016"
+    ).then((parcels) => {
+      setOwnParcels(parcels);
+    });
     if (ownParcels && ownParcels?.length <= showMoreCount) {
       setShowMoreBtn(false);
       setShowLessBtn(false);

@@ -7,7 +7,10 @@ import { selectLoginAddress } from "../../../store/auth/selectors";
 import { AllBidsStyle } from "./AllBidsStyle";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../../store/hooks";
-import { getParcelsByOwner, getSendBidByOwner } from "../../../hooks/api";
+import {
+  getParcelsByOwnerAsCoords,
+  getSendBidByOwner,
+} from "../../../hooks/api";
 
 export default function OnSale() {
   const classes = AllBidsStyle();
@@ -35,12 +38,10 @@ export default function OnSale() {
     });
   }, []);
 
-  
   //-----------------------recive bid list function -----------------------------
 
   var countRecive = ReciveData?.length;
   var totalRecivePage = Math.ceil(countRecive / onePageCount);
-
 
   const recivepgnum = (value: number) => {
     setReciveCurPage(value);

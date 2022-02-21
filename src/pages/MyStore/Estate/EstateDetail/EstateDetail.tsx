@@ -10,7 +10,10 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import { dateConvert } from "../../../../common/utils";
 import BidDetail from "../../../../components/Mystore/BidDetail";
-import { getEstatesByOwner, getParcelsByOwner } from "../../../../hooks/api";
+import {
+  getEstatesByOwner,
+  getParcelsByOwnerAsCoords,
+} from "../../../../hooks/api";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";

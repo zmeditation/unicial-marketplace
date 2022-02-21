@@ -18,7 +18,18 @@ var parcelRegistryContract: any;
 
 signer = generateSigner(window.ethereum);
 
-export const getParcelsByOwner = async (owner: any) => {
+export const getCoords = async (ownedTokens: any[]) => {
+  let coordPromises = [];
+  let coords = [];
+  for (let i = 0; i < ownedTokens.length; i++) {
+    coordPromises[i] = parcelRegistryContract.decodeTokenId(ownedTokens[i]);
+  }
+  coords = await Promise.all(coordPromises);
+  console.log("coords", coords);
+  return coords;
+};
+
+export const getParcelsByOwnerAsCoords = async (owner: any) => {
   try {
     parcelRegistryContract = generateContractInstance(
       SpaceProxyAddress,
@@ -27,28 +38,38 @@ export const getParcelsByOwner = async (owner: any) => {
     );
     const balance = (await parcelRegistryContract.balanceOf(owner)).toNumber();
     let tokenPromises = [];
-    let axisPromises = [];
     for (let i = 0; i < balance; i++) {
       let tokenPromise = parcelRegistryContract.tokenOfOwnerByIndex(owner, i);
       console.log("tokenPromise", tokenPromise);
-      let axisPromise = parcelRegistryContract.decodeTokenId(tokenPromise);
-      console.log("axisPromise", axisPromise);
-      axisPromises.push(axisPromise);
-      // tokenPromises.push(tokenPromise);
-      // let tokenPromises = parcelRegistryContract.decodeTokenId();
+      tokenPromises.push(tokenPromise);
     }
-
-    // let ownedTokens = await Promise.all(tokenPromises);
-
-    // for (let i = 0; i < ownedTokens.length; i++) {
-    //   ownedTokens[i] = ownedTokens[i];
-    // }
-    // console.log("ownedTokens", ownedTokens);
-    // console.log("ownedTokens", ownedTokens.toString());
-    // return ownedTokens;
-    let ownedTokens = await Promise.all(axisPromises);
-    return ownedTokens;
+    let ownedTokens = await Promise.all(tokenPromises);
+    return getCoords(ownedTokens);
   } catch (error: any) {
+    console.log("error: ", error.message);
+    return [];
+  }
+};
+
+export const getParcelsByOwnerAstokenId = async (owner: any) => {
+  try {
+    parcelRegistryContract = generateContractInstance(
+      SpaceProxyAddress,
+      SpaceRegistryAbi,
+      signer
+    );
+    const balance = (await parcelRegistryContract.balanceOf(owner)).toNumber();
+    let tokenPromises = [];
+    for (let i = 0; i < balance; i++) {
+      let tokenPromise = parcelRegistryContract.tokenOfOwnerByIndex(owner, i);
+      console.log("tokenPromise", tokenPromise);
+      tokenPromises.push(tokenPromise);
+    }
+    let ownedTokens = await Promise.all(tokenPromises);
+    return ownedTokens;
+    console.log("ownedTokens##", ownedTokens);
+  } catch (error: any) {
+    console.log("error: ", error.message);
     return [];
   }
 };
