@@ -6,7 +6,6 @@ import {
 } from "../config/contracts/EstateRegitryContract";
 // import utility functions
 import { generateContractInstance, generateSigner } from "../common/contract";
-import { SetStateAction } from "react";
 import {
   SpaceProxyAddress,
   SpaceRegistryAbi,
@@ -51,6 +50,15 @@ export const getParcelsByOwner = async (owner: any) => {
     return ownedTokens;
   } catch (error: any) {
     return [];
+  }
+};
+
+export const getSendBidByOwner = async (owner: any) => {
+  try {
+    const response = await axios.get(`${ApiUrl}/api/v1/bid/bidder/${owner}`);
+    return response.data.data;
+  } catch (error: any) {
+    return console.log(error);
   }
 };
 

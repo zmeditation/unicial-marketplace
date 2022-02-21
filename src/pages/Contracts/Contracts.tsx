@@ -130,7 +130,7 @@ const Contract = () => {
   };
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
-
+  
   return (
     <>
       <TobTab />
@@ -209,7 +209,7 @@ const Contract = () => {
           <div>
             <div
               className={
-                bidItems?.length === 0 ? classes.displayNone : classes.BidsTitle
+                bidItems?.length === 0 || bidItems === undefined ? classes.displayNone : classes.BidsTitle
               }>
               {t("Bids")}.
             </div>
