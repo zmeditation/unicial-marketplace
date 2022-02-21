@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "20px",
     align: "Left",
     verticalAlign: "Top",
+    textAlign: "center",
   },
 }));
 
