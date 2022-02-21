@@ -59,18 +59,15 @@ export default function LandParcels() {
         <>
           <Grid container spacing={2}>
             {resultParcels
-              .slice(
-                0,
-                !showStatus ? showMoreCount : resultParcels.length
-              )
-              .map((ownParcel: any, index: any) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
+              .slice(0, !showStatus ? showMoreCount : resultParcels.length)
+              .map((tokenId: any, key: any) => (
+                <Grid item xs={12} sm={6} md={4} key={key}>
                   <LandCard
-                    locationbtnX={ownParcel.x}
-                    locationbtnY={ownParcel.y}
-                    landName='Plaza Area Sale'
-                    category='Zilionixx'
-                    onClick={() => handleNavigate(ownParcel.tokenId)}
+                    locationbtnX={tokenId.x}
+                    locationbtnY={tokenId.y}
+                    landName="Plaza Area Sale"
+                    category="Zilionixx"
+                    onClick={() => handleNavigate(tokenId.tokenId)}
                   />
                 </Grid>
               ))}
@@ -80,7 +77,8 @@ export default function LandParcels() {
               resultParcels.length < showMoreCount
                 ? classes.displayNone
                 : classes.showmoreContent
-            }>
+            }
+          >
             <ShowMoreLessBtn
               letter={showStatus ? "Show Less" : "Show All"}
               onClick={handleShowBtn}

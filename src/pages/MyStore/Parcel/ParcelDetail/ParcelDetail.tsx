@@ -17,12 +17,12 @@ const ParcelDetail = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const emptyTokens: any[] = [];
   const { contractaddress, tokensid } = useParams();
-  const [ownParcels, setOwnParcels] = useState<any>();
+  const [ownParcels, setOwnParcels] = useState(emptyTokens);
   const [count, setCount] = useState(showMoreCount);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [showLessBtn, setShowLessBtn] = useState(false);
-
 
   useEffect(() => {
     getParcelsByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
@@ -46,8 +46,8 @@ const ParcelDetail = () => {
 
   const handleShowLessBtn = () => {
     setCount(showMoreCount);
-    setShowMoreBtn(true)
-    setShowLessBtn(false)
+    setShowMoreBtn(true);
+    setShowLessBtn(false);
   };
 
   return (
@@ -60,7 +60,8 @@ const ParcelDetail = () => {
               <img
                 src={TokenImg}
                 className={classes.tokenImg}
-                alt='token'></img>
+                alt="token"
+              ></img>
             </div>
           </div>
 
@@ -68,31 +69,34 @@ const ParcelDetail = () => {
             <div className={classes.title}>{t("Parcel detail")}</div>
             <div className={classes.buttons}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${tokensid}/sell`
                   )
-                }>
+                }
+              >
                 {t("Sell")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${tokensid}/transfer`
                   )
-                }>
+                }
+              >
                 {t("Transfer")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
               <ActionButton
-                color='dark'
+                color="dark"
                 className={classes.cancelchange}
-                onClick={() => navigate(-1)}>
+                onClick={() => navigate(-1)}
+              >
                 {t("Cancel")}
               </ActionButton>
             </div>
@@ -113,7 +117,8 @@ const ParcelDetail = () => {
               showMoreBtn === true
                 ? classes.showmoreContent
                 : classes.displayNone
-            }>
+            }
+          >
             <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
           </div>
           <div
@@ -121,8 +126,12 @@ const ParcelDetail = () => {
               showLessBtn === true
                 ? classes.showmoreContent
                 : classes.displayNone
-            }>
-            <ShowMoreLessBtn letter={t("Show Less")} onClick={handleShowLessBtn} />
+            }
+          >
+            <ShowMoreLessBtn
+              letter={t("Show Less")}
+              onClick={handleShowLessBtn}
+            />
           </div>
         </div>
       </div>
