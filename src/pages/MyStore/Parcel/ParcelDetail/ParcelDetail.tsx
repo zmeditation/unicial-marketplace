@@ -18,7 +18,7 @@ const ParcelDetail = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
-  const [ownParcels, setOwnParcels] = useState<[]>();
+  const [ownParcels, setOwnParcels] = useState<any>();
   const [count, setCount] = useState(showMoreCount);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [showLessBtn, setShowLessBtn] = useState(false);

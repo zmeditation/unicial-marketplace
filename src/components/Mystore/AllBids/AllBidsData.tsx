@@ -32,14 +32,6 @@ export const onsaleData = [
   },
 ];
 
-export const ReciveHeaderData = [
-  "Token Address",
-  "Token Id",
-  "Price",
-  "Expired At Time",
-  "Action",
-];
-
 export const ReciveData = [
   {
     type: "1Polygon",
