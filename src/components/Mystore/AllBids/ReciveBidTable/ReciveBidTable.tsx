@@ -4,6 +4,7 @@ import { TableRow, TableCell } from "@material-ui/core";
 import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
 import ActionButton from "../../../Base/ActionButton";
 import { useTranslation } from "react-i18next";
+import { onePageCount } from "../AllBidsData";
 import clsx from "clsx";
 
 interface StagingTableProps {
@@ -23,7 +24,7 @@ const ReciveBidTable = ({
   const {t, i18n} = useTranslation();
   const tableRows =
     rows !== undefined ? (
-      rows.slice((curPage - 1) * 5, curPage * 5).map((row: any, key: any) => (
+      rows.slice((curPage - 1) * onePageCount, curPage * onePageCount).map((row: any, key: any) => (
         <TableRow
           key={key}
           className={clsx({ [classes.targetRow]: stepIndex === key })}

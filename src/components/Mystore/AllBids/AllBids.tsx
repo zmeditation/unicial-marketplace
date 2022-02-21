@@ -1,5 +1,3 @@
-/** @format */
-
 import { useState } from "react";
 import SendBidTable from "./SendBidTable/SendBidTable";
 import ReciveBidTable from "./ReciveBidTable/ReciveBidTable";
@@ -9,82 +7,51 @@ import {
   onsaleData,
   ReciveHeaderData,
   ReciveData,
+  onePageCount,
 } from "./AllBidsData";
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  withStyles,
-} from "@material-ui/core/styles";
+import { AllBidsStyle } from "./AllBidsStyle";
 import { useTranslation } from "react-i18next";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      backgroundColor: "#282E4E",
-    },
-    paginationContainer: {
-      display: "flex",
-      justifyContent: "center",
-      // "& .MuiPaginationItem-root": {
-      //   color: "white",
-      // },
-
-      // "& .MuiPaginationItem-page.Mui-selected": {
-      //   backgroundColor: "#e5080814",
-      // },
-    },
-    reciveBid: {
-      minHeight: "150px",
-      paddingBottom: "20px",
-    },
-    reciveTitle: {
-      marginBottom: "30px",
-    },
-    sendBid: {
-      borderTop: "solid 1px #373f66",
-      minHeight: "150px",
-      paddingTop: "50px",
-    },
-    sendTitle: {
-      marginBottom: "30px",
-    },
-  })
-);
 var count = onsaleData.length;
-var totalPage = Math.ceil(count / 5);
+var totalPage = Math.ceil(count / onePageCount);
 
 export default function OnSale() {
-  const classes = useStyles();
-  const { t, i18n } = useTranslation();
-  const [curPage, setCurPage] = useState<any>(1);
-  const handlepgnum = (value: number) => {
-    setCurPage(value);
+  const classes = AllBidsStyle();
+  const { t } = useTranslation();
+  const [reciveCurPage, setReciveCurPage] = useState<any>(1);
+  const [sendCurPage, setSendCurPage] = useState<any>(1);
+
+  const recivepgnum = (value: number) => {
+    setReciveCurPage(value);
   };
+  const sendpgnum = (value: number) => {
+    setSendCurPage(value);
+  };
+
   return (
     <>
       <div className={classes.reciveBid}>
-        <div className={classes.reciveTitle}>BIDS RECEIVED</div>
+        <div className={classes.reciveTitle}>{t("BIDS RECEIVED")}</div>
         <ReciveBidTable
           columns={ReciveHeaderData}
           rows={ReciveData}
-          curPage={curPage}
+          curPage={reciveCurPage}
           stepIndex={0}
         />
         <div className={classes.paginationContainer}>
-          <TablePagination handlepgnum={handlepgnum} totalPage={totalPage} />
+          <TablePagination handlepgnum={recivepgnum} totalPage={totalPage} />
         </div>
       </div>
       <div className={classes.sendBid}>
-        <div className={classes.sendTitle}>BIDS PLACED</div>
+        <div className={classes.sendTitle}>{t("BIDS PLACED")}</div>
         <SendBidTable
           columns={headerData}
           rows={onsaleData}
-          curPage={curPage}
+          curPage={sendCurPage}
           stepIndex={0}
         />
         <div className={classes.paginationContainer}>
-          <TablePagination handlepgnum={handlepgnum} totalPage={totalPage} />
+          <TablePagination handlepgnum={sendpgnum} totalPage={totalPage} />
         </div>
       </div>
     </>

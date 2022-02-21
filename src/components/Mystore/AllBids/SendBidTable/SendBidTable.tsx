@@ -3,6 +3,7 @@ import StageMarket from "../../../StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";
 import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
 import ActionButton from "../../../Base/ActionButton";
+import  { onePageCount} from "../AllBidsData"
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
@@ -23,7 +24,7 @@ const SendBidTable = ({
   const {t, i18n} = useTranslation();
   const tableRows =
     rows !== undefined ? (
-      rows.slice((curPage - 1) * 5, curPage * 5).map((row: any, key: any) => (
+      rows.slice((curPage - 1) * onePageCount, curPage * onePageCount).map((row: any, key: any) => (
         <TableRow
           key={key}
           className={clsx({ [classes.targetRow]: stepIndex === key })}
