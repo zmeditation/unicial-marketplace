@@ -16,7 +16,7 @@ export default function OnSale() {
   const [reciveCurPage, setReciveCurPage] = useState<any>(1);
   const [sendCurPage, setSendCurPage] = useState<any>(1);
   const emptyTokens: any[] = [];
-  const [allBidData, setAllBidData] = useState<any>(emptyTokens);
+  const [sendBidData, setSendBidData] = useState<any>(emptyTokens);
   const [reciveData, setReciveData] = useState<any>();
   const [selectSendRow, setSelectSendRow] = useState(0);
   const [selectReciveRow, setSelectReciveRow] = useState(0);
@@ -27,15 +27,17 @@ export default function OnSale() {
     //     console.log("Parcel", parcels);
     //     console.log("Parcel length", parcels.length);
     //     console.log("Parcel 0", parcels[0]);
-    //     setAllBidData(parcels);
+    //     setSendBidData(parcels);
     //   }
     // );
     getSendBidByOwner(loginAddress).then((recive: any[]) => {
-      setAllBidData(recive);
+      setSendBidData(recive);
     });
   }, []);
 
   
+  //-----------------------recive bid list function -----------------------------
+
   var countRecive = ReciveData?.length;
   var totalRecivePage = Math.ceil(countRecive / onePageCount);
 
@@ -50,7 +52,7 @@ export default function OnSale() {
 
   //------------------------send bid list function-------------------
 
-  var countSend = allBidData?.length;
+  var countSend = sendBidData?.length;
   var totalSendPage = Math.ceil(countSend / onePageCount);
 
   const sendpgnum = (value: number) => {
@@ -89,7 +91,7 @@ export default function OnSale() {
       </div>
       <div className={classes.sendBid}>
         <div className={classes.sendTitle}>{t("BIDS PLACED")}</div>
-        {allBidData?.length === 0 || allBidData === undefined ? (
+        {sendBidData?.length === 0 || sendBidData === undefined ? (
           <div className={classes.emptyDisplay}>
             {t("You haven't placed any bids yet")}...
           </div>
@@ -97,7 +99,7 @@ export default function OnSale() {
           <>
             <SendBidTable
               columns={headerData}
-              rows={allBidData}
+              rows={sendBidData}
               curPage={sendCurPage}
               onRowClick={handleSendRow}
               stepIndex={selectSendRow}
