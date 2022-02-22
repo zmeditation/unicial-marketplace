@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export default function TopTab() {
   const classes = AdminTopTabStyle();
-  const {t, i18n} = useTranslation();
+  const {t } = useTranslation();
   const location = useLocation();
 
   const [toptab_index, setToptabIndex] = React.useState(1);

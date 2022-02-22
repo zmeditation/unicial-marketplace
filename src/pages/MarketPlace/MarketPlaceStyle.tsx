@@ -2,25 +2,21 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    height: "calc(100vh - 203px)",
     display: "flex",
+    flexGrow: 2,
     flexFlow: "column nowrap",
-    justifyContent: "start",
+    justifyContent: "center",
     position: "relative",
     overflow: "hidden",
     backgroundColor: " #21263f",
     textAlign: "center",
-    [theme.breakpoints.down(768)]: {
-      height: "calc(100vh - 272px)",
-    },
   },
   content: {
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
     height: "100%",
-    minHeight: "500px",
-    width: "1064px",
+    maxWidth: "1064px",
     marginLeft: "auto !important",
     marginRight: "auto !important",
     [theme.breakpoints.down(768)]: {
@@ -31,6 +27,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "100% !important",
   },
   title: {
+    fontFamily: "Montserrat",
     marginBottom: "1rem",
     position: "relative",
     fontSize: "45px",
@@ -73,8 +70,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "18px",
     minWidth: "128px",
     fontStretch: "normal",
-    fontFamily:
-      'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    fontFamily: "Lato",
     textAlign: "center",
     fontWeight: 500,
     cursor: "pointer",

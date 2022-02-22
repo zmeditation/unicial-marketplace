@@ -5,17 +5,15 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 export default function MobileSidebar() {
   const classes = MobileSidebarStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const location = useLocation();
   const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
 
   const category = query.get("section");
-  // console.log("here is mobilesidebar..", category);
 
   const [menuIndex, setmenuIndex] = React.useState(category);
-  // console.log("this is menuindex..", menuIndex);
   const handlemenu = (index: string) => {
     setmenuIndex(index);
     query.set("section", index);
@@ -40,10 +38,10 @@ export default function MobileSidebar() {
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple
-          onClick={() => handlemenu("land")}
-          disabled={menuIndex === "land"}
+          onClick={() => handlemenu("space")}
+          disabled={menuIndex === "space"}
         >
-          {t("Land")}
+          {t("Space")}
         </StyledTopTabBtn>
         <StyledTopTabBtn
           disableRipple

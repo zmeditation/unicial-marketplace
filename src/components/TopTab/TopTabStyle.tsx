@@ -1,21 +1,19 @@
 import { createStyles, FormControlLabel, Theme } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
-import TableChartIcon from "@material-ui/icons/TableChart";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Button } from "@material-ui/core";
 export const TopTabStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: "#21263F",
-      marginBottom: "0px",
       display: "flex",
       alignItems: "center",
       width: "100%",
       height: "65px",
       color: "#fff",
+      margin: "20px auto",
+      paddingRight: "16px",
+      paddingLeft: "16px",
       [theme.breakpoints.down(769)]: {
-        marginTop: "22px",
-        marginBottom: "22px",
         display: "contents",
       },
     },
@@ -31,9 +29,11 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(992)]: {
         marginLeft: "0px !important",
         marginRight: "0px !important",
-        marginTop: "22px !important",
-        marginBottom: "22px !important",
 
+        // marginBottom: "22px !important",
+      },
+      [theme.breakpoints.down(769)]: {
+        marginTop: "22px !important",
         borderBottom: "1px solid #282E4E",
       },
     },
@@ -49,6 +49,9 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       fontSize: "12px",
+      [theme.breakpoints.down(769)]: {
+        padding: "0px 16px 0px 0px ",
+      },
     },
     tabsLeft: {
       flex: "1 0 auto",
@@ -58,23 +61,15 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
         display: "inline-grid",
       },
     },
+    landtoptabRight: {
+      display: "flex",
+      alignItems: "center",
+    },
     //
     topbarFilter: {
       marginLeft: "20px",
       [theme.breakpoints.down(768)]: {
         display: "none",
-      },
-    },
-    switch: {
-      "& .MuiSwitch-thumb": {
-        width: "13px",
-        height: "13px",
-        marginTop: "2.5px",
-        marginLeft: "3px",
-        background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
-      },
-      "& .MuiSwitch-root": {
-        padding: "12.5px 12px",
       },
     },
   })
@@ -87,8 +82,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     display: "inline-block",
     padding: "0px 0px",
     fontSize: "16px",
-    fontFamily:
-      '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+    fontFamily: "Lato",
     lineHeight: "26px",
     letterSpacing: "-0.2px",
     cursor: "pointer",
@@ -121,6 +115,10 @@ export const StyledTopTabBtn = withStyles((theme) => ({
     },
     "& .MuiButton-label": {
       textAlign: "center",
+      fontSize: "16px",
+      fontWeight: 400,
+      lineHeight: "19.2px",
+      fontFamily: "Lato",
       [theme.breakpoints.down(769)]: {
         textAlign: "left",
         fontWeight: 600,
@@ -135,6 +133,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
 //from searchbarstyle.tsx
 export const StyledFormControlLabel = withStyles({
   label: {
+    fontFamily: "Lato",
     fontSize: "16px",
     fontStyle: "normal",
     fontWeight: 400,
@@ -147,40 +146,40 @@ export const StyledFormControlLabel = withStyles({
 
 export const StyledTableButton = withStyles({
   root: {
-    backgroundColor: "#282E4E",
+    backgroundColor: "#333b67",
     borderRadius: "100px 0px 0px 100px",
     padding: "7px 11px",
     minWidth: "35px",
     width: "38px",
     height: "30px",
     "&.Mui-disabled": {
-      backgroundColor: "#333B67 !important",
+      backgroundColor: "#282E4E !important",
       "& svg": {
         fill: "red",
       },
     },
     "&.MuiButton-root:hover": {
-      backgroundColor: "#392d38",
+      backgroundColor: "#333b67",
     },
   },
 })(Button);
 
 export const StyledLocationButton = withStyles({
   root: {
-    backgroundColor: "#282E4E",
+    backgroundColor: "#333b67",
     borderRadius: "0px 100px 100px 0px",
     padding: "7px 11px",
     minWidth: "35px",
     width: "38px",
     height: "30px",
     "&.Mui-disabled": {
-      backgroundColor: "#333B67 !important",
+      backgroundColor: "#282E4E !important",
       "& svg": {
         fill: "#ff2d55",
       },
     },
     "&.MuiButton-root:hover": {
-      backgroundColor: "#392d38",
+      backgroundColor: "#333b67",
     },
   },
 })(Button);

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useStyles } from "./CountDownStyle";
 import CountTexture from "../../assets/svg/count_texture.svg";
 import { useTranslation } from "react-i18next";
 
 const CountDown = () => {
   const classes = useStyles();
-  const {t, i18n} = useTranslation();
+  const {t} = useTranslation();
 
   const calculateTimeLeft = () => {
-    let year = new Date().getFullYear();
     let difference = +new Date("2022-12-30") - +new Date();
     let timeLeft = {};
 

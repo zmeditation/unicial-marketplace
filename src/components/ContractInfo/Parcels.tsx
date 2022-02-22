@@ -1,7 +1,5 @@
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import Button from "../Base/Button";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import LocationBtn from "../Base/LocationBtn";
 import { ShowMoreLessBtn } from "../ShowMoreLessBtn/ShowMoreLessBtn";
 import { useTranslation } from "react-i18next";
@@ -56,31 +54,23 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface ParcelsProps {}
+interface ParcelsProps {
+  location: string;
+}
 
-const Parcels: React.FC = () => {
+const Parcels = ({ location }: ParcelsProps) => {
   const classes = useStyles();
-  const { t, i18n } =  useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={classes.root}>
       <div className={classes.title}>{t("Parcels")}</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>
-          <LocationBtn axisX={12} axisY={45} />
-          <LocationBtn axisX={32} axisY={11} />
-          <LocationBtn axisX={33} axisY={9} />
-          <LocationBtn axisX={30} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
-          <LocationBtn axisX={12} axisY={-45} />
+          <LocationBtn position={location} />
         </div>
-        <div className={classes.showmoreContent}>
-          <ShowMoreLessBtn />
-        </div>
+        {/* <div className={classes.showmoreContent}>
+          <ShowMoreLessBtn letter='Show More' />
+        </div> */}
       </div>
     </div>
   );

@@ -14,7 +14,6 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       position: "relative",
       background: "#21263f",
       backdropFilter: "blur(20)",
-      zIndex: 1,
       display: "flex",
       width: "100%",
       height: "auto",
@@ -66,7 +65,7 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       overflow: "visible",
     },
     topbarFilter: {
-      marginLeft: "20px",
+      marginLeft: "2px",
       [theme.breakpoints.down(768)]: {
         display: "none",
       },
@@ -132,7 +131,8 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
-    selectedListLabel:{
+    selectedListLabel: {
+      fontFamily: "Lato",
       fontSize: "14px",
       lineHeight: "20px",
       fontWeight: 400,
@@ -165,11 +165,30 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
         fill: "#41A6EF",
       },
     },
+    listdropdownContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    OnSaleSwitchContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    filterDialogbtn: {
+      display: "none",
+      [theme.breakpoints.down(860)]: {
+        display: "flex",
+        cursor: "pointer",
+        position: "relative",
+      },
+    },
   })
 );
 
 export const StyledFormControlLabel = withStyles({
   label: {
+    fontFamily: "Lato",
     fontSize: "16px",
     fontStyle: "normal",
     fontWeight: 400,

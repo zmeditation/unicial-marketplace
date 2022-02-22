@@ -3,34 +3,34 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: "calc(100vh - 246px)",
-    maxWidth: "1064px",
+    width: "1064px",
     margin: "40px auto",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
-      maxWidth: "933px",
+      width: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      maxWidth: "723px",
+      width: "723px",
     },
     [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      width: "calc(100% - 32px) !important",
     },
   },
   LandMap: {
-    display: "grid",
+    // display: "grid",
     margin: "0px auto",
     width: "100%",
   },
   LandMapContent: {
     height: "400px",
-    marginBottom: "53px",
+    marginBottom: "30px",
     [theme.breakpoints.down(768)]: {
       margin: "0px calc( (100% - 400px) / 2)",
     },
-    [theme.breakpoints.down(500)]: {
+    [theme.breakpoints.down(501)]: {
       margin: "0px calc( (100% - 300px) / 2)",
     },
   },
@@ -62,6 +62,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
       marginTop: "20px",
     },
   },
+  highLIght:{
+
+  },
   items: {
     marginBottom: "40px",
   },
@@ -82,7 +85,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "50px",
     color: "white",
   },
+  BuyboxContainer:{},
   BidboxContainer: {
     marginBottom: "30px",
+  },
+  backbtnContainer: {
+    display: "flex",
+    justifyContent: "start",
+  },
+  paginationContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  displayNone: {
+    display: "none",
   },
 }));

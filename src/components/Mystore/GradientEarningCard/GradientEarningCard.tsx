@@ -1,5 +1,3 @@
-/** @format */
-
 import { GradientEarningCardStyle } from "./GradientEarningCardStyle";
 import cubeSvg from "./../../../assets/svg/cube.svg";
 import shapeSvg from "./../../../assets/svg/shape.svg";
@@ -24,7 +22,7 @@ export default function GradientEarningCard({
   className,
 }: GradientEarningCardProps) {
   const classes = GradientEarningCardStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <div

@@ -19,13 +19,14 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
     selectPart: {
       alignItems: "flex-start",
       flex: "1 1 auto",
-      justifyContent: "flex-start",
       position: "relative",
       display: "flex",
       flexFlow: "row nowrap",
+      justifyContent: "space-between",
     },
     collectionSelectContainer: {
-      flex: "1 0 auto",
+      // flex: "1 0 auto",
+      width: "45%",
     },
     title: {
       fontStyle: "normal",
@@ -46,9 +47,6 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       border: "1px solid #373F66",
       borderRadius: "100px",
       padding: "1px 20px",
-      [theme.breakpoints.down(1025)]: {
-        marginBottom: "18px",
-      },
     },
     listRoot: {
       transform: "translateY(2px)",
@@ -64,6 +62,9 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       fontSize: "16px",
       lineHeight: "19px",
       color: "white",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
     },
     listLabel: {
       fontSize: "14px",
@@ -115,6 +116,9 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       alignItems: "center",
       cursor: "pointer",
     },
+    clearFilterContainerNone: {
+      display: "none",
+    },
     clearFilterLabel: {
       fontFamily: "Lato",
       fontStyle: "normal",
@@ -125,10 +129,14 @@ export const CollectibleFilterStyle = makeStyles((theme: Theme) =>
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       marginRight: "3px",
+      marginBottom: "3px",
     },
     closeicon: {
       width: "22px",
       height: "26px",
+    },
+    activeLabel: {
+      color: "white",
     },
   })
 );

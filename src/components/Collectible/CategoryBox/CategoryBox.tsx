@@ -15,7 +15,7 @@ import clsx from "clsx";
 
 export default function CategoryBox() {
   const classes = CategoryBoxStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [expanded, setExpanded] = React.useState<string | false>(

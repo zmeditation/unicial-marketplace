@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export default function TypeBox() {
   const classes = TypeBoxStyle();
-  const {t, i18n} = useTranslation();
+  const {t} = useTranslation();
   const [itemIndex, setitemIndex] = React.useState(typebox.store);
   const location = useLocation();
   const query = new URLSearchParams(location.search);

@@ -5,6 +5,7 @@ import CallMadeIcon from "@material-ui/icons/CallMade";
 import { useNavigate } from "react-router";
 import cloccheckSvg from "../../assets/svg/clockcheck.svg";
 import { useTranslation } from "react-i18next";
+import { addCommas } from "../../common/utils";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -66,36 +67,43 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface BuyboxProps {}
+interface BuyboxProps {
+  price?: string;
+}
 
-const Buybox: React.FC = () => {
+const Buybox = ({ price }: BuyboxProps) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const  {t,i18n} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.root}>
-      <div className={classes.title}>{t("Price")}</div>
-      <div className={classes.priceValueContainer}>
-        <i className={classes.symbol}>⏣</i>
-        1,000,000
-      </div>
+      {price !== undefined && (
+        <>
+          <div className={classes.title}>{t("Price")}</div>
+          <div className={classes.priceValueContainer}>
+            <i className={classes.symbol}>⏣</i>
+            {addCommas(price)}
+          </div>
+        </>
+      )}
       <div className={classes.title}>{t("Network")}</div>
       <div className={classes.subtitle}>{t("Zilionixx")}</div>
-      <ActionButton color="light" onClick={() => navigate("buy")}>
-        {t("BUY")}
+      <ActionButton color='light' onClick={() => navigate("buy")}>
+        {t("Buy")}
         <CallMadeIcon className={classes.callmadeicon} />
       </ActionButton>
       <ActionButton
-        color="dark"
+        color='dark'
         onClick={() => navigate("bid")}
-        className={classes.bidBtn}
-      >
-        {t("BID")}
+        className={classes.bidBtn}>
+        {t("Bid")}
       </ActionButton>
       <div className={classes.expireContainer}>
         <img src={cloccheckSvg} className={classes.clockcheck} />
-        <div className={classes.expireDescription}>{t("Expires in 12 months")}</div>
+        <div className={classes.expireDescription}>
+          {t("Expires in 12 months")}
+        </div>
       </div>
     </div>
   );

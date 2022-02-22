@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Layer, TileMap, Coord } from "react-tile-map";
 import "react-tile-map/lib/styles.css";
 import "./Atlas.css";
@@ -24,12 +23,12 @@ interface AtlasProps {
   onClick?: any;
   height?: number;
   width?: number;
-  initialX?: number;
-  initialY?: number;
+  x?: number;
+  y?: number;
 }
 
 export const Atlas = (props: AtlasProps) => {
-  const { layers, tiles, height, width, initialX, initialY, ...rest } = props;
+  const { layers, tiles, height, width, x, y, ...rest } = props;
   const classes = "dcl atlas ";
 
   const COLOR_BY_TYPE: any = Object.freeze({
@@ -79,8 +78,8 @@ export const Atlas = (props: AtlasProps) => {
       layers={[layer, ...layers]}
       height={height}
       width={width}
-      initialX={130}
-      initialY={130}
+      x={x}
+      y={y}
     />
   );
 };

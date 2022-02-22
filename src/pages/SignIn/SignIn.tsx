@@ -10,8 +10,8 @@ import { CHAIN_INFO } from "../../config/constant";
 import { setloginAddress } from "../../store/auth/actions";
 import { useAppDispatch } from "../../store/hooks";
 import { useTranslation } from "react-i18next";
+import { showAlert } from "../../store/alert";
 import { useNavigate } from "react-router-dom";
-
 
 declare var window: any;
 var provider: any;
@@ -30,7 +30,6 @@ const generateSignature = () => {
     "  - Signature: " +
     rndString;
 
-  console.log("Signature string: " + signature);
   return signature;
 };
 
@@ -38,7 +37,7 @@ export default function SignIn() {
   const classes = SignInStyle();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {t,i18n} = useTranslation();
+  const {t} = useTranslation();
   var loginAddress: string;
 
   const getLoginAddress = async (signer: any, msgToSign: string) => {
@@ -47,9 +46,8 @@ export default function SignIn() {
     // Make sure you arrayify the message if you want the bytes to be used as the message
     const recoveredAddress = ethers.utils.verifyMessage(msgToSign, signature);
 
-    console.log("recoveredAddress", recoveredAddress);
     dispatch(setloginAddress(recoveredAddress));
-    navigate("/auction");
+    navigate("/account");
     return recoveredAddress;
   };
 
@@ -59,8 +57,11 @@ export default function SignIn() {
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
     } else {
-      window.alert(
-        "Metamask seem to be not installed. Please install metamask first and try again."
+      dispatch(
+        showAlert({
+          message: "Metamask seem to be not installed. Please install metamask first and try again.",
+          severity: "error",
+        })
       );
     }
 
@@ -72,7 +73,12 @@ export default function SignIn() {
     if (chainId === znxChainId) {
       loginAddress = await getLoginAddress(signer, generateSignature());
       // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
-      window.alert("Recovered address: " + loginAddress);
+      dispatch(
+        showAlert({
+          message: `Recovered address: ${loginAddress.slice(0,6)}`,
+          severity: "success",
+        })
+      );
     } else {
       let ethereum = window.ethereum;
       try {
@@ -87,8 +93,11 @@ export default function SignIn() {
 
         loginAddress = await getLoginAddress(signer, generateSignature());
         // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
-        window.alert(
-          "Switched chain done & Recovered address: " + loginAddress
+        dispatch(
+          showAlert({
+            message: `Switched chain done & Recovered address: ${loginAddress.slice(0,6)}`,
+            severity: "success",
+          })
         );
       } catch (switchError: any) {
         // This error code indicates that the chain has not been added to MetaMask.
@@ -111,11 +120,19 @@ export default function SignIn() {
 
             loginAddress = await getLoginAddress(signer, generateSignature());
             // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
-            window.alert("Add chain done & Recovered address: " + loginAddress);
+            dispatch(
+              showAlert({
+                message: `Add chain done & Recovered address: ${loginAddress.slice(0,6)}`,
+                severity: "success",
+              })
+            );
           } catch (addError) {
             // handle "add" error
-            window.alert(
-              "Can not add Zilionixx network. Please add Zilionixx network."
+            dispatch(
+              showAlert({
+                message: "Can not add Zilionixx network. Please add Zilionixx network.",
+                severity: "error",
+              })
             );
           }
         }
@@ -147,6 +164,7 @@ export default function SignIn() {
             <a
               href="https://metamask.io/"
               target="_blank"
+              rel="noreferrer"
               className={classes.browserLink}
             >
               {t("MetaMask")}
@@ -159,7 +177,7 @@ export default function SignIn() {
             onClick={handleSignIn}
           >
             {t("Connect")}
-            <CallMadeIcon className={classes.callmadeicon} />
+            <CallMadeIcon fontSize="small" />
           </ActionButton>
         </div>
       </div>

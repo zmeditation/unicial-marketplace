@@ -3,32 +3,32 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
   auctionInfo: {
     maxWidth: "1064px",
-    margin: "40px auto",
+    margin: "10px auto 40px auto",
     position: "relative",
   },
-  auctionBalance:{
-    marginBottom:"40px",
+  auctionBalance: {
+    marginBottom: "40px",
   },
   root: {
     minHeight: "calc(100vh - 246px)",
-    maxWidth: "1064px",
-    margin: "40px auto",
+    width: "1064px",
+    margin: "10px auto 60px auto",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
-      maxWidth: "933px",
+      width: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      maxWidth: "723px",
+      width: "723px",
     },
     [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      width: "calc(100% - 32px) !important",
     },
   },
   LandMap: {
-    display: "grid",
+    // display: "grid",
     margin: "0px auto",
     width: "100%",
   },
@@ -36,7 +36,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     height: "400px",
     [theme.breakpoints.down(768)]: {
-      margin: "0px calc( (100% - 400px) / 2)",
+      margin: "0px calc( (100% - 420px) / 2)",
     },
     [theme.breakpoints.down(501)]: {
       margin: "0px calc( (100% - 300px) / 2)",
@@ -107,7 +107,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "space-between",
     marginTop: "35px",
     [theme.breakpoints.down(769)]: {
-      display: "grid",
+      display: "block",
       width: "100%",
       justifyContent: "space-around",
     },
@@ -115,11 +115,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
   actionButtons: {
     display: "flex",
     justifyContent: "end",
-    // [theme.breakpoints.down(769)]: {
-    //   display: "grid",
-    //   width: "100%",
-    //   justifyContent: "space-around",
-    // },
+    
+    [theme.breakpoints.down(992)]: {
+      display: "block",
+    },
+    [theme.breakpoints.down(769)]: {
+      display: "block",
+      width: "100%",
+      justifyContent: "space-around",
+    },
   },
   normalBtn: {
     margin: "20px 10px",
@@ -134,6 +138,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   backBtnPosition: {
-    marginTop: '5px',
+    marginTop: "5px",
+  },
+  callmadeicon: {
+    width: "20px",
+    height: "20px",
   },
 }));

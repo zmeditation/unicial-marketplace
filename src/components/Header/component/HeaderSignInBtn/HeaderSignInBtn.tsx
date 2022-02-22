@@ -9,7 +9,7 @@ interface HeaderSignInBtnProps {
 
 const HeaderSignInBtn = ({ onClick }: HeaderSignInBtnProps) => {
   const classes = HeaderSignInBtnStyle();
-  const { t, i18n} = useTranslation();
+  const { t} = useTranslation();
   return (
     <div className={classes.signBtn} onClick={onClick}>
       <div className={classes.signBtnContent}>

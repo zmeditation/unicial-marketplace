@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import makeBlockie from "ethereum-blockies-base64";
 import plaza_svg from "../../assets/svg/plaza.svg";
 import road_svg from "../../assets/svg/road.svg";
 import distirct_svg from "../../assets/svg/district.svg";
@@ -73,22 +72,27 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  displayNone:{
+    display: "none",
+  },
 }));
 
-interface DescriptionProps {}
+interface HighlightProps {
+  type?: string;
+}
 
-const Highlight: React.FC = () => {
+const Highlight = ({ type }: HighlightProps)=> {
   const classes = useStyles();
-  const {t,i18n} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={classes.root}>
       <div className={classes.title}>{t("Highlight")}</div>
       <div className={classes.cards}>
         <div
           className={
-            highlight.plaza === 0
-              ? clsx(classes.card, classes.unviewPlaza)
-              : classes.card
+            type === "plaza"
+            ? classes.card
+            : clsx(classes.card, classes.unviewPlaza)
           }
         >
           <div className={classes.imgContainer}>
@@ -103,9 +107,9 @@ const Highlight: React.FC = () => {
         </div>
         <div
           className={
-            highlight.road === 0
-              ? clsx(classes.card, classes.unviewRoad)
-              : classes.card
+            type === "road"
+            ? classes.card
+            : clsx(classes.card, classes.unviewRoad)
           }
         >
           <div className={classes.imgContainer}>
@@ -121,9 +125,9 @@ const Highlight: React.FC = () => {
         </div>
         <div
           className={
-            highlight.district === 0
-              ? clsx(classes.card, classes.unviewDistrict)
-              : classes.card
+            type === "district"
+            ? classes.card
+            : clsx(classes.card, classes.unviewDistrict)
           }
         >
           <div className={classes.imgContainer}>

@@ -1,34 +1,49 @@
-export const collectionData = [
-  {
-    index: 0,
-    catatory: "All Collections",
-  },
+export const namesOrderByData = [
   {
     index: 1,
-    catatory: "Chinese traditional clothing",
+    content: "Recently sold",
   },
   {
     index: 2,
-    catatory: "#shadowysuper coder",
+    content: "Newest",
   },
   {
     index: 3,
-    catatory: "Angel Wings",
+    content: "Name",
+  },
+];
+
+export const collectionData = [
+  {
+    index: 1,
+    content: "All Collections",
+  },
+  {
+    index: 2,
+    content: "Chinese traditional clothing",
+  },
+  {
+    index: 3,
+    content: "#shadowysuper coder",
+  },
+  {
+    index: 4,
+    content: "Angel Wings",
   },
 ];
 
 export const networkData = [
   {
-    index: 0,
-    category: "All Network",
-  },
-  {
     index: 1,
-    category: "Ethereum",
+    content: "All Network",
   },
   {
     index: 2,
-    category: "Polygon",
+    content: "Zilionixx",
+  },
+  {
+    index: 3,
+    content: "Polygon",
   },
 ];
 

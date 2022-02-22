@@ -1,5 +1,5 @@
 import { ProductCardStyle } from "./ProductCardStyle";
-import Tag from "../../Base/Tag";
+import Tag from "../Tag";
 import headSvg from "../../../assets/svg/head.svg";
 import unisexSvg from "../../../assets/svg/unisex.svg";
 import diamondSvg from "../../../assets/svg/diamond.svg";

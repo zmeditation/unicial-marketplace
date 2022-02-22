@@ -1,4 +1,3 @@
-import React from "react";
 import {
   createStyles,
   makeStyles,
@@ -10,7 +9,6 @@ import {
   TableCell,
   Theme,
 } from "@material-ui/core";
-import { isEmptyObject } from "../../common/utils";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
@@ -59,8 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
       lineHeight: "18px",
       fontWeight: 400,
       color: "#676370",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+      fontFamily: "Lato",
       "&.MuiTableCell-root": {
         padding: "11px 0px",
         // borderBottm: "none",
@@ -71,8 +68,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     tableCell: {
       fontSize: "15px",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+      fontFamily: "Lato",
       color: "white",
       fontWeight: 500,
       "&.MuiTableCell-root": {
@@ -109,8 +105,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     responseTableCell: {
       fontSize: "15px",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+      fontFamily: "Lato",
       color: "white",
       fontWeight: 500,
       "&.MuiTableCell-root": {
@@ -140,10 +135,9 @@ const useStyles = makeStyles((theme: Theme) =>
 function TransactionHistoryTable({
   columns,
   rows,
-  emptyTableRows,
 }: StyledTableleProps) {
   const classes = useStyles();
-  const {t, i18n } =  useTranslation();
+  const { t } = useTranslation();
 
   const tableColumns = columns?.map((column: any, key: any) => (
     <TableCell key={column} className={classes.tableHeaderCell}>

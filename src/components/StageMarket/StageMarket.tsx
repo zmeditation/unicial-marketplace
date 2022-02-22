@@ -19,21 +19,6 @@ interface StyledTableleProps {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    "@global": {
-      "*::-webkit-scrollbar": {
-        width: "5px !important",
-        height: "6px",
-        background: "#141b31",
-      },
-      "*::-webkit-scrollbar-track": {
-        borderRadius: "0px",
-        background: "rgba(0, 0, 0, 0.05)",
-      },
-      "*::-webkit-scrollbar-thumb": {
-        background: "#3d3a46",
-        borderRadius: "3px",
-      },
-    },
     title: {
       fontSize: "13px",
       fontWeight: 400,
@@ -67,8 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       color: "#96A1DB",
       opacity: "50%",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+      fontFamily: "Lato",
       "&.MuiTableCell-root": {
         padding: "10px 10px 10px 20px",
         borderBottom: "solid 1px #282E4E",
@@ -76,8 +60,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     tableCell: {
       fontSize: "16px",
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+      fontFamily: "Lato",
       color: "white",
       fontWeight: "normal",
     },

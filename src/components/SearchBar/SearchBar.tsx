@@ -28,6 +28,12 @@ const PurpleSwitch = withStyles({
     "&$checked + $track": {
       backgroundColor: "#ff2d55",
     },
+    "&.Mui-checked:hover": {
+      backgroundColor: "unset",
+    },
+    "&.MuiIconButton-root:hover": {
+      backgroundColor: "unset",
+    },
   },
   checked: {},
   track: {},
@@ -76,6 +82,7 @@ export default function SearchBar() {
                       checked={state.checkedA}
                       onChange={handleChange}
                       name="checkedA"
+                      disableRipple={true}
                     />
                   }
                   label="ON SALE"
@@ -93,6 +100,7 @@ export default function SearchBar() {
                 <StyledTableButton
                   disabled={filter_index === searchbarBtn.tableBtn}
                   onClick={handletable}
+                  disableRipple={true}
                 >
                   <StyledTableChartIcon />
                 </StyledTableButton>
@@ -100,6 +108,7 @@ export default function SearchBar() {
                 <StyledLocationButton
                   disabled={filter_index === searchbarBtn.locationBtn}
                   onClick={handlelocation}
+                  disableRipple={true}
                 >
                   <StyledLocationOnIcon />
                 </StyledLocationButton>

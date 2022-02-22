@@ -9,7 +9,7 @@ export const CollectibleSidebarStyle = makeStyles((theme: Theme) => ({
     backgroundColor: "#282E4E",
     width: "265px",
     borderRadius: "15px",
-    paddingBottom: "10px",
+    paddingBottom: "25px",
   },
   categoryBox: {
     backgroundColor: "transparent",

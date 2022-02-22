@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 
 export default function MobileCategoryBox() {
   const classes = MobileCategoryBoxStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
   const [expanded, setExpanded] = React.useState<string | false>(
     category.wearable

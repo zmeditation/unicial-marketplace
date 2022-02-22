@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { Box, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
@@ -8,7 +8,7 @@ import { headerId } from "../../config/constant";
 import HeaderSignInBtn from "./component/HeaderSignInBtn/HeaderSignInBtn";
 import { useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
-import { useTranslation, withTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const classes = HeaderStyle();
@@ -16,7 +16,7 @@ export default function Header() {
   const location = useLocation();
   const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
   const loginAddress = useAppSelector(selectLoginAddress);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const handleSignIn = () => {
     navigate(`/signin`);
@@ -59,7 +59,7 @@ export default function Header() {
               onClick={handleMarketPlace}
             >
               <span></span>
-              <span>Marketplace</span>
+              <span className={classes.headerLink}>{t("Marketplace")}</span>
               <span className={"active-border"}></span>
             </Button>
             {/* <Button

@@ -1,11 +1,7 @@
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  withStyles,
-} from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import pinlocationSvg from "../../assets/svg/pinlocation.svg";
+import { addSpace } from "../../common/utils";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -36,16 +32,15 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-  axisX: number;
-  axisY: number;
+  position: string;
   dark?: boolean;
   className?: any;
   onClick?: () => void;
 }
 
-export default function LacationBtn({
-  axisX,
-  axisY,
+
+export default function LocationBtn({
+  position,
   dark,
   className,
   onClick,
@@ -56,12 +51,9 @@ export default function LacationBtn({
       <div
         className={clsx(classes.root, className, {
           [classes.darkbackground]: dark,
-        })}
-      >
+        })}>
         <img src={pinlocationSvg} className={classes.icon} />
-        <div className={classes.info}>
-          {axisX},{axisY}
-        </div>
+        <div className={classes.info}>{addSpace(position)}</div>
       </div>
     </>
   );

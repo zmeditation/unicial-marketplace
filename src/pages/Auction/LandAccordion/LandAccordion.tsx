@@ -15,10 +15,11 @@ import { getparcels } from "../../../store/selectedparcels";
 import { fetchTiles } from "../../../hooks/tiles";
 import { Tile } from "../../../components/Atlas/Atlas.types";
 import { useTranslation } from "react-i18next";
+import { getCoords } from "../../../common/utils";
 
 export default function LandAccordion() {
   const classes = LandAccordionStyle();
-  const { t, i18n} = useTranslation();
+  const { t} = useTranslation();
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
   const [x1, setx1] = useState<number>(0);
   const [x2, setx2] = useState<number>(0);
@@ -54,8 +55,6 @@ export default function LandAccordion() {
   const inputxy = (data: string) => {
     setxy(data);
   };
-
-  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
 
   const showmapArea = () => {
     let newSelectedTile: string[] = [];
@@ -103,7 +102,6 @@ export default function LandAccordion() {
           count++;
         }
       } catch (error) {
-        console.log("please input correct form");
         return;
       }
     });

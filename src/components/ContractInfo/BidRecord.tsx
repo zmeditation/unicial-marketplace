@@ -1,6 +1,7 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import fromImg from "../../assets/img/1.png";
 import { useTranslation } from "react-i18next";
+import { addCommas } from "../../common/utils";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flex: "1 0 auto",
@@ -13,6 +14,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: "hidden",
     backgroundColor: "#282E4E",
     borderRadius: "15px",
+    [theme.breakpoints.down(769)]: {
+      paddingTop: "25px",
+    },
   },
   container: {
     flex: "1 1 auto",
@@ -31,6 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "100%",
     [theme.breakpoints.down(769)]: {
       width: "80%",
+      marginBottom: "15px",
     },
   },
   pricePart: {
@@ -42,6 +47,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(769)]: {
       marginLeft: "0px",
       width: "100%",
+      marginBottom: "15px",
     },
   },
   timePart: {
@@ -52,6 +58,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(769)]: {
       marginLeft: "0px",
       width: "100%",
+      marginBottom: "15px",
     },
   },
   title: {
@@ -90,13 +97,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface data {
   fromName: string;
-  price: number;
-  time: number;
+  price: string;
+  time: string;
 }
 
 const BidRecord = ({ fromName, price, time }: data) => {
   const classes = useStyles();
-  const {t, i18n} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.root}>
@@ -108,7 +115,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
               <img
                 src={fromImg}
                 className={classes.fromIamge}
-                alt="fromimage!"
+                alt='fromimage!'
               />
               {fromName}
             </div>
@@ -118,13 +125,16 @@ const BidRecord = ({ fromName, price, time }: data) => {
             <div className={classes.title}>{t("Price")}</div>
             <div className={classes.content}>
               <i className={classes.symbol}>⏣</i>
-              {price}
+              {addCommas(price)}
             </div>
           </div>
 
           <div className={classes.timePart}>
             <div className={classes.title}>{t("Time Left")}</div>
-            <div className={classes.content}>{time} {t("days")}</div>
+            <div className={classes.content}>
+              {time} 
+              {/* {t("days")} */}
+            </div>
           </div>
         </div>
       }

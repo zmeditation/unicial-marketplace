@@ -6,7 +6,6 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,7 +13,6 @@ export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
       position: "relative",
       background: "#21263f",
       backdropFilter: "blur(20)",
-      zIndex: 1,
       display: "flex",
       width: "100%",
       height: "auto",
@@ -116,6 +114,14 @@ export const MystoreSearchBarStyle = makeStyles((theme: Theme) =>
       WebkitTextFillColor: "transparent",
       marginLeft: "3px",
       marginTop: "4px",
+    },
+    selectedListLabel: {
+      fontFamily: "Lato",
+      fontSize: "14px",
+      lineHeight: "20px",
+      fontWeight: 400,
+      fontStyle: "normal",
+      color: "#ffffff",
     },
   })
 );

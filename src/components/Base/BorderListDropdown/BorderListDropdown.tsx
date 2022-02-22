@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@material-ui/core";
 import {
   BorderListDropdownStyle,
@@ -7,68 +7,100 @@ import {
 } from "./BorderListDropdownStyle";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import CancelIcon from "@material-ui/icons/Cancel";
+import { IconButton } from "@material-ui/core";
+import clsx from "clsx";
 
-export default function BorderListDropdown(props: any) {
+interface BorderListDropdownProps {
+  className?: any;
+  data: any;
+}
+
+export default function BorderListDropdown({
+  className,
+  data,
+}: BorderListDropdownProps) {
   const classes = BorderListDropdownStyle();
   const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
     null
   );
-  const handleNetworkClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const [showIcon, setShowIcon] = useState(false);
+  const [itemContent, setitemContent] = React.useState(data[0].content);
+
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorNetwork(event.currentTarget);
   };
-  const handleNetworkClose = () => {
+
+  const handleClose = () => {
     setAnchorNetwork(null);
   };
-  const [networkCategory, setnetworkCategory] = React.useState("All Network");
 
-  const handleNetworkItem = (index: number) => {
-    setnetworkCategory(props.data[index].category);
-    handleNetworkClose();
+  const handleItem = (index: number) => {
+    setShowIcon(true);
+    setitemContent(data[index - 1].content);
+    handleClose();
   };
+
+  const handleIconClick = () => {
+    setShowIcon(false);
+    setitemContent(data[0].content);
+    handleClose();
+  };
+
   return (
     <>
       {/* network select start */}
-      <div>
-        <Box
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          onClick={handleNetworkClick}
-          className={classes.listDropdown}
-        >
-          <Box className={classes.listRoot}>
-            <Box className={classes.listContainer}>
-              <Box className={classes.mainlistLabel}>{networkCategory}</Box>
-              <ExpandMoreIcon style={{ color: "#96A1DB", marginLeft: "3px" }} />
-            </Box>
+      <Box
+        aria-controls='simple-menu'
+        aria-haspopup='true'
+        className={classes.listDropdown}>
+        <Box className={classes.listRoot}>
+          <Box className={classes.listContainer}>
+            <Box className={classes.mainlistLabel}>{itemContent}</Box>
+            <IconButton
+              onClick={handleOpen}
+              className={
+                showIcon === false ? classes.moreIcon : classes.displayNone
+              }>
+              <ExpandMoreIcon />
+            </IconButton>
+            <IconButton
+              onClick={handleIconClick}
+              className={
+                showIcon === false ? classes.displayNone : classes.cancelIcon
+              }>
+              <CancelIcon />
+            </IconButton>
           </Box>
         </Box>
-        <StyledCollectionPopover
-          id="simple-menu"
-          anchorEl={anchorNetwork}
-          keepMounted
-          open={Boolean(anchorNetwork)}
-          onClose={handleNetworkClose}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-        >
-          {props.data.map((item: any, index: any) => (
-            <StyledMenuItem
-              onClick={() => handleNetworkItem(item.index)}
-              key={index}
-            >
-              <Box className={classes.listContainer}>
-                <Box className={classes.listLabel}>{item.category}</Box>
+      </Box>
+      <StyledCollectionPopover
+        id='simple-menu'
+        anchorEl={anchorNetwork}
+        keepMounted
+        open={Boolean(anchorNetwork)}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}>
+        {data.map((item: any, index: any) => (
+          <StyledMenuItem onClick={() => handleItem(item.index)} key={index}>
+            <Box className={classes.listContainer}>
+              <Box
+                className={clsx(classes.listLabel, {
+                  [classes.activeLabel]: itemContent === item.content,
+                })}>
+                {item.content}
               </Box>
-            </StyledMenuItem>
-          ))}
-        </StyledCollectionPopover>
-      </div>
+            </Box>
+          </StyledMenuItem>
+        ))}
+      </StyledCollectionPopover>
     </>
   );
 }

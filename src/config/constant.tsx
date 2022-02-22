@@ -1,6 +1,12 @@
+export const ApiUrl = "http://192.168.112.98:8080";
+// export const ApiUrl = "http://localhost:3000";
+export const REQUEST_API_URL = `${ApiUrl}/api/v1`;
+
 export const tabs = {
   land: 1,
 };
+
+export const showMoreCount = 6;
 
 export const headerId = {
   marketplace: 1,
@@ -30,7 +36,7 @@ export const searchbarIndex = {
   estate: 3,
   wearables: 2,
   ens: 4,
-  on_sale: 1,
+  on_sale: 5,
   sales: 0,
   auction: 0,
   contracts: 0,
@@ -67,7 +73,7 @@ export const CHAIN_INFO = {
       symbol: "ZNX",
       decimals: 18,
     },
-    rpcUrls: ["http://54.255.250.212:80"],
+    rpcUrls: ["https://testrpc1.znxscan.com"],
     blockExplorerUrls: ["http://testnet.znxscan.com"],
   },
 };
@@ -76,17 +82,20 @@ export const typebox = {
   store: "item",
   listing: "nft",
 };
+export const parcelTypes = ["road", "district", "plaza"];
 
 export const category = {
   collections: "collections",
   land: "land",
+  parcels: "parcels",
+  estates: "estates",
   wearable: "wearables",
   name: "ens",
 };
 
 export const collectiblesTagsColor = {
-  DefaultColor : "DefaultColor",
-  RareColor : "RareColor",
+  DefaultColor: "DefaultColor",
+  RareColor: "RareColor",
 };
 
 export const categoryWearables = {
@@ -108,3 +117,22 @@ export const categoryWearables = {
   tiara: "wearables_tiara",
   topHead: "wearables_top_head",
 };
+
+//------------table page nation setting-----------------
+export const onePageCount = 5
+
+export const headerSendData = [
+  "Token Address",
+  "Token Id",
+  "Price",
+  "Expires At Time",
+  "Action",
+];
+
+export const headerReceiveData = [
+  "Bid Id",
+  "Bidder",
+  "Price",
+  "Expires At Time",
+  "Action",
+];

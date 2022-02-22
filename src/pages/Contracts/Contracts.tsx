@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { useNavigate } from "react-router-dom";
 import LandMap from "../../components/LandMap";
 import Title from "../../components/ContractInfo/Title";
-import Description from "../../components/ContractInfo/Description";
 import Owner from "../../components/ContractInfo/Owner";
 import Highlight from "../../components/ContractInfo/Highlight";
 import Bidbox from "../../components/ContractInfo/Bidbox";
@@ -12,18 +10,63 @@ import Parcels from "../../components/ContractInfo/Parcels";
 import TobTab from "../../components/TopTab/TopTab";
 import BidRecord from "../../components/ContractInfo/BidRecord";
 import { headerData, transactionData } from "./ContractsData";
-import { BidRecordData } from "./ContractsData";
+import { parcelTypes } from "../../config/constant";
 import { useStyles } from "./ContractsStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/LatestSalesTable";
 import { useTranslation } from "react-i18next";
+import TablePagination from "../../components/Base/TablePagination";
+import { useAppSelector } from "../../store/hooks";
+import { selectSaleParcels } from "../../store/saleparcels/selectors";
+import { parcels } from "../../store/parcels/selectors";
+import { ethers } from "ethers";
+import { dateConvert, getCoords } from "../../common/utils";
+import {
+  BidContractAddress,
+  BidContractAbi,
+} from "../../config/contracts/BidContract";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../common/contract";
+
+declare var window: any;
+var signer: any, bidContract: any;
 
 const Contract = () => {
   const classes = useStyles();
-  const { contractaddress, tokensId } = useParams();
-  const navigate = useNavigate();
+  const { contractaddress, tokensid} = useParams();
   const [width, setWidth] = useState(0);
-  const { t, i18n }= useTranslation();
+  const { t } = useTranslation();
+  const [itemInSale, setItemInSale] = useState<any>();
+  const [itemInAll, setItemInAll] = useState<any>();
+  const [bidItems, setBidItems] = useState<any>();
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [highDivLine, setHighDivLine] = useState(false);
+
+  const saleParcels: any = useAppSelector(selectSaleParcels);
+  const tiles: any = useAppSelector(parcels);
+
+  useEffect(() => {
+    Object.keys(saleParcels).forEach((index: any) => {
+      const saleParcel = saleParcels[index];
+      if (saleParcel.assetId === tokensid) {
+        setItemInSale(saleParcel);
+      }
+    });
+  }, [saleParcels, tokensid]);
+
+  useEffect(() => {
+    Object.keys(tiles).forEach((index: any) => {
+      const allParcel = tiles[index];
+      if (allParcel.tokenId === tokensid) {
+        setItemInAll(allParcel);
+        setX(allParcel.x);
+        setY(allParcel.y);
+      }
+    });
+  }, [tiles, tokensid]);
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
@@ -43,57 +86,142 @@ const Contract = () => {
   }, []);
 
   useEffect(() => {
+    if (itemInAll !== undefined) {
+      parcelTypes.indexOf(itemInAll.type) < 0
+        ? setHighDivLine(true)
+        : setHighDivLine(false);
+    }
+  }, [itemInAll]);
+
+  useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
 
+  useEffect(() => {
+    getAllBids();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contractaddress, tokensid]);
+
+  const getAllBids = async () => {
+    signer = generateSigner(window.ethereum);
+
+    bidContract = generateContractInstance(
+      BidContractAddress,
+      BidContractAbi,
+      signer
+    );
+
+    let bidsCount = (
+      await bidContract.bidCounterByToken(contractaddress, tokensid)
+    ).toNumber();
+    let bidPromises = [];
+
+    for (let i = 0; i < bidsCount; i++) {
+      bidPromises.push(bidContract.getBidByToken(contractaddress, tokensid, i));
+    }
+    let bids = await Promise.all(bidPromises);
+    setBidItems(bids);
+  };
+  //pagination reate
+  const [curPage, setCurPage] = useState<any>(1);
+  const handlepgnum = (value: number) => {
+    setCurPage(value);
+  };
+  var count = transactionData.length;
+  var totalPage = Math.ceil(count / 5);
+  
   return (
     <>
       <TobTab />
       <div className={classes.root}>
         <div className={classes.LandMap}>
-          <div className={classes.LandMapContent}>
-            <LandMap height={400} width={width} initialX={1} initialY={1} />
+          <div>
+            <div className={classes.LandMapContent}>
+              <LandMap height={400} width={width} centerX={x} centerY={y} />
+            </div>
+            <div className={classes.backbtnContainer}>
+              <BackButton className={classes.backBtnPosition} />
+              <></>
+            </div>
           </div>
-
-          <BackButton className={classes.backBtnPosition} />
 
           <div className={classes.contractDescription}>
             <div className={classes.leftDescription}>
               <div className={classes.items}>
                 <Title />
               </div>
-              <div className={classes.divideLine}></div>
-              <Owner />
-              <div className={classes.divideLine}></div>
-              <Highlight />
-              <div className={classes.divideLine}></div>
+              {itemInAll?.owner !== undefined && (
+                <>
+                  <div className={classes.divideLine}></div>
+                  <Owner ownerAddress={itemInAll?.owner} />
+                </>
+              )}
+              <div
+                className={
+                  highDivLine === true ? classes.displayNone : classes.highLIght
+                }>
+                <div className={classes.divideLine}></div>
+                <Highlight type={itemInAll?.type} />
+                <div className={classes.divideLine}></div>
+              </div>
             </div>
             <div className={classes.rightDescription}>
-              <div className={classes.BidboxContainer}>
-                <Bidbox />
+              <div
+                className={
+                  itemInSale && itemInSale?.assetId === tokensid
+                    ? classes.displayNone
+                    : classes.BidboxContainer
+                }>
+                <Bidbox selectOwner={itemInAll?.owner} />
               </div>
-              <Buybox />
+              <div
+                className={
+                  itemInSale && itemInSale?.assetId === tokensid
+                    ? classes.BuyboxContainer
+                    : classes.displayNone
+                }>
+                <Buybox
+                  price={
+                    itemInSale &&
+                    ethers.utils.formatUnits(itemInSale?.priceInWei, 18)
+                  }
+                />
+              </div>
             </div>
           </div>
-          <Parcels />
+          <Parcels location={getCoords(x, y)} />
 
           <div className={classes.tableRoot}>
             <LatestSalesTable
               columns={headerData}
               rows={transactionData}
-              stepIndex={1}
+              curPage={curPage}
+              stepIndex={0}
             />
+            <div className={classes.paginationContainer}>
+              <TablePagination
+                handlepgnum={handlepgnum}
+                totalPage={totalPage}
+              />
+            </div>
           </div>
           <div>
-            <div className={classes.BidsTitle}>{t("Bids")}.</div>
-            {BidRecordData.map((row, index) => (
-              <BidRecord
-                fromName={row.fromName}
-                price={row.price}
-                time={row.time}
-                key={index}
-              />
-            ))}
+            <div
+              className={
+                bidItems?.length === 0 || bidItems === undefined ? classes.displayNone : classes.BidsTitle
+              }>
+              {t("Bids")}.
+            </div>
+            {bidItems?.map((item: any, key: any) => {
+              return (
+                <BidRecord
+                  key={key}
+                  fromName={item[1]?.slice(0, 6)}
+                  price={ethers.utils.formatUnits(item[2], 18)}
+                  time={dateConvert(item[3])}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

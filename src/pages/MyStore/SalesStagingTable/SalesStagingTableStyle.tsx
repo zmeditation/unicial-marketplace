@@ -1,9 +1,6 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-  center: {
-    // textAlign: "center",
-  },
   targetRow: {
     backgroundColor: "#282e4e",
     borderLeft: "2px solid #7e64e2",
@@ -13,8 +10,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   tableCell: {
     fontSize: "16px !important",
-    fontFamily:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important',
+    fontFamily: "Lato",
     color: "white !important",
     fontWeight: "normal",
     "&.MuiTableCell-root": {
@@ -22,9 +18,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   priceCell: {
-    display: "flex",
+    // display: "flex",
+    alignItems: "center",
   },
   normalshape: {
     marginRight: "5px",
+    float: "left",
   },
 }));

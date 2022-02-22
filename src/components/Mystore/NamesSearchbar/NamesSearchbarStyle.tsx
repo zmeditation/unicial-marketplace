@@ -14,7 +14,6 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
       position: "relative",
       background: "#21263f",
       backdropFilter: "blur(20)",
-      zIndex: 1,
       display: "flex",
       width: "100%",
       height: "auto",
@@ -39,14 +38,8 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
     textfilter: {
       display: "flex",
       width: "175px",
-      // alignItems: "center",
-      // [theme.breakpoints.down(768)]: {
-      //   display: "none",
-      // },
     },
     searchIcon: {
-      // height: "14px",
-      // marginTop: "8px",
       marginRight: "10px",
     },
     searchinput: {
@@ -158,11 +151,30 @@ export const CollectibleSearchBarStyle = makeStyles((theme: Theme) =>
         fill: "#41A6EF",
       },
     },
+    listDropdownContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    OnSaleContainer: {
+      [theme.breakpoints.down(860)]: {
+        display: "none",
+      },
+    },
+    filterDialogbtn: {
+      display: "none",
+      [theme.breakpoints.down(860)]: {
+        display: "flex",
+        cursor: "pointer",
+        position: "relative",
+      },
+    },
   })
 );
 
 export const StyledFormControlLabel = withStyles({
   label: {
+    fontFamily: "Lato",
     fontSize: "16px",
     fontStyle: "normal",
     fontWeight: 400,

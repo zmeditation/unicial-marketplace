@@ -2,13 +2,19 @@ import {
   createStyles,
   makeStyles,
   Theme,
-  withStyles,
 } from "@material-ui/core/styles";
 
 export const LandParcelsStyle = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      backgroundColor: "#282E4E",
+    showmoreContent: {
+      marginTop: "15px",
+      justifyContent: "center",
+      width: "100%",
+      flexFlow: "row nowrap",
+      display: "flex",
     },
+    displayNone: {
+      display: "none",
+    }
   })
 );

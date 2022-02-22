@@ -1,6 +1,5 @@
 import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import Button from "../Base/Button";
 import ActionButton from "../Base/ActionButton";
 import { useTranslation } from "react-i18next";
 
@@ -30,11 +29,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface TitleProps {}
-
 const Title: React.FC = () => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div>
       <div className={classes.title}>{t("Genesis Plaza")}</div>

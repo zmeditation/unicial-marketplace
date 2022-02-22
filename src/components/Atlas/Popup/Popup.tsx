@@ -1,14 +1,12 @@
-/** @format */
-
-import * as React from "react";
 import Coordinate from "../../Coordinate/Coordinate";
 import { Props } from "./Popup.types";
 import "./Popup.css";
 import makeBlockie from "ethereum-blockies-base64";
 import { useTranslation } from "react-i18next";
+import { addCommas } from "../../../common/utils";
 
-function Popup({ x, y, visible, tile, position }: Props) {
-  const { t, i18n } = useTranslation();
+function Popup({ x, y, visible, tile, position, price }: Props) {
+  const { t } = useTranslation();
   const isEstate = !!tile.estateId;
   return (
     <div
@@ -39,10 +37,10 @@ function Popup({ x, y, visible, tile, position }: Props) {
         </div>
       </div>
 
-      {tile.price ? (
+      {price ? (
         <div className='price'>
           <div className={"owner-price-title"}>{t("PRICE")}</div>
-          <div>{tile?.price.toLocaleString()}</div>
+          <div>{addCommas(price)}</div>
         </div>
       ) : null}
     </div>

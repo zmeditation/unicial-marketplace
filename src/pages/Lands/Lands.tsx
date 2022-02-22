@@ -1,4 +1,3 @@
-import SearchBar from "../../components/SearchBar/SearchBar";
 import React, { useEffect, useState } from "react";
 import LandMap from "../../components/LandMap";
 import TobTab from "../../components/TopTab/TopTab";
@@ -8,7 +7,6 @@ const Lands: React.FC = () => {
   const classes = useStyles();
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
-
   const handleResize = () => {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight - 246);
@@ -25,11 +23,8 @@ const Lands: React.FC = () => {
   return (
     <>
       <TobTab />
-      {/* <div>
-        <SearchBar />
-      </div> */}
       <div className={classes.landMap}>
-        <LandMap height={height} width={width} initialX={50} initialY={50} />
+        <LandMap height={height} width={width} />
       </div>
     </>
   );

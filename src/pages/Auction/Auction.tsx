@@ -1,7 +1,5 @@
-/** @format */
-
-import React, { useState, useEffect } from "react";
-import { BigNumber } from "ethers";
+import { useState, useEffect } from "react";
+import { BigNumber, ethers } from "ethers";
 
 import LandMap from "../../components/Admin/LandMap";
 import TobTab from "../../components/TopTab/TopTab";
@@ -10,14 +8,11 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import LandAccordion from "./LandAccordion/LandAccordion";
 import CountDown from "../../components/CountDown/CountDown";
 import { Balance } from "../../components/Balance/Balance";
-import StagingTable from "./StagingTable/StagingTable";
-import { headerData, transactionData } from "./AuctionData";
 import ActionButton from "../../components/Base/ActionButton";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { selectparcels } from "../../store/selectedparcels/selectors";
-import { alertMessage, alertSeverity } from "../../store/alert/selectors";
-import { showAlert } from "../../store/alert";
+
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import { Grid } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
@@ -41,7 +36,6 @@ import {
   generateSigner,
 } from "../../common/contract";
 import { getparcels } from "../../store/selectedparcels";
-import { Typography } from "@material-ui/core";
 
 declare var window: any;
 var signer: any,
@@ -66,7 +60,7 @@ const Auction = () => {
   const [isBiddable, setIsBiddable] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuctionAuthorized, setIsAuctionAuthorized] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const loginAddress = useAppSelector(selectLoginAddress);
   const bidParcels = useAppSelector(selectparcels) || [];
@@ -153,12 +147,12 @@ const Auction = () => {
     setUccAllowance(allowance);
   };
   const handleClear = () => {
-    dispatch(
-      showAlert({
-        message: "U have successfully registered!",
-        severity: "error",
-      })
-    );
+    // dispatch(
+    //   showAlert({
+    //     message: "You have successfully registered!",
+    //     severity: "error",
+    //   })
+    // );
     dispatch(getparcels([]));
   };
   const handleBidSpace = async () => {
@@ -240,7 +234,6 @@ const Auction = () => {
       (await spaceAuctionContract.getCurrentPrice()).toString()
     );
     setUccPricePerSpace(uccPricePerSpaceTmp);
-    console.log("uccPricePerSpace", uccPricePerSpace);
     spacesLimitPerBid = parseInt(
       (await spaceAuctionContract.spacesLimitPerBid()).toString()
     );
@@ -266,8 +259,9 @@ const Auction = () => {
 
   const proxyOwnerWorker = async () => {
     let proxyOwner = await spaceRegistryContract.proxyOwner();
-    let isAdmin = proxyOwner === loginAddress;
+    let isAdmin = proxyOwner.toLowerCase() === loginAddress.toLowerCase();
     setIsAdmin(isAdmin);
+
     if (isAdmin) {
       await authorizeAuctionContract();
     }
@@ -299,12 +293,6 @@ const Auction = () => {
         <div className={classes.auctionInfo}>
           <span className={classes.title}>{t("Left Time")}.</span>
           <CountDown />
-          <span className={classes.title}>{t("Staging")}.</span>
-          <StagingTable
-            columns={headerData}
-            rows={transactionData}
-            stepIndex={1}
-          />
         </div>
         <div className={classes.auctionBalance}>
           {/* <Typography>My UCC Balance: {uccBalance.toString()}</Typography>
@@ -317,15 +305,20 @@ const Auction = () => {
               uccBalance.div(BigNumber.from(uccPricePerSpace)).toString()}
           </Typography> */}
           <Grid container spacing={2}>
-            <Grid item md={4} sm={4} xs={12}>
-              <Balance type='uccbalance' />
+            <Grid item md={4} sm={12} xs={12}>
+              <Balance
+                type="uccbalance"
+                value={parseFloat(ethers.utils.formatEther(uccBalance)).toFixed(
+                  4
+                )}
+              />
             </Grid>
-            <Grid item md={4} sm={4} xs={12}>
-              <Balance type='currentspace' />
+            <Grid item md={4} sm={12} xs={12}>
+              <Balance type="currentspace" value={uccPricePerSpace} />
             </Grid>
-            <Grid item md={4} sm={4} xs={12}>
-              <Balance type='buyable' />
-            </Grid>
+            {/* <Grid item md={4} sm={4} xs={12}>
+              <Balance type="buyable" value={100} />
+            </Grid> */}
           </Grid>
         </div>
         <div className={classes.LandMap}>
@@ -337,56 +330,66 @@ const Auction = () => {
             <div className={classes.actionButtons}>
               {uccAllowance.gt(BigNumber.from(0)) ? (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  onClick={handleCancelApprove}>
+                  onClick={handleCancelApprove}
+                >
                   {t("Cancel Approve")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               ) : (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  onClick={handleApproveUCCToken}>
+                  onClick={handleApproveUCCToken}
+                >
                   {t("Approve")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
+                // <ActionButton color="light" onClick={handleApproveUCCToken}>
+                //   {t("Bid")}
+                //   <CallMadeIcon className={classes.callmadeicon} />
+                // </ActionButton>
               )}
 
               {isBiddable ? (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  onClick={handleBidSpace}>
+                  onClick={handleBidSpace}
+                >
                   {t("Bid")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               ) : (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  disabled>
+                  disabled
+                >
                   {t("Bid")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               )}
 
               <ActionButton
-                color='dark'
+                color="dark"
                 className={classes.gradientBtn}
-                onClick={handleClear}>
+                onClick={handleClear}
+              >
                 {t("clear")}
               </ActionButton>
               {isAdmin ? (
                 isAuctionAuthorized ? (
                   <ActionButton
-                    color='dark'
+                    color="dark"
                     className={classes.gradientBtn}
-                    onClick={authorizeAuctionContract}>
+                    onClick={authorizeAuctionContract}
+                  >
                     {t("Auction Authorized")}
                   </ActionButton>
                 ) : (
-                  <ActionButton color='dark'>
+                  <ActionButton color="dark">
                     {t("Authorize Auction")}
                   </ActionButton>
                 )

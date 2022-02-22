@@ -11,12 +11,11 @@ import { useTranslation } from "react-i18next";
 import CategoryWearables from "../../CategoryWearables/CategoryWearables";
 import { category } from "../../../config/constant";
 
-import { LandsData } from "../../../pages/MyStore/SidebarData";
 import clsx from "clsx";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 export default function AssetsBox() {
   const classes = AssetsBoxStyle();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [expanded, setExpanded] = React.useState<string | false>();
@@ -35,20 +34,42 @@ export default function AssetsBox() {
   };
 
   useEffect(() => {
-    if (query.get("section") === category.collections) {
-      setActiveCategory(category.collections);
-    } else if (query.get("section") === category.land) {
-      setExpanded(category.land);
-      setActiveCategory(category.land);
-    } else if (query.get("section") === category.name) {
-      setExpanded(category.name);
-      setActiveCategory(category.name);
-    } else if (query.get("section") === category.wearable) {
-      setActiveCategory(category.wearable);
+    if (query.get("section")?.includes("wearables_")) {
+      setActiveCategory("");
       setExpanded(category.wearable);
     } else {
-      // setExpanded(category.wearable);
-      setActiveCategory("");
+      switch (query.get("section")) {
+        case category.collections:
+          setExpanded(category.collections);
+
+          setActiveCategory(category.collections);
+          break;
+        case category.land:
+          setExpanded(category.land);
+          setActiveCategory(category.land);
+          break;
+        case category.parcels:
+          setExpanded(category.land);
+          setActiveCategory(category.parcels);
+          break;
+        case category.estates:
+          setExpanded(category.land);
+          setActiveCategory(category.estates);
+          break;
+        case category.wearable:
+          setActiveCategory(category.wearable);
+          setExpanded(category.wearable);
+          break;
+        case category.name:
+          setActiveCategory(category.name);
+          setExpanded(category.name);
+          break;
+
+        default:
+          setActiveCategory("");
+          setExpanded("");
+        // }
+      }
     }
   }, [location]);
 
@@ -85,7 +106,7 @@ export default function AssetsBox() {
             })}
           >
             <StyledAccordionSummary aria-controls="panelLand" id="panel1Land">
-              <Typography className={classes.maintitle}>{t("Land")}</Typography>
+              <Typography className={classes.maintitle}>{t("Space")}</Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
               <CategoryWearables data={LandData} />

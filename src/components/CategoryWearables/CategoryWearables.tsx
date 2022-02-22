@@ -8,22 +8,11 @@ import {
 import { Typography } from "@material-ui/core";
 import { useLocation } from "react-router";
 import clsx from "clsx";
-import { Link, useNavigate } from "react-router-dom";
-import { WearablesData } from "./SidebarData";
-// interface SubNabData {
-//   title: string,
-//   path: string
-// }
-
-// interface PropsData {
-//   title: string,
-//   subNab: SubNabData
-// }
+import { useNavigate } from "react-router-dom";
 interface PropsData {
   data: any;
 }
 export default function CategoryWearables(props: any) {
-  // console.log(props);
   const classes = CategoryWearablesStyle();
   const location = useLocation();
   const navigate = useNavigate();
@@ -45,7 +34,6 @@ export default function CategoryWearables(props: any) {
     setExpanded("");
     setActiveCategory("");
     const category = query.get("section");
-    // console.log(category);
     props.data.forEach((items: any) => {
       if (items.path === category) {
         setExpanded(items.path);
@@ -83,6 +71,7 @@ export default function CategoryWearables(props: any) {
                   <Typography className={classes.maintitle}>
                     {item.title}
                   </Typography>
+                  {item.iconClosed}
                 </StyledAccordionSummary>
                 <StyledAccordionDetails>
                   {item.subNav?.map((subitem: any, key: any) => {

@@ -8,18 +8,13 @@ export const SignInStyle = makeStyles((theme: Theme) =>
       justifyContent: "center",
       alignItems: "center",
       width: "100%",
-      minHeight: "calc(100vh - 203px)",
-      [theme.breakpoints.down(768)]: {
-        minHeight: "calc(100vh - 272px)",
-      },
     },
     container: {
       position: "relative",
       alignItems: "center",
       maxWidth: "100% !important",
       height: "auto",
-      fontFamily:
-        'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+      fontFamily: "Lato",
       display: "flex",
       flexFlow: "column",
       width: "1064px",
@@ -51,11 +46,15 @@ export const SignInStyle = makeStyles((theme: Theme) =>
       },
     },
     headerText: {
-      fontSize: "28px",
-      fontWeight: 500,
-      lineHeight: "34px",
-      marginTop: "40px",
-      marginBottom: "25px",
+      marginTop: "20px",
+      marginBottom: "6px",
+      fontFamily: "Montserrat",
+      fontSize: "24px",
+      fontStyle: "normal",
+      fontWeight: 600,
+      lineHeight: "50px",
+      letterSpacing: "2%",
+      textAlign: "center",
     },
     starWalletIcon: {
       width: "180px",
@@ -66,10 +65,15 @@ export const SignInStyle = makeStyles((theme: Theme) =>
     },
     descriptionContainer: {
       padding: "0px 38px",
-      marginBottom: "20px",
+      marginBottom: "40px",
       textAlign: "center",
       color: "#96A1DB",
-      fontSize: "16px",
+      fontFamily: "Lato",
+      fontSize: "18px",
+      fontStyle: "normal",
+      fontWeight: 400,
+      lineHeight: "22px",
+      letterSpacing: "0%",
     },
     browserLink: {
       color: "#FF7C4C",
@@ -86,10 +90,6 @@ export const SignInStyle = makeStyles((theme: Theme) =>
     signinellipse2: {
       position: "absolute",
       right: "0px",
-    },
-    callmadeicon: {
-      width: "20px",
-      height: "16px",
     },
   })
 );

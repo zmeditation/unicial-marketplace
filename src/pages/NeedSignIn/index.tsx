@@ -2,7 +2,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  descriptionContainer: {
+  root: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -11,8 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   text: {
     fontSize: "14px",
     color: "#676370",
-    fontFamily:
-      '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+    fontFamily: "Lato",
   },
   link: {
     color: "#ff2d55",
@@ -22,9 +21,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function NeedSignIn() {
   const classes = useStyles();
-  const {t, i18n} = useTranslation();
+  const { t } = useTranslation();
   return (
-    <div className={classes.descriptionContainer}>
+    <div className={classes.root}>
       <p className={classes.text}>
         {t("You need to")}{" "}
         <a href="/signin" className={classes.link}>

@@ -2,7 +2,6 @@ import {
   createStyles,
   makeStyles,
   Theme,
-  withStyles,
 } from "@material-ui/core/styles";
 
 export const GeneralSaleCardStyle = makeStyles((theme: Theme) =>
@@ -43,11 +42,14 @@ export const GeneralSaleCardStyle = makeStyles((theme: Theme) =>
       lineHeight: "14px",
       color: "#96A1DB",
       opacity: "50%",
+      marginTop: "18px",
     },
     price: {
       fontFamily: "Montserrat",
       fontStyle: "Semi Bold",
       fontSize: "40px",
+      fontWeight: 600,
+      lineHeight: "70px",
       letterSpacing: "2%",
     },
     yellow: {

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StoreBoxStyle } from "./StoreBoxStyle";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 export default function TypeBox() {
   const classes = StoreBoxStyle();
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
@@ -18,6 +18,24 @@ export default function TypeBox() {
       search: query.toString(),
     });
   };
+  useEffect(() => {
+    switch (query.get("section")) {
+      case "on_sale":
+        setitemIndex("on_sale");
+        break;
+      case "sales":
+        setitemIndex("sales");
+        break;
+      case "bids":
+        setitemIndex("bids");
+        break;
+      case "settings":
+        setitemIndex("settings");
+        break;
+      default:
+        setitemIndex("");
+    }
+  }, [location]);
 
   return (
     <>
@@ -39,6 +57,22 @@ export default function TypeBox() {
             onClick={() => handleItem("sales")}
           >
             {t("Sales")}
+          </div>
+          <div
+            className={
+              itemIndex !== "bids" ? classes.normalItem : classes.activeItem
+            }
+            onClick={() => handleItem("bids")}
+          >
+            {t("Bids")}
+          </div>
+          <div
+            className={
+              itemIndex !== "settings" ? classes.normalItem : classes.activeItem
+            }
+            onClick={() => handleItem("settings")}
+          >
+            {t("Settings")}
           </div>
         </div>
       </div>

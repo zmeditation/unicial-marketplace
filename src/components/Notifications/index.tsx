@@ -1,5 +1,4 @@
-/** @format */
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import check from "../../assets/svg/notification_check.svg";
 import error from "../../assets/svg/notification_error.svg";
 import CloseIcon from "@material-ui/icons/Close";
@@ -17,22 +16,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   notificationRoot: {
     position: "fixed",
-    top: "123px",
-    right: "170px",
+    top: "30px",
+    right: "50px",
     flexDirection: "column",
   },
   notificationContainer: {
     marginTop: "10px",
-    width: "407px",
-    height: "60px",
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "7px",
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
-    paddingLeft: "20px",
-    paddingRight: "20px",
+    padding: "8px 20px 8px 20px",
     zIndex: 99999,
   },
   notificationPicture: {
@@ -48,8 +44,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
   },
   notificationPicture_error: {
-    width: "44px",
-    height: "44px",
+    minWidth: "44px",
+    minHeight: "44px",
     left: "1206px",
     top: "175px",
     background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
@@ -70,8 +66,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     transform: "rotate(-180deg)",
   },
   notificationText: {
-    marginLeft: "15px",
-    marginRight: "70px",
+    margin: "10px 12px",
   },
   notificationTitle: {
     fontStyle: "normal",
@@ -97,15 +92,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   closeIcon: {
     color: "#96A1DB",
-    width: "15px",
-    height: "15px",
+    width: "18px",
+    height: "18px",
     cursor: "pointer",
+    "& .MuiIconButton-root:hover": {
+      backgroundColor: "transparent",
+    },
   },
 }));
 
 export default function Notifications() {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const msg = useAppSelector(alertMessage);
   const severity = useAppSelector(alertSeverity);
@@ -122,6 +120,18 @@ export default function Notifications() {
     dispatch(showAlert({ message: "", severity: severity }));
     setOpenAlert(false);
   };
+
+  useEffect(() => {
+    let timeId = setTimeout(() => {
+      dispatch(showAlert({ message: "", severity: severity }));
+      setOpenAlert(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [msg]);
+
   return (
     <>
       <div

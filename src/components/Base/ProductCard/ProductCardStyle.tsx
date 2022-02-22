@@ -1,7 +1,5 @@
-/** @format */
-
 import { createStyles, Theme } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 
 export const ProductCardStyle = makeStyles((theme: Theme) =>
   createStyles({
@@ -9,10 +7,13 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       borderRadius: "15px",
       backgroundColor: "#282E4E",
       boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
-      padding: "20px 8px 20px 8px",
-      margin: "10px",
+      padding: "20px 6px 21px 6px",
       overflow: "hidden",
       minWidth: "200px",
+      marginBottom: "20px",
+      "&:hover": {
+        transform: "translateY(-2px)",
+      },
     },
     header: {
       display: "flex",
@@ -38,16 +39,24 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      padding: "20px",
     },
     image: {
-      minWidth: "180px",
-      minHeight: "180px",
+      [theme.breakpoints.up(1200)]: {
+        maxWidth: "150px",
+        maxHeight: "150px",
+      },
+      [theme.breakpoints.down(1200)]: {
+        width: "100%",
+        alignSelf: "self-end",
+      },
       [theme.breakpoints.down(960)]: {
         width: "100%",
         alignSelf: "self-end",
       },
     },
     productName: {
+      fontFamily: "Montserrat",
       fontStyle: "normal",
       fontWeight: 600,
       fontSize: "18px",
@@ -55,11 +64,13 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       letterSpacing: "0,02em",
       color: "white",
       marginBottom: "10px",
+      paddingLeft: "8px",
     },
     bottom: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+      paddingLeft: "8px",
     },
     category: {
       fontStyle: "normal",
@@ -73,6 +84,7 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       width: "70px",
       justifyContent: "space-between",
       alignItems: "center",
+      marginRight: "10px",
     },
     price: {
       fontStyle: "normal",

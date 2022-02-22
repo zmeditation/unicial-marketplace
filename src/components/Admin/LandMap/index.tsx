@@ -3,10 +3,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Atlas, Layer } from "../../Atlas/Atlas";
 import { Tile } from "../../Atlas/Atlas.types";
 import Popup from "../../Atlas/Popup";
-import { fetchTiles } from "../../../hooks/tiles";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { selectparcels } from "../../../store/selectedparcels/selectors";
 import { getparcels } from "../../../store/selectedparcels";
+import { getCoords } from "../../../common/utils";
+import { parcels } from "../../../store/parcels/selectors";
 
 interface LandMapProps {
   height?: any;
@@ -15,13 +16,7 @@ interface LandMapProps {
   initialY?: number;
 }
 
-const LandMap: React.FC<LandMapProps> = ({
-  height,
-  width,
-  initialX,
-  initialY,
-}) => {
-  const [tiles, setTiles] = useState();
+const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
   const [mouseX, setMouseX] = useState(-1);
@@ -31,7 +26,8 @@ const LandMap: React.FC<LandMapProps> = ({
   const dispatch = useAppDispatch();
   const selectedTile = useAppSelector(selectparcels);
 
-  const getCoords = (x: number | string, y: number | string) => `${x},${y}`;
+  const tiles: any = useAppSelector(parcels);
+
 
   const handleClick = useCallback(
     async (x: number, y: number) => {
@@ -150,12 +146,6 @@ const LandMap: React.FC<LandMapProps> = ({
     };
   }, [showPopup, mouseX, mouseY]);
 
-  useEffect(() => {
-    if (window) {
-      fetchTiles().then((_tiles: any) => setTiles(_tiles));
-    }
-  }, []);
-
   return (
     <div onMouseLeave={handleHidePopup}>
       <Atlas
@@ -165,8 +155,6 @@ const LandMap: React.FC<LandMapProps> = ({
         onClick={handleClick}
         height={height}
         width={width}
-        initialX={initialX}
-        initialY={initialY}
       />
       {hoveredTile ? (
         <Popup
@@ -174,7 +162,8 @@ const LandMap: React.FC<LandMapProps> = ({
           y={y}
           visible={showPopup}
           tile={hoveredTile}
-          position={x > window.innerWidth - 280 ? "left" : "right"}
+          position={x > window.innerWidth - 550 ? "left" : "right"}
+
         />
       ) : null}
     </div>

@@ -7,21 +7,23 @@ import GradientEarningCard from "../../components/Mystore/GradientEarningCard/Gr
 import SalesStagingTable from "../MyStore/SalesStagingTable/SalesStagingTable";
 import { headerData, stagingData } from "./SalesStagingData";
 import MobileSidebar from "../../components/Mystore/MobileSidebar/MobileSidebar";
-import LandCard from "../../components/Mystore/LandCard/LandCard";
 import LandParcels from "../../components/Mystore/LandParcels/LandParcels";
+import LandEstates from "../../components/Mystore/LandEstates/LandEstates";
+import OnSale from "../../components/Mystore/OnSale/OnSale";
+import AllBids from "../../components/Mystore/AllBids/AllBids";
+import NoResult from "../../components/NoResult/NoResult";
 import Grid from "@material-ui/core/Grid";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation } from "react-router";
+
 export default function MyStore() {
   const classes = MyStoreStyle();
-  const { t, i18n } = useTranslation();
-  //
+  const { t } = useTranslation();
   const location = useLocation();
-  const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
   var category = query.get("section");
-  // console.log("here is Mystore...", category);
   const [rightPartIndex, setrightPartIndex] = React.useState("");
+
   useEffect(() => {
     switch (category) {
       case "parcels":
@@ -30,9 +32,19 @@ export default function MyStore() {
       case "sales":
         setrightPartIndex("sales");
         break;
+      case "estates":
+        setrightPartIndex("estates");
+        break;
+      case "on_sale":
+        setrightPartIndex("on_sale");
+        break;
+      case "bids":
+        setrightPartIndex("bids");
+        break;
       default:
         setrightPartIndex("");
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (
@@ -49,14 +61,9 @@ export default function MyStore() {
         <div className={classes.rightPart}>
           {rightPartIndex === "parcels" ? (
             <LandParcels />
-          ) : // <LandCard
-          //   locationbtnX={-18}
-          //   locationbtnY={23}
-          //   landName="Plaza Area Sale"
-          //   category="Ethereum"
-          //   price={5500}
-          // />
-          rightPartIndex === "sales" ? (
+          ) : rightPartIndex === "estates" ? (
+            <LandEstates />
+          ) : rightPartIndex === "sales" ? (
             <>
               <div className={classes.statsContainer}>
                 <div className={classes.title}>{t("Stats")}.</div>
@@ -64,22 +71,22 @@ export default function MyStore() {
                   <Grid container spacing={1}>
                     <Grid item xs={12} sm={12} md={4}>
                       <GeneralSaleCard
-                        iconSrc="pen"
-                        priceColor="yellow"
+                        iconSrc='pen'
+                        priceColor='yellow'
                         price={121}
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <GeneralSaleCard
-                        iconSrc="moneybag"
-                        priceColor="purple"
+                        iconSrc='moneybag'
+                        priceColor='purple'
                         price={111}
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <GeneralSaleCard
-                        iconSrc="crown"
-                        priceColor="green"
+                        iconSrc='crown'
+                        priceColor='green'
                         price={621}
                       />
                     </Grid>
@@ -89,17 +96,17 @@ export default function MyStore() {
                 <Grid container spacing={1}>
                   <Grid item xs={12} sm={12} md={6}>
                     <GradientEarningCard
-                      iconSrc="cube"
-                      backgroundColor="yellow"
-                      title="ethereum"
+                      iconSrc='cube'
+                      backgroundColor='yellow'
+                      title='ethereum'
                       price={100}
                     />
                   </Grid>
                   <Grid item xs={12} sm={12} md={6}>
                     <GradientEarningCard
-                      iconSrc="shape"
-                      backgroundColor="purple"
-                      title="polygon"
+                      iconSrc='shape'
+                      backgroundColor='purple'
+                      title='polygon'
                       price={300}
                     />
                   </Grid>
@@ -114,8 +121,12 @@ export default function MyStore() {
                 />
               </div>
             </>
+          ) : rightPartIndex === "on_sale" ? (
+            <OnSale />
+          ) : rightPartIndex === "bids" ? (
+            <AllBids />
           ) : (
-            <div>this is other part</div>
+            <NoResult />
           )}
         </div>
       </div>

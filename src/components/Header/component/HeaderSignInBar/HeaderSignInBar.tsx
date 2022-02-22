@@ -16,12 +16,14 @@ import { StyledMenuItem } from "../../../Footer/FooterStyle";
 import { setlogoutAddress } from "../../../../store/auth/actions";
 import { useAppDispatch } from "../../../../store/hooks";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 export default function HeaderSignInBar() {
   const classes = HeaderSignInBarStyle();
   const [tmp, setTmp] = React.useState(0);
   const dispatch = useAppDispatch();
-  const { t, i18n} = useTranslation();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const handleRingButton = () => {
     setTmp(1);
   };
@@ -40,6 +42,7 @@ export default function HeaderSignInBar() {
   const handleSettings = () => {};
   const handleSignOut = () => {
     dispatch(setlogoutAddress());
+    navigate("/")
   };
   return (
     <div className={classes.root}>

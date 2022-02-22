@@ -1,36 +1,33 @@
-/** @format */
-
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
 import { Input } from "@material-ui/core";
-import { KeyboardDatePicker } from "@material-ui/pickers";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minHeight: "calc(100vh - 160px)",
-    maxWidth: "1064px",
-    marginTop: "40px",
+    paddingTop: "50px",
+    minWidth: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
-    display: "flex",
+    flexGrow: 1,
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
-      maxWidth: "933px",
+      minWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      maxWidth: "723px",
+      minWidth: "700px",
+      padding: "50px 16px",
     },
     [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      minWidth: "calc(100% - 32px) !important",
     },
   },
   container_root: {
     width: "100%",
   },
   backButton: {
-    marginBottom: "60px",
+    marginBottom: "50px",
   },
   bidCard: {
     display: "flex",
@@ -42,7 +39,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   leftCard: {
-    flex: "0.75 1 auto",
     textAlign: "left",
     marginRight: "50px",
     [theme.breakpoints.down(769)]: {
@@ -74,6 +70,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontStyle: "normal",
     fontWeight: 600,
     fontSize: "35px",
+    fontFamily: "Montserrat",
     lineHeight: "50px",
     letterSpacing: "0.02em",
     color: "#FFFFFF",
@@ -82,6 +79,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   subtitle: {
+    fontFamily: "Lato",
+
     marginBottom: "24px",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -102,7 +101,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
     "& .MuiInputBase-input": {
-      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontFamily: "Lato",
       fontStyle: "Regular",
       fontSize: "16px",
       lineHeight: "19px",
@@ -111,6 +110,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   subheader_label: {
+    fontFamily: "Lato",
     color: "#96A1DB",
     fontStyle: "Regular",
     fontSize: "12px",
@@ -177,13 +177,40 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   buttons: {
     display: "flex",
-    width: "400px",
-    [theme.breakpoints.down(769)]: {
+    marginTop: "50px",
+    [theme.breakpoints.down(960)]: {
+      marginTop: "0px",
       width: "100%",
       display: "grid",
     },
   },
+  approve: {
+    minWidth: "160px",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#FFFFFF",
+    [theme.breakpoints.down(960)]: {
+      marginTop: "15px",
+      order: 1,
+    },
+  },
   bidchange: {
+    minWidth: "160px",
+    marginLeft: "16px",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#FFFFFF",
+    [theme.breakpoints.down(960)]: {
+      marginTop: "15px",
+      marginLeft: "0px",
+      order: 2,
+    },
+  },
+  cancelchange: {
     marginLeft: "16px",
     minWidth: "160px",
     fontStyle: "normal",
@@ -191,20 +218,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "16px",
     lineHeight: "19px",
     color: "#FFFFFF",
-    [theme.breakpoints.down(769)]: {
+    [theme.breakpoints.down(960)]: {
+      order: 3,
       marginLeft: "0px",
-      order: 1,
-    },
-  },
-  cancelchange: {
-    minWidth: "160px",
-    fontStyle: "normal",
-    fontWeight: 500,
-    fontSize: "16px",
-    lineHeight: "19px",
-    color: "#FFFFFF",
-    [theme.breakpoints.down(769)]: {
-      order: 2,
       marginTop: "15px",
     },
   },

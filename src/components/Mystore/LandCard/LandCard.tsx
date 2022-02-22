@@ -1,9 +1,7 @@
 import { LandCardStyle } from "./LandCardStyle";
-import Tag from "../../Base/Tag";
 import headSvg from "../../../assets/svg/head.svg";
 import unisexSvg from "../../../assets/svg/unisex.svg";
 import cubeSvg from "../../../assets/svg/cube.svg";
-import PussyhairPng from "../../../assets/img/Pussyhair.png";
 import landmap1Png from "../../../assets/img/landmap1.png";
 //
 import LocationBtn from "../../Base/LocationBtn";
@@ -13,7 +11,7 @@ interface LandCardProps {
   locationbtnY: number;
   landName: string;
   category: string;
-  price: number;
+  // price?: number;
   onClick?: () => void;
 }
 
@@ -22,17 +20,15 @@ export default function LandCard({
   locationbtnY,
   landName,
   category,
-  price,
+  // price,
   onClick,
 }: LandCardProps) {
   const classes = LandCardStyle();
   return (
     <>
-      <div className={classes.root}>
+      <div className={classes.root} onClick={onClick}>
         <div className={classes.header}>
-          {/* <Tag color={tagColor} letter={tagLetter} /> */}
-          {/* <Tag color="LegendaryColor" letter="LEGENDARY" /> */}
-          <LocationBtn axisX={locationbtnX} axisY={locationbtnY} dark />
+          <LocationBtn position={`${locationbtnX} , ${locationbtnY}`} dark />
           <div className={classes.iconContainer}>
             <img src={headSvg} className={classes.icon} />
             <img src={unisexSvg} className={classes.icon} />
@@ -44,10 +40,10 @@ export default function LandCard({
         <div className={classes.productName}>{landName}</div>
         <div className={classes.bottom}>
           <div className={classes.category}>{category}</div>
-          <div className={classes.priceContainer}>
+          {/* <div className={classes.priceContainer}>
             <img src={cubeSvg} className={classes.icon} />
             <div className={classes.price}>{price}</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

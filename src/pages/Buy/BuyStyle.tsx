@@ -1,36 +1,37 @@
-/** @format */
-
 import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minHeight: "calc(100vh - 160px)",
-    maxWidth: "1064px",
-    marginTop: "40px",
+    minWidth: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
     display: "flex",
+    flexGrow: 1,
+    paddingTop: "50px",
     position: "relative",
     "& canvas, .react-tile-map ": {
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
-      maxWidth: "933px",
+      minWidth: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      maxWidth: "723px",
+      minWidth: "700px",
+      padding: "50px 16px",
     },
     [theme.breakpoints.down(769)]: {
-      maxWidth: "calc(100% - 32px) !important",
+      minWidth: "calc(100% - 32px) !important",
     },
   },
   backBtn: {
-    marginBottom: "42px",
+    marginBottom: "50px",
+  },
+  root_container: {
+    width: "100%",
   },
   bidCard: {
     display: "flex",
     position: "relative",
-    marginBottom: "150px",
     flexFlow: "row nowrap",
     width: "100%",
     [theme.breakpoints.down(769)]: {
@@ -38,10 +39,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   leftCard: {
-    flex: "0.75 1 auto",
-    textAlign: "right",
-    marginRight: "80px",
-    paddingTop: "20px",
+    marginRight: "50px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
       marginBottom: "25px !important",
@@ -72,9 +70,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 600,
     fontSize: "35px",
     lineHeight: "50px",
-
+    fontFamily: "Montserrat",
     letterSpacing: "0.02em",
-
     marginBottom: "8px",
     [theme.breakpoints.down(769)]: {
       fontSize: "28px",
@@ -86,6 +83,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: "normal",
     fontSize: "14px",
     lineHeight: "17px",
+    fontFamily: "Lato",
+
     color: "#96A1DB",
   },
   subtitleNumber: {
@@ -94,6 +93,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "17px",
     align: "Left",
     verticalAlign: "Top",
+    fontFamily: "Lato",
   },
   form_field: {
     maxWidth: "420px",
@@ -109,7 +109,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
     "& .MuiInputBase-input": {
-      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontFamily: "Lato",
       fontWeight: 500,
       fontSize: "20px",
       color: "white",
@@ -135,7 +135,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
     "& .MuiInputBase-input": {
-      fontFamily: 'Lato,"Helvetica Neue",Arial,Helvetica,sans-serif',
+      fontFamily: "Lato",
       fontWeight: 500,
       fontSize: "20px",
       color: "white",
@@ -159,6 +159,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "18px",
     fontWeight: 400,
     marginBottom: "6px",
+    fontFamily: "Lato",
   },
   manafield: {
     display: "flex",
@@ -172,14 +173,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   buttons: {
     display: "flex",
-    width: "400px",
+
     [theme.breakpoints.down(769)]: {
       width: "100%",
       display: "grid",
     },
   },
   bidchange: {
-    marginLeft: "16px",
     minWidth: "160px",
     fontStyle: "normal",
     fontWeight: 500,
@@ -192,6 +192,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   cancelchange: {
+    marginLeft: "16px",
     minWidth: "160px",
     fontStyle: "normal",
     fontWeight: 500,

@@ -19,8 +19,14 @@ export const CategoryWearablesStyle = makeStyles((theme: Theme) =>
       height: "fit-content",
     },
     firstAccordion: {},
-    maintitle: {},
+    maintitle: {
+      fontSize: "16px",
+      fontWeight: 400,
+      lineHeight: "40px",
+      fontFamily: "Lato",
+    },
     subCategoryItem: {
+      fontFamily: "Lato",
       fontSize: "16px",
       lineHeight: "40px",
       textDecoration: "none",
@@ -45,6 +51,7 @@ export const CategoryWearablesStyle = makeStyles((theme: Theme) =>
     activeSubCategory: {
       backgroundColor: "#21263f",
       borderLeft: "2px solid #7f64e2",
+      color: "white",
     },
   })
 );
@@ -69,7 +76,7 @@ export const StyledAccordion = withStyles((theme) => ({
 
 export const StyledAccordionSummary = withStyles((theme) => ({
   root: {
-    padding: "0px 60px 0px 58px",
+    padding: "0px 35px 0px 58px",
     fontSize: "16px",
     lineHeight: "40px",
     color: "white",
@@ -81,8 +88,14 @@ export const StyledAccordionSummary = withStyles((theme) => ({
     },
   },
   content: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
     "&$expanded": {
       margin: "0px 0",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
     },
   },
   expanded: {},

@@ -1,5 +1,4 @@
 import { createStyles, Popover, Theme } from "@material-ui/core";
-import { Menu } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 
@@ -35,8 +34,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       flexFlow: "row nowrap",
       alignItems: "center",
       maxWidth: "100% !important",
-      fontFamily:
-        'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+      fontFamily: "Lato",
       width: "1064px",
       marginLeft: "auto !important",
       marginRight: "auto !important",
@@ -66,8 +64,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       },
     },
     links: {
-      fontFamily:
-        'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+      fontFamily: "Lato",
       display: "flex",
       flexFlow: "row wrap",
       justifyContent: "center",
@@ -97,6 +94,8 @@ export const FooterStyle = makeStyles((theme: Theme) =>
     },
     socialLinks: {
       marginTop: "2px",
+      position: "relative",
+      zIndex: 99,
       [theme.breakpoints.down(769)]: {
         display: "flex",
         justifyContent: "center",
@@ -131,15 +130,14 @@ export const FooterStyle = makeStyles((theme: Theme) =>
     copyright: {
       color: "#96A1DB",
       fontSize: "14px",
-      fontFamily:
-        'system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+      fontFamily: "Lato",
       lineHeight: "1.7em",
       [theme.breakpoints.down(769)]: {
         marginBottom: "15px",
       },
     },
     languageDropdown: {
-      width: "90px",
+      width: "100px",
       height: "30px",
       transform: "translateY(-4px)",
       cursor: "pointer",
@@ -169,12 +167,14 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       height: "16px",
     },
     languageLabel: {
+      fontFamily: "Lato",
       fontSize: "14px",
       lineHeight: "20px",
       marginLeft: "8px",
       fontWeight: 400,
       fontStyle: "normal",
       color: "#96A1DB",
+      marginTop: "1px",
       "&:hover": {
         color: "white",
       },
