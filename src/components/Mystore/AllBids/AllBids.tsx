@@ -56,24 +56,36 @@ export default function AllBids() {
 
   const getAllBids = async (parcels: any) => {
     let parcelsLength = parcels?.length;
+    let bidCounterPromises = [];
+    let bidCounters = [];
     let bidPromises = [];
 
     for (let i = 0; i < parcelsLength; i++) {
-      let bidsCount = (
-        await bidContract.bidCounterByToken(
-          SpaceProxyAddress,
-          parcels[i].toString()
-        )
-      ).toNumber();
+      bidCounterPromises.push(
+        bidContract.bidCounterByToken(SpaceProxyAddress, parcels[i].toString())
+      );
+    }
+    bidCounters = await Promise.all(bidCounterPromises);
 
-      for (let j = 0; j < bidsCount; j++) {
-        bidPromises.push(
-          bidContract.getBidByToken(SpaceProxyAddress, parcels[i].toString(), j)
-        );
+    for (let i = 0; i < bidCounters.length; i++) {
+      let bidCount = bidCounters[i].toNumber()
+      if (bidCount > 0) {
+        for (let j = 0; j < bidCount; j++) {
+          bidPromises.push(
+            bidContract.getBidByToken(
+              SpaceProxyAddress,
+              parcels[i].toString(),
+              j
+            )
+          );
+        }
+      } else {
+        continue;
       }
     }
-    let bids = await Promise.all(bidPromises);
-    setReciveBidData(bids);
+
+    let allReceivedBids =await Promise.all(bidPromises)
+    setReciveBidData(allReceivedBids);
   };
 
   //-----------------------recive bid list function -----------------------------
