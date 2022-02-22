@@ -67,7 +67,7 @@ const SendBidTable = ({
             className={clsx({ [classes.targetRow]: stepIndex === key })}>
             <TableCell
               className={clsx(classes.tableCell, classes.tokenAddress)}
-              onClick={() => handleCopyAddress(row.tokenAddress, key)}>
+              onClick={() => handleCopyAddress(row[0], key)}>
               {row[0].slice(0, showMoreCount)}... &nbsp;
               {copyAddress.status && copyAddress.index === key ? (
                 <i className='fa fa-check-circle mr-1'></i>
@@ -79,7 +79,7 @@ const SendBidTable = ({
             </TableCell>
             <TableCell
               className={clsx(classes.tableCell, classes.tokenId)}
-              onClick={() => handleCopyTokenId(row.tokenId, key)}>
+              onClick={() => handleCopyTokenId(row[1], key)}>
               {row[1].slice(0, showMoreCount)}... &nbsp;
               {copyTokenId.status && copyTokenId.index === key ? (
                 <i className='fa fa-check-circle mr-1'></i>
