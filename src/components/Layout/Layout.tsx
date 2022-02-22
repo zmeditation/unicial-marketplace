@@ -37,7 +37,7 @@ import { showNetModal } from "../../store/netmodal";
 import { useEffect } from "react";
 import { setSaleParcels } from "../../store/saleparcels";
 import { setParcels } from "../../store/parcels";
-import { setBidContractinfo } from "../../store/bidContractData"; 
+import { setBidContractinfo } from "../../store/bidContractData";
 import { showSpinner } from "../../store/spinner";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -53,34 +53,33 @@ declare var window: any;
 
 export default function Layout() {
   const classes = useStyles();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   window.ethereum.on("accountsChanged", function (account: Array<string>) {
-    dispatch(setloginAddress(account[0]))
-    window.location.href = "/account"
+    dispatch(setloginAddress(account[0]));
+    window.location.href = "/account";
   });
 
   window.ethereum.on("chainChanged", function (chainId: string) {
     let projectChainId = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
     let changedChainId = parseInt(chainId, 16);
-    if ( changedChainId !== projectChainId){
+    if (changedChainId !== projectChainId) {
       dispatch(setlogoutAddress());
-      dispatch(showNetModal(true))   
+      dispatch(showNetModal(true));
     }
   });
 
-   const initSet = async() => {
+  const initSet = async () => {
     await dispatch(showSpinner(true));
     await dispatch(setSaleParcels());
     await dispatch(setParcels());
     await dispatch(setBidContractinfo());
     await dispatch(showSpinner(false));
-  }
+  };
 
   useEffect(() => {
     initSet();
   }, []);
-
 
   return (
     <Router>
@@ -157,7 +156,7 @@ export default function Layout() {
         </Routes>
         <Footer />
         <Notification />
-        <NetModal/>
+        <NetModal />
         <Spinner />
       </Box>
     </Router>

@@ -22,15 +22,27 @@ import { selectSaleParcels } from "../../store/saleparcels/selectors";
 import { parcels } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
 import { dateConvert, getCoords } from "../../common/utils";
+import {
+  BidContractAddress,
+  BidContractAbi,
+} from "../../config/contracts/BidContract";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../common/contract";
+
+declare var window: any;
+var signer: any, bidContract: any;
 
 const Contract = () => {
   const classes = useStyles();
-  const { tokensid } = useParams();
+  const { contractaddress, tokensid } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(0);
   const { t } = useTranslation();
   const [itemInSale, setItemInSale] = useState<any>();
   const [itemInAll, setItemInAll] = useState<any>();
+  const [bidItems, setBidItems] = useState<any>();
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [highDivLine, setHighDivLine] = useState(false);
@@ -86,6 +98,31 @@ const Contract = () => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
+
+  useEffect(() => {
+    getAllBids();
+  }, [contractaddress, tokensid]);
+
+  const getAllBids = async () => {
+    signer = generateSigner(window.ethereum);
+
+    bidContract = generateContractInstance(
+      BidContractAddress,
+      BidContractAbi,
+      signer
+    );
+
+    let bidsCount = (
+      await bidContract.bidCounterByToken(contractaddress, tokensid)
+    ).toNumber();
+    let bidPromises = [];
+
+    for (let i = 0; i < bidsCount; i++) {
+      bidPromises.push(bidContract.getBidByToken(contractaddress, tokensid, i));
+    }
+    let bids = await Promise.all(bidPromises);
+    setBidItems(bids);
+  };
   //pagination reate
   const [curPage, setCurPage] = useState<any>(1);
   const handlepgnum = (value: number) => {
@@ -93,7 +130,7 @@ const Contract = () => {
   };
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
-
+  
   return (
     <>
       <TobTab />
@@ -170,17 +207,19 @@ const Contract = () => {
             </div>
           </div>
           <div>
-            <div className={classes.BidsTitle}>{t("Bids")}.</div>
-            {Object.keys(saleParcels).map((key: any) => {
+            <div
+              className={
+                bidItems?.length === 0 || bidItems === undefined ? classes.displayNone : classes.BidsTitle
+              }>
+              {t("Bids")}.
+            </div>
+            {bidItems?.map((item: any, key: any) => {
               return (
                 <BidRecord
                   key={key}
-                  fromName={saleParcels[key]?.seller.slice(0, 6)}
-                  price={ethers.utils.formatUnits(
-                    saleParcels[key]?.priceInWei,
-                    18
-                  )}
-                  time={dateConvert(saleParcels[key]?.expiresAt)}
+                  fromName={item[1]?.slice(0, 6)}
+                  price={ethers.utils.formatUnits(item[2], 18)}
+                  time={dateConvert(item[3])}
                 />
               );
             })}

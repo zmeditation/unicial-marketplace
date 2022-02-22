@@ -259,8 +259,12 @@ const Auction = () => {
 
   const proxyOwnerWorker = async () => {
     let proxyOwner = await spaceRegistryContract.proxyOwner();
-    let isAdmin = proxyOwner === loginAddress;
+    console.log("proxy owner:", proxyOwner);
+    console.log("login address:", loginAddress);
+    let isAdmin = proxyOwner.toLowerCase() === loginAddress.toLowerCase();
     setIsAdmin(isAdmin);
+    console.log("isAdmin:", isAdmin);
+
     if (isAdmin) {
       await authorizeAuctionContract();
     }

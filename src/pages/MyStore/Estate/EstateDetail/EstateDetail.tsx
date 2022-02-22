@@ -10,46 +10,49 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import { dateConvert } from "../../../../common/utils";
 import BidDetail from "../../../../components/Mystore/BidDetail";
-import { getParcelsByOwner } from "../../../../hooks/api";
+import {
+  getEstatesByOwner,
+  getParcelsByOwnerAsCoords,
+} from "../../../../hooks/api";
+import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 
-const ParcelDetail = () => {
+const EstateDetail = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const emptyTokens: any[] = [];
+  const loginAddress = useAppSelector(selectLoginAddress);
   const { contractaddress, estateid } = useParams();
-  const [ownParcels, setOwnParcels] = useState<[]>();
+  const [ownEstates, setOwnEstates] = useState(emptyTokens);
   const [count, setCount] = useState(showMoreCount);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [showLessBtn, setShowLessBtn] = useState(false);
 
-
   useEffect(() => {
-    getParcelsByOwner("0x8734CB972d36a740Cc983d5515e160C373A4a016").then(
-      (parcels) => {
-        setOwnParcels(parcels);
-      }
-    );
-    if (ownParcels && ownParcels?.length <= showMoreCount) {
+    getEstatesByOwner(loginAddress).then((parcels: any[]) => {
+      setOwnEstates(parcels);
+    });
+    if (ownEstates && ownEstates?.length <= showMoreCount) {
       setShowMoreBtn(false);
     }
   }, []);
 
   const handleShowBtn = () => {
     setCount(count + showMoreCount);
-    if (ownParcels && count >= ownParcels?.length) {
+    if (ownEstates && count >= ownEstates?.length) {
       setShowMoreBtn(false);
     }
   };
 
-  
   const handleShowLessBtn = () => {
     setCount(showMoreCount);
-    setShowMoreBtn(true)
-    setShowLessBtn(false)
+    setShowMoreBtn(true);
+    setShowLessBtn(false);
   };
-
+  console.log(ownEstates);
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>
@@ -60,7 +63,8 @@ const ParcelDetail = () => {
               <img
                 src={TokenImg}
                 className={classes.tokenImg}
-                alt='token'></img>
+                alt="token"
+              ></img>
             </div>
           </div>
           <div className={classes.rightCard}>
@@ -93,67 +97,72 @@ const ParcelDetail = () => {
           <Grid container spacing={2}>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_sell`
                   )
-                }>
+                }
+              >
                 {t("Sell")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_transfer`
                   )
-                }>
+                }
+              >
                 {t("Transfer")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_updatemetadata`
                   )
-                }>
+                }
+              >
                 {t("Update Metadata")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_updatemanager`
                   )
-                }>
+                }
+              >
                 {t("Update Manager")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_updateoperate`
                   )
-                }>
+                }
+              >
                 {t("Update Operate")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
           </Grid>
@@ -163,48 +172,51 @@ const ParcelDetail = () => {
           <Grid container spacing={2}>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/sell`
                   )
-                }>
+                }
+              >
                 {t("Transfer Spaces")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/sell`
                   )
-                }>
+                }
+              >
                 {t("Update Operator")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/sell`
                   )
-                }>
+                }
+              >
                 {t("Update LandData")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
           </Grid>
         </div>
         <div className={classes.bidDetail}>
           <div className={classes.bidsTitle}>{t("Bids")}.</div>
-          {ownParcels?.slice(0, count).map((row: any, index: any) => (
+          {ownEstates?.slice(0, count).map((row: any, index: any) => (
             <BidDetail
               key={index}
               address={row.owner}
@@ -217,7 +229,8 @@ const ParcelDetail = () => {
               showMoreBtn === true
                 ? classes.showmoreContent
                 : classes.displayNone
-            }>
+            }
+          >
             <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
           </div>
           <div
@@ -225,8 +238,12 @@ const ParcelDetail = () => {
               showLessBtn === true
                 ? classes.showmoreContent
                 : classes.displayNone
-            }>
-            <ShowMoreLessBtn letter={t("Show Less")} onClick={handleShowLessBtn} />
+            }
+          >
+            <ShowMoreLessBtn
+              letter={t("Show Less")}
+              onClick={handleShowLessBtn}
+            />
           </div>
         </div>
       </div>
@@ -234,4 +251,4 @@ const ParcelDetail = () => {
   );
 };
 
-export default ParcelDetail;
+export default EstateDetail;

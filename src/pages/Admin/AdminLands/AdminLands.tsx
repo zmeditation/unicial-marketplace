@@ -4,9 +4,38 @@ import LandAccordion from "./LandAccordion/LandAccordion";
 import LandMap from "../../../components/Admin/LandMap";
 import { BackButton } from "../../../components/BackButton/BackButton";
 import { AdminLandsStyle } from "./AdminLandsStyle";
+import FormControl from "@material-ui/core/FormControl";
+import {
+  useStyles,
+  StyledInput,
+} from "./../../MyStore/Estate/CreateEstate/CreateEstateStyle";
+import ActionButton from "../../../components/Base/ActionButton";
+import CallMadeIcon from "@material-ui/icons/CallMade";
+import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
+import {
+  SpaceProxyAddress,
+  SpaceRegistryAbi,
+} from "../../../config/contracts/SpaceRegistryContract";
+// import utility functions
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../common/contract";
+
+declare var window: any;
+var signer: any, spaceRegistryContract: any;
+
 export default function AdminLands() {
   const classes = AdminLandsStyle();
   const [width, setWidth] = useState(0);
+
+  signer = generateSigner(window.ethereum);
+
+  spaceRegistryContract = generateContractInstance(
+    SpaceProxyAddress,
+    SpaceRegistryAbi,
+    signer
+  );
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
@@ -36,6 +65,12 @@ export default function AdminLands() {
     (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
+  const handleSetEstateProxy = async () => {
+    let setEstateTx = await spaceRegistryContract.setEstateRegistry(
+      EstateProxyAddress
+    );
+    await setEstateTx.wait();
+  };
   return (
     <>
       <AdminTopTab />
@@ -47,6 +82,22 @@ export default function AdminLands() {
           <BackButton className={classes.backBtnPosition} />
           <LandAccordion />
         </div>
+        <FormControl className={classes.widthFull}>
+          <StyledInput
+            placeholder="Address"
+            // onChange={(e) => handleBeneficiaryChange(e)}
+            value={EstateProxyAddress}
+            disabled
+          />
+        </FormControl>
+        <ActionButton
+          color="light"
+          className={classes.bidchange}
+          onClick={handleSetEstateProxy}
+        >
+          Set EstateProxy
+          <CallMadeIcon fontSize="small" />
+        </ActionButton>
       </div>
     </>
   );

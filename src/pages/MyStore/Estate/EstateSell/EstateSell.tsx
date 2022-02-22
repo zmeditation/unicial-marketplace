@@ -1,16 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 
-import ActionButton from "../../../../components/Base/ActionButton";
-import TokenImg from "../../../../assets/img/1.png";
-import NeedSignIn from "../../../NeedSignIn";
-import { useStyles, StyledInput } from "./EstateSellStyle";
-import { BackButton } from "../../../../components/BackButton/BackButton";
-import settingicon from "../../../../assets/svg/bidpage_settingicon.svg";
-import calendar_icon from "../../../../assets/svg/calendar_icon.svg";
 import { Grid } from "@material-ui/core";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
@@ -18,24 +11,98 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-
 import { useTranslation } from "react-i18next";
+import { BigNumber, ethers } from "ethers";
+import ActionButton from "../../../../components/Base/ActionButton";
+import TokenImg from "../../../../assets/img/1.png";
+import NeedSignIn from "../../../NeedSignIn";
+import { useStyles, StyledInput } from "./EstateSellStyle";
+import { BackButton } from "../../../../components/BackButton/BackButton";
+import { showAlert } from "../../../../store/alert";
+import settingicon from "../../../../assets/svg/bidpage_settingicon.svg";
+import calendar_icon from "../../../../assets/svg/calendar_icon.svg";
+
+import { selectLoginAddress } from "./../../../../store/auth/selectors";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import {
+  MarketplaceAddress,
+  MarketplaceAbi,
+} from "../../../../config/contracts/MarketPlaceContract";
+declare var window: any;
+var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 
 const EstateSell = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [selectedDate, setSelectedDate] = useState<Date | null>(
-    new Date("2022-01-02")
-  );
+  const dispatch = useAppDispatch();
+  const { contractaddress, estateid } = useParams();
+  const loginAddress = useAppSelector(selectLoginAddress);
+  const [timeStamp, setTimeStamp] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
   };
 
+  useEffect(() => {
+    let time =
+      selectedDate !== null && Math.round(selectedDate.getTime() / 1000);
+    time !== false && setTimeStamp(time);
+  }, [selectedDate]);
+
   var isSignIn = 1;
 
-  const handleChange = () => {};
+  const handleChange = (e: any) => {
+    setPrice(e.target.value);
+  };
+
+  const handleSell = async () => {
+    if (loginAddress.length === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to connect Meta mask wallet.",
+          severity: "error",
+        })
+      );
+      navigate("/signin");
+      return;
+    }
+    if (price === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to set price value to sell.",
+          severity: "error",
+        })
+      );
+      return;
+    }
+    signer = generateSigner(window.ethereum);
+    marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    console.log(contractaddress, estateid, price, timeStamp);
+    let createOrderTx = await marketplaceContract.createOrder(
+      contractaddress,
+      BigNumber.from(estateid),
+      ethers.utils.parseEther(price.toString()),
+      BigNumber.from(timeStamp.toString())
+    );
+    await createOrderTx.wait();
+    dispatch(
+      showAlert({
+        message: "Sales order is successfully published.",
+        severity: "success",
+      })
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -48,7 +115,8 @@ const EstateSell = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -66,10 +134,10 @@ const EstateSell = () => {
                       </div>
                       <FormControl>
                         <StyledInput
-                          placeholder='0'
+                          placeholder="0"
                           onChange={handleChange}
                           startAdornment={
-                            <InputAdornment position='start'>
+                            <InputAdornment position="start">
                               <img src={settingicon} />
                             </InputAdornment>
                           }
@@ -84,9 +152,9 @@ const EstateSell = () => {
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                           <KeyboardDatePicker
                             className={classes.datePicker}
-                            format='MM/dd/yyyy'
-                            margin='normal'
-                            id='date-picker-dialog'
+                            format="MM/dd/yyyy"
+                            margin="normal"
+                            id="date-picker-dialog"
                             value={selectedDate}
                             onChange={handleDateChange}
                             KeyboardButtonProps={{
@@ -104,14 +172,19 @@ const EstateSell = () => {
               {/* buttons */}
               <div className={classes.buttons}>
                 <ActionButton
-                  color='dark'
-                  className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
-                  {t("Cancel")}
-                </ActionButton>
-                <ActionButton color='light' className={classes.bidchange}>
+                  color="light"
+                  className={classes.bidchange}
+                  onClick={handleSell}
+                >
                   {t("Sell")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
+                </ActionButton>
+                <ActionButton
+                  color="dark"
+                  className={classes.cancelchange}
+                  onClick={() => navigate(-1)}
+                >
+                  {t("Cancel")}
                 </ActionButton>
               </div>
             </div>

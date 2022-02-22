@@ -10,11 +10,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "25px",
     gridGap: "8px",
     gap: "8px",
-    minWidth: "128px",
     fontSize: "16px",
     lineHeight: "20px",
     justifyContent: "center",
     color: "white",
+    maxHeight: "42px",
   },
   darkColor: {
     border: "double 1px transparent",
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   text: {
-    margin: "10px 32px",
+    margin: "10px 20px",
     display: "flex",
     alignItems: "center",
     // alignItems: "flex-start",
@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "20px",
     align: "Left",
     verticalAlign: "Top",
+    textAlign: "center",
   },
 }));
 

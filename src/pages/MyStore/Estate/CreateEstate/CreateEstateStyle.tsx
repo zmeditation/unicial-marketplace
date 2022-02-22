@@ -143,6 +143,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(769)]: {
       order: 2,
       marginTop: "15px",
+      marginLeft: "0px",
     },
   },
   descriptionTextField: {

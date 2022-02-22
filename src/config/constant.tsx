@@ -117,3 +117,22 @@ export const categoryWearables = {
   tiara: "wearables_tiara",
   topHead: "wearables_top_head",
 };
+
+//------------table page nation setting-----------------
+export const onePageCount = 5
+
+export const headerSendData = [
+  "Token Address",
+  "Token Id",
+  "Price",
+  "Expires At Time",
+  "Action",
+];
+
+export const headerReciveData = [
+  "Bid Id",
+  "Bidder",
+  "Price",
+  "Expires At Time",
+  "Action",
+];

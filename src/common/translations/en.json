@@ -156,5 +156,9 @@
   "You need to be connected to": "You need to be connected to",
   "to use this app, please switch your network to continue": "to use this app, please switch your network to continue",
   "SWITCH TO Zilionixx MAINNET": "SWITCH TO Zilionixx MAINNET",
-  "Marketplace": "Marketplace"
+  "Marketplace": "Marketplace",
+  "BIDS RECEIVED": "BIDS RECEIVED",
+  "BIDS PLACED": "BIDS PLACED",
+  "You haven't placed any bids yet": "You haven't placed any bids yet",
+  "You haven't received any bids yet": "You haven't received any bids yet"
 }
