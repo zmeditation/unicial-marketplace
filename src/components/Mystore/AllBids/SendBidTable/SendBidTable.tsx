@@ -3,7 +3,7 @@ import StageMarket from "../../../StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";
 import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
 import ActionButton from "../../../Base/ActionButton";
-import { onePageCount } from "../AllBidsData";
+import { onePageCount } from "../../../../config/constant";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { ethers } from "ethers";
