@@ -94,6 +94,8 @@ export const FooterStyle = makeStyles((theme: Theme) =>
     },
     socialLinks: {
       marginTop: "2px",
+      position: "relative",
+      zIndex: 99,
       [theme.breakpoints.down(769)]: {
         display: "flex",
         justifyContent: "center",
