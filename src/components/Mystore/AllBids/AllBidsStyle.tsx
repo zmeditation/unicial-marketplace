@@ -9,11 +9,11 @@ export const AllBidsStyle = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
     },
-    reciveBid: {
+    receiveBid: {
       minHeight: "150px",
       paddingBottom: "20px",
     },
-    reciveTitle: {
+    receiveTitle: {
       marginLeft: "20px",
       marginBottom: "30px",
       fontStyle: "normal",

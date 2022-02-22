@@ -1,4 +1,4 @@
-import { useStyles } from "./ReciveBidTableStyle";
+import { useStyles } from "./ReceiveBidTableStyle";
 import StageMarket from "../../../StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";
 import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
@@ -6,11 +6,26 @@ import ActionButton from "../../../Base/ActionButton";
 import { onePageCount } from "../../../../config/constant";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { addCommas, dateConvert } from "../../../../common/utils";
 import { showMoreCount } from "../../../../config/constant";
 import { useEffect, useState } from "react";
 import copy from "clipboard-copy";
+import { showAlert } from "../../../../store/alert";
+
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import {
+  SpaceProxyAddress,
+  SpaceRegistryAbi,
+} from "../../../../config/contracts/SpaceRegistryContract";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { selectLoginAddress } from "../../../../store/auth/selectors";
+
+declare var window: any;
+var signer: any, spaceRegistryContract: any;
 
 interface StagingTableProps {
   columns?: any;
@@ -20,7 +35,7 @@ interface StagingTableProps {
   onRowClick(key: number): any;
 }
 
-const SendBidTable = ({
+const ReceiveBidTable = ({
   columns,
   rows,
   curPage,
@@ -29,6 +44,8 @@ const SendBidTable = ({
 }: StagingTableProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const loginAddress = useAppSelector(selectLoginAddress);
   const [copyAddress, setcopyAddress] = useState<any>({
     status: false,
     index: null,
@@ -54,6 +71,27 @@ const SendBidTable = ({
   const handleCopyTokenId = (props: string, key: any) => {
     copy(props);
     setcopyTokenId({ status: !copyTokenId.status, index: key });
+  };
+
+  const handleAcceptBid = async (key: number) => {
+    signer = generateSigner(window.ethereum);
+    spaceRegistryContract = generateContractInstance(
+      SpaceProxyAddress,
+      SpaceRegistryAbi,
+      signer
+    );
+
+    let receiveTx = await spaceRegistryContract[
+      "safeTransferFrom(address,address,uint256)"
+    ](loginAddress, rows[key][1], BigNumber.from(rows[key][0]));
+
+    await receiveTx.wait();
+    dispatch(
+      showAlert({
+        message: "Recieved order is successfully published.",
+        severity: "success",
+      })
+    );
   };
 
   const tableRows =
@@ -97,7 +135,10 @@ const SendBidTable = ({
               {dateConvert(row[3])}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-              <ActionButton color='light' className={classes.actionBtn}>
+              <ActionButton
+                color='light'
+                className={classes.actionBtn}
+                onClick={() => handleAcceptBid(key)}>
                 {t("Accept")}
               </ActionButton>
             </TableCell>
@@ -113,4 +154,4 @@ const SendBidTable = ({
   );
 };
 
-export default SendBidTable;
+export default ReceiveBidTable;

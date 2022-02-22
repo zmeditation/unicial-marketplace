@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import SendBidTable from "./SendBidTable/SendBidTable";
-import ReciveBidTable from "./ReciveBidTable/ReciveBidTable";
+import ReceiveBidTable from "./ReceiveBidTable/ReceiveBidTable";
 import TablePagination from "../../Base/TablePagination";
-import { headerSendData, headerReciveData, onePageCount } from "../../../config/constant";
+import { headerSendData, headerReceiveData, onePageCount } from "../../../config/constant";
 import { selectLoginAddress } from "../../../store/auth/selectors";
 import { AllBidsStyle } from "./AllBidsStyle";
 import { useTranslation } from "react-i18next";
@@ -28,14 +28,14 @@ export default function AllBids() {
   const classes = AllBidsStyle();
   const { t } = useTranslation();
   const loginAddress = useAppSelector(selectLoginAddress);
-  const [reciveCurPage, setReciveCurPage] = useState<any>(1);
+  const [receiveCurPage, setReceiveCurPage] = useState<any>(1);
   const [sendCurPage, setSendCurPage] = useState<any>(1);
   const emptyTokens: any[] = [];
   const [sendBidData, setSendBidData] = useState<any>(emptyTokens);
-  const [reciveBidData, setReciveBidData] = useState<any>();
+  const [receiveBidData, setReceiveBidData] = useState<any>();
 
   const [selectSendRow, setSelectSendRow] = useState(0);
-  const [selectReciveRow, setSelectReciveRow] = useState(0);
+  const [selectReceiveRow, setSelectReceiveRow] = useState(0);
 
   signer = generateSigner(window.ethereum);
 
@@ -85,20 +85,20 @@ export default function AllBids() {
     }
 
     let allReceivedBids =await Promise.all(bidPromises)
-    setReciveBidData(allReceivedBids);
+    setReceiveBidData(allReceivedBids);
   };
 
-  //-----------------------recive bid list function -----------------------------
+  //-----------------------receive bid list function -----------------------------
 
-  var countRecive = reciveBidData?.length;
-  var totalRecivePage = Math.ceil(countRecive / onePageCount);
+  var countReceive = receiveBidData?.length;
+  var totalReceivePage = Math.ceil(countReceive / onePageCount);
 
-  const recivepgnum = (value: number) => {
-    setReciveCurPage(value);
+  const receivepgnum = (value: number) => {
+    setReceiveCurPage(value);
   };
 
-  const handleReciveRow = (key: number) => {
-    setSelectReciveRow(key);
+  const handleReceiveRow = (key: number) => {
+    setSelectReceiveRow(key);
   };
 
   //------------------------send bid list function-------------------
@@ -116,25 +116,25 @@ export default function AllBids() {
 
   return (
     <>
-      <div className={classes.reciveBid}>
-        <div className={classes.reciveTitle}>{t("BIDS RECEIVED")}</div>
-        {reciveBidData?.length === 0 || reciveBidData === undefined ? (
+      <div className={classes.receiveBid}>
+        <div className={classes.receiveTitle}>{t("BIDS RECEIVED")}</div>
+        {receiveBidData?.length === 0 || receiveBidData === undefined ? (
           <div className={classes.emptyDisplay}>
             {t("You haven't received any bids yet")}...
           </div>
         ) : (
           <>
-            <ReciveBidTable
-              columns={headerReciveData}
-              rows={reciveBidData}
-              curPage={reciveCurPage}
-              onRowClick={handleReciveRow}
-              stepIndex={selectReciveRow}
+            <ReceiveBidTable
+              columns={headerReceiveData}
+              rows={receiveBidData}
+              curPage={receiveCurPage}
+              onRowClick={handleReceiveRow}
+              stepIndex={selectReceiveRow}
             />
             <div className={classes.paginationContainer}>
               <TablePagination
-                handlepgnum={recivepgnum}
-                totalPage={totalRecivePage}
+                handlepgnum={receivepgnum}
+                totalPage={totalReceivePage}
               />
             </div>
           </>
