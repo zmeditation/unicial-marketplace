@@ -121,9 +121,17 @@ export const categoryWearables = {
 //------------table page nation setting-----------------
 export const onePageCount = 5
 
-export const headerData = [
+export const headerSendData = [
   "Token Address",
   "Token Id",
+  "Price",
+  "Expires At Time",
+  "Action",
+];
+
+export const headerReciveData = [
+  "Bid Id",
+  "Bidder",
   "Price",
   "Expires At Time",
   "Action",

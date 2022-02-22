@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SendBidTable from "./SendBidTable/SendBidTable";
 import ReciveBidTable from "./ReciveBidTable/ReciveBidTable";
 import TablePagination from "../../Base/TablePagination";
-import { headerData, onePageCount } from "../../../config/constant";
+import { headerSendData, headerReciveData, onePageCount } from "../../../config/constant";
 import { selectLoginAddress } from "../../../store/auth/selectors";
 import { AllBidsStyle } from "./AllBidsStyle";
 import { useTranslation } from "react-i18next";
@@ -125,7 +125,7 @@ export default function AllBids() {
         ) : (
           <>
             <ReciveBidTable
-              columns={headerData}
+              columns={headerReciveData}
               rows={reciveBidData}
               curPage={reciveCurPage}
               onRowClick={handleReciveRow}
@@ -149,7 +149,7 @@ export default function AllBids() {
         ) : (
           <>
             <SendBidTable
-              columns={headerData}
+              columns={headerSendData}
               rows={sendBidData}
               curPage={sendCurPage}
               onRowClick={handleSendRow}
