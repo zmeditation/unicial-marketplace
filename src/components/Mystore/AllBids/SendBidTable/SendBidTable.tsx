@@ -9,13 +9,15 @@ import clsx from "clsx";
 import { ethers } from "ethers";
 import { addCommas, dateConvert } from "../../../../common/utils";
 import { showMoreCount } from "../../../../config/constant";
+import { useEffect, useState } from "react";
+import copy from "clipboard-copy";
 
 interface StagingTableProps {
   columns?: any;
   rows: any;
   curPage: number;
   stepIndex?: number;
-  onRowClick(key: number) : any;
+  onRowClick(key: number): any;
 }
 
 const SendBidTable = ({
@@ -27,6 +29,32 @@ const SendBidTable = ({
 }: StagingTableProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const [copyAddress, setcopyAddress] = useState<any>({
+    status: false,
+    index: null,
+  });
+  const [copyTokenId, setcopyTokenId] = useState<any>({
+    status: false,
+    index: null,
+  });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setcopyAddress({ status: false, index: null });
+      setcopyTokenId({ status: false, index: null });
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [copyAddress, copyTokenId]);
+
+  const handleCopyAddress = (props: string, key: any) => {
+    copy(props);
+    setcopyAddress({ status: !copyAddress.status, index: key });
+  };
+
+  const handleCopyTokenId = (props: string, key: any) => {
+    copy(props);
+    setcopyTokenId({ status: !copyTokenId.status, index: key });
+  };
 
   const tableRows =
     rows !== undefined ? (
@@ -37,11 +65,29 @@ const SendBidTable = ({
             key={key}
             onClick={() => onRowClick(key)}
             className={clsx({ [classes.targetRow]: stepIndex === key })}>
-            <TableCell className={clsx(classes.tableCell)}>
-              {row.tokenAddress.slice(0, showMoreCount)}...
+            <TableCell
+              className={clsx(classes.tableCell, classes.tokenAddress)}
+              onClick={() => handleCopyAddress(row.tokenAddress, key)}>
+              {row.tokenAddress.slice(0, showMoreCount)}... &nbsp;
+              {copyAddress.status && copyAddress.index === key ? (
+                <i className='fa fa-check-circle mr-1'></i>
+              ) : (
+                <span>
+                  <i className='far fa-copy'></i>
+                </span>
+              )}
             </TableCell>
-            <TableCell className={clsx(classes.tableCell)}>
-              {row.tokenId.slice(0, showMoreCount)}...
+            <TableCell
+              className={clsx(classes.tableCell, classes.tokenId)}
+              onClick={() => handleCopyTokenId(row.tokenId, key)}>
+              {row.tokenId.slice(0, showMoreCount)}... &nbsp;
+              {copyTokenId.status && copyTokenId.index === key ? (
+                <i className='fa fa-check-circle mr-1'></i>
+              ) : (
+                <span>
+                  <i className='far fa-copy'></i>
+                </span>
+              )}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               {<img src={normalshapeSvg} className={classes.normalshape} />}

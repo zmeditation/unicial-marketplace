@@ -38,4 +38,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
       verticalAlign: "Top",
     },
   },
+  tokenAddress: {
+    cursor: "pointer"
+  },
+  tokenId: {
+    cursor: "pointer"
+  },
 }));
