@@ -42,7 +42,9 @@ export default function LandParcels() {
         );
       } else {
         setResultParcels(parcels);
+        // alert("okdes");
       }
+      console.log("resultparcels lenth", resultParcels);
     });
   };
 
@@ -64,8 +66,8 @@ export default function LandParcels() {
               .map((tokenId: any, key: any) => (
                 <Grid item xs={12} sm={6} md={4} key={key}>
                   <LandCard
-                    locationbtnX={tokenId.x}
-                    locationbtnY={tokenId.y}
+                    locationbtnX={tokenId[0]}
+                    locationbtnY={tokenId[1]}
                     landName="Plaza Area Sale"
                     category="Zilionixx"
                     onClick={() => handleNavigate(tokenId.tokenId)}

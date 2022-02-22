@@ -1,23 +1,105 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useState, useEffect } from "react";
 import FormControl from "@material-ui/core/FormControl";
+import { Grid } from "@material-ui/core";
+
+import { useTranslation } from "react-i18next";
+import { BigNumber, ethers } from "ethers";
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
 import NeedSignIn from "../../../NeedSignIn";
 import { useStyles, StyledInput } from "./EstateTransferStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import raiseicon from "../../../../assets/svg/bid_raiseicon.svg";
-import { Grid } from "@material-ui/core";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import { selectLoginAddress } from "./../../../../store/auth/selectors";
+import { showAlert } from "../../../../store/alert";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import {
+  EstateRegistryAddress,
+  EstateRegistryAbi,
+  EstateProxyAddress,
+} from "../../../../config/contracts/EstateRegitryContract";
+import {
+  MarketplaceAddress,
+  MarketplaceAbi,
+} from "../../../../config/contracts/MarketPlaceContract";
+declare var window: any;
 
-import { useTranslation } from "react-i18next";
-
+var signer: any,
+  estateRegistryContract: any,
+  marketplaceContract: any,
+  spaceRegistryContract: any;
 const ParcelTransfer = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [transferAddress, setTransferAddress] = useState("");
+  const dispatch = useAppDispatch();
+  const { contractaddress, estateid } = useParams();
+  const loginAddress = useAppSelector(selectLoginAddress);
 
+  const [isCorrectAddress, setIsCorrectAddress] = useState(false);
   var isSignIn = 1;
+  const isAddress = (address: string) => {
+    try {
+      ethers.utils.getAddress(address);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  };
 
-  const handleChange = () => {};
+  const handleChange = (e: any) => {
+    setTransferAddress(e.target.value);
+  };
+  useEffect(() => {
+    let result = isAddress(transferAddress);
+    result === true ? setIsCorrectAddress(true) : setIsCorrectAddress(false);
+  }, [transferAddress]);
+
+  const handleTransferOrder = async () => {
+    signer = generateSigner(window.ethereum);
+    estateRegistryContract = generateContractInstance(
+      EstateProxyAddress,
+      EstateRegistryAbi,
+      signer
+    );
+    if (
+      estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
+      estateRegistryContract.isApprovedForAll(loginAddress, estateid) === false
+    ) {
+      let approveMarketTx = await estateRegistryContract.approve(
+        MarketplaceAddress,
+        estateid
+      );
+      await approveMarketTx.wait();
+      dispatch(
+        showAlert({
+          message:
+            "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+          severity: "success",
+        })
+      );
+    }
+    console.log("transferAddress", transferAddress);
+    console.log("transferAddress length", transferAddress.length);
+    console.log("loginAddress", loginAddress);
+    console.log("loginAddress length", transferAddress.length);
+    let transferTx = await estateRegistryContract[
+      "safeTransferFrom(address,address,uint256)"
+    ](loginAddress, transferAddress, BigNumber.from(estateid));
+    await transferTx.wait();
+    dispatch(
+      showAlert({
+        message: "Transfer order is successfully published.",
+        severity: "success",
+      })
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -30,7 +112,8 @@ const ParcelTransfer = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -46,7 +129,7 @@ const ParcelTransfer = () => {
                         {t("RECEPIENT ADDRESS")}
                       </div>
                       <FormControl>
-                        <StyledInput placeholder='0x' onChange={handleChange} />
+                        <StyledInput placeholder="0x" onChange={handleChange} />
                       </FormControl>
                     </Grid>
                   </Grid>
@@ -55,17 +138,30 @@ const ParcelTransfer = () => {
               </div>
               {/* buttons */}
               <div className={classes.buttons}>
+                {isCorrectAddress === true ? (
+                  <ActionButton
+                    color="light"
+                    className={classes.bidchange}
+                    onClick={handleTransferOrder}
+                  >
+                    {t("Transfer")} &nbsp;
+                    <img src={raiseicon} alt="raiseicon" />
+                  </ActionButton>
+                ) : (
+                  <ActionButton
+                    disabled
+                    color="light"
+                    className={classes.bidchange}
+                  >
+                    {t("Transfer")} &nbsp;
+                    <img src={raiseicon} alt="raiseicon" />
+                  </ActionButton>
+                )}
                 <ActionButton
-                  disabled
-                  color='light'
-                  className={classes.bidchange}>
-                  {t("Transfer")} &nbsp;
-                  <img src={raiseicon} alt='raiseicon' />
-                </ActionButton>
-                <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
+                  onClick={() => navigate(-1)}
+                >
                   {t("Cancel")}
                 </ActionButton>
               </div>

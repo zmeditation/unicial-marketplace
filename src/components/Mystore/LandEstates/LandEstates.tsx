@@ -33,9 +33,6 @@ export default function LandEstates() {
 
   useEffect(() => {
     getEstatesByOwner(loginAddress).then((estates: any[]) => {
-      console.log("Estates", estates);
-      console.log("Estates length", estates.length);
-      console.log("Estates 0", estates[0]);
       setOwnEstates(estates);
     });
   }, []);
