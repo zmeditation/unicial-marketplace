@@ -6,11 +6,25 @@ import ActionButton from "../../../Base/ActionButton";
 import { onePageCount } from "../../../../config/constant";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { ethers } from "ethers";
 import { addCommas, dateConvert } from "../../../../common/utils";
 import { showMoreCount } from "../../../../config/constant";
 import { useEffect, useState } from "react";
+import { useAppDispatch } from "../../../../store/hooks";
+import { showAlert } from "../../../../store/alert";
 import copy from "clipboard-copy";
+import { BigNumber, ethers } from "ethers";
+import {
+  BidContractAddress,
+  BidContractAbi,
+} from "../../../../config/contracts/BidContract";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import { SpaceProxyAddress } from "../../../../config/contracts/SpaceRegistryContract";
+
+declare var window: any;
+var signer: any, bidContract: any;
 
 interface StagingTableProps {
   columns?: any;
@@ -29,6 +43,7 @@ const SendBidTable = ({
 }: StagingTableProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const [copyAddress, setcopyAddress] = useState<any>({
     status: false,
     index: null,
@@ -37,6 +52,14 @@ const SendBidTable = ({
     status: false,
     index: null,
   });
+
+  signer = generateSigner(window.ethereum);
+
+  bidContract = generateContractInstance(
+    BidContractAddress,
+    BidContractAbi,
+    signer
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -56,6 +79,20 @@ const SendBidTable = ({
     setcopyTokenId({ status: !copyTokenId.status, index: key });
   };
 
+  const handleCancelBid = async (key: any) => {
+    let bidCancelOrder = await bidContract.cancelBid(
+      rows[key].tokenAddress,
+      BigNumber.from(rows[key].tokenId)
+    );
+    await bidCancelOrder.wait();
+    dispatch(
+      showAlert({
+        message: "Bid cancel order cancel is successfully published.",
+        severity: "success",
+      })
+    );
+  };
+
   const tableRows =
     rows !== undefined ? (
       rows
@@ -69,6 +106,7 @@ const SendBidTable = ({
               className={clsx(classes.tableCell, classes.tokenAddress)}
               onClick={() => handleCopyAddress(row.tokenAddress, key)}>
               {row.tokenAddress.slice(0, showMoreCount)}... &nbsp;
+              {row.tokenAddress.toLowerCase() === SpaceProxyAddress.toLowerCase() ? <span>(space)</span>: <span>(others)</span>} &nbsp;
               {copyAddress.status && copyAddress.index === key ? (
                 <i className='fa fa-check-circle mr-1'></i>
               ) : (
@@ -97,7 +135,10 @@ const SendBidTable = ({
               {dateConvert(row.expiresAt)}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-              <ActionButton color='dark' className={classes.actionBtn}>
+              <ActionButton
+                color='dark'
+                className={classes.actionBtn}
+                onClick={() => handleCancelBid(key)}>
                 {t("Cancel")}
               </ActionButton>
             </TableCell>
