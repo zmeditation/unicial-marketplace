@@ -25,7 +25,7 @@ export const getCoords = async (ownedTokens: any[]) => {
     coordPromises[i] = parcelRegistryContract.decodeTokenId(ownedTokens[i]);
   }
   coords = await Promise.all(coordPromises);
-  console.log("coords", coords);
+  // console.log("coords", coords);
   return coords;
 };
 
@@ -40,7 +40,6 @@ export const getParcelsByOwnerAsCoords = async (owner: any) => {
     let tokenPromises = [];
     for (let i = 0; i < balance; i++) {
       let tokenPromise = parcelRegistryContract.tokenOfOwnerByIndex(owner, i);
-      console.log("tokenPromise", tokenPromise);
       tokenPromises.push(tokenPromise);
     }
     let ownedTokens = await Promise.all(tokenPromises);
@@ -62,12 +61,12 @@ export const getParcelsByOwnerAstokenId = async (owner: any) => {
     let tokenPromises = [];
     for (let i = 0; i < balance; i++) {
       let tokenPromise = parcelRegistryContract.tokenOfOwnerByIndex(owner, i);
-      console.log("tokenPromise", tokenPromise);
+      // console.log("tokenPromise", tokenPromise);
       tokenPromises.push(tokenPromise);
     }
     let ownedTokens = await Promise.all(tokenPromises);
     return ownedTokens;
-    console.log("ownedTokens##", ownedTokens);
+    // console.log("ownedTokens##", ownedTokens);
   } catch (error: any) {
     console.log("error: ", error.message);
     return [];
@@ -91,18 +90,19 @@ export const getEstatesByOwner = async (owner: any) => {
       signer
     );
     const balance = (await estateRegistryContract.balanceOf(owner)).toNumber();
-    console.log("balance.toNumber()", balance);
+    console.log("Estate balance of ", owner, ": ", balance);
     let tokenPromises = [];
     for (let i = 0; i < balance; i++) {
       let tokenPromise = estateRegistryContract.tokenOfOwnerByIndex(owner, i);
-      console.log("tokenPromise", tokenPromise);
       tokenPromises.push(tokenPromise);
     }
     let ownedTokens = await Promise.all(tokenPromises);
+
     for (let i = 0; i < ownedTokens.length; i++) {
       ownedTokens[i] = ownedTokens[i].toNumber();
     }
-    // console.log("ownedTokens", ownedTokens);
+    console.log("ownedTokens", ownedTokens);
+
     return ownedTokens;
   } catch (error: any) {
     return [];

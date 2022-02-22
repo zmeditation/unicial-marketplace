@@ -115,10 +115,13 @@ const ParcelSell = () => {
 
     // check if this token is approved for marketplace contract
     let isApproved = false;
+    alert("okdes");
     isApproved = await spaceRegistryContract.isAuthorized(
       MarketplaceAddress,
       BigNumber.from(tokensid)
     );
+    alert("okdes123");
+
     if (!isApproved) {
       // approve marketplace contract to transfer this asset
       dispatch(
@@ -142,7 +145,7 @@ const ParcelSell = () => {
         })
       );
     }
-
+    alert("parcelsell approved");
     let createOrderTx = await marketplaceContract.createOrder(
       contractaddress,
       BigNumber.from(tokensid),

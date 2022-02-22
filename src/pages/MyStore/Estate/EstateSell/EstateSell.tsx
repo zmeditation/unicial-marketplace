@@ -32,8 +32,16 @@ import {
   MarketplaceAddress,
   MarketplaceAbi,
 } from "../../../../config/contracts/MarketPlaceContract";
+import {
+  SpaceProxyAddress,
+  SpaceRegistryAbi,
+} from "../../../../config/contracts/SpaceRegistryContract";
+import {
+  EstateRegistryAbi,
+  EstateProxyAddress,
+} from "../../../../config/contracts/EstateRegitryContract";
 declare var window: any;
-var signer: any, marketplaceContract: any, spaceRegistryContract: any;
+var signer: any, marketplaceContract: any, estateRegistryContract: any;
 
 const EstateSell = () => {
   const classes = useStyles();
@@ -63,6 +71,15 @@ const EstateSell = () => {
   };
 
   const handleSell = async () => {
+    let currenttime = new Date().getTime() / 1000;
+    if (timeStamp <= currenttime) {
+      dispatch(
+        showAlert({
+          message: "You have to select  correct expiration date.",
+          severity: "error",
+        })
+      );
+    }
     if (loginAddress.length === 0) {
       dispatch(
         showAlert({
@@ -89,12 +106,40 @@ const EstateSell = () => {
       signer
     );
     console.log(contractaddress, estateid, price, timeStamp);
+
+    estateRegistryContract = generateContractInstance(
+      EstateProxyAddress,
+      EstateRegistryAbi,
+      signer
+    );
+    // check if this token is approved for marketplace contract
+    if (
+      estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
+      estateRegistryContract.isApprovedForAll(loginAddress, estateid) === false
+    ) {
+      alert("not yet!!");
+      let approveMarketTx = await estateRegistryContract.approve(
+        MarketplaceAddress,
+        estateid
+      );
+      await approveMarketTx.wait();
+      dispatch(
+        showAlert({
+          message:
+            "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+          severity: "success",
+        })
+      );
+    }
+    alert("estatesell test");
     let createOrderTx = await marketplaceContract.createOrder(
       contractaddress,
       BigNumber.from(estateid),
       ethers.utils.parseEther(price.toString()),
       BigNumber.from(timeStamp.toString())
     );
+    alert("estatesell test22");
+
     await createOrderTx.wait();
     dispatch(
       showAlert({
