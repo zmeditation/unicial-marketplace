@@ -2,17 +2,29 @@ import { useEffect, useState } from "react";
 import SendBidTable from "./SendBidTable/SendBidTable";
 import ReciveBidTable from "./ReciveBidTable/ReciveBidTable";
 import TablePagination from "../../Base/TablePagination";
-import { headerData, ReciveData, onePageCount } from "./AllBidsData";
+import { headerSendData, headerReciveData, onePageCount } from "../../../config/constant";
 import { selectLoginAddress } from "../../../store/auth/selectors";
 import { AllBidsStyle } from "./AllBidsStyle";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../../store/hooks";
 import {
-  getParcelsByOwnerAsCoords,
+  getParcelsByOwnerAstokenId,
   getSendBidByOwner,
 } from "../../../hooks/api";
+import {
+  BidContractAddress,
+  BidContractAbi,
+} from "../../../config/contracts/BidContract";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../common/contract";
+import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
 
-export default function OnSale() {
+declare var window: any;
+var signer: any, bidContract: any;
+
+export default function AllBids() {
   const classes = AllBidsStyle();
   const { t } = useTranslation();
   const loginAddress = useAppSelector(selectLoginAddress);
@@ -20,27 +32,65 @@ export default function OnSale() {
   const [sendCurPage, setSendCurPage] = useState<any>(1);
   const emptyTokens: any[] = [];
   const [sendBidData, setSendBidData] = useState<any>(emptyTokens);
-  const [reciveData, setReciveData] = useState<any>();
+  const [reciveBidData, setReciveBidData] = useState<any>();
+
   const [selectSendRow, setSelectSendRow] = useState(0);
   const [selectReciveRow, setSelectReciveRow] = useState(0);
 
+  signer = generateSigner(window.ethereum);
+
+  bidContract = generateContractInstance(
+    BidContractAddress,
+    BidContractAbi,
+    signer
+  );
+
   useEffect(() => {
-    // getParcelsByOwner(loginAddress).then(
-    //   (parcels: any[]) => {
-    //     console.log("Parcel", parcels);
-    //     console.log("Parcel length", parcels.length);
-    //     console.log("Parcel 0", parcels[0]);
-    //     setSendBidData(parcels);
-    //   }
-    // );
-    getSendBidByOwner(loginAddress).then((recive: any[]) => {
-      setSendBidData(recive);
+    getParcelsByOwnerAstokenId(loginAddress).then((parcels: any[]) => {
+      getAllBids(parcels);
+    });
+    getSendBidByOwner(loginAddress).then((send: any[]) => {
+      setSendBidData(send);
     });
   }, []);
 
+  const getAllBids = async (parcels: any) => {
+    let parcelsLength = parcels?.length;
+    let bidCounterPromises = [];
+    let bidCounters = [];
+    let bidPromises = [];
+
+    for (let i = 0; i < parcelsLength; i++) {
+      bidCounterPromises.push(
+        bidContract.bidCounterByToken(SpaceProxyAddress, parcels[i].toString())
+      );
+    }
+    bidCounters = await Promise.all(bidCounterPromises);
+
+    for (let i = 0; i < bidCounters.length; i++) {
+      let bidCount = bidCounters[i].toNumber()
+      if (bidCount > 0) {
+        for (let j = 0; j < bidCount; j++) {
+          bidPromises.push(
+            bidContract.getBidByToken(
+              SpaceProxyAddress,
+              parcels[i].toString(),
+              j
+            )
+          );
+        }
+      } else {
+        continue;
+      }
+    }
+
+    let allReceivedBids =await Promise.all(bidPromises)
+    setReciveBidData(allReceivedBids);
+  };
+
   //-----------------------recive bid list function -----------------------------
 
-  var countRecive = ReciveData?.length;
+  var countRecive = reciveBidData?.length;
   var totalRecivePage = Math.ceil(countRecive / onePageCount);
 
   const recivepgnum = (value: number) => {
@@ -68,15 +118,15 @@ export default function OnSale() {
     <>
       <div className={classes.reciveBid}>
         <div className={classes.reciveTitle}>{t("BIDS RECEIVED")}</div>
-        {ReciveData?.length === 0 || ReciveData === undefined ? (
+        {reciveBidData?.length === 0 || reciveBidData === undefined ? (
           <div className={classes.emptyDisplay}>
             {t("You haven't received any bids yet")}...
           </div>
         ) : (
           <>
             <ReciveBidTable
-              columns={headerData}
-              rows={ReciveData}
+              columns={headerReciveData}
+              rows={reciveBidData}
               curPage={reciveCurPage}
               onRowClick={handleReciveRow}
               stepIndex={selectReciveRow}
@@ -99,7 +149,7 @@ export default function OnSale() {
         ) : (
           <>
             <SendBidTable
-              columns={headerData}
+              columns={headerSendData}
               rows={sendBidData}
               curPage={sendCurPage}
               onRowClick={handleSendRow}

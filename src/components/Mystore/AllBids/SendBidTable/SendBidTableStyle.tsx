@@ -17,6 +17,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
       padding: "10px 10px 10px 20px !important",
     },
   },
+  tokenAddress: {
+    cursor: "pointer"
+  },
+  tokenId: {
+    cursor: "pointer"
+  },
   priceCell: {
     // display: "flex",
     alignItems: "center",
