@@ -29,12 +29,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Title: React.FC = () => {
+interface titleProps {
+  title?: string;
+}
+
+const Title = ({title}:titleProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
   return (
     <div>
-      <div className={classes.title}>{t("Genesis Plaza")}</div>
+      <div className={classes.title}>{title}</div>
       <div className={classes.smalltitle}>{t("Unicial Genesis Plaza")}</div>
       <div className={classes.buttonGroup}>
         <ActionButton disabled color="dark">

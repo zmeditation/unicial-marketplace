@@ -47,6 +47,7 @@ const Contract = () => {
 
   //---------------------------Input value ------------------
 
+  const [title, setTitle] = useState("");
   const [owner, setOwner] = useState("0x");
   const [type, setType] = useState("");
   const [saleId, setSaleId] = useState("");
@@ -84,6 +85,7 @@ const Contract = () => {
       ) {
         setOwner(allParcel.owner);
         setType(allParcel.type);
+        setTitle(t("Genesis Plaza"));
         setX(allParcel.x);
         setY(allParcel.y);
         estateArray.push({ x: allParcel.x, y: allParcel.y });
@@ -94,6 +96,8 @@ const Contract = () => {
       ) {
         setOwner(allParcel.owner);
         setType(allParcel.type);
+        setTitle(allParcel.name);
+
         setX(allParcel.x);
         setY(allParcel.y);
         estateArray.push({ x: allParcel.x, y: allParcel.y });
@@ -182,7 +186,7 @@ const Contract = () => {
           <div className={classes.contractDescription}>
             <div className={classes.leftDescription}>
               <div className={classes.items}>
-                <Title />
+                <Title title={title} />
               </div>
               {owner !== undefined && (
                 <>
@@ -218,7 +222,7 @@ const Contract = () => {
               </div>
             </div>
           </div>
-          
+
           <Parcels parcels={estate} />
 
           <div className={classes.tableRoot}>
