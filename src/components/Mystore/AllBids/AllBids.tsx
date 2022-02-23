@@ -113,7 +113,7 @@ export default function AllBids() {
 
   //-----------------------receive bid list function -----------------------------
 
-  var countReceive = receiveBidData?.length;
+  var countReceive = receiveBidData?.data.length;
   var totalReceivePage = Math.ceil(countReceive / onePageCount);
 
   const receivepgnum = (value: number) => {
