@@ -5,7 +5,6 @@ import FormControl from "@material-ui/core/FormControl";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import SliceMap from "../../components/SliceMap";
 import ActionButton from "../../components/Base/ActionButton";
-import TokenImg from "../../assets/img/1.png";
 import { useStyles, StyledInput } from "./BidStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";
@@ -101,6 +100,7 @@ const Bid = () => {
   useEffect(() => {
     initAllowance();
     uccAllowance.gt(0) ? setBidStatus(false) : setBidStatus(true);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uccAllowance.toString()]);
 
   useEffect(() => {
@@ -240,7 +240,7 @@ const Bid = () => {
                         onChange={(e) => handleChange(e)}
                         startAdornment={
                           <InputAdornment position='start'>
-                            <img src={settingicon} />
+                            <img src={settingicon} alt="settingIcon"/>
                           </InputAdornment>
                         }
                       />
@@ -262,7 +262,7 @@ const Bid = () => {
                           KeyboardButtonProps={{
                             "aria-label": "change date",
                           }}
-                          keyboardIcon={<img src={calendar_icon} />}
+                          keyboardIcon={<img src={calendar_icon} alt="calendarIcon"/>}
                         />
                       </MuiPickersUtilsProvider>
                     </FormControl>

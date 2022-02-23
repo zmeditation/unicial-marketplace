@@ -10,23 +10,19 @@ import { setSaleParcels } from "../../store/saleparcels";
 import { setParcels } from "../../store/parcels";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { getCoords } from "../../common/utils";
-import {useStyles} from "./SliceMapStyle"
+import { useStyles } from "./SliceMapStyle";
 
 declare var window: any;
-
 
 interface SliceMapProps {
   centerX?: any;
   centerY?: any;
 }
 
-const SliceMap: React.FC<SliceMapProps> = ({
-  centerX,
-  centerY,
-}) => {
-  const classes = useStyles()
-  const [width, setWidth] = useState(0)
-  const [height, setHeight] =  useState(0)
+const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
+  const classes = useStyles();
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
   const [onSale, setOnSale] = useState(true);
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -71,6 +67,7 @@ const SliceMap: React.FC<SliceMapProps> = ({
       }
       return false;
     },
+    //eslint-disable-next-line react-hooks/exhaustive-deps
     [saleParcels, onSale]
   );
 
@@ -82,6 +79,7 @@ const SliceMap: React.FC<SliceMapProps> = ({
         return true;
       } else return false;
     },
+    //eslint-disable-next-line react-hooks/exhaustive-deps
     [tiles]
   );
 
@@ -93,6 +91,7 @@ const SliceMap: React.FC<SliceMapProps> = ({
         return true;
       } else return false;
     },
+    //eslint-disable-next-line react-hooks/exhaustive-deps
     [tiles]
   );
 
@@ -109,7 +108,8 @@ const SliceMap: React.FC<SliceMapProps> = ({
       }
       return false;
     },
-    [saleParcels, onSale]
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+    [saleParcels, onSale, loginAddress]
   );
 
   const isSelected = useCallback(
@@ -117,14 +117,15 @@ const SliceMap: React.FC<SliceMapProps> = ({
       if (!tiles) return false;
       const tile: any = tiles[getCoords(x, y)] as Tile;
 
-      if(tile?.estateId && tokensid === tile?.estateId){
-        return true
+      if (tile?.estateId && tokensid === tile?.estateId) {
+        return true;
       }
       if (tokensid && tile && tokensid === tile?.tokenId) {
         return true;
       }
       return false;
     },
+    //eslint-disable-next-line react-hooks/exhaustive-deps
     [tokensid, tiles]
   );
 
@@ -140,8 +141,9 @@ const SliceMap: React.FC<SliceMapProps> = ({
         ? { color: "transparent", scale: 1.4 }
         : isOwned(x, y)
         ? { color: "transparent", scale: 1.4 }
-        :null;
+        : null;
     },
+    //eslint-disable-next-line react-hooks/exhaustive-deps
     [isSelected]
   );
 
@@ -159,6 +161,7 @@ const SliceMap: React.FC<SliceMapProps> = ({
         ? { color: "#313960", scale: 1.4 }
         : null;
     },
+    //eslint-disable-next-line react-hooks/exhaustive-deps
     [isSelected]
   );
 
@@ -174,21 +177,21 @@ const SliceMap: React.FC<SliceMapProps> = ({
     }
     dispatch(setSaleParcels());
     dispatch(setParcels());
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (
     <>
-    <div className={classes.mapRoot}>
-
-      <Atlas
-        tiles={tiles}
-        layers={[selectedStrokeLayer, selectedFillLayer]}
-        height={height}
-        width={width}
-        y={centerY}
-        x={centerX}
-      />
-    </div>
+      <div className={classes.mapRoot}>
+        <Atlas
+          tiles={tiles}
+          layers={[selectedStrokeLayer, selectedFillLayer]}
+          height={height}
+          width={width}
+          y={centerY}
+          x={centerX}
+        />
+      </div>
     </>
   );
 };
