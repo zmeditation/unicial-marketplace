@@ -19,7 +19,6 @@ import { selectLoginAddress } from "./../../../../store/auth/selectors";
 import { showAlert } from "../../../../store/alert";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
-  EstateRegistryAddress,
   EstateRegistryAbi,
   EstateProxyAddress,
 } from "../../../../config/contracts/EstateRegitryContract";

@@ -3,6 +3,7 @@ import StageMarket from "../../../StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";
 import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
 import ActionButton from "../../../Base/ActionButton";
+import Tag from "../../../Base/Tag";
 import { onePageCount } from "../../../../config/constant";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
@@ -44,6 +45,7 @@ const SendBidTable = ({
   const classes = useStyles();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const [bidStatus, setBidStatus] = useState<any>({status: "",index: null})
   const [copyAddress, setcopyAddress] = useState<any>({
     status: false,
     index: null,
@@ -60,6 +62,10 @@ const SendBidTable = ({
     BidContractAbi,
     signer
   );
+
+  useEffect(()=> {
+
+  },[rows])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -135,6 +141,7 @@ const SendBidTable = ({
               {dateConvert(row.expiresAt)}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
+              {row.bidStatus === ""}
               <ActionButton
                 color='dark'
                 className={classes.actionBtn}

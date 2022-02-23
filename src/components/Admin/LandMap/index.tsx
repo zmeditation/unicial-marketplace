@@ -8,6 +8,7 @@ import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { selectparcels } from "../../../store/selectedparcels/selectors";
 import { getparcels } from "../../../store/selectedparcels";
 import { getCoords } from "../../../common/utils";
+import { parcels } from "../../../store/parcels/selectors";
 
 interface LandMapProps {
   height?: any;
@@ -17,7 +18,6 @@ interface LandMapProps {
 }
 
 const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
-  const [tiles, setTiles] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
   const [mouseX, setMouseX] = useState(-1);
@@ -26,6 +26,9 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const [y, setY] = useState(0);
   const dispatch = useAppDispatch();
   const selectedTile = useAppSelector(selectparcels);
+
+  const tiles: any = useAppSelector(parcels);
+
 
   const handleClick = useCallback(
     async (x: number, y: number) => {
@@ -143,12 +146,6 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
       }
     };
   }, [showPopup, mouseX, mouseY]);
-
-  useEffect(() => {
-    if (window) {
-      fetchTiles().then((_tiles: any) => setTiles(_tiles));
-    }
-  }, []);
 
   return (
     <div onMouseLeave={handleHidePopup}>
