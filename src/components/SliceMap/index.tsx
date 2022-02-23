@@ -36,20 +36,20 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
-      setWidth(300);
-      setHeight(300);
+      setWidth(329);
+      setHeight(265);
     } else if (window.innerWidth <= 1200 && window.innerWidth > 992) {
-      setWidth(300);
-      setHeight(300);
+      setWidth(329);
+      setHeight(265);
     } else if (window.innerWidth <= 992 && window.innerWidth > 767) {
-      setWidth(300);
-      setHeight(300);
+      setWidth(329);
+      setHeight(265);
     } else if (window.innerWidth <= 767 && window.innerWidth > 500) {
-      setWidth(300);
-      setHeight(300);
+      setWidth(329);
+      setHeight(265);
     } else if (window.innerWidth <= 500) {
-      setWidth(300);
-      setHeight(300);
+      setWidth(329);
+      setHeight(265);
     }
   };
 
@@ -190,6 +190,8 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
           width={width}
           y={centerY}
           x={centerX}
+          movingeStatus={false}
+          zoomStatus={2}
         />
       </div>
     </>

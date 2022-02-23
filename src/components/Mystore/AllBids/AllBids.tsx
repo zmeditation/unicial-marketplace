@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import SendBidTable from "./SendBidTable/SendBidTable";
 import ReceiveBidTable from "./ReceiveBidTable/ReceiveBidTable";
 import TablePagination from "../../Base/TablePagination";
-import { headerSendData, headerReceiveData, onePageCount } from "../../../config/constant";
+import {
+  headerSendData,
+  headerReceiveData,
+  onePageCount,
+} from "../../../config/constant";
 import { selectLoginAddress } from "../../../store/auth/selectors";
 import { AllBidsStyle } from "./AllBidsStyle";
 import { useTranslation } from "react-i18next";
@@ -35,6 +39,7 @@ export default function AllBids() {
   const emptyTokens: any[] = [];
   const [sendBidData, setSendBidData] = useState<any>(emptyTokens);
   const [receiveBidData, setReceiveBidData] = useState<any>();
+  const [receiveEstateBid, setReceiveEstateBid] = useState<any>();
 
   const [selectSendRow, setSelectSendRow] = useState(0);
   const [selectReceiveRow, setSelectReceiveRow] = useState(0);
@@ -54,17 +59,17 @@ export default function AllBids() {
     getSendBidByOwner(loginAddress).then((send: any[]) => {
       setSendBidData(send);
     });
-    getEstatesByOwner(loginAddress).then((estates: any[])=> {
-      getAllEstatesBids(estates)
-    })
+    getEstatesByOwner(loginAddress).then((estates: any[]) => {
+      getAllEstatesBids(estates);
+    });
   }, [loginAddress]);
 
-  const getAllEstatesBids = async (estates:any) => {
+  const getAllEstatesBids = async (estates: any) => {
     let estatesLength = estates?.length;
     let bidCounterPromises = [];
     let bidCounters = [];
-    // let bidPromises = [];
-    // let tokenId = [];
+    let bidPromises = [];
+    let tokenId = [];
 
     for (let i = 0; i < estatesLength; i++) {
       bidCounterPromises.push(
@@ -72,8 +77,28 @@ export default function AllBids() {
       );
     }
     bidCounters = await Promise.all(bidCounterPromises);
-    console.log(bidCounters)
-  }
+
+    for (let i = 0; i < bidCounters.length; i++) {
+      let bidCount = bidCounters[i].toNumber();
+      if (bidCount > 0) {
+        for (let j = 0; j < bidCount; j++) {
+          bidPromises.push(
+            bidContract.getBidByToken(
+              EstateProxyAddress,
+              estates[i].toString(),
+              j
+            )
+          );
+          tokenId.push(estates[i].toString());
+        }
+      } else {
+        continue;
+      }
+    }
+    let allReceivedEstateBids = await Promise.all(bidPromises);
+
+    setReceiveEstateBid({ data: allReceivedEstateBids, estateId: tokenId });
+  };
 
   const getAllParcelsBids = async (parcels: any) => {
     let parcelsLength = parcels?.length;
@@ -90,7 +115,7 @@ export default function AllBids() {
     bidCounters = await Promise.all(bidCounterPromises);
 
     for (let i = 0; i < bidCounters.length; i++) {
-      let bidCount = bidCounters[i].toNumber()
+      let bidCount = bidCounters[i].toNumber();
       if (bidCount > 0) {
         for (let j = 0; j < bidCount; j++) {
           bidPromises.push(
@@ -100,16 +125,16 @@ export default function AllBids() {
               j
             )
           );
-          tokenId.push(parcels[i].toString())
+          tokenId.push(parcels[i].toString());
         }
       } else {
         continue;
       }
     }
 
-    let allReceivedBids =await Promise.all(bidPromises)
+    let allReceivedBids = await Promise.all(bidPromises);
 
-    setReceiveBidData({data:allReceivedBids, tokenId : tokenId});
+    setReceiveBidData({ data: allReceivedBids, tokenId: tokenId });
   };
 
   //-----------------------receive bid list function -----------------------------
@@ -142,7 +167,9 @@ export default function AllBids() {
     <>
       <div className={classes.receiveBid}>
         <div className={classes.receiveTitle}>{t("BIDS RECEIVED")}</div>
-        {receiveBidData?.length === 0 || receiveBidData === undefined ? (
+        {(receiveBidData?.data.length === 0 || receiveBidData === undefined) &&
+        (receiveEstateBid?.data.length === 0 ||
+          receiveEstateBid === undefined) ? (
           <div className={classes.emptyDisplay}>
             {t("You haven't received any bids yet")}...
           </div>
@@ -150,7 +177,8 @@ export default function AllBids() {
           <>
             <ReceiveBidTable
               columns={headerReceiveData}
-              rows={receiveBidData}
+              parcelRows={receiveBidData}
+              estateRows={receiveEstateBid}
               curPage={receiveCurPage}
               onRowClick={handleReceiveRow}
               stepIndex={selectReceiveRow}
