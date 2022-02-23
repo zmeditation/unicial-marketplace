@@ -72,9 +72,9 @@ export default function Layout() {
 
   const initSet = async () => {
     await dispatch(showSpinner(true));
-    await dispatch(setSaleParcels());
-    await dispatch(setParcels());
-    await dispatch(setBidContractinfo());
+    let dispatchPromises = []
+    dispatchPromises.push(dispatch(setSaleParcels()), dispatch(setParcels()), dispatch(setBidContractinfo()))
+    await Promise.all(dispatchPromises)
     await dispatch(showSpinner(false));
   };
 

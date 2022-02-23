@@ -23,7 +23,6 @@ import {
 
 import {
   MarketplaceAddress,
-  MarketplaceAbi,
 } from "../../../../config/contracts/MarketPlaceContract";
 
 import {
@@ -33,7 +32,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 
 declare var window: any;
-var signer: any, marketplaceContract: any, spaceRegistryContract: any;
+var signer: any, spaceRegistryContract: any;
 
 const ParcelTransfer = () => {
   const classes = useStyles();
@@ -42,7 +41,7 @@ const ParcelTransfer = () => {
   const { t } = useTranslation();
   const [transferAddress, setTransferAddress] = useState("");
   const [isCorrectAddress, setIsCorrectAddress] = useState(false);
-  const { contractaddress, tokensid } = useParams();
+  const { tokensid } = useParams();
   const loginAddress = useAppSelector(selectLoginAddress);
 
   const isAddress = (address: string) => {
@@ -57,11 +56,6 @@ const ParcelTransfer = () => {
   const handleTransferOrder = async () => {
 
     signer = generateSigner(window.ethereum);
-    marketplaceContract = generateContractInstance(
-      MarketplaceAddress,
-      MarketplaceAbi,
-      signer
-    );
     spaceRegistryContract = generateContractInstance(
       SpaceProxyAddress,
       SpaceRegistryAbi,

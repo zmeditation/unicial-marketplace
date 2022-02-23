@@ -12,12 +12,11 @@ import { dateConvert } from "../../../../common/utils";
 import BidDetail from "../../../../components/Mystore/BidDetail";
 import {
   getEstatesByOwner,
-  getParcelsByOwnerAsCoords,
 } from "../../../../hooks/api";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { useAppSelector } from "../../../../store/hooks";
 
 const EstateDetail = () => {
   const classes = useStyles();
@@ -34,11 +33,11 @@ const EstateDetail = () => {
   useEffect(() => {
     getEstatesByOwner(loginAddress).then((parcels: any[]) => {
       setOwnEstates(parcels);
+      if (parcels && parcels?.length <= showMoreCount) {
+        setShowMoreBtn(false);
+      }
     });
-    if (ownEstates && ownEstates?.length <= showMoreCount) {
-      setShowMoreBtn(false);
-    }
-  }, []);
+  }, [loginAddress]);
 
   const handleShowBtn = () => {
     setCount(count + showMoreCount);
@@ -52,7 +51,6 @@ const EstateDetail = () => {
     setShowMoreBtn(true);
     setShowLessBtn(false);
   };
-  console.log(ownEstates);
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>

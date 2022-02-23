@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { setSaleParcels } from "../saleparcels/actions";
 import { saleParcels } from "./types";
 

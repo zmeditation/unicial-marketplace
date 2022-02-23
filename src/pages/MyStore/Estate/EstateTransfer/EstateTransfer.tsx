@@ -19,27 +19,21 @@ import { selectLoginAddress } from "./../../../../store/auth/selectors";
 import { showAlert } from "../../../../store/alert";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
-  EstateRegistryAddress,
   EstateRegistryAbi,
   EstateProxyAddress,
 } from "../../../../config/contracts/EstateRegitryContract";
-import {
-  MarketplaceAddress,
-  MarketplaceAbi,
-} from "../../../../config/contracts/MarketPlaceContract";
+import { MarketplaceAddress } from "../../../../config/contracts/MarketPlaceContract";
 declare var window: any;
 
-var signer: any,
-  estateRegistryContract: any,
-  marketplaceContract: any,
-  spaceRegistryContract: any;
+var signer: any, estateRegistryContract: any;
+
 const ParcelTransfer = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [transferAddress, setTransferAddress] = useState("");
   const dispatch = useAppDispatch();
-  const { contractaddress, estateid } = useParams();
+  const { estateid } = useParams();
   const loginAddress = useAppSelector(selectLoginAddress);
 
   const [isCorrectAddress, setIsCorrectAddress] = useState(false);
@@ -85,10 +79,6 @@ const ParcelTransfer = () => {
         })
       );
     }
-    console.log("transferAddress", transferAddress);
-    console.log("transferAddress length", transferAddress.length);
-    console.log("loginAddress", loginAddress);
-    console.log("loginAddress length", transferAddress.length);
     let transferTx = await estateRegistryContract[
       "safeTransferFrom(address,address,uint256)"
     ](loginAddress, transferAddress, BigNumber.from(estateid));
@@ -112,8 +102,7 @@ const ParcelTransfer = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt="token"
-                ></img>
+                  alt='token'></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -129,7 +118,7 @@ const ParcelTransfer = () => {
                         {t("RECEPIENT ADDRESS")}
                       </div>
                       <FormControl>
-                        <StyledInput placeholder="0x" onChange={handleChange} />
+                        <StyledInput placeholder='0x' onChange={handleChange} />
                       </FormControl>
                     </Grid>
                   </Grid>
@@ -140,28 +129,25 @@ const ParcelTransfer = () => {
               <div className={classes.buttons}>
                 {isCorrectAddress === true ? (
                   <ActionButton
-                    color="light"
+                    color='light'
                     className={classes.bidchange}
-                    onClick={handleTransferOrder}
-                  >
+                    onClick={handleTransferOrder}>
                     {t("Transfer")} &nbsp;
-                    <img src={raiseicon} alt="raiseicon" />
+                    <img src={raiseicon} alt='raiseicon' />
                   </ActionButton>
                 ) : (
                   <ActionButton
                     disabled
-                    color="light"
-                    className={classes.bidchange}
-                  >
+                    color='light'
+                    className={classes.bidchange}>
                     {t("Transfer")} &nbsp;
-                    <img src={raiseicon} alt="raiseicon" />
+                    <img src={raiseicon} alt='raiseicon' />
                   </ActionButton>
                 )}
                 <ActionButton
-                  color="dark"
+                  color='dark'
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}
-                >
+                  onClick={() => navigate(-1)}>
                   {t("Cancel")}
                 </ActionButton>
               </div>

@@ -33,10 +33,6 @@ import {
   MarketplaceAbi,
 } from "../../../../config/contracts/MarketPlaceContract";
 import {
-  SpaceProxyAddress,
-  SpaceRegistryAbi,
-} from "../../../../config/contracts/SpaceRegistryContract";
-import {
   EstateRegistryAbi,
   EstateProxyAddress,
 } from "../../../../config/contracts/EstateRegitryContract";
@@ -105,7 +101,6 @@ const EstateSell = () => {
       MarketplaceAbi,
       signer
     );
-    console.log(contractaddress, estateid, price, timeStamp);
 
     estateRegistryContract = generateContractInstance(
       EstateProxyAddress,
@@ -160,8 +155,7 @@ const EstateSell = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt="token"
-                ></img>
+                  alt='token'></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -179,11 +173,11 @@ const EstateSell = () => {
                       </div>
                       <FormControl>
                         <StyledInput
-                          placeholder="0"
+                          placeholder='0'
                           onChange={handleChange}
                           startAdornment={
-                            <InputAdornment position="start">
-                              <img src={settingicon} />
+                            <InputAdornment position='start'>
+                              <img src={settingicon} alt='settingIcon' />
                             </InputAdornment>
                           }
                         />
@@ -197,15 +191,17 @@ const EstateSell = () => {
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                           <KeyboardDatePicker
                             className={classes.datePicker}
-                            format="MM/dd/yyyy"
-                            margin="normal"
-                            id="date-picker-dialog"
+                            format='MM/dd/yyyy'
+                            margin='normal'
+                            id='date-picker-dialog'
                             value={selectedDate}
                             onChange={handleDateChange}
                             KeyboardButtonProps={{
                               "aria-label": "change date",
                             }}
-                            keyboardIcon={<img src={calendar_icon} />}
+                            keyboardIcon={
+                              <img src={calendar_icon} alt='calendarIcon' />
+                            }
                           />
                         </MuiPickersUtilsProvider>
                       </FormControl>
@@ -217,18 +213,16 @@ const EstateSell = () => {
               {/* buttons */}
               <div className={classes.buttons}>
                 <ActionButton
-                  color="light"
+                  color='light'
                   className={classes.bidchange}
-                  onClick={handleSell}
-                >
+                  onClick={handleSell}>
                   {t("Sell")}
-                  <CallMadeIcon fontSize="small" />
+                  <CallMadeIcon fontSize='small' />
                 </ActionButton>
                 <ActionButton
-                  color="dark"
+                  color='dark'
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}
-                >
+                  onClick={() => navigate(-1)}>
                   {t("Cancel")}
                 </ActionButton>
               </div>

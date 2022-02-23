@@ -10,6 +10,7 @@ import { useAppSelector } from "../../../store/hooks";
 import {
   getParcelsByOwnerAstokenId,
   getSendBidByOwner,
+  getEstatesByOwner,
 } from "../../../hooks/api";
 import {
   BidContractAddress,
@@ -20,6 +21,7 @@ import {
   generateSigner,
 } from "../../../common/contract";
 import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
+import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
 
 declare var window: any;
 var signer: any, bidContract: any;
@@ -47,18 +49,38 @@ export default function AllBids() {
 
   useEffect(() => {
     getParcelsByOwnerAstokenId(loginAddress).then((parcels: any[]) => {
-      getAllBids(parcels);
+      getAllParcelsBids(parcels);
     });
     getSendBidByOwner(loginAddress).then((send: any[]) => {
       setSendBidData(send);
     });
-  }, []);
+    getEstatesByOwner(loginAddress).then((estates: any[])=> {
+      getAllEstatesBids(estates)
+    })
+  }, [loginAddress]);
 
-  const getAllBids = async (parcels: any) => {
+  const getAllEstatesBids = async (estates:any) => {
+    let estatesLength = estates?.length;
+    let bidCounterPromises = [];
+    let bidCounters = [];
+    // let bidPromises = [];
+    // let tokenId = [];
+
+    for (let i = 0; i < estatesLength; i++) {
+      bidCounterPromises.push(
+        bidContract.bidCounterByToken(EstateProxyAddress, estates[i].toString())
+      );
+    }
+    bidCounters = await Promise.all(bidCounterPromises);
+    console.log(bidCounters)
+  }
+
+  const getAllParcelsBids = async (parcels: any) => {
     let parcelsLength = parcels?.length;
     let bidCounterPromises = [];
     let bidCounters = [];
     let bidPromises = [];
+    let tokenId = [];
 
     for (let i = 0; i < parcelsLength; i++) {
       bidCounterPromises.push(
@@ -78,6 +100,7 @@ export default function AllBids() {
               j
             )
           );
+          tokenId.push(parcels[i].toString())
         }
       } else {
         continue;
@@ -85,12 +108,13 @@ export default function AllBids() {
     }
 
     let allReceivedBids =await Promise.all(bidPromises)
-    setReceiveBidData(allReceivedBids);
+
+    setReceiveBidData({data:allReceivedBids, tokenId : tokenId});
   };
 
   //-----------------------receive bid list function -----------------------------
 
-  var countReceive = receiveBidData?.length;
+  var countReceive = receiveBidData?.data.length;
   var totalReceivePage = Math.ceil(countReceive / onePageCount);
 
   const receivepgnum = (value: number) => {

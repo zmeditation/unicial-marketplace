@@ -164,6 +164,7 @@ export default function SignIn() {
             <a
               href="https://metamask.io/"
               target="_blank"
+              rel="noreferrer"
               className={classes.browserLink}
             >
               {t("MetaMask")}
