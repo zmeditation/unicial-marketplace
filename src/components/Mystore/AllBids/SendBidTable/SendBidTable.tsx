@@ -45,7 +45,9 @@ const SendBidTable = ({
   const classes = useStyles();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const [bidStatus, setBidStatus] = useState<any>({status: "",index: null})
+  const [bidStatus, setBidStatus] = useState<any>({ status: "", index: null });
+
+  const [nowDate] = useState(new Date());
   const [copyAddress, setcopyAddress] = useState<any>({
     status: false,
     index: null,
@@ -63,9 +65,7 @@ const SendBidTable = ({
     signer
   );
 
-  useEffect(()=> {
-
-  },[rows])
+  useEffect(() => {}, [rows]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -112,7 +112,13 @@ const SendBidTable = ({
               className={clsx(classes.tableCell, classes.tokenAddress)}
               onClick={() => handleCopyAddress(row.tokenAddress, key)}>
               {row.tokenAddress.slice(0, showMoreCount)}... &nbsp;
-              {row.tokenAddress.toLowerCase() === SpaceProxyAddress.toLowerCase() ? <span>(space)</span>: <span>(others)</span>} &nbsp;
+              {row.tokenAddress.toLowerCase() ===
+              SpaceProxyAddress.toLowerCase() ? (
+                <span>(space)</span>
+              ) : (
+                <span>(others)</span>
+              )}{" "}
+              &nbsp;
               {copyAddress.status && copyAddress.index === key ? (
                 <i className='fa fa-check-circle mr-1'></i>
               ) : (
@@ -141,13 +147,31 @@ const SendBidTable = ({
               {dateConvert(row.expiresAt)}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-              {row.bidStatus === ""}
-              <ActionButton
-                color='dark'
-                className={classes.actionBtn}
-                onClick={() => handleCancelBid(key)}>
-                {t("Cancel")}
-              </ActionButton>
+              {row.bidStatus === "active" &&
+              row.expiresAt < Math.round(nowDate.getTime() / 1000) ? (
+                <Tag color='CommonColor' letter='Expried' />
+              ) : row.bidStatus === "cancel" ? (
+                <ActionButton
+                  color='dark'
+                  className={classes.actionBtn}
+                  disabled>
+                  {t("Canceled")}
+                </ActionButton>
+              ) : row.bidStatus === "success" ? (
+                <ActionButton
+                  color='light'
+                  className={classes.actionBtn}
+                  disabled>
+                  {t("Accepted")}
+                </ActionButton>
+              ) : (
+                <ActionButton
+                  color='dark'
+                  className={classes.actionBtn}
+                  onClick={() => handleCancelBid(key)}>
+                  {t("Cancel")}
+                </ActionButton>
+              )}
             </TableCell>
           </TableRow>
         ))
