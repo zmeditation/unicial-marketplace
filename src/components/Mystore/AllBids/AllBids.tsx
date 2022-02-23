@@ -57,14 +57,14 @@ export default function AllBids() {
     getEstatesByOwner(loginAddress).then((estates: any[])=> {
       getAllEstatesBids(estates)
     })
-  }, []);
+  }, [loginAddress]);
 
   const getAllEstatesBids = async (estates:any) => {
     let estatesLength = estates?.length;
     let bidCounterPromises = [];
     let bidCounters = [];
-    let bidPromises = [];
-    let tokenId = [];
+    // let bidPromises = [];
+    // let tokenId = [];
 
     for (let i = 0; i < estatesLength; i++) {
       bidCounterPromises.push(
@@ -72,6 +72,7 @@ export default function AllBids() {
       );
     }
     bidCounters = await Promise.all(bidCounterPromises);
+    console.log(bidCounters)
   }
 
   const getAllParcelsBids = async (parcels: any) => {

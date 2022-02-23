@@ -49,6 +49,7 @@ export default function LandParcels() {
 
   useEffect(() => {
     getResult();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   const handleShowBtn = () => {

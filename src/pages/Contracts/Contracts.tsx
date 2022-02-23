@@ -104,6 +104,7 @@ const Contract = () => {
       }
     });
     setEstate(estateArray);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [saleParcels, tiles, tokensid]);
 
   const handleResize = () => {
