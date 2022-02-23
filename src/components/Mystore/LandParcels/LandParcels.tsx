@@ -32,7 +32,6 @@ export default function LandParcels() {
 
   const getResult = async () => {
     await getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
-      console.log("parcels", parcels);
       if (
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "true"
@@ -44,7 +43,6 @@ export default function LandParcels() {
         setResultParcels(parcels);
         // alert("okdes");
       }
-      console.log("resultparcels lenth", resultParcels);
     });
   };
 

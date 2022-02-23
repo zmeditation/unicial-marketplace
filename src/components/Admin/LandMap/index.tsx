@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Atlas, Layer } from "../../Atlas/Atlas";
 import { Tile } from "../../Atlas/Atlas.types";
 import Popup from "../../Atlas/Popup";
-import { fetchTiles } from "../../../hooks/tiles";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { selectparcels } from "../../../store/selectedparcels/selectors";
 import { getparcels } from "../../../store/selectedparcels";

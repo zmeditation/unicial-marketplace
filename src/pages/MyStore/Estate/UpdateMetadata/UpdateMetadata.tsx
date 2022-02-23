@@ -9,16 +9,13 @@ import NeedSignIn from "../../../NeedSignIn";
 import { useStyles, StyledInput } from "./UpdateMetadataStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../../../store/hooks";
-import { selectestates } from "../../../../store/selectedestates/selectors";
 
 const UpdateMetadata = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const estates = useAppSelector(selectestates);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [, setName] = useState("");
+  const [, setDescription] = useState("");
 
   var isSignIn = 1;
 

@@ -23,6 +23,7 @@ import {
 } from "../../../../config/contracts/SpaceRegistryContract";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
+import { BidContractAddress } from "../../../../config/contracts/BidContract";
 
 declare var window: any;
 var signer: any, spaceRegistryContract: any;
@@ -82,8 +83,8 @@ const ReceiveBidTable = ({
     );
 
     let receiveTx = await spaceRegistryContract[
-      "safeTransferFrom(address,address,uint256)"
-    ](loginAddress, rows[key][1], BigNumber.from(rows[key][0]));
+      "safeTransferFrom(address,address,uint256,bytes)"
+    ](loginAddress, BidContractAddress , BigNumber.from(rows.tokenId[key]), "");
 
     await receiveTx.wait();
     dispatch(
@@ -96,7 +97,7 @@ const ReceiveBidTable = ({
 
   const tableRows =
     rows !== undefined ? (
-      rows
+      rows.data
         .slice((curPage - 1) * onePageCount, curPage * onePageCount)
         .map((row: any, key: any) => (
           <TableRow

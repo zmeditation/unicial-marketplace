@@ -11,25 +11,9 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
 import { selectestates } from "../../../../store/selectedestates/selectors";
-import {
-  generateContractInstance,
-  generateSigner,
-} from "../../../../common/contract";
-import {
-  MarketplaceAddress,
-  MarketplaceAbi,
-} from "../../../../config/contracts/MarketPlaceContract";
-
-import {
-  SpaceProxyAddress,
-  SpaceRegistryAbi,
-} from "../../../../config/contracts/SpaceRegistryContract";
 import { showAlert } from "../../../../store/alert";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
-import { BigNumber } from "ethers";
 import { createEstateWithMetaData } from "./../../../../../src/hooks/InteractLand";
-declare var window: any;
-var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 
 const CreateEstate = () => {
   const classes = useStyles();
@@ -97,25 +81,6 @@ const CreateEstate = () => {
         })
       );
     }
-    // signer = generateSigner(window.ethereum);
-    // marketplaceContract = generateContractInstance(
-    //   MarketplaceAddress,
-    //   MarketplaceAbi,
-    //   signer
-    // );
-    // spaceRegistryContract = generateContractInstance(
-    //   SpaceProxyAddress,
-    //   SpaceRegistryAbi,
-    //   signer
-    // );
-
-    // let createEstateOrderTx = await spaceRegistryContract.createEstate(
-    //   bid.xs,
-    //   bid.ys,
-    //   customerAddress
-    // );
-
-    // await createEstateOrderTx.wait();
 
     await createEstateWithMetaData(bid.xs, bid.ys, beneficiary, bid.metadata);
     dispatch(
@@ -142,7 +107,6 @@ const CreateEstate = () => {
     data.metadata = name + "," + description;
     setBid(data);
   };
-  console.log("bid##beneficiary", bid.xs);
 
   useEffect(() => {
     if (estates.length === 0) {

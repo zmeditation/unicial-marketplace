@@ -12,12 +12,15 @@ import { getParcelsByOwnerAsCoords } from "../../../../hooks/api";
 import { dateConvert } from "../../../../common/utils";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectLoginAddress } from "../../../../store/auth/selectors";
 
 const ParcelDetail = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const emptyTokens: any[] = [];
+  const loginAddress = useAppSelector(selectLoginAddress);
   const { contractaddress, tokensid } = useParams();
   const [ownParcels, setOwnParcels] = useState(emptyTokens);
   const [count, setCount] = useState(showMoreCount);
@@ -25,16 +28,14 @@ const ParcelDetail = () => {
   const [showLessBtn, setShowLessBtn] = useState(false);
 
   useEffect(() => {
-    getParcelsByOwnerAsCoords(
-      "0x8734CB972d36a740Cc983d5515e160C373A4a016"
-    ).then((parcels) => {
+    getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
       setOwnParcels(parcels);
+      if (parcels && parcels?.length <= showMoreCount) {
+        setShowMoreBtn(false);
+        setShowLessBtn(false);
+      }
     });
-    if (ownParcels && ownParcels?.length <= showMoreCount) {
-      setShowMoreBtn(false);
-      setShowLessBtn(false);
-    }
-  }, []);
+  }, [loginAddress]);
 
   const handleShowBtn = () => {
     setCount(count + showMoreCount);
@@ -59,9 +60,8 @@ const ParcelDetail = () => {
             <div className={classes.imgContent}>
               <img
                 src={TokenImg}
-                className={classes.tokenImg}
-                alt="token"
-              ></img>
+              className={classes.tokenImg}
+                alt='token'></img>
             </div>
           </div>
 
@@ -69,34 +69,31 @@ const ParcelDetail = () => {
             <div className={classes.title}>{t("Parcel detail")}</div>
             <div className={classes.buttons}>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${tokensid}/sell`
                   )
-                }
-              >
+                }>
                 {t("Sell")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${tokensid}/transfer`
                   )
-                }
-              >
+                }>
                 {t("Transfer")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
               <ActionButton
-                color="dark"
+                color='dark'
                 className={classes.cancelchange}
-                onClick={() => navigate(-1)}
-              >
+                onClick={() => navigate(-1)}>
                 {t("Cancel")}
               </ActionButton>
             </div>
@@ -117,8 +114,7 @@ const ParcelDetail = () => {
               showMoreBtn === true
                 ? classes.showmoreContent
                 : classes.displayNone
-            }
-          >
+            }>
             <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
           </div>
           <div
@@ -126,8 +122,7 @@ const ParcelDetail = () => {
               showLessBtn === true
                 ? classes.showmoreContent
                 : classes.displayNone
-            }
-          >
+            }>
             <ShowMoreLessBtn
               letter={t("Show Less")}
               onClick={handleShowLessBtn}

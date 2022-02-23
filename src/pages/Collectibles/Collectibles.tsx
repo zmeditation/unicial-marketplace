@@ -7,16 +7,12 @@ import NoResult from "../../components/NoResult/NoResult";
 
 import Grid from "@material-ui/core/Grid";
 import { ShowMoreLessBtn } from "../../components/ShowMoreLessBtn/ShowMoreLessBtn";
-import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation } from "react-router";
 import React, { useEffect } from "react";
 
 export default function Collectibles() {
   const classes = CollectiblesStyle();
-  const { t } = useTranslation();
-  //
   const location = useLocation();
-  const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
   var category = query.get("section");
   const [rightPartIndex, setrightPartIndex] = React.useState("");
@@ -29,7 +25,7 @@ export default function Collectibles() {
         setrightPartIndex("");
         break;
     }
-  });
+  }, [category]);
   return (
     <>
       <TopTab />
@@ -47,68 +43,66 @@ export default function Collectibles() {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} md={4}>
                   <ProductCard
-                    tagColor="EpicColor"
-                    tagLetter="EPIC"
-                    productName="Pussy Hair"
-                    category="Polygon"
+                    tagColor='EpicColor'
+                    tagLetter='EPIC'
+                    productName='Pussy Hair'
+                    category='Polygon'
                     price={1259}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                   <ProductCard
-                    tagColor="EpicColor"
-                    tagLetter="EPIC"
-                    productName="Pussy Hair"
-                    category="Polygon"
+                    tagColor='EpicColor'
+                    tagLetter='EPIC'
+                    productName='Pussy Hair'
+                    category='Polygon'
                     price={1259}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                   <ProductCard
-                    tagColor="EpicColor"
-                    tagLetter="EPIC"
-                    productName="Pussy Hair"
-                    category="Polygon"
+                    tagColor='EpicColor'
+                    tagLetter='EPIC'
+                    productName='Pussy Hair'
+                    category='Polygon'
                     price={1259}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                   <ProductCard
-                    tagColor="EpicColor"
-                    tagLetter="EPIC"
-                    productName="Pussy Hair"
-                    category="Polygon"
+                    tagColor='EpicColor'
+                    tagLetter='EPIC'
+                    productName='Pussy Hair'
+                    category='Polygon'
                     price={1259}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                   <ProductCard
-                    tagColor="EpicColor"
-                    tagLetter="EPIC"
-                    productName="Pussy Hair"
-                    category="Polygon"
+                    tagColor='EpicColor'
+                    tagLetter='EPIC'
+                    productName='Pussy Hair'
+                    category='Polygon'
                     price={1259}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                   <ProductCard
-                    tagColor="EpicColor"
-                    tagLetter="EPIC"
-                    productName="Pussy Hair"
-                    category="Polygon"
+                    tagColor='EpicColor'
+                    tagLetter='EPIC'
+                    productName='Pussy Hair'
+                    category='Polygon'
                     price={1259}
                   />
                 </Grid>
               </Grid>
               <div className={classes.showmoreContent}>
-                <ShowMoreLessBtn letter="Show More" />
+                <ShowMoreLessBtn letter='Show More' />
               </div>
             </>
           ) : (
             <NoResult />
           )}
-
-          {/* <NoResult/> */}
         </div>
       </div>
     </>

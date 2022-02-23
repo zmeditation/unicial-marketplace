@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { useNavigate } from "react-router-dom";
 import LandMap from "../../components/LandMap";
 import Title from "../../components/ContractInfo/Title";
 import Owner from "../../components/ContractInfo/Owner";
@@ -36,8 +35,7 @@ var signer: any, bidContract: any;
 
 const Contract = () => {
   const classes = useStyles();
-  const { contractaddress, tokensid } = useParams();
-  const navigate = useNavigate();
+  const { contractaddress, tokensid} = useParams();
   const [width, setWidth] = useState(0);
   const { t } = useTranslation();
   const [itemInSale, setItemInSale] = useState<any>();
@@ -101,6 +99,7 @@ const Contract = () => {
 
   useEffect(() => {
     getAllBids();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contractaddress, tokensid]);
 
   const getAllBids = async () => {

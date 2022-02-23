@@ -24,7 +24,6 @@ export default function EstatesSelect() {
   const estates = useAppSelector(selectestates);
   const { t } = useTranslation();
   const [width, setWidth] = useState(0);
-  const [result, setResult] = useState(true);
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {

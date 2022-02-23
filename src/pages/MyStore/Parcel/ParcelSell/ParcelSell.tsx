@@ -39,7 +39,6 @@ import {
   SpaceRegistryAbi,
 } from "../../../../config/contracts/SpaceRegistryContract";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { time } from "console";
 
 declare var window: any;
 var signer: any, marketplaceContract: any, spaceRegistryContract: any;
@@ -223,7 +222,7 @@ const ParcelSell = () => {
                           onChange={(e) => handleChange(e)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <img src={settingicon} />
+                              <img src={settingicon} alt="settingIcon"/>
                             </InputAdornment>
                           }
                         />
@@ -245,7 +244,7 @@ const ParcelSell = () => {
                             KeyboardButtonProps={{
                               "aria-label": "change date",
                             }}
-                            keyboardIcon={<img src={calendar_icon} />}
+                            keyboardIcon={<img src={calendar_icon} alt="calendarIcon"/>}
                           />
                         </MuiPickersUtilsProvider>
                       </FormControl>

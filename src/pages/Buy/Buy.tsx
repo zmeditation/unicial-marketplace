@@ -109,7 +109,6 @@ const Buy = () => {
       loginAddress,
       MarketplaceAddress
     );
-    console.log("current allowance", allowance.toString());
     setUccAllowance(allowance);
   };
 
