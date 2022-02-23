@@ -43,6 +43,7 @@ export const OwnerDetailStyle = makeStyles((theme: Theme) =>
     backBtn: {
       position: "absolute",
       top: "32px",
+      zIndex: 99,
     },
     mainbodyRoot: {
       minHeight: "calc(100vh - 246px)",

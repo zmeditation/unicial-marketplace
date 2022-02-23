@@ -1,21 +1,36 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import FormControl from "@material-ui/core/FormControl";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import { useNavigate, useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
 import NeedSignIn from "../../../NeedSignIn";
 import { useStyles, StyledInput } from "./UpdateMetadataStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
-import { useTranslation } from "react-i18next";
-
+import { selectLoginAddress } from "../../../../store/auth/selectors";
+import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
+import { showAlert } from "../../../../store/alert";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import {
+  EstateProxyAddress,
+  EstateRegistryAbi,
+} from "../../../../config/contracts/EstateRegitryContract";
+import { MarketplaceAddress } from "../../../../config/contracts/MarketPlaceContract";
+declare var window: any;
 const UpdateMetadata = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [, setName] = useState("");
-  const [, setDescription] = useState("");
+  const dispatch = useAppDispatch();
+  const { estateid } = useParams();
+  const loginAddress = useAppSelector(selectLoginAddress);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   var isSignIn = 1;
 
@@ -26,7 +41,69 @@ const UpdateMetadata = () => {
     setDescription(e.target.value);
   };
 
-  const handleSubmitBtn = () => {};
+  const handleSubmitBtn = async () => {
+    if (loginAddress.length === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to connect Meta mask wallet.",
+          severity: "error",
+        })
+      );
+      navigate("/signin");
+      return;
+    }
+    if (description === "") {
+      dispatch(
+        showAlert({
+          message: "You have to write your estate description.",
+          severity: "error",
+        })
+      );
+      return;
+    }
+    if (name === "") {
+      dispatch(
+        showAlert({
+          message: "You have to write your estate name.",
+          severity: "error",
+        })
+      );
+      return;
+    }
+    var metaData = name + "," + description;
+    var signer = generateSigner(window.ethereum);
+    var estateRegistryContract = generateContractInstance(
+      EstateProxyAddress,
+      EstateRegistryAbi,
+      signer
+    );
+    if (
+      estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
+      estateRegistryContract.isApprovedForAll(loginAddress, estateid) === false
+    ) {
+      alert("test2");
+      let approveMarketTx = await estateRegistryContract.approve(
+        MarketplaceAddress,
+        estateid
+      );
+      await approveMarketTx.wait();
+      dispatch(
+        showAlert({
+          message:
+            "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+          severity: "success",
+        })
+      );
+    }
+    let updateMetaDataTx = await estateRegistryContract.updateMetadata(
+      estateid,
+      // metaData.toString()
+      "erere"
+    );
+    alert("test4");
+    await updateMetaDataTx.wait();
+    alert("transactio success");
+  };
 
   return (
     <div className={classes.root}>
@@ -40,7 +117,8 @@ const UpdateMetadata = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -62,7 +140,7 @@ const UpdateMetadata = () => {
                   </div>
                   <TextareaAutosize
                     className={classes.descriptionTextField}
-                    aria-label='maximum height'
+                    aria-label="maximum height"
                     placeholder={t("This is an estate")}
                     onChange={(e) => handleDescriptionChange(e)}
                   />
@@ -71,16 +149,18 @@ const UpdateMetadata = () => {
               </div>
               <div className={classes.buttons}>
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.bidchange}
-                  onClick={handleSubmitBtn}>
+                  onClick={handleSubmitBtn}
+                >
                   {t("SUBMIT")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate("/account/estate/create")}>
+                  onClick={() => navigate("/account/estate/create")}
+                >
                   {t("CANCEL")}
                 </ActionButton>
               </div>

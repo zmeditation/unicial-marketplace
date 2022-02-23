@@ -29,7 +29,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import ParcelDetail from "../../pages/MyStore/Parcel/ParcelDetail/ParcelDetail";
 import UpdateMetadata from "../../pages/MyStore/Estate/UpdateMetadata/UpdateMetadata";
-import UpdateManager from "../../pages/MyStore/Estate/UpdateManager/UpdateManager";
+import SettingManager from "../../pages/MyStore/Estate/SettingManager/SettingManager";
 import UpdateOperate from "../../pages/MyStore/Estate/UpdateOperate/UpdateOperate";
 import { setloginAddress, setlogoutAddress } from "../../store/auth";
 import { useAppDispatch } from "../../store/hooks";
@@ -72,9 +72,13 @@ export default function Layout() {
 
   const initSet = async () => {
     await dispatch(showSpinner(true));
-    let dispatchPromises = []
-    dispatchPromises.push(dispatch(setSaleParcels()), dispatch(setParcels()), dispatch(setBidContractinfo()))
-    await Promise.all(dispatchPromises)
+    let dispatchPromises = [];
+    dispatchPromises.push(
+      dispatch(setSaleParcels()),
+      dispatch(setParcels()),
+      dispatch(setBidContractinfo())
+    );
+    await Promise.all(dispatchPromises);
     await dispatch(showSpinner(false));
   };
 
@@ -141,8 +145,8 @@ export default function Layout() {
             element={<UpdateMetadata />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/estate_updatemanager"
-            element={<UpdateManager />}
+            path="/contracts/:contractaddress/tokens/:estateid/estate_settingmanager"
+            element={<SettingManager />}
           />
           <Route
             path="/contracts/:contractaddress/tokens/:estateid/estate_updateoperate"

@@ -10,9 +10,7 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import { dateConvert } from "../../../../common/utils";
 import BidDetail from "../../../../components/Mystore/BidDetail";
-import {
-  getEstatesByOwner,
-} from "../../../../hooks/api";
+import { getEstatesByOwner } from "../../../../hooks/api";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
@@ -141,11 +139,11 @@ const EstateDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/estate_updatemanager`
+                    `/contracts/${contractaddress}/tokens/${estateid}/estate_settingmanager`
                   )
                 }
               >
-                {t("Update Manager")}
+                {t("Setting Manager")}
                 <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
