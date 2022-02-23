@@ -2,7 +2,7 @@ import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import makeBlockie from "ethereum-blockies-base64";
 import { useTranslation } from "react-i18next";
-
+import { useLocation, useNavigate } from "react-router";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   title: {
@@ -47,16 +47,25 @@ interface OwnerProps {
 const Owner = ({ ownerAddress }: OwnerProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const handleOwnerAvatar = (address: any) => {
+    navigate(
+      `/accounts/${address}?assetType=nft&section=all&vendor=decentraland&page=1&sortBy=newest&onlyOnSale=false&viewAsGuest=false`
+    );
+  };
   return (
     <>
       <div>
         <div className={classes.title}>{t("Owner")}</div>
         <div className={classes.descript}>
-          <div className={classes.avatarContainer}>
+          <div
+            className={classes.avatarContainer}
+            onClick={() => handleOwnerAvatar(ownerAddress)}
+          >
             <img
               src={makeBlockie(ownerAddress)}
               className={classes.addressImg}
-              alt='A'
+              alt="A"
             />
           </div>
 

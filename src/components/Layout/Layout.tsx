@@ -22,6 +22,7 @@ import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 import ParcelSell from "../../pages/MyStore/Parcel/ParcelSell/ParcelSell";
 import ParcelTransfer from "../../pages/MyStore/Parcel/ParcelTransfer/ParcelTransfer";
 import Collectibles from "../../pages/Collectibles/Collectibles";
+import OwnerDetail from "../../pages/OwnerDetail/OwnerDetail";
 import ToLands from "./ToLands";
 import ToSignIn from "./ToSignIn";
 import { Theme, makeStyles } from "@material-ui/core/styles";
@@ -153,6 +154,7 @@ export default function Layout() {
           <Route path="/account" element={<ToSignIn />}>
             <Route path="/account" element={<MyStore />} />
           </Route>
+          <Route path="/accounts/:owneraddress" element={<OwnerDetail />} />
         </Routes>
         <Footer />
         <Notification />
