@@ -97,8 +97,6 @@ export default function OnSaleSwitch({ letter }: Props) {
 
   const query = new URLSearchParams(location.search);
 
-  console.log("current url : ", location.pathname)
-
   const handleRoute = (search: string) => {
     query.set("onlyOnSale", search);
     navigate({

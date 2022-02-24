@@ -40,7 +40,7 @@ export default function LandParcels() {
       } else {
         // alert("okdes");
         setResultParcels(
-          parcels.filter((el: any) => saleParcels[getCoords(el?.x, el?.y)])
+          parcels.filter((el: any) => saleParcels[getCoords(el[0], el[1])])
         );
       }
     });
