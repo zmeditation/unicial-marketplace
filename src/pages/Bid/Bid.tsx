@@ -216,7 +216,6 @@ const Bid = () => {
 
     if(contractaddress === SpaceProxyAddress){
       
-      console.log("parcels")
       bidOrderTx= await bidContract[
         "placeBid(address,uint256,uint256,uint256)"
       ](
@@ -234,7 +233,6 @@ const Bid = () => {
         await estateContract.getFingerprint(tokensid)
         );
         
-        console.log("estate fingerPrint: " ,fingerPrint)
       bidOrderTx= await bidContract[
         "placeBid(address,uint256,uint256,uint256,bytes)"
       ](
