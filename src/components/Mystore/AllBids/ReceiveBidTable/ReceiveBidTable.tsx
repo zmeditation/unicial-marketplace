@@ -116,7 +116,7 @@ const ReceiveBidTable = ({
             <TableCell
               className={clsx(classes.tableCell, classes.tokenAddress)}
               onClick={() => handleCopyAddress(row[0], key)}>
-              {row[0].slice(0, showMoreCount)}... (space)&nbsp;
+              {row[0].slice(0, showMoreCount)}... ({t("space")})&nbsp;
               {copyAddress.status && copyAddress.index === key ? (
                 <i className='fa fa-check-circle mr-1'></i>
               ) : (
@@ -170,7 +170,7 @@ const ReceiveBidTable = ({
             <TableCell
               className={clsx(classes.tableCell, classes.tokenAddress)}
               onClick={() => handleCopyAddress(row[0], key)}>
-              {row[0].slice(0, showMoreCount)}... (estate)&nbsp;
+              {row[0].slice(0, showMoreCount)}... ({t("estate")})&nbsp;
               {copyAddress.status && copyAddress.index === key ? (
                 <i className='fa fa-check-circle mr-1'></i>
               ) : (

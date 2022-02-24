@@ -46,7 +46,6 @@ const SendBidTable = ({
   const classes = useStyles();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const [bidStatus, setBidStatus] = useState<any>({ status: "", index: null });
 
   const [nowDate] = useState(new Date());
   const [copyAddress, setcopyAddress] = useState<any>({
@@ -115,12 +114,12 @@ const SendBidTable = ({
               {row.tokenAddress.slice(0, showMoreCount)}...&nbsp;
               {row.tokenAddress.toLowerCase() ===
               SpaceProxyAddress.toLowerCase() ? (
-                <span>(space)</span>
+                <span>({t("space")})</span>
               ) : row.tokenAddress.toLowerCase() ===
                 EstateProxyAddress.toLowerCase() ? (
-                <span>(estate)</span>
+                <span>({t("estate")})</span>
               ) : (
-                <span>(others)</span>
+                <span>({t("others")})</span>
               )}{" "}
               &nbsp;
               {copyAddress.status && copyAddress.index === key ? (
