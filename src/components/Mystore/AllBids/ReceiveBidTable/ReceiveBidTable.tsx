@@ -167,7 +167,13 @@ const ReceiveBidTable = ({
               )}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-              {<img src={normalshapeSvg} className={classes.normalshape} />}
+              {
+                <img
+                  src={normalshapeSvg}
+                  className={classes.normalshape}
+                  alt='normalshape'
+                />
+              }
               {<div>{addCommas(ethers.utils.formatUnits(row[2], 18))}</div>}
             </TableCell>
             <TableCell className={clsx(classes.tableCell)}>
@@ -221,7 +227,13 @@ const ReceiveBidTable = ({
               )}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-              {<img src={normalshapeSvg} className={classes.normalshape} />}
+              {
+                <img
+                  src={normalshapeSvg}
+                  className={classes.normalshape}
+                  alt='normalShape'
+                />
+              }
               {<div>{addCommas(ethers.utils.formatUnits(row[2], 18))}</div>}
             </TableCell>
             <TableCell className={clsx(classes.tableCell)}>

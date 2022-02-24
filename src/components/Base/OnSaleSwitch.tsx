@@ -6,7 +6,7 @@ import {
   withStyles,
 } from "@material-ui/core/styles";
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -97,6 +97,7 @@ export default function OnSaleSwitch({ letter }: Props) {
 
   const query = new URLSearchParams(location.search);
 
+  console.log("current url : ", location.pathname)
 
   const handleRoute = (search: string) => {
     query.set("onlyOnSale", search);
@@ -105,11 +106,17 @@ export default function OnSaleSwitch({ letter }: Props) {
       search: query.toString(),
     });
   };
+   useEffect(()=>{
+     if (location.pathname === "/account"){
+       setSwitchStatus(false)
+     }
+   },[])
 
   const handleChange = () => {
     handleRoute((!switchStatus).toString())
     setSwitchStatus(!switchStatus);
   };
+  
   return (
     <div className={classes.OnSaleSwicthRoot}>
       <StyledFormControlLabel

@@ -34,14 +34,14 @@ export default function LandParcels() {
     await getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
       if (
         query.get("onlyOnSale") === null ||
-        query.get("onlyOnSale") === "true"
+        query.get("onlyOnSale") === "false"
       ) {
+        setResultParcels(parcels);
+      } else {
+        // alert("okdes");
         setResultParcels(
           parcels.filter((el: any) => saleParcels[getCoords(el?.x, el?.y)])
         );
-      } else {
-        setResultParcels(parcels);
-        // alert("okdes");
       }
     });
     

@@ -41,7 +41,6 @@ const Buy = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  var isSignIn = 1;
   const dispatch = useAppDispatch();
   const saleParcels: any = useAppSelector(selectSaleParcels);
   const loginAddress: any = useAppSelector(selectLoginAddress);

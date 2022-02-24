@@ -146,7 +146,7 @@ const SendBidTable = ({
               )}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-              {<img src={normalshapeSvg} className={classes.normalshape} />}
+              {<img src={normalshapeSvg} className={classes.normalshape} alt="normalshape"/>}
               {<div>{addCommas(ethers.utils.formatUnits(row.price, 18))}</div>}
             </TableCell>
             <TableCell className={clsx(classes.tableCell)}>
