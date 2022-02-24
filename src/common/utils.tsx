@@ -14,7 +14,7 @@ export const dateConvert = (timeStamp: any) => {
   return (
     time.getFullYear() +
     "-" +
-    time.getMonth() +
+    (time.getMonth()+1) +
     "-" +
     time.getDate() +
     " " +
