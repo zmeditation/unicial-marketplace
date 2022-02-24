@@ -69,6 +69,8 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       flexFlow: "row wrap",
       justifyContent: "center",
       marginTop: "2px",
+      position: "relative",
+      zIndex: 99,
       [theme.breakpoints.down(769)]: {
         marginLeft: "8px",
       },

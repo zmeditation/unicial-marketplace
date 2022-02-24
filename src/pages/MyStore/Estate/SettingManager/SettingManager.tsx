@@ -1,23 +1,47 @@
-import { useNavigate } from "react-router";
 import FormControl from "@material-ui/core/FormControl";
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
 import NeedSignIn from "../../../NeedSignIn";
-import { useStyles, StyledInput } from "./UpdateManagerStyle";
+import { useStyles, StyledInput } from "./SettingManagerStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import raiseicon from "../../../../assets/svg/bid_raiseicon.svg";
 import { Grid } from "@material-ui/core";
 
 import { useTranslation } from "react-i18next";
+import { useAppDispatch } from "../../../../store/hooks";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
+import { BigNumber, ethers } from "ethers";
 
-const UpdateManager = () => {
+const SettingManager = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [managerAddress, setManagerAddress] = useState("");
+  const dispatch = useAppDispatch();
+  const { estateid } = useParams();
 
   var isSignIn = 1;
+  const [isCorrectAddress, setIsCorrectAddress] = useState(false);
+  const isAddress = (address: string) => {
+    try {
+      ethers.utils.getAddress(address);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  };
 
-  const handleChange = () => {};
+  const handleChange = (e: any) => {
+    setManagerAddress(e.target.value);
+  };
+
+  useEffect(() => {
+    let result = isAddress(managerAddress);
+    result === true ? setIsCorrectAddress(true) : setIsCorrectAddress(false);
+  }, [managerAddress]);
+
+  const handleTransferOrder = async () => {};
 
   return (
     <div className={classes.root}>
@@ -30,7 +54,8 @@ const UpdateManager = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -46,7 +71,7 @@ const UpdateManager = () => {
                         {t("RECEPIENT ADDRESS")}
                       </div>
                       <FormControl>
-                        <StyledInput placeholder='0x' onChange={handleChange} />
+                        <StyledInput placeholder="0x" onChange={handleChange} />
                       </FormControl>
                     </Grid>
                   </Grid>
@@ -55,22 +80,36 @@ const UpdateManager = () => {
               </div>
               {/* buttons */}
               <div className={classes.buttons}>
+                {isCorrectAddress === true ? (
+                  <ActionButton
+                    color="light"
+                    className={classes.bidchange}
+                    onClick={handleTransferOrder}
+                  >
+                    {t("Transfer")} &nbsp;
+                    <img src={raiseicon} alt="raiseicon" />
+                  </ActionButton>
+                ) : (
+                  <ActionButton
+                    disabled
+                    color="light"
+                    className={classes.bidchange}
+                  >
+                    {t("Transfer")} &nbsp;
+                    <img src={raiseicon} alt="raiseicon" />
+                  </ActionButton>
+                )}
                 <ActionButton
-                  disabled
-                  color='light'
-                  className={classes.bidchange}>
-                  {t("Transfer")} &nbsp;
-                  <img src={raiseicon} alt='raiseicon' />
-                </ActionButton>
-                <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
+                  onClick={() => navigate(-1)}
+                >
                   {t("Cancel")}
                 </ActionButton>
               </div>
             </div>
           </div>
+          {/* <div className={classes.updateManagerRoot}></div> */}
         </div>
       ) : (
         <NeedSignIn />
@@ -79,4 +118,4 @@ const UpdateManager = () => {
   );
 };
 
-export default UpdateManager;
+export default SettingManager;
