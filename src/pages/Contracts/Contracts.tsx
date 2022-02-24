@@ -61,22 +61,12 @@ const Contract = () => {
     let estateArray: any = [];
     Object.keys(saleParcels).forEach((index: any) => {
       const saleParcel = saleParcels[index];
-      if (
-        saleParcel.assetId === tokensid &&
-        contractaddress === SpaceProxyAddress
-      ) {
-        setSaleId(saleParcel.assertId);
-        setSalePrice(saleParcel.priceInWei);
-      }
-
-      if (
-        saleParcel.assertId === tokensid &&
-        contractaddress === EstateProxyAddress
-      ) {
-        setSaleId(saleParcel.assertId);
+      if (saleParcel.assetId === tokensid) {
+        setSaleId(saleParcel.assetId);
         setSalePrice(saleParcel.priceInWei);
       }
     });
+
     Object.keys(tiles).forEach((index: any) => {
       const allParcel = tiles[index];
       if (
