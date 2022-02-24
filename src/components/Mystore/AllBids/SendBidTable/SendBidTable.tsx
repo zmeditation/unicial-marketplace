@@ -23,6 +23,7 @@ import {
   generateSigner,
 } from "../../../../common/contract";
 import { SpaceProxyAddress } from "../../../../config/contracts/SpaceRegistryContract";
+import { EstateProxyAddress } from "../../../../config/contracts/EstateRegitryContract";
 
 declare var window: any;
 var signer: any, bidContract: any;
@@ -111,10 +112,13 @@ const SendBidTable = ({
             <TableCell
               className={clsx(classes.tableCell, classes.tokenAddress)}
               onClick={() => handleCopyAddress(row.tokenAddress, key)}>
-              {row.tokenAddress.slice(0, showMoreCount)}... &nbsp;
+              {row.tokenAddress.slice(0, showMoreCount)}...&nbsp;
               {row.tokenAddress.toLowerCase() ===
               SpaceProxyAddress.toLowerCase() ? (
                 <span>(space)</span>
+              ) : row.tokenAddress.toLowerCase() ===
+                EstateProxyAddress.toLowerCase() ? (
+                <span>(estate)</span>
               ) : (
                 <span>(others)</span>
               )}{" "}
@@ -130,7 +134,10 @@ const SendBidTable = ({
             <TableCell
               className={clsx(classes.tableCell, classes.tokenId)}
               onClick={() => handleCopyTokenId(row.tokenId, key)}>
-              {row.tokenId.slice(0, showMoreCount)}... &nbsp;
+              {row.tokenId.slice(0, showMoreCount)}
+              {row.tokenAddress.toLowerCase() !==
+                EstateProxyAddress.toLowerCase() && <span>...</span>}{" "}
+              &nbsp;
               {copyTokenId.status && copyTokenId.index === key ? (
                 <i className='fa fa-check-circle mr-1'></i>
               ) : (
@@ -180,7 +187,7 @@ const SendBidTable = ({
     );
   return (
     <>
-      <StageMarket columns={columns} rows={tableRows} />
+      <StageMarket columns={columns} parcelRows={tableRows} />
     </>
   );
 };

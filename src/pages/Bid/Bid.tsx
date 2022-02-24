@@ -36,10 +36,10 @@ import {
 } from "../../config/contracts/UnicialCashToken";
 import { parcels } from "../../store/parcels/selectors";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
-import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
+import { EstateProxyAddress, EstateRegistryAbi } from "../../config/contracts/EstateRegitryContract";
 
 declare var window: any;
-var signer: any, bidContract: any, uccContract: any;
+var signer: any, bidContract: any, uccContract: any, estateContract: any;
 
 const uccApprovalAmount = BigNumber.from(
   "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
@@ -77,6 +77,12 @@ const Bid = () => {
     BidContractAbi,
     signer
   );
+
+  estateContract = generateContractInstance(
+    EstateProxyAddress,
+    EstateRegistryAbi,
+    signer
+  )
 
   const initAllowance = async () => {
     let allowance = await uccContract.allowance(
@@ -194,15 +200,38 @@ const Bid = () => {
       return;
     }
 
-    let bidOrderTx = await bidContract[
-      "placeBid(address,uint256,uint256,uint256)"
-    ](
-      contractaddress,
-      BigNumber.from(tokensid),
-      ethers.utils.parseEther(price.toString()), // price in wei
-      BigNumber.from(timeStamp),
-      { from: loginAddress } // expireAt to UTC timestamp
-    );
+    let bidOrderTx 
+
+    if(contractaddress === SpaceProxyAddress){
+      
+      bidOrderTx= await bidContract[
+        "placeBid(address,uint256,uint256,uint256)"
+      ](
+        contractaddress,
+        BigNumber.from(tokensid),
+        ethers.utils.parseEther(price.toString()), // price in wei
+        BigNumber.from(timeStamp),
+        { from: loginAddress } // expireAt to UTC timestamp
+      );
+    }
+    if (contractaddress === EstateProxyAddress){
+
+      let fingerPrint = (
+        await estateContract.getFingerprint(tokensid)
+      );
+
+      bidOrderTx= await bidContract[
+        "placeBid(address,uint256,uint256,uint256,bytes)"
+      ](
+        contractaddress,
+        BigNumber.from(tokensid),
+        ethers.utils.parseEther(price.toString()), // price in wei
+        BigNumber.from(timeStamp),
+        fingerPrint,
+        { from: loginAddress } // expireAt to UTC timestamp
+      );
+    }
+    
     await bidOrderTx.wait();
 
     dispatch(
