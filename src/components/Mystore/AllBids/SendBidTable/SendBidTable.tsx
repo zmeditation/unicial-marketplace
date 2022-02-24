@@ -155,21 +155,25 @@ const SendBidTable = ({
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               {row.bidStatus === "active" &&
               row.expiresAt < Math.round(nowDate.getTime() / 1000) ? (
-                <Tag color='CommonColor' letter='Expried' />
-              ) : row.bidStatus === "cancel" ? (
                 <ActionButton
                   color='dark'
                   className={classes.actionBtn}
                   disabled>
                   {t("Canceled")}
                 </ActionButton>
-              ) : row.bidStatus === "success" ? (
+              ) : row.bidStatus === "cancel" ? (
                 <ActionButton
                   color='light'
                   className={classes.actionBtn}
                   disabled>
                   {t("Accepted")}
                 </ActionButton>
+              ) : row.bidStatus === "success" ? (
+                <Tag
+                  color='RareColor'
+                  letter='Expried'
+                  className={classes.tags}
+                />
               ) : (
                 <ActionButton
                   color='dark'
