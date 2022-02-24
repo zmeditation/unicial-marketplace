@@ -45,17 +45,21 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
       setWidth(329);
       setHeight(265);
     } else if (window.innerWidth <= 767 && window.innerWidth > 500) {
-      setWidth(329);
-      setHeight(265);
+      setWidth(420);
+      setHeight(420);
     } else if (window.innerWidth <= 500) {
       setWidth(329);
-      setHeight(265);
+      setHeight(329);
     }
   };
 
   useEffect(() => {
     handleResize();
   }, []);
+  
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
 
   const isSaleParcel = useCallback(
     (x: number, y: number) => {
