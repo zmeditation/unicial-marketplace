@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useState, useEffect } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import ActionButton from "../../../../components/Base/ActionButton";
 import TokenImg from "../../../../assets/img/1.png";
@@ -7,17 +8,98 @@ import { useStyles, StyledInput } from "./UpdateOperateStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import raiseicon from "../../../../assets/svg/bid_raiseicon.svg";
 import { Grid } from "@material-ui/core";
-
 import { useTranslation } from "react-i18next";
+import { ethers } from "ethers";
+import { selectLoginAddress } from "./../../../../store/auth/selectors";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { showAlert } from "../../../../store/alert";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import {
+  EstateRegistryAbi,
+  EstateProxyAddress,
+} from "../../../../config/contracts/EstateRegitryContract";
+import { MarketplaceAddress } from "../../../../config/contracts/MarketPlaceContract";
 
+declare var window: any;
+
+var signer: any, estateRegistryContract: any;
 const UpdateOperator = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const { estateid } = useParams();
+  const loginAddress = useAppSelector(selectLoginAddress);
+  const [isCorrectAddress, setIsCorrectAddress] = useState(false);
+  const [transferAddress, setTransferAddress] = useState("");
+  const isAddress = (address: string) => {
+    try {
+      ethers.utils.getAddress(address);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  };
 
   var isSignIn = 1;
 
-  const handleChange = () => {};
+  useEffect(() => {
+    let result = isAddress(transferAddress);
+    result === true ? setIsCorrectAddress(true) : setIsCorrectAddress(false);
+  }, [transferAddress]);
+  const handleChange = (e: any) => {
+    setTransferAddress(e.target.value);
+  };
+  const handleSubmit = async () => {
+    if (loginAddress === transferAddress.toLowerCase()) {
+      dispatch(
+        showAlert({
+          message:
+            "You have to input correct recepient address. It is your login address",
+          severity: "error",
+        })
+      );
+    } else {
+      signer = generateSigner(window.ethereum);
+      estateRegistryContract = generateContractInstance(
+        EstateProxyAddress,
+        EstateRegistryAbi,
+        signer
+      );
+      if (
+        estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
+        estateRegistryContract.isApprovedForAll(loginAddress, estateid) ===
+          false
+      ) {
+        let approveMarketTx = await estateRegistryContract.approve(
+          MarketplaceAddress,
+          estateid
+        );
+        await approveMarketTx.wait();
+        dispatch(
+          showAlert({
+            message:
+              "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+            severity: "success",
+          })
+        );
+      }
+      let updateOperateTx = await estateRegistryContract.updateManager(
+        loginAddress,
+        transferAddress.toLowerCase()
+      );
+      await updateOperateTx.wait();
+      dispatch(
+        showAlert({
+          message: "Successully updated.",
+          severity: "success",
+        })
+      );
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -30,7 +112,8 @@ const UpdateOperator = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -46,7 +129,7 @@ const UpdateOperator = () => {
                         {t("RECEPIENT ADDRESS")}
                       </div>
                       <FormControl>
-                        <StyledInput placeholder='0x' onChange={handleChange} />
+                        <StyledInput placeholder="0x" onChange={handleChange} />
                       </FormControl>
                     </Grid>
                   </Grid>
@@ -55,17 +138,30 @@ const UpdateOperator = () => {
               </div>
               {/* buttons */}
               <div className={classes.buttons}>
+                {isCorrectAddress === true ? (
+                  <ActionButton
+                    color="light"
+                    className={classes.bidchange}
+                    onClick={handleSubmit}
+                  >
+                    {t("Submit")} &nbsp;
+                    <img src={raiseicon} alt="raiseicon" />
+                  </ActionButton>
+                ) : (
+                  <ActionButton
+                    disabled
+                    color="light"
+                    className={classes.bidchange}
+                  >
+                    {t("Submit")} &nbsp;
+                    <img src={raiseicon} alt="raiseicon" />
+                  </ActionButton>
+                )}
                 <ActionButton
-                  disabled
-                  color='light'
-                  className={classes.bidchange}>
-                  {t("Transfer")} &nbsp;
-                  <img src={raiseicon} alt='raiseicon' />
-                </ActionButton>
-                <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
+                  onClick={() => navigate(-1)}
+                >
                   {t("Cancel")}
                 </ActionButton>
               </div>

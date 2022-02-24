@@ -100,9 +100,13 @@ const UpdateMetadata = () => {
       // metaData.toString()
       "erere"
     );
-    alert("test4");
     await updateMetaDataTx.wait();
-    alert("transactio success");
+    dispatch(
+      showAlert({
+        message: "Successfully updated metadata.",
+        severity: "success",
+      })
+    );
   };
 
   return (

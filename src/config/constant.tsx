@@ -160,3 +160,72 @@ export const headerReceiveData = [
   "Expires At Time",
   "Action",
 ];
+
+export const headerUpdateManagerData = ["Address", "Current Status", "Action"];
+
+export const managerData = [
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+];

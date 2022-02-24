@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme: Theme) =>
         border: "none",
         padding: "0px",
         marginBottom: "20px",
+        paddingLeft: "10px",
+        paddingRight: "5px",
       },
       "& .MuiTableCell-root": {
         whiteSpace: "nowrap",
@@ -111,7 +113,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function StageMarket({ columns, parcelRows, estateRows, rows }: StyledTableleProps) {
+function StageMarket({
+  columns,
+  parcelRows,
+  estateRows,
+  rows,
+}: StyledTableleProps) {
   const classes = useStyles();
 
   const tableColumns = columns?.map((column: any, key: any) => (
