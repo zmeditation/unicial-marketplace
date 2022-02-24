@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { CategoryBoxStyle } from "./CategoryBoxStyle";
+import { OwnerCategoriesBoxStyle } from "./OwnerCategoriesBoxStyle";
 import {
   StyledAccordion,
   StyledAccordionSummary,
@@ -10,11 +10,12 @@ import { Typography } from "@material-ui/core";
 import { useLocation, useNavigate } from "react-router";
 import { category } from "../../../config/constant";
 import { useTranslation } from "react-i18next";
-import { WearablesData } from "../../CategoryWearables/SidebarData";
+
+import { OwnerWearablesData } from "../../CategoryWearables/SidebarData";
 import clsx from "clsx";
 
-export default function CategoryBox() {
-  const classes = CategoryBoxStyle();
+export default function OwnerCategoriesBox() {
+  const classes = OwnerCategoriesBoxStyle();
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,15 +36,12 @@ export default function CategoryBox() {
   };
 
   useEffect(() => {
-    if (query.get("section") === category.name) {
-      setExpanded(category.name);
-      setActiveCategory(category.name);
-    } else if (query.get("section") === category.wearable) {
+    if (query.get("section") === category.wearable) {
       setActiveCategory(category.wearable);
       setExpanded(category.wearable);
     } else {
-      setActiveCategory("");
       setExpanded(category.wearable);
+      setActiveCategory("");
     }
   }, [location]);
 
@@ -69,25 +67,8 @@ export default function CategoryBox() {
               </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
-              <CategoryWearables data={WearablesData} />
+              <CategoryWearables data={OwnerWearablesData} />
             </StyledAccordionDetails>
-          </StyledAccordion>
-          <StyledAccordion
-            square
-            expanded={expanded === category.name}
-            onChange={() => handleRoute(category.name)}
-            className={clsx(classes.firstAccordion, {
-              [classes.active]: activeCategory === category.name,
-            })}
-          >
-            <StyledAccordionSummary
-              aria-controls="panel2d-content"
-              id="panel2d-header"
-            >
-              <Typography className={classes.maintitle}>
-                {t("Names")}
-              </Typography>
-            </StyledAccordionSummary>
           </StyledAccordion>
         </div>
       </div>

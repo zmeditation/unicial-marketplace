@@ -11,26 +11,26 @@ export const CollectibleSidebarStyle = makeStyles((theme: Theme) => ({
     borderRadius: "15px",
     paddingBottom: "25px",
   },
-  categoryBox: {
-    backgroundColor: "transparent",
-    height: "fit-content",
-  },
-  accordionRoot: {
-    height: "fit-content",
-  },
-  firstAccordion: {},
-  maintitle: {},
-  categoryTitle: {
-    fontSize: "14px",
-    lineHeight: "17px",
-    color: "#96A1DB",
-    marginLeft: "40px",
-    marginTop: "35px",
-    marginBottom: "20px",
-  },
+  // categoryBox: {
+  //   backgroundColor: "transparent",
+  //   height: "fit-content",
+  // },
+  // accordionRoot: {
+  //   height: "fit-content",
+  // },
+  // firstAccordion: {},
+  // maintitle: {},
+  // categoryTitle: {
+  //   fontSize: "14px",
+  //   lineHeight: "17px",
+  //   color: "#96A1DB",
+  //   marginLeft: "40px",
+  //   marginTop: "35px",
+  //   marginBottom: "20px",
+  // },
 }));
 
-//accordion relate
+// accordion relate
 export const StyledAccordion = withStyles((theme) => ({
   root: {
     backgroundColor: "#282e4e",
