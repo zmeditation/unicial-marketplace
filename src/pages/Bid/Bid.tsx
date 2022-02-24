@@ -200,10 +200,23 @@ const Bid = () => {
       return;
     }
 
+    let uccBalance = await uccContract.balanceOf(loginAddress)
+
+    if (price > parseInt(ethers.utils.formatUnits(uccBalance, 18))) {
+      dispatch(
+        showAlert({
+          message: "You must set a price value that is lower than the Ucctoken value in your account.",
+          severity: "error",
+        })
+      );
+      return;
+    }
+
     let bidOrderTx 
 
     if(contractaddress === SpaceProxyAddress){
       
+      console.log("parcels")
       bidOrderTx= await bidContract[
         "placeBid(address,uint256,uint256,uint256)"
       ](
@@ -216,10 +229,12 @@ const Bid = () => {
     }
     if (contractaddress === EstateProxyAddress){
 
+      
       let fingerPrint = (
         await estateContract.getFingerprint(tokensid)
-      );
-
+        );
+        
+        console.log("estate fingerPrint: " ,fingerPrint)
       bidOrderTx= await bidContract[
         "placeBid(address,uint256,uint256,uint256,bytes)"
       ](

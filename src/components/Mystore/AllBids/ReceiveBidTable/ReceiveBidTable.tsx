@@ -1,3 +1,5 @@
+/** @format */
+
 import { useStyles } from "./ReceiveBidTableStyle";
 import StageMarket from "../../../StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";
@@ -24,9 +26,13 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { BidContractAddress } from "../../../../config/contracts/BidContract";
+import {
+  EstateProxyAddress,
+  EstateRegistryAbi,
+} from "../../../../config/contracts/EstateRegitryContract";
 
 declare var window: any;
-var signer: any, spaceRegistryContract: any;
+var signer: any, spaceRegistryContract: any, estateContract: any;
 
 interface StagingTableProps {
   columns?: any;
@@ -83,14 +89,13 @@ const ReceiveBidTable = ({
       SpaceRegistryAbi,
       signer
     );
-
     let receiveTx = await spaceRegistryContract[
       "safeTransferFrom(address,address,uint256,bytes)"
     ](
       loginAddress,
       BidContractAddress,
       BigNumber.from(parcelRows.tokenId[key]),
-      ""
+      parcelRows.data[key][0]
     );
 
     await receiveTx.wait();
@@ -102,7 +107,31 @@ const ReceiveBidTable = ({
     );
   };
 
-  const handleAcceptEstateBid = async (key: number) => {};
+  const handleAcceptEstateBid = async (key: number) => {
+    signer = generateSigner(window.ethereum);
+    estateContract = generateContractInstance(
+      EstateProxyAddress,
+      EstateRegistryAbi,
+      signer
+    );
+
+    let receiveTx = await estateContract[
+      "safeTransferFrom(address,address,uint256,bytes)"
+    ](
+      loginAddress,
+      BidContractAddress,
+      BigNumber.from(estateRows.estateId[key]),
+      estateRows.data[key][0]
+    );
+
+    await receiveTx.wait();
+    dispatch(
+      showAlert({
+        message: "Recieved order is successfully published.",
+        severity: "success",
+      })
+    );
+  };
 
   const tableParcelRows =
     parcelRows !== undefined ? (
