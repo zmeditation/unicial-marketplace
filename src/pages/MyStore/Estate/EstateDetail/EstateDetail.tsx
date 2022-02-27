@@ -133,20 +133,7 @@ const EstateDetail = () => {
                 <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
-            <Grid item md={4} sm={6} xs={12}>
-              <ActionButton
-                color="light"
-                className={classes.bidchange}
-                onClick={() =>
-                  navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/estate_settingmanager`
-                  )
-                }
-              >
-                {t("Setting Manager")}
-                <CallMadeIcon fontSize="small" />
-              </ActionButton>
-            </Grid>
+
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
                 color="light"
@@ -172,7 +159,7 @@ const EstateDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/transfer_spaces`
                   )
                 }
               >
@@ -186,11 +173,11 @@ const EstateDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/set_spaceOperator`
                   )
                 }
               >
-                {t("Update Operator")}
+                {t("Space Operator")}
                 <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>

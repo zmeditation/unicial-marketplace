@@ -209,6 +209,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderTop: "solid 1px #373f66",
     minHeight: "150px",
     paddingTop: "50px",
+    marginTop: "50px",
+    marginBottom: "15px",
   },
   updateManagerTitle: {
     marginLeft: "20px",

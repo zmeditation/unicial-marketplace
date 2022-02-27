@@ -7,7 +7,7 @@ import Highlight from "../../components/ContractInfo/Highlight";
 import Bidbox from "../../components/ContractInfo/Bidbox";
 import Buybox from "../../components/ContractInfo/Buybox";
 import Parcels from "../../components/ContractInfo/Parcels";
-import TobTab from "../../components/TopTab/TopTab";
+import TopTab from "../../components/TopTab/TopTab";
 import BidRecord from "../../components/ContractInfo/BidRecord";
 import { headerData, transactionData } from "./ContractsData";
 import { parcelTypes } from "../../config/constant";
@@ -161,7 +161,7 @@ const Contract = () => {
 
   return (
     <>
-      <TobTab />
+      <TopTab />
       <div className={classes.root}>
         <div className={classes.LandMap}>
           <div>
@@ -188,7 +188,8 @@ const Contract = () => {
               <div
                 className={
                   highDivLine === true ? classes.displayNone : classes.highLIght
-                }>
+                }
+              >
                 <div className={classes.divideLine}></div>
                 <Highlight type={type} />
                 <div className={classes.divideLine}></div>
@@ -200,7 +201,8 @@ const Contract = () => {
                   saleId && saleId === tokensid
                     ? classes.displayNone
                     : classes.BidboxContainer
-                }>
+                }
+              >
                 <Bidbox selectOwner={owner && owner} />
               </div>
               <div
@@ -208,7 +210,8 @@ const Contract = () => {
                   saleId && saleId === tokensid
                     ? classes.BuyboxContainer
                     : classes.displayNone
-                }>
+                }
+              >
                 <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />
               </div>
             </div>
@@ -236,7 +239,8 @@ const Contract = () => {
                 bidItems?.length === 0 || bidItems === undefined
                   ? classes.displayNone
                   : classes.BidsTitle
-              }>
+              }
+            >
               {t("Bids")}.
             </div>
             {bidItems?.map((item: any, key: any) => {

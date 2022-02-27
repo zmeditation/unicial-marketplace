@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-
+import { useParams } from "react-router";
 import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import Popup from "../Atlas/Popup";
@@ -11,14 +11,15 @@ import { parcels } from "../../store/parcels/selectors";
 import { showAlert } from "../../store/alert";
 import { getCoords } from "../../common/utils";
 
-interface CreateEstateMapProps {
+interface SelectSpaceMapProps {
   height?: any;
   width?: any;
   initialX?: number;
   initialY?: number;
 }
 
-const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
+const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
+  const { estateid } = useParams();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
   const [mouseX, setMouseX] = useState(-1);
@@ -36,24 +37,24 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
       if (
         tile.owner &&
         tile.owner.toLowerCase() === mineAddress.toLowerCase() &&
-        tile.estateId === undefined
+        tile.estateId === estateid
       ) {
         let newSelectedTile: string[] = [];
         const selectedIndex = selectedTile.indexOf(getCoords(x, y));
         if (selectedIndex === -1) {
-          // alert("-1");
+          //   alert("-1");
           newSelectedTile = newSelectedTile.concat(
             selectedTile,
             getCoords(x, y)
           );
         } else if (selectedIndex === 0) {
-          // alert("0");
+          //   alert("0");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(1));
         } else if (selectedIndex === selectedTile.length - 1) {
-          // alert("kk");
+          //   alert("kk");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(0, -1));
         } else if (selectedIndex > 0) {
-          // alert(">0");
+          //   alert(">0");
           newSelectedTile = newSelectedTile.concat(
             selectedTile.slice(0, selectedIndex),
             selectedTile.slice(selectedIndex + 1)
@@ -63,7 +64,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
       } else {
         dispatch(
           showAlert({
-            message: "You have to select your parcels!",
+            message: "You have to select the spaces of this estate!",
             severity: "error",
           })
         );
@@ -85,6 +86,16 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
       if (tile?.owner) {
+        return true;
+      } else return false;
+    },
+    [tiles]
+  );
+  const isfocused = useCallback(
+    (x: number, y: number) => {
+      if (!tiles) return false;
+      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      if (tile?.estateId === estateid) {
         return true;
       } else return false;
     },
@@ -142,9 +153,11 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
     (x: any, y: any) => {
       return isSelected(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isMineWithEstate(x, y)
+        : isfocused(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isMine(x, y)
+        : // : isMineWithEstate(x, y)
+        // ? { color: "transparent", scale: 1.4 }
+        isMine(x, y)
         ? { color: "transparent", scale: 1.4 }
         : isOwnedWithEstate(x, y)
         ? { color: "transparent", scale: 1.4 }
@@ -159,9 +172,11 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
     (x: any, y: any) => {
       return isSelected(x, y)
         ? { color: "#ff9990", scale: 1.2 }
-        : isMineWithEstate(x, y)
-        ? { color: "#4aff3a", scale: 1.2 }
-        : isMine(x, y)
+        : isfocused(x, y)
+        ? { color: "red", scale: 1.2 }
+        : // : isMineWithEstate(x, y)
+        // ? { color: "#4aff3a", scale: 1.2 }
+        isMine(x, y)
         ? { color: "#2b1c70", scale: 1.2 }
         : isOwnedWithEstate(x, y)
         ? { color: "#f0af37", scale: 1.2 }
@@ -236,4 +251,4 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
   );
 };
 
-export default CreateEstateMap;
+export default SelectSpaceMap;

@@ -87,8 +87,8 @@ const UpdateOperator = () => {
           })
         );
       }
-      let updateOperateTx = await estateRegistryContract.updateManager(
-        loginAddress,
+      let updateOperateTx = await estateRegistryContract.setUpdateOperator(
+        estateid,
         transferAddress.toLowerCase()
       );
       await updateOperateTx.wait();

@@ -21,9 +21,7 @@ import {
   generateSigner,
 } from "../../../../common/contract";
 
-import {
-  MarketplaceAddress,
-} from "../../../../config/contracts/MarketPlaceContract";
+import { MarketplaceAddress } from "../../../../config/contracts/MarketPlaceContract";
 
 import {
   SpaceProxyAddress,
@@ -54,52 +52,53 @@ const ParcelTransfer = () => {
   };
 
   const handleTransferOrder = async () => {
-
-    signer = generateSigner(window.ethereum);
-    spaceRegistryContract = generateContractInstance(
-      SpaceProxyAddress,
-      SpaceRegistryAbi,
-      signer
-    );
-    let isApproved = false;
-    isApproved = await spaceRegistryContract.isAuthorized(
-      MarketplaceAddress,
-      BigNumber.from(tokensid)
-    );
-    if (!isApproved) {
-      // approve marketplace contract to transfer this asset
+    if (loginAddress === transferAddress.toLowerCase()) {
       dispatch(
         showAlert({
-          message: "You have to first approve the marketplace contract to operate your asset.",
+          message:
+            "You have to input correct recepient address. It is your login address",
           severity: "error",
         })
       );
-      let approveMarketTx = await spaceRegistryContract.approve(
-        MarketplaceAddress,
-        tokensid
+    } else {
+      signer = generateSigner(window.ethereum);
+      spaceRegistryContract = generateContractInstance(
+        SpaceProxyAddress,
+        SpaceRegistryAbi,
+        signer
       );
-      await approveMarketTx.wait();
+      let isApproved = false;
+      isApproved = await spaceRegistryContract.isAuthorized(
+        MarketplaceAddress,
+        BigNumber.from(tokensid)
+      );
+      if (!isApproved) {
+        // approve marketplace contract to transfer this asset
+
+        let approveMarketTx = await spaceRegistryContract.approve(
+          MarketplaceAddress,
+          tokensid
+        );
+        await approveMarketTx.wait();
+        dispatch(
+          showAlert({
+            message:
+              "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+            severity: "success",
+          })
+        );
+      }
+      let transferTx = await spaceRegistryContract[
+        "safeTransferFrom(address,address,uint256)"
+      ](loginAddress, transferAddress, BigNumber.from(tokensid));
+      await transferTx.wait();
       dispatch(
         showAlert({
-          message: "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+          message: "Transfer order is successfully published.",
           severity: "success",
         })
       );
     }
-
-    let transferTx = await spaceRegistryContract["safeTransferFrom(address,address,uint256)"](
-      loginAddress,
-      transferAddress,
-      BigNumber.from(tokensid)
-    );
-    await transferTx.wait();
-    dispatch(
-      showAlert({
-        message: "Transfer order is successfully published.",
-        severity: "success",
-      })
-    );
-    
   };
 
   var isSignIn = 1;
@@ -122,7 +121,8 @@ const ParcelTransfer = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -139,7 +139,7 @@ const ParcelTransfer = () => {
                       </div>
                       <FormControl>
                         <StyledInput
-                          placeholder='0x'
+                          placeholder="0x"
                           onChange={(e) => handleChange(e)}
                         />
                       </FormControl>
@@ -152,25 +152,28 @@ const ParcelTransfer = () => {
               <div className={classes.buttons}>
                 {isCorrectAddress === true ? (
                   <ActionButton
-                    color='light'
+                    color="light"
                     className={classes.bidchange}
-                    onClick={handleTransferOrder}>
+                    onClick={handleTransferOrder}
+                  >
                     {t("Transfer")} &nbsp;
-                    <img src={raiseicon} alt='raiseicon' />
+                    <img src={raiseicon} alt="raiseicon" />
                   </ActionButton>
                 ) : (
                   <ActionButton
                     disabled
-                    color='light'
-                    className={classes.bidchange}>
+                    color="light"
+                    className={classes.bidchange}
+                  >
                     {t("Transfer")} &nbsp;
-                    <img src={raiseicon} alt='raiseicon' />
+                    <img src={raiseicon} alt="raiseicon" />
                   </ActionButton>
                 )}
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
+                  onClick={() => navigate(-1)}
+                >
                   {t("Cancel")}
                 </ActionButton>
               </div>

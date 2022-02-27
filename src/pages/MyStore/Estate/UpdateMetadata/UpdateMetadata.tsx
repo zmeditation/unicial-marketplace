@@ -97,8 +97,7 @@ const UpdateMetadata = () => {
     }
     let updateMetaDataTx = await estateRegistryContract.updateMetadata(
       estateid,
-      // metaData.toString()
-      "erere"
+      metaData
     );
     await updateMetaDataTx.wait();
     dispatch(

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LandMap from "../../components/LandMap";
-import TobTab from "../../components/TopTab/TopTab";
+import TopTab from "../../components/TopTab/TopTab";
 import { useStyles } from "./LandsStyle";
 
 const Lands: React.FC = () => {
@@ -22,7 +22,7 @@ const Lands: React.FC = () => {
 
   return (
     <>
-      <TobTab />
+      <TopTab />
       <div className={classes.landMap}>
         <LandMap height={height} width={width} />
       </div>

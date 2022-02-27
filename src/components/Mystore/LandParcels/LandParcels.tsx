@@ -20,7 +20,7 @@ export default function LandParcels() {
   const [showStatus, setShowStatus] = useState(false);
   const loginAddress = useAppSelector(selectLoginAddress);
   const saleParcels: any = useAppSelector(selectSaleParcels);
-  const tiles: any = useAppSelector(parcels)
+  const tiles: any = useAppSelector(parcels);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,6 +32,7 @@ export default function LandParcels() {
 
   const getResult = async () => {
     await getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
+      console.log("parcels", parcels);
       if (
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "false"
@@ -44,7 +45,6 @@ export default function LandParcels() {
         );
       }
     });
-    
   };
 
   useEffect(() => {
@@ -70,7 +70,11 @@ export default function LandParcels() {
                     locationbtnY={tokenId[1]}
                     landName="Plaza Area Sale"
                     category="Zilionixx"
-                    onClick={() => handleNavigate(tiles[getCoords(tokenId[0],tokenId[1])].tokenId)}
+                    onClick={() =>
+                      handleNavigate(
+                        tiles[getCoords(tokenId[0], tokenId[1])].tokenId
+                      )
+                    }
                   />
                 </Grid>
               ))}

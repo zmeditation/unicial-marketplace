@@ -31,6 +31,8 @@ import ParcelDetail from "../../pages/MyStore/Parcel/ParcelDetail/ParcelDetail";
 import UpdateMetadata from "../../pages/MyStore/Estate/UpdateMetadata/UpdateMetadata";
 import SettingManager from "../../pages/MyStore/Estate/SettingManager/SettingManager";
 import UpdateOperate from "../../pages/MyStore/Estate/UpdateOperate/UpdateOperate";
+import TransferSpaces from "../../pages/MyStore/Estate/TransferSpaces/TransferSpaces";
+import SetSpaceOperator from "../../pages/MyStore/Estate/SetSpaceOperator/SetSpaceOperator";
 import { setloginAddress, setlogoutAddress } from "../../store/auth";
 import { useAppDispatch } from "../../store/hooks";
 import { CHAIN_INFO } from "../../config/constant";
@@ -145,12 +147,20 @@ export default function Layout() {
             element={<UpdateMetadata />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/estate_settingmanager"
+            path="/account/estate/setting_manager"
             element={<SettingManager />}
           />
           <Route
             path="/contracts/:contractaddress/tokens/:estateid/estate_updateoperate"
             element={<UpdateOperate />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/transfer_spaces"
+            element={<TransferSpaces />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/set_spaceOperator"
+            element={<SetSpaceOperator />}
           />
           <Route path="/signin" element={<ToLands />}>
             <Route path="/signin" element={<SignIn />} />
