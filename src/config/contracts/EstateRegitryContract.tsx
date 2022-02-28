@@ -1,7 +1,7 @@
-export const EstateProxyAddress = "0xa92bB248eFA35EA300aA554a4856d0995F43358C";
+export const EstateProxyAddress = "0x2A1BEF23cA68a94b34DE80424695511932D0B0b3";
 
 export const EstateRegistryAddress =
-  "0xEbF2c1571c631f04e30396E6eF615c7B5137dF53";
+  "0x291F0CBB68BC5dc41b48f358DDae0F4333AF58fe";
 
 export const EstateRegistryAbi = [
   {
