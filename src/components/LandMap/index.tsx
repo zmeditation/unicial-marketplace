@@ -14,6 +14,7 @@ import { showAlert } from "../../store/alert";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { ethers } from "ethers";
 import { getCoords } from "../../common/utils";
+import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
 
 interface LandMapProps {
   height?: any;
@@ -57,7 +58,7 @@ const LandMap: React.FC<LandMapProps> = ({
       }
       if (tile.estateId) {
         setEstateid(tile.estateId);
-        navigate(`/contracts/${SpaceProxyAddress}/tokens/${tile.estateId}`);
+        navigate(`/contracts/${EstateProxyAddress}/tokens/${tile.estateId}`);
       } else {
         setEstateid(null);
 
@@ -111,6 +112,17 @@ const LandMap: React.FC<LandMapProps> = ({
     [tiles]
   );
 
+  const isEstated = useCallback(
+    (x: number, y: number) => {
+      if (!tiles) return false;
+      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      if (tile?.estateId) {
+        return true;
+      } else return false;
+    },
+    [tiles]
+  );
+
   const isCustomerSaleParcel = useCallback(
     (x: number, y: number) => {
       if (!saleParcels) return false;
@@ -132,6 +144,9 @@ const LandMap: React.FC<LandMapProps> = ({
       if (!tiles) return false;
       const tile: any = tiles[getCoords(x, y)] as Tile;
 
+      if(tile?.estateId && tokensid === tile?.estateId){
+        return true
+      }
       if (tokensid && tile && tokensid === tile?.tokenId) {
         return true;
       }
@@ -154,9 +169,11 @@ const LandMap: React.FC<LandMapProps> = ({
         ? { color: "transparent", scale: 1.4 }
         : isSaleParcel(x, y)
         ? { color: "transparent", scale: 1.4 }
+        : isEstated(x, y)
+        ? { color: "transparent", scale: 1.4 }
         : isOwned(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : null;
+        :null;
     },
     [isSelected]
   );
@@ -169,8 +186,10 @@ const LandMap: React.FC<LandMapProps> = ({
         ? { color: "#6ad3fe", scale: 1.2 }
         : isSaleParcel(x, y)
         ? { color: "#d5ed11", scale: 1.2 }
+        : isEstated(x, y)
+        ? { color: "#29c98f", scale: 1.2 }
         : isOwned(x, y)
-        ? { color: "#313960", scale: 1.2 }
+        ? { color: "#313960", scale: 1.4 }
         : null;
     },
     [isSelected]

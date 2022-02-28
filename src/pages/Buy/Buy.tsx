@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import NeedSignIn from "../NeedSignIn";
 import ActionButton from "../../components/Base/ActionButton";
-import TokenImg from "../../assets/img/1.png";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 
@@ -28,6 +27,10 @@ import {
   generateContractInstance,
   generateSigner,
 } from "../../common/contract";
+import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
+import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
+import { parcels } from "../../store/parcels/selectors";
+import SliceMap from "../../components/SliceMap";
 
 declare var window: any;
 var signer: any, marketplaceContract: any, uccContract: any;
@@ -38,13 +41,36 @@ const Buy = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  var isSignIn = 1;
   const dispatch = useAppDispatch();
   const saleParcels: any = useAppSelector(selectSaleParcels);
   const loginAddress: any = useAppSelector(selectLoginAddress);
   const { contractaddress, tokensid } = useParams();
   const [price, setPrice] = useState("");
   const [uccAllowance, setUccAllowance] = useState(BigNumber.from(0));
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const tiles: any = useAppSelector(parcels);
+
+  useEffect(() => {
+    Object.keys(tiles).forEach((index: any) => {
+      const allParcel = tiles[index];
+      if (
+        allParcel.tokenId === tokensid &&
+        contractaddress === SpaceProxyAddress
+      ) {
+        setX(allParcel.x);
+        setY(allParcel.y);
+      }
+      if (
+        allParcel.estateId === tokensid &&
+        contractaddress === EstateProxyAddress
+      ) {
+        setX(allParcel.x);
+        setY(allParcel.y);
+      }
+    });
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tiles, tokensid]);
 
   const handleBuy = async () => {
     try {
@@ -109,7 +135,6 @@ const Buy = () => {
       loginAddress,
       MarketplaceAddress
     );
-    console.log("current allowance", allowance.toString());
     setUccAllowance(allowance);
   };
 
@@ -139,11 +164,7 @@ const Buy = () => {
             <div className={classes.bidCard}>
               <div className={classes.leftCard}>
                 <div className={classes.imgContent}>
-                  <img
-                    src={TokenImg}
-                    className={classes.tokenImg}
-                    alt="token"
-                  ></img>
+                  <SliceMap centerX={x} centerY={y} />
                 </div>
               </div>
 
@@ -161,18 +182,16 @@ const Buy = () => {
                 {/* buttons */}
                 <div className={classes.buttons}>
                   <ActionButton
-                    color="light"
+                    color='light'
                     className={classes.bidchange}
-                    onClick={handleBuy}
-                  >
+                    onClick={handleBuy}>
                     {t("Buy")}
-                    <CallMadeIcon fontSize="small" />
+                    <CallMadeIcon fontSize='small' />
                   </ActionButton>
                   <ActionButton
-                    color="dark"
+                    color='dark'
                     className={classes.cancelchange}
-                    onClick={() => navigate(-1)}
-                  >
+                    onClick={() => navigate(-1)}>
                     {t("Cancel")}
                   </ActionButton>
                 </div>

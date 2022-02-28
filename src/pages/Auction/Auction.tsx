@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { BigNumber, ethers } from "ethers";
 
 import LandMap from "../../components/Admin/LandMap";
-import TobTab from "../../components/TopTab/TopTab";
+import TopTab from "../../components/TopTab/TopTab";
 import { useStyles } from "./AuctionStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import LandAccordion from "./LandAccordion/LandAccordion";
@@ -259,11 +259,8 @@ const Auction = () => {
 
   const proxyOwnerWorker = async () => {
     let proxyOwner = await spaceRegistryContract.proxyOwner();
-    console.log("proxy owner:", proxyOwner);
-    console.log("login address:", loginAddress);
     let isAdmin = proxyOwner.toLowerCase() === loginAddress.toLowerCase();
     setIsAdmin(isAdmin);
-    console.log("isAdmin:", isAdmin);
 
     if (isAdmin) {
       await authorizeAuctionContract();
@@ -291,7 +288,7 @@ const Auction = () => {
 
   return (
     <>
-      <TobTab />
+      <TopTab />
       <div className={classes.root}>
         <div className={classes.auctionInfo}>
           <span className={classes.title}>{t("Left Time")}.</span>

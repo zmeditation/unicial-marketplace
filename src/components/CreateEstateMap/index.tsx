@@ -41,15 +41,19 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
         let newSelectedTile: string[] = [];
         const selectedIndex = selectedTile.indexOf(getCoords(x, y));
         if (selectedIndex === -1) {
+          // alert("-1");
           newSelectedTile = newSelectedTile.concat(
             selectedTile,
             getCoords(x, y)
           );
         } else if (selectedIndex === 0) {
+          // alert("0");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(1));
         } else if (selectedIndex === selectedTile.length - 1) {
+          // alert("kk");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(0, -1));
         } else if (selectedIndex > 0) {
+          // alert(">0");
           newSelectedTile = newSelectedTile.concat(
             selectedTile.slice(0, selectedIndex),
             selectedTile.slice(selectedIndex + 1)

@@ -25,10 +25,12 @@ interface AtlasProps {
   width?: number;
   x?: number;
   y?: number;
+  movingeStatus?: boolean;
+  zoomStatus?: number;
 }
 
 export const Atlas = (props: AtlasProps) => {
-  const { layers, tiles, height, width, x, y, ...rest } = props;
+  const { layers, tiles, height, width, x, y, movingeStatus, zoomStatus, ...rest } = props;
   const classes = "dcl atlas ";
 
   const COLOR_BY_TYPE: any = Object.freeze({
@@ -80,6 +82,8 @@ export const Atlas = (props: AtlasProps) => {
       width={width}
       x={x}
       y={y}
+      zoom={zoomStatus}
+      isDraggable={movingeStatus}
     />
   );
 };

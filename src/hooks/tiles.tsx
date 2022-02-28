@@ -1,6 +1,6 @@
-// const TILES_URL = "https://api.unicial.org/api/v1/map";
-// const TILES_URL = "https://api.decentraland.org/v2/tiles";
-const TILES_URL = "http://192.168.112.98:8080/api/v1/map";
+import { ApiUrl } from "../config/constant";
+const TILES_URL = `${ApiUrl}/api/v1/map`;
+
 interface AtlasTile {
   x: number;
   y: number;

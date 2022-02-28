@@ -1,8 +1,10 @@
-import React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import LocationBtn from "../Base/LocationBtn";
 import { ShowMoreLessBtn } from "../ShowMoreLessBtn/ShowMoreLessBtn";
 import { useTranslation } from "react-i18next";
+import { getCoords } from "../../common/utils";
+import { useEffect, useState } from "react";
+import { showMoreCount } from "../../config/constant";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: "35px",
@@ -52,25 +54,69 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: "#ff2d55",
     cursor: "pointer",
   },
+  displayNone: {
+    display: "none",
+  },
 }));
 
 interface ParcelsProps {
-  location: string;
+  parcels: any;
 }
 
-const Parcels = ({ location }: ParcelsProps) => {
+const Parcels = ({ parcels }: ParcelsProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const [count, setCount] = useState(showMoreCount);
+  const [showMoreBtn, setShowMoreBtn] = useState(true);
+  const [showLessBtn, setShowLessBtn] = useState(false);
+
+  const handleShowBtn = () => {
+    setCount(count + showMoreCount);
+    if (parcels && count >= parcels?.length) {
+      setShowMoreBtn(false);
+      setShowLessBtn(true);
+    }
+  };
+
+  const handleShowLessBtn = () => {
+    setCount(showMoreCount);
+    setShowMoreBtn(true);
+    setShowLessBtn(false);
+  };
+
+  useEffect(() => {
+    if (parcels && parcels?.length <= showMoreCount) {
+      setShowMoreBtn(false);
+      setShowLessBtn(false);
+    }
+  }, [parcels]);
+
   return (
     <div className={classes.root}>
       <div className={classes.title}>{t("Parcels")}</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>
-          <LocationBtn position={location} />
+          {parcels?.slice(0, count).map((item: any, key: any) => {
+            return (
+              <LocationBtn key={key} position={getCoords(item.x, item.y)} />
+            );
+          })}
         </div>
-        {/* <div className={classes.showmoreContent}>
-          <ShowMoreLessBtn letter='Show More' />
-        </div> */}
+        <div
+          className={
+            showMoreBtn === true ? classes.showmoreContent : classes.displayNone
+          }>
+          <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
+        </div>
+        <div
+          className={
+            showLessBtn === true ? classes.showmoreContent : classes.displayNone
+          }>
+          <ShowMoreLessBtn
+            letter={t("Show Less")}
+            onClick={handleShowLessBtn}
+          />
+        </div>
       </div>
     </div>
   );

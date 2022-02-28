@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getTestAPI } from "../api/Test/TestAPI";
 
 export const getTest = createAsyncThunk("test/getTest", async () => {
   // const response = await getTestAPI();

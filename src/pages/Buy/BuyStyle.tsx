@@ -58,7 +58,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: "329px",
     height: "265.85px",
     borderRadius: "16px",
-    overflow: "hidden",
     display: "inline-block",
     [theme.breakpoints.down(769)]: {
       width: "100%",
@@ -202,6 +201,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(769)]: {
       order: 2,
       marginTop: "15px",
+      marginLeft: "0px",
     },
   },
   viewNeedSignIn: {

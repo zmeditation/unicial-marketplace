@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect } from "react";
 import { MyStoreStyle } from "./MyStoreStyle";
 import TopTab from "../../components/TopTab/TopTab";
@@ -16,19 +14,15 @@ import AllBids from "../../components/Mystore/AllBids/AllBids";
 import NoResult from "../../components/NoResult/NoResult";
 import Grid from "@material-ui/core/Grid";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router";
-import { useAppSelector } from "../../store/hooks";
-import { selectLoginAddress } from "../../store/auth/selectors";
+import { useLocation } from "react-router";
 
 export default function MyStore() {
   const classes = MyStoreStyle();
   const { t } = useTranslation();
   const location = useLocation();
-  const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
   var category = query.get("section");
   const [rightPartIndex, setrightPartIndex] = React.useState("");
-  const loginAddress = useAppSelector(selectLoginAddress);
 
   useEffect(() => {
     switch (category) {
@@ -50,6 +44,7 @@ export default function MyStore() {
       default:
         setrightPartIndex("");
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (

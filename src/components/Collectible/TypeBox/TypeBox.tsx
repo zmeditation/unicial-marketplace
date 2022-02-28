@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export default function TypeBox() {
   const classes = TypeBoxStyle();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [itemIndex, setitemIndex] = React.useState(typebox.store);
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -16,8 +16,11 @@ export default function TypeBox() {
   };
 
   useEffect(() => {
-    if (query.get("assetType") === typebox.listing)
+    if (query.get("assetType") === typebox.listing) {
       setitemIndex(typebox.listing);
+    } else {
+      setitemIndex(typebox.store);
+    }
   }, [location]);
 
   return (
@@ -48,7 +51,9 @@ export default function TypeBox() {
             onClick={() => handleItem(typebox.listing)}
           >
             <div className={classes.itemTitle}>{t("Listings")}</div>
-            <div className={classes.itemDescription}>{t("Items being resold")}</div>
+            <div className={classes.itemDescription}>
+              {t("Items being resold")}
+            </div>
           </div>
         </div>
         <div className={classes.divideline}></div>

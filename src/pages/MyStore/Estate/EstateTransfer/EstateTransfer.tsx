@@ -19,27 +19,21 @@ import { selectLoginAddress } from "./../../../../store/auth/selectors";
 import { showAlert } from "../../../../store/alert";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
-  EstateRegistryAddress,
   EstateRegistryAbi,
   EstateProxyAddress,
 } from "../../../../config/contracts/EstateRegitryContract";
-import {
-  MarketplaceAddress,
-  MarketplaceAbi,
-} from "../../../../config/contracts/MarketPlaceContract";
+import { MarketplaceAddress } from "../../../../config/contracts/MarketPlaceContract";
 declare var window: any;
 
-var signer: any,
-  estateRegistryContract: any,
-  marketplaceContract: any,
-  spaceRegistryContract: any;
+var signer: any, estateRegistryContract: any;
+
 const ParcelTransfer = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [transferAddress, setTransferAddress] = useState("");
   const dispatch = useAppDispatch();
-  const { contractaddress, estateid } = useParams();
+  const { estateid } = useParams();
   const loginAddress = useAppSelector(selectLoginAddress);
 
   const [isCorrectAddress, setIsCorrectAddress] = useState(false);
@@ -62,43 +56,50 @@ const ParcelTransfer = () => {
   }, [transferAddress]);
 
   const handleTransferOrder = async () => {
-    signer = generateSigner(window.ethereum);
-    estateRegistryContract = generateContractInstance(
-      EstateProxyAddress,
-      EstateRegistryAbi,
-      signer
-    );
-    if (
-      estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
-      estateRegistryContract.isApprovedForAll(loginAddress, estateid) === false
-    ) {
-      let approveMarketTx = await estateRegistryContract.approve(
-        MarketplaceAddress,
-        estateid
-      );
-      await approveMarketTx.wait();
+    if (loginAddress === transferAddress.toLowerCase()) {
       dispatch(
         showAlert({
           message:
-            "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+            "You have to input correct recepient address. It is your login address",
+          severity: "error",
+        })
+      );
+    } else {
+      signer = generateSigner(window.ethereum);
+      estateRegistryContract = generateContractInstance(
+        EstateProxyAddress,
+        EstateRegistryAbi,
+        signer
+      );
+      if (
+        estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
+        estateRegistryContract.isApprovedForAll(loginAddress, estateid) ===
+          false
+      ) {
+        let approveMarketTx = await estateRegistryContract.approve(
+          MarketplaceAddress,
+          estateid
+        );
+        await approveMarketTx.wait();
+        dispatch(
+          showAlert({
+            message:
+              "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+            severity: "success",
+          })
+        );
+      }
+      let transferTx = await estateRegistryContract[
+        "safeTransferFrom(address,address,uint256)"
+      ](loginAddress, transferAddress, BigNumber.from(estateid));
+      await transferTx.wait();
+      dispatch(
+        showAlert({
+          message: "Transfer order is successfully published.",
           severity: "success",
         })
       );
     }
-    console.log("transferAddress", transferAddress);
-    console.log("transferAddress length", transferAddress.length);
-    console.log("loginAddress", loginAddress);
-    console.log("loginAddress length", transferAddress.length);
-    let transferTx = await estateRegistryContract[
-      "safeTransferFrom(address,address,uint256)"
-    ](loginAddress, transferAddress, BigNumber.from(estateid));
-    await transferTx.wait();
-    dispatch(
-      showAlert({
-        message: "Transfer order is successfully published.",
-        severity: "success",
-      })
-    );
   };
 
   return (

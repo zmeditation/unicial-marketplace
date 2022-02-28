@@ -10,14 +10,11 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import { dateConvert } from "../../../../common/utils";
 import BidDetail from "../../../../components/Mystore/BidDetail";
-import {
-  getEstatesByOwner,
-  getParcelsByOwnerAsCoords,
-} from "../../../../hooks/api";
+import { getEstatesByOwner } from "../../../../hooks/api";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { useAppSelector } from "../../../../store/hooks";
 
 const EstateDetail = () => {
   const classes = useStyles();
@@ -34,11 +31,11 @@ const EstateDetail = () => {
   useEffect(() => {
     getEstatesByOwner(loginAddress).then((parcels: any[]) => {
       setOwnEstates(parcels);
+      if (parcels && parcels?.length <= showMoreCount) {
+        setShowMoreBtn(false);
+      }
     });
-    if (ownEstates && ownEstates?.length <= showMoreCount) {
-      setShowMoreBtn(false);
-    }
-  }, []);
+  }, [loginAddress]);
 
   const handleShowBtn = () => {
     setCount(count + showMoreCount);
@@ -52,7 +49,6 @@ const EstateDetail = () => {
     setShowMoreBtn(true);
     setShowLessBtn(false);
   };
-  console.log(ownEstates);
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>
@@ -137,20 +133,7 @@ const EstateDetail = () => {
                 <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
-            <Grid item md={4} sm={6} xs={12}>
-              <ActionButton
-                color="light"
-                className={classes.bidchange}
-                onClick={() =>
-                  navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/estate_updatemanager`
-                  )
-                }
-              >
-                {t("Update Manager")}
-                <CallMadeIcon fontSize="small" />
-              </ActionButton>
-            </Grid>
+
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
                 color="light"
@@ -176,7 +159,7 @@ const EstateDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/transfer_spaces`
                   )
                 }
               >
@@ -190,11 +173,11 @@ const EstateDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/set_spaceOperator`
                   )
                 }
               >
-                {t("Update Operator")}
+                {t("Space Operator")}
                 <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>

@@ -4,15 +4,15 @@ import { Grid } from "@material-ui/core";
 import LandCard from "../LandCard/LandCard";
 import { ShowMoreLessBtn } from "../../ShowMoreLessBtn/ShowMoreLessBtn";
 import { getParcelsByOwnerAsCoords } from "../../../hooks/api";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { useAppSelector } from "../../../store/hooks";
 import { selectLoginAddress } from "../../../store/auth/selectors";
 import { useLocation, useNavigate } from "react-router";
 import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
 import { showMoreCount } from "../../../config/constant";
 import NoResult from "../../NoResult/NoResult";
-import { setSaleParcels } from "../../../store/saleparcels";
 import { selectSaleParcels } from "../../../store/saleparcels/selectors";
 import { getCoords } from "../../../common/utils";
+import { parcels } from "../../../store/parcels/selectors";
 
 export default function LandParcels() {
   const classes = LandParcelsStyle();
@@ -20,7 +20,7 @@ export default function LandParcels() {
   const [showStatus, setShowStatus] = useState(false);
   const loginAddress = useAppSelector(selectLoginAddress);
   const saleParcels: any = useAppSelector(selectSaleParcels);
-  const dispatch = useAppDispatch();
+  const tiles: any = useAppSelector(parcels);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,21 +35,21 @@ export default function LandParcels() {
       console.log("parcels", parcels);
       if (
         query.get("onlyOnSale") === null ||
-        query.get("onlyOnSale") === "true"
+        query.get("onlyOnSale") === "false"
       ) {
-        setResultParcels(
-          parcels.filter((el: any) => saleParcels[getCoords(el?.x, el?.y)])
-        );
-      } else {
         setResultParcels(parcels);
+      } else {
         // alert("okdes");
+        setResultParcels(
+          parcels.filter((el: any) => saleParcels[getCoords(el[0], el[1])])
+        );
       }
-      console.log("resultparcels lenth", resultParcels);
     });
   };
 
   useEffect(() => {
     getResult();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   const handleShowBtn = () => {
@@ -70,7 +70,11 @@ export default function LandParcels() {
                     locationbtnY={tokenId[1]}
                     landName="Plaza Area Sale"
                     category="Zilionixx"
-                    onClick={() => handleNavigate(tokenId.tokenId)}
+                    onClick={() =>
+                      handleNavigate(
+                        tiles[getCoords(tokenId[0], tokenId[1])].tokenId
+                      )
+                    }
                   />
                 </Grid>
               ))}
