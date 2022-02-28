@@ -42,6 +42,8 @@ import { setSaleParcels } from "../../store/saleparcels";
 import { setParcels } from "../../store/parcels";
 import { setBidContractinfo } from "../../store/bidContractData";
 import { showSpinner } from "../../store/spinner";
+import SelectSpace from "../../pages/MyStore/Estate/UpdateLandData/SelectSpace/SelectSpace";
+import UpdateLandData from "../../pages/MyStore/Estate/UpdateLandData/UpdateLandData";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -161,6 +163,14 @@ export default function Layout() {
           <Route
             path="/contracts/:contractaddress/tokens/:estateid/set_spaceOperator"
             element={<SetSpaceOperator />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/selectSpace_forUpdatelanddata"
+            element={<SelectSpace />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/UpdateLandData"
+            element={<UpdateLandData />}
           />
           <Route path="/signin" element={<ToLands />}>
             <Route path="/signin" element={<SignIn />} />

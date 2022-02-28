@@ -116,6 +116,8 @@ export default function TransferSpaces() {
         tokenIds.push(BigNumber.from(a));
       }
       console.log("tokenIds", tokenIds);
+      console.log("estateid", estateid);
+      console.log("transferAddress", transferAddress);
       let transferSpaceTx = await estateRegistryContract.transferManySpaces(
         estateid,
         tokenIds,

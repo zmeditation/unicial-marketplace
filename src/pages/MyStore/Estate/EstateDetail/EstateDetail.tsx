@@ -187,7 +187,7 @@ const EstateDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/selectSpace_forUpdatelanddata`
                   )
                 }
               >
