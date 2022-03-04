@@ -30,7 +30,17 @@ interface AtlasProps {
 }
 
 export const Atlas = (props: AtlasProps) => {
-  const { layers, tiles, height, width, x, y, movingeStatus, zoomStatus, ...rest } = props;
+  const {
+    layers,
+    tiles,
+    height,
+    width,
+    x,
+    y,
+    movingeStatus,
+    zoomStatus,
+    ...rest
+  } = props;
   const classes = "dcl atlas ";
 
   const COLOR_BY_TYPE: any = Object.freeze({
@@ -43,7 +53,7 @@ export const Atlas = (props: AtlasProps) => {
     6: "#563db8", // contributions purple
     road: "#716C7A", // roads
     // 7: "#716C7A", // roads
-    8: "#70AC76", // plazas green
+    plaza: "#70AC76", // plazas green
     unowned: "#3D3A46", // owned parcel/estate
     // 9: "#3D3A46", // owned parcel/estate
     10: "#3D3A46", // parcels on sale (we show them as owned parcels) black
