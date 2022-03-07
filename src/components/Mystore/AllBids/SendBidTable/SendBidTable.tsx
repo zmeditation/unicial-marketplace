@@ -23,6 +23,7 @@ import {
   generateSigner,
 } from "../../../../common/contract";
 import { SpaceProxyAddress } from "../../../../config/contracts/SpaceRegistryContract";
+import { EstateProxyAddress } from "../../../../config/contracts/EstateRegitryContract";
 
 declare var window: any;
 var signer: any, bidContract: any;
@@ -45,7 +46,6 @@ const SendBidTable = ({
   const classes = useStyles();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const [bidStatus, setBidStatus] = useState<any>({ status: "", index: null });
 
   const [nowDate] = useState(new Date());
   const [copyAddress, setcopyAddress] = useState<any>({
@@ -111,12 +111,15 @@ const SendBidTable = ({
             <TableCell
               className={clsx(classes.tableCell, classes.tokenAddress)}
               onClick={() => handleCopyAddress(row.tokenAddress, key)}>
-              {row.tokenAddress.slice(0, showMoreCount)}... &nbsp;
+              {row.tokenAddress.slice(0, showMoreCount)}...&nbsp;
               {row.tokenAddress.toLowerCase() ===
               SpaceProxyAddress.toLowerCase() ? (
-                <span>(space)</span>
+                <span>({t("space")})</span>
+              ) : row.tokenAddress.toLowerCase() ===
+                EstateProxyAddress.toLowerCase() ? (
+                <span>({t("estate")})</span>
               ) : (
-                <span>(others)</span>
+                <span>({t("others")})</span>
               )}{" "}
               &nbsp;
               {copyAddress.status && copyAddress.index === key ? (
@@ -130,7 +133,10 @@ const SendBidTable = ({
             <TableCell
               className={clsx(classes.tableCell, classes.tokenId)}
               onClick={() => handleCopyTokenId(row.tokenId, key)}>
-              {row.tokenId.slice(0, showMoreCount)}... &nbsp;
+              {row.tokenId.slice(0, showMoreCount)}
+              {row.tokenAddress.toLowerCase() !==
+                EstateProxyAddress.toLowerCase() && <span>...</span>}{" "}
+              &nbsp;
               {copyTokenId.status && copyTokenId.index === key ? (
                 <i className='fa fa-check-circle mr-1'></i>
               ) : (
@@ -140,7 +146,7 @@ const SendBidTable = ({
               )}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-              {<img src={normalshapeSvg} className={classes.normalshape} />}
+              {<img src={normalshapeSvg} className={classes.normalshape} alt="normalshape"/>}
               {<div>{addCommas(ethers.utils.formatUnits(row.price, 18))}</div>}
             </TableCell>
             <TableCell className={clsx(classes.tableCell)}>
@@ -149,21 +155,25 @@ const SendBidTable = ({
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               {row.bidStatus === "active" &&
               row.expiresAt < Math.round(nowDate.getTime() / 1000) ? (
-                <Tag color='CommonColor' letter='Expried' />
-              ) : row.bidStatus === "cancel" ? (
                 <ActionButton
                   color='dark'
                   className={classes.actionBtn}
                   disabled>
                   {t("Canceled")}
                 </ActionButton>
-              ) : row.bidStatus === "success" ? (
+              ) : row.bidStatus === "cancel" ? (
                 <ActionButton
                   color='light'
                   className={classes.actionBtn}
                   disabled>
                   {t("Accepted")}
                 </ActionButton>
+              ) : row.bidStatus === "success" ? (
+                <Tag
+                  color='RareColor'
+                  letter='Expried'
+                  className={classes.tags}
+                />
               ) : (
                 <ActionButton
                   color='dark'
@@ -180,7 +190,7 @@ const SendBidTable = ({
     );
   return (
     <>
-      <StageMarket columns={columns} rows={tableRows} />
+      <StageMarket columns={columns} parcelRows={tableRows} />
     </>
   );
 };

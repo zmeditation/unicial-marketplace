@@ -3,9 +3,8 @@ import { useNavigate, useParams } from "react-router";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import CallMadeIcon from "@material-ui/icons/CallMade";
-
+import SliceMap from "../../components/SliceMap";
 import ActionButton from "../../components/Base/ActionButton";
-import TokenImg from "../../assets/img/1.png";
 import { useStyles, StyledInput } from "./BidStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
 import settingicon from "../../assets/svg/bidpage_settingicon.svg";
@@ -35,9 +34,12 @@ import {
   UccContractAbi,
   UccContractAddress,
 } from "../../config/contracts/UnicialCashToken";
+import { parcels } from "../../store/parcels/selectors";
+import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
+import { EstateProxyAddress, EstateRegistryAbi } from "../../config/contracts/EstateRegitryContract";
 
 declare var window: any;
-var signer: any, bidContract: any, uccContract: any;
+var signer: any, bidContract: any, uccContract: any, estateContract: any;
 
 const uccApprovalAmount = BigNumber.from(
   "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
@@ -50,8 +52,11 @@ const Bid = () => {
   const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
   const loginAddress = useAppSelector(selectLoginAddress);
+  const tiles :any = useAppSelector(parcels)
   const maxTime = useAppSelector(max);
   const minTime = useAppSelector(min);
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
   const [price, setPrice] = useState(0);
   const [timeStamp, setTimeStamp] = useState(0);
   const [bidStatus, setBidStatus] = useState(true);
@@ -72,6 +77,12 @@ const Bid = () => {
     BidContractAbi,
     signer
   );
+
+  estateContract = generateContractInstance(
+    EstateProxyAddress,
+    EstateRegistryAbi,
+    signer
+  )
 
   const initAllowance = async () => {
     let allowance = await uccContract.allowance(
@@ -95,7 +106,29 @@ const Bid = () => {
   useEffect(() => {
     initAllowance();
     uccAllowance.gt(0) ? setBidStatus(false) : setBidStatus(true);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uccAllowance.toString()]);
+
+  useEffect(() => {
+    Object.keys(tiles).forEach((index: any) => {
+      const allParcel = tiles[index];
+      if (
+        allParcel.tokenId === tokensid &&
+        contractaddress === SpaceProxyAddress
+      ) {
+        setX(allParcel.x);
+        setY(allParcel.y);
+      }
+      if (
+        allParcel.estateId === tokensid &&
+        contractaddress === EstateProxyAddress
+      ) {
+        setX(allParcel.x);
+        setY(allParcel.y);
+      }
+    });
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ tiles, tokensid]);
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
@@ -167,15 +200,51 @@ const Bid = () => {
       return;
     }
 
-    let bidOrderTx = await bidContract[
-      "placeBid(address,uint256,uint256,uint256)"
-    ](
-      contractaddress,
-      BigNumber.from(tokensid),
-      ethers.utils.parseEther(price.toString()), // price in wei
-      BigNumber.from(timeStamp),
-      { from: loginAddress } // expireAt to UTC timestamp
-    );
+    let uccBalance = await uccContract.balanceOf(loginAddress)
+
+    if (price > parseInt(ethers.utils.formatUnits(uccBalance, 18))) {
+      dispatch(
+        showAlert({
+          message: "You must set a price value that is lower than the Ucctoken value in your account.",
+          severity: "error",
+        })
+      );
+      return;
+    }
+
+    let bidOrderTx 
+
+    if(contractaddress === SpaceProxyAddress){
+      
+      bidOrderTx= await bidContract[
+        "placeBid(address,uint256,uint256,uint256)"
+      ](
+        contractaddress,
+        BigNumber.from(tokensid),
+        ethers.utils.parseEther(price.toString()), // price in wei
+        BigNumber.from(timeStamp),
+        { from: loginAddress } // expireAt to UTC timestamp
+      );
+    }
+    if (contractaddress === EstateProxyAddress){
+
+      
+      let fingerPrint = (
+        await estateContract.getFingerprint(tokensid)
+        );
+        
+      bidOrderTx= await bidContract[
+        "placeBid(address,uint256,uint256,uint256,bytes)"
+      ](
+        contractaddress,
+        BigNumber.from(tokensid),
+        ethers.utils.parseEther(price.toString()), // price in wei
+        BigNumber.from(timeStamp),
+        fingerPrint,
+        { from: loginAddress } // expireAt to UTC timestamp
+      );
+    }
+    
     await bidOrderTx.wait();
 
     dispatch(
@@ -193,10 +262,7 @@ const Bid = () => {
         <div className={classes.bidCard}>
           <div className={classes.leftCard}>
             <div className={classes.imgContent}>
-              <img
-                src={TokenImg}
-                className={classes.tokenImg}
-                alt='token'></img>
+             <SliceMap centerX={x} centerY={y} />
             </div>
           </div>
           <div className={classes.rightCard}>
@@ -216,7 +282,7 @@ const Bid = () => {
                         onChange={(e) => handleChange(e)}
                         startAdornment={
                           <InputAdornment position='start'>
-                            <img src={settingicon} />
+                            <img src={settingicon} alt="settingIcon"/>
                           </InputAdornment>
                         }
                       />
@@ -238,7 +304,7 @@ const Bid = () => {
                           KeyboardButtonProps={{
                             "aria-label": "change date",
                           }}
-                          keyboardIcon={<img src={calendar_icon} />}
+                          keyboardIcon={<img src={calendar_icon} alt="calendarIcon"/>}
                         />
                       </MuiPickersUtilsProvider>
                     </FormControl>

@@ -1,4 +1,4 @@
-export const ApiUrl = "http://192.168.112.98:8080";
+export const ApiUrl = "https://api.unicial.org";
 // export const ApiUrl = "http://localhost:3000";
 export const REQUEST_API_URL = `${ApiUrl}/api/v1`;
 
@@ -82,6 +82,10 @@ export const typebox = {
   store: "item",
   listing: "nft",
 };
+export const ownerStorebox = {
+  originals: "item",
+  collectibles: "nft",
+};
 export const parcelTypes = ["road", "district", "plaza"];
 
 export const category = {
@@ -91,6 +95,7 @@ export const category = {
   estates: "estates",
   wearable: "wearables",
   name: "ens",
+  all_assets: "all",
 };
 
 export const collectiblesTagsColor = {
@@ -117,9 +122,28 @@ export const categoryWearables = {
   tiara: "wearables_tiara",
   topHead: "wearables_top_head",
 };
-
+export const ownercategoriesData = {
+  head: "wearables_head",
+  facialhair: "wearables_facial_hair",
+  hair: "wearables_hair",
+  eyes: "wearables_eyes",
+  eyebrows: "wearables_eyebrows",
+  mouth: "wearables_mouth",
+  upperBody: "wearables_upper_body",
+  lowerBody: "wearables_lower_body",
+  feet: "wearables_feet",
+  accessories: "wearables_accessories",
+  earring: "wearables_erring",
+  eyewear: "wearables_eyewear",
+  hat: "wearables_hat",
+  helmet: "wearables_helmet",
+  mask: "wearables_mask",
+  tiara: "wearables_tiara",
+  topHead: "wearables_top_head",
+  skin: "wearables_skin",
+};
 //------------table page nation setting-----------------
-export const onePageCount = 5
+export const onePageCount = 5;
 
 export const headerSendData = [
   "Token Address",
@@ -135,4 +159,73 @@ export const headerReceiveData = [
   "Price",
   "Expires At Time",
   "Action",
+];
+
+export const headerUpdateManagerData = ["Address", "Current Status", "Action"];
+
+export const managerData = [
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: false,
+  },
+  {
+    tokenAddress: "0x4343d",
+    currentStatus: true,
+  },
 ];

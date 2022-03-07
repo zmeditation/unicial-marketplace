@@ -59,7 +59,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: "329px",
     height: "265.58px",
     borderRadius: "16px",
-    overflow: "hidden",
     display: "inline-block",
     [theme.breakpoints.down(769)]: {
       width: "100%",

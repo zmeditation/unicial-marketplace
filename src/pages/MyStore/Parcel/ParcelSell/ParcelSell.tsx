@@ -73,6 +73,15 @@ const ParcelSell = () => {
 
   // occur a transaction to create sale order on marketplace for this parcel
   const handleCreateOrder = async () => {
+    if (price === 0) {
+      dispatch(
+        showAlert({
+          message: "You have to set price value to sell.",
+          severity: "error",
+        })
+      );
+      return;
+    }
     let currenttime = new Date().getTime() / 1000;
     if (timeStamp <= currenttime) {
       dispatch(
@@ -81,6 +90,7 @@ const ParcelSell = () => {
           severity: "error",
         })
       );
+      return;
     }
     if (loginAddress.length === 0) {
       dispatch(
@@ -90,16 +100,9 @@ const ParcelSell = () => {
         })
       );
       navigate("/signin");
+      return;
     }
 
-    if (price === 0) {
-      dispatch(
-        showAlert({
-          message: "You have to set price value to sell.",
-          severity: "error",
-        })
-      );
-    }
     signer = generateSigner(window.ethereum);
     marketplaceContract = generateContractInstance(
       MarketplaceAddress,
@@ -113,29 +116,15 @@ const ParcelSell = () => {
     );
 
     // check if this token is approved for marketplace contract
-    let isApproved = false;
-    alert("okdes");
-    isApproved = await spaceRegistryContract.isAuthorized(
-      MarketplaceAddress,
-      BigNumber.from(tokensid)
-    );
-    alert("okdes123");
-
-    if (!isApproved) {
-      // approve marketplace contract to transfer this asset
-      dispatch(
-        showAlert({
-          message:
-            "You have to first approve the marketplace contract to operate your asset.",
-          severity: "error",
-        })
-      );
+    if (
+      spaceRegistryContract.getApproved(tokensid)! == MarketplaceAddress &&
+      spaceRegistryContract.isApprovedForAll(loginAddress, tokensid) === false
+    ) {
       let approveMarketTx = await spaceRegistryContract.approve(
         MarketplaceAddress,
         tokensid
       );
       await approveMarketTx.wait();
-
       dispatch(
         showAlert({
           message:
@@ -144,7 +133,6 @@ const ParcelSell = () => {
         })
       );
     }
-    alert("parcelsell approved");
     let createOrderTx = await marketplaceContract.createOrder(
       contractaddress,
       BigNumber.from(tokensid),
@@ -222,7 +210,7 @@ const ParcelSell = () => {
                           onChange={(e) => handleChange(e)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <img src={settingicon} alt="settingIcon"/>
+                              <img src={settingicon} alt="settingIcon" />
                             </InputAdornment>
                           }
                         />
@@ -244,7 +232,9 @@ const ParcelSell = () => {
                             KeyboardButtonProps={{
                               "aria-label": "change date",
                             }}
-                            keyboardIcon={<img src={calendar_icon} alt="calendarIcon"/>}
+                            keyboardIcon={
+                              <img src={calendar_icon} alt="calendarIcon" />
+                            }
                           />
                         </MuiPickersUtilsProvider>
                       </FormControl>

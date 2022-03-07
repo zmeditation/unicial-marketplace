@@ -56,39 +56,50 @@ const ParcelTransfer = () => {
   }, [transferAddress]);
 
   const handleTransferOrder = async () => {
-    signer = generateSigner(window.ethereum);
-    estateRegistryContract = generateContractInstance(
-      EstateProxyAddress,
-      EstateRegistryAbi,
-      signer
-    );
-    if (
-      estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
-      estateRegistryContract.isApprovedForAll(loginAddress, estateid) === false
-    ) {
-      let approveMarketTx = await estateRegistryContract.approve(
-        MarketplaceAddress,
-        estateid
-      );
-      await approveMarketTx.wait();
+    if (loginAddress === transferAddress.toLowerCase()) {
       dispatch(
         showAlert({
           message:
-            "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+            "You have to input correct recepient address. It is your login address",
+          severity: "error",
+        })
+      );
+    } else {
+      signer = generateSigner(window.ethereum);
+      estateRegistryContract = generateContractInstance(
+        EstateProxyAddress,
+        EstateRegistryAbi,
+        signer
+      );
+      if (
+        estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
+        estateRegistryContract.isApprovedForAll(loginAddress, estateid) ===
+          false
+      ) {
+        let approveMarketTx = await estateRegistryContract.approve(
+          MarketplaceAddress,
+          estateid
+        );
+        await approveMarketTx.wait();
+        dispatch(
+          showAlert({
+            message:
+              "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+            severity: "success",
+          })
+        );
+      }
+      let transferTx = await estateRegistryContract[
+        "safeTransferFrom(address,address,uint256)"
+      ](loginAddress, transferAddress, BigNumber.from(estateid));
+      await transferTx.wait();
+      dispatch(
+        showAlert({
+          message: "Transfer order is successfully published.",
           severity: "success",
         })
       );
     }
-    let transferTx = await estateRegistryContract[
-      "safeTransferFrom(address,address,uint256)"
-    ](loginAddress, transferAddress, BigNumber.from(estateid));
-    await transferTx.wait();
-    dispatch(
-      showAlert({
-        message: "Transfer order is successfully published.",
-        severity: "success",
-      })
-    );
   };
 
   return (
@@ -102,7 +113,8 @@ const ParcelTransfer = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -118,7 +130,7 @@ const ParcelTransfer = () => {
                         {t("RECEPIENT ADDRESS")}
                       </div>
                       <FormControl>
-                        <StyledInput placeholder='0x' onChange={handleChange} />
+                        <StyledInput placeholder="0x" onChange={handleChange} />
                       </FormControl>
                     </Grid>
                   </Grid>
@@ -129,25 +141,28 @@ const ParcelTransfer = () => {
               <div className={classes.buttons}>
                 {isCorrectAddress === true ? (
                   <ActionButton
-                    color='light'
+                    color="light"
                     className={classes.bidchange}
-                    onClick={handleTransferOrder}>
+                    onClick={handleTransferOrder}
+                  >
                     {t("Transfer")} &nbsp;
-                    <img src={raiseicon} alt='raiseicon' />
+                    <img src={raiseicon} alt="raiseicon" />
                   </ActionButton>
                 ) : (
                   <ActionButton
                     disabled
-                    color='light'
-                    className={classes.bidchange}>
+                    color="light"
+                    className={classes.bidchange}
+                  >
                     {t("Transfer")} &nbsp;
-                    <img src={raiseicon} alt='raiseicon' />
+                    <img src={raiseicon} alt="raiseicon" />
                   </ActionButton>
                 )}
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}>
+                  onClick={() => navigate(-1)}
+                >
                   {t("Cancel")}
                 </ActionButton>
               </div>

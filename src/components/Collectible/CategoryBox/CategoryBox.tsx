@@ -42,8 +42,8 @@ export default function CategoryBox() {
       setActiveCategory(category.wearable);
       setExpanded(category.wearable);
     } else {
-      setExpanded(category.wearable);
       setActiveCategory("");
+      setExpanded(category.wearable);
     }
   }, [location]);
 

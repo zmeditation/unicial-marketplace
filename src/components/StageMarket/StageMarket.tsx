@@ -14,7 +14,9 @@ import clsx from "clsx";
 
 interface StyledTableleProps {
   columns?: any;
-  rows: any;
+  rows?: any;
+  parcelRows?: any;
+  estateRows?: any;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -33,6 +35,8 @@ const useStyles = makeStyles((theme: Theme) =>
         border: "none",
         padding: "0px",
         marginBottom: "20px",
+        paddingLeft: "10px",
+        paddingRight: "5px",
       },
       "& .MuiTableCell-root": {
         whiteSpace: "nowrap",
@@ -109,7 +113,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function StageMarket({ columns, rows }: StyledTableleProps) {
+function StageMarket({
+  columns,
+  parcelRows,
+  estateRows,
+  rows,
+}: StyledTableleProps) {
   const classes = useStyles();
 
   const tableColumns = columns?.map((column: any, key: any) => (
@@ -131,6 +140,8 @@ function StageMarket({ columns, rows }: StyledTableleProps) {
             <TableRow>{tableColumns}</TableRow>
           </TableHead>
           <TableBody>{rows}</TableBody>
+          <TableBody>{parcelRows}</TableBody>
+          <TableBody>{estateRows}</TableBody>
         </Table>
       </TableContainer>
     </>

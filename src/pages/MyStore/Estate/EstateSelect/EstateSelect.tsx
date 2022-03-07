@@ -5,7 +5,7 @@ import { Grid } from "@material-ui/core";
 import CreateEstateMap from "../../../../components/CreateEstateMap";
 import ParcelCard from "../../../../components/ParcelCard/ParcelCard";
 
-import TobTab from "../../../../components/TopTab/TopTab";
+import TopTab from "../../../../components/TopTab/TopTab";
 import ActionButton from "../../../../components/Base/ActionButton";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import { BackButton } from "../../../../components/BackButton/BackButton";
@@ -85,7 +85,7 @@ export default function EstatesSelect() {
 
   return (
     <>
-      <TobTab />
+      <TopTab />
 
       <div className={classes.root}>
         <div className={classes.LandMap}>
@@ -101,11 +101,12 @@ export default function EstatesSelect() {
         <div className={classes.btnPart}>
           <BackButton className={classes.backButton} />
           <ActionButton
-            color='light'
+            color="light"
             className={classes.clearBtn}
-            onClick={handleClear}>
+            onClick={handleClear}
+          >
             {t("Clear")}
-            <CallMadeIcon fontSize='small' />
+            <CallMadeIcon fontSize="small" />
           </ActionButton>
         </div>
 
@@ -120,8 +121,8 @@ export default function EstatesSelect() {
                 return (
                   <Grid key={key} item xs={6} sm={4} md={2}>
                     <ParcelCard
-                      cardlabel='Parcel'
-                      carddescription='Acquired at August 2nd, 2018'
+                      cardlabel="Parcel"
+                      carddescription="Acquired at August 2nd, 2018"
                       location={items}
                     />
                   </Grid>
@@ -131,16 +132,18 @@ export default function EstatesSelect() {
             <div className={classes.btns}>
               <div className={classes.buttons}>
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.bidchange}
-                  onClick={handleContinue}>
+                  onClick={handleContinue}
+                >
                   {t("CONTINUE")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate("/account?section=estates")}>
+                  onClick={() => navigate("/account?section=estates")}
+                >
                   {t("CANCEL")}
                 </ActionButton>
               </div>

@@ -22,14 +22,17 @@ import AdminEstate from "../../pages/Admin/AdminEstate/AdminEstate";
 import ParcelSell from "../../pages/MyStore/Parcel/ParcelSell/ParcelSell";
 import ParcelTransfer from "../../pages/MyStore/Parcel/ParcelTransfer/ParcelTransfer";
 import Collectibles from "../../pages/Collectibles/Collectibles";
+import OwnerDetail from "../../pages/OwnerDetail/OwnerDetail";
 import ToLands from "./ToLands";
 import ToSignIn from "./ToSignIn";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import ParcelDetail from "../../pages/MyStore/Parcel/ParcelDetail/ParcelDetail";
 import UpdateMetadata from "../../pages/MyStore/Estate/UpdateMetadata/UpdateMetadata";
-import UpdateManager from "../../pages/MyStore/Estate/UpdateManager/UpdateManager";
+import SettingManager from "../../pages/MyStore/Estate/SettingManager/SettingManager";
 import UpdateOperate from "../../pages/MyStore/Estate/UpdateOperate/UpdateOperate";
+import TransferSpaces from "../../pages/MyStore/Estate/TransferSpaces/TransferSpaces";
+import SetSpaceOperator from "../../pages/MyStore/Estate/SetSpaceOperator/SetSpaceOperator";
 import { setloginAddress, setlogoutAddress } from "../../store/auth";
 import { useAppDispatch } from "../../store/hooks";
 import { CHAIN_INFO } from "../../config/constant";
@@ -39,6 +42,8 @@ import { setSaleParcels } from "../../store/saleparcels";
 import { setParcels } from "../../store/parcels";
 import { setBidContractinfo } from "../../store/bidContractData";
 import { showSpinner } from "../../store/spinner";
+import SelectSpace from "../../pages/MyStore/Estate/UpdateLandData/SelectSpace/SelectSpace";
+import UpdateLandData from "../../pages/MyStore/Estate/UpdateLandData/UpdateLandData";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -71,9 +76,13 @@ export default function Layout() {
 
   const initSet = async () => {
     await dispatch(showSpinner(true));
-    let dispatchPromises = []
-    dispatchPromises.push(dispatch(setSaleParcels()), dispatch(setParcels()), dispatch(setBidContractinfo()))
-    await Promise.all(dispatchPromises)
+    let dispatchPromises = [];
+    dispatchPromises.push(
+      dispatch(setSaleParcels()),
+      dispatch(setParcels()),
+      dispatch(setBidContractinfo())
+    );
+    await Promise.all(dispatchPromises);
     await dispatch(showSpinner(false));
   };
 
@@ -140,12 +149,28 @@ export default function Layout() {
             element={<UpdateMetadata />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/estate_updatemanager"
-            element={<UpdateManager />}
+            path="/account/estate/setting_manager"
+            element={<SettingManager />}
           />
           <Route
             path="/contracts/:contractaddress/tokens/:estateid/estate_updateoperate"
             element={<UpdateOperate />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/transfer_spaces"
+            element={<TransferSpaces />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/set_spaceOperator"
+            element={<SetSpaceOperator />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/selectSpace_forUpdatelanddata"
+            element={<SelectSpace />}
+          />
+          <Route
+            path="/contracts/:contractaddress/tokens/:estateid/UpdateLandData"
+            element={<UpdateLandData />}
           />
           <Route path="/signin" element={<ToLands />}>
             <Route path="/signin" element={<SignIn />} />
@@ -153,6 +178,7 @@ export default function Layout() {
           <Route path="/account" element={<ToSignIn />}>
             <Route path="/account" element={<MyStore />} />
           </Route>
+          <Route path="/accounts/:owneraddress" element={<OwnerDetail />} />
         </Routes>
         <Footer />
         <Notification />

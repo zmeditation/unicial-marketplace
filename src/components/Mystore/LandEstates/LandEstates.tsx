@@ -25,6 +25,10 @@ export default function LandEstates() {
     navigate("/account/estate/create");
   };
 
+  const handleSettingManager = () => {
+    navigate("/account/estate/setting_manager");
+  };
+
   const handleNavigate = (tokenId: string) => {
     navigate(
       `/contracts/${EstateProxyAddress}/tokens/${tokenId}/estate_detail`
@@ -40,6 +44,13 @@ export default function LandEstates() {
   return (
     <>
       <div className={classes.createBtnContainer}>
+        <ActionButton
+          color="light"
+          className={classes.createBtn}
+          onClick={handleSettingManager}
+        >
+          {t("Setting Manager")}
+        </ActionButton>
         <ActionButton
           color="light"
           className={classes.createBtn}

@@ -1,3 +1,5 @@
+/** @format */
+
 import { useStyles } from "./ReceiveBidTableStyle";
 import StageMarket from "../../../StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";
@@ -24,13 +26,18 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { BidContractAddress } from "../../../../config/contracts/BidContract";
+import {
+  EstateProxyAddress,
+  EstateRegistryAbi,
+} from "../../../../config/contracts/EstateRegitryContract";
 
 declare var window: any;
-var signer: any, spaceRegistryContract: any;
+var signer: any, spaceRegistryContract: any, estateContract: any;
 
 interface StagingTableProps {
   columns?: any;
-  rows: any;
+  parcelRows?: any;
+  estateRows?: any;
   curPage: number;
   stepIndex?: number;
   onRowClick(key: number): any;
@@ -38,7 +45,8 @@ interface StagingTableProps {
 
 const ReceiveBidTable = ({
   columns,
-  rows,
+  parcelRows,
+  estateRows,
   curPage,
   stepIndex,
   onRowClick,
@@ -74,17 +82,21 @@ const ReceiveBidTable = ({
     setcopyTokenId({ status: !copyTokenId.status, index: key });
   };
 
-  const handleAcceptBid = async (key: number) => {
+  const handleAcceptParcelBid = async (key: number) => {
     signer = generateSigner(window.ethereum);
     spaceRegistryContract = generateContractInstance(
       SpaceProxyAddress,
       SpaceRegistryAbi,
       signer
     );
-
     let receiveTx = await spaceRegistryContract[
       "safeTransferFrom(address,address,uint256,bytes)"
-    ](loginAddress, BidContractAddress , BigNumber.from(rows.tokenId[key]), "");
+    ](
+      loginAddress,
+      BidContractAddress,
+      BigNumber.from(parcelRows.tokenId[key]),
+      parcelRows.data[key][0]
+    );
 
     await receiveTx.wait();
     dispatch(
@@ -95,9 +107,35 @@ const ReceiveBidTable = ({
     );
   };
 
-  const tableRows =
-    rows !== undefined ? (
-      rows.data
+  const handleAcceptEstateBid = async (key: number) => {
+    signer = generateSigner(window.ethereum);
+    estateContract = generateContractInstance(
+      EstateProxyAddress,
+      EstateRegistryAbi,
+      signer
+    );
+
+    let receiveTx = await estateContract[
+      "safeTransferFrom(address,address,uint256,bytes)"
+    ](
+      loginAddress,
+      BidContractAddress,
+      BigNumber.from(estateRows.estateId[key]),
+      estateRows.data[key][0]
+    );
+
+    await receiveTx.wait();
+    dispatch(
+      showAlert({
+        message: "Recieved order is successfully published.",
+        severity: "success",
+      })
+    );
+  };
+
+  const tableParcelRows =
+    parcelRows !== undefined ? (
+      parcelRows.data
         .slice((curPage - 1) * onePageCount, curPage * onePageCount)
         .map((row: any, key: any) => (
           <TableRow
@@ -107,7 +145,7 @@ const ReceiveBidTable = ({
             <TableCell
               className={clsx(classes.tableCell, classes.tokenAddress)}
               onClick={() => handleCopyAddress(row[0], key)}>
-              {row[0].slice(0, showMoreCount)}... &nbsp;
+              {row[0].slice(0, showMoreCount)}... ({t("space")})&nbsp;
               {copyAddress.status && copyAddress.index === key ? (
                 <i className='fa fa-check-circle mr-1'></i>
               ) : (
@@ -129,7 +167,13 @@ const ReceiveBidTable = ({
               )}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-              {<img src={normalshapeSvg} className={classes.normalshape} />}
+              {
+                <img
+                  src={normalshapeSvg}
+                  className={classes.normalshape}
+                  alt='normalshape'
+                />
+              }
               {<div>{addCommas(ethers.utils.formatUnits(row[2], 18))}</div>}
             </TableCell>
             <TableCell className={clsx(classes.tableCell)}>
@@ -139,7 +183,7 @@ const ReceiveBidTable = ({
               <ActionButton
                 color='light'
                 className={classes.actionBtn}
-                onClick={() => handleAcceptBid(key)}>
+                onClick={() => handleAcceptParcelBid(key)}>
                 {t("Accept")}
               </ActionButton>
             </TableCell>
@@ -148,9 +192,74 @@ const ReceiveBidTable = ({
     ) : (
       <></>
     );
+
+  const tableEstateRows =
+    estateRows !== undefined ? (
+      estateRows.data
+        .slice((curPage - 1) * onePageCount, curPage * onePageCount)
+        .map((row: any, key: any) => (
+          <TableRow
+            key={key}
+            onClick={() => onRowClick(key)}
+            className={clsx({ [classes.targetRow]: stepIndex === key })}>
+            <TableCell
+              className={clsx(classes.tableCell, classes.tokenAddress)}
+              onClick={() => handleCopyAddress(row[0], key)}>
+              {row[0].slice(0, showMoreCount)}... ({t("estate")})&nbsp;
+              {copyAddress.status && copyAddress.index === key ? (
+                <i className='fa fa-check-circle mr-1'></i>
+              ) : (
+                <span>
+                  <i className='far fa-copy'></i>
+                </span>
+              )}
+            </TableCell>
+            <TableCell
+              className={clsx(classes.tableCell, classes.tokenId)}
+              onClick={() => handleCopyTokenId(row[1], key)}>
+              {row[1].slice(0, showMoreCount)}... &nbsp;
+              {copyTokenId.status && copyTokenId.index === key ? (
+                <i className='fa fa-check-circle mr-1'></i>
+              ) : (
+                <span>
+                  <i className='far fa-copy'></i>
+                </span>
+              )}
+            </TableCell>
+            <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
+              {
+                <img
+                  src={normalshapeSvg}
+                  className={classes.normalshape}
+                  alt='normalShape'
+                />
+              }
+              {<div>{addCommas(ethers.utils.formatUnits(row[2], 18))}</div>}
+            </TableCell>
+            <TableCell className={clsx(classes.tableCell)}>
+              {dateConvert(row[3])}
+            </TableCell>
+            <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
+              <ActionButton
+                color='light'
+                className={classes.actionBtn}
+                onClick={() => handleAcceptEstateBid(key)}>
+                {t("Accept")}
+              </ActionButton>
+            </TableCell>
+          </TableRow>
+        ))
+    ) : (
+      <></>
+    );
+
   return (
     <>
-      <StageMarket columns={columns} rows={tableRows} />
+      <StageMarket
+        columns={columns}
+        parcelRows={tableParcelRows}
+        estateRows={tableEstateRows}
+      />
     </>
   );
 };

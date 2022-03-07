@@ -10,9 +10,7 @@ import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import { dateConvert } from "../../../../common/utils";
 import BidDetail from "../../../../components/Mystore/BidDetail";
-import {
-  getEstatesByOwner,
-} from "../../../../hooks/api";
+import { getEstatesByOwner } from "../../../../hooks/api";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
@@ -135,20 +133,7 @@ const EstateDetail = () => {
                 <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
-            <Grid item md={4} sm={6} xs={12}>
-              <ActionButton
-                color="light"
-                className={classes.bidchange}
-                onClick={() =>
-                  navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/estate_updatemanager`
-                  )
-                }
-              >
-                {t("Update Manager")}
-                <CallMadeIcon fontSize="small" />
-              </ActionButton>
-            </Grid>
+
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
                 color="light"
@@ -174,7 +159,7 @@ const EstateDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/transfer_spaces`
                   )
                 }
               >
@@ -188,11 +173,11 @@ const EstateDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/set_spaceOperator`
                   )
                 }
               >
-                {t("Update Operator")}
+                {t("Space Operator")}
                 <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
@@ -202,7 +187,7 @@ const EstateDetail = () => {
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
-                    `/contracts/${contractaddress}/tokens/${estateid}/sell`
+                    `/contracts/${contractaddress}/tokens/${estateid}/selectSpace_forUpdatelanddata`
                   )
                 }
               >

@@ -18,10 +18,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   tokenAddress: {
-    cursor: "pointer"
+    cursor: "pointer",
   },
   tokenId: {
-    cursor: "pointer"
+    cursor: "pointer",
   },
   priceCell: {
     // display: "flex",
@@ -43,5 +43,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
       lineHeight: "20px",
       verticalAlign: "Top",
     },
+  },
+  tags: {
+    textAlign: "center",
+    maxHeight: "42px",
+    fontSize: "12px",
+    alignItems: "center",
+    fontFamily: "Lato",
+    fontWeight: 500,
+    verticalAlign: "Top",
+    margin: "0px",
+    cursor: "unset"
   },
 }));

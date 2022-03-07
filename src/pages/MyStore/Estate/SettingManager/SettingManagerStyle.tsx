@@ -204,6 +204,38 @@ export const useStyles = makeStyles((theme: Theme) => ({
       marginLeft: "0px",
     },
   },
+  // update manager relate
+  updateManagerRoot: {
+    borderTop: "solid 1px #373f66",
+    minHeight: "150px",
+    paddingTop: "50px",
+    marginTop: "50px",
+    marginBottom: "15px",
+  },
+  updateManagerTitle: {
+    marginLeft: "20px",
+    marginBottom: "30px",
+    fontStyle: "normal",
+    fontWeight: 600,
+    fontSize: "18px",
+    lineHeight: "26px",
+    letterSpacing: "0,02em",
+    color: "white",
+    paddingLeft: "8px",
+    fontFamily: "Montserrat",
+  },
+  emptyDisplay: {
+    opacity: "50%",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paginationContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 
 export const StyledInput = withStyles((theme) => ({
