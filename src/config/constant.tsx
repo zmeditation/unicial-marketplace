@@ -62,8 +62,8 @@ export const CHAIN_INFO = {
       symbol: "ZNX",
       decimals: 18,
     },
-    rpcUrls: ["http://52.74.43.98"],
-    blockExplorerUrls: ["http://znxscan.com"],
+    rpcUrls: ["https://rpc1.znxscan.com"],
+    blockExplorerUrls: ["https://znxscan.com"],
   },
   TESTNET: {
     chainId: "0x5D",
@@ -74,7 +74,7 @@ export const CHAIN_INFO = {
       decimals: 18,
     },
     rpcUrls: ["https://testrpc1.znxscan.com"],
-    blockExplorerUrls: ["http://testnet.znxscan.com"],
+    blockExplorerUrls: ["https://testnet.znxscan.com"],
   },
 };
 
