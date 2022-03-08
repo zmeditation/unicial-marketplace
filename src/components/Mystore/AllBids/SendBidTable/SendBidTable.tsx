@@ -166,7 +166,7 @@ const SendBidTable = ({
                   color='light'
                   className={classes.actionBtn}
                   disabled>
-                  {t("Accepted")}
+                  "Cancelled"
                 </ActionButton>
               ) : row.bidStatus === "success" ? (
                 <Tag

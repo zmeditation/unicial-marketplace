@@ -36,6 +36,8 @@ import {
   EstateRegistryAbi,
   EstateProxyAddress,
 } from "../../../../config/contracts/EstateRegitryContract";
+import { isEstateApproved } from "../../../../hooks/api";
+
 declare var window: any;
 var signer: any, marketplaceContract: any, estateRegistryContract: any;
 
@@ -107,17 +109,21 @@ const EstateSell = () => {
       EstateRegistryAbi,
       signer
     );
+
+    let isApproved = false;
+    isApproved = await isEstateApproved(
+      loginAddress,
+      MarketplaceAddress,
+      estateid
+    );
     // check if this token is approved for marketplace contract
-    if (
-      estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
-      estateRegistryContract.isApprovedForAll(loginAddress, estateid) === false
-    ) {
-      alert("not yet!!");
+    if (!isApproved) {
       let approveMarketTx = await estateRegistryContract.approve(
         MarketplaceAddress,
         estateid
       );
       await approveMarketTx.wait();
+
       dispatch(
         showAlert({
           message:
@@ -126,14 +132,13 @@ const EstateSell = () => {
         })
       );
     }
-    alert("estatesell test");
+
     let createOrderTx = await marketplaceContract.createOrder(
       contractaddress,
       BigNumber.from(estateid),
       ethers.utils.parseEther(price.toString()),
       BigNumber.from(timeStamp.toString())
     );
-    alert("estatesell test22");
 
     await createOrderTx.wait();
     dispatch(

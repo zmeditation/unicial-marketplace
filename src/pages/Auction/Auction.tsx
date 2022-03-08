@@ -233,7 +233,9 @@ const Auction = () => {
     let uccPricePerSpaceTmp = parseInt(
       (await spaceAuctionContract.getCurrentPrice()).toString()
     );
-    setUccPricePerSpace(uccPricePerSpaceTmp);
+    setUccPricePerSpace(
+      ethers.utils.parseEther(uccPricePerSpaceTmp.toString()).toNumber()
+    );
     spacesLimitPerBid = parseInt(
       (await spaceAuctionContract.spacesLimitPerBid()).toString()
     );

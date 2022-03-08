@@ -7,8 +7,6 @@ export const setSaleParcels = createAsyncThunk(
     try {
       const res = await getSaleParcelsAPI();
       return res;
-    } catch (err: any) {
-      console.log(err);
-    }
+    } catch (err: any) {}
   }
 );

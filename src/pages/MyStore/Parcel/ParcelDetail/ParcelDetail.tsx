@@ -7,13 +7,17 @@ import { useParams } from "react-router-dom";
 import { useStyles } from "./ParcelDetailStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
-import BidDetail from "../../../../components/Mystore/BidDetail";
-import { getParcelsByOwnerAsCoords } from "../../../../hooks/api";
+import {
+  getBidsByToken,
+  getParcelsByOwnerAsCoords,
+} from "../../../../hooks/api";
 import { dateConvert } from "../../../../common/utils";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
 import { useAppSelector } from "../../../../store/hooks";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
+import BidRecord from "../../../../components/ContractInfo/BidRecord";
+import { ethers } from "ethers";
 
 const ParcelDetail = () => {
   const classes = useStyles();
@@ -26,11 +30,15 @@ const ParcelDetail = () => {
   const [count, setCount] = useState(showMoreCount);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [showLessBtn, setShowLessBtn] = useState(false);
+  const [bidItems, setBidItems] = useState<any>();
 
   useEffect(() => {
     getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
       setOwnParcels(parcels);
-      if (parcels && parcels?.length <= showMoreCount) {
+    });
+    getBidsByToken(contractaddress, tokensid).then((bids) => {
+      setBidItems(bids);
+      if (bids && bids?.length <= showMoreCount) {
         setShowMoreBtn(false);
         setShowLessBtn(false);
       }
@@ -60,8 +68,9 @@ const ParcelDetail = () => {
             <div className={classes.imgContent}>
               <img
                 src={TokenImg}
-              className={classes.tokenImg}
-                alt='token'></img>
+                className={classes.tokenImg}
+                alt="token"
+              ></img>
             </div>
           </div>
 
@@ -69,64 +78,80 @@ const ParcelDetail = () => {
             <div className={classes.title}>{t("Parcel detail")}</div>
             <div className={classes.buttons}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${tokensid}/sell`
                   )
-                }>
+                }
+              >
                 {t("Sell")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${tokensid}/transfer`
                   )
-                }>
+                }
+              >
                 {t("Transfer")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
               <ActionButton
-                color='dark'
+                color="dark"
                 className={classes.cancelchange}
-                onClick={() => navigate(-1)}>
+                onClick={() => navigate(-1)}
+              >
                 {t("Cancel")}
               </ActionButton>
             </div>
           </div>
         </div>
         <div className={classes.bidDetail}>
-          <div className={classes.bidsTitle}>{t("Bids")}.</div>
-          {ownParcels?.slice(0, count).map((row: any, index: any) => (
-            <BidDetail
-              key={index}
-              address={row.owner}
-              price={1399}
-              time={dateConvert(row.updatedAt)}
-            />
-          ))}
           <div
             className={
-              showMoreBtn === true
-                ? classes.showmoreContent
-                : classes.displayNone
-            }>
-            <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
-          </div>
-          <div
-            className={
-              showLessBtn === true
-                ? classes.showmoreContent
-                : classes.displayNone
-            }>
-            <ShowMoreLessBtn
-              letter={t("Show Less")}
-              onClick={handleShowLessBtn}
-            />
+              bidItems?.length === 0 || bidItems === undefined
+                ? classes.displayNone
+                : ""
+            }
+          >
+            <div className={classes.bidsTitle}>{t("Bids")}</div>
+            {bidItems?.map((row: any, index: any) => (
+              <BidRecord
+                key={index}
+                fromName={row[1]?.slice(0, 6)}
+                price={ethers.utils.formatUnits(row[2], 18)}
+                time={dateConvert(row[3])}
+              />
+            ))}
+            <div
+              className={
+                showMoreBtn === true
+                  ? classes.showmoreContent
+                  : classes.displayNone
+              }
+            >
+              <ShowMoreLessBtn
+                letter={t("Show More")}
+                onClick={handleShowBtn}
+              />
+            </div>
+            <div
+              className={
+                showLessBtn === true
+                  ? classes.showmoreContent
+                  : classes.displayNone
+              }
+            >
+              <ShowMoreLessBtn
+                letter={t("Show Less")}
+                onClick={handleShowLessBtn}
+              />
+            </div>
           </div>
         </div>
       </div>

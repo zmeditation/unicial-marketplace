@@ -49,7 +49,7 @@ const LatestSalesTable = ({ columns, rows, curPage, stepIndex }: Props) => {
     );
   return (
     <>
-      <div className={classes.title}>{t("Latest Sales")}.</div>
+      <div className={classes.title}>{t("Latest Sales")}</div>
       <StageMarket columns={columns} rows={tableRows} />
     </>
   );

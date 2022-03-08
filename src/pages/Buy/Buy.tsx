@@ -108,7 +108,6 @@ const Buy = () => {
       );
       navigate("/account");
     } catch (err: any) {
-      console.log(err);
       dispatch(
         showAlert({
           message: "Failed to buy parcel",
@@ -182,16 +181,18 @@ const Buy = () => {
                 {/* buttons */}
                 <div className={classes.buttons}>
                   <ActionButton
-                    color='light'
+                    color="light"
                     className={classes.bidchange}
-                    onClick={handleBuy}>
+                    onClick={handleBuy}
+                  >
                     {t("Buy")}
-                    <CallMadeIcon fontSize='small' />
+                    <CallMadeIcon fontSize="small" />
                   </ActionButton>
                   <ActionButton
-                    color='dark'
+                    color="dark"
                     className={classes.cancelchange}
-                    onClick={() => navigate(-1)}>
+                    onClick={() => navigate(-1)}
+                  >
                     {t("Cancel")}
                   </ActionButton>
                 </div>

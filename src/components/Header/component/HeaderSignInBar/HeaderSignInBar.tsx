@@ -17,13 +17,31 @@ import { setlogoutAddress } from "../../../../store/auth/actions";
 import { useAppDispatch } from "../../../../store/hooks";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectLoginAddress } from "../../../../store/auth/selectors";
+import useEffect from "react";
+import { getZNXBalance, getUccBalance } from "../../../../common/contract";
+import { ethers, BigNumber } from "ethers";
 
 export default function HeaderSignInBar() {
   const classes = HeaderSignInBarStyle();
   const [tmp, setTmp] = React.useState(0);
+  const [znxBal, setZnxBal] = React.useState<any>(0);
+  const [uccBal, setUccBal] = React.useState<any>(0);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const loginAddress = useAppSelector(selectLoginAddress);
+
+  React.useEffect(() => {
+    getZNXBalance(loginAddress).then((bal) => {
+      setZnxBal(Math.round(Number(ethers.utils.formatEther(bal)) * 1e2) / 1e2);
+    });
+    getUccBalance(loginAddress).then((bal) => {
+      setUccBal(Math.round(Number(ethers.utils.formatEther(bal)) * 1e2) / 1e2);
+    });
+  }, [loginAddress]);
+
   const handleRingButton = () => {
     setTmp(1);
   };
@@ -42,7 +60,7 @@ export default function HeaderSignInBar() {
   const handleSettings = () => {};
   const handleSignOut = () => {
     dispatch(setlogoutAddress());
-    navigate("/")
+    navigate("/");
   };
   return (
     <div className={classes.root}>
@@ -60,7 +78,7 @@ export default function HeaderSignInBar() {
                   alt="symbol"
                 />
               </i>
-              0
+              {uccBal} UCC
             </a>
             <a href="#" className={classes.mana}>
               <i className={classes.symbol}>
@@ -70,7 +88,7 @@ export default function HeaderSignInBar() {
                   alt="symbol"
                 />
               </i>
-              0
+              {znxBal} ZNX
             </a>
           </div>
           {/* avartar */}

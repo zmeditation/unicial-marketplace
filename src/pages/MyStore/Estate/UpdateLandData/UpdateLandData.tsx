@@ -30,7 +30,6 @@ const UpdateLandData = () => {
   const dispatch = useAppDispatch();
   const { estateid } = useParams();
   const estates = useAppSelector(selectestates);
-  console.log("estates", estates);
   const loginAddress = useAppSelector(selectLoginAddress);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -122,8 +121,6 @@ const UpdateLandData = () => {
         })
       );
     }
-    console.log("bid.xs", bid.xs);
-    console.log("bid.landdata", bid.landdata);
 
     let updateLandDataTx = await estateRegistryContract.updateManySpaceData(
       bid.xs,

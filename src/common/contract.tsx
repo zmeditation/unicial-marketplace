@@ -1,4 +1,9 @@
 import { ethers } from "ethers";
+import { CHAIN_INFO } from "../config/constant";
+import {
+  UccContractAddress,
+  UccContractAbi,
+} from "../config/contracts/UnicialCashToken";
 
 export const generateContractInstance = (
   contractAddress: string,
@@ -14,4 +19,25 @@ export const generateSigner = (ethereum: any) => {
   // check if an account is connected at the moment
   var signer = provider.getSigner();
   return signer;
+};
+
+export const getZNXBalance = async (address: string) => {
+  const provider = new ethers.providers.JsonRpcProvider(
+    CHAIN_INFO.TESTNET.rpcUrls[0]
+  );
+
+  return await provider.getBalance(address);
+};
+
+export const getUccBalance = async (address: string) => {
+  const provider = new ethers.providers.JsonRpcProvider(
+    CHAIN_INFO.TESTNET.rpcUrls[0]
+  );
+  const uccContract = new ethers.Contract(
+    UccContractAddress,
+    UccContractAbi,
+    provider
+  );
+
+  return await uccContract.balanceOf(address);
 };

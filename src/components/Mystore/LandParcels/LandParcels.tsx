@@ -32,7 +32,6 @@ export default function LandParcels() {
 
   const getResult = async () => {
     await getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
-      console.log("parcels", parcels);
       if (
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "false"
@@ -68,7 +67,7 @@ export default function LandParcels() {
                   <LandCard
                     locationbtnX={tokenId[0]}
                     locationbtnY={tokenId[1]}
-                    landName="Plaza Area Sale"
+                    // landName="Plaza Area Sale"
                     category="Zilionixx"
                     onClick={() =>
                       handleNavigate(

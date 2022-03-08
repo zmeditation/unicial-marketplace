@@ -31,6 +31,7 @@ import {
 } from "../../common/contract";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
+import { getBidsByToken } from "../../hooks/api";
 
 declare var window: any;
 var signer: any, bidContract: any;
@@ -140,15 +141,7 @@ const Contract = () => {
       signer
     );
 
-    let bidsCount = (
-      await bidContract.bidCounterByToken(contractaddress, tokensid)
-    ).toNumber();
-    let bidPromises = [];
-
-    for (let i = 0; i < bidsCount; i++) {
-      bidPromises.push(bidContract.getBidByToken(contractaddress, tokensid, i));
-    }
-    let bids = await Promise.all(bidPromises);
+    let bids = await getBidsByToken(contractaddress, tokensid);
     setBidItems(bids);
   };
   //pagination reate
@@ -176,16 +169,16 @@ const Contract = () => {
 
           <div className={classes.contractDescription}>
             <div className={classes.leftDescription}>
-              <div className={classes.items}>
+              {/* <div className={classes.items}>
                 <Title title={title} />
-              </div>
+              </div> */}
               {owner !== undefined && (
                 <>
                   <div className={classes.divideLine}></div>
                   <Owner ownerAddress={owner} />
                 </>
               )}
-              <div
+              {/* <div
                 className={
                   highDivLine === true ? classes.displayNone : classes.highLIght
                 }
@@ -193,7 +186,7 @@ const Contract = () => {
                 <div className={classes.divideLine}></div>
                 <Highlight type={type} />
                 <div className={classes.divideLine}></div>
-              </div>
+              </div> */}
             </div>
             <div className={classes.rightDescription}>
               <div
@@ -219,7 +212,7 @@ const Contract = () => {
 
           <Parcels parcels={estate} />
 
-          <div className={classes.tableRoot}>
+          {/* <div className={classes.tableRoot}>
             <LatestSalesTable
               columns={headerData}
               rows={transactionData}
@@ -241,7 +234,7 @@ const Contract = () => {
                   : classes.BidsTitle
               }
             >
-              {t("Bids")}.
+              {t("Bids")}
             </div>
             {bidItems?.map((item: any, key: any) => {
               return (
@@ -253,7 +246,7 @@ const Contract = () => {
                 />
               );
             })}
-          </div>
+          </div> */}
         </div>
       </div>
     </>
