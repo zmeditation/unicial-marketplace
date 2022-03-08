@@ -39,6 +39,7 @@ import {
   SpaceRegistryAbi,
 } from "../../../../config/contracts/SpaceRegistryContract";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { isParcelApproved, isEstateApproved } from "../../../../hooks/api";
 
 declare var window: any;
 var signer: any, marketplaceContract: any, spaceRegistryContract: any;
@@ -115,11 +116,10 @@ const ParcelSell = () => {
       signer
     );
 
+    let isApproved = false;
+    isApproved = await isParcelApproved(MarketplaceAddress, tokensid);
     // check if this token is approved for marketplace contract
-    if (
-      spaceRegistryContract.getApproved(tokensid)! == MarketplaceAddress &&
-      spaceRegistryContract.isApprovedForAll(loginAddress, tokensid) === false
-    ) {
+    if (!isApproved) {
       let approveMarketTx = await spaceRegistryContract.approve(
         MarketplaceAddress,
         tokensid
@@ -133,6 +133,7 @@ const ParcelSell = () => {
         })
       );
     }
+
     let createOrderTx = await marketplaceContract.createOrder(
       contractaddress,
       BigNumber.from(tokensid),

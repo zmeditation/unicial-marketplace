@@ -63,8 +63,6 @@ export default function TransferSpaces() {
     }
     return true;
   };
-  console.log("estates data", estates);
-  //   console.log(selectedTile, "selectedTile");
   const handleChange = (e: any) => {
     setTransferAddress(e.target.value);
   };
@@ -115,9 +113,6 @@ export default function TransferSpaces() {
             .tokenId;
         tokenIds.push(BigNumber.from(a));
       }
-      console.log("tokenIds", tokenIds);
-      console.log("estateid", estateid);
-      console.log("transferAddress", transferAddress);
       let transferSpaceTx = await estateRegistryContract.transferManySpaces(
         estateid,
         tokenIds,

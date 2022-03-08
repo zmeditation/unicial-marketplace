@@ -96,7 +96,6 @@ const SettingManager = () => {
     for (var i = 0; i < managerDataLength; i++) {
       uniqueManagerSet.add(managerData[i].args[1]);
     }
-    // console.log(uniqueManagerSet.size);
     for (var i = managerDataLength - 1; i >= 0; i--) {
       if (uniqueManagerSet.size === 0) break;
       if (uniqueManagerSet.has(managerData[i].args[1])) {
@@ -109,9 +108,6 @@ const SettingManager = () => {
     // totalPage = Math.ceil(totalRowCount / onePageCount);
     setTotalPage(Math.ceil(totalRowCount / onePageCount));
     setUniqueManagers(uniqueManagers);
-    console.log("managerData", managerData);
-    console.log("uniqueManagers", uniqueManagers);
-    console.log("count", totalRowCount);
   };
 
   const handleRow = (key: number) => {

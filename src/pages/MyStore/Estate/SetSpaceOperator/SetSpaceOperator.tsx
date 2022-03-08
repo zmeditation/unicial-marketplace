@@ -63,8 +63,6 @@ export default function SetSpaceOperator() {
     }
     return true;
   };
-  console.log("estates data", estates);
-  // console.log(selectedTile, "selectedTile");
   const handleChange = (e: any) => {
     setTransferAddress(e.target.value);
   };
@@ -109,16 +107,12 @@ export default function SetSpaceOperator() {
         );
       }
       for (let i = 0; i < estates.length; i++) {
-        console.log("paseInt Test");
         var splitted = estates[i].split(",");
         var a =
           tiles[getCoords(parseInt(splitted[0]), parseInt(splitted[1]))]
             .tokenId;
-        console.log("a", a);
         tokenIds.push(BigNumber.from(a));
       }
-      console.log("tokenIds", tokenIds);
-      alert("test");
       let setSpaceOperatorTx =
         await estateRegistryContract.setManySpaceUpdateOperator(
           estateid,
