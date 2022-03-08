@@ -67,7 +67,7 @@ export default function LandParcels() {
                   <LandCard
                     locationbtnX={tokenId[0]}
                     locationbtnY={tokenId[1]}
-                    landName="Plaza Area Sale"
+                    // landName="Plaza Area Sale"
                     category="Zilionixx"
                     onClick={() =>
                       handleNavigate(

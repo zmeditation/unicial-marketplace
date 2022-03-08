@@ -11,6 +11,10 @@ import {
   SpaceRegistryAbi,
 } from "../config/contracts/SpaceRegistryContract";
 import { BigNumber } from "ethers";
+import {
+  BidContractAddress,
+  BidContractAbi,
+} from "../config/contracts/BidContract";
 
 declare var window: any;
 var signer: any;
@@ -140,5 +144,29 @@ export const isEstateApproved = async (
     return isApproved;
   } catch (error: any) {
     return false;
+  }
+};
+
+export const getBidsByToken = async (nftAddress: any, tokenId: any) => {
+  try {
+    let bidContract = generateContractInstance(
+      BidContractAddress,
+      BidContractAbi,
+      signer
+    );
+    let bidsCount = (
+      await bidContract.bidCounterByToken(nftAddress, BigNumber.from(tokenId))
+    ).toNumber();
+    let bidPromises = [];
+
+    for (let i = 0; i < bidsCount; i++) {
+      bidPromises.push(
+        bidContract.getBidByToken(nftAddress, BigNumber.from(tokenId), i)
+      );
+    }
+    let bids = await Promise.all(bidPromises);
+    return bids;
+  } catch {
+    return [];
   }
 };

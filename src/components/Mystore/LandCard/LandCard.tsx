@@ -9,7 +9,7 @@ import LocationBtn from "../../Base/LocationBtn";
 interface LandCardProps {
   locationbtnX: number;
   locationbtnY: number;
-  landName: string;
+  landName?: string;
   category: string;
   // price?: number;
   onClick?: () => void;
