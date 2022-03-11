@@ -28,7 +28,6 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
 
   const tiles: any = useAppSelector(parcels);
 
-
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
@@ -85,22 +84,20 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
 
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isOwned(x, y)
-        ? { color: "transparent", scale: 1.4 }
-        : isSelected(x, y)
-        ? { color: "transparent", scale: 1.4 }
-        : null;
+      return isSelected(x, y) ? { color: "transparent", scale: 1.4 } : null;
+      // isOwned(x, y)
+      //   ? { color: "transparent", scale: 1.4 }
+      //   :
     },
     [isSelected]
   );
 
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isOwned(x, y)
-        ? { color: "#141b31", scale: 1.2 }
-        : isSelected(x, y)
-        ? { color: "#ff9990", scale: 1.2 }
-        : null;
+      return isSelected(x, y) ? { color: "#ff9990", scale: 1.2 } : null;
+      // isOwned(x, y)
+      //   ? { color: "#141b31", scale: 1.2 }
+      //   :
     },
     [isSelected]
   );
@@ -163,7 +160,6 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
           visible={showPopup}
           tile={hoveredTile}
           position={x > window.innerWidth - 550 ? "left" : "right"}
-
         />
       ) : null}
     </div>

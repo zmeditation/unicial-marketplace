@@ -144,8 +144,8 @@ const LandMap: React.FC<LandMapProps> = ({
       if (!tiles) return false;
       const tile: any = tiles[getCoords(x, y)] as Tile;
 
-      if(tile?.estateId && tokensid === tile?.estateId){
-        return true
+      if (tile?.estateId && tokensid === tile?.estateId) {
+        return true;
       }
       if (tokensid && tile && tokensid === tile?.tokenId) {
         return true;
@@ -171,9 +171,9 @@ const LandMap: React.FC<LandMapProps> = ({
         ? { color: "transparent", scale: 1.4 }
         : isEstated(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isOwned(x, y)
-        ? { color: "transparent", scale: 1.4 }
-        :null;
+        : // : isOwned(x, y)
+          // ? { color: "transparent", scale: 1.4 }
+          null;
     },
     [isSelected]
   );
@@ -188,9 +188,9 @@ const LandMap: React.FC<LandMapProps> = ({
         ? { color: "#d5ed11", scale: 1.2 }
         : isEstated(x, y)
         ? { color: "#29c98f", scale: 1.2 }
-        : isOwned(x, y)
-        ? { color: "#313960", scale: 1.4 }
-        : null;
+        : // : isOwned(x, y)
+          // ? { color: "#3D3A46", scale: 1.4 }
+          null;
     },
     [isSelected]
   );
@@ -200,15 +200,15 @@ const LandMap: React.FC<LandMapProps> = ({
       if (!tiles) return;
       const id = getCoords(x, y);
       const tile: Tile = tiles && tiles[id];
-      const sale: any = saleParcels && saleParcels[id]
+      const sale: any = saleParcels && saleParcels[id];
       if (tile?.estateId && tokensid === tile?.estateId) {
         setShowPopup(false);
         return;
       }
-      if (sale?.seller){
-        setPrice(ethers.utils.formatUnits(sale?.priceInWei, 18))
-      }else{
-        setPrice("")
+      if (sale?.seller) {
+        setPrice(ethers.utils.formatUnits(sale?.priceInWei, 18));
+      } else {
+        setPrice("");
       }
       if (tile && !showPopup) {
         setShowPopup(true);
