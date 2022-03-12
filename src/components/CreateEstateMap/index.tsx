@@ -148,9 +148,9 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
         ? { color: "transparent", scale: 1.4 }
         : isOwnedWithEstate(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isOwned(x, y)
-        ? { color: "transparent", scale: 1.4 }
-        : null;
+        : // : isOwned(x, y)
+          // ? { color: "transparent", scale: 1.4 }
+          null;
     },
     [isSelected]
   );
@@ -165,9 +165,9 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
         ? { color: "#2b1c70", scale: 1.2 }
         : isOwnedWithEstate(x, y)
         ? { color: "#f0af37", scale: 1.2 }
-        : isOwned(x, y)
-        ? { color: "#21263f", scale: 1.2 }
-        : null;
+        : // : isOwned(x, y)
+          // ? { color: "#21263f", scale: 1.2 }
+          null;
     },
     [isSelected]
   );

@@ -55,6 +55,7 @@ export const Atlas = (props: AtlasProps) => {
     // 7: "#716C7A", // roads
     plaza: "#70AC76", // plazas green
     unowned: "#3D3A46", // owned parcel/estate
+    owned: "#3D3A46", // owned parcel/estate
     // 9: "#3D3A46", // owned parcel/estate
     10: "#3D3A46", // parcels on sale (we show them as owned parcels) black
     11: "#09080A", // unowned pacel/estate strong black
@@ -72,9 +73,6 @@ export const Atlas = (props: AtlasProps) => {
         top: !!tile.top,
         left: !!tile.left,
         topLeft: !!tile.topLeft,
-        // top: false,
-        // left: false,
-        // topLeft: false,
       };
     } else {
       return {
