@@ -96,27 +96,29 @@ const Parcels = ({ parcels }: ParcelsProps) => {
       <div className={classes.title}>{t("Parcels")}</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>
-          {parcels?.slice(0, count).map((item: any, key: any) => {
+          {parcels?.map((item: any, key: any) => {
             return (
               <LocationBtn key={key} position={getCoords(item.x, item.y)} />
             );
           })}
         </div>
-        <div
+        {/* <div
           className={
             showMoreBtn === true ? classes.showmoreContent : classes.displayNone
-          }>
+          }
+        >
           <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
         </div>
         <div
           className={
             showLessBtn === true ? classes.showmoreContent : classes.displayNone
-          }>
+          }
+        >
           <ShowMoreLessBtn
             letter={t("Show Less")}
             onClick={handleShowLessBtn}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
