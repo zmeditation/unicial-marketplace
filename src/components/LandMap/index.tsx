@@ -15,6 +15,7 @@ import { selectLoginAddress } from "../../store/auth/selectors";
 import { ethers } from "ethers";
 import { getCoords } from "../../common/utils";
 import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
+import { mapColor } from "../../config/constant";
 
 interface LandMapProps {
   height?: any;
@@ -47,12 +48,10 @@ const LandMap: React.FC<LandMapProps> = ({
 
   const saleSpaces: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
-  const loginAddress: any = useAppSelector(selectLoginAddress);
 
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      const sale: any = saleSpaces && (saleSpaces[getCoords(x, y)] as Tile);
       if (!tile) {
         return;
       }
@@ -78,7 +77,7 @@ const LandMap: React.FC<LandMapProps> = ({
     [tiles]
   );
 
-  const isSaleParcel = useCallback(
+  const isSaleSpaces = useCallback(
     (x: number, y: number) => {
       if (!saleSpaces) return false;
       const tile: any = saleSpaces && (saleSpaces[getCoords(x, y)] as Tile);
@@ -91,7 +90,7 @@ const LandMap: React.FC<LandMapProps> = ({
     [saleSpaces, onSale]
   );
 
-  const isEstated = useCallback(
+  const isOtherEstated = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
@@ -100,22 +99,6 @@ const LandMap: React.FC<LandMapProps> = ({
       } else return false;
     },
     [tiles]
-  );
-
-  const isCustomerSaleParcel = useCallback(
-    (x: number, y: number) => {
-      if (!saleSpaces) return false;
-      const sale: any = saleSpaces && (saleSpaces[getCoords(x, y)] as Tile);
-
-      if (
-        onSale === true &&
-        sale?.seller.toLowerCase() === loginAddress.toLowerCase()
-      ) {
-        return true;
-      }
-      return false;
-    },
-    [saleSpaces, onSale]
   );
 
   const isSelected = useCallback(
@@ -144,11 +127,9 @@ const LandMap: React.FC<LandMapProps> = ({
     (x: any, y: any) => {
       return isSelected(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isCustomerSaleParcel(x, y)
+        : isSaleSpaces(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isSaleParcel(x, y)
-        ? { color: "transparent", scale: 1.4 }
-        : isEstated(x, y)
+        : isOtherEstated(x, y)
         ? { color: "transparent", scale: 1.4 }
         : null;
     },
@@ -158,13 +139,11 @@ const LandMap: React.FC<LandMapProps> = ({
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
       return isSelected(x, y)
-        ? { color: "#ff9990", scale: 1.2 }
-        : isCustomerSaleParcel(x, y)
-        ? { color: "#6ad3fe", scale: 1.2 }
-        : isSaleParcel(x, y)
-        ? { color: "#d5ed11", scale: 1.2 }
-        : isEstated(x, y)
-        ? { color: "#29c98f", scale: 1.2 }
+        ? { color: mapColor.selected, scale: 1.2 }
+        : isSaleSpaces(x, y)
+        ? { color: mapColor.onSaleSpaces, scale: 1.2 }
+        : isOtherEstated(x, y)
+        ? { color: mapColor.otherEstate, scale: 1.2 }
         : null;
     },
     [isSelected]
@@ -233,8 +212,6 @@ const LandMap: React.FC<LandMapProps> = ({
     dispatch(setSaleSpaces());
     dispatch(setSpaces());
   }, [location]);
-
-  console.log("saleSpaces status: ",saleSpaces)
 
   return (
     <div onMouseLeave={handleHidePopup}>

@@ -235,6 +235,5 @@ export const mapColor = {
   myParcel: "#FFAF3B",
   myEstate: "#7E65E3",
   otherEstate: "#60B94D",
-  onSaleParcel: "#FFAF3B",
-  onSaleEstate: "#F0B67F",
+  onSaleSpaces: "#FFAF3B",
 }
