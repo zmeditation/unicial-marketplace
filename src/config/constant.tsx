@@ -232,7 +232,7 @@ export const managerData = [
 //-------------map color-----------------------
 export const mapColor = {
   selected: "#ff9990",
-  myParcel: "#FFAF3B",
+  myParcel: "#FAF0CA",
   myEstate: "#7E65E3",
   otherEstate: "#60B94D",
   onSaleSpaces: "#FFAF3B",

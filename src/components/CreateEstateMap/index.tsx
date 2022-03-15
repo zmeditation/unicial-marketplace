@@ -28,14 +28,14 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
   const dispatch = useAppDispatch();
   const selectedTile = useAppSelector(selectestates);
   const tiles: any = useAppSelector(parcels);
-  const mineAddress = useAppSelector(selectLoginAddress);
+  const loginAddress = useAppSelector(selectLoginAddress);
 
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
       if (
         tile.owner &&
-        tile.owner.toLowerCase() === mineAddress.toLowerCase() &&
+        tile.owner.toLowerCase() === loginAddress.toLowerCase() &&
         tile.estateId === undefined
       ) {
         let newSelectedTile: string[] = [];
@@ -109,7 +109,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
 
       if (
         tile?.owner &&
-        tile?.owner?.toLowerCase() === mineAddress.toLowerCase()
+        tile?.owner?.toLowerCase() === loginAddress.toLowerCase()
       ) {
         return true;
       } else return false;
@@ -123,7 +123,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
       if (
         tile?.owner &&
-        tile?.owner?.toLowerCase() === mineAddress.toLowerCase() &&
+        tile?.owner?.toLowerCase() === loginAddress.toLowerCase() &&
         tile?.estateId !== undefined
       ) {
         return true;
