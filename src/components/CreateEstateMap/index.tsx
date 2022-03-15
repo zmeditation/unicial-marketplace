@@ -10,6 +10,7 @@ import { getestates } from "../../store/selectedestates";
 import { parcels } from "../../store/parcels/selectors";
 import { showAlert } from "../../store/alert";
 import { getCoords } from "../../common/utils";
+import { mapColor } from "../../config/constant";
 
 interface CreateEstateMapProps {
   height?: any;
@@ -80,18 +81,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
     [selectedTile, tiles]
   );
 
-  const isOwned = useCallback(
-    (x: number, y: number) => {
-      if (!tiles) return false;
-      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (tile?.owner) {
-        return true;
-      } else return false;
-    },
-    [tiles]
-  );
-
-  const isOwnedWithEstate = useCallback(
+  const isOtherEstate = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
@@ -102,7 +92,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
     [tiles]
   );
 
-  const isMine = useCallback(
+  const isMyParcel = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
@@ -117,7 +107,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
     [tiles]
   );
 
-  const isMineWithEstate = useCallback(
+  const isMyEstate = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
@@ -142,15 +132,13 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
     (x: any, y: any) => {
       return isSelected(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isMineWithEstate(x, y)
+        : isMyEstate(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isMine(x, y)
+        : isMyParcel(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isOwnedWithEstate(x, y)
+        : isOtherEstate(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : // : isOwned(x, y)
-          // ? { color: "transparent", scale: 1.4 }
-          null;
+        : null;
     },
     [isSelected]
   );
@@ -158,16 +146,14 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
       return isSelected(x, y)
-        ? { color: "#ff9990", scale: 1.2 }
-        : isMineWithEstate(x, y)
-        ? { color: "#4aff3a", scale: 1.2 }
-        : isMine(x, y)
-        ? { color: "#2b1c70", scale: 1.2 }
-        : isOwnedWithEstate(x, y)
-        ? { color: "#f0af37", scale: 1.2 }
-        : // : isOwned(x, y)
-          // ? { color: "#21263f", scale: 1.2 }
-          null;
+        ? { color: mapColor.selected, scale: 1.2 }
+        : isMyEstate(x, y)
+        ? { color: mapColor.myEstate, scale: 1.2 }
+        : isMyParcel(x, y)
+        ? { color: mapColor.myParcel, scale: 1.2 }
+        : isOtherEstate(x, y)
+        ? { color: mapColor.otherEstate, scale: 1.2 }
+        : null;
     },
     [isSelected]
   );
