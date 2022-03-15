@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from "react-router";
 import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
 import { showMoreCount } from "../../../config/constant";
 import NoResult from "../../NoResult/NoResult";
-import { selectSaleParcels } from "../../../store/saleparcels/selectors";
+import { selectSaleParcels } from "../../../store/salespaces/selectors";
 import { getCoords } from "../../../common/utils";
 import { parcels } from "../../../store/parcels/selectors";
 
@@ -19,7 +19,7 @@ export default function LandParcels() {
   const [resultParcels, setResultParcels] = useState<any>();
   const [showStatus, setShowStatus] = useState(false);
   const loginAddress = useAppSelector(selectLoginAddress);
-  const saleParcels: any = useAppSelector(selectSaleParcels);
+  const saleSpaces: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
 
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export default function LandParcels() {
       } else {
         // alert("okdes");
         setResultParcels(
-          parcels.filter((el: any) => saleParcels[getCoords(el[0], el[1])])
+          parcels.filter((el: any) => saleSpaces[getCoords(el[0], el[1])])
         );
       }
     });

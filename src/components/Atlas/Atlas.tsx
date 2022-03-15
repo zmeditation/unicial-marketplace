@@ -51,11 +51,11 @@ export const Atlas = (props: AtlasProps) => {
     4: "#ffbd33", // parcels/estates where I have permissions
     district: "#5054D4", // districts
     6: "#563db8", // contributions purple
-    road: "#716C7A", // roads
+    road: "#949EAA", // roads
     // 7: "#716C7A", // roads
-    plaza: "#70AC76", // plazas green
-    unowned: "#3D3A46", // owned parcel/estate
-    owned: "#3D3A46", // owned parcel/estate
+    plaza: "#93CF85", // plazas green
+    unowned: "#454554", // owned parcel/estate
+    owned: "#454554", // owned parcel/estate
     // 9: "#3D3A46", // owned parcel/estate
     10: "#3D3A46", // parcels on sale (we show them as owned parcels) black
     11: "#09080A", // unowned pacel/estate strong black

@@ -38,8 +38,8 @@ import { useAppDispatch } from "../../store/hooks";
 import { CHAIN_INFO } from "../../config/constant";
 import { showNetModal } from "../../store/netmodal";
 import { useEffect } from "react";
-import { setSaleParcels } from "../../store/saleparcels";
-import { setParcels } from "../../store/parcels";
+import { setSaleSpaces } from "../../store/salespaces";
+import { setSpaces } from "../../store/parcels";
 import { setBidContractinfo } from "../../store/bidContractData";
 import { showSpinner } from "../../store/spinner";
 import SelectSpace from "../../pages/MyStore/Estate/UpdateLandData/SelectSpace/SelectSpace";
@@ -78,8 +78,8 @@ export default function Layout() {
     await dispatch(showSpinner(true));
     let dispatchPromises = [];
     dispatchPromises.push(
-      dispatch(setSaleParcels()),
-      dispatch(setParcels()),
+      dispatch(setSaleSpaces()),
+      dispatch(setSpaces()),
       dispatch(setBidContractinfo())
     );
     await Promise.all(dispatchPromises);

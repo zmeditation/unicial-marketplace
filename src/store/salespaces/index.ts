@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setSaleParcels } from "../saleparcels/actions";
-import { saleParcels } from "./types";
+import { setSaleSpaces } from "./actions";
+import { saleSpaces } from "./types";
 
 // const PREFIX = 'trade/orderHsitory'
 const PREFIX = "selectedparcels";
-const initialState: saleParcels = {
+const initialState: saleSpaces = {
   parcels: {},
 };
 
-const setParcels = (state: saleParcels, data: any) => {
+const setSpaces = (state: saleSpaces, data: any) => {
   state.parcels = data.data;
 };
 
@@ -18,13 +18,13 @@ export const saleparcelsReducer = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(
-      setSaleParcels.fulfilled.type,
-      (state: saleParcels, action: any) => {
-        setParcels(state, action.payload.data);
+      setSaleSpaces.fulfilled.type,
+      (state: saleSpaces, action: any) => {
+        setSpaces(state, action.payload.data);
       }
     );
   },
 });
 
-export { setSaleParcels };
+export { setSaleSpaces };
 export default saleparcelsReducer.reducer;

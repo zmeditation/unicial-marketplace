@@ -10,7 +10,7 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/saleparcels/selectors";
+import { selectSaleParcels } from "../../store/salespaces/selectors";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { showAlert } from "../../store/alert";
 
@@ -42,7 +42,7 @@ const Buy = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const saleParcels: any = useAppSelector(selectSaleParcels);
+  const saleSpaces: any = useAppSelector(selectSaleParcels);
   const loginAddress: any = useAppSelector(selectLoginAddress);
   const { contractaddress, tokensid } = useParams();
   const [price, setPrice] = useState("");
@@ -138,8 +138,8 @@ const Buy = () => {
   };
 
   useEffect(() => {
-    Object.keys(saleParcels).forEach((index: any) => {
-      const saleParcel = saleParcels[index];
+    Object.keys(saleSpaces).forEach((index: any) => {
+      const saleParcel = saleSpaces[index];
       if (
         saleParcel.assetId === tokensid &&
         saleParcel.nftAddress === contractaddress
@@ -148,7 +148,7 @@ const Buy = () => {
         setPrice(priceParcel.toString().slice(0, -2));
       }
     });
-  }, [saleParcels]);
+  }, [saleSpaces]);
 
   useEffect(() => {
     initContractSetting();

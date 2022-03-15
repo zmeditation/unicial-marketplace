@@ -17,7 +17,7 @@ import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/Lat
 import { useTranslation } from "react-i18next";
 import TablePagination from "../../components/Base/TablePagination";
 import { useAppSelector } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/saleparcels/selectors";
+import { selectSaleParcels } from "../../store/salespaces/selectors";
 import { parcels } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
 import { dateConvert } from "../../common/utils";
@@ -55,13 +55,13 @@ const Contract = () => {
   const [salePrice, setSalePrice] = useState(0);
   const [estate, setEstate] = useState<any>();
 
-  const saleParcels: any = useAppSelector(selectSaleParcels);
+  const saleSpaces: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
 
   useEffect(() => {
     let estateArray: any = [];
-    Object.keys(saleParcels).forEach((index: any) => {
-      const saleParcel = saleParcels[index];
+    Object.keys(saleSpaces).forEach((index: any) => {
+      const saleParcel = saleSpaces[index];
       if (saleParcel.assetId === tokensid) {
         setSaleId(saleParcel.assetId);
         setSalePrice(saleParcel.priceInWei);
@@ -96,7 +96,7 @@ const Contract = () => {
     });
     setEstate(estateArray);
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [saleParcels, tiles, tokensid]);
+  }, [saleSpaces, tiles, tokensid]);
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {

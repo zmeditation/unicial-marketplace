@@ -4,10 +4,10 @@ import { useLocation, useParams } from "react-router";
 import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/saleparcels/selectors";
+import { selectSaleParcels } from "../../store/salespaces/selectors";
 import { parcels } from "../../store/parcels/selectors";
-import { setSaleParcels } from "../../store/saleparcels";
-import { setParcels } from "../../store/parcels";
+import { setSaleSpaces } from "../../store/salespaces";
+import { setSpaces } from "../../store/parcels";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { getCoords } from "../../common/utils";
 import { useStyles } from "./SliceMapStyle";
@@ -30,7 +30,7 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
 
   const query = new URLSearchParams(location.search);
 
-  const saleParcels: any = useAppSelector(selectSaleParcels);
+  const saleSpaces: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
   const loginAddress: any = useAppSelector(selectLoginAddress);
 
@@ -63,8 +63,8 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
 
   const isSaleParcel = useCallback(
     (x: number, y: number) => {
-      if (!saleParcels) return false;
-      const tile: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
+      if (!saleSpaces) return false;
+      const tile: any = saleSpaces && (saleSpaces[getCoords(x, y)] as Tile);
 
       if (onSale === true && tile) {
         return true;
@@ -72,7 +72,7 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
       return false;
     },
     //eslint-disable-next-line react-hooks/exhaustive-deps
-    [saleParcels, onSale]
+    [saleSpaces, onSale]
   );
 
   const isOwned = useCallback(
@@ -101,8 +101,8 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
 
   const isCustomerSaleParcel = useCallback(
     (x: number, y: number) => {
-      if (!saleParcels) return false;
-      const sale: any = saleParcels && (saleParcels[getCoords(x, y)] as Tile);
+      if (!saleSpaces) return false;
+      const sale: any = saleSpaces && (saleSpaces[getCoords(x, y)] as Tile);
 
       if (
         onSale === true &&
@@ -113,7 +113,7 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
       return false;
     },
     //eslint-disable-next-line react-hooks/exhaustive-deps
-    [saleParcels, onSale, loginAddress]
+    [saleSpaces, onSale, loginAddress]
   );
 
   const isSelected = useCallback(
@@ -179,8 +179,8 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
     } else {
       setOnSale(false);
     }
-    dispatch(setSaleParcels());
-    dispatch(setParcels());
+    dispatch(setSaleSpaces());
+    dispatch(setSpaces());
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
