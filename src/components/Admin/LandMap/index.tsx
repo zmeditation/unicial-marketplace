@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useCallback, useEffect, useState } from "react";
 
 import { Atlas, Layer } from "../../Atlas/Atlas";

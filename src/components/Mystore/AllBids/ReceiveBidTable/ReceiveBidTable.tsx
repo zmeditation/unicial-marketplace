@@ -1,5 +1,3 @@
-/** @format */
-
 import { useStyles } from "./ReceiveBidTableStyle";
 import StageMarket from "../../../StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";

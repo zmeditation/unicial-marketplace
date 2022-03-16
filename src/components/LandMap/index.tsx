@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
-
 import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import Popup from "../Atlas/Popup";
@@ -10,8 +9,6 @@ import { parcels } from "../../store/parcels/selectors";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { setSaleSpaces } from "../../store/salespaces";
 import { setSpaces } from "../../store/parcels";
-import { showAlert } from "../../store/alert";
-import { selectLoginAddress } from "../../store/auth/selectors";
 import { ethers } from "ethers";
 import { getCoords } from "../../common/utils";
 import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
