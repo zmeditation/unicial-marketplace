@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+/** @format */
 
+import React, { useCallback, useEffect, useState } from "react";
 import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import Popup from "../Atlas/Popup";
@@ -17,9 +18,14 @@ interface CreateEstateMapProps {
   width?: any;
   initialX?: number;
   initialY?: number;
+  myEstate?: any;
 }
 
-const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
+const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
+  height,
+  width,
+  myEstate,
+}) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
   const [mouseX, setMouseX] = useState(-1);
@@ -42,19 +48,15 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
         let newSelectedTile: string[] = [];
         const selectedIndex = selectedTile.indexOf(getCoords(x, y));
         if (selectedIndex === -1) {
-          // alert("-1");
           newSelectedTile = newSelectedTile.concat(
             selectedTile,
             getCoords(x, y)
           );
         } else if (selectedIndex === 0) {
-          // alert("0");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(1));
         } else if (selectedIndex === selectedTile.length - 1) {
-          // alert("kk");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(0, -1));
         } else if (selectedIndex > 0) {
-          // alert(">0");
           newSelectedTile = newSelectedTile.concat(
             selectedTile.slice(0, selectedIndex),
             selectedTile.slice(selectedIndex + 1)
@@ -79,6 +81,14 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
       return selectedTile?.includes(getCoords(x, y));
     },
     [selectedTile, tiles]
+  );
+
+  const isFocused = useCallback(
+    (x: number, y: number) => {
+      if (myEstate === undefined) return false;
+      return myEstate?.includes(getCoords(x, y));
+    },
+    [myEstate]
   );
 
   const isOtherEstate = useCallback(
@@ -130,7 +140,9 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
 
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y)
+      return isFocused(x, y)
+        ? { color: "transparent", scale: 1.4 }
+        : isSelected(x, y)
         ? { color: "transparent", scale: 1.4 }
         : isMyEstate(x, y)
         ? { color: "transparent", scale: 1.4 }
@@ -140,12 +152,14 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
         ? { color: "transparent", scale: 1.4 }
         : null;
     },
-    [isSelected]
+    [isSelected, isFocused]
   );
 
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y)
+      return isFocused(x, y)
+        ? { color: mapColor.focused, scale: 1.2 }
+        : isSelected(x, y)
         ? { color: mapColor.selected, scale: 1.2 }
         : isMyEstate(x, y)
         ? { color: mapColor.myEstate, scale: 1.2 }
@@ -155,7 +169,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
         ? { color: mapColor.otherEstate, scale: 1.2 }
         : null;
     },
-    [isSelected]
+    [isSelected, isFocused]
   );
 
   const handleHover = useCallback(

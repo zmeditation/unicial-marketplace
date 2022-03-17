@@ -44,6 +44,8 @@ import { setBidContractinfo } from "../../store/bidContractData";
 import { showSpinner } from "../../store/spinner";
 import SelectSpace from "../../pages/MyStore/Estate/UpdateLandData/SelectSpace/SelectSpace";
 import UpdateLandData from "../../pages/MyStore/Estate/UpdateLandData/UpdateLandData";
+import EditEstate from "../../pages/MyStore/Estate/EditEstate/EditEstate";
+import SelectEditEstate from "../../pages/MyStore/Estate/SelectEditEstate/SelectEditEstate";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -95,90 +97,95 @@ export default function Layout() {
       <Box className={classes.root}>
         <Header />
         <Routes>
-          <Route path="/" element={<MarketPlace />} />
-          <Route path="/need" element={<MarketPlace />} />
-          <Route path="/lands" element={<Lands />} />
-          <Route path="/auction" element={<Auction />} />
-          <Route path="/browse" element={<Collectibles />} />
+          <Route path='/' element={<MarketPlace />} />
+          <Route path='/need' element={<MarketPlace />} />
+          <Route path='/lands' element={<Lands />} />
+          <Route path='/auction' element={<Auction />} />
+          <Route path='/browse' element={<Collectibles />} />
           <Route
-            path="/account/estate/createestate"
+            path='/account/estate/createestate'
             element={<CreateEstates />}
           />
-          <Route path="/account/estate/create" element={<EstatesSelect />} />
-
+          <Route path='/account/estate/editestate' element={<EditEstate />} />
+          <Route path='/account/estate/create' element={<EstatesSelect />} />
+          <Route path='/account/estate/edit' element={<SelectEditEstate />} />
           <Route
-            path="/contracts/:contractaddress/tokens/:tokensid"
+            path='/contracts/:contractaddress/tokens/:tokensid'
             element={<Contracts />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:tokensid/bid"
+            path='/contracts/:contractaddress/tokens/:tokensid/bid'
             element={<Bid />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:tokensid/buy"
+            path='/contracts/:contractaddress/tokens/:tokensid/buy'
             element={<Buy />}
           />
-          <Route path="/admin/lands" element={<AdminLands />} />
-          <Route path="/admin/estate" element={<AdminEstate />} />
+          <Route path='/admin/lands' element={<AdminLands />} />
+          <Route path='/admin/estate' element={<AdminEstate />} />
           <Route
-            path="/contracts/:contractaddress/tokens/:tokensid/sell"
+            path='/contracts/:contractaddress/tokens/:tokensid/sell'
             element={<ParcelSell />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:tokensid/transfer"
+            path='/contracts/:contractaddress/tokens/:tokensid/transfer'
             element={<ParcelTransfer />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:tokensid/parcel_detail"
+            path='/contracts/:contractaddress/tokens/:tokensid/parcel_detail'
             element={<ParcelDetail />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/estate_sell"
+            path='/contracts/:contractaddress/tokens/:estateid/estate_sell'
             element={<EstateSell />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/estate_transfer"
+            path='/contracts/:contractaddress/tokens/:estateid/estate_edit'
+            element={<SelectEditEstate />}
+          />
+          <Route
+            path='/contracts/:contractaddress/tokens/:estateid/estate_transfer'
             element={<EstateTransfer />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/estate_detail"
+            path='/contracts/:contractaddress/tokens/:estateid/estate_detail'
             element={<EstateDetail />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/estate_updatemetadata"
+            path='/contracts/:contractaddress/tokens/:estateid/estate_updatemetadata'
             element={<UpdateMetadata />}
           />
           <Route
-            path="/account/estate/setting_manager"
+            path='/account/estate/setting_manager'
             element={<SettingManager />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/estate_updateoperate"
+            path='/contracts/:contractaddress/tokens/:estateid/estate_updateoperate'
             element={<UpdateOperate />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/transfer_spaces"
+            path='/contracts/:contractaddress/tokens/:estateid/transfer_spaces'
             element={<TransferSpaces />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/set_spaceOperator"
+            path='/contracts/:contractaddress/tokens/:estateid/set_spaceOperator'
             element={<SetSpaceOperator />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/selectSpace_forUpdatelanddata"
+            path='/contracts/:contractaddress/tokens/:estateid/selectSpace_forUpdatelanddata'
             element={<SelectSpace />}
           />
           <Route
-            path="/contracts/:contractaddress/tokens/:estateid/UpdateLandData"
+            path='/contracts/:contractaddress/tokens/:estateid/UpdateLandData'
             element={<UpdateLandData />}
           />
-          <Route path="/signin" element={<ToLands />}>
-            <Route path="/signin" element={<SignIn />} />
+          <Route path='/signin' element={<ToLands />}>
+            <Route path='/signin' element={<SignIn />} />
           </Route>
-          <Route path="/account" element={<ToSignIn />}>
-            <Route path="/account" element={<MyStore />} />
+          <Route path='/account' element={<ToSignIn />}>
+            <Route path='/account' element={<MyStore />} />
           </Route>
-          <Route path="/accounts/:owneraddress" element={<OwnerDetail />} />
+          <Route path='/accounts/:owneraddress' element={<OwnerDetail />} />
         </Routes>
         <Footer />
         <Notification />

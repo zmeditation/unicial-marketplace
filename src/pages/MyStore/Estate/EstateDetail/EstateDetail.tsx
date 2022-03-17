@@ -157,6 +157,20 @@ const EstateDetail = () => {
                 <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
+            <Grid item md={4} sm={6} xs={12}>
+              <ActionButton
+                color="light"
+                className={classes.bidchange}
+                onClick={() =>
+                  navigate(
+                    `/contracts/${contractaddress}/tokens/${estateid}/estate_edit`
+                  )
+                }
+              >
+                {t("Edit")}
+                <CallMadeIcon fontSize="small" />
+              </ActionButton>
+            </Grid>
           </Grid>
         </div>
         <div className={classes.entireEstate}>
