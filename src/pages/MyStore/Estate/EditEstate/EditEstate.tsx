@@ -41,6 +41,8 @@ const EditEstate = () => {
     setDescription(e.target.value);
   };
 
+  console.log("input value : ", beneficiary, name, description)
+
   const handleSubmitBtn = async () => {
   };
 
@@ -132,7 +134,7 @@ const EditEstate = () => {
                 <ActionButton
                   color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate("/account/estate/editestate")}
+                  onClick={() => navigate("/account?section=estates")}
                 >
                   {t("CANCEL")}
                 </ActionButton>

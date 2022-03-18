@@ -16,7 +16,11 @@ import { showAlert } from "../../../../store/alert";
 
 import { useTranslation } from "react-i18next";
 import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
-import { getCoords } from "../../../../common/utils";
+import {
+  findCenterDot,
+  getCoords,
+  isAllConnectedLand,
+} from "../../../../common/utils";
 import { parcels } from "../../../../store/parcels/selectors";
 import { EstateProxyAddress } from "../../../../config/contracts/EstateRegitryContract";
 
@@ -24,7 +28,7 @@ export default function SelectEditEstate() {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const estate = useAppSelector(selectestates);
+  const selectedEstate = useAppSelector(selectestates);
   const tiles: any = useAppSelector(parcels);
   const { contractaddress, estateid } = useParams();
   const [focusedEstate, setFocusedEstate] = useState<any>();
@@ -46,21 +50,11 @@ export default function SelectEditEstate() {
         estateArray.push({ x: item.x, y: item.y });
       }
     });
-    estateArray?.sort((a: any, b: any) =>
-      Number(a.x) > Number(b.x) || Number(a.y) > Number(b.y) ? -1 : 1
-    );
+
     setFocusedEstate(estatePropsArray);
     if (estateArray?.length !== 0) {
-      setCenterX(
-        Math.ceil(
-          (estateArray[0]?.x + estateArray[estateArray?.length - 1]?.x) / 2
-        )
-      );
-      setCenterY(
-        Math.ceil(
-          (estateArray[0]?.y + estateArray[estateArray?.length - 1]?.y) / 2
-        )
-      );
+      setCenterX(findCenterDot(estateArray).x);
+      setCenterY(findCenterDot(estateArray).y);
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tiles, estateid]);
@@ -80,23 +74,11 @@ export default function SelectEditEstate() {
   };
 
   const handleContinue = () => {
-    let status = false;
-    let totalSpace = estate.concat(focusedEstate);
-    for (let i = 0; i < totalSpace?.length; i++) {
-      var x: number = +totalSpace[i].substring(0, totalSpace[i].indexOf(","));
-      var y: number = +totalSpace[i].substring(totalSpace[i].indexOf(",") + 1);
+    let totalSpace = focusedEstate.concat(selectedEstate);
+    let status = isAllConnectedLand(totalSpace);
 
-      const leftIndex = totalSpace.indexOf(getCoords(x - 1, y));
-      const topIndex = totalSpace.indexOf(getCoords(x, y - 1));
-      const rightIndex = totalSpace.indexOf(getCoords(x + 1, y));
-      const bottomIndex = totalSpace.indexOf(getCoords(x, y + 1));
-
-      status = true;
-
-      if (leftIndex < 0 && topIndex < 0 && rightIndex < 0 && bottomIndex < 0) {
-        status = false;
-        break;
-      }
+    if (selectedEstate?.length === 0) {
+      status = false;
     }
 
     status
@@ -157,7 +139,7 @@ export default function SelectEditEstate() {
           <div className={classes.cardSelect}>{t("Selected parcels")}</div>
           <div className={classes.cards}>
             <Grid container spacing={2}>
-              {estate?.map((items: any, key: any) => {
+              {selectedEstate?.map((items: any, key: any) => {
                 return (
                   <Grid key={key} item xs={6} sm={4} md={2}>
                     <ParcelCard

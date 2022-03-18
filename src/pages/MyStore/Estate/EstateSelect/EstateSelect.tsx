@@ -16,7 +16,7 @@ import { showAlert } from "../../../../store/alert";
 
 import { useTranslation } from "react-i18next";
 import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
-import { getCoords } from "../../../../common/utils";
+import { isAllConnectedLand } from "../../../../common/utils";
 export default function EstatesSelect() {
   const classes = EstateStyle();
   const navigate = useNavigate();
@@ -40,28 +40,7 @@ export default function EstatesSelect() {
   };
 
   const handleContinue = () => {
-    let status = false;
-    for (let i = 0; i < estates.length; i++) {
-      var x: number = +estates[i].substring(0, estates[i].indexOf(","));
-      var y: number = +estates[i].substring(estates[i].indexOf(",") + 1);
-
-      const leftIndex = estates.indexOf(getCoords(x - 1, y));
-      const topIndex = estates.indexOf(getCoords(x, y - 1));
-      const rightIndex = estates.indexOf(getCoords(x + 1, y));
-      const bottomIndex = estates.indexOf(getCoords(x, y + 1));
-
-      status = true;
-
-      if (leftIndex < 0 && topIndex < 0 && rightIndex < 0 && bottomIndex < 0) {
-        status = false;
-        break;
-      }
-    }
-
-    if (estates.length === 1) {
-      status = true;
-    }
-
+    let status  = isAllConnectedLand(estates)
     status === true
       ? navigate("/account/estate/createestate")
       : dispatch(

@@ -14,7 +14,7 @@ export const dateConvert = (timeStamp: any) => {
   return (
     time.getFullYear() +
     "-" +
-    (time.getMonth()+1) +
+    (time.getMonth() + 1) +
     "-" +
     time.getDate() +
     " " +
@@ -85,3 +85,56 @@ export const addSpace = (nStr: any) => {
 
 export const getCoords = (x: number | string, y: number | string) =>
   `${x},${y}`;
+
+export const isAllConnectedLand = (array: any) => {
+  let landMass: any = [];
+  let deferred: any = [];
+
+  if (array?.length !== 0) {
+    while (true) {
+      array.forEach((pair1: any) => {
+        const [x1, y1] = pair1.split(",");
+        const hasNeighbor =
+          !landMass.length ||
+          landMass.some((pair2: any) => {
+            const [x2, y2] = pair2.split(",");
+
+            return (
+              (Math.abs(x1 - x2) === 1 && y1 === y2) ||
+              (Math.abs(y1 - y2) === 1 && x1 === x2)
+            );
+          });
+
+        if (hasNeighbor) {
+          landMass.push(pair1);
+        } else {
+          deferred.push(pair1);
+        }
+      });
+
+      if (array.length === deferred.length) {
+        break;
+      }
+
+      array = [...deferred];
+      deferred = [];
+    }
+  }
+
+  if (array?.length === 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const findCenterDot = (array: any) => {
+  let dot = { x: 0, y: 0 };
+  array?.sort((a: any, b: any) =>
+    Number(a.x) > Number(b.x) || Number(a.y) > Number(b.y) ? -1 : 1
+  );
+  dot.x = Math.ceil((array[0]?.x + array[array?.length - 1]?.x) / 2);
+  dot.y = Math.ceil((array[0]?.y + array[array?.length - 1]?.y) / 2);
+
+  return dot;
+};

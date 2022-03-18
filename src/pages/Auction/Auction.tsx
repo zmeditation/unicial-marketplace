@@ -156,7 +156,6 @@ const Auction = () => {
     dispatch(getparcels([]));
   };
   const handleBidSpace = async () => {
-    console.log("bid parcels : ", bid);
     if (bidParcels.length === 0) {
       window.alert("No space selected for bid. Please select first.");
     } else {

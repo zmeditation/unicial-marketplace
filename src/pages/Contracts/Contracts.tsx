@@ -20,7 +20,7 @@ import { useAppSelector } from "../../store/hooks";
 import { selectSaleParcels } from "../../store/salespaces/selectors";
 import { parcels } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
-import { dateConvert } from "../../common/utils";
+import { dateConvert, findCenterDot } from "../../common/utils";
 import {
   BidContractAddress,
   BidContractAbi,
@@ -86,26 +86,13 @@ const Contract = () => {
         setOwner(allParcel.owner);
         setType(allParcel.type);
         setTitle(allParcel.name);
-
-        setX(allParcel.x);
-        setY(allParcel.y);
         estateArray.push({ x: allParcel.x, y: allParcel.y });
       }
     });
-    estateArray?.sort((a: any, b: any) =>
-      Number(a.x) > Number(b.x) || Number(a.y) > Number(b.y) ? -1 : 1
-    );
+    
     if (estateArray?.length !== 0) {
-      setX(
-        Math.ceil(
-          (estateArray[0]?.x + estateArray[estateArray?.length - 1]?.x) / 2
-        )
-      );
-      setY(
-        Math.ceil(
-          (estateArray[0]?.y + estateArray[estateArray?.length - 1]?.y) / 2
-        )
-      );
+      setX(findCenterDot(estateArray).x);
+      setY(findCenterDot(estateArray).y);
     }
     setEstate(estateArray);
     //eslint-disable-next-line react-hooks/exhaustive-deps
