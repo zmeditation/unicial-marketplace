@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
-// import utility functions
 
 import { selectLoginAddress } from "./../../../store/auth/selectors";
 

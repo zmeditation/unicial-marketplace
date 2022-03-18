@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useCallback, useEffect, useState } from "react";
 import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
@@ -25,6 +23,8 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
   height,
   width,
   myEstate,
+  initialX,
+  initialY,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
@@ -222,6 +222,8 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
         onClick={handleClick}
         height={height}
         width={width}
+        x={initialX}
+        y={initialY}
       />
       {hoveredTile ? (
         <Popup

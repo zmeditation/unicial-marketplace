@@ -54,6 +54,7 @@ export default function EstatesSelect() {
 
       if (leftIndex < 0 && topIndex < 0 && rightIndex < 0 && bottomIndex < 0) {
         status = false;
+        break;
       }
     }
 

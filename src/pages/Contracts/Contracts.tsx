@@ -77,8 +77,6 @@ const Contract = () => {
         setOwner(allParcel.owner);
         setType(allParcel.type);
         setTitle(t("Genesis Plaza"));
-        setX(allParcel.x);
-        setY(allParcel.y);
         estateArray.push({ x: allParcel.x, y: allParcel.y });
       }
       if (
@@ -94,6 +92,21 @@ const Contract = () => {
         estateArray.push({ x: allParcel.x, y: allParcel.y });
       }
     });
+    estateArray?.sort((a: any, b: any) =>
+      Number(a.x) > Number(b.x) || Number(a.y) > Number(b.y) ? -1 : 1
+    );
+    if (estateArray?.length !== 0) {
+      setX(
+        Math.ceil(
+          (estateArray[0]?.x + estateArray[estateArray?.length - 1]?.x) / 2
+        )
+      );
+      setY(
+        Math.ceil(
+          (estateArray[0]?.y + estateArray[estateArray?.length - 1]?.y) / 2
+        )
+      );
+    }
     setEstate(estateArray);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [saleSpaces, tiles, tokensid]);
@@ -194,8 +207,7 @@ const Contract = () => {
                   saleId && saleId === tokensid
                     ? classes.displayNone
                     : classes.BidboxContainer
-                }
-              >
+                }>
                 <Bidbox selectOwner={owner && owner} />
               </div>
               <div
@@ -203,8 +215,7 @@ const Contract = () => {
                   saleId && saleId === tokensid
                     ? classes.BuyboxContainer
                     : classes.displayNone
-                }
-              >
+                }>
                 <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />
               </div>
             </div>

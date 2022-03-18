@@ -18,7 +18,7 @@ const EditEstate = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const estates = useAppSelector(selectestates);
+  const selectedSpace = useAppSelector(selectestates);
   const [beneficiary, setBeneficiary] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -132,7 +132,7 @@ const EditEstate = () => {
                 <ActionButton
                   color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate("/account/estate/create")}
+                  onClick={() => navigate("/account/estate/editestate")}
                 >
                   {t("CANCEL")}
                 </ActionButton>

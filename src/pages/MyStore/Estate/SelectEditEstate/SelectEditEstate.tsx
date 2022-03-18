@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useStyles } from "./SelectEditEstateStyles";
 import { Grid } from "@material-ui/core";
 import CreateEstateMap from "../../../../components/CreateEstateMap";
@@ -17,14 +17,53 @@ import { showAlert } from "../../../../store/alert";
 import { useTranslation } from "react-i18next";
 import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
 import { getCoords } from "../../../../common/utils";
+import { parcels } from "../../../../store/parcels/selectors";
+import { EstateProxyAddress } from "../../../../config/contracts/EstateRegitryContract";
 
 export default function SelectEditEstate() {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const estates = useAppSelector(selectestates);
+  const estate = useAppSelector(selectestates);
+  const tiles: any = useAppSelector(parcels);
+  const { contractaddress, estateid } = useParams();
+  const [focusedEstate, setFocusedEstate] = useState<any>();
   const { t } = useTranslation();
   const [width, setWidth] = useState(0);
+  const [centerX, setCenterX] = useState(0);
+  const [centerY, setCenterY] = useState(0);
+
+  useEffect(() => {
+    let estatePropsArray: any = [];
+    let estateArray: any = [];
+    Object.keys(tiles).forEach((index: any) => {
+      const item = tiles[index];
+      if (
+        item.estateId === estateid &&
+        contractaddress === EstateProxyAddress
+      ) {
+        estatePropsArray.push(getCoords(item.x, item.y));
+        estateArray.push({ x: item.x, y: item.y });
+      }
+    });
+    estateArray?.sort((a: any, b: any) =>
+      Number(a.x) > Number(b.x) || Number(a.y) > Number(b.y) ? -1 : 1
+    );
+    setFocusedEstate(estatePropsArray);
+    if (estateArray?.length !== 0) {
+      setCenterX(
+        Math.ceil(
+          (estateArray[0]?.x + estateArray[estateArray?.length - 1]?.x) / 2
+        )
+      );
+      setCenterY(
+        Math.ceil(
+          (estateArray[0]?.y + estateArray[estateArray?.length - 1]?.y) / 2
+        )
+      );
+    }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tiles, estateid]);
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
@@ -42,31 +81,30 @@ export default function SelectEditEstate() {
 
   const handleContinue = () => {
     let status = false;
-    for (let i = 0; i < estates.length; i++) {
-      var x: number = +estates[i].substring(0, estates[i].indexOf(","));
-      var y: number = +estates[i].substring(estates[i].indexOf(",") + 1);
+    let totalSpace = estate.concat(focusedEstate);
+    for (let i = 0; i < totalSpace?.length; i++) {
+      var x: number = +totalSpace[i].substring(0, totalSpace[i].indexOf(","));
+      var y: number = +totalSpace[i].substring(totalSpace[i].indexOf(",") + 1);
 
-      const leftIndex = estates.indexOf(getCoords(x - 1, y));
-      const topIndex = estates.indexOf(getCoords(x, y - 1));
-      const rightIndex = estates.indexOf(getCoords(x + 1, y));
-      const bottomIndex = estates.indexOf(getCoords(x, y + 1));
+      const leftIndex = totalSpace.indexOf(getCoords(x - 1, y));
+      const topIndex = totalSpace.indexOf(getCoords(x, y - 1));
+      const rightIndex = totalSpace.indexOf(getCoords(x + 1, y));
+      const bottomIndex = totalSpace.indexOf(getCoords(x, y + 1));
 
       status = true;
 
       if (leftIndex < 0 && topIndex < 0 && rightIndex < 0 && bottomIndex < 0) {
         status = false;
+        break;
       }
     }
 
-    if (estates.length === 1) {
-      status = true;
-    }
-
-    status === true
+    status
       ? navigate("/account/estate/editestate")
       : dispatch(
           showAlert({
-            message: "You have to select neighborhood parcels exactly!",
+            message:
+              "You must have to select neighborhood parcels of your estate exactly!",
             severity: "error",
           })
         );
@@ -93,36 +131,38 @@ export default function SelectEditEstate() {
             <CreateEstateMap
               height={400}
               width={width}
-              initialX={1}
-              initialY={1}
+              initialX={centerX}
+              initialY={centerY}
+              myEstate={focusedEstate}
             />
           </div>
         </div>
         <div className={classes.btnPart}>
           <BackButton className={classes.backButton} />
           <ActionButton
-            color="light"
+            color='light'
             className={classes.clearBtn}
-            onClick={handleClear}
-          >
+            onClick={handleClear}>
             {t("Clear")}
-            <CallMadeIcon fontSize="small" />
+            <CallMadeIcon fontSize='small' />
           </ActionButton>
         </div>
 
         <div className={classes.cardContainer}>
           <div className={classes.cardTitle}>
-            {t("Select the parcels on the map for edit your Estate")}
+            {t(
+              "Select the neighborhood parcels of your Estate on the map for edit your Estate"
+            )}
           </div>
           <div className={classes.cardSelect}>{t("Selected parcels")}</div>
           <div className={classes.cards}>
             <Grid container spacing={2}>
-              {estates.map((items: any, key: any) => {
+              {estate?.map((items: any, key: any) => {
                 return (
                   <Grid key={key} item xs={6} sm={4} md={2}>
                     <ParcelCard
-                      cardlabel="Parcel"
-                      carddescription="Acquired at August 2nd, 2018"
+                      cardlabel='Parcel'
+                      carddescription='Acquired at August 2nd, 2018'
                       location={items}
                     />
                   </Grid>
@@ -132,18 +172,16 @@ export default function SelectEditEstate() {
             <div className={classes.btns}>
               <div className={classes.buttons}>
                 <ActionButton
-                  color="light"
+                  color='light'
                   className={classes.bidchange}
-                  onClick={handleContinue}
-                >
+                  onClick={handleContinue}>
                   {t("CONTINUE")}
-                  <CallMadeIcon fontSize="small" />
+                  <CallMadeIcon fontSize='small' />
                 </ActionButton>
                 <ActionButton
-                  color="dark"
+                  color='dark'
                   className={classes.cancelchange}
-                  onClick={() => navigate("/account?section=estates")}
-                >
+                  onClick={() => navigate("/account?section=estates")}>
                   {t("CANCEL")}
                 </ActionButton>
               </div>

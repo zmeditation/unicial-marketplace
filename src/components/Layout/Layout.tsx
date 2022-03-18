@@ -108,7 +108,6 @@ export default function Layout() {
           />
           <Route path='/account/estate/editestate' element={<EditEstate />} />
           <Route path='/account/estate/create' element={<EstatesSelect />} />
-          <Route path='/account/estate/edit' element={<SelectEditEstate />} />
           <Route
             path='/contracts/:contractaddress/tokens/:tokensid'
             element={<Contracts />}
