@@ -36,3 +36,27 @@ export const createEstateWithMetaData = async (
     );
   await createEstateWithMetaDataTx.wait;
 };
+
+export const addEstate = async (
+  axisX_array: any,
+  axisY_array: any,
+  estateId: any,
+) => {
+  provider = getProvider();
+  signer = provider.getSigner();
+  
+  landContract = new ethers.Contract(
+    SpaceProxyAddress,
+    SpaceRegistryAbi,
+    signer
+  );
+
+  const addEstateContract =
+    await landContract.transferSpaceManyToEstate(
+      axisX_array,
+      axisY_array,
+      estateId
+    );
+  await addEstateContract.wait;
+};
+

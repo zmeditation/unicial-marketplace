@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
-import { useStyles } from "./SelectEditEstateStyles";
+import { useStyles } from "./EstateAddStyles";
 import { Grid } from "@material-ui/core";
 import CreateEstateMap from "../../../../components/CreateEstateMap";
 import ParcelCard from "../../../../components/ParcelCard/ParcelCard";
@@ -17,14 +17,16 @@ import { showAlert } from "../../../../store/alert";
 import { useTranslation } from "react-i18next";
 import { useAppSelector, useAppDispatch } from "../../../../store/hooks";
 import {
+  convertBidTypeArray,
   findCenterDot,
   getCoords,
   isAllConnectedLand,
 } from "../../../../common/utils";
 import { parcels } from "../../../../store/parcels/selectors";
 import { EstateProxyAddress } from "../../../../config/contracts/EstateRegitryContract";
+import { addEstate } from "../../../../hooks/InteractLand";
 
-export default function SelectEditEstate() {
+export default function EstateAdd() {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -73,7 +75,7 @@ export default function SelectEditEstate() {
     }
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     let totalSpace = focusedEstate.concat(selectedEstate);
     let status = isAllConnectedLand(totalSpace);
 
@@ -81,15 +83,25 @@ export default function SelectEditEstate() {
       status = false;
     }
 
-    status
-      ? navigate("/account/estate/editestate")
-      : dispatch(
-          showAlert({
-            message:
-              "You must have to select neighborhood parcels of your estate exactly!",
-            severity: "error",
-          })
-        );
+    let contractInput: any = convertBidTypeArray(selectedEstate);
+
+    if (status) {
+      await addEstate(contractInput.xs, contractInput.ys, estateid);
+      dispatch(
+        showAlert({
+          message: "Add estate order is successfully published.",
+          severity: "success",
+        })
+      );
+    } else {
+      dispatch(
+        showAlert({
+          message:
+            "You must have to select neighborhood parcels of your estate exactly!",
+          severity: "error",
+        })
+      );
+    }
   };
 
   const handleClear = () => {
@@ -157,7 +169,7 @@ export default function SelectEditEstate() {
                   color='light'
                   className={classes.bidchange}
                   onClick={handleContinue}>
-                  {t("CONTINUE")}
+                  {t("Submit")}
                   <CallMadeIcon fontSize='small' />
                 </ActionButton>
                 <ActionButton

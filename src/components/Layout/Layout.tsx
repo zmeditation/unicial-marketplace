@@ -44,8 +44,7 @@ import { setBidContractinfo } from "../../store/bidContractData";
 import { showSpinner } from "../../store/spinner";
 import SelectSpace from "../../pages/MyStore/Estate/UpdateLandData/SelectSpace/SelectSpace";
 import UpdateLandData from "../../pages/MyStore/Estate/UpdateLandData/UpdateLandData";
-import EditEstate from "../../pages/MyStore/Estate/EditEstate/EditEstate";
-import SelectEditEstate from "../../pages/MyStore/Estate/SelectEditEstate/SelectEditEstate";
+import EstateEdit from "../../pages/MyStore/Estate/EstateAdd/EstateAdd";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -106,7 +105,6 @@ export default function Layout() {
             path='/account/estate/createestate'
             element={<CreateEstates />}
           />
-          <Route path='/account/estate/editestate' element={<EditEstate />} />
           <Route path='/account/estate/create' element={<EstatesSelect />} />
           <Route
             path='/contracts/:contractaddress/tokens/:tokensid'
@@ -140,7 +138,7 @@ export default function Layout() {
           />
           <Route
             path='/contracts/:contractaddress/tokens/:estateid/estate_edit'
-            element={<SelectEditEstate />}
+            element={<EstateEdit />}
           />
           <Route
             path='/contracts/:contractaddress/tokens/:estateid/estate_transfer'

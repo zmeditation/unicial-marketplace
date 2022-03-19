@@ -138,3 +138,21 @@ export const findCenterDot = (array: any) => {
 
   return dot;
 };
+
+export const convertBidTypeArray = (array: any) => {
+  let xs: any = [],
+    ys: any = [];
+
+  array.forEach((parcel: string) => {
+    xs.push(parseInt(parcel.split(",")[0]));
+    ys.push(parseInt(parcel.split(",")[1]));
+  });
+
+  let data = {
+    xs: [],
+    ys: [],
+  };
+  data.xs = xs;
+  data.ys = ys;
+  return data;
+};
