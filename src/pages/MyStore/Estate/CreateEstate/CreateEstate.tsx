@@ -15,6 +15,7 @@ import { showAlert } from "../../../../store/alert";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { createEstateWithMetaData } from "./../../../../../src/hooks/InteractLand";
 import { convertBidTypeArray } from "../../../../common/utils";
+import { setSpaces } from "../../../../store/parcels";
 
 const CreateEstate = () => {
   const classes = useStyles();
@@ -90,6 +91,7 @@ const CreateEstate = () => {
         severity: "success",
       })
     );
+    dispatch(setSpaces());
   };
 
   const convertToBidData = () => {

@@ -25,6 +25,7 @@ import {
 import { parcels } from "../../../../store/parcels/selectors";
 import { EstateProxyAddress } from "../../../../config/contracts/EstateRegitryContract";
 import { addEstate } from "../../../../hooks/InteractLand";
+import { setSpaces } from "../../../../store/parcels";
 
 export default function EstateAdd() {
   const classes = useStyles();
@@ -93,6 +94,8 @@ export default function EstateAdd() {
           severity: "success",
         })
       );
+      dispatch(getestates([]));
+      dispatch(setSpaces());
     } else {
       dispatch(
         showAlert({
@@ -169,7 +172,7 @@ export default function EstateAdd() {
                   color='light'
                   className={classes.bidchange}
                   onClick={handleContinue}>
-                  {t("Submit")}
+                  {t("Add Space")}
                   <CallMadeIcon fontSize='small' />
                 </ActionButton>
                 <ActionButton
