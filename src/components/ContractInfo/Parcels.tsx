@@ -71,11 +71,9 @@ const Parcels = ({ parcels }: ParcelsProps) => {
   const [showLessBtn, setShowLessBtn] = useState(false);
 
   const handleShowBtn = () => {
-    setCount(count + showMoreCount);
-    if (parcels && count >= parcels?.length) {
-      setShowMoreBtn(false);
-      setShowLessBtn(true);
-    }
+    setCount(parcels?.length);
+    setShowMoreBtn(false);
+    setShowLessBtn(true);
   };
 
   const handleShowLessBtn = () => {
@@ -85,7 +83,11 @@ const Parcels = ({ parcels }: ParcelsProps) => {
   };
 
   useEffect(() => {
-    if (parcels && parcels?.length <= showMoreCount) {
+    if (
+      parcels !== undefined &&
+      parcels.length !== 0 &&
+      parcels?.length <= showMoreCount
+    ) {
       setShowMoreBtn(false);
       setShowLessBtn(false);
     }
@@ -96,29 +98,27 @@ const Parcels = ({ parcels }: ParcelsProps) => {
       <div className={classes.title}>{t("Parcels")}</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>
-          {parcels?.map((item: any, key: any) => {
+          {parcels?.slice(0, count).map((item: any, key: any) => {
             return (
               <LocationBtn key={key} position={getCoords(item.x, item.y)} />
             );
           })}
         </div>
-        {/* <div
+        <div
           className={
             showMoreBtn === true ? classes.showmoreContent : classes.displayNone
-          }
-        >
+          }>
           <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
         </div>
         <div
           className={
             showLessBtn === true ? classes.showmoreContent : classes.displayNone
-          }
-        >
+          }>
           <ShowMoreLessBtn
             letter={t("Show Less")}
             onClick={handleShowLessBtn}
           />
-        </div> */}
+        </div>
       </div>
     </div>
   );

@@ -200,15 +200,14 @@ const Contract = () => {
                   <Owner ownerAddress={owner} />
                 </>
               )}
-              {/* <div
+              <div
                 className={
                   highDivLine === true ? classes.displayNone : classes.highLIght
-                }
-              >
+                }>
                 <div className={classes.divideLine}></div>
                 <Highlight type={type} />
                 <div className={classes.divideLine}></div>
-              </div> */}
+              </div>
             </div>
             <div className={classes.rightDescription}>
               <div

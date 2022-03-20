@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   descript: {
     display: "flex",
+    overflow: "hidden",
   },
   name: {
     marginLeft: "15px",
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   avatarContainer: {
     width: "44px",
     height: "44px",
+    minWidth: "44px",
     backgroundColor: "white",
     borderRadius: "100%",
     cursor: "pointer",
@@ -68,7 +70,6 @@ const Owner = ({ ownerAddress }: OwnerProps) => {
               alt="A"
             />
           </div>
-
           <div className={classes.name}>{ownerAddress}</div>
         </div>
       </div>
