@@ -149,32 +149,7 @@ const ParcelSell = () => {
         severity: "success",
       })
     );
-  };
-
-  const handleCancelOrder = async () => {
-    signer = generateSigner(window.ethereum);
-    marketplaceContract = generateContractInstance(
-      MarketplaceAddress,
-      MarketplaceAbi,
-      signer
-    );
-    spaceRegistryContract = generateContractInstance(
-      SpaceProxyAddress,
-      SpaceRegistryAbi,
-      signer
-    );
-    // check if this token is approved for marketplace contract
-    let cancelOrderTx = await marketplaceContract.cancelOrder(
-      contractaddress,
-      BigNumber.from(tokensid)
-    );
-    await cancelOrderTx.wait();
-    dispatch(
-      showAlert({
-        message: "Sales order cancel is successfully published.",
-        severity: "success",
-      })
-    );
+    window.location.href = "/account?section=parcels";
   };
 
   return (
@@ -257,9 +232,9 @@ const ParcelSell = () => {
                 <ActionButton
                   color="dark"
                   className={classes.cancelchange}
-                  onClick={handleCancelOrder}
+                  onClick={() => navigate(-1)}
                 >
-                  {t("Cancel Orders")}
+                  {t("Cancel")}
                 </ActionButton>
               </div>
             </div>

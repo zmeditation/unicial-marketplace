@@ -11,6 +11,8 @@ import { useTranslation } from "react-i18next";
 import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
 
 import { selectLoginAddress } from "./../../../store/auth/selectors";
+import { ShowMoreLessBtn } from "../../ShowMoreLessBtn/ShowMoreLessBtn";
+import { showMoreCount } from "../../../config/constant";
 
 export default function LandEstates() {
   const classes = LandEstatesStyle();
@@ -19,6 +21,7 @@ export default function LandEstates() {
   const loginAddress = useAppSelector(selectLoginAddress);
   const emptyTokens: any[] = [];
   const [ownEstates, setOwnEstates] = useState(emptyTokens);
+  const [showStatus, setShowStatus] = useState(false);
 
   const handleCreateClick = () => {
     navigate("/account/estate/create");
@@ -32,6 +35,9 @@ export default function LandEstates() {
     navigate(
       `/contracts/${EstateProxyAddress}/tokens/${tokenId}/estate_detail`
     );
+  };
+  const handleShowBtn = () => {
+    setShowStatus(!showStatus);
   };
 
   useEffect(() => {
@@ -59,20 +65,34 @@ export default function LandEstates() {
         </ActionButton>
       </div>
       <Grid container spacing={2}>
-        {ownEstates?.map((tokenId: any, key: any) => {
-          return (
-            <Grid key={key} item xs={12} sm={6} md={4}>
-              <LandCard
-                locationbtnX={23}
-                locationbtnY={12}
-                landName="Plaza Area Sale"
-                category="Zilionixx"
-                onClick={() => handleNavigate(tokenId)}
-              />
-            </Grid>
-          );
-        })}
+        {ownEstates
+          ?.slice(0, !showStatus ? showMoreCount : ownEstates.length)
+          .map((tokenId: any, key: any) => {
+            return (
+              <Grid key={key} item xs={12} sm={6} md={4}>
+                <LandCard
+                  locationbtnX={23}
+                  locationbtnY={12}
+                  landName="Plaza Area Sale"
+                  category="Zilionixx"
+                  onClick={() => handleNavigate(tokenId)}
+                />
+              </Grid>
+            );
+          })}
       </Grid>
+      <div
+        className={
+          ownEstates.length < showMoreCount
+            ? classes.displayNone
+            : classes.showmoreContent
+        }
+      >
+        <ShowMoreLessBtn
+          letter={showStatus ? "Show Less" : "Show All"}
+          onClick={handleShowBtn}
+        />
+      </div>
     </>
   );
 }
