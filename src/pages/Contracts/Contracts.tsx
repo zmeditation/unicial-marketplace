@@ -1,3 +1,5 @@
+/** @format */
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import LandMap from "../../components/LandMap";
@@ -48,12 +50,13 @@ const Contract = () => {
 
   //---------------------------Input value ------------------
 
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [owner, setOwner] = useState("0x");
   const [type, setType] = useState("");
   const [saleId, setSaleId] = useState("");
   const [salePrice, setSalePrice] = useState(0);
-  const [estate, setEstate] = useState<any>();
+  const [selectSpace, setSelectSpace] = useState<any>();
 
   const saleSpaces: any = useAppSelector(selectSaleParcels);
   const tiles: any = useAppSelector(parcels);
@@ -76,25 +79,40 @@ const Contract = () => {
       ) {
         setOwner(allParcel.owner);
         setType(allParcel.type);
-        setTitle(t("Genesis Plaza"));
+        setName(t("Parcel"));
         estateArray.push({ x: allParcel.x, y: allParcel.y });
+        if (allParcel.type === "road") {
+          setName("Road");
+          setDescription("");
+        }
       }
       if (
         allParcel.estateId === tokensid &&
         contractaddress === EstateProxyAddress
       ) {
+        const [estateName, estateDes] = allParcel?.name.split(",");
         setOwner(allParcel.owner);
         setType(allParcel.type);
-        setTitle(allParcel.name);
+        setName(estateName);
+        setDescription(estateDes);
         estateArray.push({ x: allParcel.x, y: allParcel.y });
+
+        if (allParcel.type === "plaza") {
+          setName("Genesis Plaza");
+          setDescription("");
+        }
+        if (allParcel.type === "road") {
+          setName("Road");
+          setDescription("");
+        }
       }
     });
-    
+
     if (estateArray?.length !== 0) {
       setX(findCenterDot(estateArray).x);
       setY(findCenterDot(estateArray).y);
     }
-    setEstate(estateArray);
+    setSelectSpace(estateArray);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [saleSpaces, tiles, tokensid]);
 
@@ -169,9 +187,13 @@ const Contract = () => {
 
           <div className={classes.contractDescription}>
             <div className={classes.leftDescription}>
-              {/* <div className={classes.items}>
-                <Title title={title} />
-              </div> */}
+              <div className={classes.items}>
+                <Title
+                  name={name}
+                  des={description}
+                  count={selectSpace?.length}
+                />
+              </div>
               {owner !== undefined && (
                 <>
                   <div className={classes.divideLine}></div>
@@ -208,7 +230,7 @@ const Contract = () => {
             </div>
           </div>
 
-          <Parcels parcels={estate} />
+          <Parcels parcels={selectSpace} />
 
           {/* <div className={classes.tableRoot}>
             <LatestSalesTable

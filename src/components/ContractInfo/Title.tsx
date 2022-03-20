@@ -30,19 +30,22 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface titleProps {
-  title?: string;
+  name?: string;
+  des?: string;
+  count?: number;
 }
 
-const Title = ({title}:titleProps) => {
+const Title = ({name, des, count}:titleProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
+
   return (
     <div>
-      <div className={classes.title}>{title}</div>
-      <div className={classes.smalltitle}>{t("Unicial Genesis Plaza")}</div>
+      <div className={classes.title}>{name}</div>
+      <div className={classes.smalltitle}>{des}</div>
       <div className={classes.buttonGroup}>
         <ActionButton disabled color="dark">
-          400 {t("LAND")}
+         {count} {t("LAND")}
         </ActionButton>
         {/* <div className={classes.jumpbtn}> */}
         <ActionButton color="light" className={classes.jumpbtn}>
