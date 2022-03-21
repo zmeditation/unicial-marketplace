@@ -53,7 +53,7 @@ export default function LandEstates() {
   useEffect(() => {
     initSet();
   }, []);
-  console.log("ownestate", ownEstates);
+  // console.log("ownestate", ownEstates);
   return (
     <>
       <div className={classes.createBtnContainer}>
