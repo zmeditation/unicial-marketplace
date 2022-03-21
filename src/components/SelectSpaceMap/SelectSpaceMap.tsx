@@ -30,7 +30,7 @@ const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
   const selectedTile = useAppSelector(selectestates);
   const tiles: any = useAppSelector(totalSpace);
   const mineAddress = useAppSelector(selectLoginAddress);
-
+  // console.log("mineAddress", mineAddress);
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
@@ -95,7 +95,10 @@ const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (tile?.estateId === estateid) {
+      if (
+        tile?.estateId === estateid &&
+        tile?.owner.toUpperCase() === mineAddress.toUpperCase()
+      ) {
         return true;
       } else return false;
     },

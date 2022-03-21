@@ -71,24 +71,7 @@ const ParcelTransfer = () => {
         EstateRegistryAbi,
         signer
       );
-      if (
-        estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
-        estateRegistryContract.isApprovedForAll(loginAddress, estateid) ===
-          false
-      ) {
-        let approveMarketTx = await estateRegistryContract.approve(
-          MarketplaceAddress,
-          estateid
-        );
-        await approveMarketTx.wait();
-        dispatch(
-          showAlert({
-            message:
-              "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
-            severity: "success",
-          })
-        );
-      }
+     
       let transferTx = await estateRegistryContract[
         "safeTransferFrom(address,address,uint256)"
       ](loginAddress, transferAddress, BigNumber.from(estateid));
@@ -99,6 +82,7 @@ const ParcelTransfer = () => {
           severity: "success",
         })
       );
+      window.location.href = ("/account?section=estates")
     }
   };
 

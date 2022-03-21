@@ -88,24 +88,24 @@ export default function SetSpaceOperator() {
         EstateRegistryAbi,
         signer
       );
-      if (
-        estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
-        estateRegistryContract.isApprovedForAll(loginAddress, estateid) ===
-          false
-      ) {
-        let approveMarketTx = await estateRegistryContract.approve(
-          MarketplaceAddress,
-          estateid
-        );
-        await approveMarketTx.wait();
-        dispatch(
-          showAlert({
-            message:
-              "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
-            severity: "success",
-          })
-        );
-      }
+      // if (
+      //   estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
+      //   estateRegistryContract.isApprovedForAll(loginAddress, estateid) ===
+      //     false
+      // ) {
+      //   let approveMarketTx = await estateRegistryContract.approve(
+      //     MarketplaceAddress,
+      //     estateid
+      //   );
+      //   await approveMarketTx.wait();
+      //   dispatch(
+      //     showAlert({
+      //       message:
+      //         "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
+      //       severity: "success",
+      //     })
+      //   );
+      // }
       for (let i = 0; i < estates.length; i++) {
         var splitted = estates[i].split(",");
         var a =
@@ -126,6 +126,7 @@ export default function SetSpaceOperator() {
           severity: "success",
         })
       );
+      window.location.href = "account?section=estates";
     }
   };
 
