@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
@@ -20,8 +20,12 @@ import {
   EstateProxyAddress,
   EstateRegistryAbi,
 } from "../../../../config/contracts/EstateRegitryContract";
-import { MarketplaceAddress } from "../../../../config/contracts/MarketPlaceContract";
 import { selectestates } from "../../../../store/selectedestates/selectors";
+import { getCoords } from "../../../../common/utils";
+import { totalSpace } from "../../../../store/parcels/selectors";
+
+import { BigNumber } from "ethers";
+
 declare var window: any;
 const UpdateLandData = () => {
   const classes = useStyles();
@@ -33,34 +37,10 @@ const UpdateLandData = () => {
   const loginAddress = useAppSelector(selectLoginAddress);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [bid, setBid] = useState({
-    xs: [],
-    ys: [],
-    landdata: "",
-  });
+  const [landmetadata, setLandMetaData] = useState("");
+  const tiles: any = useAppSelector(totalSpace);
 
   var isSignIn = 1;
-  const convertToBidData = () => {
-    let xs: any = [],
-      ys: any = [];
-
-    estates.forEach((parcel: string) => {
-      xs.push(parseInt(parcel.split(",")[0]));
-      ys.push(parseInt(parcel.split(",")[1]));
-    });
-
-    let data = bid;
-    data.xs = xs;
-    data.ys = ys;
-    data.landdata = name + "," + description;
-    setBid(data);
-  };
-  useEffect(() => {
-    //   if (estates.length === 0) {
-    //     navigate("/account/estate/create");
-    //   }
-    convertToBidData();
-  });
   const handleNameChange = (e: any) => {
     setName(e.target.value);
   };
@@ -97,35 +77,25 @@ const UpdateLandData = () => {
       );
       return;
     }
+    let landdata = name + "," + description;
+    setLandMetaData(landdata);
+    var tokenIds = [];
     var signer = generateSigner(window.ethereum);
     var estateRegistryContract = generateContractInstance(
       EstateProxyAddress,
       EstateRegistryAbi,
       signer
     );
-    if (
-      estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
-      estateRegistryContract.isApprovedForAll(loginAddress, estateid) === false
-    ) {
-      alert("test2");
-      let approveMarketTx = await estateRegistryContract.approve(
-        MarketplaceAddress,
-        estateid
-      );
-      await approveMarketTx.wait();
-      dispatch(
-        showAlert({
-          message:
-            "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
-          severity: "success",
-        })
-      );
+    for (let i = 0; i < estates.length; i++) {
+      var splitted = estates[i].split(",");
+      var a =
+        tiles[getCoords(parseInt(splitted[0]), parseInt(splitted[1]))].tokenId;
+      tokenIds.push(BigNumber.from(a));
     }
-
     let updateLandDataTx = await estateRegistryContract.updateManySpaceData(
-      bid.xs,
-      bid.ys,
-      bid.landdata
+      estateid,
+      tokenIds,
+      landmetadata
     );
     await updateLandDataTx.wait();
     dispatch(
@@ -134,6 +104,7 @@ const UpdateLandData = () => {
         severity: "success",
       })
     );
+    window.location.href = "/account?section=estates";
   };
 
   return (
