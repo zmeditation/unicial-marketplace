@@ -19,7 +19,7 @@ import { getCoords } from "../../../common/utils";
 
 export default function LandAccordion() {
   const classes = LandAccordionStyle();
-  const { t} = useTranslation();
+  const { t } = useTranslation();
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
   const [x1, setx1] = useState<number>(0);
   const [x2, setx2] = useState<number>(0);
@@ -88,12 +88,14 @@ export default function LandAccordion() {
   const showmapMultiland = () => {
     let newSelectedTile: string[] = [];
     let count = 0;
+    const mm = "dfdfd";
     const content_str = xy
-      ?.replace("[", "")
-      .replace("]", "")
-      .slice(1, -1)
-      .split("','");
-
+      ?.replace("[", "@")
+      .replace("]", "#")
+      .replace("(", "$")
+      .replace(")", "%")
+      .slice(0, -1)
+      .split(",");
     content_str?.forEach((str) => {
       const tile: any = tiles && (tiles[str] as Tile);
       try {

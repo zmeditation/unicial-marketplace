@@ -1,6 +1,6 @@
 // import { OrderHistoryTableType } from '../../../types/Orderhistory'
-interface saleParcels {
+interface saleSpaces {
   parcels: object;
 }
 
-export type { saleParcels };
+export type { saleSpaces };

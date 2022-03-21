@@ -1,24 +1,31 @@
 import React, { useCallback, useEffect, useState } from "react";
-
-import { Atlas, Layer } from "../Atlas/Atlas";
-import { Tile } from "../Atlas/Atlas.types";
-import Popup from "../Atlas/Popup";
-import { selectLoginAddress } from "../../store/auth/selectors";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { selectestates } from "../../store/selectedestates/selectors";
-import { getestates } from "../../store/selectedestates";
-import { parcels } from "../../store/parcels/selectors";
-import { showAlert } from "../../store/alert";
-import { getCoords } from "../../common/utils";
+import { Atlas, Layer } from "../../Atlas/Atlas";
+import { Tile } from "../../Atlas/Atlas.types";
+import Popup from "../../Atlas/Popup";
+import { selectLoginAddress } from "../../../store/auth/selectors";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { selectestates } from "../../../store/selectedestates/selectors";
+import { getestates } from "../../../store/selectedestates";
+import { totalSpace } from "../../../store/parcels/selectors";
+import { showAlert } from "../../../store/alert";
+import { getCoords } from "../../../common/utils";
+import { mapColor } from "../../../config/constant";
 
 interface CreateEstateMapProps {
   height?: any;
   width?: any;
   initialX?: number;
   initialY?: number;
+  myEstate?: any;
 }
 
-const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
+const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
+  height,
+  width,
+  myEstate,
+  initialX,
+  initialY,
+}) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
   const [mouseX, setMouseX] = useState(-1);
@@ -27,33 +34,29 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
   const [y, setY] = useState(0);
   const dispatch = useAppDispatch();
   const selectedTile = useAppSelector(selectestates);
-  const tiles: any = useAppSelector(parcels);
-  const mineAddress = useAppSelector(selectLoginAddress);
+  const tiles: any = useAppSelector(totalSpace);
+  const loginAddress = useAppSelector(selectLoginAddress);
 
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
       if (
         tile.owner &&
-        tile.owner.toLowerCase() === mineAddress.toLowerCase() &&
+        tile.owner.toLowerCase() === loginAddress.toLowerCase() &&
         tile.estateId === undefined
       ) {
         let newSelectedTile: string[] = [];
         const selectedIndex = selectedTile.indexOf(getCoords(x, y));
         if (selectedIndex === -1) {
-          // alert("-1");
           newSelectedTile = newSelectedTile.concat(
             selectedTile,
             getCoords(x, y)
           );
         } else if (selectedIndex === 0) {
-          // alert("0");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(1));
         } else if (selectedIndex === selectedTile.length - 1) {
-          // alert("kk");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(0, -1));
         } else if (selectedIndex > 0) {
-          // alert(">0");
           newSelectedTile = newSelectedTile.concat(
             selectedTile.slice(0, selectedIndex),
             selectedTile.slice(selectedIndex + 1)
@@ -80,18 +83,15 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
     [selectedTile, tiles]
   );
 
-  const isOwned = useCallback(
+  const isFocused = useCallback(
     (x: number, y: number) => {
-      if (!tiles) return false;
-      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (tile?.owner) {
-        return true;
-      } else return false;
+      if (myEstate === undefined) return false;
+      return myEstate?.includes(getCoords(x, y));
     },
-    [tiles]
+    [myEstate]
   );
 
-  const isOwnedWithEstate = useCallback(
+  const isOtherEstate = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
@@ -102,14 +102,14 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
     [tiles]
   );
 
-  const isMine = useCallback(
+  const isMyParcel = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
 
       if (
         tile?.owner &&
-        tile?.owner?.toLowerCase() === mineAddress.toLowerCase()
+        tile?.owner?.toLowerCase() === loginAddress.toLowerCase()
       ) {
         return true;
       } else return false;
@@ -117,13 +117,13 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
     [tiles]
   );
 
-  const isMineWithEstate = useCallback(
+  const isMyEstate = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
       if (
         tile?.owner &&
-        tile?.owner?.toLowerCase() === mineAddress.toLowerCase() &&
+        tile?.owner?.toLowerCase() === loginAddress.toLowerCase() &&
         tile?.estateId !== undefined
       ) {
         return true;
@@ -140,36 +140,36 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
 
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y)
+      return isFocused(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isMineWithEstate(x, y)
+        : isSelected(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isMine(x, y)
+        : isMyEstate(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isOwnedWithEstate(x, y)
+        : isMyParcel(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : // : isOwned(x, y)
-          // ? { color: "transparent", scale: 1.4 }
-          null;
+        : isOtherEstate(x, y)
+        ? { color: "transparent", scale: 1.4 }
+        : null;
     },
-    [isSelected]
+    [isSelected, isFocused]
   );
 
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y)
-        ? { color: "#ff9990", scale: 1.2 }
-        : isMineWithEstate(x, y)
-        ? { color: "#4aff3a", scale: 1.2 }
-        : isMine(x, y)
-        ? { color: "#2b1c70", scale: 1.2 }
-        : isOwnedWithEstate(x, y)
-        ? { color: "#f0af37", scale: 1.2 }
-        : // : isOwned(x, y)
-          // ? { color: "#21263f", scale: 1.2 }
-          null;
+      return isFocused(x, y)
+        ? { color: mapColor.focused, scale: 1.2 }
+        : isSelected(x, y)
+        ? { color: mapColor.selected, scale: 1.2 }
+        : isMyEstate(x, y)
+        ? { color: mapColor.myEstate, scale: 1.2 }
+        : isMyParcel(x, y)
+        ? { color: mapColor.myParcel, scale: 1.2 }
+        : isOtherEstate(x, y)
+        ? { color: mapColor.otherEstate, scale: 1.2 }
+        : null;
     },
-    [isSelected]
+    [isSelected, isFocused]
   );
 
   const handleHover = useCallback(
@@ -222,6 +222,8 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({ height, width }) => {
         onClick={handleClick}
         height={height}
         width={width}
+        x={initialX}
+        y={initialY}
       />
       {hoveredTile ? (
         <Popup

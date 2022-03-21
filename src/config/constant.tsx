@@ -1,5 +1,5 @@
-export const ApiUrl = "https://api.unicial.orgs";
-// export const ApiUrl = "http://localhost:8080";
+// export const ApiUrl = "https://api.unicial.orgs";
+export const ApiUrl = "http://192.168.112.103:8080";
 export const REQUEST_API_URL = `${ApiUrl}/api/v1`;
 
 export const tabs = {
@@ -229,3 +229,13 @@ export const managerData = [
     currentStatus: true,
   },
 ];
+//-------------map color-----------------------
+export const mapColor = {
+  selected: "#ff9990",
+  myParcel: "#FAF0CA",
+  myEstate: "#7E65E3",
+  otherEstate: "#60B94D",
+  onSaleParcels: "#FFAF3B",
+  onSaleEstates: "#C7EFCF",
+  focused: "#F0B67F ",
+}

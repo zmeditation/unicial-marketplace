@@ -7,7 +7,7 @@ const initialState: any = {
   parcels: [],
 };
 
-const setParcels = (state: any, data: any) => {
+const setSpaces = (state: any, data: any) => {
   state.parcels = data;
 };
 
@@ -19,7 +19,7 @@ export const mapparceldataReducer = createSlice({
     builder.addCase(
       getparcels.fulfilled.type,
       (state: any, action: PayloadAction<any>) => {
-        setParcels(state, action.payload.parcels);
+        setSpaces(state, action.payload.parcels);
       }
     );
   },

@@ -71,11 +71,9 @@ const Parcels = ({ parcels }: ParcelsProps) => {
   const [showLessBtn, setShowLessBtn] = useState(false);
 
   const handleShowBtn = () => {
-    setCount(count + showMoreCount);
-    if (parcels && count >= parcels?.length) {
-      setShowMoreBtn(false);
-      setShowLessBtn(true);
-    }
+    setCount(parcels?.length);
+    setShowMoreBtn(false);
+    setShowLessBtn(true);
   };
 
   const handleShowLessBtn = () => {
@@ -85,8 +83,15 @@ const Parcels = ({ parcels }: ParcelsProps) => {
   };
 
   useEffect(() => {
-    if (parcels && parcels?.length <= showMoreCount) {
+    if (
+      parcels !== undefined &&
+      parcels.length !== 0 &&
+      parcels?.length <= showMoreCount
+    ) {
       setShowMoreBtn(false);
+      setShowLessBtn(false);
+    }else{
+      setShowMoreBtn(true);
       setShowLessBtn(false);
     }
   }, [parcels]);

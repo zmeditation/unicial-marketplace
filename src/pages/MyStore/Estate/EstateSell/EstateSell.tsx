@@ -118,6 +118,7 @@ const EstateSell = () => {
     );
     // check if this token is approved for marketplace contract
     if (!isApproved) {
+      console.log("not approved yet!");
       let approveMarketTx = await estateRegistryContract.approve(
         MarketplaceAddress,
         estateid
@@ -147,6 +148,29 @@ const EstateSell = () => {
         severity: "success",
       })
     );
+    window.location.href = "/account?section=estates";
+  };
+
+  const handleCancelOrder = async () => {
+    signer = generateSigner(window.ethereum);
+    marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    // check if this token is approved for marketplace contract
+    let cancelOrderTx = await marketplaceContract.cancelOrder(
+      contractaddress,
+      BigNumber.from(estateid)
+    );
+    await cancelOrderTx.wait();
+    dispatch(
+      showAlert({
+        message: "Sales order cancel is successfully published.",
+        severity: "success",
+      })
+    );
+    window.location.href = "/account?section=estates";
   };
 
   return (
@@ -229,9 +253,9 @@ const EstateSell = () => {
                 <ActionButton
                   color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate(-1)}
+                  onClick={handleCancelOrder}
                 >
-                  {t("Cancel")}
+                  {t("Cancel Order")}
                 </ActionButton>
               </div>
             </div>

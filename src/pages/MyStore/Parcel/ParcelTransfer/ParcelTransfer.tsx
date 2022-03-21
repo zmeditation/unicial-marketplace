@@ -21,7 +21,10 @@ import {
   generateSigner,
 } from "../../../../common/contract";
 
-import { MarketplaceAddress } from "../../../../config/contracts/MarketPlaceContract";
+import {
+  MarketplaceAddress,
+  MarketplaceAbi,
+} from "../../../../config/contracts/MarketPlaceContract";
 
 import {
   SpaceProxyAddress,
@@ -30,7 +33,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 
 declare var window: any;
-var signer: any, spaceRegistryContract: any;
+var signer: any, spaceRegistryContract: any, marketplaceContract: any;
 
 const ParcelTransfer = () => {
   const classes = useStyles();
@@ -62,32 +65,19 @@ const ParcelTransfer = () => {
       );
     } else {
       signer = generateSigner(window.ethereum);
+
       spaceRegistryContract = generateContractInstance(
         SpaceProxyAddress,
         SpaceRegistryAbi,
         signer
       );
-      let isApproved = false;
-      isApproved = await spaceRegistryContract.isAuthorized(
-        MarketplaceAddress,
-        BigNumber.from(tokensid)
-      );
-      if (!isApproved) {
-        // approve marketplace contract to transfer this asset
 
-        let approveMarketTx = await spaceRegistryContract.approve(
-          MarketplaceAddress,
-          tokensid
-        );
-        await approveMarketTx.wait();
-        dispatch(
-          showAlert({
-            message:
-              "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
-            severity: "success",
-          })
-        );
-      }
+      marketplaceContract = generateContractInstance(
+        MarketplaceAddress,
+        MarketplaceAbi,
+        signer
+      );
+
       let transferTx = await spaceRegistryContract[
         "safeTransferFrom(address,address,uint256)"
       ](loginAddress, transferAddress, BigNumber.from(tokensid));
@@ -98,6 +88,7 @@ const ParcelTransfer = () => {
           severity: "success",
         })
       );
+      window.location.href = "/account?section=parcels";
     }
   };
 

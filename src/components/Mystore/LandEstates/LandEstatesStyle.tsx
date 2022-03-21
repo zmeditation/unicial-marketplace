@@ -14,5 +14,15 @@ export const LandEstatesStyle = makeStyles((theme: Theme) =>
     createBtn: {
       width: "200px",
     },
+    showmoreContent: {
+      marginTop: "15px",
+      justifyContent: "center",
+      width: "100%",
+      flexFlow: "row nowrap",
+      display: "flex",
+    },
+    displayNone: {
+      display: "none",
+    },
   })
 );

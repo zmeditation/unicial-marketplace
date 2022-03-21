@@ -14,6 +14,8 @@ import { selectestates } from "../../../../store/selectedestates/selectors";
 import { showAlert } from "../../../../store/alert";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import { createEstateWithMetaData } from "./../../../../../src/hooks/InteractLand";
+import { convertBidTypeArray } from "../../../../common/utils";
+import { setSpaces } from "../../../../store/parcels";
 
 const CreateEstate = () => {
   const classes = useStyles();
@@ -89,20 +91,13 @@ const CreateEstate = () => {
         severity: "success",
       })
     );
+    dispatch(setSpaces());
   };
 
   const convertToBidData = () => {
-    let xs: any = [],
-      ys: any = [];
-
-    estates.forEach((parcel: string) => {
-      xs.push(parseInt(parcel.split(",")[0]));
-      ys.push(parseInt(parcel.split(",")[1]));
-    });
-
     let data = bid;
-    data.xs = xs;
-    data.ys = ys;
+    data.xs = convertBidTypeArray(estates).xs;
+    data.ys = convertBidTypeArray(estates).ys;
     data.beneficiary = beneficiary;
     data.metadata = name + "," + description;
     setBid(data);
@@ -127,8 +122,7 @@ const CreateEstate = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt="token"
-                ></img>
+                  alt='token'></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -161,7 +155,7 @@ const CreateEstate = () => {
                   </div>
                   <TextareaAutosize
                     className={classes.descriptionTextField}
-                    aria-label="maximum height"
+                    aria-label='maximum height'
                     placeholder={t("This is an estate")}
                     onChange={(e) => handleDescriptionChange(e)}
                   />
@@ -170,18 +164,16 @@ const CreateEstate = () => {
               </div>
               <div className={classes.buttons}>
                 <ActionButton
-                  color="light"
+                  color='light'
                   className={classes.bidchange}
-                  onClick={handleSubmitBtn}
-                >
+                  onClick={handleSubmitBtn}>
                   {t("SUBMIT")}
-                  <CallMadeIcon fontSize="small" />
+                  <CallMadeIcon fontSize='small' />
                 </ActionButton>
                 <ActionButton
-                  color="dark"
+                  color='dark'
                   className={classes.cancelchange}
-                  onClick={() => navigate("/account/estate/create")}
-                >
+                  onClick={() => navigate("/account/estate/create")}>
                   {t("CANCEL")}
                 </ActionButton>
               </div>

@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import mapparceldataReducer from "./selectedparcels";
 import mapestatedataReducer from "./selectedestates";
-
 import testReducer from "./Test/index";
 import authReducer from "./auth/index";
 import alertReducer from "./alert/index";
 import spinnerReducer from "./spinner/index";
 import netModalReducer from "./netmodal/index";
 import saleParcelsReducer from "./saleparcels";
+import saleestatesReducer from "./saleestates";
 import parcelsReducer from "./parcels";
 import BidContractinfoReducer from "./bidContractData"
 import { getSaleParcelsAPI } from "./api/parcels";
@@ -21,7 +21,8 @@ export const store = configureStore({
     alert: alertReducer,
     selectedestates: mapestatedataReducer,
     netModal: netModalReducer,
-    saleparcels: saleParcelsReducer,
+    salespaces: saleParcelsReducer,
+    saleestates: saleestatesReducer,
     parcels: parcelsReducer,
     bidcontract: BidContractinfoReducer,
   },

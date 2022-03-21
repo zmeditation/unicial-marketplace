@@ -10,7 +10,7 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/saleparcels/selectors";
+import { saleParcels } from "../../store/saleparcels/selectors";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { showAlert } from "../../store/alert";
 
@@ -29,7 +29,7 @@ import {
 } from "../../common/contract";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
-import { parcels } from "../../store/parcels/selectors";
+import { totalSpace } from "../../store/parcels/selectors";
 import SliceMap from "../../components/SliceMap";
 
 declare var window: any;
@@ -42,14 +42,14 @@ const Buy = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const saleParcels: any = useAppSelector(selectSaleParcels);
+  const saleSpaces: any = useAppSelector(saleParcels);
   const loginAddress: any = useAppSelector(selectLoginAddress);
   const { contractaddress, tokensid } = useParams();
   const [price, setPrice] = useState("");
   const [uccAllowance, setUccAllowance] = useState(BigNumber.from(0));
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
 
   useEffect(() => {
     Object.keys(tiles).forEach((index: any) => {
@@ -138,8 +138,8 @@ const Buy = () => {
   };
 
   useEffect(() => {
-    Object.keys(saleParcels).forEach((index: any) => {
-      const saleParcel = saleParcels[index];
+    Object.keys(saleSpaces).forEach((index: any) => {
+      const saleParcel = saleSpaces[index];
       if (
         saleParcel.assetId === tokensid &&
         saleParcel.nftAddress === contractaddress
@@ -148,7 +148,7 @@ const Buy = () => {
         setPrice(priceParcel.toString().slice(0, -2));
       }
     });
-  }, [saleParcels]);
+  }, [saleSpaces]);
 
   useEffect(() => {
     initContractSetting();

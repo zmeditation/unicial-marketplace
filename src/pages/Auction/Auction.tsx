@@ -36,6 +36,7 @@ import {
   generateSigner,
 } from "../../common/contract";
 import { getparcels } from "../../store/selectedparcels";
+import { showAlert } from "../../store/alert";
 
 declare var window: any;
 var signer: any,
@@ -157,13 +158,22 @@ const Auction = () => {
   };
   const handleBidSpace = async () => {
     if (bidParcels.length === 0) {
-      window.alert("No space selected for bid. Please select first.");
+      dispatch(
+        showAlert({
+          message: "No space selected for bid. Please select first.",
+          severity: "error",
+        })
+      );
     } else {
       // check able to bid first for else case
       if (bidParcels.length > spacesLimitPerBid) {
-        window.alert(
-          "Selction is out of limit. Maximum spaces per bid is " +
-            spacesLimitPerBid
+        dispatch(
+          showAlert({
+            message:
+              "Selction is out of limit. Maximum spaces per bid is " +
+              spacesLimitPerBid,
+            severity: "error",
+          })
         );
       } else {
         if (uccBalance.gte(ttlSpacesPrice)) {
@@ -176,19 +186,32 @@ const Auction = () => {
             );
 
             await bidTx.wait();
-            window.alert("Bid was successful");
-
+            dispatch(
+              showAlert({
+                message: "Bid was successful",
+                severity: "success",
+              })
+            );
             await initUccBalAndAllowance();
+            window.location.reload();
           } else {
             // check able to approve
-            window.alert(
-              "Auction contract is not allowed to use your UCC token. Click Approve button to approve auction contract."
+            dispatch(
+              showAlert({
+                message:
+                  "Auction contract is not allowed to use your UCC token. Click Approve button to approve auction contract.",
+                severity: "error",
+              })
             );
             // await handleApproveUCCToken();
           }
         } else {
-          window.alert(
-            "You don't have enought UCC token to bid for space tokens"
+          dispatch(
+            showAlert({
+              message:
+                "You don't have enought UCC token to bid for space tokens",
+              severity: "error",
+            })
           );
         }
       }

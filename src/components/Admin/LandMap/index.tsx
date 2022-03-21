@@ -7,7 +7,9 @@ import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { selectparcels } from "../../../store/selectedparcels/selectors";
 import { getparcels } from "../../../store/selectedparcels";
 import { getCoords } from "../../../common/utils";
-import { parcels } from "../../../store/parcels/selectors";
+import { selectLoginAddress } from "../../../store/auth/selectors";
+import { totalSpace } from "../../../store/parcels/selectors";
+import { mapColor } from "../../../config/constant";
 
 interface LandMapProps {
   height?: any;
@@ -24,9 +26,10 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const dispatch = useAppDispatch();
+  const loginAddress = useAppSelector(selectLoginAddress);
   const selectedTile = useAppSelector(selectparcels);
 
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
 
   const handleClick = useCallback(
     async (x: number, y: number) => {
@@ -65,11 +68,26 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
     [selectedTile, tiles]
   );
 
-  const isOwned = useCallback(
+  const isMyParcel = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (tile?.owner) {
+
+      if (
+        tile?.owner &&
+        tile?.owner?.toLowerCase() === loginAddress.toLowerCase()
+      ) {
+        return true;
+      } else return false;
+    },
+    [tiles]
+  );
+
+  const isOtherEstated = useCallback(
+    (x: number, y: number) => {
+      if (!tiles) return false;
+      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      if (tile?.estateId) {
         return true;
       } else return false;
     },
@@ -84,20 +102,26 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
 
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y) ? { color: "transparent", scale: 1.4 } : null;
-      // isOwned(x, y)
-      //   ? { color: "transparent", scale: 1.4 }
-      //   :
+      return isSelected(x, y)
+        ? { color: "transparent", scale: 1.2 }
+        : isMyParcel(x, y)
+        ? { color: "transparent", scale: 1.2 }
+        : isOtherEstated(x, y)
+        ? { color: "transparent", scale: 1.2 }
+        : null;
     },
     [isSelected]
   );
 
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isSelected(x, y) ? { color: "#ff9990", scale: 1.2 } : null;
-      // isOwned(x, y)
-      //   ? { color: "#141b31", scale: 1.2 }
-      //   :
+      return isSelected(x, y)
+        ? { color: mapColor.selected, scale: 1.4 }
+        : isMyParcel(x, y)
+        ? { color: mapColor.myParcel, scale: 1.4 }
+        : isOtherEstated(x, y)
+        ? { color: mapColor.otherEstate, scale: 1.4 }
+        : null;
     },
     [isSelected]
   );

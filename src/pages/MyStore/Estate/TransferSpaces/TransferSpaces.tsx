@@ -6,7 +6,7 @@ import {
   StyledInput,
 } from "./../EstateTransfer/EstateTransferStyle";
 import { FormControl, Grid } from "@material-ui/core";
-import SelectSpaceMap from "../../../../components/SelectSpaceMap/SelectSpaceMap";
+import SelectSpaceMap from "../../../../components/MapData/SelectSpaceMap/SelectSpaceMap";
 import ParcelCard from "../../../../components/ParcelCard/ParcelCard";
 
 import TopTab from "../../../../components/TopTab/TopTab";
@@ -25,7 +25,7 @@ import { getCoords } from "../../../../common/utils";
 import raiseicon from "../../../../assets/svg/bid_raiseicon.svg";
 import { BigNumber, ethers } from "ethers";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
-import { parcels } from "../../../../store/parcels/selectors";
+import { totalSpace } from "../../../../store/parcels/selectors";
 import {
   EstateRegistryAbi,
   EstateProxyAddress,
@@ -47,7 +47,7 @@ export default function TransferSpaces() {
   const dispatch = useAppDispatch();
   const loginAddress = useAppSelector(selectLoginAddress);
   const estates = useAppSelector(selectestates);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
   const selectedTile = useAppSelector(selectparcels);
   const { t } = useTranslation();
 
@@ -88,24 +88,7 @@ export default function TransferSpaces() {
         EstateRegistryAbi,
         signer
       );
-      if (
-        estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
-        estateRegistryContract.isApprovedForAll(loginAddress, estateid) ===
-          false
-      ) {
-        let approveMarketTx = await estateRegistryContract.approve(
-          MarketplaceAddress,
-          estateid
-        );
-        await approveMarketTx.wait();
-        dispatch(
-          showAlert({
-            message:
-              "Successfully approved. You have to confirm order creation transaction to finally publich your order.",
-            severity: "success",
-          })
-        );
-      }
+
       for (let i = 0; i < estates.length; i++) {
         var splitted = estates[i].split(",");
         var a =
@@ -125,6 +108,7 @@ export default function TransferSpaces() {
           severity: "success",
         })
       );
+      window.location.href = "/account?section=estates";
     }
   };
 

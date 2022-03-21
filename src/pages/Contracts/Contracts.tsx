@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import LandMap from "../../components/LandMap";
+import LandMap from "../../components/MapData/LandMap";
 import Title from "../../components/ContractInfo/Title";
 import Owner from "../../components/ContractInfo/Owner";
 import Highlight from "../../components/ContractInfo/Highlight";
@@ -17,10 +17,11 @@ import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/Lat
 import { useTranslation } from "react-i18next";
 import TablePagination from "../../components/Base/TablePagination";
 import { useAppSelector } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/saleparcels/selectors";
-import { parcels } from "../../store/parcels/selectors";
+import { saleParcels } from "../../store/saleparcels/selectors";
+import { saleEstates } from "../../store/saleestates/selectors";
+import { totalSpace } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
-import { dateConvert } from "../../common/utils";
+import { dateConvert, findCenterDot } from "../../common/utils";
 import {
   BidContractAddress,
   BidContractAbi,
@@ -48,26 +49,33 @@ const Contract = () => {
 
   //---------------------------Input value ------------------
 
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [owner, setOwner] = useState("0x");
-  const [type, setType] = useState("");
   const [saleId, setSaleId] = useState("");
   const [salePrice, setSalePrice] = useState(0);
-  const [estate, setEstate] = useState<any>();
+  const [selectSpace, setSelectSpace] = useState<any>();
 
-  const saleParcels: any = useAppSelector(selectSaleParcels);
-  const tiles: any = useAppSelector(parcels);
+  const parcelsOnSale: any = useAppSelector(saleParcels);
+  const estatesOnSale: any = useAppSelector(saleEstates);
+  const tiles: any = useAppSelector(totalSpace);
 
   useEffect(() => {
     let estateArray: any = [];
-    Object.keys(saleParcels).forEach((index: any) => {
-      const saleParcel = saleParcels[index];
-      if (saleParcel.assetId === tokensid) {
-        setSaleId(saleParcel.assetId);
-        setSalePrice(saleParcel.priceInWei);
+    Object.keys(parcelsOnSale).forEach((index: any) => {
+      const itemParcel = parcelsOnSale[index];
+      if (itemParcel.assetId === tokensid) {
+        setSaleId(itemParcel.assetId);
+        setSalePrice(itemParcel.priceInWei);
       }
     });
-
+    Object.keys(estatesOnSale).forEach((index: any) => {
+      const itemEstate = estatesOnSale[index];
+      if (itemEstate.assetId === tokensid) {
+        setSaleId(itemEstate.assetId);
+        setSalePrice(itemEstate.priceInWei);
+      }
+    });
     Object.keys(tiles).forEach((index: any) => {
       const allParcel = tiles[index];
       if (
@@ -75,28 +83,41 @@ const Contract = () => {
         contractaddress === SpaceProxyAddress
       ) {
         setOwner(allParcel.owner);
-        setType(allParcel.type);
-        setTitle(t("Genesis Plaza"));
-        setX(allParcel.x);
-        setY(allParcel.y);
+        setName(t("Parcel"));
         estateArray.push({ x: allParcel.x, y: allParcel.y });
+        if (allParcel.type === "road") {
+          setName("Road");
+          setDescription("");
+        }
       }
       if (
         allParcel.estateId === tokensid &&
         contractaddress === EstateProxyAddress
       ) {
+        const [estateName, estateDes] = allParcel?.name.split(",");
         setOwner(allParcel.owner);
-        setType(allParcel.type);
-        setTitle(allParcel.name);
-
-        setX(allParcel.x);
-        setY(allParcel.y);
+        setName(estateName);
+        setDescription(estateDes);
         estateArray.push({ x: allParcel.x, y: allParcel.y });
+
+        if (allParcel.type === "plaza") {
+          setName("Genesis Plaza");
+          setDescription("");
+        }
+        if (allParcel.type === "road") {
+          setName("Road");
+          setDescription("");
+        }
       }
     });
-    setEstate(estateArray);
+
+    if (estateArray?.length !== 0) {
+      setX(findCenterDot(estateArray).x);
+      setY(findCenterDot(estateArray).y);
+    }
+    setSelectSpace(estateArray);
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [saleParcels, tiles, tokensid]);
+  }, [parcelsOnSale, tiles, tokensid]);
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
@@ -114,14 +135,6 @@ const Contract = () => {
   useEffect(() => {
     handleResize();
   }, []);
-
-  useEffect(() => {
-    if (type !== undefined) {
-      parcelTypes.indexOf(type) < 0
-        ? setHighDivLine(true)
-        : setHighDivLine(false);
-    }
-  }, [type]);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -169,24 +182,26 @@ const Contract = () => {
 
           <div className={classes.contractDescription}>
             <div className={classes.leftDescription}>
-              {/* <div className={classes.items}>
-                <Title title={title} />
-              </div> */}
+              <div className={classes.items}>
+                <Title
+                  name={name}
+                  des={description}
+                  count={selectSpace?.length}
+                />
+              </div>
               {owner !== undefined && (
                 <>
                   <div className={classes.divideLine}></div>
                   <Owner ownerAddress={owner} />
                 </>
               )}
-              {/* <div
+              <div
                 className={
                   highDivLine === true ? classes.displayNone : classes.highLIght
-                }
-              >
+                }>
                 <div className={classes.divideLine}></div>
-                <Highlight type={type} />
-                <div className={classes.divideLine}></div>
-              </div> */}
+                <Highlight space={selectSpace} />
+              </div>
             </div>
             <div className={classes.rightDescription}>
               <div
@@ -194,8 +209,7 @@ const Contract = () => {
                   saleId && saleId === tokensid
                     ? classes.displayNone
                     : classes.BidboxContainer
-                }
-              >
+                }>
                 <Bidbox selectOwner={owner && owner} />
               </div>
               <div
@@ -203,14 +217,13 @@ const Contract = () => {
                   saleId && saleId === tokensid
                     ? classes.BuyboxContainer
                     : classes.displayNone
-                }
-              >
+                }>
                 <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />
               </div>
             </div>
           </div>
 
-          <Parcels parcels={estate} />
+          <Parcels parcels={selectSpace} />
 
           {/* <div className={classes.tableRoot}>
             <LatestSalesTable

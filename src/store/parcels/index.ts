@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setParcels } from "../parcels/actions";
+import { setSpaces } from "../parcels/actions";
 import { parcels } from "./types";
 
-// const PREFIX = 'trade/orderHsitory'
 const PREFIX = "parcels";
 const initialState: parcels = {
   parcels: {},
@@ -18,7 +17,7 @@ export const parcelsReducer = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(
-      setParcels.fulfilled.type,
+      setSpaces.fulfilled.type,
       (state: parcels, action: any) => {
         storeParcels(state, action.payload);
       }
@@ -26,5 +25,5 @@ export const parcelsReducer = createSlice({
   },
 });
 
-export { setParcels };
+export { setSpaces };
 export default parcelsReducer.reducer;

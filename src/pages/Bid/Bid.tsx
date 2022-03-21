@@ -34,7 +34,7 @@ import {
   UccContractAbi,
   UccContractAddress,
 } from "../../config/contracts/UnicialCashToken";
-import { parcels } from "../../store/parcels/selectors";
+import { totalSpace } from "../../store/parcels/selectors";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { EstateProxyAddress, EstateRegistryAbi } from "../../config/contracts/EstateRegitryContract";
 
@@ -52,7 +52,7 @@ const Bid = () => {
   const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
   const loginAddress = useAppSelector(selectLoginAddress);
-  const tiles :any = useAppSelector(parcels)
+  const tiles :any = useAppSelector(totalSpace);
   const maxTime = useAppSelector(max);
   const minTime = useAppSelector(min);
   const [x, setX] = useState(0);

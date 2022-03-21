@@ -68,8 +68,7 @@ const EstateDetail = () => {
               <img
                 src={TokenImg}
                 className={classes.tokenImg}
-                alt="token"
-              ></img>
+                alt='token'></img>
             </div>
           </div>
           <div className={classes.rightCard}>
@@ -102,59 +101,68 @@ const EstateDetail = () => {
           <Grid container spacing={2}>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_sell`
                   )
-                }
-              >
+                }>
                 {t("Sell")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_transfer`
                   )
-                }
-              >
+                }>
                 {t("Transfer")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color="light"
+                color='light'
+                className={classes.bidchange}
+                onClick={() =>
+                  navigate(
+                    `/contracts/${contractaddress}/tokens/${estateid}/estate_edit`
+                  )
+                }>
+                {t("Add space")}
+                <CallMadeIcon fontSize='small' />
+              </ActionButton>
+            </Grid>
+            <Grid item md={4} sm={6} xs={12}>
+              <ActionButton
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_updatemetadata`
                   )
-                }
-              >
+                }>
                 {t("Update Metadata")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
             </Grid>
 
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_updateoperate`
                   )
-                }
-              >
+                }>
                 {t("Update Operate")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
             </Grid>
           </Grid>
@@ -164,44 +172,41 @@ const EstateDetail = () => {
           <Grid container spacing={2}>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/transfer_spaces`
                   )
-                }
-              >
+                }>
                 {t("Transfer Spaces")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/set_spaceOperator`
                   )
-                }
-              >
+                }>
                 {t("Space Operator")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color="light"
+                color='light'
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/selectSpace_forUpdatelanddata`
                   )
-                }
-              >
+                }>
                 {t("Update LandData")}
-                <CallMadeIcon fontSize="small" />
+                <CallMadeIcon fontSize='small' />
               </ActionButton>
             </Grid>
           </Grid>
@@ -212,8 +217,7 @@ const EstateDetail = () => {
               bidItems?.length === 0 || bidItems === undefined
                 ? classes.displayNone
                 : ""
-            }
-          >
+            }>
             <div className={classes.bidsTitle}>{t("Bids")}</div>
             {bidItems?.map((row: any, index: any) => (
               <BidRecord
@@ -228,8 +232,7 @@ const EstateDetail = () => {
                 showMoreBtn === true
                   ? classes.showmoreContent
                   : classes.displayNone
-              }
-            >
+              }>
               <ShowMoreLessBtn
                 letter={t("Show More")}
                 onClick={handleShowBtn}
@@ -240,8 +243,7 @@ const EstateDetail = () => {
                 showLessBtn === true
                   ? classes.showmoreContent
                   : classes.displayNone
-              }
-            >
+              }>
               <ShowMoreLessBtn
                 letter={t("Show Less")}
                 onClick={handleShowLessBtn}

@@ -10,18 +10,21 @@ import { useLocation, useNavigate } from "react-router";
 import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
 import { showMoreCount } from "../../../config/constant";
 import NoResult from "../../NoResult/NoResult";
-import { selectSaleParcels } from "../../../store/saleparcels/selectors";
+import { saleParcels } from "../../../store/saleparcels/selectors";
 import { getCoords } from "../../../common/utils";
-import { parcels } from "../../../store/parcels/selectors";
+import { totalSpace } from "../../../store/parcels/selectors";
+import { useAppDispatch } from "./../../../store/hooks";
+import { showSpinner } from "./../../../store/spinner";
+import { ethers } from "ethers";
 
 export default function LandParcels() {
   const classes = LandParcelsStyle();
   const [resultParcels, setResultParcels] = useState<any>();
   const [showStatus, setShowStatus] = useState(false);
   const loginAddress = useAppSelector(selectLoginAddress);
-  const saleParcels: any = useAppSelector(selectSaleParcels);
-  const tiles: any = useAppSelector(parcels);
-
+  const saleSpaces: any = useAppSelector(saleParcels);
+  const tiles: any = useAppSelector(totalSpace);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -31,19 +34,25 @@ export default function LandParcels() {
   };
 
   const getResult = async () => {
+    dispatch(showSpinner(true));
+
     await getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
       if (
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "false"
       ) {
+        // console.log("parcels", parcels);
+        // const position = `${parcels[2][0]},${parcels[2][1]}`;
+        // console.log("salespace", saleSpaces[position].priceInWei);
+        // console.log("position", position);
         setResultParcels(parcels);
       } else {
-        // alert("okdes");
         setResultParcels(
-          parcels.filter((el: any) => saleParcels[getCoords(el[0], el[1])])
+          parcels.filter((el: any) => saleSpaces[getCoords(el[0], el[1])])
         );
       }
     });
+    dispatch(showSpinner(false));
   };
 
   useEffect(() => {
@@ -55,6 +64,7 @@ export default function LandParcels() {
     setShowStatus(!showStatus);
   };
 
+  // console.log("salespace", saleSpaces["4,17"]);
   return (
     <>
       {resultParcels !== undefined && resultParcels.length !== 0 ? (
@@ -62,21 +72,34 @@ export default function LandParcels() {
           <Grid container spacing={2}>
             {resultParcels
               .slice(0, !showStatus ? showMoreCount : resultParcels.length)
-              .map((tokenId: any, key: any) => (
-                <Grid item xs={12} sm={6} md={4} key={key}>
-                  <LandCard
-                    locationbtnX={tokenId[0]}
-                    locationbtnY={tokenId[1]}
-                    // landName="Plaza Area Sale"
-                    category="Zilionixx"
-                    onClick={() =>
-                      handleNavigate(
-                        tiles[getCoords(tokenId[0], tokenId[1])].tokenId
-                      )
-                    }
-                  />
-                </Grid>
-              ))}
+              .map((tokenId: any, key: any) => {
+                let priceParcel = "null";
+                if (saleSpaces[`${tokenId[0]},${tokenId[1]}`]) {
+                  priceParcel = ethers.utils.formatUnits(
+                    saleSpaces[
+                      `${tokenId[0]},${tokenId[1]}`
+                    ]?.priceInWei.toString(),
+                    18
+                  );
+                }
+
+                return (
+                  <Grid item xs={12} sm={6} md={4} key={key}>
+                    <LandCard
+                      locationbtnX={tokenId[0]}
+                      locationbtnY={tokenId[1]}
+                      landName="Plaza Area Sale"
+                      price={parseInt(priceParcel)}
+                      category="Zilionixx"
+                      onClick={() =>
+                        handleNavigate(
+                          tiles[getCoords(tokenId[0], tokenId[1])].tokenId
+                        )
+                      }
+                    />
+                  </Grid>
+                );
+              })}
           </Grid>
           <div
             className={

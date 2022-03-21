@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { LandEstatesStyle } from "./LandEstatesStyle";
 import { Grid } from "@material-ui/core";
-import { useAppSelector } from "./../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "./../../../store/hooks";
 import LandCard from "../LandCard/LandCard";
 import ActionButton from "../../../components/Base/ActionButton";
 import { getEstatesByOwner } from "../../../hooks/api";
@@ -9,9 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
-// import utility functions
 
 import { selectLoginAddress } from "./../../../store/auth/selectors";
+import { ShowMoreLessBtn } from "../../ShowMoreLessBtn/ShowMoreLessBtn";
+import { showMoreCount } from "../../../config/constant";
+import { showSpinner } from "../../../store/spinner";
 
 export default function LandEstates() {
   const classes = LandEstatesStyle();
@@ -20,6 +22,8 @@ export default function LandEstates() {
   const loginAddress = useAppSelector(selectLoginAddress);
   const emptyTokens: any[] = [];
   const [ownEstates, setOwnEstates] = useState(emptyTokens);
+  const [showStatus, setShowStatus] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleCreateClick = () => {
     navigate("/account/estate/create");
@@ -34,13 +38,22 @@ export default function LandEstates() {
       `/contracts/${EstateProxyAddress}/tokens/${tokenId}/estate_detail`
     );
   };
+  const handleShowBtn = () => {
+    setShowStatus(!showStatus);
+  };
+
+  const initSet = async () => {
+    dispatch(showSpinner(true));
+    let estates: any[] = [];
+    estates = await getEstatesByOwner(loginAddress);
+    setOwnEstates(estates);
+    dispatch(showSpinner(false));
+  };
 
   useEffect(() => {
-    getEstatesByOwner(loginAddress).then((estates: any[]) => {
-      setOwnEstates(estates);
-    });
+    initSet();
   }, []);
-
+  // console.log("ownestate", ownEstates);
   return (
     <>
       <div className={classes.createBtnContainer}>
@@ -60,20 +73,35 @@ export default function LandEstates() {
         </ActionButton>
       </div>
       <Grid container spacing={2}>
-        {ownEstates?.map((tokenId: any, key: any) => {
-          return (
-            <Grid key={key} item xs={12} sm={6} md={4}>
-              <LandCard
-                locationbtnX={23}
-                locationbtnY={12}
-                landName="Plaza Area Sale"
-                category="Zilionixx"
-                onClick={() => handleNavigate(tokenId)}
-              />
-            </Grid>
-          );
-        })}
+        {ownEstates
+          ?.slice(0, !showStatus ? showMoreCount : ownEstates.length)
+          .map((tokenId: any, key: any) => {
+            // console.log("tokenid", tokenId);
+            return (
+              <Grid key={key} item xs={12} sm={6} md={4}>
+                <LandCard
+                  locationbtnX={23}
+                  locationbtnY={12}
+                  landName="Plaza Area Sale"
+                  category="Zilionixx"
+                  onClick={() => handleNavigate(tokenId)}
+                />
+              </Grid>
+            );
+          })}
       </Grid>
+      <div
+        className={
+          ownEstates.length < showMoreCount
+            ? classes.displayNone
+            : classes.showmoreContent
+        }
+      >
+        <ShowMoreLessBtn
+          letter={showStatus ? "Show Less" : "Show All"}
+          onClick={handleShowBtn}
+        />
+      </div>
     </>
   );
 }

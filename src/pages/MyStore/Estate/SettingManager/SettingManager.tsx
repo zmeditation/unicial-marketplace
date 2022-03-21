@@ -155,6 +155,7 @@ const SettingManager = () => {
         severity: "success",
       })
     );
+    window.location.reload();
   };
 
   return (
