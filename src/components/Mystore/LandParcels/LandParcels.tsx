@@ -41,10 +41,10 @@ export default function LandParcels() {
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "false"
       ) {
-        console.log("parcels", parcels);
-        const position = `${parcels[2][0]},${parcels[2][1]}`;
-        console.log("salespace", saleSpaces[position].priceInWei);
-        console.log("position", position);
+        // console.log("parcels", parcels);
+        // const position = `${parcels[2][0]},${parcels[2][1]}`;
+        // console.log("salespace", saleSpaces[position].priceInWei);
+        // console.log("position", position);
         setResultParcels(parcels);
       } else {
         console.log(
@@ -87,7 +87,6 @@ export default function LandParcels() {
                   );
                 }
 
-                console.log("priceParcel", priceParcel);
                 return (
                   <Grid item xs={12} sm={6} md={4} key={key}>
                     <LandCard
