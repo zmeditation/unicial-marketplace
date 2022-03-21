@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router";
 import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/saleparcels/selectors";
+import { saleParcels } from "../../store/saleparcels/selectors";
 import { totalSpace } from "../../store/parcels/selectors";
 import { setSaleParcels } from "../../store/saleparcels";
 import { setSpaces } from "../../store/parcels";
@@ -29,7 +29,7 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
 
   const query = new URLSearchParams(location.search);
 
-  const saleSpaces: any = useAppSelector(selectSaleParcels);
+  const saleSpaces: any = useAppSelector(saleParcels);
   const tiles: any = useAppSelector(totalSpace);
   const loginAddress: any = useAppSelector(selectLoginAddress);
 
