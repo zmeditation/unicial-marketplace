@@ -7,7 +7,7 @@ import authReducer from "./auth/index";
 import alertReducer from "./alert/index";
 import spinnerReducer from "./spinner/index";
 import netModalReducer from "./netmodal/index";
-import saleParcelsReducer from "./salespaces";
+import saleParcelsReducer from "./saleparcels";
 import parcelsReducer from "./parcels";
 import BidContractinfoReducer from "./bidContractData"
 import { getSaleParcelsAPI } from "./api/parcels";

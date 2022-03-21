@@ -93,6 +93,8 @@ const Parcels = ({ parcels }: ParcelsProps) => {
     }
   }, [parcels]);
 
+  console.log(count, showMoreBtn, showLessBtn)
+
   return (
     <div className={classes.root}>
       <div className={classes.title}>{t("Parcels")}</div>

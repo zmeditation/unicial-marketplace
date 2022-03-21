@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getSaleParcelsAPI } from "../api/salespaces";
 
-export const setSaleSpaces = createAsyncThunk(
+export const setSaleParcels = createAsyncThunk(
   "salespaces/getSaleParcels",
   async () => {
     try {

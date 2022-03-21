@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from "react-router";
 import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
 import { showMoreCount } from "../../../config/constant";
 import NoResult from "../../NoResult/NoResult";
-import { selectSaleParcels } from "../../../store/salespaces/selectors";
+import { selectSaleParcels } from "../../../store/saleparcels/selectors";
 import { getCoords } from "../../../common/utils";
 import { totalSpace } from "../../../store/parcels/selectors";
 

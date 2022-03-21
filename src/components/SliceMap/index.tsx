@@ -3,9 +3,9 @@ import { useLocation, useParams } from "react-router";
 import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/salespaces/selectors";
+import { selectSaleParcels } from "../../store/saleparcels/selectors";
 import { totalSpace } from "../../store/parcels/selectors";
-import { setSaleSpaces } from "../../store/salespaces";
+import { setSaleParcels } from "../../store/saleparcels";
 import { setSpaces } from "../../store/parcels";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { getCoords } from "../../common/utils";
@@ -178,7 +178,7 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
     } else {
       setOnSale(false);
     }
-    dispatch(setSaleSpaces());
+    dispatch(setSaleParcels());
     dispatch(setSpaces());
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);

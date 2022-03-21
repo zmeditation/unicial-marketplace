@@ -10,7 +10,7 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/salespaces/selectors";
+import { selectSaleParcels } from "../../store/saleparcels/selectors";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { showAlert } from "../../store/alert";
 

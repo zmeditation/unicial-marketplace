@@ -38,7 +38,7 @@ import { useAppDispatch } from "../../store/hooks";
 import { CHAIN_INFO } from "../../config/constant";
 import { showNetModal } from "../../store/netmodal";
 import { useEffect } from "react";
-import { setSaleSpaces } from "../../store/salespaces";
+import { setSaleParcels } from "../../store/saleparcels";
 import { setSpaces } from "../../store/parcels";
 import { setBidContractinfo } from "../../store/bidContractData";
 import { showSpinner } from "../../store/spinner";
@@ -79,7 +79,7 @@ export default function Layout() {
     await dispatch(showSpinner(true));
     let dispatchPromises = [];
     dispatchPromises.push(
-      dispatch(setSaleSpaces()),
+      dispatch(setSaleParcels()),
       dispatch(setSpaces()),
       dispatch(setBidContractinfo())
     );

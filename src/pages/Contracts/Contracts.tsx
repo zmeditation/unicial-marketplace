@@ -17,7 +17,7 @@ import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/Lat
 import { useTranslation } from "react-i18next";
 import TablePagination from "../../components/Base/TablePagination";
 import { useAppSelector } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/salespaces/selectors";
+import { selectSaleParcels } from "../../store/saleparcels/selectors";
 import { totalSpace } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
 import { dateConvert, findCenterDot } from "../../common/utils";

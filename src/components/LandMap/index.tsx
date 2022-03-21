@@ -4,10 +4,10 @@ import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import Popup from "../Atlas/Popup";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/salespaces/selectors";
+import { selectSaleParcels } from "../../store/saleparcels/selectors";
 import { totalSpace } from "../../store/parcels/selectors";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
-import { setSaleSpaces } from "../../store/salespaces";
+import { setSaleParcels } from "../../store/saleparcels";
 import { setSpaces } from "../../store/parcels";
 import { ethers } from "ethers";
 import { getCoords } from "../../common/utils";
@@ -206,7 +206,7 @@ const LandMap: React.FC<LandMapProps> = ({
     } else {
       setOnSale(false);
     }
-    dispatch(setSaleSpaces());
+    dispatch(setSaleParcels());
     dispatch(setSpaces());
   }, [location]);
 
