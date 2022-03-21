@@ -1,20 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
-import { Atlas, Layer } from "../Atlas/Atlas";
-import { Tile } from "../Atlas/Atlas.types";
-import Popup from "../Atlas/Popup";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { saleParcels } from "../../store/saleparcels/selectors";
-import { saleEstates } from "../../store/saleestates/selectors";
-import { totalSpace } from "../../store/parcels/selectors";
-import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
-import { setSaleParcels } from "../../store/saleparcels";
-import { setSaleEstates } from "../../store/saleestates";
-import { setSpaces } from "../../store/parcels";
+import { Atlas, Layer } from "../../Atlas/Atlas";
+import { Tile } from "../../Atlas/Atlas.types";
+import Popup from "../../Atlas/Popup";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { saleParcels } from "../../../store/saleparcels/selectors";
+import { saleEstates } from "../../../store/saleestates/selectors";
+import { totalSpace } from "../../../store/parcels/selectors";
+import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
+import { setSaleParcels } from "../../../store/saleparcels";
+import { setSaleEstates } from "../../../store/saleestates";
+import { setSpaces } from "../../../store/parcels";
 import { ethers } from "ethers";
-import { getCoords } from "../../common/utils";
-import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
-import { mapColor } from "../../config/constant";
+import { getCoords } from "../../../common/utils";
+import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
+import { mapColor } from "../../../config/constant";
 
 interface LandMapProps {
   height?: any;
@@ -92,22 +92,17 @@ const LandMap: React.FC<LandMapProps> = ({
 
   const isSaleEstates = useCallback(
     (x: number, y: number) => {
-      if (!estateOnSale) return false;
-      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      let estateIdArray: any = [];
-      Object.keys(estateOnSale).forEach((index: any) => {
-        estateIdArray.push(Number(estateOnSale[index]?.assetId));
-      });
       if (
         onSale === true &&
-        tile?.estateId &&
-        estateIdArray?.indexOf(Number(tile?.estateId)) > 0
+        estateOnSale &&
+        tiles &&
+        estateOnSale[tiles[getCoords(x, y)]?.estateId]
       ) {
         return true;
       }
       return false;
     },
-    [estateOnSale, onSale]
+    [estateOnSale, onSale, tiles]
   );
 
   const isOtherEstated = useCallback(
@@ -233,8 +228,8 @@ const LandMap: React.FC<LandMapProps> = ({
     } else {
       setOnSale(false);
     }
-    dispatch(setSaleParcels());
     dispatch(setSaleEstates());
+    dispatch(setSaleParcels());
     dispatch(setSpaces());
   }, [location]);
 

@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Atlas, Layer } from "../Atlas/Atlas";
-import { Tile } from "../Atlas/Atlas.types";
-import Popup from "../Atlas/Popup";
-import { selectLoginAddress } from "../../store/auth/selectors";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { selectestates } from "../../store/selectedestates/selectors";
-import { getestates } from "../../store/selectedestates";
-import { totalSpace } from "../../store/parcels/selectors";
-import { showAlert } from "../../store/alert";
-import { getCoords } from "../../common/utils";
-import { mapColor } from "../../config/constant";
+import { Atlas, Layer } from "../../Atlas/Atlas";
+import { Tile } from "../../Atlas/Atlas.types";
+import Popup from "../../Atlas/Popup";
+import { selectLoginAddress } from "../../../store/auth/selectors";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { selectestates } from "../../../store/selectedestates/selectors";
+import { getestates } from "../../../store/selectedestates";
+import { totalSpace } from "../../../store/parcels/selectors";
+import { showAlert } from "../../../store/alert";
+import { getCoords } from "../../../common/utils";
+import { mapColor } from "../../../config/constant";
 
 interface CreateEstateMapProps {
   height?: any;

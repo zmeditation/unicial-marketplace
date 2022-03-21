@@ -1,15 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Atlas, Layer } from "../Atlas/Atlas";
-import { Tile } from "../Atlas/Atlas.types";
-import Popup from "../Atlas/Popup";
-import { selectLoginAddress } from "../../store/auth/selectors";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { selectestates } from "../../store/selectedestates/selectors";
-import { getestates } from "../../store/selectedestates";
-import { totalSpace } from "../../store/parcels/selectors";
-import { showAlert } from "../../store/alert";
-import { getCoords } from "../../common/utils";
+import { Atlas, Layer } from "../../Atlas/Atlas";
+import { Tile } from "../../Atlas/Atlas.types";
+import Popup from "../../Atlas/Popup";
+import { selectLoginAddress } from "../../../store/auth/selectors";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { selectestates } from "../../../store/selectedestates/selectors";
+import { getestates } from "../../../store/selectedestates";
+import { totalSpace } from "../../../store/parcels/selectors";
+import { showAlert } from "../../../store/alert";
+import { getCoords } from "../../../common/utils";
+import { mapColor } from "../../../config/constant";
 
 interface SelectSpaceMapProps {
   height?: any;
@@ -30,7 +31,6 @@ const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
   const selectedTile = useAppSelector(selectestates);
   const tiles: any = useAppSelector(totalSpace);
   const mineAddress = useAppSelector(selectLoginAddress);
-  // console.log("mineAddress", mineAddress);
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
@@ -42,19 +42,15 @@ const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
         let newSelectedTile: string[] = [];
         const selectedIndex = selectedTile.indexOf(getCoords(x, y));
         if (selectedIndex === -1) {
-          //   alert("-1");
           newSelectedTile = newSelectedTile.concat(
             selectedTile,
             getCoords(x, y)
           );
         } else if (selectedIndex === 0) {
-          //   alert("0");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(1));
         } else if (selectedIndex === selectedTile.length - 1) {
-          //   alert("kk");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(0, -1));
         } else if (selectedIndex > 0) {
-          //   alert(">0");
           newSelectedTile = newSelectedTile.concat(
             selectedTile.slice(0, selectedIndex),
             selectedTile.slice(selectedIndex + 1)
@@ -81,16 +77,6 @@ const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
     [selectedTile, tiles]
   );
 
-  const isOwned = useCallback(
-    (x: number, y: number) => {
-      if (!tiles) return false;
-      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (tile?.owner) {
-        return true;
-      } else return false;
-    },
-    [tiles]
-  );
   const isfocused = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
@@ -98,47 +84,6 @@ const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
       if (
         tile?.estateId === estateid &&
         tile?.owner.toUpperCase() === mineAddress.toUpperCase()
-      ) {
-        return true;
-      } else return false;
-    },
-    [tiles]
-  );
-
-  const isOwnedWithEstate = useCallback(
-    (x: number, y: number) => {
-      if (!tiles) return false;
-      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (tile?.owner && tile?.estateId !== undefined) {
-        return true;
-      } else return false;
-    },
-    [tiles]
-  );
-
-  const isMine = useCallback(
-    (x: number, y: number) => {
-      if (!tiles) return false;
-      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-
-      if (
-        tile?.owner &&
-        tile?.owner?.toLowerCase() === mineAddress.toLowerCase()
-      ) {
-        return true;
-      } else return false;
-    },
-    [tiles]
-  );
-
-  const isMineWithEstate = useCallback(
-    (x: number, y: number) => {
-      if (!tiles) return false;
-      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (
-        tile?.owner &&
-        tile?.owner?.toLowerCase() === mineAddress.toLowerCase() &&
-        tile?.estateId !== undefined
       ) {
         return true;
       } else return false;
@@ -158,14 +103,6 @@ const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
         ? { color: "transparent", scale: 1.4 }
         : isfocused(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : // : isMineWithEstate(x, y)
-        // ? { color: "transparent", scale: 1.4 }
-        isMine(x, y)
-        ? { color: "transparent", scale: 1.4 }
-        : isOwnedWithEstate(x, y)
-        ? { color: "transparent", scale: 1.4 }
-        : isOwned(x, y)
-        ? { color: "transparent", scale: 1.4 }
         : null;
     },
     [isSelected]
@@ -174,17 +111,9 @@ const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
       return isSelected(x, y)
-        ? { color: "#ff9990", scale: 1.2 }
+        ? { color: mapColor.selected, scale: 1.2 }
         : isfocused(x, y)
-        ? { color: "red", scale: 1.2 }
-        : // : isMineWithEstate(x, y)
-        // ? { color: "#4aff3a", scale: 1.2 }
-        isMine(x, y)
-        ? { color: "#2b1c70", scale: 1.2 }
-        : isOwnedWithEstate(x, y)
-        ? { color: "#f0af37", scale: 1.2 }
-        : isOwned(x, y)
-        ? { color: "#21263f", scale: 1.2 }
+        ? { color: mapColor.myEstate, scale: 1.2 }
         : null;
     },
     [isSelected]

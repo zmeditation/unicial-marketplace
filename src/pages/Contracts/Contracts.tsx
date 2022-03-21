@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import LandMap from "../../components/LandMap";
+import LandMap from "../../components/MapData/LandMap";
 import Title from "../../components/ContractInfo/Title";
 import Owner from "../../components/ContractInfo/Owner";
 import Highlight from "../../components/ContractInfo/Highlight";

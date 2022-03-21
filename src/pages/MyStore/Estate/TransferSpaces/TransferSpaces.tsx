@@ -6,7 +6,7 @@ import {
   StyledInput,
 } from "./../EstateTransfer/EstateTransferStyle";
 import { FormControl, Grid } from "@material-ui/core";
-import SelectSpaceMap from "../../../../components/SelectSpaceMap/SelectSpaceMap";
+import SelectSpaceMap from "../../../../components/MapData/SelectSpaceMap/SelectSpaceMap";
 import ParcelCard from "../../../../components/ParcelCard/ParcelCard";
 
 import TopTab from "../../../../components/TopTab/TopTab";
