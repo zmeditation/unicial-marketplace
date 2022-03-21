@@ -15,6 +15,7 @@ import { getCoords } from "../../../common/utils";
 import { totalSpace } from "../../../store/parcels/selectors";
 import { useAppDispatch } from "./../../../store/hooks";
 import { showSpinner } from "./../../../store/spinner";
+import { ethers } from "ethers";
 
 export default function LandParcels() {
   const classes = LandParcelsStyle();
@@ -40,9 +41,16 @@ export default function LandParcels() {
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "false"
       ) {
+        console.log("parcels", parcels);
+        const position = `${parcels[2][0]},${parcels[2][1]}`;
+        console.log("salespace", saleSpaces[position].priceInWei);
+        console.log("position", position);
         setResultParcels(parcels);
       } else {
-        // alert("okdes");
+        console.log(
+          "filter",
+          parcels.filter((el: any) => saleSpaces[getCoords(el[0], el[1])])
+        );
         setResultParcels(
           parcels.filter((el: any) => saleSpaces[getCoords(el[0], el[1])])
         );
@@ -60,6 +68,7 @@ export default function LandParcels() {
     setShowStatus(!showStatus);
   };
 
+  // console.log("salespace", saleSpaces["4,17"]);
   return (
     <>
       {resultParcels !== undefined && resultParcels.length !== 0 ? (
@@ -67,21 +76,35 @@ export default function LandParcels() {
           <Grid container spacing={2}>
             {resultParcels
               .slice(0, !showStatus ? showMoreCount : resultParcels.length)
-              .map((tokenId: any, key: any) => (
-                <Grid item xs={12} sm={6} md={4} key={key}>
-                  <LandCard
-                    locationbtnX={tokenId[0]}
-                    locationbtnY={tokenId[1]}
-                    // landName="Plaza Area Sale"
-                    category="Zilionixx"
-                    onClick={() =>
-                      handleNavigate(
-                        tiles[getCoords(tokenId[0], tokenId[1])].tokenId
-                      )
-                    }
-                  />
-                </Grid>
-              ))}
+              .map((tokenId: any, key: any) => {
+                let priceParcel = "null";
+                if (saleSpaces[`${tokenId[0]},${tokenId[1]}`]) {
+                  priceParcel = ethers.utils.formatUnits(
+                    saleSpaces[
+                      `${tokenId[0]},${tokenId[1]}`
+                    ]?.priceInWei.toString(),
+                    18
+                  );
+                }
+
+                console.log("priceParcel", priceParcel);
+                return (
+                  <Grid item xs={12} sm={6} md={4} key={key}>
+                    <LandCard
+                      locationbtnX={tokenId[0]}
+                      locationbtnY={tokenId[1]}
+                      landName="Plaza Area Sale"
+                      price={parseInt(priceParcel)}
+                      category="Zilionixx"
+                      onClick={() =>
+                        handleNavigate(
+                          tiles[getCoords(tokenId[0], tokenId[1])].tokenId
+                        )
+                      }
+                    />
+                  </Grid>
+                );
+              })}
           </Grid>
           <div
             className={
