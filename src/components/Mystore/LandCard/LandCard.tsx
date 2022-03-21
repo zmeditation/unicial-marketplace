@@ -40,10 +40,10 @@ export default function LandCard({
         <div className={classes.productName}>{landName}</div>
         <div className={classes.bottom}>
           <div className={classes.category}>{category}</div>
-          {/* <div className={classes.priceContainer}>
+          <div className={classes.priceContainer}>
             <img src={cubeSvg} className={classes.icon} />
-            <div className={classes.price}>{price}</div>
-          </div> */}
+            <div className={classes.price}>{100}</div>
+          </div>
         </div>
       </div>
     </>
