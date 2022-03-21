@@ -212,7 +212,7 @@ const Contract = () => {
                   highDivLine === true ? classes.displayNone : classes.highLIght
                 }>
                 <div className={classes.divideLine}></div>
-                <Highlight type={type} space={selectSpace} />
+                <Highlight space={selectSpace} />
                 <div className={classes.divideLine}></div>
               </div>
             </div>

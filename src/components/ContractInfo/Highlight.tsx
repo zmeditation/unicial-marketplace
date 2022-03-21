@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import plaza_svg from "../../assets/svg/plaza.svg";
@@ -81,14 +81,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface HighlightProps {
-  type?: string;
   space?: any;
 }
 
-const Highlight = ({ type, space }: HighlightProps) => {
+const Highlight = ({ space }: HighlightProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const allSpace: any = useSelector(totalSpace);
+  const [distance, setDistance] = useState(0);
+  const [type, setType] = useState("");
 
   useEffect(() => {
     let insideSpace: any = [];
@@ -126,20 +127,7 @@ const Highlight = ({ type, space }: HighlightProps) => {
       (item: any) => insideSpace.indexOf(item) < 0
     );
 
-    // for (let i = 0; i < borderSpace?.length; i++) {
-    //   do {
-    //     let index = getCoords(borderSpace[i].x, borderSpace[i].y);
-    //     if (
-    //       allSpace[index].type === "road" ||
-    //       allSpace[index].type === "plaza" ||
-    //       allSpace[index].type === "district"
-    //     ) {
-    //       break;
-    //     }else{
-    //       index= getCoords(borderSpace[])
-    //     }
-    //   } while (true);
-    // }
+    console.log("border: ", borderSpace);
   }, [space]);
 
   return (
