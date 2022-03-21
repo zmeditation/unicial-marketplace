@@ -36,6 +36,7 @@ import {
   generateSigner,
 } from "../../common/contract";
 import { getparcels } from "../../store/selectedparcels";
+import { showAlert } from "../../store/alert";
 
 declare var window: any;
 var signer: any,
@@ -157,13 +158,22 @@ const Auction = () => {
   };
   const handleBidSpace = async () => {
     if (bidParcels.length === 0) {
-      window.alert("No space selected for bid. Please select first.");
+      dispatch(
+        showAlert({
+          message: "No space selected for bid. Please select first.",
+          severity: "error",
+        })
+      );
     } else {
       // check able to bid first for else case
       if (bidParcels.length > spacesLimitPerBid) {
-        window.alert(
-          "Selction is out of limit. Maximum spaces per bid is " +
-            spacesLimitPerBid
+        dispatch(
+          showAlert({
+            message:
+              "Selction is out of limit. Maximum spaces per bid is " +
+              spacesLimitPerBid,
+            severity: "error",
+          })
         );
       } else {
         if (uccBalance.gte(ttlSpacesPrice)) {
@@ -176,19 +186,32 @@ const Auction = () => {
             );
 
             await bidTx.wait();
-            window.alert("Bid was successful");
-
+            dispatch(
+              showAlert({
+                message: "Bid was successful",
+                severity: "success",
+              })
+            );
             await initUccBalAndAllowance();
+            window.location.reload();
           } else {
             // check able to approve
-            window.alert(
-              "Auction contract is not allowed to use your UCC token. Click Approve button to approve auction contract."
+            dispatch(
+              showAlert({
+                message:
+                  "Auction contract is not allowed to use your UCC token. Click Approve button to approve auction contract.",
+                severity: "error",
+              })
             );
             // await handleApproveUCCToken();
           }
         } else {
-          window.alert(
-            "You don't have enought UCC token to bid for space tokens"
+          dispatch(
+            showAlert({
+              message:
+                "You don't have enought UCC token to bid for space tokens",
+              severity: "error",
+            })
           );
         }
       }
@@ -309,14 +332,14 @@ const Auction = () => {
           <Grid container spacing={2}>
             <Grid item md={4} sm={12} xs={12}>
               <Balance
-                type='uccbalance'
+                type="uccbalance"
                 value={parseFloat(ethers.utils.formatEther(uccBalance)).toFixed(
                   4
                 )}
               />
             </Grid>
             <Grid item md={4} sm={12} xs={12}>
-              <Balance type='currentspace' value={uccPricePerSpace} />
+              <Balance type="currentspace" value={uccPricePerSpace} />
             </Grid>
             {/* <Grid item md={4} sm={4} xs={12}>
               <Balance type="buyable" value={100} />
@@ -332,19 +355,21 @@ const Auction = () => {
             <div className={classes.actionButtons}>
               {uccAllowance.gt(BigNumber.from(0)) ? (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  onClick={handleCancelApprove}>
+                  onClick={handleCancelApprove}
+                >
                   {t("Cancel Approve")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               ) : (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  onClick={handleApproveUCCToken}>
+                  onClick={handleApproveUCCToken}
+                >
                   {t("Approve")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
                 // <ActionButton color="light" onClick={handleApproveUCCToken}>
                 //   {t("Bid")}
@@ -354,38 +379,42 @@ const Auction = () => {
 
               {isBiddable ? (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  onClick={handleBidSpace}>
+                  onClick={handleBidSpace}
+                >
                   {t("Bid")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               ) : (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.normalBtn}
-                  disabled>
+                  disabled
+                >
                   {t("Bid")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
               )}
 
               <ActionButton
-                color='dark'
+                color="dark"
                 className={classes.gradientBtn}
-                onClick={handleClear}>
+                onClick={handleClear}
+              >
                 {t("clear")}
               </ActionButton>
               {isAdmin ? (
                 isAuctionAuthorized ? (
                   <ActionButton
-                    color='dark'
+                    color="dark"
                     className={classes.gradientBtn}
-                    onClick={authorizeAuctionContract}>
+                    onClick={authorizeAuctionContract}
+                  >
                     {t("Auction Authorized")}
                   </ActionButton>
                 ) : (
-                  <ActionButton color='dark'>
+                  <ActionButton color="dark">
                     {t("Authorize Auction")}
                   </ActionButton>
                 )

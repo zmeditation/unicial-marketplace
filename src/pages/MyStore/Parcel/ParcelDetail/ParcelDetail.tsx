@@ -14,12 +14,29 @@ import {
 import { dateConvert } from "../../../../common/utils";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../../config/constant";
-import { useAppSelector } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
 import BidRecord from "../../../../components/ContractInfo/BidRecord";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import {
+  MarketplaceAbi,
+  MarketplaceAddress,
+} from "../../../../config/contracts/MarketPlaceContract";
+import {
+  SpaceProxyAddress,
+  SpaceRegistryAbi,
+} from "../../../../config/contracts/SpaceRegistryContract";
+import { showAlert } from "../../../../store/alert";
+
+declare var window: any;
+var signer: any, marketplaceContract: any, spaceRegistryContract: any;
 
 const ParcelDetail = () => {
+  const dispatch = useAppDispatch();
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -57,6 +74,33 @@ const ParcelDetail = () => {
     setCount(showMoreCount);
     setShowMoreBtn(true);
     setShowLessBtn(false);
+  };
+
+  const handleCancelOrder = async () => {
+    signer = generateSigner(window.ethereum);
+    marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    spaceRegistryContract = generateContractInstance(
+      SpaceProxyAddress,
+      SpaceRegistryAbi,
+      signer
+    );
+    // check if this token is approved for marketplace contract
+    let cancelOrderTx = await marketplaceContract.cancelOrder(
+      contractaddress,
+      BigNumber.from(tokensid)
+    );
+    await cancelOrderTx.wait();
+    dispatch(
+      showAlert({
+        message: "Sales order cancel is successfully published.",
+        severity: "success",
+      })
+    );
+    window.location.href = "/account?section=parcels";
   };
 
   return (
@@ -104,9 +148,9 @@ const ParcelDetail = () => {
               <ActionButton
                 color="dark"
                 className={classes.cancelchange}
-                onClick={() => navigate(-1)}
+                onClick={handleCancelOrder}
               >
-                {t("Cancel")}
+                {t("Cancel Order")}
               </ActionButton>
             </div>
           </div>
