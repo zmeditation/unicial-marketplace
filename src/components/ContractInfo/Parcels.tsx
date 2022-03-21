@@ -90,10 +90,11 @@ const Parcels = ({ parcels }: ParcelsProps) => {
     ) {
       setShowMoreBtn(false);
       setShowLessBtn(false);
+    }else{
+      setShowMoreBtn(true);
+      setShowLessBtn(false);
     }
   }, [parcels]);
-
-  console.log(count, showMoreBtn, showLessBtn)
 
   return (
     <div className={classes.root}>

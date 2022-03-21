@@ -47,7 +47,6 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
       ) {
         let newSelectedTile: string[] = [];
         const selectedIndex = selectedTile.indexOf(getCoords(x, y));
-        console.log("selectedINdex", selectedIndex);
         if (selectedIndex === -1) {
           newSelectedTile = newSelectedTile.concat(
             selectedTile,

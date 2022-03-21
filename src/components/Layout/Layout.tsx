@@ -45,6 +45,7 @@ import { showSpinner } from "../../store/spinner";
 import SelectSpace from "../../pages/MyStore/Estate/UpdateLandData/SelectSpace/SelectSpace";
 import UpdateLandData from "../../pages/MyStore/Estate/UpdateLandData/UpdateLandData";
 import EstateEdit from "../../pages/MyStore/Estate/EstateAdd/EstateAdd";
+import { setSaleEstates } from "../../store/saleestates";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -80,6 +81,7 @@ export default function Layout() {
     let dispatchPromises = [];
     dispatchPromises.push(
       dispatch(setSaleParcels()),
+      dispatch(setSaleEstates()),
       dispatch(setSpaces()),
       dispatch(setBidContractinfo())
     );

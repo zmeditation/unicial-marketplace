@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from "react-router";
 import { SpaceProxyAddress } from "../../../config/contracts/SpaceRegistryContract";
 import { showMoreCount } from "../../../config/constant";
 import NoResult from "../../NoResult/NoResult";
-import { selectSaleParcels } from "../../../store/saleparcels/selectors";
+import { saleParcels } from "../../../store/saleparcels/selectors";
 import { getCoords } from "../../../common/utils";
 import { totalSpace } from "../../../store/parcels/selectors";
 import { useAppDispatch } from "./../../../store/hooks";
@@ -21,7 +21,7 @@ export default function LandParcels() {
   const [resultParcels, setResultParcels] = useState<any>();
   const [showStatus, setShowStatus] = useState(false);
   const loginAddress = useAppSelector(selectLoginAddress);
-  const saleSpaces: any = useAppSelector(selectSaleParcels);
+  const saleSpaces: any = useAppSelector(saleParcels);
   const tiles: any = useAppSelector(totalSpace);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

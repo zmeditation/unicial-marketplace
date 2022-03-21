@@ -10,7 +10,7 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/saleparcels/selectors";
+import { saleParcels } from "../../store/saleparcels/selectors";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { showAlert } from "../../store/alert";
 
@@ -42,7 +42,7 @@ const Buy = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const saleSpaces: any = useAppSelector(selectSaleParcels);
+  const saleSpaces: any = useAppSelector(saleParcels);
   const loginAddress: any = useAppSelector(selectLoginAddress);
   const { contractaddress, tokensid } = useParams();
   const [price, setPrice] = useState("");

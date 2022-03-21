@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { setSaleParcels } from "./actions";
 import { saleSpaces } from "./types";
 
-// const PREFIX = 'trade/orderHsitory'
-const PREFIX = "selectedparcels";
+const PREFIX = "saleparcels";
 const initialState: saleSpaces = {
   parcels: {},
 };

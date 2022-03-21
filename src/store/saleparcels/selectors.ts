@@ -1,4 +1,4 @@
 import type { RootState } from "../store";
 
-export const selectSaleParcels = (state: RootState) =>
+export const saleParcels = (state: RootState) =>
   state.salespaces.parcels;

@@ -17,7 +17,8 @@ import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/Lat
 import { useTranslation } from "react-i18next";
 import TablePagination from "../../components/Base/TablePagination";
 import { useAppSelector } from "../../store/hooks";
-import { selectSaleParcels } from "../../store/saleparcels/selectors";
+import { saleParcels } from "../../store/saleparcels/selectors";
+import { saleEstates } from "../../store/saleestates/selectors";
 import { totalSpace } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
 import { dateConvert, findCenterDot } from "../../common/utils";
@@ -56,19 +57,26 @@ const Contract = () => {
   const [salePrice, setSalePrice] = useState(0);
   const [selectSpace, setSelectSpace] = useState<any>();
 
-  const saleSpaces: any = useAppSelector(selectSaleParcels);
+  const parcelsOnSale: any = useAppSelector(saleParcels);
+  const estatesOnSale: any = useAppSelector(saleEstates);
   const tiles: any = useAppSelector(totalSpace);
 
   useEffect(() => {
     let estateArray: any = [];
-    Object.keys(saleSpaces).forEach((index: any) => {
-      const saleParcel = saleSpaces[index];
-      if (saleParcel.assetId === tokensid) {
-        setSaleId(saleParcel.assetId);
-        setSalePrice(saleParcel.priceInWei);
+    Object.keys(parcelsOnSale).forEach((index: any) => {
+      const itemParcel = parcelsOnSale[index];
+      if (itemParcel.assetId === tokensid) {
+        setSaleId(itemParcel.assetId);
+        setSalePrice(itemParcel.priceInWei);
       }
     });
-
+    Object.keys(estatesOnSale).forEach((index: any) => {
+      const itemEstate = estatesOnSale[index];
+      if (itemEstate.assetId === tokensid) {
+        setSaleId(itemEstate.assetId);
+        setSalePrice(itemEstate.priceInWei);
+      }
+    });
     Object.keys(tiles).forEach((index: any) => {
       const allParcel = tiles[index];
       if (
@@ -112,7 +120,7 @@ const Contract = () => {
     }
     setSelectSpace(estateArray);
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [saleSpaces, tiles, tokensid]);
+  }, [parcelsOnSale, tiles, tokensid]);
 
   const handleResize = () => {
     if (window.innerWidth > 1200) {
@@ -167,6 +175,7 @@ const Contract = () => {
   };
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
+
 
   return (
     <>

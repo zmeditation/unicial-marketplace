@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect } from "react";
 import clsx from "clsx";
 import { Theme, makeStyles } from "@material-ui/core/styles";
@@ -142,7 +140,6 @@ const Highlight = ({ type, space }: HighlightProps) => {
     //     }
     //   } while (true);
     // }
-    console.log("border space : ", borderSpace);
   }, [space]);
 
   return (
