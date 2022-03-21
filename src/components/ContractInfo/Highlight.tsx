@@ -1,4 +1,6 @@
-import React from "react";
+/** @format */
+
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import plaza_svg from "../../assets/svg/plaza.svg";
@@ -6,6 +8,9 @@ import road_svg from "../../assets/svg/road.svg";
 import distirct_svg from "../../assets/svg/district.svg";
 import { highlight, parcelInfo } from "../../config/hightLightData";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { totalSpace } from "../../store/parcels/selectors";
+import { getCoords } from "../../common/utils";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: "45px",
@@ -72,18 +77,74 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-  displayNone:{
+  displayNone: {
     display: "none",
   },
 }));
 
 interface HighlightProps {
   type?: string;
+  space?: any;
 }
 
-const Highlight = ({ type }: HighlightProps)=> {
+const Highlight = ({ type, space }: HighlightProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const allSpace: any = useSelector(totalSpace);
+
+  useEffect(() => {
+    let insideSpace: any = [];
+    space?.forEach((item1: any) => {
+      const x1 = item1.x;
+      const y1 = item1.y;
+      const rightCondition = space?.some((item2: any) => {
+        const x2 = item2.x;
+        const y2 = item2.y;
+        return x2 - x1 === 1 && y2 === y1;
+      });
+      const topCondition = space?.some((item2: any) => {
+        const x2 = item2.x;
+        const y2 = item2.y;
+        return x2 === x1 && y2 - y1 === 1;
+      });
+
+      const bottomCondition = space?.some((item2: any) => {
+        const x2 = item2.x;
+        const y2 = item2.y;
+        return x2 === x1 && y2 - y1 === -1;
+      });
+
+      const leftCondition = space?.some((item2: any) => {
+        const x2 = item2.x;
+        const y2 = item2.y;
+        return x2 - x1 === -1 && y2 === y1;
+      });
+
+      if (rightCondition && topCondition && bottomCondition && leftCondition) {
+        insideSpace.push(item1);
+      }
+    });
+    let borderSpace: any = space?.filter(
+      (item: any) => insideSpace.indexOf(item) < 0
+    );
+
+    // for (let i = 0; i < borderSpace?.length; i++) {
+    //   do {
+    //     let index = getCoords(borderSpace[i].x, borderSpace[i].y);
+    //     if (
+    //       allSpace[index].type === "road" ||
+    //       allSpace[index].type === "plaza" ||
+    //       allSpace[index].type === "district"
+    //     ) {
+    //       break;
+    //     }else{
+    //       index= getCoords(borderSpace[])
+    //     }
+    //   } while (true);
+    // }
+    console.log("border space : ", borderSpace);
+  }, [space]);
+
   return (
     <div className={classes.root}>
       <div className={classes.title}>{t("Highlight")}</div>
@@ -91,12 +152,11 @@ const Highlight = ({ type }: HighlightProps)=> {
         <div
           className={
             type === "plaza"
-            ? classes.card
-            : clsx(classes.card, classes.unviewPlaza)
-          }
-        >
+              ? classes.card
+              : clsx(classes.card, classes.unviewPlaza)
+          }>
           <div className={classes.imgContainer}>
-            <img src={plaza_svg} alt="A" />
+            <img src={plaza_svg} alt='A' />
           </div>
           <div className={classes.rightPart}>
             <div className={classes.name}>{t("Plaza")}</div>
@@ -108,12 +168,11 @@ const Highlight = ({ type }: HighlightProps)=> {
         <div
           className={
             type === "road"
-            ? classes.card
-            : clsx(classes.card, classes.unviewRoad)
-          }
-        >
+              ? classes.card
+              : clsx(classes.card, classes.unviewRoad)
+          }>
           <div className={classes.imgContainer}>
-            <img src={road_svg} alt="A" />
+            <img src={road_svg} alt='A' />
           </div>
 
           <div className={classes.rightPart}>
@@ -126,12 +185,11 @@ const Highlight = ({ type }: HighlightProps)=> {
         <div
           className={
             type === "district"
-            ? classes.card
-            : clsx(classes.card, classes.unviewDistrict)
-          }
-        >
+              ? classes.card
+              : clsx(classes.card, classes.unviewDistrict)
+          }>
           <div className={classes.imgContainer}>
-            <img src={distirct_svg} alt="A" />
+            <img src={distirct_svg} alt='A' />
           </div>
 
           <div className={classes.rightPart}>

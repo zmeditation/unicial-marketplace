@@ -22,7 +22,7 @@ import {
   getCoords,
   isAllConnectedLand,
 } from "../../../../common/utils";
-import { parcels } from "../../../../store/parcels/selectors";
+import { totalSpace } from "../../../../store/parcels/selectors";
 import { EstateProxyAddress } from "../../../../config/contracts/EstateRegitryContract";
 import { addEstate } from "../../../../hooks/InteractLand";
 import { setSpaces } from "../../../../store/parcels";
@@ -32,7 +32,7 @@ export default function EstateAdd() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const selectedEstate = useAppSelector(selectestates);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
   const { contractaddress, estateid } = useParams();
   const [focusedEstate, setFocusedEstate] = useState<any>();
   const { t } = useTranslation();

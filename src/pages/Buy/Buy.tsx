@@ -29,7 +29,7 @@ import {
 } from "../../common/contract";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
-import { parcels } from "../../store/parcels/selectors";
+import { totalSpace } from "../../store/parcels/selectors";
 import SliceMap from "../../components/SliceMap";
 
 declare var window: any;
@@ -49,7 +49,7 @@ const Buy = () => {
   const [uccAllowance, setUccAllowance] = useState(BigNumber.from(0));
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
 
   useEffect(() => {
     Object.keys(tiles).forEach((index: any) => {

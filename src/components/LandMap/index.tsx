@@ -5,7 +5,7 @@ import { Tile } from "../Atlas/Atlas.types";
 import Popup from "../Atlas/Popup";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectSaleParcels } from "../../store/salespaces/selectors";
-import { parcels } from "../../store/parcels/selectors";
+import { totalSpace } from "../../store/parcels/selectors";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { setSaleSpaces } from "../../store/salespaces";
 import { setSpaces } from "../../store/parcels";
@@ -44,7 +44,7 @@ const LandMap: React.FC<LandMapProps> = ({
   const query = new URLSearchParams(location.search);
 
   const saleSpaces: any = useAppSelector(selectSaleParcels);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
 
   const handleClick = useCallback(
     async (x: number, y: number) => {

@@ -1,5 +1,3 @@
-/** @format */
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import LandMap from "../../components/LandMap";
@@ -20,7 +18,7 @@ import { useTranslation } from "react-i18next";
 import TablePagination from "../../components/Base/TablePagination";
 import { useAppSelector } from "../../store/hooks";
 import { selectSaleParcels } from "../../store/salespaces/selectors";
-import { parcels } from "../../store/parcels/selectors";
+import { totalSpace } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
 import { dateConvert, findCenterDot } from "../../common/utils";
 import {
@@ -59,7 +57,7 @@ const Contract = () => {
   const [selectSpace, setSelectSpace] = useState<any>();
 
   const saleSpaces: any = useAppSelector(selectSaleParcels);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
 
   useEffect(() => {
     let estateArray: any = [];
@@ -205,7 +203,7 @@ const Contract = () => {
                   highDivLine === true ? classes.displayNone : classes.highLIght
                 }>
                 <div className={classes.divideLine}></div>
-                <Highlight type={type} />
+                <Highlight type={type} space={selectSpace} />
                 <div className={classes.divideLine}></div>
               </div>
             </div>

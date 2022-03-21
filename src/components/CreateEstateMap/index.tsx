@@ -6,7 +6,7 @@ import { selectLoginAddress } from "../../store/auth/selectors";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { selectestates } from "../../store/selectedestates/selectors";
 import { getestates } from "../../store/selectedestates";
-import { parcels } from "../../store/parcels/selectors";
+import { totalSpace } from "../../store/parcels/selectors";
 import { showAlert } from "../../store/alert";
 import { getCoords } from "../../common/utils";
 import { mapColor } from "../../config/constant";
@@ -34,7 +34,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
   const [y, setY] = useState(0);
   const dispatch = useAppDispatch();
   const selectedTile = useAppSelector(selectestates);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
   const loginAddress = useAppSelector(selectLoginAddress);
 
   const handleClick = useCallback(

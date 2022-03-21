@@ -12,7 +12,7 @@ import { showMoreCount } from "../../../config/constant";
 import NoResult from "../../NoResult/NoResult";
 import { selectSaleParcels } from "../../../store/salespaces/selectors";
 import { getCoords } from "../../../common/utils";
-import { parcels } from "../../../store/parcels/selectors";
+import { totalSpace } from "../../../store/parcels/selectors";
 
 export default function LandParcels() {
   const classes = LandParcelsStyle();
@@ -20,7 +20,7 @@ export default function LandParcels() {
   const [showStatus, setShowStatus] = useState(false);
   const loginAddress = useAppSelector(selectLoginAddress);
   const saleSpaces: any = useAppSelector(selectSaleParcels);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
 
   const navigate = useNavigate();
   const location = useLocation();

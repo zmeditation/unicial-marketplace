@@ -8,7 +8,7 @@ import { selectparcels } from "../../../store/selectedparcels/selectors";
 import { getparcels } from "../../../store/selectedparcels";
 import { getCoords } from "../../../common/utils";
 import { selectLoginAddress } from "../../../store/auth/selectors";
-import { parcels } from "../../../store/parcels/selectors";
+import { totalSpace } from "../../../store/parcels/selectors";
 import { mapColor } from "../../../config/constant";
 
 interface LandMapProps {
@@ -29,7 +29,7 @@ const LandMap: React.FC<LandMapProps> = ({ height, width }) => {
   const loginAddress = useAppSelector(selectLoginAddress);
   const selectedTile = useAppSelector(selectparcels);
 
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
 
   const handleClick = useCallback(
     async (x: number, y: number) => {

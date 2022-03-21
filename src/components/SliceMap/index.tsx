@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
-
 import { Atlas, Layer } from "../Atlas/Atlas";
 import { Tile } from "../Atlas/Atlas.types";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectSaleParcels } from "../../store/salespaces/selectors";
-import { parcels } from "../../store/parcels/selectors";
+import { totalSpace } from "../../store/parcels/selectors";
 import { setSaleSpaces } from "../../store/salespaces";
 import { setSpaces } from "../../store/parcels";
 import { selectLoginAddress } from "../../store/auth/selectors";
@@ -31,7 +30,7 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
   const query = new URLSearchParams(location.search);
 
   const saleSpaces: any = useAppSelector(selectSaleParcels);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
   const loginAddress: any = useAppSelector(selectLoginAddress);
 
   const handleResize = () => {

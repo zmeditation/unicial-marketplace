@@ -25,7 +25,7 @@ import { getCoords } from "../../../../common/utils";
 import raiseicon from "../../../../assets/svg/bid_raiseicon.svg";
 import { BigNumber, ethers } from "ethers";
 import { selectLoginAddress } from "../../../../store/auth/selectors";
-import { parcels } from "../../../../store/parcels/selectors";
+import { totalSpace } from "../../../../store/parcels/selectors";
 import {
   EstateRegistryAbi,
   EstateProxyAddress,
@@ -47,7 +47,7 @@ export default function TransferSpaces() {
   const dispatch = useAppDispatch();
   const loginAddress = useAppSelector(selectLoginAddress);
   const estates = useAppSelector(selectestates);
-  const tiles: any = useAppSelector(parcels);
+  const tiles: any = useAppSelector(totalSpace);
   const selectedTile = useAppSelector(selectparcels);
   const { t } = useTranslation();
 

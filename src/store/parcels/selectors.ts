@@ -1,4 +1,4 @@
 import type { RootState } from "../store";
 
-export const parcels = (state: RootState) =>
+export const totalSpace = (state: RootState) =>
   state.parcels.parcels;
