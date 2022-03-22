@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { LandEstatesStyle } from "./LandEstatesStyle";
 import { Grid } from "@material-ui/core";
-import { useAppSelector } from "./../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "./../../../store/hooks";
 import LandCard from "../LandCard/LandCard";
 import ActionButton from "../../../components/Base/ActionButton";
 import { getEstatesByOwner } from "../../../hooks/api";
@@ -13,6 +13,7 @@ import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContr
 import { selectLoginAddress } from "./../../../store/auth/selectors";
 import { ShowMoreLessBtn } from "../../ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../config/constant";
+import { showSpinner } from "../../../store/spinner";
 
 export default function LandEstates() {
   const classes = LandEstatesStyle();
@@ -22,6 +23,7 @@ export default function LandEstates() {
   const emptyTokens: any[] = [];
   const [ownEstates, setOwnEstates] = useState(emptyTokens);
   const [showStatus, setShowStatus] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleCreateClick = () => {
     navigate("/account/estate/create");
@@ -40,10 +42,16 @@ export default function LandEstates() {
     setShowStatus(!showStatus);
   };
 
+  const initSet = async () => {
+    dispatch(showSpinner(true));
+    let estates: any[] = [];
+    estates = await getEstatesByOwner(loginAddress);
+    setOwnEstates(estates);
+    dispatch(showSpinner(false));
+  };
+
   useEffect(() => {
-    getEstatesByOwner(loginAddress).then((estates: any[]) => {
-      setOwnEstates(estates);
-    });
+    initSet();
   }, []);
 
   return (

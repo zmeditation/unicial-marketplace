@@ -13,6 +13,8 @@ import NoResult from "../../NoResult/NoResult";
 import { saleParcels } from "../../../store/saleparcels/selectors";
 import { getCoords } from "../../../common/utils";
 import { totalSpace } from "../../../store/parcels/selectors";
+import { useAppDispatch } from "./../../../store/hooks";
+import { showSpinner } from "./../../../store/spinner";
 
 export default function LandParcels() {
   const classes = LandParcelsStyle();
@@ -21,7 +23,7 @@ export default function LandParcels() {
   const loginAddress = useAppSelector(selectLoginAddress);
   const saleSpaces: any = useAppSelector(saleParcels);
   const tiles: any = useAppSelector(totalSpace);
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -31,6 +33,8 @@ export default function LandParcels() {
   };
 
   const getResult = async () => {
+    dispatch(showSpinner(true));
+
     await getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
       if (
         query.get("onlyOnSale") === null ||
@@ -44,6 +48,7 @@ export default function LandParcels() {
         );
       }
     });
+    dispatch(showSpinner(false));
   };
 
   useEffect(() => {
