@@ -10,6 +10,7 @@ import { setSpaces } from "../../store/parcels";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { getCoords } from "../../common/utils";
 import { useStyles } from "./SliceMapStyle";
+import { mapColor } from "../../config/constant";
 
 declare var window: any;
 
@@ -73,19 +74,7 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
     //eslint-disable-next-line react-hooks/exhaustive-deps
     [saleSpaces, onSale]
   );
-
-  const isOwned = useCallback(
-    (x: number, y: number) => {
-      if (!tiles) return false;
-      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
-      if (tile?.owner) {
-        return true;
-      } else return false;
-    },
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-    [tiles]
-  );
-
+  
   const isEstated = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
@@ -96,23 +85,6 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
     },
     //eslint-disable-next-line react-hooks/exhaustive-deps
     [tiles]
-  );
-
-  const isCustomerSaleParcel = useCallback(
-    (x: number, y: number) => {
-      if (!saleSpaces) return false;
-      const sale: any = saleSpaces && (saleSpaces[getCoords(x, y)] as Tile);
-
-      if (
-        onSale === true &&
-        sale?.seller.toLowerCase() === loginAddress.toLowerCase()
-      ) {
-        return true;
-      }
-      return false;
-    },
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-    [saleSpaces, onSale, loginAddress]
   );
 
   const isSelected = useCallback(
@@ -136,13 +108,9 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
     (x: any, y: any) => {
       return isSelected(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isCustomerSaleParcel(x, y)
-        ? { color: "transparent", scale: 1.4 }
         : isSaleParcel(x, y)
         ? { color: "transparent", scale: 1.4 }
         : isEstated(x, y)
-        ? { color: "transparent", scale: 1.4 }
-        : isOwned(x, y)
         ? { color: "transparent", scale: 1.4 }
         : null;
     },
@@ -153,16 +121,12 @@ const SliceMap: React.FC<SliceMapProps> = ({ centerX, centerY }) => {
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
       return isSelected(x, y)
-        ? { color: "#ff9990", scale: 1.2 }
-        : isCustomerSaleParcel(x, y)
-        ? { color: "#6ad3fe", scale: 1.2 }
+        ? { color: mapColor.selected, scale: 1.2 }
         : isSaleParcel(x, y)
-        ? { color: "#d5ed11", scale: 1.2 }
+        ? { color: mapColor.onSaleParcels, scale: 1.2 }
         : isEstated(x, y)
-        ? { color: "#29c98f", scale: 1.2 }
-        : isOwned(x, y)
-        ? { color: "#313960", scale: 1.4 }
-        : null;
+        ? { color: mapColor.otherEstate, scale: 1.2 }
+        :  null;
     },
     //eslint-disable-next-line react-hooks/exhaustive-deps
     [isSelected]
