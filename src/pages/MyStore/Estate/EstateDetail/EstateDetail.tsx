@@ -16,6 +16,16 @@ import { showMoreCount } from "../../../../config/constant";
 import { useAppSelector } from "../../../../store/hooks";
 import BidRecord from "../../../../components/ContractInfo/BidRecord";
 import { ethers } from "ethers";
+import {
+  generateContractInstance,
+  generateSigner,
+} from "../../../../common/contract";
+import {
+  EstateProxyAddress,
+  EstateRegistryAbi,
+} from "../../../../config/contracts/EstateRegitryContract";
+var signer: any, estateRegistryContract: any;
+declare var window: any;
 
 const EstateDetail = () => {
   const classes = useStyles();
@@ -29,7 +39,7 @@ const EstateDetail = () => {
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [showLessBtn, setShowLessBtn] = useState(false);
   const [bidItems, setBidItems] = useState<any>();
-
+  const [currentOperator, setCurrentOperator] = useState("");
   useEffect(() => {
     getEstatesByOwner(loginAddress).then((parcels: any[]) => {
       setOwnEstates(parcels);
@@ -58,6 +68,24 @@ const EstateDetail = () => {
     setShowMoreBtn(true);
     setShowLessBtn(false);
   };
+  const init = async () => {
+    signer = generateSigner(window.ethereum);
+    estateRegistryContract = generateContractInstance(
+      EstateProxyAddress,
+      EstateRegistryAbi,
+      signer
+    );
+    let currentOperator = await estateRegistryContract.updateOperator(estateid);
+    if (currentOperator !== "0x0000000000000000000000000000000000000000") {
+      setCurrentOperator(currentOperator);
+    } else {
+      setCurrentOperator("....");
+    }
+  };
+  useEffect(() => {
+    init();
+  }, []);
+
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>
@@ -68,7 +96,8 @@ const EstateDetail = () => {
               <img
                 src={TokenImg}
                 className={classes.tokenImg}
-                alt='token'></img>
+                alt="token"
+              ></img>
             </div>
           </div>
           <div className={classes.rightCard}>
@@ -81,7 +110,9 @@ const EstateDetail = () => {
                   <Grid md={6} sm={12} xs={12} item>
                     <div className={classes.subheader_label}>
                       {t("Operator")}:
-                      <span className={classes.operatorValue}>123123</span>
+                      <span className={classes.operatorValue}>
+                        {currentOperator.slice(0, 7) + ".."}
+                      </span>
                     </div>
                   </Grid>
                   <Grid md={6} sm={12} xs={12} item>
@@ -101,68 +132,73 @@ const EstateDetail = () => {
           <Grid container spacing={2}>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_sell`
                   )
-                }>
+                }
+              >
                 {t("Sell")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_transfer`
                   )
-                }>
+                }
+              >
                 {t("Transfer")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_edit`
                   )
-                }>
+                }
+              >
                 {t("Add space")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_updatemetadata`
                   )
-                }>
+                }
+              >
                 {t("Update Metadata")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
 
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/estate_updateoperate`
                   )
-                }>
+                }
+              >
                 {t("Update Operate")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
           </Grid>
@@ -172,41 +208,44 @@ const EstateDetail = () => {
           <Grid container spacing={2}>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/transfer_spaces`
                   )
-                }>
+                }
+              >
                 {t("Transfer Spaces")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/set_spaceOperator`
                   )
-                }>
+                }
+              >
                 {t("Space Operator")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
             <Grid item md={4} sm={6} xs={12}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 onClick={() =>
                   navigate(
                     `/contracts/${contractaddress}/tokens/${estateid}/selectSpace_forUpdatelanddata`
                   )
-                }>
+                }
+              >
                 {t("Update LandData")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
             </Grid>
           </Grid>
@@ -217,7 +256,8 @@ const EstateDetail = () => {
               bidItems?.length === 0 || bidItems === undefined
                 ? classes.displayNone
                 : ""
-            }>
+            }
+          >
             <div className={classes.bidsTitle}>{t("Bids")}</div>
             {bidItems?.map((row: any, index: any) => (
               <BidRecord
@@ -232,7 +272,8 @@ const EstateDetail = () => {
                 showMoreBtn === true
                   ? classes.showmoreContent
                   : classes.displayNone
-              }>
+              }
+            >
               <ShowMoreLessBtn
                 letter={t("Show More")}
                 onClick={handleShowBtn}
@@ -243,7 +284,8 @@ const EstateDetail = () => {
                 showLessBtn === true
                   ? classes.showmoreContent
                   : classes.displayNone
-              }>
+              }
+            >
               <ShowMoreLessBtn
                 letter={t("Show Less")}
                 onClick={handleShowLessBtn}

@@ -77,6 +77,7 @@ const EstateSell = () => {
           severity: "error",
         })
       );
+      return;
     }
     if (loginAddress.length === 0) {
       dispatch(

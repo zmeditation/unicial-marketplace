@@ -83,6 +83,10 @@ const Contract = () => {
         allParcel.tokenId === tokensid &&
         contractaddress === SpaceProxyAddress
       ) {
+        // console.log("dffd");
+
+        console.log("allParcel", allParcel.tokenId);
+
         setOwner(allParcel.owner);
         setType(allParcel.type);
         setName(t("Parcel"));
@@ -176,7 +180,6 @@ const Contract = () => {
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
 
-
   return (
     <>
       <TopTab />
@@ -210,7 +213,8 @@ const Contract = () => {
               <div
                 className={
                   highDivLine === true ? classes.displayNone : classes.highLIght
-                }>
+                }
+              >
                 <div className={classes.divideLine}></div>
                 <Highlight space={selectSpace} />
                 <div className={classes.divideLine}></div>
@@ -222,7 +226,8 @@ const Contract = () => {
                   saleId && saleId === tokensid
                     ? classes.displayNone
                     : classes.BidboxContainer
-                }>
+                }
+              >
                 <Bidbox selectOwner={owner && owner} />
               </div>
               <div
@@ -230,7 +235,8 @@ const Contract = () => {
                   saleId && saleId === tokensid
                     ? classes.BuyboxContainer
                     : classes.displayNone
-                }>
+                }
+              >
                 <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />
               </div>
             </div>
