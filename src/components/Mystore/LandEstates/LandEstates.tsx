@@ -53,7 +53,7 @@ export default function LandEstates() {
   useEffect(() => {
     initSet();
   }, []);
-
+  console.log("ownestate", ownEstates);
   return (
     <>
       <div className={classes.createBtnContainer}>
@@ -76,6 +76,7 @@ export default function LandEstates() {
         {ownEstates
           ?.slice(0, !showStatus ? showMoreCount : ownEstates.length)
           .map((tokenId: any, key: any) => {
+            // console.log("tokenid", tokenId);
             return (
               <Grid key={key} item xs={12} sm={6} md={4}>
                 <LandCard
