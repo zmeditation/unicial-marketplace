@@ -52,7 +52,6 @@ const Contract = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [owner, setOwner] = useState("0x");
-  const [type, setType] = useState("");
   const [saleId, setSaleId] = useState("");
   const [salePrice, setSalePrice] = useState(0);
   const [selectSpace, setSelectSpace] = useState<any>();
@@ -84,7 +83,6 @@ const Contract = () => {
         contractaddress === SpaceProxyAddress
       ) {
         setOwner(allParcel.owner);
-        setType(allParcel.type);
         setName(t("Parcel"));
         estateArray.push({ x: allParcel.x, y: allParcel.y });
         if (allParcel.type === "road") {
@@ -98,7 +96,6 @@ const Contract = () => {
       ) {
         const [estateName, estateDes] = allParcel?.name.split(",");
         setOwner(allParcel.owner);
-        setType(allParcel.type);
         setName(estateName);
         setDescription(estateDes);
         estateArray.push({ x: allParcel.x, y: allParcel.y });
@@ -140,14 +137,6 @@ const Contract = () => {
   }, []);
 
   useEffect(() => {
-    if (type !== undefined) {
-      parcelTypes.indexOf(type) < 0
-        ? setHighDivLine(true)
-        : setHighDivLine(false);
-    }
-  }, [type]);
-
-  useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
 
@@ -175,7 +164,6 @@ const Contract = () => {
   };
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
-
 
   return (
     <>
@@ -213,7 +201,6 @@ const Contract = () => {
                 }>
                 <div className={classes.divideLine}></div>
                 <Highlight space={selectSpace} />
-                <div className={classes.divideLine}></div>
               </div>
             </div>
             <div className={classes.rightDescription}>
