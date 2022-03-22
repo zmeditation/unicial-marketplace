@@ -47,10 +47,6 @@ export default function LandParcels() {
         // console.log("position", position);
         setResultParcels(parcels);
       } else {
-        console.log(
-          "filter",
-          parcels.filter((el: any) => saleSpaces[getCoords(el[0], el[1])])
-        );
         setResultParcels(
           parcels.filter((el: any) => saleSpaces[getCoords(el[0], el[1])])
         );
