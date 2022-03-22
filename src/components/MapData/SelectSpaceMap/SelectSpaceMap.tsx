@@ -1,31 +1,25 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Atlas, Layer } from "../Atlas/Atlas";
-import { Tile } from "../Atlas/Atlas.types";
-import Popup from "../Atlas/Popup";
-import { selectLoginAddress } from "../../store/auth/selectors";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { selectestates } from "../../store/selectedestates/selectors";
-import { getestates } from "../../store/selectedestates";
-import { totalSpace } from "../../store/parcels/selectors";
-import { showAlert } from "../../store/alert";
-import { getCoords } from "../../common/utils";
-import { mapColor } from "../../config/constant";
+import { useParams } from "react-router";
+import { Atlas, Layer } from "../../Atlas/Atlas";
+import { Tile } from "../../Atlas/Atlas.types";
+import Popup from "../../Atlas/Popup";
+import { selectLoginAddress } from "../../../store/auth/selectors";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { selectestates } from "../../../store/selectedestates/selectors";
+import { getestates } from "../../../store/selectedestates";
+import { totalSpace } from "../../../store/parcels/selectors";
+import { showAlert } from "../../../store/alert";
+import { getCoords } from "../../../common/utils";
 
-interface CreateEstateMapProps {
+interface SelectSpaceMapProps {
   height?: any;
   width?: any;
   initialX?: number;
   initialY?: number;
-  myEstate?: any;
 }
 
-const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
-  height,
-  width,
-  myEstate,
-  initialX,
-  initialY,
-}) => {
+const SelectSpaceMap: React.FC<SelectSpaceMapProps> = ({ height, width }) => {
+  const { estateid } = useParams();
   const [showPopup, setShowPopup] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<Tile | null>(null);
   const [mouseX, setMouseX] = useState(-1);
@@ -35,28 +29,32 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
   const dispatch = useAppDispatch();
   const selectedTile = useAppSelector(selectestates);
   const tiles: any = useAppSelector(totalSpace);
-  const loginAddress = useAppSelector(selectLoginAddress);
-
+  const mineAddress = useAppSelector(selectLoginAddress);
+  // console.log("mineAddress", mineAddress);
   const handleClick = useCallback(
     async (x: number, y: number) => {
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
       if (
         tile.owner &&
-        tile.owner.toLowerCase() === loginAddress.toLowerCase() &&
-        tile.estateId === undefined
+        tile.owner.toLowerCase() === mineAddress.toLowerCase() &&
+        tile.estateId === estateid
       ) {
         let newSelectedTile: string[] = [];
         const selectedIndex = selectedTile.indexOf(getCoords(x, y));
         if (selectedIndex === -1) {
+          //   alert("-1");
           newSelectedTile = newSelectedTile.concat(
             selectedTile,
             getCoords(x, y)
           );
         } else if (selectedIndex === 0) {
+          //   alert("0");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(1));
         } else if (selectedIndex === selectedTile.length - 1) {
+          //   alert("kk");
           newSelectedTile = newSelectedTile.concat(selectedTile.slice(0, -1));
         } else if (selectedIndex > 0) {
+          //   alert(">0");
           newSelectedTile = newSelectedTile.concat(
             selectedTile.slice(0, selectedIndex),
             selectedTile.slice(selectedIndex + 1)
@@ -66,7 +64,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
       } else {
         dispatch(
           showAlert({
-            message: "You have to select your parcels!",
+            message: "You have to select the spaces of this estate!",
             severity: "error",
           })
         );
@@ -83,15 +81,31 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
     [selectedTile, tiles]
   );
 
-  const isFocused = useCallback(
+  const isOwned = useCallback(
     (x: number, y: number) => {
-      if (myEstate === undefined) return false;
-      return myEstate?.includes(getCoords(x, y));
+      if (!tiles) return false;
+      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      if (tile?.owner) {
+        return true;
+      } else return false;
     },
-    [myEstate]
+    [tiles]
+  );
+  const isfocused = useCallback(
+    (x: number, y: number) => {
+      if (!tiles) return false;
+      const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
+      if (
+        tile?.estateId === estateid &&
+        tile?.owner.toUpperCase() === mineAddress.toUpperCase()
+      ) {
+        return true;
+      } else return false;
+    },
+    [tiles]
   );
 
-  const isOtherEstate = useCallback(
+  const isOwnedWithEstate = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
@@ -102,14 +116,14 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
     [tiles]
   );
 
-  const isMyParcel = useCallback(
+  const isMine = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
 
       if (
         tile?.owner &&
-        tile?.owner?.toLowerCase() === loginAddress.toLowerCase()
+        tile?.owner?.toLowerCase() === mineAddress.toLowerCase()
       ) {
         return true;
       } else return false;
@@ -117,13 +131,13 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
     [tiles]
   );
 
-  const isMyEstate = useCallback(
+  const isMineWithEstate = useCallback(
     (x: number, y: number) => {
       if (!tiles) return false;
       const tile: any = tiles && (tiles[getCoords(x, y)] as Tile);
       if (
         tile?.owner &&
-        tile?.owner?.toLowerCase() === loginAddress.toLowerCase() &&
+        tile?.owner?.toLowerCase() === mineAddress.toLowerCase() &&
         tile?.estateId !== undefined
       ) {
         return true;
@@ -140,36 +154,40 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
 
   const selectedStrokeLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isFocused(x, y)
+      return isSelected(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isSelected(x, y)
+        : isfocused(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isMyEstate(x, y)
+        : // : isMineWithEstate(x, y)
+        // ? { color: "transparent", scale: 1.4 }
+        isMine(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isMyParcel(x, y)
+        : isOwnedWithEstate(x, y)
         ? { color: "transparent", scale: 1.4 }
-        : isOtherEstate(x, y)
+        : isOwned(x, y)
         ? { color: "transparent", scale: 1.4 }
         : null;
     },
-    [isSelected, isFocused]
+    [isSelected]
   );
 
   const selectedFillLayer: Layer = useCallback(
     (x: any, y: any) => {
-      return isFocused(x, y)
-        ? { color: mapColor.focused, scale: 1.2 }
-        : isSelected(x, y)
-        ? { color: mapColor.selected, scale: 1.2 }
-        : isMyEstate(x, y)
-        ? { color: mapColor.myEstate, scale: 1.2 }
-        : isMyParcel(x, y)
-        ? { color: mapColor.myParcel, scale: 1.2 }
-        : isOtherEstate(x, y)
-        ? { color: mapColor.otherEstate, scale: 1.2 }
+      return isSelected(x, y)
+        ? { color: "#ff9990", scale: 1.2 }
+        : isfocused(x, y)
+        ? { color: "red", scale: 1.2 }
+        : // : isMineWithEstate(x, y)
+        // ? { color: "#4aff3a", scale: 1.2 }
+        isMine(x, y)
+        ? { color: "#2b1c70", scale: 1.2 }
+        : isOwnedWithEstate(x, y)
+        ? { color: "#f0af37", scale: 1.2 }
+        : isOwned(x, y)
+        ? { color: "#21263f", scale: 1.2 }
         : null;
     },
-    [isSelected, isFocused]
+    [isSelected]
   );
 
   const handleHover = useCallback(
@@ -222,8 +240,6 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
         onClick={handleClick}
         height={height}
         width={width}
-        x={initialX}
-        y={initialY}
       />
       {hoveredTile ? (
         <Popup
@@ -238,4 +254,4 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
   );
 };
 
-export default CreateEstateMap;
+export default SelectSpaceMap;

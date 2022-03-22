@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useStyles } from "./EstateAddStyles";
 import { Grid } from "@material-ui/core";
-import CreateEstateMap from "../../../../components/CreateEstateMap";
+import CreateEstateMap from "../../../../components/MapData/CreateEstateMap";
 import ParcelCard from "../../../../components/ParcelCard/ParcelCard";
 
 import TopTab from "../../../../components/TopTab/TopTab";

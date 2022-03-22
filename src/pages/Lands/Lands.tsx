@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LandMap from "../../components/LandMap";
+import LandMap from "../../components/MapData/LandMap";
 import TopTab from "../../components/TopTab/TopTab";
 import { useStyles } from "./LandsStyle";
 
