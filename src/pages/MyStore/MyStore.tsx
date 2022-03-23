@@ -15,6 +15,7 @@ import NoResult from "../../components/NoResult/NoResult";
 import Grid from "@material-ui/core/Grid";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
+import { fetchSalesData } from "../../hooks/salesdata";
 
 export default function MyStore() {
   const classes = MyStoreStyle();
@@ -23,7 +24,12 @@ export default function MyStore() {
   const query = new URLSearchParams(location.search);
   var category = query.get("section");
   const [rightPartIndex, setrightPartIndex] = React.useState("");
-
+  // useEffect(() => {
+  //   // if (window) {
+  //   //   fetchSalesData().then((saledata: any) => )
+  //   // }
+  //   fetchSalesData();
+  // }, []);
   useEffect(() => {
     switch (category) {
       case "parcels":
@@ -71,22 +77,22 @@ export default function MyStore() {
                   <Grid container spacing={1}>
                     <Grid item xs={12} sm={12} md={4}>
                       <GeneralSaleCard
-                        iconSrc='pen'
-                        priceColor='yellow'
+                        iconSrc="pen"
+                        priceColor="yellow"
                         price={121}
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <GeneralSaleCard
-                        iconSrc='moneybag'
-                        priceColor='purple'
+                        iconSrc="moneybag"
+                        priceColor="purple"
                         price={111}
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <GeneralSaleCard
-                        iconSrc='crown'
-                        priceColor='green'
+                        iconSrc="crown"
+                        priceColor="green"
                         price={621}
                       />
                     </Grid>
@@ -96,17 +102,17 @@ export default function MyStore() {
                 <Grid container spacing={1}>
                   <Grid item xs={12} sm={12} md={6}>
                     <GradientEarningCard
-                      iconSrc='cube'
-                      backgroundColor='yellow'
-                      title='ethereum'
+                      iconSrc="cube"
+                      backgroundColor="yellow"
+                      title="ethereum"
                       price={100}
                     />
                   </Grid>
                   <Grid item xs={12} sm={12} md={6}>
                     <GradientEarningCard
-                      iconSrc='shape'
-                      backgroundColor='purple'
-                      title='polygon'
+                      iconSrc="shape"
+                      backgroundColor="purple"
+                      title="polygon"
                       price={300}
                     />
                   </Grid>
