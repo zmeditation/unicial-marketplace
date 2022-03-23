@@ -83,9 +83,13 @@ export default function Layout() {
   const initSet = async () => {
     const provider = getProvider();
     const chainId = await provider.getNetwork();
-    if (chainId !== 93) {
+    console.log("chainid", chainId.chainId);
+    if (chainId.chainId !== 93) {
+      console.log("oke");
       dispatch(showNetModal(true));
       return;
+    } else {
+      dispatch(showNetModal(false));
     }
     await dispatch(showSpinner(true));
     let dispatchPromises = [];

@@ -24,6 +24,9 @@ import {
   EstateProxyAddress,
   EstateRegistryAbi,
 } from "../../../../config/contracts/EstateRegitryContract";
+// import { fetchTiles } from "../../../../../src/hooks/tiles";
+import { totalSpace } from "../../../../store/parcels/selectors";
+
 var signer: any, estateRegistryContract: any;
 declare var window: any;
 
@@ -40,6 +43,9 @@ const EstateDetail = () => {
   const [showLessBtn, setShowLessBtn] = useState(false);
   const [bidItems, setBidItems] = useState<any>();
   const [currentOperator, setCurrentOperator] = useState("");
+  const [estateSize, setEstatesize] = useState(0);
+  const tiles: any = useAppSelector(totalSpace);
+
   useEffect(() => {
     getEstatesByOwner(loginAddress).then((parcels: any[]) => {
       setOwnEstates(parcels);
@@ -83,9 +89,24 @@ const EstateDetail = () => {
     }
   };
   useEffect(() => {
+    let count = 0;
+    console.log("estateid", estateid, tiles);
+    Object.keys(tiles).forEach((index: any) => {
+      const allParcel = tiles[index];
+      if (
+        allParcel.estateId &&
+        allParcel.estateId.toString() === estateid?.toString()
+      ) {
+        console.log("yes");
+        count++;
+        console.log("count", count);
+        setEstatesize(count);
+      }
+    });
+  }, [tiles]);
+  useEffect(() => {
     init();
   }, []);
-
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>
@@ -118,7 +139,9 @@ const EstateDetail = () => {
                   <Grid md={6} sm={12} xs={12} item>
                     <div className={classes.subheader_label}>
                       {t("Estate Size")}:
-                      <span className={classes.operatorValue}>123123</span>
+                      <span className={classes.operatorValue}>
+                        {estateSize}
+                      </span>
                     </div>
                   </Grid>
                 </Grid>
