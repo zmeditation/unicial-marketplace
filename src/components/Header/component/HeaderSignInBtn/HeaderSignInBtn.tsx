@@ -7,15 +7,19 @@ interface HeaderSignInBtnProps {
   onClick: () => void;
 }
 
+declare var window: any;
+
 const HeaderSignInBtn = ({ onClick }: HeaderSignInBtnProps) => {
   const classes = HeaderSignInBtnStyle();
-  const { t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={classes.signBtn} onClick={onClick}>
       <div className={classes.signBtnContent}>
         <span className={classes.signIcon}>
           <img src={singinusersvg} alt="user"></img>
-          <span className={classes.signtext}>{t("Sign in")}</span>
+          <span className={classes.signtext}>
+            {window.ethereum === undefined ? t("Install") : t("Sign in")}
+          </span>
         </span>
         <span className={classes.signMiddle}></span>
         <span className={classes.signIcon}>

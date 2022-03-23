@@ -5,7 +5,7 @@ import { setloginAddress, setlogoutAddress } from "./actions";
 const PREFIX = "auth";
 
 let initLoginAddress;
-if (localStorage.loginAddress) {
+if (localStorage.loginAddress && localStorage.loginAddress !== "undefined") {
   initLoginAddress = localStorage.loginAddress;
 } else {
   initLoginAddress = "";

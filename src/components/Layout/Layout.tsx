@@ -67,32 +67,36 @@ export default function Layout() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
 
-  window.ethereum.on("accountsChanged", function (account: Array<string>) {
-    dispatch(setloginAddress(account[0]));
-    window.location.href = "/account";
-  });
+  if (window.ethereum !== undefined) {
+    window.ethereum.on("accountsChanged", function (account: Array<string>) {
+      dispatch(setloginAddress(account[0]));
+      window.location.href = "/account";
+    });
 
-  window.ethereum.on("chainChanged", function (chainId: string) {
-    let projectChainId = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
-    let changedChainId = parseInt(chainId, 16);
-    if (changedChainId !== projectChainId) {
-      dispatch(setlogoutAddress());
-      dispatch(showNetModal(true));
-    }
-  });
+    window.ethereum.on("chainChanged", function (chainId: string) {
+      let projectChainId = parseInt(CHAIN_INFO.TESTNET.chainId, 16);
+      let changedChainId = parseInt(chainId, 16);
+      if (changedChainId !== projectChainId) {
+        dispatch(setlogoutAddress());
+        dispatch(showNetModal(true));
+      }
+    });
+  }
+
   const initSet = async () => {
     const provider = getProvider();
     const chainId = await provider.getNetwork();
-    console.log("chainid", chainId.chainId);
+
     if (chainId.chainId !== 93) {
-      console.log("oke");
       dispatch(showNetModal(true));
       return;
     } else {
       dispatch(showNetModal(false));
     }
+
     await dispatch(showSpinner(true));
     let dispatchPromises = [];
+
     dispatchPromises.push(
       dispatch(setSaleParcels()),
       dispatch(setSaleEstates()),
