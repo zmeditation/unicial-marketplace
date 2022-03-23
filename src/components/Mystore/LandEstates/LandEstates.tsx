@@ -29,7 +29,6 @@ export default function LandEstates() {
   const query = new URLSearchParams(location.search);
 
   const estatesOnSale: any = useAppSelector(saleEstates);
-  console.log("'estatesOnSale", estatesOnSale);
 
   const handleCreateClick = () => {
     navigate("/account/estate/create");
@@ -52,17 +51,13 @@ export default function LandEstates() {
     dispatch(showSpinner(true));
     // let estates: any[] = [];
     await getEstatesByOwner(loginAddress).then((estates) => {
-      // console.log("estates", estates);
       if (
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "false"
       ) {
-        // console.log("onsale down");
         setOwnEstates(estates);
       } else {
-        // console.log("onsale on1", estates[0]);
         setOwnEstates(estates.filter((e?: any) => estatesOnSale[e]));
-        // console.log("onsale on2", estatesOnSale.data);
       }
     });
 
@@ -72,7 +67,7 @@ export default function LandEstates() {
   useEffect(() => {
     initSet();
   }, [location]);
-  console.log("ownEstates", ownEstates);
+
   return (
     <>
       <div className={classes.createBtnContainer}>
@@ -95,7 +90,6 @@ export default function LandEstates() {
         {ownEstates
           ?.slice(0, !showStatus ? showMoreCount : ownEstates.length)
           .map((tokenId: any, key: any) => {
-            // console.log("tokenid", tokenId);
             let priceEstate = "null";
             if (estatesOnSale[tokenId]) {
               priceEstate = ethers.utils.formatUnits(

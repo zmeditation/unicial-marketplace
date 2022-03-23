@@ -70,7 +70,7 @@ export default function Layout() {
   if (window.ethereum !== undefined) {
     window.ethereum.on("accountsChanged", function (account: Array<string>) {
       dispatch(setloginAddress(account[0]));
-      window.location.href = "/account";
+      window.location.href = "/account?section=collections";
     });
 
     window.ethereum.on("chainChanged", function (chainId: string) {

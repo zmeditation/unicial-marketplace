@@ -82,10 +82,6 @@ const Contract = () => {
         allParcel.tokenId === tokensid &&
         contractaddress === SpaceProxyAddress
       ) {
-        // console.log("dffd");
-
-        console.log("allParcel", allParcel.tokenId);
-
         setOwner(allParcel.owner);
         setName(t("Parcel"));
         estateArray.push({ x: allParcel.x, y: allParcel.y });
