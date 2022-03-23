@@ -142,7 +142,6 @@ export const isEstateApproved = async (
     isApproved =
       (await estateRegistryContract.getApproved(tokenId)) === operator ||
       (await estateRegistryContract.isApprovedForAll(owner, operator)) === true;
-    console.log("isApproved", isApproved);
     return isApproved;
   } catch (error: any) {
     return false;

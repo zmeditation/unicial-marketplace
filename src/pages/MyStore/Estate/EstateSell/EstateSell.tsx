@@ -119,7 +119,6 @@ const EstateSell = () => {
     );
     // check if this token is approved for marketplace contract
     if (!isApproved) {
-      console.log("not approved yet!");
       let approveMarketTx = await estateRegistryContract.approve(
         MarketplaceAddress,
         estateid

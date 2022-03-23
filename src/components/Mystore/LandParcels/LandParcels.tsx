@@ -41,10 +41,7 @@ export default function LandParcels() {
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "false"
       ) {
-        // console.log("parcels", parcels);
         // const position = `${parcels[2][0]},${parcels[2][1]}`;
-        // console.log("salespace", saleSpaces[position].priceInWei);
-        // console.log("position", position);
         setResultParcels(parcels);
       } else {
         setResultParcels(

@@ -14,6 +14,5 @@ export const fetchSalesData = async (
   if (!window.fetch) return {};
   const resp = await window.fetch(url);
   const json = await resp.json();
-  console.log("saledatatest", json.data);
   return json.data as Record<string, saledata>;
 };

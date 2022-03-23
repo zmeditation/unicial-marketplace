@@ -90,16 +90,13 @@ const EstateDetail = () => {
   };
   useEffect(() => {
     let count = 0;
-    console.log("estateid", estateid, tiles);
     Object.keys(tiles).forEach((index: any) => {
       const allParcel = tiles[index];
       if (
         allParcel.estateId &&
         allParcel.estateId.toString() === estateid?.toString()
       ) {
-        console.log("yes");
         count++;
-        console.log("count", count);
         setEstatesize(count);
       }
     });
