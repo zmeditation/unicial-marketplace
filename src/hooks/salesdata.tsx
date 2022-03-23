@@ -1,18 +1,6 @@
-import { ApiUrl } from "../config/constant";
-const SALEDATA_URL = `${ApiUrl}/api/v1/store/successdata`;
+import { REQUEST_API_URL } from "../config/constant";
+import axios from "axios";
 
-interface saledata {
-  time: string;
-  buyer: string;
-  type: string;
-  price: number;
-}
-
-export const fetchSalesData = async (
-  url: string = SALEDATA_URL
-): Promise<Record<string, saledata>> => {
-  if (!window.fetch) return {};
-  const resp = await window.fetch(url);
-  const json = await resp.json();
-  return json.data as Record<string, saledata>;
+export const getSaleDataAPI = async () => {
+  return axios.get(`${REQUEST_API_URL}/store/successdata`);
 };

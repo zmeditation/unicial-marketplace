@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MyStoreStyle } from "./MyStoreStyle";
 import TopTab from "../../components/TopTab/TopTab";
 import MystoreSidebar from "../../components/Mystore/MystoreSidebar/MystoreSidebar";
@@ -15,8 +15,7 @@ import NoResult from "../../components/NoResult/NoResult";
 import Grid from "@material-ui/core/Grid";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
-import { fetchSalesData } from "../../hooks/salesdata";
-
+import { getSaleDataAPI } from "../../hooks/salesdata";
 export default function MyStore() {
   const classes = MyStoreStyle();
   const { t } = useTranslation();
@@ -24,12 +23,17 @@ export default function MyStore() {
   const query = new URLSearchParams(location.search);
   var category = query.get("section");
   const [rightPartIndex, setrightPartIndex] = React.useState("");
-  // useEffect(() => {
-  //   // if (window) {
-  //   //   fetchSalesData().then((saledata: any) => )
-  //   // }
-  //   fetchSalesData();
-  // }, []);
+  const [saledata, setSaledata] = useState();
+
+  const getSaleData = async () => {
+    const saledata = await getSaleDataAPI();
+    setSaledata(saledata.data.data);
+    return saledata.data.data;
+  };
+  useEffect(() => {
+    getSaleData();
+  }, []);
+
   useEffect(() => {
     switch (category) {
       case "parcels":
@@ -52,7 +56,7 @@ export default function MyStore() {
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
-
+  // console.log("realdata", saledata);
   return (
     <>
       <TopTab />
@@ -122,7 +126,7 @@ export default function MyStore() {
                 <div className={classes.title}>{t("Staging")}.</div>
                 <SalesStagingTable
                   columns={headerData}
-                  rows={stagingData}
+                  rows={saledata}
                   stepIndex={1}
                 />
               </div>
