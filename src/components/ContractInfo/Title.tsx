@@ -35,7 +35,7 @@ interface titleProps {
   count?: number;
 }
 
-const Title = ({name, des, count}:titleProps) => {
+const Title = ({ name, des, count }: titleProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -45,10 +45,10 @@ const Title = ({name, des, count}:titleProps) => {
       <div className={classes.smalltitle}>{des}</div>
       <div className={classes.buttonGroup}>
         <ActionButton disabled color="dark">
-         {count} {t("LAND")}
+          {count} {t("LAND")}
         </ActionButton>
         {/* <div className={classes.jumpbtn}> */}
-        <ActionButton color="light" className={classes.jumpbtn}>
+        <ActionButton disabled color="light" className={classes.jumpbtn}>
           {t("JUMP IN")}
         </ActionButton>
       </div>

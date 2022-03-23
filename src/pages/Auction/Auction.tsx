@@ -55,7 +55,7 @@ const Auction = () => {
   const [width, setWidth] = useState(0);
   const [uccPricePerSpace, setUccPricePerSpace] = useState(0);
   const [uccAllowance, setUccAllowance] = useState(BigNumber.from(0)); // This shows current appoved ucc allowance
-  const [ttlSpacesPrice, setTtlSpacePrice] = useState(BigNumber.from(0)); // This shows current total space price
+  const [ttlSpacesPrice, setTtlSpacePrice] = useState(0); // This shows current total space price
   const [uccBalance, setUccBalance] = useState(BigNumber.from(0));
   const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
   const [isBiddable, setIsBiddable] = useState(false);
@@ -90,49 +90,56 @@ const Auction = () => {
   });
 
   useEffect(() => {
-    signer = generateSigner(window.ethereum);
-    uccContract = generateContractInstance(
-      UccContractAddress,
-      UccContractAbi,
-      signer
-    );
+    if (window.ethereum !== undefined) {
+      signer = generateSigner(window.ethereum);
+      uccContract = generateContractInstance(
+        UccContractAddress,
+        UccContractAbi,
+        signer
+      );
 
-    spaceAuctionContract = generateContractInstance(
-      SpaceAuctionAddress,
-      SpaceAuctionAbi,
-      signer
-    );
-
-    initialize();
+      spaceAuctionContract = generateContractInstance(
+        SpaceAuctionAddress,
+        SpaceAuctionAbi,
+        signer
+      );
+      initialize();
+    }
   }, [loginAddress]);
 
   useEffect(() => {
     convertToBidData();
-    let ttl =
-      (uccPricePerSpace &&
-        BigNumber.from(bidParcels.length * uccPricePerSpace)) ||
-      BigNumber.from(0);
+    let ttl = (uccPricePerSpace && bidParcels.length * uccPricePerSpace) || 0;
     setTtlSpacePrice(ttl);
   }, [bidParcels.length]);
 
   useEffect(() => {}, [uccAllowance.toString()]);
 
-  useEffect(() => {}, []);
   // approve UCC token to buy Space token
   const handleApproveUCCToken = async () => {
-    // generate approve tx and wait until tx finihes
-    let uccApproveTx = await uccContract.approve(
-      SpaceAuctionAddress,
-      uccApprovalAmount
-    );
+    if (window.ethereum !== undefined) {
+      // generate approve tx and wait until tx finihes
+      let uccApproveTx = await uccContract.approve(
+        SpaceAuctionAddress,
+        uccApprovalAmount
+      );
 
-    await uccApproveTx.wait();
+      await uccApproveTx.wait();
 
-    let allowance = await uccContract.allowance(
-      loginAddress,
-      SpaceAuctionAddress
-    );
-    setUccAllowance(allowance);
+      let allowance = await uccContract.allowance(
+        loginAddress,
+        SpaceAuctionAddress
+      );
+      setUccAllowance(allowance);
+    } else {
+      dispatch(
+        showAlert({
+          message:
+            "Metamask seem to be not installed. Please install metamask first and try again.",
+          severity: "error",
+        })
+      );
+    }
   };
 
   const handleCancelApprove = async () => {
@@ -176,7 +183,7 @@ const Auction = () => {
           })
         );
       } else {
-        if (uccBalance.gte(ttlSpacesPrice)) {
+        if (Number(uccBalance.toString()) >= ttlSpacesPrice) {
           if (uccAllowance.gt(0)) {
             // call bid function to get space token by offering ucc token
             let bidTx = await spaceAuctionContract.bid(
@@ -257,7 +264,7 @@ const Auction = () => {
       (await spaceAuctionContract.getCurrentPrice()).toString()
     );
     setUccPricePerSpace(
-      ethers.utils.parseEther(uccPricePerSpaceTmp.toString()).toNumber()
+      Number(ethers.utils.formatEther(uccPricePerSpaceTmp.toString()))
     );
     spacesLimitPerBid = parseInt(
       (await spaceAuctionContract.spacesLimitPerBid()).toString()

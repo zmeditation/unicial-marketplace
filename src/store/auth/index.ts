@@ -3,9 +3,14 @@ import { setloginAddress, setlogoutAddress } from "./actions";
 
 // const PREFIX = 'trade/orderHsitory'
 const PREFIX = "auth";
+declare var window: any;
 
 let initLoginAddress;
-if (localStorage.loginAddress && localStorage.loginAddress !== "undefined") {
+if (
+  window.ethereum &&
+  localStorage.loginAddress &&
+  localStorage.loginAddress !== "undefined"
+) {
   initLoginAddress = localStorage.loginAddress;
 } else {
   initLoginAddress = "";
