@@ -183,7 +183,7 @@ const Auction = () => {
           })
         );
       } else {
-        if (uccBalance.gte(ttlSpacesPrice)) {
+        if (Number(uccBalance.toString()) >= ttlSpacesPrice) {
           if (uccAllowance.gt(0)) {
             // call bid function to get space token by offering ucc token
             let bidTx = await spaceAuctionContract.bid(
