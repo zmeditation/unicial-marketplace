@@ -21,7 +21,9 @@ var signer: any;
 var estateRegistryContract: any;
 var parcelRegistryContract: any;
 
-signer = generateSigner(window.ethereum);
+if (window.ethereum !== undefined) {
+  signer = generateSigner(window.ethereum);
+}
 
 export const getCoords = async (ownedTokens: any[]) => {
   let coordPromises = [];
