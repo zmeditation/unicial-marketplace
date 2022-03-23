@@ -100,9 +100,13 @@ export const getEstatesByOwner = async (owner: any) => {
     let ownedTokens = await Promise.all(tokenPromises);
 
     for (let i = 0; i < ownedTokens.length; i++) {
-      ownedTokens[i] = ownedTokens[i].toNumber();
+      if (
+        (
+          await estateRegistryContract.getEstateSize(ownedTokens[i].toNumber())
+        ).toNumber() > 0
+      )
+        ownedTokens[i] = ownedTokens[i].toNumber();
     }
-
     return ownedTokens;
   } catch (error: any) {
     return [];
