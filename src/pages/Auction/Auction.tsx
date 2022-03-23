@@ -90,20 +90,21 @@ const Auction = () => {
   });
 
   useEffect(() => {
-    signer = generateSigner(window.ethereum);
-    uccContract = generateContractInstance(
-      UccContractAddress,
-      UccContractAbi,
-      signer
-    );
+    if (window.ethereum !== undefined) {
+      signer = generateSigner(window.ethereum);
+      uccContract = generateContractInstance(
+        UccContractAddress,
+        UccContractAbi,
+        signer
+      );
 
-    spaceAuctionContract = generateContractInstance(
-      SpaceAuctionAddress,
-      SpaceAuctionAbi,
-      signer
-    );
-
-    initialize();
+      spaceAuctionContract = generateContractInstance(
+        SpaceAuctionAddress,
+        SpaceAuctionAbi,
+        signer
+      );
+      initialize();
+    }
   }, [loginAddress]);
 
   useEffect(() => {
@@ -117,22 +118,31 @@ const Auction = () => {
 
   useEffect(() => {}, [uccAllowance.toString()]);
 
-  useEffect(() => {}, []);
   // approve UCC token to buy Space token
   const handleApproveUCCToken = async () => {
-    // generate approve tx and wait until tx finihes
-    let uccApproveTx = await uccContract.approve(
-      SpaceAuctionAddress,
-      uccApprovalAmount
-    );
+    if (window.ethereum !== undefined) {
+      // generate approve tx and wait until tx finihes
+      let uccApproveTx = await uccContract.approve(
+        SpaceAuctionAddress,
+        uccApprovalAmount
+      );
 
-    await uccApproveTx.wait();
+      await uccApproveTx.wait();
 
-    let allowance = await uccContract.allowance(
-      loginAddress,
-      SpaceAuctionAddress
-    );
-    setUccAllowance(allowance);
+      let allowance = await uccContract.allowance(
+        loginAddress,
+        SpaceAuctionAddress
+      );
+      setUccAllowance(allowance);
+    } else {
+      dispatch(
+        showAlert({
+          message:
+            "Metamask seem to be not installed. Please install metamask first and try again.",
+          severity: "error",
+        })
+      );
+    }
   };
 
   const handleCancelApprove = async () => {

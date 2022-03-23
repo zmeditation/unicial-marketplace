@@ -84,7 +84,7 @@ export default function Header() {
               </Button> */}
           </div>
           <HeaderMobileMenu />
-          {loginAddress ? (
+          {window.ethereum && loginAddress ? (
             <HeaderSignInBar />
           ) : (
             <HeaderSignInBtn onClick={handleSignIn} />
