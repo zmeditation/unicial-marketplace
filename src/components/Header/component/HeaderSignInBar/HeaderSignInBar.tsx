@@ -22,6 +22,7 @@ import { selectLoginAddress } from "../../../../store/auth/selectors";
 import useEffect from "react";
 import { getZNXBalance, getUccBalance } from "../../../../common/contract";
 import { ethers, BigNumber } from "ethers";
+import clsx from "clsx";
 
 export default function HeaderSignInBar() {
   const classes = HeaderSignInBarStyle();
@@ -65,7 +66,11 @@ export default function HeaderSignInBar() {
   return (
     <div className={classes.root}>
       <div className={classes.container}>
-        <StyledRingButton onClick={handleRingButton} disabled={tmp === 1}>
+        <StyledRingButton
+          onClick={handleRingButton}
+          disabled={tmp === 1}
+          className={classes.ringButton}
+        >
           <NotificationsIcon className={classes.notificationicon} />
         </StyledRingButton>
         <div className={classes.userMenu}>
@@ -126,6 +131,19 @@ export default function HeaderSignInBar() {
               </div>
               <div className={classes.imageLabel}>{t("Guest")}</div>
             </div>
+            <StyledMenuItem className={classes.moneyContainer}>
+              <Box className={clsx(classes.itemContainer)}>
+                <img src={coinIcon1} className={classes.itemIcon} />
+                <Box className={classes.itemLabel}>{uccBal} UCC</Box>
+              </Box>
+            </StyledMenuItem>
+            <StyledMenuItem className={classes.moneyContainer}>
+              <Box className={classes.itemContainer}>
+                <img src={coinIcon2} className={classes.itemIcon} />
+                <Box className={classes.itemLabel}>{znxBal} ZNX</Box>
+              </Box>
+            </StyledMenuItem>
+
             <StyledMenuItem onClick={handleAccount}>
               <Box className={classes.itemContainer}>
                 <PersonOutlineIcon className={classes.itemIcon} />

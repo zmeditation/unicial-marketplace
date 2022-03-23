@@ -87,7 +87,7 @@ export const LandCardStyle = makeStyles((theme: Theme) =>
     priceContainer: {
       display: "flex",
       width: "70px",
-      justifyContent: "space-between",
+      justifyContent: "end",
       alignItems: "center",
     },
     price: {
@@ -98,6 +98,10 @@ export const LandCardStyle = makeStyles((theme: Theme) =>
       letterSpacing: "0.02em",
       color: "white",
       fontFamily: "Montserrat",
+      marginLeft: "5px",
+    },
+    emptyprice: {
+      height: "30px",
     },
   })
 );

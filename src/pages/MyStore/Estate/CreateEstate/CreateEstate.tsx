@@ -92,6 +92,7 @@ const CreateEstate = () => {
       })
     );
     dispatch(setSpaces());
+    window.location.href = "/account/estate/create";
   };
 
   const convertToBidData = () => {
@@ -122,7 +123,8 @@ const CreateEstate = () => {
                 <img
                   src={TokenImg}
                   className={classes.tokenImg}
-                  alt='token'></img>
+                  alt="token"
+                ></img>
               </div>
             </div>
             <div className={classes.rightCard}>
@@ -155,7 +157,7 @@ const CreateEstate = () => {
                   </div>
                   <TextareaAutosize
                     className={classes.descriptionTextField}
-                    aria-label='maximum height'
+                    aria-label="maximum height"
                     placeholder={t("This is an estate")}
                     onChange={(e) => handleDescriptionChange(e)}
                   />
@@ -164,16 +166,18 @@ const CreateEstate = () => {
               </div>
               <div className={classes.buttons}>
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.bidchange}
-                  onClick={handleSubmitBtn}>
+                  onClick={handleSubmitBtn}
+                >
                   {t("SUBMIT")}
-                  <CallMadeIcon fontSize='small' />
+                  <CallMadeIcon fontSize="small" />
                 </ActionButton>
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.cancelchange}
-                  onClick={() => navigate("/account/estate/create")}>
+                  onClick={() => navigate("/account/estate/create")}
+                >
                   {t("CANCEL")}
                 </ActionButton>
               </div>

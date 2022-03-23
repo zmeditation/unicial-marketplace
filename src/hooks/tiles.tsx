@@ -19,5 +19,6 @@ export const fetchTiles = async (
   if (!window.fetch) return {};
   const resp = await window.fetch(url);
   const json = await resp.json();
+  // console.log("tilestest", json.data);
   return json.data as Record<string, AtlasTile>;
 };

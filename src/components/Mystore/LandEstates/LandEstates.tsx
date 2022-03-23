@@ -5,15 +5,16 @@ import { useAppDispatch, useAppSelector } from "./../../../store/hooks";
 import LandCard from "../LandCard/LandCard";
 import ActionButton from "../../../components/Base/ActionButton";
 import { getEstatesByOwner } from "../../../hooks/api";
-import { useNavigate } from "react-router-dom";
-
 import { useTranslation } from "react-i18next";
 import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
-
+import { useLocation, useNavigate } from "react-router";
 import { selectLoginAddress } from "./../../../store/auth/selectors";
 import { ShowMoreLessBtn } from "../../ShowMoreLessBtn/ShowMoreLessBtn";
 import { showMoreCount } from "../../../config/constant";
 import { showSpinner } from "../../../store/spinner";
+import { saleEstates } from "../../../store/saleestates/selectors";
+import saleestates from "../../../store/saleestates";
+import { ethers } from "ethers";
 
 export default function LandEstates() {
   const classes = LandEstatesStyle();
@@ -24,6 +25,11 @@ export default function LandEstates() {
   const [ownEstates, setOwnEstates] = useState(emptyTokens);
   const [showStatus, setShowStatus] = useState(false);
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+
+  const estatesOnSale: any = useAppSelector(saleEstates);
+  console.log("'estatesOnSale", estatesOnSale);
 
   const handleCreateClick = () => {
     navigate("/account/estate/create");
@@ -44,16 +50,29 @@ export default function LandEstates() {
 
   const initSet = async () => {
     dispatch(showSpinner(true));
-    let estates: any[] = [];
-    estates = await getEstatesByOwner(loginAddress);
-    setOwnEstates(estates);
+    // let estates: any[] = [];
+    await getEstatesByOwner(loginAddress).then((estates) => {
+      // console.log("estates", estates);
+      if (
+        query.get("onlyOnSale") === null ||
+        query.get("onlyOnSale") === "false"
+      ) {
+        // console.log("onsale down");
+        setOwnEstates(estates);
+      } else {
+        // console.log("onsale on1", estates[0]);
+        setOwnEstates(estates.filter((e?: any) => estatesOnSale[e]));
+        // console.log("onsale on2", estatesOnSale.data);
+      }
+    });
+
     dispatch(showSpinner(false));
   };
 
   useEffect(() => {
     initSet();
-  }, []);
-  // console.log("ownestate", ownEstates);
+  }, [location]);
+  console.log("ownEstates", ownEstates);
   return (
     <>
       <div className={classes.createBtnContainer}>
@@ -77,11 +96,19 @@ export default function LandEstates() {
           ?.slice(0, !showStatus ? showMoreCount : ownEstates.length)
           .map((tokenId: any, key: any) => {
             // console.log("tokenid", tokenId);
+            let priceEstate = "null";
+            if (estatesOnSale[tokenId]) {
+              priceEstate = ethers.utils.formatUnits(
+                estatesOnSale[tokenId]?.priceInWei.toString(),
+                18
+              );
+            }
             return (
               <Grid key={key} item xs={12} sm={6} md={4}>
                 <LandCard
                   locationbtnX={23}
                   locationbtnY={12}
+                  price={parseInt(priceEstate)}
                   landName="Plaza Area Sale"
                   category="Zilionixx"
                   onClick={() => handleNavigate(tokenId)}

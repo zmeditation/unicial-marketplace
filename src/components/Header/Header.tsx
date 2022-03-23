@@ -10,6 +10,8 @@ import { useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { useTranslation } from "react-i18next";
 
+declare var window: any;
+
 export default function Header() {
   const classes = HeaderStyle();
   const navigate = useNavigate();
@@ -19,7 +21,14 @@ export default function Header() {
   const { t } = useTranslation();
 
   const handleSignIn = () => {
-    navigate(`/signin`);
+    if (window.ethereum !== undefined) {
+      navigate(`/signin`);
+    } else {
+      window.open(
+        "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn",
+        "_blank"
+      );
+    }
   };
 
   const handleMarketPlace = () => {

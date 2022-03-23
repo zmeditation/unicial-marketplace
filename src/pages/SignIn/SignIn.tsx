@@ -37,7 +37,7 @@ export default function SignIn() {
   const classes = SignInStyle();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   var loginAddress: string;
 
   const getLoginAddress = async (signer: any, msgToSign: string) => {
@@ -52,14 +52,15 @@ export default function SignIn() {
   };
 
   const handleSignIn = async () => {
-    if (window.ethereum) {
+    if (window.ethereum !== undefined) {
       provider = new ethers.providers.Web3Provider(window.ethereum, "any");
       await provider.send("eth_requestAccounts", []);
       signer = provider.getSigner();
     } else {
       dispatch(
         showAlert({
-          message: "Metamask seem to be not installed. Please install metamask first and try again.",
+          message:
+            "Metamask seem to be not installed. Please install metamask first and try again.",
           severity: "error",
         })
       );
@@ -75,7 +76,7 @@ export default function SignIn() {
       // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
       dispatch(
         showAlert({
-          message: `Recovered address: ${loginAddress.slice(0,6)}`,
+          message: `Recovered address: ${loginAddress.slice(0, 6)}`,
           severity: "success",
         })
       );
@@ -95,7 +96,10 @@ export default function SignIn() {
         // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
         dispatch(
           showAlert({
-            message: `Switched chain done & Recovered address: ${loginAddress.slice(0,6)}`,
+            message: `Switched chain done & Recovered address: ${loginAddress.slice(
+              0,
+              6
+            )}`,
             severity: "success",
           })
         );
@@ -122,7 +126,10 @@ export default function SignIn() {
             // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
             dispatch(
               showAlert({
-                message: `Add chain done & Recovered address: ${loginAddress.slice(0,6)}`,
+                message: `Add chain done & Recovered address: ${loginAddress.slice(
+                  0,
+                  6
+                )}`,
                 severity: "success",
               })
             );
@@ -130,7 +137,8 @@ export default function SignIn() {
             // handle "add" error
             dispatch(
               showAlert({
-                message: "Can not add Zilionixx network. Please add Zilionixx network.",
+                message:
+                  "Can not add Zilionixx network. Please add Zilionixx network.",
                 severity: "error",
               })
             );
