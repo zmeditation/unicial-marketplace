@@ -20,7 +20,7 @@ const OnSaleTable = ({
   stepIndex,
 }: StagingTableProps) => {
   const classes = useStyles();
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   const tableRows =
     rows !== undefined ? (
       rows.slice((curPage - 1) * 2, curPage * 2).map((row: any, key: any) => (
@@ -39,10 +39,10 @@ const OnSaleTable = ({
             {<img src={normalshapeSvg} className={classes.normalshape} />}
             {<div>{row.sale_price}</div>}
           </TableCell>
-          <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-          <ActionButton color='dark' className={classes.actionBtn}>
-                {t("Cancel")}
-              </ActionButton>
+          <TableCell className={clsx(classes.tableCell)}>
+            <ActionButton color="dark" className={classes.actionBtn}>
+              {t("Cancel")}
+            </ActionButton>
           </TableCell>
         </TableRow>
       ))
