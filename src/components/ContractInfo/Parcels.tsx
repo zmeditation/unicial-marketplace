@@ -4,7 +4,7 @@ import { ShowMoreLessBtn } from "../ShowMoreLessBtn/ShowMoreLessBtn";
 import { useTranslation } from "react-i18next";
 import { getCoords } from "../../common/utils";
 import { useEffect, useState } from "react";
-import { showMoreCount } from "../../config/constant";
+import { parcelshowMoreCount } from "../../config/constant";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: "35px",
@@ -66,7 +66,7 @@ interface ParcelsProps {
 const Parcels = ({ parcels }: ParcelsProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const [count, setCount] = useState(showMoreCount);
+  const [count, setCount] = useState(parcelshowMoreCount);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [showLessBtn, setShowLessBtn] = useState(false);
 
@@ -77,7 +77,7 @@ const Parcels = ({ parcels }: ParcelsProps) => {
   };
 
   const handleShowLessBtn = () => {
-    setCount(showMoreCount);
+    setCount(parcelshowMoreCount);
     setShowMoreBtn(true);
     setShowLessBtn(false);
   };
@@ -86,11 +86,11 @@ const Parcels = ({ parcels }: ParcelsProps) => {
     if (
       parcels !== undefined &&
       parcels.length !== 0 &&
-      parcels?.length <= showMoreCount
+      parcels?.length <= parcelshowMoreCount
     ) {
       setShowMoreBtn(false);
       setShowLessBtn(false);
-    }else{
+    } else {
       setShowMoreBtn(true);
       setShowLessBtn(false);
     }
@@ -110,13 +110,15 @@ const Parcels = ({ parcels }: ParcelsProps) => {
         <div
           className={
             showMoreBtn === true ? classes.showmoreContent : classes.displayNone
-          }>
+          }
+        >
           <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
         </div>
         <div
           className={
             showLessBtn === true ? classes.showmoreContent : classes.displayNone
-          }>
+          }
+        >
           <ShowMoreLessBtn
             letter={t("Show Less")}
             onClick={handleShowLessBtn}

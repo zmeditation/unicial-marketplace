@@ -7,6 +7,7 @@ export const tabs = {
 };
 
 export const showMoreCount = 6;
+export const parcelshowMoreCount = 10;
 
 export const headerId = {
   marketplace: 1,
