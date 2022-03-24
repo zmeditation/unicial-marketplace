@@ -225,3 +225,15 @@ export const getOnsaleListByOwner = async (address: any) => {
     return [];
   }
 };
+
+export const getEstateSize = async (tokenId: any) => {
+  estateRegistryContract = generateContractInstance(
+    EstateProxyAddress,
+    EstateRegistryAbi,
+    signer
+  );
+  const estateSize = (
+    await estateRegistryContract.getEstateSize(tokenId)
+  ).toNumber();
+  return estateSize;
+};

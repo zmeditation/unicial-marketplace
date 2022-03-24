@@ -47,7 +47,9 @@ const CreateEstate = () => {
   };
 
   const handleSubmitBtn = async () => {
+    let flag = true;
     if (loginAddress.length === 0) {
+      flag = false;
       dispatch(
         showAlert({
           message: "You have to connect Meta mask wallet.",
@@ -58,6 +60,7 @@ const CreateEstate = () => {
     }
 
     if (description === "") {
+      flag = false;
       dispatch(
         showAlert({
           message: "You have to write your estate description.",
@@ -67,6 +70,7 @@ const CreateEstate = () => {
     }
 
     if (name === "") {
+      flag = false;
       dispatch(
         showAlert({
           message: "You have to write your estate name.",
@@ -76,6 +80,7 @@ const CreateEstate = () => {
     }
 
     if (beneficiary === "") {
+      flag = false;
       dispatch(
         showAlert({
           message: "You have to write the beneficiary address.",
@@ -83,16 +88,17 @@ const CreateEstate = () => {
         })
       );
     }
-
-    await createEstateWithMetaData(bid.xs, bid.ys, beneficiary, bid.metadata);
-    dispatch(
-      showAlert({
-        message: "Create estate order is successfully published.",
-        severity: "success",
-      })
-    );
-    dispatch(setSpaces());
-    window.location.href = "/account/estate/create";
+    if (flag) {
+      await createEstateWithMetaData(bid.xs, bid.ys, beneficiary, bid.metadata);
+      dispatch(
+        showAlert({
+          message: "Create estate order is successfully published.",
+          severity: "success",
+        })
+      );
+      dispatch(setSpaces());
+      window.location.href = "/account?section=estates";
+    }
   };
 
   const convertToBidData = () => {
