@@ -103,10 +103,7 @@ export default function LandEstates() {
                 <LandCard
                   type="estate"
                   tokenid={tokenId}
-                  locationbtnX={23}
-                  locationbtnY={12}
                   price={parseInt(priceEstate)}
-                  landName="Plaza Area Sale"
                   category="Zilionixx"
                   onClick={() => handleNavigate(tokenId)}
                 />

@@ -8,6 +8,8 @@ import LocationBtn from "../../Base/LocationBtn";
 import LandSize from "../../Base/LandSize";
 import React, { useEffect } from "react";
 import { getEstateSize } from "../../../../src/hooks/api";
+import { fetchTiles } from "../../../hooks/tiles";
+import { getCoords, noneSpace } from "../../../common/utils";
 
 interface LandCardProps {
   type: string;
@@ -38,7 +40,6 @@ export default function LandCard({
       setCount(res);
     });
   };
-
   useEffect(() => {
     getLandCount();
   }, []);
@@ -60,7 +61,11 @@ export default function LandCard({
         <div className={classes.imageContainer}>
           <img src={landmap1Png} className={classes.image} />
         </div>
-        <div className={classes.productName}>{landName}</div>
+        {landName === null || landName === "" ? (
+          <div className={classes.productName}> Parcel </div>
+        ) : (
+          <div className={classes.productName}>{landName}</div>
+        )}
         <div className={classes.bottom}>
           <div className={classes.category}>{category}</div>
           {price ? (

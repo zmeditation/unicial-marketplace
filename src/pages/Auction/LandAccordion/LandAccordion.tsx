@@ -105,7 +105,7 @@ export default function LandAccordion() {
       }
     });
     setCountMulti(count);
-    console.log("accordion", newSelectedTile);
+    // console.log("accordion", newSelectedTile);
     dispatch(getparcels(newSelectedTile));
   };
 

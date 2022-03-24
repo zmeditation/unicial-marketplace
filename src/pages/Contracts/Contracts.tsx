@@ -224,7 +224,7 @@ const Contract = () => {
                     : classes.displayNone
                 }
               >
-                {loginAddress.toUpperCase() === owner.toUpperCase() ? (
+                {loginAddress?.toUpperCase() === owner?.toUpperCase() ? (
                   <Sellbox price={ethers.utils.formatUnits(salePrice, 18)} />
                 ) : (
                   <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />

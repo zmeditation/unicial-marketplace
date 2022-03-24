@@ -1,7 +1,6 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import pinlocationSvg from "../../assets/svg/pinlocation.svg";
-import { addSpace } from "../../common/utils";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {

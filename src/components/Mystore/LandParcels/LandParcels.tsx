@@ -86,7 +86,7 @@ export default function LandParcels() {
                       type="parcel"
                       locationbtnX={tokenId[0]}
                       locationbtnY={tokenId[1]}
-                      landName="Plaza Area Sale"
+                      landName={tiles[getCoords(tokenId[0], tokenId[1])].name}
                       price={parseInt(priceParcel)}
                       category="Zilionixx"
                       onClick={() =>
