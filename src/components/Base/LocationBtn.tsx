@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: "5px",
     },
     icon: {
-      marginTop: "3px",
+      marginTop: "2px",
     },
     info: {
       fontSize: "14px",
@@ -38,7 +38,6 @@ interface Props {
   onClick?: () => void;
 }
 
-
 export default function LocationBtn({
   position,
   dark,
@@ -51,7 +50,8 @@ export default function LocationBtn({
       <div
         className={clsx(classes.root, className, {
           [classes.darkbackground]: dark,
-        })}>
+        })}
+      >
         <img src={pinlocationSvg} className={classes.icon} />
         <div className={classes.info}>{addSpace(position)}</div>
       </div>

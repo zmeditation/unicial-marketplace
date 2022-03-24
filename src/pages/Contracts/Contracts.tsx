@@ -6,6 +6,7 @@ import Owner from "../../components/ContractInfo/Owner";
 import Highlight from "../../components/ContractInfo/Highlight";
 import Bidbox from "../../components/ContractInfo/Bidbox";
 import Buybox from "../../components/ContractInfo/Buybox";
+import Sellbox from "../../components/ContractInfo/Sellbox";
 import Parcels from "../../components/ContractInfo/Parcels";
 import TopTab from "../../components/TopTab/TopTab";
 import BidRecord from "../../components/ContractInfo/BidRecord";
@@ -33,12 +34,15 @@ import {
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
 import { getBidsByToken } from "../../hooks/api";
+import { selectLoginAddress } from "../../store/auth/selectors";
+// import {Sellbox} from "../../components/ContractInfo/SellBox";
 
 declare var window: any;
 var signer: any, bidContract: any;
 
 const Contract = () => {
   const classes = useStyles();
+  const loginAddress = useAppSelector(selectLoginAddress);
   const { contractaddress, tokensid } = useParams();
   const [width, setWidth] = useState(0);
   const { t } = useTranslation();
@@ -164,7 +168,6 @@ const Contract = () => {
   };
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
-
   return (
     <>
       <TopTab />
@@ -205,7 +208,7 @@ const Contract = () => {
               </div>
             </div>
             <div className={classes.rightDescription}>
-              <div
+              {/* <div
                 className={
                   saleId && saleId === tokensid
                     ? classes.displayNone
@@ -213,7 +216,7 @@ const Contract = () => {
                 }
               >
                 <Bidbox selectOwner={owner && owner} />
-              </div>
+              </div> */}
               <div
                 className={
                   saleId && saleId === tokensid
@@ -221,7 +224,11 @@ const Contract = () => {
                     : classes.displayNone
                 }
               >
-                <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />
+                {loginAddress.toUpperCase() === owner.toUpperCase() ? (
+                  <Sellbox price={ethers.utils.formatUnits(salePrice, 18)} />
+                ) : (
+                  <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />
+                )}
               </div>
             </div>
           </div>
@@ -241,7 +248,7 @@ const Contract = () => {
                 totalPage={totalPage}
               />
             </div>
-          </div>
+          </div> */}
           <div>
             <div
               className={
@@ -262,7 +269,7 @@ const Contract = () => {
                 />
               );
             })}
-          </div> */}
+          </div>
         </div>
       </div>
     </>

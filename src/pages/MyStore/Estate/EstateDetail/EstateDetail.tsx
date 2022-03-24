@@ -83,9 +83,9 @@ const EstateDetail = () => {
     );
     let currentOperator = await estateRegistryContract.updateOperator(estateid);
     if (currentOperator !== "0x0000000000000000000000000000000000000000") {
-      setCurrentOperator(currentOperator);
+      setCurrentOperator(currentOperator + "..");
     } else {
-      setCurrentOperator("....");
+      setCurrentOperator("0x");
     }
   };
   useEffect(() => {
@@ -129,7 +129,7 @@ const EstateDetail = () => {
                     <div className={classes.subheader_label}>
                       {t("Operator")}:
                       <span className={classes.operatorValue}>
-                        {currentOperator.slice(0, 7) + ".."}
+                        {currentOperator.slice(0, 7)}
                       </span>
                     </div>
                   </Grid>

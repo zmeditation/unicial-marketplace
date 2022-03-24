@@ -148,7 +148,7 @@ const CreateEstate = () => {
                   <div className={classes.subheader_label}>{t("Name")}</div>
                   <FormControl className={classes.widthFull}>
                     <StyledInput
-                      placeholder={t("Decentraland")}
+                      placeholder={t("Estate name")}
                       onChange={(e) => handleNameChange(e)}
                     />
                   </FormControl>
