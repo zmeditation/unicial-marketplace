@@ -32,12 +32,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-var count = onsaleData.length;
-var totalPage = Math.ceil(count / 2);
+// var count = onsaleData.length;
+// var totalPage = Math.ceil(count / 2);
 
 export default function OnSale() {
   const classes = useStyles();
   const [curPage, setCurPage] = useState<any>(1);
+  const [totalPage, setTotalPage] = useState(0);
+  const [onsaleData, seOnsaleData] = useState<any>();
   const loginAddress = useAppSelector(selectLoginAddress);
   const dispatch = useAppDispatch();
 
@@ -48,7 +50,10 @@ export default function OnSale() {
   const init = async () => {
     dispatch(showSpinner(true));
     await getOnsaleListByOwner(loginAddress).then((onSaleData: any) => {
-      console.log(onSaleData);
+      seOnsaleData(onSaleData);
+      var count = onsaleData?.length;
+      var totalPage = Math.ceil(count / 2);
+      setTotalPage(totalPage);
     });
     dispatch(showSpinner(false));
   };
