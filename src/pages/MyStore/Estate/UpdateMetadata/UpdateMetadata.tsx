@@ -81,7 +81,6 @@ const UpdateMetadata = () => {
       estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
       estateRegistryContract.isApprovedForAll(loginAddress, estateid) === false
     ) {
-      alert("test2");
       let approveMarketTx = await estateRegistryContract.approve(
         MarketplaceAddress,
         estateid
@@ -106,6 +105,7 @@ const UpdateMetadata = () => {
         severity: "success",
       })
     );
+    window.location.href = "/account?section=estates";
   };
 
   return (
