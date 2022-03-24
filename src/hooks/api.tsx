@@ -192,21 +192,31 @@ export const getOnsaleListByOwner = async (address: any) => {
     let saleList: any = [];
 
     for (let index = 0; index < parcel.length; index++) {
+      let arr_temp: any = {};
       let arr = await marketplaceContract.orderByAssetId(
         SpaceProxyAddress,
         parcel[index].toString()
       );
       if (arr.expiresAt.toNumber() > currentTime) {
-        saleList.push(arr);
+        arr_temp["tokenId"] = parcel[index].toString();
+        arr_temp["tokenAddress"] = arr.nftAddress;
+        arr_temp["price"] = arr.price.toString();
+        arr_temp["expiresAt"] = arr.expiresAt.toNumber();
+        saleList.push(arr_temp);
       }
     }
     for (let index = 0; index < estate.length; index++) {
+      let arr_temp: any = {};
       let arr = await marketplaceContract.orderByAssetId(
         EstateProxyAddress,
         estate[index].toString()
       );
       if (arr.expiresAt.toNumber() > currentTime) {
-        saleList.push(arr);
+        arr_temp["tokenId"] = estate[index].toString();
+        arr_temp["tokenAddress"] = arr.nftAddress;
+        arr_temp["price"] = arr.price.toString();
+        arr_temp["expiresAt"] = arr.expiresAt.toNumber();
+        saleList.push(arr_temp);
       }
     }
     return saleList;

@@ -9,11 +9,6 @@ export const tabs = {
 export const showMoreCount = 6;
 export const parcelshowMoreCount = 10;
 
-export const headerId = {
-  marketplace: 1,
-  admin: 2,
-};
-
 export const topTabIndex = {
   land: 1,
   collectibles: 2,
