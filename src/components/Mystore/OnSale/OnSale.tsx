@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OnSaleTable from "./OnSaleTable/OnSaleTable";
 import TablePagination from "../../Base/TablePagination";
 import { headerData, onsaleData } from "./OnSaleTable/OnSaleTableData";
+import { selectLoginAddress } from "./../../../store/auth/selectors";
+import { useAppDispatch, useAppSelector } from "./../../../store/hooks";
+import { getOnsaleListByOwner } from "../../../hooks/api";
+import { showSpinner } from "../../../store/spinner";
 import {
   createStyles,
   makeStyles,
   Theme,
   withStyles,
 } from "@material-ui/core/styles";
+import { init } from "i18next";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,9 +38,25 @@ var totalPage = Math.ceil(count / 2);
 export default function OnSale() {
   const classes = useStyles();
   const [curPage, setCurPage] = useState<any>(1);
+  const loginAddress = useAppSelector(selectLoginAddress);
+  const dispatch = useAppDispatch();
+
   const handlepgnum = (value: number) => {
     setCurPage(value);
   };
+
+  const init = async () => {
+    dispatch(showSpinner(true));
+    await getOnsaleListByOwner(loginAddress).then((onSaleData: any) => {
+      console.log(onSaleData);
+    });
+    dispatch(showSpinner(false));
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
+
   return (
     <>
       <OnSaleTable
