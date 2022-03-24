@@ -1,20 +1,23 @@
-import { ApiUrl } from "../config/constant";
 import axios from "axios";
+import { ApiUrl } from "../config/constant";
+import { generateContractInstance, generateSigner } from "../common/contract";
+import { BigNumber } from "ethers";
 import {
   EstateProxyAddress,
   EstateRegistryAbi,
 } from "../config/contracts/EstateRegitryContract";
-// import utility functions
-import { generateContractInstance, generateSigner } from "../common/contract";
 import {
   SpaceProxyAddress,
   SpaceRegistryAbi,
 } from "../config/contracts/SpaceRegistryContract";
-import { BigNumber } from "ethers";
 import {
   BidContractAddress,
   BidContractAbi,
 } from "../config/contracts/BidContract";
+import {
+  MarketplaceAbi,
+  MarketplaceAddress,
+} from "../config/contracts/MarketPlaceContract";
 
 declare var window: any;
 var signer: any;
@@ -172,6 +175,43 @@ export const getBidsByToken = async (nftAddress: any, tokenId: any) => {
     let bids = await Promise.all(bidPromises);
     return bids;
   } catch {
+    return [];
+  }
+};
+
+export const getOnsaleListByOwner = async (address: any) => {
+  try {
+    let marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    const currentTime = new Date().getTime() / 1000;
+    const parcel = await getParcelsByOwnerAstokenId(address);
+    const estate = await getEstatesByOwner(address);
+    let saleList: any = [];
+
+    for (let index = 0; index < parcel.length; index++) {
+      let arr = await marketplaceContract.orderByAssetId(
+        SpaceProxyAddress,
+        parcel[index].toString()
+      );
+      if (arr.expiresAt.toNumber() > currentTime) {
+        saleList.push(arr);
+      }
+    }
+    for (let index = 0; index < estate.length; index++) {
+      let arr = await marketplaceContract.orderByAssetId(
+        EstateProxyAddress,
+        estate[index].toString()
+      );
+      if (arr.expiresAt.toNumber() > currentTime) {
+        saleList.push(arr);
+      }
+    }
+    return saleList;
+  } catch (error) {
+    console.log(error);
     return [];
   }
 };

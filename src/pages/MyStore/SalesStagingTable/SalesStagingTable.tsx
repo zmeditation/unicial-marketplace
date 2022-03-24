@@ -16,9 +16,7 @@ interface StagingTableProps {
 
 const SalesStagingTable = ({ columns, rows, stepIndex }: StagingTableProps) => {
   const classes = useStyles();
-  console.log("rowsopop", rows);
   const tableRows = rows?.map((row: any, key: any) => {
-    console.log("test@@", row.expiresAt);
     const date = dateConvert_untilDate(row.expiresAt);
     const buyer = row.buyer.slice(0, 7) + "..";
     let type = "";
