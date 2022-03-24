@@ -238,3 +238,13 @@ export const getEstateSize = async (tokenId: any) => {
 
   return estateSize;
 };
+
+export const getMetadata = async (tokenId: any) => {
+  estateRegistryContract = generateContractInstance(
+    EstateProxyAddress,
+    EstateRegistryAbi,
+    signer
+  );
+  const metadata = await estateRegistryContract.getMetadata(tokenId);
+  return metadata;
+};
