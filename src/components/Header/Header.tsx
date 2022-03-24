@@ -1,53 +1,26 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { HeaderStyle } from "./HeaderStyle";
 import HeaderMobileMenu from "./component/HeaderMobileMenu/HeaderMobileMenu";
 import HeaderSignInBar from "./component/HeaderSignInBar/HeaderSignInBar";
-import { headerId } from "../../config/constant";
 import HeaderSignInBtn from "./component/HeaderSignInBtn/HeaderSignInBtn";
 import { useAppSelector } from "../../store/hooks";
 import { selectLoginAddress } from "../../store/auth/selectors";
 import { useTranslation } from "react-i18next";
 
-declare var window: any;
-
 export default function Header() {
   const classes = HeaderStyle();
   const navigate = useNavigate();
-  const location = useLocation();
-  const [headIndex, setHeaderIndex] = useState(headerId.marketplace);
   const loginAddress = useAppSelector(selectLoginAddress);
   const { t } = useTranslation();
 
   const handleSignIn = () => {
-    if (window.ethereum !== undefined) {
-      navigate(`/signin`);
-    } else {
-      window.open(
-        "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn",
-        "_blank"
-      );
-    }
+    navigate(`/signin`);
   };
 
-  const handleMarketPlace = () => {
-    setHeaderIndex(headerId.marketplace);
-    navigate("/");
+  const handleRoute = (route: string) => {
+    window.open(route);
   };
-
-  const handleAdmin = () => {
-    setHeaderIndex(headerId.admin);
-    navigate("/admin/lands");
-  };
-
-  useEffect(() => {
-    if (location.pathname.includes("/admin")) {
-      setHeaderIndex(headerId.admin);
-    } else {
-      setHeaderIndex(headerId.marketplace);
-    }
-  }, [location.pathname]);
 
   return (
     <>
@@ -59,32 +32,44 @@ export default function Header() {
               <span className={classes.logoName}>{t("UNICIAL")}</span>
             </Link>
             <Button
-              className={
-                headIndex === headerId.marketplace
-                  ? classes.headerClickBtn
-                  : classes.headerBtn
-              }
+              className={classes.headerBtn}
               disableRipple
-              onClick={handleMarketPlace}
+              onClick={() => handleRoute("https://unicial.org")}
+            >
+              <span></span>
+              <span className={classes.headerLink}>{t("Home")}</span>
+              <span className={"active-border"}></span>
+            </Button>
+            <Button
+              className={classes.headerClickBtn}
+              disableRipple
+              onClick={() => navigate("/")}
             >
               <span></span>
               <span className={classes.headerLink}>{t("Marketplace")}</span>
               <span className={"active-border"}></span>
             </Button>
-            {/* <Button
-                className={
-                  headIndex === headerId.admin
-                    ? classes.headerClickBtn
-                    : classes.headerBtn
-                }
-                disableRipple
-                onClick={handleAdmin}
-              >
-                ADMIN
-              </Button> */}
+            <Button
+              className={classes.headerBtn}
+              disableRipple
+              onClick={() => handleRoute("https://doc.unicial.org")}
+            >
+              <span></span>
+              <span className={classes.headerLink}>{t("Documents")}</span>
+              <span className={"active-border"}></span>
+            </Button>
+            <Button
+              className={classes.headerBtn}
+              disableRipple
+              onClick={() => handleRoute("https://blog.unicial.org")}
+            >
+              <span></span>
+              <span className={classes.headerLink}>{t("Blog")}</span>
+              <span className={"active-border"}></span>
+            </Button>
           </div>
           <HeaderMobileMenu />
-          {window.ethereum && loginAddress ? (
+          {loginAddress ? (
             <HeaderSignInBar />
           ) : (
             <HeaderSignInBtn onClick={handleSignIn} />

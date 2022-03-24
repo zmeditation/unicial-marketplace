@@ -7,21 +7,22 @@ import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { HeaderMobileMenuStyle } from "./HeaderMobileMenuStyle";
-import { headerId } from "../../../../config/constant";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function HeaderMobileMenu() {
   const classes = HeaderMobileMenuStyle();
   const [open, setOpen] = React.useState(false);
-  const [head_index, setHeaderIndex] = React.useState(headerId.marketplace);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleClick = () => {
     setOpen(!open);
   };
 
-  const handleMarketplace = () => {
+  const handleRoute = (route: any) => {
     setOpen(false);
-    setHeaderIndex(headerId.marketplace);
-    window.location.href = "/";
+    window.open(route);
   };
 
   return (
@@ -33,11 +34,11 @@ export default function HeaderMobileMenu() {
           className={classes.root}
         >
           <ListItem className={classes.headerlistItem}>
-            <a href="/">
+            <a href="https://unicial.org">
               <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
             </a>
-            <div className={classes.firstItem}>
-              <ListItemText primary="MARKETPLACE" onClick={handleClick} />
+            <div className={classes.firstItem} onClick={handleClick}>
+              <ListItemText primary={t("UNICIAL")} />
               {open ? <ExpandLess /> : <ExpandMore />}
             </div>
           </ListItem>
@@ -50,14 +51,31 @@ export default function HeaderMobileMenu() {
             <List component="div" disablePadding>
               <ListItem
                 button
-                className={
-                  head_index === headerId.marketplace
-                    ? classes.active
-                    : classes.unactive
-                }
-                onClick={handleMarketplace}
+                className={classes.unactive}
+                onClick={() => handleRoute("https://unicial.org")}
               >
-                <ListItemText primary="MARKETPLACE" />
+                <ListItemText primary={t("Home")} />
+              </ListItem>
+              <ListItem
+                button
+                className={classes.active}
+                onClick={() => navigate("/")}
+              >
+                <ListItemText primary={t("Marketplace")} />
+              </ListItem>
+              <ListItem
+                button
+                className={classes.unactive}
+                onClick={() => handleRoute("https://doc.unicial.org")}
+              >
+                <ListItemText primary={t("Documents")} />
+              </ListItem>
+              <ListItem
+                button
+                className={classes.unactive}
+                onClick={() => handleRoute("https://blog.unicial.org")}
+              >
+                <ListItemText primary={t("Blog")} />
               </ListItem>
             </List>
           </Collapse>
