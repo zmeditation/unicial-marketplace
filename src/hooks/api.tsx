@@ -235,5 +235,6 @@ export const getEstateSize = async (tokenId: any) => {
   const estateSize = (
     await estateRegistryContract.getEstateSize(tokenId)
   ).toNumber();
+
   return estateSize;
 };

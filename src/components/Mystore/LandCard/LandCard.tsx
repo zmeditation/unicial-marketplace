@@ -5,10 +5,15 @@ import cubeSvg from "../../../assets/svg/cube.svg";
 import landmap1Png from "../../../assets/img/landmap1.png";
 //
 import LocationBtn from "../../Base/LocationBtn";
+import LandSize from "../../Base/LandSize";
+import React, { useEffect } from "react";
+import { getEstateSize } from "../../../../src/hooks/api";
 
 interface LandCardProps {
-  locationbtnX: number;
-  locationbtnY: number;
+  type: string;
+  tokenid?: any;
+  locationbtnX?: number;
+  locationbtnY?: number;
   landName?: string;
   category: string;
   price?: number;
@@ -16,6 +21,8 @@ interface LandCardProps {
 }
 
 export default function LandCard({
+  type,
+  tokenid,
   locationbtnX,
   locationbtnY,
   landName,
@@ -24,11 +31,27 @@ export default function LandCard({
   onClick,
 }: LandCardProps) {
   const classes = LandCardStyle();
+  const [count, setCount] = React.useState(0);
+
+  const getLandCount = async () => {
+    await getEstateSize(tokenid).then((res: any) => {
+      setCount(res);
+    });
+  };
+
+  useEffect(() => {
+    getLandCount();
+  }, []);
+
   return (
     <>
       <div className={classes.root} onClick={onClick}>
         <div className={classes.header}>
-          <LocationBtn position={`${locationbtnX} , ${locationbtnY}`} dark />
+          {type === "parcel" ? (
+            <LocationBtn position={`${locationbtnX} , ${locationbtnY}`} dark />
+          ) : (
+            <LandSize count={count} />
+          )}
           <div className={classes.iconContainer}>
             <img src={headSvg} className={classes.icon} />
             <img src={unisexSvg} className={classes.icon} />
@@ -47,7 +70,6 @@ export default function LandCard({
             </div>
           ) : (
             <div className={classes.priceContainer}>
-              {/* <img src={cubeSvg} className={classes.icon} /> */}
               <div className={classes.emptyprice}>{}</div>
             </div>
           )}

@@ -14,6 +14,7 @@ import { showMoreCount } from "../../../config/constant";
 import { showSpinner } from "../../../store/spinner";
 import { saleEstates } from "../../../store/saleestates/selectors";
 import saleestates from "../../../store/saleestates";
+
 import { ethers } from "ethers";
 
 export default function LandEstates() {
@@ -100,6 +101,8 @@ export default function LandEstates() {
             return (
               <Grid key={key} item xs={12} sm={6} md={4}>
                 <LandCard
+                  type="estate"
+                  tokenid={tokenId}
                   locationbtnX={23}
                   locationbtnY={12}
                   price={parseInt(priceEstate)}

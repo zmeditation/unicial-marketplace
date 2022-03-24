@@ -6,13 +6,7 @@ import { selectLoginAddress } from "./../../../store/auth/selectors";
 import { useAppDispatch, useAppSelector } from "./../../../store/hooks";
 import { getOnsaleListByOwner } from "../../../hooks/api";
 import { showSpinner } from "../../../store/spinner";
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  withStyles,
-} from "@material-ui/core/styles";
-import { init } from "i18next";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,18 +16,9 @@ const useStyles = makeStyles((theme: Theme) =>
     paginationContainer: {
       display: "flex",
       justifyContent: "center",
-      // "& .MuiPaginationItem-root": {
-      //   color: "white",
-      // },
-
-      // "& .MuiPaginationItem-page.Mui-selected": {
-      //   backgroundColor: "#e5080814",
-      // },
     },
   })
 );
-// var count = onsaleData.length;
-// var totalPage = Math.ceil(count / 2);
 
 export default function OnSale() {
   const classes = useStyles();

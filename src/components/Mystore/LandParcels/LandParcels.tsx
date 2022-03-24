@@ -83,6 +83,7 @@ export default function LandParcels() {
                 return (
                   <Grid item xs={12} sm={6} md={4} key={key}>
                     <LandCard
+                      type="parcel"
                       locationbtnX={tokenId[0]}
                       locationbtnY={tokenId[1]}
                       landName="Plaza Area Sale"
