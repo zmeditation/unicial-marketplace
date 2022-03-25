@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     zIndex: 99999,
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
-      width:"calc(100% - 32px) !important",
+      width: "calc(100% - 32px) !important",
       margin: "0px 50px",
     },
   },
@@ -108,10 +108,9 @@ export default function NetModal() {
   const classes = useStyles();
   const showBigbug = useAppSelector(bigbugAlertStatus);
   const { t } = useTranslation();
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   var loginAddress: string;
-
 
   const getLoginAddress = async (signer: any, msgToSign: string) => {
     let signature = await signer.signMessage(msgToSign);
@@ -120,8 +119,8 @@ export default function NetModal() {
     const recoveredAddress = ethers.utils.verifyMessage(msgToSign, signature);
 
     dispatch(setloginAddress(recoveredAddress));
-    dispatch(showNetModal(false))
-    navigate("/account");
+    dispatch(showNetModal(false));
+    navigate("/account?section=collections");
     return recoveredAddress;
   };
 
@@ -133,7 +132,8 @@ export default function NetModal() {
     } else {
       dispatch(
         showAlert({
-          message: "Metamask seem to be not installed. Please install metamask first and try again.",
+          message:
+            "Metamask seem to be not installed. Please install metamask first and try again.",
           severity: "error",
         })
       );
@@ -149,7 +149,7 @@ export default function NetModal() {
       // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
       dispatch(
         showAlert({
-          message: `Recovered address: ${loginAddress.slice(0,6)}`,
+          message: `Recovered address: ${loginAddress.slice(0, 6)}`,
           severity: "success",
         })
       );
@@ -169,7 +169,10 @@ export default function NetModal() {
         // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
         dispatch(
           showAlert({
-            message: `Switched chain done & Recovered address: ${loginAddress.slice(0,6)}`,
+            message: `Switched chain done & Recovered address: ${loginAddress.slice(
+              0,
+              6
+            )}`,
             severity: "success",
           })
         );
@@ -196,15 +199,19 @@ export default function NetModal() {
             // isAdmin = await spaceRegistryAuthorized(signer, loginAddress);
             dispatch(
               showAlert({
-                message: `Add chain done & Recovered address: ${loginAddress.slice(0,6)}`,
-                severity: "success", 
+                message: `Add chain done & Recovered address: ${loginAddress.slice(
+                  0,
+                  6
+                )}`,
+                severity: "success",
               })
             );
           } catch (addError) {
             // handle "add" error
             dispatch(
               showAlert({
-                message: "Can not add Zilionixx network. Please add Zilionixx network.",
+                message:
+                  "Can not add Zilionixx network. Please add Zilionixx network.",
                 severity: "error",
               })
             );
@@ -217,7 +224,11 @@ export default function NetModal() {
 
   return (
     <>
-      <div className={showBigbug === true ? classes.loaderWrapper: classes.displayNone}>
+      <div
+        className={
+          showBigbug === true ? classes.loaderWrapper : classes.displayNone
+        }
+      >
         <div className={classes.bigbugRoot}>
           <div className={classes.bigbugLabel}>{t("Wrong Network")} !</div>
           <div className={classes.bigbugDescription}>
@@ -226,7 +237,11 @@ export default function NetModal() {
             &nbsp; &nbsp;
             {t("to use this app, please switch your network to continue")}.
           </div>
-          <ActionButton color='light' className={classes.bidchange} onClick={handleSignIn}>
+          <ActionButton
+            color="light"
+            className={classes.bidchange}
+            onClick={handleSignIn}
+          >
             {t("SWITCH TO Zilionixx MAINNET")}
           </ActionButton>
         </div>

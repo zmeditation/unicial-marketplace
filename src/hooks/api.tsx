@@ -54,6 +54,7 @@ export const getParcelsByOwnerAsCoords = async (owner: any) => {
     let ownedTokens = await Promise.all(tokenPromises);
     return getCoords(ownedTokens);
   } catch (error: any) {
+    console.log(error);
     return [];
   }
 };
