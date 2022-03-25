@@ -6,11 +6,9 @@ import landmap1Png from "../../../assets/img/landmap1.png";
 //
 import LocationBtn from "../../Base/LocationBtn";
 import LandSize from "../../Base/LandSize";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getEstateSize } from "../../../../src/hooks/api";
 import { getMetadata } from "../../../../src/hooks/api";
-import { fetchTiles } from "../../../hooks/tiles";
-import { getCoords, noneSpace } from "../../../common/utils";
 import { category } from "../../../config/constant";
 
 interface LandCardProps {
@@ -75,19 +73,19 @@ export default function LandCard({
             <LandSize count={count} />
           )}
           <div className={classes.iconContainer}>
-            <img src={headSvg} className={classes.icon} />
-            <img src={unisexSvg} className={classes.icon} />
+            <img src={headSvg} className={classes.icon} alt="alt" />
+            <img src={unisexSvg} className={classes.icon} alt="alt" />
           </div>
         </div>
         <div className={classes.imageContainer}>
-          <img src={landmap1Png} className={classes.image} />
+          <img src={landmap1Png} className={classes.image} alt="alt" />
         </div>
         <div className={classes.productName}>{land}</div>
         <div className={classes.bottom}>
           <div className={classes.category}>{categoryName}</div>
           {price ? (
             <div className={classes.priceContainer}>
-              <img src={cubeSvg} className={classes.icon} />
+              <img src={cubeSvg} className={classes.icon} alt="alt" />
               <div className={classes.price}>{price}</div>
             </div>
           ) : (

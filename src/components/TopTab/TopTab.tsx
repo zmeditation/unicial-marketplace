@@ -102,7 +102,7 @@ export default function TopTab() {
         case "parcels":
           setSearchbarIndex(searchbarIndex.parcels);
           break;
-        case "estate":
+        case "estates":
           setSearchbarIndex(searchbarIndex.estate);
           break;
         case "wearables":

@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: "10px 20px",
     display: "flex",
     alignItems: "center",
-    // alignItems: "flex-start",
     "& svg": {
       margin: "0px 5px",
     },
@@ -93,7 +92,8 @@ const ActionButton = ({
           [classes.lightColor]: color === "light",
           [classes.disablestatus]: disabled,
         })}
-        onClick={!disabled ? onClick : onEmpty}>
+        onClick={!disabled ? onClick : onEmpty}
+      >
         <span className={classes.text}>{children}</span>
       </div>
     </>

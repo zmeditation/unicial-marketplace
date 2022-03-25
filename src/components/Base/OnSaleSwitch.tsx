@@ -93,7 +93,7 @@ export default function OnSaleSwitch({ letter }: Props) {
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
-  const [switchStatus, setSwitchStatus] = React.useState(true);
+  const [switchStatus, setSwitchStatus] = React.useState(false);
 
   const query = new URLSearchParams(location.search);
 
@@ -104,17 +104,20 @@ export default function OnSaleSwitch({ letter }: Props) {
       search: query.toString(),
     });
   };
-   useEffect(()=>{
-     if (location.pathname === "/account"){
-       setSwitchStatus(false)
-     }
-   },[])
+  useEffect(() => {
+    const category = query.get("onlyOnSale");
+    if (category === "false") {
+      setSwitchStatus(false);
+    } else {
+      setSwitchStatus(true);
+    }
+  }, [location]);
 
   const handleChange = () => {
-    handleRoute((!switchStatus).toString())
+    handleRoute((!switchStatus).toString());
     setSwitchStatus(!switchStatus);
   };
-  
+
   return (
     <div className={classes.OnSaleSwicthRoot}>
       <StyledFormControlLabel
