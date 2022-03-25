@@ -17,14 +17,14 @@ import ChinaSvg from "./../../assets/svg/China.svg";
 import EnglandSvg from "./../../assets/svg/England.svg";
 import SpainSvg from "./../../assets/svg/Spain.svg";
 import FooterTexture from "../../assets/svg/footer_texture.svg";
-import { useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
   const classes = FooterStyle();
   const [countryLanguage, setCountryLanguage] = React.useState("");
   const [countryFlag, setCountryFlag] = React.useState("");
   const [languageIndex, setlanguageIndex] = React.useState(1);
-  const { t,i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleEnglish = () => {
     i18n.changeLanguage("en");
@@ -85,7 +85,7 @@ export default function Footer() {
               <a href="/" className={classes.link}>
                 {t("Home")}
               </a>
-              <a href="/" className={classes.link}>
+              {/* <a href="/" className={classes.link}>
                 {t("Privacy Policy")}
               </a>
               <a href="/" className={classes.link}>
@@ -96,35 +96,56 @@ export default function Footer() {
               </a>
               <a href="/" className={classes.link}>
                 {t("Code of Ethics")}
-              </a>
+              </a> */}
             </div>
             <div className={classes.socialLinks}>
-              <a>
-                <img
-                  src={JoySvg}
-                  className={clsx(classes.socialIcon, classes.joySvg)}
-                  alt="symbol"
-                />
+              <a
+                target="_blank"
+                href="mailto:tsimafei@zilionixx.com"
+                rel="noreferrer"
+                className={classes.socialIcon}
+              >
+                <i className="fas fa-envelope"></i>
               </a>
-              <a style={{ marginLeft: "23px" }}>
-                <img
-                  src={RobotSvg}
-                  className={clsx(classes.socialIcon, classes.robotSvg)}
-                />
+              <a
+                target="_blank"
+                href="https://t.me/zilionixx"
+                rel="noreferrer"
+                className={classes.socialIcon}
+              >
+                <i className="fab fa-telegram-plane"></i>
               </a>
-              <a style={{ marginLeft: "23px" }}>
-                <img
-                  src={GithubSvg}
-                  className={clsx(classes.socialIcon, classes.githubSvg)}
-                  alt="symbol"
-                />
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.facebook.com/groups/4354141514692375"
+                className={classes.socialIcon}
+              >
+                <i className="fab fa-facebook-f "></i>
               </a>
-              <a style={{ marginLeft: "23px" }}>
-                <img
-                  src={DoveSvg}
-                  className={clsx(classes.socialIcon, classes.dovSvg)}
-                  alt="symbol"
-                />
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://twitter.com/zilionixx"
+                className={classes.socialIcon}
+              >
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.linkedin.com/company/zilionixx"
+                className={classes.socialIcon}
+              >
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://discord.gg/JEPcm4YD"
+                className={classes.socialIcon}
+              >
+                <i className="fab fa-discord"></i>
               </a>
             </div>
           </div>
