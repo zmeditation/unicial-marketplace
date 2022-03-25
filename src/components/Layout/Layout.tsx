@@ -117,12 +117,14 @@ export default function Layout() {
           <Route path="/" element={<MarketPlace />} />
           <Route path="/needsignin" element={<NeedSignIn />} />
           <Route path="/lands" element={<Lands />} />
-          <Route path="/auction" element={<Auction />} />
           <Route path="/browse" element={<Collectibles />} />
           <Route
             path="/contracts/:contractaddress/tokens/:tokensid"
             element={<Contracts />}
           />
+          <Route path="/auction" element={<ToNeedSignIn />}>
+            <Route path="/auction" element={<Auction />} />
+          </Route>
           <Route path="/account/estate/createestate" element={<ToNeedSignIn />}>
             <Route
               path="/account/estate/createestate"
