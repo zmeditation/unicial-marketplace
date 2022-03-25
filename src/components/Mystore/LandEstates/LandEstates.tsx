@@ -64,7 +64,7 @@ export default function LandEstates() {
 
   useEffect(() => {
     initSet();
-  }, []);
+  }, [query.get("onlyOnSale"), estatesOnSale]);
 
   return (
     <>
@@ -95,6 +95,7 @@ export default function LandEstates() {
                 18
               );
             }
+
             return (
               <Grid key={key} item xs={12} sm={6} md={4}>
                 <LandCard

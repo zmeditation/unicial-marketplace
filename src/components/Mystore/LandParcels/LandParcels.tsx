@@ -36,13 +36,11 @@ export default function LandParcels() {
 
   const getResult = async () => {
     dispatch(showSpinner(true));
-
     await getParcelsByOwnerAsCoords(loginAddress).then((parcels) => {
       if (
         query.get("onlyOnSale") === null ||
         query.get("onlyOnSale") === "false"
       ) {
-        // const position = `${parcels[2][0]},${parcels[2][1]}`;
         setResultParcels(parcels);
       } else {
         setResultParcels(
@@ -55,13 +53,11 @@ export default function LandParcels() {
 
   useEffect(() => {
     getResult();
-  }, []);
+  }, [query.get("onlyOnSale"), saleSpaces]);
 
   const handleShowBtn = () => {
     setShowStatus(!showStatus);
   };
-
-  // console.log("salespace", saleSpaces["4,17"]);
   return (
     <>
       {resultParcels !== undefined && resultParcels.length !== 0 ? (
