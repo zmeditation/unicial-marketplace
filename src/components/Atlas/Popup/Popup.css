@@ -24,6 +24,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 600;
+  width: 100px;
 }
 
 .name-row {
