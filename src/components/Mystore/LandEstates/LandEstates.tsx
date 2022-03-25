@@ -10,7 +10,7 @@ import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContr
 import { useLocation, useNavigate } from "react-router";
 import { selectLoginAddress } from "./../../../store/auth/selectors";
 import { ShowMoreLessBtn } from "../../ShowMoreLessBtn/ShowMoreLessBtn";
-import { showMoreCount } from "../../../config/constant";
+import { category, showMoreCount } from "../../../config/constant";
 import { showSpinner } from "../../../store/spinner";
 import { saleEstates } from "../../../store/saleestates/selectors";
 import saleestates from "../../../store/saleestates";
@@ -49,7 +49,6 @@ export default function LandEstates() {
 
   const initSet = async () => {
     dispatch(showSpinner(true));
-    // let estates: any[] = [];
     await getEstatesByOwner(loginAddress).then((estates) => {
       if (
         query.get("onlyOnSale") === null ||
@@ -60,13 +59,12 @@ export default function LandEstates() {
         setOwnEstates(estates.filter((e?: any) => estatesOnSale[e]));
       }
     });
-
     dispatch(showSpinner(false));
   };
 
   useEffect(() => {
     initSet();
-  }, [location]);
+  }, []);
 
   return (
     <>
@@ -100,10 +98,10 @@ export default function LandEstates() {
             return (
               <Grid key={key} item xs={12} sm={6} md={4}>
                 <LandCard
-                  type="estate"
+                  type={category.estates}
                   tokenid={tokenId}
                   price={parseInt(priceEstate)}
-                  category="Zilionixx"
+                  categoryName="Zilionixx"
                   onClick={() => handleNavigate(tokenId)}
                 />
               </Grid>
