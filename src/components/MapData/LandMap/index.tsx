@@ -173,7 +173,11 @@ const LandMap: React.FC<LandMapProps> = ({
       if (!tiles) return;
       const id = getCoords(x, y);
       const tile: Tile = tiles && tiles[id];
-      const sale: any = parcelOnSale && parcelOnSale[id];
+      let sale: any;
+      sale = parcelOnSale && parcelOnSale[id];
+      if (tile.estateId) {
+        sale = estateOnSale && estateOnSale[tile.estateId];
+      }
       if (tile?.estateId && tokensid === tile?.estateId) {
         setShowPopup(false);
         return;
