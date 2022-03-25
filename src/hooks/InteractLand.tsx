@@ -1,16 +1,12 @@
 import { ethers } from "ethers";
-import { CHAIN_INFO } from "./../config/constant";
 import { getProvider } from "./Common";
 import {
   SpaceRegistryAbi,
   SpaceProxyAddress,
 } from "../config/contracts/SpaceRegistryContract";
 
-declare var window: any;
 var provider: any;
 var signer: any;
-var loginAddress: string;
-
 var landContract;
 
 export const createEstateWithMetaData = async (

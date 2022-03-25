@@ -12,14 +12,8 @@ interface ParcelCardProps {
   onClick?: () => void;
 }
 
-export default function ParcelCard({
-  cardlabel,
-  carddescription,
-  location,
-  onClick,
-}: ParcelCardProps) {
+export default function ParcelCard({ location, onClick }: ParcelCardProps) {
   const classes = ParcelCardStyle();
-  const [tiles, setTiles] = useState();
   const [updatedAt, setUpdatedAt] = useState();
 
   useEffect(() => {

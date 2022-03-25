@@ -1,7 +1,6 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 export const MyStoreStyle = makeStyles((theme: Theme) => ({
   root: {
-    // minHeight: "calc(100vh - 246px)",
     flexGrow: 2,
     width: "1064px",
     margin: "10px auto 60px auto",

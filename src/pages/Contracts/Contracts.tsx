@@ -10,13 +10,10 @@ import Sellbox from "../../components/ContractInfo/Sellbox";
 import Parcels from "../../components/ContractInfo/Parcels";
 import TopTab from "../../components/TopTab/TopTab";
 import BidRecord from "../../components/ContractInfo/BidRecord";
-import { headerData, transactionData } from "./ContractsData";
-import { parcelTypes } from "../../config/constant";
+import { transactionData } from "./ContractsData";
 import { useStyles } from "./ContractsStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
-import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/LatestSalesTable";
 import { useTranslation } from "react-i18next";
-import TablePagination from "../../components/Base/TablePagination";
 import { useAppSelector } from "../../store/hooks";
 import { saleParcels } from "../../store/saleparcels/selectors";
 import { saleEstates } from "../../store/saleestates/selectors";
@@ -35,7 +32,6 @@ import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract"
 import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
 import { getBidsByToken } from "../../hooks/api";
 import { selectLoginAddress } from "../../store/auth/selectors";
-// import {Sellbox} from "../../components/ContractInfo/SellBox";
 
 declare var window: any;
 var signer: any, bidContract: any;

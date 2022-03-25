@@ -1,9 +1,4 @@
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  withStyles,
-} from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 export const SalesStyle = makeStyles((theme: Theme) =>
   createStyles({

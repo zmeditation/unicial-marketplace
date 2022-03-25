@@ -26,6 +26,7 @@ import {
 } from "../../../../config/contracts/EstateRegitryContract";
 // import { fetchTiles } from "../../../../../src/hooks/tiles";
 import { totalSpace } from "../../../../store/parcels/selectors";
+import Parcels from "../../../../components/ContractInfo/Parcels";
 
 var signer: any, estateRegistryContract: any;
 declare var window: any;
@@ -45,6 +46,7 @@ const EstateDetail = () => {
   const [currentOperator, setCurrentOperator] = useState("");
   const [estateSize, setEstatesize] = useState(0);
   const tiles: any = useAppSelector(totalSpace);
+  const [selectSpace, setSelectSpace] = useState<any>();
 
   useEffect(() => {
     getEstatesByOwner(loginAddress).then((parcels: any[]) => {
@@ -61,6 +63,20 @@ const EstateDetail = () => {
       }
     });
   }, [loginAddress]);
+  //display location tags of this estate.
+  useEffect(() => {
+    let estateArray: any = [];
+    Object.keys(tiles).forEach((index: any) => {
+      const allParcel = tiles[index];
+      if (
+        allParcel.estateId === estateid &&
+        contractaddress === EstateProxyAddress
+      ) {
+        estateArray.push({ x: allParcel.x, y: allParcel.y });
+      }
+    });
+    setSelectSpace(estateArray);
+  }, []);
 
   const handleShowBtn = () => {
     setCount(count + showMoreCount);
@@ -312,6 +328,9 @@ const EstateDetail = () => {
               />
             </div>
           </div>
+        </div>
+        <div className={classes.bidDetail}>
+          <Parcels parcels={selectSpace} />
         </div>
       </div>
     </div>

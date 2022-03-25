@@ -126,17 +126,6 @@ export default function TopTab() {
     checkedA: true,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const [filter_index, setFilterIndex] = React.useState(1);
-  const handletable = () => {
-    setFilterIndex(1);
-  };
-  const handlelocation = () => {
-    setFilterIndex(2);
-  };
   return (
     <>
       {location.pathname !== "/" && (
