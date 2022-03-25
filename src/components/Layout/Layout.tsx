@@ -37,7 +37,7 @@ import SettingManager from "../../pages/MyStore/Estate/SettingManager/SettingMan
 import UpdateOperate from "../../pages/MyStore/Estate/UpdateOperate/UpdateOperate";
 import TransferSpaces from "../../pages/MyStore/Estate/TransferSpaces/TransferSpaces";
 import SetSpaceOperator from "../../pages/MyStore/Estate/SetSpaceOperator/SetSpaceOperator";
-import { setloginAddress, setlogoutAddress } from "../../store/auth";
+import { setlogoutAddress } from "../../store/auth";
 import { useAppDispatch } from "../../store/hooks";
 import { CHAIN_INFO } from "../../config/constant";
 import { showNetModal } from "../../store/netmodal";
@@ -69,8 +69,7 @@ export default function Layout() {
 
   if (window.ethereum !== undefined) {
     window.ethereum.on("accountsChanged", function (account: Array<string>) {
-      dispatch(setloginAddress(account[0]));
-      window.location.href = "/account?section=collections";
+      dispatch(setlogoutAddress());
     });
 
     window.ethereum.on("chainChanged", function (chainId: string) {
@@ -86,7 +85,6 @@ export default function Layout() {
   const initSet = async () => {
     const provider = getProvider();
     const chainId = await provider.getNetwork();
-
     if (chainId.chainId !== 93) {
       dispatch(showNetModal(true));
       return;
