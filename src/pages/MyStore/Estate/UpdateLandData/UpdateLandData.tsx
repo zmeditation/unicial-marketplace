@@ -77,7 +77,7 @@ const UpdateLandData = () => {
       );
       return;
     }
-    let landdata = name + "," + description;
+    let landdata = name + "^" + description;
     setLandMetaData(landdata);
     var tokenIds = [];
     var signer = generateSigner(window.ethereum);

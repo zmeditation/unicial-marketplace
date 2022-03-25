@@ -52,7 +52,7 @@ export default function LandSize({ count, dark, className, onClick }: Props) {
         })}
       >
         <div className={classes.info}>{count}</div>
-        <div className={classes.landspan}>Lands</div>
+        <div className={classes.landspan}>Land</div>
       </div>
     </>
   );

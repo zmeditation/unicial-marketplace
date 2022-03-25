@@ -59,6 +59,25 @@ const CreateEstate = () => {
       navigate("/signin");
     }
 
+    if (name === "") {
+      flag = false;
+      dispatch(
+        showAlert({
+          message: "You have to write your estate name.",
+          severity: "error",
+        })
+      );
+    }
+    if (name.includes("^")) {
+      flag = false;
+      dispatch(
+        showAlert({
+          message: '"^" is not allowed in input string',
+          severity: "error",
+        })
+      );
+    }
+
     if (description === "") {
       flag = false;
       dispatch(
@@ -68,12 +87,11 @@ const CreateEstate = () => {
         })
       );
     }
-
-    if (name === "") {
+    if (description.includes("^")) {
       flag = false;
       dispatch(
         showAlert({
-          message: "You have to write your estate name.",
+          message: '"^" is not allowed in input string',
           severity: "error",
         })
       );
@@ -106,7 +124,7 @@ const CreateEstate = () => {
     data.xs = convertBidTypeArray(estates).xs;
     data.ys = convertBidTypeArray(estates).ys;
     data.beneficiary = beneficiary;
-    data.metadata = name + "," + description;
+    data.metadata = name + "^" + description;
     setBid(data);
   };
 

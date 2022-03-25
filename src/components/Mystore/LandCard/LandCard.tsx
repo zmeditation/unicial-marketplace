@@ -45,7 +45,7 @@ export default function LandCard({
 
   const getMetaData = async () => {
     await getMetadata(tokenid).then((res: any) => {
-      let metaData = res.split(",");
+      let metaData = res.split("^");
       setLand(metaData[0]);
     });
   };

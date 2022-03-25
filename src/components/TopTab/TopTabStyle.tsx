@@ -123,6 +123,7 @@ export const StyledTopTabBtn = withStyles((theme) => ({
       fontWeight: 400,
       lineHeight: "19.2px",
       fontFamily: "Lato",
+      color: "white",
       [theme.breakpoints.down(769)]: {
         textAlign: "left",
         fontWeight: 600,

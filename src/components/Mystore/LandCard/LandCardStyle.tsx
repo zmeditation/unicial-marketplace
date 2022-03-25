@@ -67,8 +67,12 @@ export const LandCardStyle = makeStyles((theme: Theme) =>
       letterSpacing: "0,02em",
       color: "white",
       paddingLeft: "8px",
+      paddingRight: "8px",
       marginBottom: "10px",
       fontFamily: "Montserrat",
+      textOverflow: "ellipsis",
+      overflow: "hidden",
+      whiteSpace: "nowrap",
     },
     bottom: {
       display: "flex",

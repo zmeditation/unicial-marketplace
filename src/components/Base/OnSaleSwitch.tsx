@@ -106,7 +106,7 @@ export default function OnSaleSwitch({ letter }: Props) {
   };
   useEffect(() => {
     const category = query.get("onlyOnSale");
-    if (category === "false") {
+    if (category === "false" || category === null) {
       setSwitchStatus(false);
     } else {
       setSwitchStatus(true);

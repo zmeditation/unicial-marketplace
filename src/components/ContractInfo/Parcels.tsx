@@ -3,8 +3,10 @@ import LocationBtn from "../Base/LocationBtn";
 import { ShowMoreLessBtn } from "../ShowMoreLessBtn/ShowMoreLessBtn";
 import { useTranslation } from "react-i18next";
 import { getCoords } from "../../common/utils";
-import { useEffect, useState } from "react";
-import { parcelshowMoreCount } from "../../config/constant";
+import { useEffect, useRef, useState } from "react";
+// import { parcelshowMoreCount } from "../../config/constant";
+import { useElementSize } from "usehooks-ts";
+
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: "35px",
@@ -66,9 +68,23 @@ interface ParcelsProps {
 const Parcels = ({ parcels }: ParcelsProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const [count, setCount] = useState(parcelshowMoreCount);
+
+  //width size logic start
+  const [squareRef, { width }] = useElementSize();
+  //width size logic
+  let showmorecount = Math.floor(width / 90);
+  const [count, setCount] = useState(showmorecount);
+
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [showLessBtn, setShowLessBtn] = useState(false);
+
+  useEffect(() => {
+    setCount(showmorecount);
+  }, [window.innerWidth]);
+
+  useEffect(() => {
+    setCount(showmorecount);
+  }, [showmorecount]);
 
   const handleShowBtn = () => {
     setCount(parcels?.length);
@@ -77,7 +93,7 @@ const Parcels = ({ parcels }: ParcelsProps) => {
   };
 
   const handleShowLessBtn = () => {
-    setCount(parcelshowMoreCount);
+    setCount(showmorecount);
     setShowMoreBtn(true);
     setShowLessBtn(false);
   };
@@ -86,7 +102,7 @@ const Parcels = ({ parcels }: ParcelsProps) => {
     if (
       parcels !== undefined &&
       parcels.length !== 0 &&
-      parcels?.length <= parcelshowMoreCount
+      parcels?.length <= showmorecount
     ) {
       setShowMoreBtn(false);
       setShowLessBtn(false);
@@ -97,7 +113,7 @@ const Parcels = ({ parcels }: ParcelsProps) => {
   }, [parcels]);
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} ref={squareRef}>
       <div className={classes.title}>{t("Parcels")}</div>
       <div className={classes.parcels}>
         <div className={classes.buttonGroup}>

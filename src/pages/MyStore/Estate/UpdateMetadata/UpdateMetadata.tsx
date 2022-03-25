@@ -39,7 +39,7 @@ const UpdateMetadata = () => {
   var isSignIn = 1;
   const initData = async () => {
     await getMetadata(estateid).then((res: any) => {
-      let metaData = res.split(",");
+      let metaData = res.split("^");
       setInitLandname(metaData[0]);
       setInitLanddesc(metaData[1]);
     });
@@ -84,7 +84,7 @@ const UpdateMetadata = () => {
       );
       return;
     }
-    var metaData = name + "," + description;
+    var metaData = name + "^" + description;
     var signer = generateSigner(window.ethereum);
     var estateRegistryContract = generateContractInstance(
       EstateProxyAddress,

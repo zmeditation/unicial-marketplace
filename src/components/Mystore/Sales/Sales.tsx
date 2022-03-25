@@ -26,7 +26,7 @@ export default function Sales() {
   return (
     <>
       <div className={classes.statsContainer}>
-        <div className={classes.title}>{t("Stats")}.</div>
+        <div className={classes.title}>{t("Stats")}</div>
         <div className={classes.generalStats}>
           <Grid container spacing={1}>
             <Grid item xs={12} sm={12} md={4}>
@@ -65,7 +65,7 @@ export default function Sales() {
         </Grid>
       </div>
       <div>
-        <div className={classes.title}>{t("Staging")}.</div>
+        <div className={classes.title}>{t("Staging")}</div>
         <SalesStagingTable columns={headerData} rows={saledata} stepIndex={1} />
       </div>
     </>

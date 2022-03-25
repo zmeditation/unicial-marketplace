@@ -94,7 +94,7 @@ const Contract = () => {
         allParcel.estateId === tokensid &&
         contractaddress === EstateProxyAddress
       ) {
-        const [estateName, estateDes] = allParcel?.name.split(",");
+        const [estateName, estateDes] = allParcel?.name.split("^");
         setOwner(allParcel.owner);
         setName(estateName);
         setDescription(estateDes);

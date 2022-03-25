@@ -88,6 +88,7 @@ export default function LandEstates() {
         {ownEstates
           ?.slice(0, !showStatus ? showMoreCount : ownEstates.length)
           .map((tokenId: any, key: any) => {
+            console.log("ownestate", typeof ownEstates[0]);
             let priceEstate = "null";
             if (estatesOnSale[tokenId]) {
               priceEstate = ethers.utils.formatUnits(
