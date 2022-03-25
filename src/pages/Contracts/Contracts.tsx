@@ -208,26 +208,13 @@ const Contract = () => {
               </div>
             </div>
             <div className={classes.rightDescription}>
-              {/* <div
-                className={
-                  saleId && saleId === tokensid
-                    ? classes.displayNone
-                    : classes.BidboxContainer
-                }
-              >
-                <Bidbox selectOwner={owner && owner} />
-              </div> */}
-              <div
-                className={
-                  saleId && saleId === tokensid
-                    ? classes.BuyboxContainer
-                    : classes.displayNone
-                }
-              >
+              <div className={classes.BuyboxContainer}>
                 {loginAddress?.toUpperCase() === owner?.toUpperCase() ? (
                   <Sellbox price={ethers.utils.formatUnits(salePrice, 18)} />
-                ) : (
+                ) : saleId && saleId === tokensid ? (
                   <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />
+                ) : (
+                  <Bidbox selectOwner={owner && owner} />
                 )}
               </div>
             </div>

@@ -14,7 +14,6 @@ import { showMoreCount } from "../../../config/constant";
 import { showSpinner } from "../../../store/spinner";
 import { saleEstates } from "../../../store/saleestates/selectors";
 import saleestates from "../../../store/saleestates";
-
 import { ethers } from "ethers";
 
 export default function LandEstates() {

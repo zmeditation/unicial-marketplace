@@ -6,10 +6,9 @@ import landmap1Png from "../../../assets/img/landmap1.png";
 //
 import LocationBtn from "../../Base/LocationBtn";
 import LandSize from "../../Base/LandSize";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getEstateSize } from "../../../../src/hooks/api";
-import { fetchTiles } from "../../../hooks/tiles";
-import { getCoords, noneSpace } from "../../../common/utils";
+import { getMetadata } from "../../../../src/hooks/api";
 
 interface LandCardProps {
   type: string;
@@ -34,14 +33,32 @@ export default function LandCard({
 }: LandCardProps) {
   const classes = LandCardStyle();
   const [count, setCount] = React.useState(0);
-
+  const [metaLandname, setMetaLandname] = React.useState("");
+  const [status, setStatus] = React.useState(0);
   const getLandCount = async () => {
     await getEstateSize(tokenid).then((res: any) => {
       setCount(res);
     });
   };
+
+  const getMetaData = async () => {
+    await getMetadata(tokenid).then((res: any) => {
+      let metaData = res.split(",");
+      setMetaLandname(metaData[0]);
+    });
+  };
   useEffect(() => {
+    if (type === "parcel") {
+      if (landName === null || landName === "") {
+        setStatus(10);
+      } else {
+        setStatus(11);
+      }
+    } else if (type === "estate") {
+      setStatus(20);
+    }
     getLandCount();
+    getMetaData();
   }, []);
 
   return (
@@ -61,10 +78,14 @@ export default function LandCard({
         <div className={classes.imageContainer}>
           <img src={landmap1Png} className={classes.image} />
         </div>
-        {landName === null || landName === "" ? (
+        {status === 10 ? (
           <div className={classes.productName}> Parcel </div>
-        ) : (
+        ) : status === 11 ? (
           <div className={classes.productName}>{landName}</div>
+        ) : status === 20 ? (
+          <div className={classes.productName}>{metaLandname}</div>
+        ) : (
+          <div className={classes.productName}> Estate </div>
         )}
         <div className={classes.bottom}>
           <div className={classes.category}>{category}</div>
