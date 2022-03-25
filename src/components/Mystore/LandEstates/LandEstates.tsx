@@ -64,7 +64,7 @@ export default function LandEstates() {
 
   useEffect(() => {
     initSet();
-  }, []);
+  }, [query.get("onlyOnSale"), estatesOnSale]);
 
   return (
     <>
