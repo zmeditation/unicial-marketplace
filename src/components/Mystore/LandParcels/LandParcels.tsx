@@ -16,6 +16,7 @@ import { totalSpace } from "../../../store/parcels/selectors";
 import { useAppDispatch } from "./../../../store/hooks";
 import { showSpinner } from "./../../../store/spinner";
 import { ethers } from "ethers";
+import { category } from "../../../config/constant";
 
 export default function LandParcels() {
   const classes = LandParcelsStyle();
@@ -54,8 +55,7 @@ export default function LandParcels() {
 
   useEffect(() => {
     getResult();
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  }, []);
 
   const handleShowBtn = () => {
     setShowStatus(!showStatus);
@@ -83,12 +83,12 @@ export default function LandParcels() {
                 return (
                   <Grid item xs={12} sm={6} md={4} key={key}>
                     <LandCard
-                      type="parcel"
+                      type={category.parcels}
                       locationbtnX={tokenId[0]}
                       locationbtnY={tokenId[1]}
-                      landName={tiles[getCoords(tokenId[0], tokenId[1])].name}
+                      landName={tiles[getCoords(tokenId[0], tokenId[1])]?.name}
                       price={parseInt(priceParcel)}
-                      category="Zilionixx"
+                      categoryName="Zilionixx"
                       onClick={() =>
                         handleNavigate(
                           tiles[getCoords(tokenId[0], tokenId[1])].tokenId
