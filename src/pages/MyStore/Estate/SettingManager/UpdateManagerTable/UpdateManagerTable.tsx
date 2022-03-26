@@ -1,18 +1,13 @@
 import { useStyles } from "./UpdateManagerTableStyle";
 import StageMarket from "../../../../../components/StageMarket/StageMarket";
 import { TableRow, TableCell } from "@material-ui/core";
-import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
 import ActionButton from "../../../../../components/Base/ActionButton";
-import Tag from "../../../../../components/Base/Tag";
-import { onePageCount, CHAIN_INFO } from "../../../../../config/constant";
+import { onePageCount } from "../../../../../config/constant";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { addCommas, dateConvert } from "../../../../../common/utils";
 import { showMoreCount } from "../../../../../config/constant";
-import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../store/hooks";
 import { showAlert } from "../../../../../store/alert";
-import { BigNumber, ethers } from "ethers";
 import {
   generateContractInstance,
   generateSigner,
@@ -23,6 +18,7 @@ import {
 } from "../../../../../config/contracts/EstateRegitryContract";
 
 import { selectLoginAddress } from ".././../../../../store/auth/selectors";
+import { StyledTooltip } from "../../../../../components/Mystore/LandCard/LandCardStyle";
 declare var window: any;
 var signer: any, estateRegistryContractwithSigner: any;
 
@@ -44,7 +40,6 @@ const UpdateManagerTable = ({
   const classes = useStyles();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  //   useEffect(() => {}, [rows]);
 
   signer = generateSigner(window.ethereum);
 
@@ -101,9 +96,17 @@ const UpdateManagerTable = ({
             onClick={() => onRowClick(key)}
             className={clsx({ [classes.targetRow]: stepIndex === key })}
           >
-            <TableCell className={clsx(classes.tableCell, classes.tokenId)}>
-              {row.args[1].slice(0, showMoreCount)}
-            </TableCell>
+            <StyledTooltip
+              title={row.args[1]}
+              interactive
+              arrow
+              placement="top"
+            >
+              <TableCell className={clsx(classes.tableCell, classes.tokenId)}>
+                {row.args[1].slice(0, 15) + ".."}
+              </TableCell>
+            </StyledTooltip>
+
             <TableCell className={clsx(classes.tableCell)}>
               {row.args[3] === false ? "unset" : "seted"}
             </TableCell>

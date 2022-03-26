@@ -1,5 +1,6 @@
-import { createStyles, Theme } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { Button, createStyles, Theme } from "@material-ui/core";
+import { makeStyles, withStyles } from "@material-ui/styles";
+import { Tooltip } from "@material-ui/core";
 
 export const LandCardStyle = makeStyles((theme: Theme) =>
   createStyles({
@@ -109,3 +110,19 @@ export const LandCardStyle = makeStyles((theme: Theme) =>
     },
   })
 );
+
+export const StyledTooltip = withStyles({
+  tooltip: {
+    color: "white",
+    fontSize: "20px",
+    padding: "10px 20px",
+    fontFamily: "Lato",
+    backgroundColor: "#22232b",
+    opacity: "90% !important",
+    // maxWidth: "400px !important",
+    textAlign: "center",
+  },
+  arrow: {
+    color: "#22232b !important",
+  },
+})(Tooltip);

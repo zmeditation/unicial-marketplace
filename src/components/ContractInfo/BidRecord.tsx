@@ -1,5 +1,6 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import fromImg from "../../assets/img/1.png";
+import normalshapeSvg from "../../assets/svg/normalshape.svg";
 import { useTranslation } from "react-i18next";
 import { addCommas } from "../../common/utils";
 const useStyles = makeStyles((theme: Theme) => ({
@@ -115,7 +116,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
               <img
                 src={fromImg}
                 className={classes.fromIamge}
-                alt='fromimage!'
+                alt="fromimage!"
               />
               {fromName}
             </div>
@@ -124,7 +125,8 @@ const BidRecord = ({ fromName, price, time }: data) => {
           <div className={classes.pricePart}>
             <div className={classes.title}>{t("Price")}</div>
             <div className={classes.content}>
-              <i className={classes.symbol}>⏣</i>
+              <img src={normalshapeSvg} className={classes.symbol} alt="alt" />
+
               {addCommas(price)}
             </div>
           </div>
@@ -132,7 +134,7 @@ const BidRecord = ({ fromName, price, time }: data) => {
           <div className={classes.timePart}>
             <div className={classes.title}>{t("Time Left")}</div>
             <div className={classes.content}>
-              {time} 
+              {time}
               {/* {t("days")} */}
             </div>
           </div>

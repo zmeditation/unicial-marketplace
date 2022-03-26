@@ -20,6 +20,7 @@ import {
 import { BigNumber, ethers } from "ethers";
 import { showAlert } from "../../../../store/alert";
 import { useAppDispatch } from "../../../../store/hooks";
+import { StyledTooltip } from "../../LandCard/LandCardStyle";
 
 declare var window: any;
 interface StagingTableProps {
@@ -109,10 +110,19 @@ const OnSaleTable = ({
             className={clsx({ [classes.targetRow]: stepIndex === key })}
           >
             <TableCell className={clsx(classes.tableCell)}>{type}</TableCell>
-            <TableCell className={clsx(classes.tableCell)}>{tokenId}</TableCell>
+            <StyledTooltip
+              title={row.tokenId}
+              interactive
+              arrow
+              placement="top"
+            >
+              <TableCell className={clsx(classes.tableCell)}>
+                {tokenId}
+              </TableCell>
+            </StyledTooltip>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               {<img src={normalshapeSvg} className={classes.normalshape} />}
-              {<div>{price}</div>}
+              {<div>{Number(price)}</div>}
             </TableCell>
             <TableCell className={clsx(classes.tableCell)}>
               {type === "Parcel" ? (

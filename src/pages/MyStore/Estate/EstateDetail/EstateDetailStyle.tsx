@@ -178,18 +178,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: "none",
   },
   infoNameContainer: {
-    fontFamily: "Montserrat",
-    marginTop: "10px",
-    marginBottom: "20px",
-  },
-  infoNameTitle: {
-    color: "#96A1DB",
-    fontSize: "25px",
-    marginRight: "20px",
+    fontSize: "34px",
+    textAlign: "left",
+    lineHeight: "42px",
+    fontWeight: 600,
     marginBottom: "15px",
-  },
-  infoNameContent: {
     color: "white",
-    fontSize: "25px",
+    fontFamily: "Montserrat",
+  },
+  infoDescContainer: {
+    color: "#96A1DB",
+    fontSize: "14px",
+    fontWeight: 400,
+    lineHeight: "17px",
+    marginBottom: "30px",
   },
 }));

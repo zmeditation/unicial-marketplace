@@ -43,7 +43,6 @@ export default function MyStore() {
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
-  // console.log("realdata", saledata);
   return (
     <>
       <TopTab />

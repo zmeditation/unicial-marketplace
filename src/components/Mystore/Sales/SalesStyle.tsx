@@ -17,5 +17,9 @@ export const SalesStyle = makeStyles((theme: Theme) =>
     generalStats: {
       marginBottom: "20px",
     },
+    paginationContainer: {
+      display: "flex",
+      justifyContent: "center",
+    },
   })
 );

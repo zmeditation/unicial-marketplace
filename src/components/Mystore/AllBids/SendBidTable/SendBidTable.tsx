@@ -24,6 +24,7 @@ import {
 } from "../../../../common/contract";
 import { SpaceProxyAddress } from "../../../../config/contracts/SpaceRegistryContract";
 import { EstateProxyAddress } from "../../../../config/contracts/EstateRegitryContract";
+import { StyledTooltip } from "../../LandCard/LandCardStyle";
 
 declare var window: any;
 var signer: any, bidContract: any;
@@ -107,46 +108,70 @@ const SendBidTable = ({
           <TableRow
             key={key}
             onClick={() => onRowClick(key)}
-            className={clsx({ [classes.targetRow]: stepIndex === key })}>
-            <TableCell
-              className={clsx(classes.tableCell, classes.tokenAddress)}
-              onClick={() => handleCopyAddress(row.tokenAddress, key)}>
-              {row.tokenAddress.slice(0, showMoreCount)}...&nbsp;
-              {row.tokenAddress.toLowerCase() ===
-              SpaceProxyAddress.toLowerCase() ? (
-                <span>({t("space")})</span>
-              ) : row.tokenAddress.toLowerCase() ===
-                EstateProxyAddress.toLowerCase() ? (
-                <span>({t("estate")})</span>
-              ) : (
-                <span>({t("others")})</span>
-              )}{" "}
-              &nbsp;
-              {copyAddress.status && copyAddress.index === key ? (
-                <i className='fa fa-check-circle mr-1'></i>
-              ) : (
-                <span>
-                  <i className='far fa-copy'></i>
-                </span>
-              )}
-            </TableCell>
-            <TableCell
-              className={clsx(classes.tableCell, classes.tokenId)}
-              onClick={() => handleCopyTokenId(row.tokenId, key)}>
-              {row.tokenId.slice(0, showMoreCount)}
-              {row.tokenAddress.toLowerCase() !==
-                EstateProxyAddress.toLowerCase() && <span>...</span>}{" "}
-              &nbsp;
-              {copyTokenId.status && copyTokenId.index === key ? (
-                <i className='fa fa-check-circle mr-1'></i>
-              ) : (
-                <span>
-                  <i className='far fa-copy'></i>
-                </span>
-              )}
-            </TableCell>
+            className={clsx({ [classes.targetRow]: stepIndex === key })}
+          >
+            <StyledTooltip
+              title={row.tokenAddress}
+              interactive
+              arrow
+              placement="top"
+            >
+              <TableCell
+                className={clsx(classes.tableCell, classes.tokenAddress)}
+                onClick={() => handleCopyAddress(row.tokenAddress, key)}
+              >
+                {row.tokenAddress.slice(0, showMoreCount)}...&nbsp;
+                {row.tokenAddress.toLowerCase() ===
+                SpaceProxyAddress.toLowerCase() ? (
+                  <span>({t("space")})</span>
+                ) : row.tokenAddress.toLowerCase() ===
+                  EstateProxyAddress.toLowerCase() ? (
+                  <span>({t("estate")})</span>
+                ) : (
+                  <span>({t("others")})</span>
+                )}{" "}
+                &nbsp;
+                {copyAddress.status && copyAddress.index === key ? (
+                  <i className="fa fa-check-circle mr-1"></i>
+                ) : (
+                  <span>
+                    <i className="far fa-copy"></i>
+                  </span>
+                )}
+              </TableCell>
+            </StyledTooltip>
+            <StyledTooltip
+              title={row.tokenId}
+              interactive
+              arrow
+              placement="top"
+            >
+              <TableCell
+                className={clsx(classes.tableCell, classes.tokenId)}
+                onClick={() => handleCopyTokenId(row.tokenId, key)}
+              >
+                {row.tokenId.slice(0, showMoreCount)}
+                {row.tokenAddress.toLowerCase() !==
+                  EstateProxyAddress.toLowerCase() && <span>...</span>}{" "}
+                &nbsp;
+                {copyTokenId.status && copyTokenId.index === key ? (
+                  <i className="fa fa-check-circle mr-1"></i>
+                ) : (
+                  <span>
+                    <i className="far fa-copy"></i>
+                  </span>
+                )}
+              </TableCell>
+            </StyledTooltip>
+
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
-              {<img src={normalshapeSvg} className={classes.normalshape} alt="normalshape"/>}
+              {
+                <img
+                  src={normalshapeSvg}
+                  className={classes.normalshape}
+                  alt="normalshape"
+                />
+              }
               {<div>{addCommas(ethers.utils.formatUnits(row.price, 18))}</div>}
             </TableCell>
             <TableCell className={clsx(classes.tableCell)}>
@@ -156,29 +181,32 @@ const SendBidTable = ({
               {row.bidStatus === "active" &&
               row.expiresAt < Math.round(nowDate.getTime() / 1000) ? (
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.actionBtn}
-                  disabled>
+                  disabled
+                >
                   {t("Canceled")}
                 </ActionButton>
               ) : row.bidStatus === "cancel" ? (
                 <ActionButton
-                  color='light'
+                  color="light"
                   className={classes.actionBtn}
-                  disabled>
+                  disabled
+                >
                   "Cancelled"
                 </ActionButton>
               ) : row.bidStatus === "success" ? (
                 <Tag
-                  color='RareColor'
-                  letter='Expried'
+                  color="RareColor"
+                  letter="Expried"
                   className={classes.tags}
                 />
               ) : (
                 <ActionButton
-                  color='dark'
+                  color="dark"
                   className={classes.actionBtn}
-                  onClick={() => handleCancelBid(key)}>
+                  onClick={() => handleCancelBid(key)}
+                >
                   {t("Cancel")}
                 </ActionButton>
               )}

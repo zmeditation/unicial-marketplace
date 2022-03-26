@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import NeedSignIn from "../NeedSignIn";
 import ActionButton from "../../components/Base/ActionButton";
-import settingicon from "../../assets/svg/bidpage_settingicon.svg";
+import normalshapeSvg from "../../assets/svg/normalshape.svg";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 
 import { useStyles } from "./BuyStyle";
@@ -171,7 +171,7 @@ const Buy = () => {
                 <div className={classes.title}>{t("Buy Parcel")}</div>
                 <div className={classes.subtitle}>
                   {t("You don't have enough UCC to buy Hanzo-Gate1 for")}
-                  <img src={settingicon} className={classes.symbol} />
+                  <img src={normalshapeSvg} className={classes.symbol} />
                   <b className={classes.subtitleNumber}>
                     {" "}
                     {ethers.utils.commify(price)}.

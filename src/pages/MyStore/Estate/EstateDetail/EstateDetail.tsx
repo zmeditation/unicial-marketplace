@@ -27,6 +27,7 @@ import {
 import { totalSpace } from "../../../../store/parcels/selectors";
 import Parcels from "../../../../components/ContractInfo/Parcels";
 import { getMetadata } from "../../../../hooks/api";
+import { StyledTooltip } from "../../../../components/Mystore/LandCard/LandCardStyle";
 
 var signer: any, estateRegistryContract: any;
 declare var window: any;
@@ -49,7 +50,7 @@ const EstateDetail = () => {
   const [selectSpace, setSelectSpace] = useState<any>();
   const [landName, setLandName] = useState("");
   const [landDesc, setLandDesc] = useState("");
-  console.log("estateidType", estateid, typeof estateid);
+
   useEffect(() => {
     getEstatesByOwner(loginAddress).then((parcels: any[]) => {
       setOwnEstates(parcels);
@@ -97,7 +98,7 @@ const EstateDetail = () => {
     );
     let currentOperator = await estateRegistryContract.updateOperator(estateid);
     if (currentOperator !== "0x0000000000000000000000000000000000000000") {
-      setCurrentOperator(currentOperator + "..");
+      setCurrentOperator(currentOperator);
     } else {
       setCurrentOperator("0x");
     }
@@ -132,7 +133,6 @@ const EstateDetail = () => {
     init();
     getMedataInfo();
   }, []);
-  console.log("estatedesc", landName, landDesc);
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>
@@ -148,23 +148,25 @@ const EstateDetail = () => {
             </div>
           </div>
           <div className={classes.rightCard}>
-            <div className={classes.infoNameContainer}>
-              <div className={classes.infoNameTitle}>Name</div>
-              <div className={classes.infoNameContent}>{landName}</div>
-            </div>
-            <div className={classes.infoNameContainer}>
-              <div className={classes.infoNameTitle}>Description</div>
-              <div className={classes.infoNameContent}>{landDesc}</div>
-            </div>
+            <div className={classes.infoNameContainer}>{landName}</div>
+            <div className={classes.infoDescContainer}>{landDesc}</div>
+
             <div className={classes.form_field}>
               <div className={classes.price_container}>
                 <Grid container>
                   <Grid md={6} sm={12} xs={12} item>
                     <div className={classes.subheader_label}>
                       {t("Operator")}:
-                      <span className={classes.operatorValue}>
-                        {currentOperator.slice(0, 7)}
-                      </span>
+                      <StyledTooltip
+                        title={currentOperator}
+                        interactive
+                        arrow
+                        placement="top"
+                      >
+                        <span className={classes.operatorValue}>
+                          {currentOperator.slice(0, 7)}
+                        </span>
+                      </StyledTooltip>
                     </div>
                   </Grid>
                   <Grid md={6} sm={12} xs={12} item>

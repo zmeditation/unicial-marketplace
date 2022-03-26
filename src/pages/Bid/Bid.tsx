@@ -7,7 +7,7 @@ import SliceMap from "../../components/SliceMap";
 import ActionButton from "../../components/Base/ActionButton";
 import { useStyles, StyledInput } from "./BidStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
-import settingicon from "../../assets/svg/bidpage_settingicon.svg";
+import normalshapeSvg from "../../assets/svg/normalshape.svg";
 import calendar_icon from "../../assets/svg/calendar_icon.svg";
 import { Grid } from "@material-ui/core";
 import "date-fns";
@@ -36,7 +36,10 @@ import {
 } from "../../config/contracts/UnicialCashToken";
 import { totalSpace } from "../../store/parcels/selectors";
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
-import { EstateProxyAddress, EstateRegistryAbi } from "../../config/contracts/EstateRegitryContract";
+import {
+  EstateProxyAddress,
+  EstateRegistryAbi,
+} from "../../config/contracts/EstateRegitryContract";
 
 declare var window: any;
 var signer: any, bidContract: any, uccContract: any, estateContract: any;
@@ -52,7 +55,7 @@ const Bid = () => {
   const { t } = useTranslation();
   const { contractaddress, tokensid } = useParams();
   const loginAddress = useAppSelector(selectLoginAddress);
-  const tiles :any = useAppSelector(totalSpace);
+  const tiles: any = useAppSelector(totalSpace);
   const maxTime = useAppSelector(max);
   const minTime = useAppSelector(min);
   const [x, setX] = useState(0);
@@ -82,7 +85,7 @@ const Bid = () => {
     EstateProxyAddress,
     EstateRegistryAbi,
     signer
-  )
+  );
 
   const initAllowance = async () => {
     let allowance = await uccContract.allowance(
@@ -128,7 +131,7 @@ const Bid = () => {
       }
     });
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ tiles, tokensid]);
+  }, [tiles, tokensid]);
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
@@ -200,23 +203,23 @@ const Bid = () => {
       return;
     }
 
-    let uccBalance = await uccContract.balanceOf(loginAddress)
+    let uccBalance = await uccContract.balanceOf(loginAddress);
 
     if (price > parseInt(ethers.utils.formatUnits(uccBalance, 18))) {
       dispatch(
         showAlert({
-          message: "You must set a price value that is lower than the Ucctoken value in your account.",
+          message:
+            "You must set a price value that is lower than the Ucctoken value in your account.",
           severity: "error",
         })
       );
       return;
     }
 
-    let bidOrderTx 
+    let bidOrderTx;
 
-    if(contractaddress === SpaceProxyAddress){
-      
-      bidOrderTx= await bidContract[
+    if (contractaddress === SpaceProxyAddress) {
+      bidOrderTx = await bidContract[
         "placeBid(address,uint256,uint256,uint256)"
       ](
         contractaddress,
@@ -226,14 +229,10 @@ const Bid = () => {
         { from: loginAddress } // expireAt to UTC timestamp
       );
     }
-    if (contractaddress === EstateProxyAddress){
+    if (contractaddress === EstateProxyAddress) {
+      let fingerPrint = await estateContract.getFingerprint(tokensid);
 
-      
-      let fingerPrint = (
-        await estateContract.getFingerprint(tokensid)
-        );
-        
-      bidOrderTx= await bidContract[
+      bidOrderTx = await bidContract[
         "placeBid(address,uint256,uint256,uint256,bytes)"
       ](
         contractaddress,
@@ -244,7 +243,7 @@ const Bid = () => {
         { from: loginAddress } // expireAt to UTC timestamp
       );
     }
-    
+
     await bidOrderTx.wait();
 
     dispatch(
@@ -262,7 +261,7 @@ const Bid = () => {
         <div className={classes.bidCard}>
           <div className={classes.leftCard}>
             <div className={classes.imgContent}>
-             <SliceMap centerX={x} centerY={y} />
+              <SliceMap centerX={x} centerY={y} />
             </div>
           </div>
           <div className={classes.rightCard}>
@@ -278,11 +277,11 @@ const Bid = () => {
                     <div className={classes.subheader_label}>{t("PRICE")}</div>
                     <FormControl>
                       <StyledInput
-                        placeholder='0'
+                        placeholder="0"
                         onChange={(e) => handleChange(e)}
                         startAdornment={
-                          <InputAdornment position='start'>
-                            <img src={settingicon} alt="settingIcon"/>
+                          <InputAdornment position="start">
+                            <img src={normalshapeSvg} alt="settingIcon" />
                           </InputAdornment>
                         }
                       />
@@ -296,15 +295,17 @@ const Bid = () => {
                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <KeyboardDatePicker
                           className={classes.datePicker}
-                          format='MM/dd/yyyy'
-                          margin='normal'
-                          id='date-picker-dialog'
+                          format="MM/dd/yyyy"
+                          margin="normal"
+                          id="date-picker-dialog"
                           value={selectedDate}
                           onChange={handleDateChange}
                           KeyboardButtonProps={{
                             "aria-label": "change date",
                           }}
-                          keyboardIcon={<img src={calendar_icon} alt="calendarIcon"/>}
+                          keyboardIcon={
+                            <img src={calendar_icon} alt="calendarIcon" />
+                          }
                         />
                       </MuiPickersUtilsProvider>
                     </FormControl>
@@ -315,24 +316,27 @@ const Bid = () => {
             {/* buttons */}
             <div className={classes.buttons}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.approve}
-                onClick={bidStatus ? handleApprove : handleCancelApprove}>
+                onClick={bidStatus ? handleApprove : handleCancelApprove}
+              >
                 {bidStatus ? t("Approve") : t("Cancel Approve")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
                 disabled={bidStatus}
-                onClick={handleBid}>
+                onClick={handleBid}
+              >
                 {t("Bid")}
-                <CallMadeIcon fontSize='small' />
+                <CallMadeIcon fontSize="small" />
               </ActionButton>
               <ActionButton
-                color='dark'
+                color="dark"
                 className={classes.cancelchange}
-                onClick={() => navigate(-1)}>
+                onClick={() => navigate(-1)}
+              >
                 {t("Cancel")}
               </ActionButton>
             </div>

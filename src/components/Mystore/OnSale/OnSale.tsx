@@ -45,8 +45,7 @@ export default function OnSale() {
 
   useEffect(() => {
     init();
-  }, []);
-
+  }, [onsaleData?.length]);
   return (
     <>
       <OnSaleTable

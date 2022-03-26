@@ -19,7 +19,6 @@ import NeedSignIn from "../../../NeedSignIn";
 import { useStyles, StyledInput } from "./EstateSellStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
 import { showAlert } from "../../../../store/alert";
-import settingicon from "../../../../assets/svg/bidpage_settingicon.svg";
 import calendar_icon from "../../../../assets/svg/calendar_icon.svg";
 
 import { selectLoginAddress } from "./../../../../store/auth/selectors";
@@ -37,6 +36,7 @@ import {
   EstateProxyAddress,
 } from "../../../../config/contracts/EstateRegitryContract";
 import { isEstateApproved } from "../../../../hooks/api";
+import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
 
 declare var window: any;
 var signer: any, marketplaceContract: any, estateRegistryContract: any;
@@ -207,7 +207,7 @@ const EstateSell = () => {
                           onChange={handleChange}
                           startAdornment={
                             <InputAdornment position="start">
-                              <img src={settingicon} alt="settingIcon" />
+                              <img src={normalshapeSvg} alt="settingIcon" />
                             </InputAdornment>
                           }
                         />

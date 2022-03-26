@@ -7,21 +7,39 @@ import { headerData } from "./SalesStagingData";
 import { getSaleDataAPI } from "../../../../src/hooks/salesdata";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import TablePagination from "../../Base/TablePagination";
+import { showSpinner } from "../../../store/spinner";
+import { useAppDispatch } from "../../../store/hooks";
 
 export default function Sales() {
   const classes = SalesStyle();
   const { t } = useTranslation();
-  const [saledata, setSaledata] = React.useState();
-
+  const dispatch = useAppDispatch();
+  const [saledata, setSaledata] = React.useState<any>();
+  const [curPage, setCurPage] = React.useState<any>(1);
+  const [totalPage, setTotalPage] = React.useState(0);
+  const handlepgnum = (value: number) => {
+    setCurPage(value);
+  };
   const getSaleData = async () => {
+    dispatch(showSpinner(true));
     const saledata = await getSaleDataAPI();
+    dispatch(showSpinner(false));
     setSaledata(saledata.data.data);
-    return saledata.data.data;
+  };
+  const getPageCount = () => {
+    var count = saledata?.length;
+    var totalPage = Math.ceil(count / 2);
+    setTotalPage(totalPage);
   };
 
   React.useEffect(() => {
     getSaleData();
   }, []);
+
+  React.useEffect(() => {
+    getPageCount();
+  }, [saledata?.length]);
 
   return (
     <>
@@ -66,7 +84,15 @@ export default function Sales() {
       </div>
       <div>
         <div className={classes.title}>{t("Staging")}</div>
-        <SalesStagingTable columns={headerData} rows={saledata} stepIndex={1} />
+        <SalesStagingTable
+          columns={headerData}
+          rows={saledata}
+          stepIndex={1}
+          curPage={curPage}
+        />
+        <div className={classes.paginationContainer}>
+          <TablePagination handlepgnum={handlepgnum} totalPage={totalPage} />
+        </div>
       </div>
     </>
   );

@@ -15,6 +15,10 @@ const useStyles = makeStyles((theme) =>
       "& .MuiPaginationItem-page.Mui-selected": {
         backgroundColor: "#e5080814",
       },
+      "& .MuiTouchRipple-root": {
+        backgroundColor: "#606cab",
+        opacity: "20%",
+      },
     },
   })
 );

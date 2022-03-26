@@ -1,7 +1,6 @@
-import { LandCardStyle } from "./LandCardStyle";
+import { LandCardStyle, StyledTooltip } from "./LandCardStyle";
 import headSvg from "../../../assets/svg/head.svg";
 import unisexSvg from "../../../assets/svg/unisex.svg";
-import cubeSvg from "../../../assets/svg/cube.svg";
 import landmap1Png from "../../../assets/img/landmap1.png";
 //
 import LocationBtn from "../../Base/LocationBtn";
@@ -10,6 +9,7 @@ import React, { useEffect } from "react";
 import { getEstateSize } from "../../../../src/hooks/api";
 import { getMetadata } from "../../../../src/hooks/api";
 import { category } from "../../../config/constant";
+import normalshapeSvg from "../../../assets/svg/normalshape.svg";
 
 interface LandCardProps {
   type: string;
@@ -80,12 +80,16 @@ export default function LandCard({
         <div className={classes.imageContainer}>
           <img src={landmap1Png} className={classes.image} alt="alt" />
         </div>
-        <div className={classes.productName}>{land}</div>
+
+        <StyledTooltip title={land} interactive arrow placement="top">
+          <div className={classes.productName}>{land}</div>
+        </StyledTooltip>
+
         <div className={classes.bottom}>
           <div className={classes.category}>{categoryName}</div>
           {price ? (
             <div className={classes.priceContainer}>
-              <img src={cubeSvg} className={classes.icon} alt="alt" />
+              <img src={normalshapeSvg} className={classes.icon} alt="alt" />
               <div className={classes.price}>{price}</div>
             </div>
           ) : (
