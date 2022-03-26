@@ -13,7 +13,6 @@ import { ShowMoreLessBtn } from "../../ShowMoreLessBtn/ShowMoreLessBtn";
 import { category, showMoreCount } from "../../../config/constant";
 import { showSpinner } from "../../../store/spinner";
 import { saleEstates } from "../../../store/saleestates/selectors";
-import saleestates from "../../../store/saleestates";
 import { ethers } from "ethers";
 
 export default function LandEstates() {
@@ -88,7 +87,6 @@ export default function LandEstates() {
         {ownEstates
           ?.slice(0, !showStatus ? showMoreCount : ownEstates.length)
           .map((tokenId: any, key: any) => {
-            console.log("ownestate", typeof ownEstates[0]);
             let priceEstate = "null";
             if (estatesOnSale[tokenId]) {
               priceEstate = ethers.utils.formatUnits(

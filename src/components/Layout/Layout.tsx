@@ -38,7 +38,7 @@ import UpdateOperate from "../../pages/MyStore/Estate/UpdateOperate/UpdateOperat
 import TransferSpaces from "../../pages/MyStore/Estate/TransferSpaces/TransferSpaces";
 import SetSpaceOperator from "../../pages/MyStore/Estate/SetSpaceOperator/SetSpaceOperator";
 import { setlogoutAddress } from "../../store/auth";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { CHAIN_INFO } from "../../config/constant";
 import { showNetModal } from "../../store/netmodal";
 import { useEffect } from "react";
@@ -51,6 +51,7 @@ import UpdateLandData from "../../pages/MyStore/Estate/UpdateLandData/UpdateLand
 import EstateEdit from "../../pages/MyStore/Estate/EstateAdd/EstateAdd";
 import { setSaleEstates } from "../../store/saleestates";
 import { getProvider } from "../../hooks/Common";
+import { selectLoginAddress } from "./../../store/auth/selectors";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -66,7 +67,7 @@ declare var window: any;
 export default function Layout() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
-
+  const loginAddress = useAppSelector(selectLoginAddress);
   if (window.ethereum !== undefined) {
     window.ethereum.on("accountsChanged", function (account: Array<string>) {
       dispatch(setlogoutAddress());
@@ -107,7 +108,7 @@ export default function Layout() {
 
   useEffect(() => {
     initSet();
-  }, []);
+  }, [loginAddress]);
 
   return (
     <Router>
