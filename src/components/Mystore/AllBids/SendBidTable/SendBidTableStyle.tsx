@@ -53,6 +53,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 500,
     verticalAlign: "Top",
     margin: "0px",
-    cursor: "unset"
+    cursor: "unset",
+  },
+  copyIcon: {
+    cursor: "pointer",
   },
 }));

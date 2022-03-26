@@ -110,16 +110,17 @@ const OnSaleTable = ({
             className={clsx({ [classes.targetRow]: stepIndex === key })}
           >
             <TableCell className={clsx(classes.tableCell)}>{type}</TableCell>
-            <StyledTooltip
-              title={row.tokenId}
-              interactive
-              arrow
-              placement="top"
-            >
-              <TableCell className={clsx(classes.tableCell)}>
-                {tokenId}
-              </TableCell>
-            </StyledTooltip>
+
+            <TableCell className={clsx(classes.tableCell)}>
+              <StyledTooltip
+                title={row.tokenId}
+                interactive
+                arrow
+                placement="top"
+              >
+                <span>{tokenId}</span>
+              </StyledTooltip>
+            </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               {<img src={normalshapeSvg} className={classes.normalshape} />}
               {<div>{Number(price)}</div>}

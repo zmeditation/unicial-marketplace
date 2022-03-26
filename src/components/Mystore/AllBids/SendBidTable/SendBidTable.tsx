@@ -110,59 +110,60 @@ const SendBidTable = ({
             onClick={() => onRowClick(key)}
             className={clsx({ [classes.targetRow]: stepIndex === key })}
           >
-            <StyledTooltip
-              title={row.tokenAddress}
-              interactive
-              arrow
-              placement="top"
-            >
-              <TableCell
-                className={clsx(classes.tableCell, classes.tokenAddress)}
-                onClick={() => handleCopyAddress(row.tokenAddress, key)}
+            <TableCell className={clsx(classes.tableCell)}>
+              <StyledTooltip
+                title={row.tokenAddress}
+                interactive
+                arrow
+                placement="top"
               >
-                {row.tokenAddress.slice(0, showMoreCount)}...&nbsp;
-                {row.tokenAddress.toLowerCase() ===
-                SpaceProxyAddress.toLowerCase() ? (
-                  <span>({t("space")})</span>
-                ) : row.tokenAddress.toLowerCase() ===
-                  EstateProxyAddress.toLowerCase() ? (
-                  <span>({t("estate")})</span>
-                ) : (
-                  <span>({t("others")})</span>
-                )}{" "}
-                &nbsp;
-                {copyAddress.status && copyAddress.index === key ? (
-                  <i className="fa fa-check-circle mr-1"></i>
-                ) : (
-                  <span>
-                    <i className="far fa-copy"></i>
-                  </span>
-                )}
-              </TableCell>
-            </StyledTooltip>
-            <StyledTooltip
-              title={row.tokenId}
-              interactive
-              arrow
-              placement="top"
-            >
-              <TableCell
-                className={clsx(classes.tableCell, classes.tokenId)}
-                onClick={() => handleCopyTokenId(row.tokenId, key)}
+                <span>{row.tokenAddress.slice(0, showMoreCount)}...&nbsp;</span>
+              </StyledTooltip>
+              {row.tokenAddress.toLowerCase() ===
+              SpaceProxyAddress.toLowerCase() ? (
+                <span>({t("space")})</span>
+              ) : row.tokenAddress.toLowerCase() ===
+                EstateProxyAddress.toLowerCase() ? (
+                <span>({t("estate")})</span>
+              ) : (
+                <span>({t("others")})</span>
+              )}{" "}
+              &nbsp;
+              {copyAddress.status && copyAddress.index === key ? (
+                <i className="fa fa-check-circle mr-1"></i>
+              ) : (
+                <span
+                  onClick={() => handleCopyAddress(row.tokenAddress, key)}
+                  className={classes.copyIcon}
+                >
+                  <i className="far fa-copy"></i>
+                </span>
+              )}
+            </TableCell>
+
+            <TableCell className={clsx(classes.tableCell)}>
+              <StyledTooltip
+                title={row.tokenId}
+                interactive
+                arrow
+                placement="top"
               >
-                {row.tokenId.slice(0, showMoreCount)}
-                {row.tokenAddress.toLowerCase() !==
-                  EstateProxyAddress.toLowerCase() && <span>...</span>}{" "}
-                &nbsp;
-                {copyTokenId.status && copyTokenId.index === key ? (
-                  <i className="fa fa-check-circle mr-1"></i>
-                ) : (
-                  <span>
-                    <i className="far fa-copy"></i>
-                  </span>
-                )}
-              </TableCell>
-            </StyledTooltip>
+                <span>{row.tokenId.slice(0, showMoreCount)}</span>
+              </StyledTooltip>
+              {row.tokenAddress.toLowerCase() !==
+                EstateProxyAddress.toLowerCase() && <span>...</span>}{" "}
+              &nbsp;
+              {copyTokenId.status && copyTokenId.index === key ? (
+                <i className="fa fa-check-circle mr-1"></i>
+              ) : (
+                <span
+                  onClick={() => handleCopyTokenId(row.tokenId, key)}
+                  className={classes.copyIcon}
+                >
+                  <i className="far fa-copy"></i>
+                </span>
+              )}
+            </TableCell>
 
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               {

@@ -39,9 +39,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   tokenAddress: {
-    cursor: "pointer"
+    cursor: "pointer",
   },
   tokenId: {
-    cursor: "pointer"
+    cursor: "pointer",
+  },
+  copyIcon: {
+    cursor: "pointer",
   },
 }));

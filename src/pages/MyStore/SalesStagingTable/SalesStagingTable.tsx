@@ -42,9 +42,12 @@ const SalesStagingTable = ({
         >
           <TableCell className={clsx(classes.tableCell)}>{key + 1}</TableCell>
           <TableCell className={clsx(classes.tableCell)}>{date}</TableCell>
-          <StyledTooltip title={row.buyer} interactive arrow placement="top">
-            <TableCell className={clsx(classes.tableCell)}>{buyer}</TableCell>
-          </StyledTooltip>
+
+          <TableCell className={clsx(classes.tableCell)}>
+            <StyledTooltip title={row.buyer} interactive arrow placement="top">
+              <span>{buyer}</span>
+            </StyledTooltip>
+          </TableCell>
           <TableCell className={clsx(classes.tableCell)}>{type}</TableCell>
           <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
             {

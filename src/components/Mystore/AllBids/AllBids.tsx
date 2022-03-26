@@ -181,7 +181,6 @@ export default function AllBids() {
               estateRows={receiveEstateBid}
               curPage={receiveCurPage}
               onRowClick={handleReceiveRow}
-              stepIndex={selectReceiveRow}
             />
             <div className={classes.paginationContainer}>
               <TablePagination
@@ -205,7 +204,7 @@ export default function AllBids() {
               rows={sendBidData}
               curPage={sendCurPage}
               onRowClick={handleSendRow}
-              stepIndex={selectSendRow}
+              // stepIndex={selectSendRow}
             />
             <div className={classes.paginationContainer}>
               <TablePagination

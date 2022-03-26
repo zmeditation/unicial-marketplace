@@ -83,11 +83,10 @@ export default function Sales() {
         </Grid>
       </div>
       <div>
-        <div className={classes.title}>{t("Staging")}</div>
+        <div className={classes.title}>{t("Sales List")}</div>
         <SalesStagingTable
           columns={headerData}
           rows={saledata}
-          stepIndex={1}
           curPage={curPage}
         />
         <div className={classes.paginationContainer}>

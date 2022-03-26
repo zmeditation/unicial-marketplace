@@ -48,12 +48,7 @@ export default function OnSale() {
   }, [onsaleData?.length]);
   return (
     <>
-      <OnSaleTable
-        columns={headerData}
-        rows={onsaleData}
-        curPage={curPage}
-        stepIndex={0}
-      />
+      <OnSaleTable columns={headerData} rows={onsaleData} curPage={curPage} />
       <div className={classes.paginationContainer}>
         <TablePagination handlepgnum={handlepgnum} totalPage={totalPage} />
       </div>
