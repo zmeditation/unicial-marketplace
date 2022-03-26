@@ -15,7 +15,7 @@ export const generateContractInstance = (
 };
 
 export const generateSigner = (ethereum: any) => {
-  var provider = new ethers.providers.Web3Provider(ethereum);
+  var provider = new ethers.providers.Web3Provider(ethereum, "any");
   // check if an account is connected at the moment
   var signer = provider.getSigner();
   return signer;
