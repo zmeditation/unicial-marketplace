@@ -67,7 +67,6 @@ const Contract = () => {
       const itemParcel = parcelsOnSale[index];
       if (itemParcel.assetId === tokensid) {
         setSaleId(itemParcel.assetId);
-        console.log("parcel price", itemParcel.priceInWei);
         setSalePrice(itemParcel.priceInWei);
       }
     });
@@ -75,7 +74,6 @@ const Contract = () => {
       const itemEstate = estatesOnSale[index];
       if (itemEstate.assetId === tokensid) {
         setSaleId(itemEstate.assetId);
-        console.log("estate price", itemEstate.priceInWei);
         setSalePrice(itemEstate.priceInWei);
       }
     });
