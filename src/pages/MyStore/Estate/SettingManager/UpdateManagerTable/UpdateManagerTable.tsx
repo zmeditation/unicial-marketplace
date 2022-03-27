@@ -96,19 +96,19 @@ const UpdateManagerTable = ({
             onClick={() => onRowClick(key)}
             className={clsx({ [classes.targetRow]: stepIndex === key })}
           >
-            <StyledTooltip
-              title={row.args[1]}
-              interactive
-              arrow
-              placement="top"
-            >
-              <TableCell className={clsx(classes.tableCell, classes.tokenId)}>
-                {row.args[1].slice(0, 15) + ".."}
-              </TableCell>
-            </StyledTooltip>
+            <TableCell className={clsx(classes.tableCell, classes.tokenId)}>
+              <StyledTooltip
+                title={row.args[1]}
+                interactive
+                arrow
+                placement="top"
+              >
+                <span>{row.args[1].slice(0, 15) + ".."}</span>
+              </StyledTooltip>
+            </TableCell>
 
             <TableCell className={clsx(classes.tableCell)}>
-              {row.args[3] === false ? "unset" : "seted"}
+              {row.args[3] === false ? "UNSETTED" : "SETTED"}
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               {row.args[3] === true ? (
