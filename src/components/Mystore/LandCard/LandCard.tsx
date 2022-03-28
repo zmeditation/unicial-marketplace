@@ -1,4 +1,4 @@
-import { LandCardStyle, StyledTooltip } from "./LandCardStyle";
+import { LandCardStyle } from "./LandCardStyle";
 import headSvg from "../../../assets/svg/head.svg";
 import unisexSvg from "../../../assets/svg/unisex.svg";
 import landmap1Png from "../../../assets/img/landmap1.png";
@@ -81,9 +81,7 @@ export default function LandCard({
           <img src={landmap1Png} className={classes.image} alt="alt" />
         </div>
 
-        <StyledTooltip title={land} interactive arrow placement="top">
-          <div className={classes.productName}>{land}</div>
-        </StyledTooltip>
+        <div className={classes.productName}>{land}</div>
 
         <div className={classes.bottom}>
           <div className={classes.category}>{categoryName}</div>

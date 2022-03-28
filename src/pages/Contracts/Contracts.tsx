@@ -32,7 +32,8 @@ import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract"
 import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
 import { getBidsByToken } from "../../hooks/api";
 import { selectLoginAddress } from "../../store/auth/selectors";
-
+import { limitCount } from "../../config/constant";
+import { ShowMoreLessBtn } from "../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 declare var window: any;
 var signer: any, bidContract: any;
 
@@ -46,6 +47,12 @@ const Contract = () => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [highDivLine, setHighDivLine] = useState(false);
+  // --show btn logic start
+  const [shown, setShown] = useState(false);
+  const [showlessBtn, setShowlessBtn] = useState(false);
+  const [showmoreBtn, setShowmoreBtn] = useState(true);
+  const [showCount, setShowCount] = useState(0);
+  // --show btn logic end
 
   //---------------------------Input value ------------------
 
@@ -157,6 +164,17 @@ const Contract = () => {
 
     let bids = await getBidsByToken(contractaddress, tokensid);
     setBidItems(bids);
+    if (bids?.length <= limitCount) {
+      setShown(false);
+      setShowCount(bids?.length);
+    } else {
+      setShown(true);
+      if (showmoreBtn === true) {
+        setShowCount(limitCount);
+      } else if (showlessBtn === true) {
+        setShowCount(bids?.length);
+      }
+    }
   };
   //pagination reate
   const [curPage, setCurPage] = useState<any>(1);
@@ -165,6 +183,17 @@ const Contract = () => {
   };
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
+
+  const handleShowMoreBtn = () => {
+    setShowmoreBtn(false);
+    setShowlessBtn(true);
+    setShowCount(bidItems?.length);
+  };
+  const handleShowLessBtn = () => {
+    setShowmoreBtn(true);
+    setShowlessBtn(false);
+    setShowCount(limitCount);
+  };
   return (
     <>
       <TopTab />
@@ -234,25 +263,53 @@ const Contract = () => {
             </div>
           </div> */}
           <div>
-            <div
-              className={
-                bidItems?.length === 0 || bidItems === undefined
-                  ? classes.displayNone
-                  : classes.BidsTitle
-              }
-            >
-              {t("Bids")}
-            </div>
-            {bidItems?.map((item: any, key: any) => {
-              return (
-                <BidRecord
-                  key={key}
-                  fromName={item[1]?.slice(0, 6)}
-                  price={ethers.utils.formatUnits(item[2], 18)}
-                  time={dateConvert(item[3])}
-                />
-              );
-            })}
+            <div className={classes.BidsTitle}>{t("Bids")}</div>
+            {bidItems?.length === 0 || bidItems === undefined ? (
+              <div>There is no bids</div>
+            ) : (
+              <div>
+                <div>
+                  {bidItems?.slice(0, showCount).map((item: any, key: any) => {
+                    return (
+                      <BidRecord
+                        key={key}
+                        fromName={item[1]?.slice(0, 6)}
+                        price={ethers.utils.formatUnits(item[2], 18)}
+                        time={dateConvert(item[3])}
+                      />
+                    );
+                  })}
+                </div>
+                {shown && (
+                  <>
+                    <div
+                      className={
+                        showmoreBtn === true
+                          ? classes.showmoreContent
+                          : classes.displayNone
+                      }
+                    >
+                      <ShowMoreLessBtn
+                        letter={t("Show More")}
+                        onClick={handleShowMoreBtn}
+                      />
+                    </div>
+                    <div
+                      className={
+                        showlessBtn === true
+                          ? classes.showmoreContent
+                          : classes.displayNone
+                      }
+                    >
+                      <ShowMoreLessBtn
+                        letter={t("Show Less")}
+                        onClick={handleShowLessBtn}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

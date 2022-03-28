@@ -36,7 +36,7 @@ const LandMap: React.FC<LandMapProps> = ({
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [price, setPrice] = useState("");
-  const [onSale, setOnSale] = useState(true);
+  const [onSale, setOnSale] = useState(false);
   const [, setEstateid] = useState(null);
   let navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -223,10 +223,6 @@ const LandMap: React.FC<LandMapProps> = ({
   }, [showPopup, mouseX, mouseY]);
 
   useEffect(() => {
-    if (query.get("onlyOnSale") === null) {
-      setOnSale(true);
-      return;
-    }
     if (query.get("onlyOnSale") === "true") {
       setOnSale(true);
     } else {

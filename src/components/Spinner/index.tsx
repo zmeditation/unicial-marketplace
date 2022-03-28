@@ -1,6 +1,6 @@
 import { SemipolarSpinner } from "react-epic-spinners";
 import { makeStyles, Theme } from "@material-ui/core/styles";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "../../store/hooks";
 
 import { spinnerStatus } from "../../store/spinner/selectors";
 
@@ -66,10 +66,11 @@ export default function Spinner() {
       <div
         className={
           spinner === true ? classes.loaderWrapper : classes.displayNone
-        }>
+        }
+      >
         <div className={classes.spinnerRoot}>
           <SemipolarSpinner
-            color='red'
+            color="red"
             className={classes.spinner}
             size={100}
           />

@@ -31,6 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
     landspan: {
       fontSize: "15px",
       fontFamily: "Montserrat",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      lineHeight: "17px",
     },
   })
 );
@@ -52,7 +56,11 @@ export default function LandSize({ count, dark, className, onClick }: Props) {
         })}
       >
         <div className={classes.info}>{count}</div>
-        <div className={classes.landspan}>Land</div>
+        {Number(count) === 1 ? (
+          <span className={classes.landspan}>Land</span>
+        ) : (
+          <span className={classes.landspan}>Lands</span>
+        )}
       </div>
     </>
   );

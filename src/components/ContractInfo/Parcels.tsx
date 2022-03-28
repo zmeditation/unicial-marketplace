@@ -4,7 +4,6 @@ import { ShowMoreLessBtn } from "../ShowMoreLessBtn/ShowMoreLessBtn";
 import { useTranslation } from "react-i18next";
 import { getCoords } from "../../common/utils";
 import { useEffect, useRef, useState } from "react";
-// import { parcelshowMoreCount } from "../../config/constant";
 import { useElementSize } from "usehooks-ts";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -72,45 +71,39 @@ const Parcels = ({ parcels }: ParcelsProps) => {
   //width size logic start
   const [squareRef, { width }] = useElementSize();
   //width size logic
-  let showmorecount = Math.floor(width / 90);
-  const [count, setCount] = useState(showmorecount);
-
+  let onelineCount = Math.floor(width / 90);
+  const [count, setCount] = useState(onelineCount);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [showLessBtn, setShowLessBtn] = useState(false);
+  const [shown, setShown] = useState(true);
 
   useEffect(() => {
-    setCount(showmorecount);
-  }, [window.innerWidth]);
+    if (parcels?.length !== undefined && parcels?.length <= onelineCount) {
+      setCount(parcels?.length);
+      setShown(false);
+    } else if (parcels?.length !== undefined) {
+      setShown(true);
+      if (showMoreBtn) {
+        setCount(onelineCount);
+      } else if (showLessBtn) {
+        setCount(parcels?.length);
+      } else {
+        setCount(parcels?.length);
+      }
+    }
+  }, [parcels?.length, window.innerWidth, onelineCount]);
 
-  useEffect(() => {
-    setCount(showmorecount);
-  }, [showmorecount]);
-
-  const handleShowBtn = () => {
-    setCount(parcels?.length);
+  const handleShowMoreBtn = () => {
     setShowMoreBtn(false);
     setShowLessBtn(true);
+    setCount(parcels?.length);
   };
 
   const handleShowLessBtn = () => {
-    setCount(showmorecount);
+    setCount(onelineCount);
     setShowMoreBtn(true);
     setShowLessBtn(false);
   };
-
-  useEffect(() => {
-    if (
-      parcels !== undefined &&
-      parcels.length !== 0 &&
-      parcels?.length <= showmorecount
-    ) {
-      setShowMoreBtn(false);
-      setShowLessBtn(false);
-    } else {
-      setShowMoreBtn(true);
-      setShowLessBtn(false);
-    }
-  }, [parcels]);
 
   return (
     <div className={classes.root} ref={squareRef}>
@@ -123,23 +116,34 @@ const Parcels = ({ parcels }: ParcelsProps) => {
             );
           })}
         </div>
-        <div
-          className={
-            showMoreBtn === true ? classes.showmoreContent : classes.displayNone
-          }
-        >
-          <ShowMoreLessBtn letter={t("Show More")} onClick={handleShowBtn} />
-        </div>
-        <div
-          className={
-            showLessBtn === true ? classes.showmoreContent : classes.displayNone
-          }
-        >
-          <ShowMoreLessBtn
-            letter={t("Show Less")}
-            onClick={handleShowLessBtn}
-          />
-        </div>
+        {shown && (
+          <>
+            <div
+              className={
+                showMoreBtn === true
+                  ? classes.showmoreContent
+                  : classes.displayNone
+              }
+            >
+              <ShowMoreLessBtn
+                letter={t("Show More")}
+                onClick={handleShowMoreBtn}
+              />
+            </div>
+            <div
+              className={
+                showLessBtn === true
+                  ? classes.showmoreContent
+                  : classes.displayNone
+              }
+            >
+              <ShowMoreLessBtn
+                letter={t("Show Less")}
+                onClick={handleShowLessBtn}
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
