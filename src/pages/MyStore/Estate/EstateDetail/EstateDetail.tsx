@@ -24,8 +24,10 @@ import {
   EstateProxyAddress,
   EstateRegistryAbi,
 } from "../../../../config/contracts/EstateRegitryContract";
-// import { fetchTiles } from "../../../../../src/hooks/tiles";
 import { totalSpace } from "../../../../store/parcels/selectors";
+import Parcels from "../../../../components/ContractInfo/Parcels";
+import { getMetadata } from "../../../../hooks/api";
+import { StyledTooltip } from "../../../../components/Mystore/LandCard/LandCardStyle";
 
 var signer: any, estateRegistryContract: any;
 declare var window: any;
@@ -45,6 +47,9 @@ const EstateDetail = () => {
   const [currentOperator, setCurrentOperator] = useState("");
   const [estateSize, setEstatesize] = useState(0);
   const tiles: any = useAppSelector(totalSpace);
+  const [selectSpace, setSelectSpace] = useState<any>();
+  const [landName, setLandName] = useState("");
+  const [landDesc, setLandDesc] = useState("");
 
   useEffect(() => {
     getEstatesByOwner(loginAddress).then((parcels: any[]) => {
@@ -74,6 +79,16 @@ const EstateDetail = () => {
     setShowMoreBtn(true);
     setShowLessBtn(false);
   };
+
+  const getMedataInfo = async () => {
+    var id = Number(estateid);
+    await getMetadata(id).then((res: any) => {
+      let metaData = res.split("^");
+      setLandName(metaData[0]);
+      setLandDesc(metaData[1]);
+    });
+  };
+
   const init = async () => {
     signer = generateSigner(window.ethereum);
     estateRegistryContract = generateContractInstance(
@@ -85,9 +100,10 @@ const EstateDetail = () => {
     if (currentOperator !== "0x0000000000000000000000000000000000000000") {
       setCurrentOperator(currentOperator);
     } else {
-      setCurrentOperator("....");
+      setCurrentOperator("0x");
     }
   };
+
   useEffect(() => {
     let count = 0;
     Object.keys(tiles).forEach((index: any) => {
@@ -100,9 +116,22 @@ const EstateDetail = () => {
         setEstatesize(count);
       }
     });
+    let estateArray: any = [];
+    Object.keys(tiles).forEach((index: any) => {
+      const allParcel = tiles[index];
+      if (
+        allParcel.estateId === estateid &&
+        contractaddress === EstateProxyAddress
+      ) {
+        estateArray.push({ x: allParcel.x, y: allParcel.y });
+      }
+    });
+    setSelectSpace(estateArray);
   }, [tiles]);
+
   useEffect(() => {
     init();
+    getMedataInfo();
   }, []);
   return (
     <div className={classes.root}>
@@ -119,18 +148,25 @@ const EstateDetail = () => {
             </div>
           </div>
           <div className={classes.rightCard}>
-            <div className={classes.title}>
-              {t("Estate Relative Information")}
-            </div>
+            <div className={classes.infoNameContainer}>{landName}</div>
+            <div className={classes.infoDescContainer}>{landDesc}</div>
+
             <div className={classes.form_field}>
               <div className={classes.price_container}>
                 <Grid container>
                   <Grid md={6} sm={12} xs={12} item>
                     <div className={classes.subheader_label}>
                       {t("Operator")}:
-                      <span className={classes.operatorValue}>
-                        {currentOperator.slice(0, 7) + ".."}
-                      </span>
+                      <StyledTooltip
+                        title={currentOperator}
+                        interactive
+                        arrow
+                        placement="top"
+                      >
+                        <span className={classes.operatorValue}>
+                          {currentOperator.slice(0, 7)}
+                        </span>
+                      </StyledTooltip>
                     </div>
                   </Grid>
                   <Grid md={6} sm={12} xs={12} item>
@@ -312,6 +348,9 @@ const EstateDetail = () => {
               />
             </div>
           </div>
+        </div>
+        <div className={classes.bidDetail}>
+          <Parcels parcels={selectSpace} />
         </div>
       </div>
     </div>

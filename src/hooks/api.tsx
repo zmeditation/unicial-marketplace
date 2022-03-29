@@ -1,20 +1,23 @@
-import { ApiUrl } from "../config/constant";
 import axios from "axios";
+import { ApiUrl } from "../config/constant";
+import { generateContractInstance, generateSigner } from "../common/contract";
+import { BigNumber } from "ethers";
 import {
   EstateProxyAddress,
   EstateRegistryAbi,
 } from "../config/contracts/EstateRegitryContract";
-// import utility functions
-import { generateContractInstance, generateSigner } from "../common/contract";
 import {
   SpaceProxyAddress,
   SpaceRegistryAbi,
 } from "../config/contracts/SpaceRegistryContract";
-import { BigNumber } from "ethers";
 import {
   BidContractAddress,
   BidContractAbi,
 } from "../config/contracts/BidContract";
+import {
+  MarketplaceAbi,
+  MarketplaceAddress,
+} from "../config/contracts/MarketPlaceContract";
 
 declare var window: any;
 var signer: any;
@@ -51,6 +54,7 @@ export const getParcelsByOwnerAsCoords = async (owner: any) => {
     let ownedTokens = await Promise.all(tokenPromises);
     return getCoords(ownedTokens);
   } catch (error: any) {
+    console.log(error);
     return [];
   }
 };
@@ -100,9 +104,13 @@ export const getEstatesByOwner = async (owner: any) => {
     let ownedTokens = await Promise.all(tokenPromises);
 
     for (let i = 0; i < ownedTokens.length; i++) {
-      ownedTokens[i] = ownedTokens[i].toNumber();
+      if (
+        (
+          await estateRegistryContract.getEstateSize(ownedTokens[i].toNumber())
+        ).toNumber() > 0
+      )
+        ownedTokens[i] = ownedTokens[i].toNumber();
     }
-
     return ownedTokens;
   } catch (error: any) {
     return [];
@@ -170,4 +178,74 @@ export const getBidsByToken = async (nftAddress: any, tokenId: any) => {
   } catch {
     return [];
   }
+};
+
+export const getOnsaleListByOwner = async (address: any) => {
+  try {
+    let marketplaceContract = generateContractInstance(
+      MarketplaceAddress,
+      MarketplaceAbi,
+      signer
+    );
+    const currentTime = new Date().getTime() / 1000;
+    const parcel = await getParcelsByOwnerAstokenId(address);
+    const estate = await getEstatesByOwner(address);
+    let saleList: any = [];
+
+    for (let index = 0; index < parcel.length; index++) {
+      let arr_temp: any = {};
+      let arr = await marketplaceContract.orderByAssetId(
+        SpaceProxyAddress,
+        parcel[index].toString()
+      );
+      if (arr.expiresAt.toNumber() > currentTime) {
+        arr_temp["tokenId"] = parcel[index].toString();
+        arr_temp["tokenAddress"] = arr.nftAddress;
+        arr_temp["price"] = arr.price.toString();
+        arr_temp["expiresAt"] = arr.expiresAt.toNumber();
+        saleList.push(arr_temp);
+      }
+    }
+    for (let index = 0; index < estate.length; index++) {
+      let arr_temp: any = {};
+      let arr = await marketplaceContract.orderByAssetId(
+        EstateProxyAddress,
+        estate[index].toString()
+      );
+      if (arr.expiresAt.toNumber() > currentTime) {
+        arr_temp["tokenId"] = estate[index].toString();
+        arr_temp["tokenAddress"] = arr.nftAddress;
+        arr_temp["price"] = arr.price.toString();
+        arr_temp["expiresAt"] = arr.expiresAt.toNumber();
+        saleList.push(arr_temp);
+      }
+    }
+    return saleList;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+export const getEstateSize = async (tokenId: any) => {
+  estateRegistryContract = generateContractInstance(
+    EstateProxyAddress,
+    EstateRegistryAbi,
+    signer
+  );
+  const estateSize = (
+    await estateRegistryContract.getEstateSize(tokenId)
+  ).toNumber();
+
+  return estateSize;
+};
+
+export const getMetadata = async (tokenId: any) => {
+  estateRegistryContract = generateContractInstance(
+    EstateProxyAddress,
+    EstateRegistryAbi,
+    signer
+  );
+  const metadata = await estateRegistryContract.getMetadata(tokenId);
+  return metadata;
 };

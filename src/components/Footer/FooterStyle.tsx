@@ -112,22 +112,7 @@ export const FooterStyle = makeStyles((theme: Theme) =>
       backgroundPosition: "50%",
       backgroundClip: "content-box",
       cursor: "pointer",
-    },
-    joySvg: {
-      width: "18px",
-      height: "14px",
-    },
-    robotSvg: {
-      width: "19px",
-      height: "17px",
-    },
-    githubSvg: {
-      width: "13px",
-      height: "17px",
-    },
-    dovSvg: {
-      width: "16px",
-      height: "14px",
+      marginLeft: "23px",
     },
     copyright: {
       color: "#96A1DB",

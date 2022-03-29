@@ -55,7 +55,7 @@ const Auction = () => {
   const [width, setWidth] = useState(0);
   const [uccPricePerSpace, setUccPricePerSpace] = useState(0);
   const [uccAllowance, setUccAllowance] = useState(BigNumber.from(0)); // This shows current appoved ucc allowance
-  const [ttlSpacesPrice, setTtlSpacePrice] = useState(BigNumber.from(0)); // This shows current total space price
+  const [ttlSpacesPrice, setTtlSpacePrice] = useState(0); // This shows current total space price
   const [uccBalance, setUccBalance] = useState(BigNumber.from(0));
   const [bid, setBid] = useState({ xs: [], ys: [], beneficiary: "" });
   const [isBiddable, setIsBiddable] = useState(false);
@@ -109,10 +109,7 @@ const Auction = () => {
 
   useEffect(() => {
     convertToBidData();
-    let ttl =
-      (uccPricePerSpace &&
-        BigNumber.from(bidParcels.length * uccPricePerSpace)) ||
-      BigNumber.from(0);
+    let ttl = (uccPricePerSpace && bidParcels.length * uccPricePerSpace) || 0;
     setTtlSpacePrice(ttl);
   }, [bidParcels.length]);
 
@@ -186,7 +183,7 @@ const Auction = () => {
           })
         );
       } else {
-        if (uccBalance.gte(ttlSpacesPrice)) {
+        if (Number(uccBalance.toString()) >= ttlSpacesPrice) {
           if (uccAllowance.gt(0)) {
             // call bid function to get space token by offering ucc token
             let bidTx = await spaceAuctionContract.bid(
@@ -267,7 +264,7 @@ const Auction = () => {
       (await spaceAuctionContract.getCurrentPrice()).toString()
     );
     setUccPricePerSpace(
-      ethers.utils.parseEther(uccPricePerSpaceTmp.toString()).toNumber()
+      Number(ethers.utils.formatEther(uccPricePerSpaceTmp.toString()))
     );
     spacesLimitPerBid = parseInt(
       (await spaceAuctionContract.spacesLimitPerBid()).toString()

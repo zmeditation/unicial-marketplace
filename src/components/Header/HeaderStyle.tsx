@@ -41,9 +41,9 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       height: "100%",
-      // [theme.breakpoints.down(768)]: {
-      //   display: "none",
-      // },
+      [theme.breakpoints.down(600)]: {
+        display: "none",
+      },
     },
     logoContent: {
       textDecoration: "none",
@@ -120,7 +120,7 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
       color: "#ffffff",
       textTransform: "uppercase",
       fontFamily: "Lato",
-      // marginLeft: "24px",
+      marginRight: "24px",
       padding: "2px 0px 0px 0px!important",
       fontSize: "16px",
       lineHeight: "18px",

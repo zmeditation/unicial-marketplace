@@ -21,7 +21,7 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
     notificationicon: {
       fill: "white",
       fontSize: "20px",
-      [theme.breakpoints.down(650)]: {
+      [theme.breakpoints.down(900)]: {
         display: "none",
       },
     },
@@ -35,7 +35,7 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
       display: "flex",
       flexFlow: "row nowrap",
       alignItems: "center",
-      [theme.breakpoints.down(650)]: {
+      [theme.breakpoints.down(900)]: {
         display: "none",
       },
     },
@@ -115,12 +115,12 @@ export const HeaderSignInBarStyle = makeStyles((theme: Theme) =>
       color: "white",
     },
     ringButton: {
-      [theme.breakpoints.down(650)]: {
+      [theme.breakpoints.down(900)]: {
         display: "none",
       },
     },
     moneyContainer: {
-      [theme.breakpoints.up(650)]: {
+      [theme.breakpoints.up(900)]: {
         display: "none !important",
       },
     },

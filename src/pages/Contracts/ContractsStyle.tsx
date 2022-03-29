@@ -62,9 +62,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       marginTop: "20px",
     },
   },
-  highLIght:{
-
-  },
+  highLIght: {},
   items: {
     marginBottom: "40px",
   },
@@ -85,7 +83,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "50px",
     color: "white",
   },
-  BuyboxContainer:{},
+  BuyboxContainer: {},
   BidboxContainer: {
     marginBottom: "30px",
   },
@@ -99,5 +97,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   displayNone: {
     display: "none",
+  },
+  showmoreContent: {
+    marginTop: "15px",
+    justifyContent: "center",
+    width: "100%",
+    flexFlow: "row nowrap",
+    display: "flex",
+  },
+  emptyDisplay: {
+    opacity: "50%",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 }));

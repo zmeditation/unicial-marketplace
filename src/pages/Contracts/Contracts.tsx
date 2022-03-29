@@ -6,22 +6,24 @@ import Owner from "../../components/ContractInfo/Owner";
 import Highlight from "../../components/ContractInfo/Highlight";
 import Bidbox from "../../components/ContractInfo/Bidbox";
 import Buybox from "../../components/ContractInfo/Buybox";
+import Sellbox from "../../components/ContractInfo/Sellbox";
 import Parcels from "../../components/ContractInfo/Parcels";
 import TopTab from "../../components/TopTab/TopTab";
 import BidRecord from "../../components/ContractInfo/BidRecord";
-import { headerData, transactionData } from "./ContractsData";
-import { parcelTypes } from "../../config/constant";
+import { transactionData } from "./ContractsData";
 import { useStyles } from "./ContractsStyle";
 import { BackButton } from "../../components/BackButton/BackButton";
-import LatestSalesTable from "../../components/ContractInfo/LatestSalesTable/LatestSalesTable";
 import { useTranslation } from "react-i18next";
-import TablePagination from "../../components/Base/TablePagination";
 import { useAppSelector } from "../../store/hooks";
 import { saleParcels } from "../../store/saleparcels/selectors";
 import { saleEstates } from "../../store/saleestates/selectors";
 import { totalSpace } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
-import { dateConvert, findCenterDot } from "../../common/utils";
+import {
+  leftTime,
+  dateConvert_untilDate,
+  findCenterDot,
+} from "../../common/utils";
 import {
   BidContractAddress,
   BidContractAbi,
@@ -33,12 +35,15 @@ import {
 import { SpaceProxyAddress } from "../../config/contracts/SpaceRegistryContract";
 import { EstateProxyAddress } from "../../config/contracts/EstateRegitryContract";
 import { getBidsByToken } from "../../hooks/api";
-
+import { selectLoginAddress } from "../../store/auth/selectors";
+import { limitCount } from "../../config/constant";
+import { ShowMoreLessBtn } from "../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 declare var window: any;
 var signer: any, bidContract: any;
 
 const Contract = () => {
   const classes = useStyles();
+  const loginAddress = useAppSelector(selectLoginAddress);
   const { contractaddress, tokensid } = useParams();
   const [width, setWidth] = useState(0);
   const { t } = useTranslation();
@@ -46,6 +51,12 @@ const Contract = () => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [highDivLine, setHighDivLine] = useState(false);
+  // --show btn logic start
+  const [shown, setShown] = useState(false);
+  const [showlessBtn, setShowlessBtn] = useState(false);
+  const [showmoreBtn, setShowmoreBtn] = useState(true);
+  const [showCount, setShowCount] = useState(0);
+  // --show btn logic end
 
   //---------------------------Input value ------------------
 
@@ -61,6 +72,7 @@ const Contract = () => {
   const tiles: any = useAppSelector(totalSpace);
 
   useEffect(() => {
+    setSalePrice(0);
     let estateArray: any = [];
     Object.keys(parcelsOnSale).forEach((index: any) => {
       const itemParcel = parcelsOnSale[index];
@@ -94,7 +106,7 @@ const Contract = () => {
         allParcel.estateId === tokensid &&
         contractaddress === EstateProxyAddress
       ) {
-        const [estateName, estateDes] = allParcel?.name.split(",");
+        const [estateName, estateDes] = allParcel?.name.split("^");
         setOwner(allParcel.owner);
         setName(estateName);
         setDescription(estateDes);
@@ -156,6 +168,17 @@ const Contract = () => {
 
     let bids = await getBidsByToken(contractaddress, tokensid);
     setBidItems(bids);
+    if (bids?.length <= limitCount) {
+      setShown(false);
+      setShowCount(bids?.length);
+    } else {
+      setShown(true);
+      if (showmoreBtn === true) {
+        setShowCount(limitCount);
+      } else if (showlessBtn === true) {
+        setShowCount(bids?.length);
+      }
+    }
   };
   //pagination reate
   const [curPage, setCurPage] = useState<any>(1);
@@ -165,6 +188,16 @@ const Contract = () => {
   var count = transactionData.length;
   var totalPage = Math.ceil(count / 5);
 
+  const handleShowMoreBtn = () => {
+    setShowmoreBtn(false);
+    setShowlessBtn(true);
+    setShowCount(bidItems?.length);
+  };
+  const handleShowLessBtn = () => {
+    setShowmoreBtn(true);
+    setShowlessBtn(false);
+    setShowCount(limitCount);
+  };
   return (
     <>
       <TopTab />
@@ -205,23 +238,14 @@ const Contract = () => {
               </div>
             </div>
             <div className={classes.rightDescription}>
-              <div
-                className={
-                  saleId && saleId === tokensid
-                    ? classes.displayNone
-                    : classes.BidboxContainer
-                }
-              >
-                <Bidbox selectOwner={owner && owner} />
-              </div>
-              <div
-                className={
-                  saleId && saleId === tokensid
-                    ? classes.BuyboxContainer
-                    : classes.displayNone
-                }
-              >
-                <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />
+              <div className={classes.BuyboxContainer}>
+                {loginAddress?.toUpperCase() === owner?.toUpperCase() ? (
+                  <Sellbox price={ethers.utils.formatUnits(salePrice, 18)} />
+                ) : saleId && saleId === tokensid ? (
+                  <Buybox price={ethers.utils.formatUnits(salePrice, 18)} />
+                ) : (
+                  <Bidbox selectOwner={owner && owner} />
+                )}
               </div>
             </div>
           </div>
@@ -241,28 +265,58 @@ const Contract = () => {
                 totalPage={totalPage}
               />
             </div>
-          </div>
-          <div>
-            <div
-              className={
-                bidItems?.length === 0 || bidItems === undefined
-                  ? classes.displayNone
-                  : classes.BidsTitle
-              }
-            >
-              {t("Bids")}
-            </div>
-            {bidItems?.map((item: any, key: any) => {
-              return (
-                <BidRecord
-                  key={key}
-                  fromName={item[1]?.slice(0, 6)}
-                  price={ethers.utils.formatUnits(item[2], 18)}
-                  time={dateConvert(item[3])}
-                />
-              );
-            })}
           </div> */}
+          <div>
+            {bidItems?.length === 0 || bidItems === undefined ? (
+              <></>
+            ) : (
+              <div>
+                <div className={classes.BidsTitle}>{t("Bids")}</div>
+
+                <div>
+                  {bidItems?.slice(0, showCount).map((item: any, key: any) => {
+                    // console.log("item", item);
+                    return (
+                      <BidRecord
+                        key={key}
+                        fromName={item[1]}
+                        price={ethers.utils.formatUnits(item[2], 18)}
+                        time={leftTime(item[3])}
+                      />
+                    );
+                  })}
+                </div>
+                {shown && (
+                  <>
+                    <div
+                      className={
+                        showmoreBtn === true
+                          ? classes.showmoreContent
+                          : classes.displayNone
+                      }
+                    >
+                      <ShowMoreLessBtn
+                        letter={t("Show More")}
+                        onClick={handleShowMoreBtn}
+                      />
+                    </div>
+                    <div
+                      className={
+                        showlessBtn === true
+                          ? classes.showmoreContent
+                          : classes.displayNone
+                      }
+                    >
+                      <ShowMoreLessBtn
+                        letter={t("Show Less")}
+                        onClick={handleShowLessBtn}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

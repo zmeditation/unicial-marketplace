@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   priceCell: {
-    // display: "flex",
+    display: "flex",
     alignItems: "center",
   },
   normalshape: {

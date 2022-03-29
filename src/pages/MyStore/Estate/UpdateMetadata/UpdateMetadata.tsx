@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
@@ -21,6 +21,8 @@ import {
   EstateRegistryAbi,
 } from "../../../../config/contracts/EstateRegitryContract";
 import { MarketplaceAddress } from "../../../../config/contracts/MarketPlaceContract";
+import { getMetadata } from "../../../../../src/hooks/api";
+
 declare var window: any;
 const UpdateMetadata = () => {
   const classes = useStyles();
@@ -29,10 +31,22 @@ const UpdateMetadata = () => {
   const dispatch = useAppDispatch();
   const { estateid } = useParams();
   const loginAddress = useAppSelector(selectLoginAddress);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [initLandname, setInitLandname] = useState("");
+  const [initLanddesc, setInitLanddesc] = useState("");
+  const [name, setName] = useState(initLandname);
+  const [description, setDescription] = useState(initLanddesc);
 
   var isSignIn = 1;
+  const initData = async () => {
+    await getMetadata(estateid).then((res: any) => {
+      let metaData = res.split("^");
+      setInitLandname(metaData[0]);
+      setInitLanddesc(metaData[1]);
+    });
+  };
+  useEffect(() => {
+    initData();
+  }, []);
 
   const handleNameChange = (e: any) => {
     setName(e.target.value);
@@ -70,7 +84,7 @@ const UpdateMetadata = () => {
       );
       return;
     }
-    var metaData = name + "," + description;
+    var metaData = name + "^" + description;
     var signer = generateSigner(window.ethereum);
     var estateRegistryContract = generateContractInstance(
       EstateProxyAddress,
@@ -81,7 +95,6 @@ const UpdateMetadata = () => {
       estateRegistryContract.getApproved(estateid) !== MarketplaceAddress &&
       estateRegistryContract.isApprovedForAll(loginAddress, estateid) === false
     ) {
-      alert("test2");
       let approveMarketTx = await estateRegistryContract.approve(
         MarketplaceAddress,
         estateid
@@ -106,6 +119,7 @@ const UpdateMetadata = () => {
         severity: "success",
       })
     );
+    window.location.href = "/account?section=estates";
   };
 
   return (
@@ -134,7 +148,7 @@ const UpdateMetadata = () => {
                   <div className={classes.subheader_label}>{t("Name")}</div>
                   <FormControl className={classes.widthFull}>
                     <StyledInput
-                      placeholder={t("Decentraland")}
+                      placeholder={initLandname}
                       onChange={(e) => handleNameChange(e)}
                     />
                   </FormControl>
@@ -144,7 +158,7 @@ const UpdateMetadata = () => {
                   <TextareaAutosize
                     className={classes.descriptionTextField}
                     aria-label="maximum height"
-                    placeholder={t("This is an estate")}
+                    placeholder={initLanddesc}
                     onChange={(e) => handleDescriptionChange(e)}
                   />
                 </div>

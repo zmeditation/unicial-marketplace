@@ -1,8 +1,50 @@
+import { expired } from "../config/constant";
+
 export function isEmptyObject(obj: any) {
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) return false;
   }
   return true;
+}
+
+export function leftTime(closingtimestamp: any) {
+  let difference = closingtimestamp - Math.floor(new Date().getTime() / 1000);
+
+  let timeLeft: any = {};
+  if (difference > 0) {
+    timeLeft = {
+      days: Math.floor(difference / (60 * 60 * 24)),
+      hours: Math.floor((difference / (60 * 60)) % 24),
+      minutes: Math.floor((difference / 60) % 60),
+      seconds: Math.floor(difference % 60),
+    };
+    if (timeLeft.days > 0) {
+      if (timeLeft.days === 1) {
+        return timeLeft.days + " Day";
+      } else {
+        return timeLeft.days + " Days";
+      }
+    } else if (timeLeft.hours > 0) {
+      if (timeLeft.hours === 1) {
+        return timeLeft.hours + " Hour";
+      }
+      return timeLeft.hours + " Hours";
+    } else if (timeLeft.minutes > 0) {
+      if (timeLeft.minutes === 1) {
+        return timeLeft.minutes + " Minute";
+      } else {
+        return timeLeft.minutes + " Minutes";
+      }
+    } else if (timeLeft.seconds > 0) {
+      if (timeLeft.seconds === 1) {
+        return timeLeft.seconds + " Second";
+      } else {
+        return timeLeft.seconds + " Seconds";
+      }
+    }
+  } else {
+    return expired;
+  }
 }
 
 export function includeArray(array: any, key: any) {
@@ -21,6 +63,17 @@ export const dateConvert = (timeStamp: any) => {
     ("0" + time.getHours()).slice(-2) +
     ":" +
     ("0" + time.getMinutes()).slice(-2)
+  );
+};
+
+export const dateConvert_untilDate = (timeStamp: any) => {
+  const time = new Date(timeStamp * 1000);
+  return (
+    time.getUTCFullYear() +
+    "/" +
+    ("0" + (time.getUTCMonth() + 1)).slice(-2) +
+    "/" +
+    ("0" + time.getUTCDate()).slice(-2)
   );
 };
 
@@ -80,6 +133,15 @@ export const addSpace = (nStr: any) => {
   var x1 = x[0];
   var x2 = x[1];
   x1 = x1 + " , ";
+  return x1 + x2;
+};
+
+export const noneSpace = (nStr: any) => {
+  nStr += "";
+  var x = nStr.split(",");
+  var x1 = x[0];
+  var x2 = x[1];
+  x1 = x1 + ",";
   return x1 + x2;
 };
 

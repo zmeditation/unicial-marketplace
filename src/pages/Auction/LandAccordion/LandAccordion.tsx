@@ -88,14 +88,11 @@ export default function LandAccordion() {
   const showmapMultiland = () => {
     let newSelectedTile: string[] = [];
     let count = 0;
-    const mm = "dfdfd";
     const content_str = xy
-      ?.replace("[", "@")
-      .replace("]", "#")
-      .replace("(", "$")
-      .replace(")", "%")
-      .slice(0, -1)
-      .split(",");
+      ?.replace("[", "")
+      .replace("]", "")
+      .slice(1, -1)
+      .split('","');
     content_str?.forEach((str) => {
       const tile: any = tiles && (tiles[str] as Tile);
       try {
@@ -108,6 +105,7 @@ export default function LandAccordion() {
       }
     });
     setCountMulti(count);
+    // console.log("accordion", newSelectedTile);
     dispatch(getparcels(newSelectedTile));
   };
 

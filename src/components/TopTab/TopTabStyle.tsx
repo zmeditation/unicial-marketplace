@@ -72,6 +72,26 @@ export const TopTabStyle = makeStyles((theme: Theme) =>
         display: "none",
       },
     },
+    activetoptab: {
+      color: "white",
+      [theme.breakpoints.up(769)]: {
+        border: "double 1px transparent",
+        borderRadius: "100px",
+        backgroundImage:
+          "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+        backgroundClip: "content-box, border-box",
+        backgroundOrigin: "border-box",
+      },
+
+      [theme.breakpoints.down(769)]: {
+        paddingLeft: "15px",
+        borderLeft: "2px solid #7F64E2",
+        marginBottom: "6px",
+      },
+    },
+    normaltoptab: {
+      color: "red",
+    },
   })
 );
 
@@ -96,29 +116,14 @@ export const StyledTopTabBtn = withStyles((theme) => ({
       border: "2px solid #21263f",
       marginBottom: "6px",
     },
-    "&.Mui-disabled": {
-      color: "white",
-      [theme.breakpoints.up(769)]: {
-        border: "double 1px transparent",
-        borderRadius: "100px",
-        backgroundImage:
-          "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
-        backgroundClip: "content-box, border-box",
-        backgroundOrigin: "border-box",
-      },
 
-      [theme.breakpoints.down(769)]: {
-        paddingLeft: "15px",
-        borderLeft: "2px solid #7F64E2",
-        marginBottom: "6px",
-      },
-    },
     "& .MuiButton-label": {
       textAlign: "center",
       fontSize: "16px",
       fontWeight: 400,
       lineHeight: "19.2px",
       fontFamily: "Lato",
+      color: "white",
       [theme.breakpoints.down(769)]: {
         textAlign: "left",
         fontWeight: 600,

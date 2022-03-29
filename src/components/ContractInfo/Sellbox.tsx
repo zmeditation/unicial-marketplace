@@ -74,11 +74,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface BuyboxProps {
+interface SellboxProps {
   price?: string;
 }
 
-const Buybox = ({ price }: BuyboxProps) => {
+const Sellbox = ({ price }: SellboxProps) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -96,16 +96,9 @@ const Buybox = ({ price }: BuyboxProps) => {
       )}
       <div className={classes.title}>{t("Network")}</div>
       <div className={classes.subtitle}>{t("Zilionixx")}</div>
-      <ActionButton color="light" onClick={() => navigate("buy")}>
-        {t("Buy")}
+      <ActionButton color="light" onClick={() => navigate("Sell")}>
+        {t("Sell")}
         <CallMadeIcon className={classes.callmadeicon} />
-      </ActionButton>
-      <ActionButton
-        color="dark"
-        onClick={() => navigate("bid")}
-        className={classes.bidBtn}
-      >
-        {t("Bid")}
       </ActionButton>
       <div className={classes.expireContainer}>
         <img src={cloccheckSvg} className={classes.clockcheck} />
@@ -117,4 +110,4 @@ const Buybox = ({ price }: BuyboxProps) => {
   );
 };
 
-export default Buybox;
+export default Sellbox;

@@ -15,6 +15,7 @@ import { ethers } from "ethers";
 import { getCoords } from "../../../common/utils";
 import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
 import { mapColor } from "../../../config/constant";
+import { showSpinner } from "../../../store/spinner";
 
 interface LandMapProps {
   height?: any;
@@ -36,7 +37,7 @@ const LandMap: React.FC<LandMapProps> = ({
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [price, setPrice] = useState("");
-  const [onSale, setOnSale] = useState(true);
+  const [onSale, setOnSale] = useState(false);
   const [, setEstateid] = useState(null);
   let navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -173,7 +174,11 @@ const LandMap: React.FC<LandMapProps> = ({
       if (!tiles) return;
       const id = getCoords(x, y);
       const tile: Tile = tiles && tiles[id];
-      const sale: any = parcelOnSale && parcelOnSale[id];
+      let sale: any;
+      sale = parcelOnSale && parcelOnSale[id];
+      if (tile.estateId) {
+        sale = estateOnSale && estateOnSale[tile.estateId];
+      }
       if (tile?.estateId && tokensid === tile?.estateId) {
         setShowPopup(false);
         return;
@@ -218,19 +223,21 @@ const LandMap: React.FC<LandMapProps> = ({
     };
   }, [showPopup, mouseX, mouseY]);
 
+  const getAlldata = async () => {
+    dispatch(showSpinner(true));
+    await dispatch(setSaleEstates());
+    await dispatch(setSaleParcels());
+    await dispatch(setSpaces());
+    dispatch(showSpinner(false));
+  };
+
   useEffect(() => {
-    if (query.get("onlyOnSale") === null) {
-      setOnSale(true);
-      return;
-    }
     if (query.get("onlyOnSale") === "true") {
       setOnSale(true);
     } else {
       setOnSale(false);
     }
-    dispatch(setSaleEstates());
-    dispatch(setSaleParcels());
-    dispatch(setSpaces());
+    getAlldata();
   }, [location]);
 
   return (

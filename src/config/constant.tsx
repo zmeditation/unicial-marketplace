@@ -1,5 +1,5 @@
-export const ApiUrl = "https://api.unicial.org";
-// export const ApiUrl = "http://192.168.112.103:8080";
+// export const ApiUrl = "https://api.unicial.org";
+export const ApiUrl = "http://192.168.112.103:8080";
 export const REQUEST_API_URL = `${ApiUrl}/api/v1`;
 
 export const tabs = {
@@ -7,11 +7,9 @@ export const tabs = {
 };
 
 export const showMoreCount = 6;
-
-export const headerId = {
-  marketplace: 1,
-  admin: 2,
-};
+export const limitCount = 6;
+export const expired = -99;
+export const parcelshowMoreCount = 10;
 
 export const topTabIndex = {
   land: 1,

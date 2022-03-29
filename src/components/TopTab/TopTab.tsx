@@ -102,7 +102,7 @@ export default function TopTab() {
         case "parcels":
           setSearchbarIndex(searchbarIndex.parcels);
           break;
-        case "estate":
+        case "estates":
           setSearchbarIndex(searchbarIndex.estate);
           break;
         case "wearables":
@@ -126,17 +126,6 @@ export default function TopTab() {
     checkedA: true,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const [filter_index, setFilterIndex] = React.useState(1);
-  const handletable = () => {
-    setFilterIndex(1);
-  };
-  const handlelocation = () => {
-    setFilterIndex(2);
-  };
   return (
     <>
       {location.pathname !== "/" && (
@@ -146,37 +135,49 @@ export default function TopTab() {
               <div className={classes.topbar}>
                 <div className={classes.tabsLeft}>
                   <StyledTopTabBtn
-                    disableRipple
                     onClick={() => handlehead("/lands")}
-                    disabled={toptab_index === topTabIndex.land}
+                    className={
+                      toptab_index === topTabIndex.land
+                        ? classes.activetoptab
+                        : classes.normaltoptab
+                    }
                   >
                     {t("Lands")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
-                    disableRipple
                     onClick={() =>
                       handlehead(
                         "/browse?section=wearables&vendor=decentraland&page=1&sortBy=recently_listed&onlyOnSale=true"
                       )
                     }
-                    disabled={toptab_index === topTabIndex.collectibles}
+                    className={
+                      toptab_index === topTabIndex.collectibles
+                        ? classes.activetoptab
+                        : classes.normaltoptab
+                    }
                   >
                     {t("Collectibles")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
-                    disableRipple
                     onClick={() => handlehead("/account?section=collections")}
-                    disabled={toptab_index === topTabIndex.mystore}
+                    className={
+                      toptab_index === topTabIndex.mystore
+                        ? classes.activetoptab
+                        : classes.normaltoptab
+                    }
                   >
                     {t("My Store")}
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
-                    disableRipple
                     onClick={() => handlehead("/auction")}
-                    disabled={toptab_index === topTabIndex.auction}
+                    className={
+                      toptab_index === topTabIndex.auction
+                        ? classes.activetoptab
+                        : classes.normaltoptab
+                    }
                   >
                     {t("Auction")}
                   </StyledTopTabBtn>
@@ -186,9 +187,9 @@ export default function TopTab() {
                   /* //Land */
                   <div className={classes.landtoptabRight}>
                     <OnSaleSwitch letter="ON SALE" />
-                    <div style={{ marginLeft: "20px" }}>
+                    {/* <div style={{ marginLeft: "20px" }}>
                       <LandFilterBtns />
-                    </div>
+                    </div> */}
                   </div>
                 ) : toptab_index === 2 ? (
                   <CollectibleSearchBar />

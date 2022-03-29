@@ -10,7 +10,7 @@ import TokenImg from "../../../../assets/img/1.png";
 import NeedSignIn from "../../../NeedSignIn";
 import { useStyles, StyledInput } from "./ParcelSellStyle";
 import { BackButton } from "../../../../components/BackButton/BackButton";
-import settingicon from "../../../../assets/svg/bidpage_settingicon.svg";
+import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
 import calendar_icon from "../../../../assets/svg/calendar_icon.svg";
 import { Grid } from "@material-ui/core";
 import "date-fns";
@@ -186,7 +186,7 @@ const ParcelSell = () => {
                           onChange={(e) => handleChange(e)}
                           startAdornment={
                             <InputAdornment position="start">
-                              <img src={settingicon} alt="settingIcon" />
+                              <img src={normalshapeSvg} alt="settingIcon" />
                             </InputAdornment>
                           }
                         />

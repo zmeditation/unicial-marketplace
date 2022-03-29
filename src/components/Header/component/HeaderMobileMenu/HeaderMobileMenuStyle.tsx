@@ -4,28 +4,21 @@ export const HeaderMobileMenuStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: "100%",
-      color: "white",
+      fontSize: "1rem",
+      color: "#96a1db",
       position: "relative",
       "& .MuiTypography-root": {
         fontFamily: "Lato",
         fontWeight: 700,
-        color: "#ffffff",
         cursor: "pointer",
       },
     },
     active: {
       padding: "15px 70px",
-      backgroundColor: "#67637033",
-      "& .MuiTypography-root": {
-        fontSize: "13px",
-      },
+      color: "white",
     },
     unactive: {
       padding: "15px 70px",
-      "& .MuiTypography-root": {
-        fontWeight: 100,
-        fontSize: "13px",
-      },
     },
     logo: {
       cursor: "pointer",
@@ -35,21 +28,31 @@ export const HeaderMobileMenuStyle = makeStyles((theme: Theme) =>
     },
     firstItem: {
       flex: "none",
-      marginLeft: "20px",
+      marginLeft: "10px",
       display: "flex",
+      alignItems: "center",
+      cursor: "pointer",
       "& .MuiTypography-root": {
-        fontSize: "13px",
+        fontSize: "16px",
+        fontFamily: "Montserrat",
+        margin: "0px 10px",
+        fontWeight: 600,
+        letterSpacing: 0.02,
+        color: "white",
       },
       "& svg": {
-        marginTop: "3px",
+        color: "#96a1db",
       },
     },
     headerMobilemenu: {
-      display: "none",
+      zIndex: 9999,
+      [theme.breakpoints.up(600)]: {
+        display: "none",
+      },
     },
     collapse: {
       width: "100vw",
-      backgroundColor: "#242129",
+      backgroundColor: "#1a1f37",
       position: "absolute",
       left: "-16px",
     },

@@ -40,7 +40,7 @@ export default function EstatesSelect() {
   };
 
   const handleContinue = () => {
-    let status  = isAllConnectedLand(estates)
+    let status = isAllConnectedLand(estates);
     status === true
       ? navigate("/account/estate/createestate")
       : dispatch(
@@ -62,7 +62,6 @@ export default function EstatesSelect() {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
   });
-
   return (
     <>
       <TopTab />

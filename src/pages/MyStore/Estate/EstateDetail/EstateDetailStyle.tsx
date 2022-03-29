@@ -177,4 +177,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
   displayNone: {
     display: "none",
   },
+  infoNameContainer: {
+    fontSize: "34px",
+    textAlign: "left",
+    lineHeight: "42px",
+    fontWeight: 600,
+    marginBottom: "15px",
+    color: "white",
+    fontFamily: "Montserrat",
+  },
+  infoDescContainer: {
+    color: "#96A1DB",
+    fontSize: "14px",
+    fontWeight: 400,
+    lineHeight: "17px",
+    marginBottom: "30px",
+  },
 }));

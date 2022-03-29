@@ -47,7 +47,9 @@ const CreateEstate = () => {
   };
 
   const handleSubmitBtn = async () => {
+    let flag = true;
     if (loginAddress.length === 0) {
+      flag = false;
       dispatch(
         showAlert({
           message: "You have to connect Meta mask wallet.",
@@ -57,16 +59,8 @@ const CreateEstate = () => {
       navigate("/signin");
     }
 
-    if (description === "") {
-      dispatch(
-        showAlert({
-          message: "You have to write your estate description.",
-          severity: "error",
-        })
-      );
-    }
-
     if (name === "") {
+      flag = false;
       dispatch(
         showAlert({
           message: "You have to write your estate name.",
@@ -74,8 +68,37 @@ const CreateEstate = () => {
         })
       );
     }
+    if (name.includes("^")) {
+      flag = false;
+      dispatch(
+        showAlert({
+          message: '"^" is not allowed in input string',
+          severity: "error",
+        })
+      );
+    }
+
+    if (description === "") {
+      flag = false;
+      dispatch(
+        showAlert({
+          message: "You have to write your estate description.",
+          severity: "error",
+        })
+      );
+    }
+    if (description.includes("^")) {
+      flag = false;
+      dispatch(
+        showAlert({
+          message: '"^" is not allowed in input string',
+          severity: "error",
+        })
+      );
+    }
 
     if (beneficiary === "") {
+      flag = false;
       dispatch(
         showAlert({
           message: "You have to write the beneficiary address.",
@@ -83,16 +106,17 @@ const CreateEstate = () => {
         })
       );
     }
-
-    await createEstateWithMetaData(bid.xs, bid.ys, beneficiary, bid.metadata);
-    dispatch(
-      showAlert({
-        message: "Create estate order is successfully published.",
-        severity: "success",
-      })
-    );
-    dispatch(setSpaces());
-    window.location.href = "/account/estate/create";
+    if (flag) {
+      await createEstateWithMetaData(bid.xs, bid.ys, beneficiary, bid.metadata);
+      dispatch(
+        showAlert({
+          message: "Create estate order is successfully published.",
+          severity: "success",
+        })
+      );
+      dispatch(setSpaces());
+      window.location.href = "/account?section=estates";
+    }
   };
 
   const convertToBidData = () => {
@@ -100,7 +124,7 @@ const CreateEstate = () => {
     data.xs = convertBidTypeArray(estates).xs;
     data.ys = convertBidTypeArray(estates).ys;
     data.beneficiary = beneficiary;
-    data.metadata = name + "," + description;
+    data.metadata = name + "^" + description;
     setBid(data);
   };
 
@@ -148,7 +172,7 @@ const CreateEstate = () => {
                   <div className={classes.subheader_label}>{t("Name")}</div>
                   <FormControl className={classes.widthFull}>
                     <StyledInput
-                      placeholder={t("Decentraland")}
+                      placeholder={t("Estate name")}
                       onChange={(e) => handleNameChange(e)}
                     />
                   </FormControl>

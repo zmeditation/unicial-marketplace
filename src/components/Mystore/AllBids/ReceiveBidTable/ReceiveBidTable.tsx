@@ -28,6 +28,7 @@ import {
   EstateProxyAddress,
   EstateRegistryAbi,
 } from "../../../../config/contracts/EstateRegitryContract";
+import { StyledTooltip } from "../../LandCard/LandCardStyle";
 
 declare var window: any;
 var signer: any, spaceRegistryContract: any, estateContract: any;
@@ -139,37 +140,52 @@ const ReceiveBidTable = ({
           <TableRow
             key={key}
             onClick={() => onRowClick(key)}
-            className={clsx({ [classes.targetRow]: stepIndex === key })}>
-            <TableCell
-              className={clsx(classes.tableCell, classes.tokenAddress)}
-              onClick={() => handleCopyAddress(row[0], key)}>
-              {row[0].slice(0, showMoreCount)}... ({t("space")})&nbsp;
+            className={clsx({ [classes.targetRow]: stepIndex === key })}
+          >
+            <TableCell className={clsx(classes.tableCell)}>
+              <StyledTooltip title={row[0]} interactive arrow placement="top">
+                <span>
+                  {row[0].slice(0, showMoreCount)}... ({t("space")})&nbsp;
+                </span>
+              </StyledTooltip>
               {copyAddress.status && copyAddress.index === key ? (
-                <i className='fa fa-check-circle mr-1'></i>
-              ) : (
                 <span>
-                  <i className='far fa-copy'></i>
+                  <i className="fa fa-check-circle mr-1 "></i>
+                </span>
+              ) : (
+                <span
+                  className={classes.copyIcon}
+                  onClick={() => handleCopyAddress(row[0], key)}
+                >
+                  <i className="far fa-copy"></i>
                 </span>
               )}
             </TableCell>
-            <TableCell
-              className={clsx(classes.tableCell, classes.tokenId)}
-              onClick={() => handleCopyTokenId(row[1], key)}>
-              {row[1].slice(0, showMoreCount)}... &nbsp;
+
+            <TableCell className={clsx(classes.tableCell)}>
+              <StyledTooltip title={row[1]} interactive arrow placement="top">
+                <span>{row[1].slice(0, showMoreCount)}... &nbsp;</span>
+              </StyledTooltip>
               {copyTokenId.status && copyTokenId.index === key ? (
-                <i className='fa fa-check-circle mr-1'></i>
-              ) : (
                 <span>
-                  <i className='far fa-copy'></i>
+                  <i className="fa fa-check-circle mr-1"></i>
+                </span>
+              ) : (
+                <span
+                  className={classes.copyIcon}
+                  onClick={() => handleCopyTokenId(row[1], key)}
+                >
+                  <i className="far fa-copy"></i>
                 </span>
               )}
             </TableCell>
+
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               {
                 <img
                   src={normalshapeSvg}
                   className={classes.normalshape}
-                  alt='normalshape'
+                  alt="normalshape"
                 />
               }
               {<div>{addCommas(ethers.utils.formatUnits(row[2], 18))}</div>}
@@ -179,9 +195,10 @@ const ReceiveBidTable = ({
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.actionBtn}
-                onClick={() => handleAcceptParcelBid(key)}>
+                onClick={() => handleAcceptParcelBid(key)}
+              >
                 {t("Accept")}
               </ActionButton>
             </TableCell>
@@ -199,28 +216,31 @@ const ReceiveBidTable = ({
           <TableRow
             key={key}
             onClick={() => onRowClick(key)}
-            className={clsx({ [classes.targetRow]: stepIndex === key })}>
+            className={clsx({ [classes.targetRow]: stepIndex === key })}
+          >
             <TableCell
               className={clsx(classes.tableCell, classes.tokenAddress)}
-              onClick={() => handleCopyAddress(row[0], key)}>
+              onClick={() => handleCopyAddress(row[0], key)}
+            >
               {row[0].slice(0, showMoreCount)}... ({t("estate")})&nbsp;
               {copyAddress.status && copyAddress.index === key ? (
-                <i className='fa fa-check-circle mr-1'></i>
+                <i className="fa fa-check-circle mr-1"></i>
               ) : (
                 <span>
-                  <i className='far fa-copy'></i>
+                  <i className="far fa-copy"></i>
                 </span>
               )}
             </TableCell>
             <TableCell
               className={clsx(classes.tableCell, classes.tokenId)}
-              onClick={() => handleCopyTokenId(row[1], key)}>
+              onClick={() => handleCopyTokenId(row[1], key)}
+            >
               {row[1].slice(0, showMoreCount)}... &nbsp;
               {copyTokenId.status && copyTokenId.index === key ? (
-                <i className='fa fa-check-circle mr-1'></i>
+                <i className="fa fa-check-circle mr-1"></i>
               ) : (
                 <span>
-                  <i className='far fa-copy'></i>
+                  <i className="far fa-copy"></i>
                 </span>
               )}
             </TableCell>
@@ -229,7 +249,7 @@ const ReceiveBidTable = ({
                 <img
                   src={normalshapeSvg}
                   className={classes.normalshape}
-                  alt='normalShape'
+                  alt="normalShape"
                 />
               }
               {<div>{addCommas(ethers.utils.formatUnits(row[2], 18))}</div>}
@@ -239,9 +259,10 @@ const ReceiveBidTable = ({
             </TableCell>
             <TableCell className={clsx(classes.tableCell, classes.priceCell)}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.actionBtn}
-                onClick={() => handleAcceptEstateBid(key)}>
+                onClick={() => handleAcceptEstateBid(key)}
+              >
                 {t("Accept")}
               </ActionButton>
             </TableCell>

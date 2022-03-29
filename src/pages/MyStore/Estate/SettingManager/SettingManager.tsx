@@ -160,100 +160,95 @@ const SettingManager = () => {
 
   return (
     <div className={classes.root}>
-      {isSignIn === 1 ? (
-        <div className={classes.container_root}>
-          <BackButton className={classes.backButton} />
-          <div className={classes.bidCard}>
-            <div className={classes.leftCard}>
-              <div className={classes.imgContent}>
-                <img
-                  src={TokenImg}
-                  className={classes.tokenImg}
-                  alt="token"
-                ></img>
-              </div>
-            </div>
-            <div className={classes.rightCard}>
-              <div className={classes.title}>{t("Add New Manager")}</div>
-              <div className={classes.subtitle}>
-                {t("Your are not the owner of Roads.")}
-              </div>
-              <div className={classes.form_field}>
-                <div className={classes.price_container}>
-                  <Grid container>
-                    <Grid md={12} sm={12} xs={12} item>
-                      <div className={classes.subheader_label}>
-                        {t("RECEPIENT ADDRESS")}
-                      </div>
-                      <FormControl>
-                        <StyledInput placeholder="0x" onChange={handleChange} />
-                      </FormControl>
-                    </Grid>
-                  </Grid>
-                </div>
-                <p>&nbsp;</p>
-              </div>
-              {/* buttons */}
-              <div className={classes.buttons}>
-                {isCorrectAddress === true ? (
-                  <ActionButton
-                    color="light"
-                    className={classes.bidchange}
-                    onClick={handleAdd}
-                  >
-                    {t("Add")} &nbsp;
-                    <img src={raiseicon} alt="raiseicon" />
-                  </ActionButton>
-                ) : (
-                  <ActionButton
-                    disabled
-                    color="light"
-                    className={classes.bidchange}
-                  >
-                    {t("Add")} &nbsp;
-                    <img src={raiseicon} alt="raiseicon" />
-                  </ActionButton>
-                )}
-                <ActionButton
-                  color="dark"
-                  className={classes.cancelchange}
-                  onClick={() => navigate(-1)}
-                >
-                  {t("Cancel")}
-                </ActionButton>
-              </div>
+      <div className={classes.container_root}>
+        <BackButton className={classes.backButton} />
+        <div className={classes.bidCard}>
+          <div className={classes.leftCard}>
+            <div className={classes.imgContent}>
+              <img
+                src={TokenImg}
+                className={classes.tokenImg}
+                alt="token"
+              ></img>
             </div>
           </div>
-          <div className={classes.updateManagerRoot}>
-            <div className={classes.updateManagerTitle}>
-              {t("Update Managers")}
+          <div className={classes.rightCard}>
+            <div className={classes.title}>{t("Add New Manager")}</div>
+            <div className={classes.subtitle}>
+              {t("Your are not the owner of Roads.")}
             </div>
-            {totalPage === 0 || uniqueManagers === undefined ? (
-              <div className={classes.emptyDisplay}>
-                {t("You haven't got any any managers on this estate")}...
+            <div className={classes.form_field}>
+              <div className={classes.price_container}>
+                <Grid container>
+                  <Grid md={12} sm={12} xs={12} item>
+                    <div className={classes.subheader_label}>
+                      {t("RECEPIENT ADDRESS")}
+                    </div>
+                    <FormControl>
+                      <StyledInput placeholder="0x" onChange={handleChange} />
+                    </FormControl>
+                  </Grid>
+                </Grid>
               </div>
-            ) : (
-              <>
-                <UpdateManagerTable
-                  columns={headerUpdateManagerData}
-                  rows={uniqueManagers}
-                  curPage={CurPage}
-                  onRowClick={handleRow}
-                  stepIndex={selectRow}
-                />
-                <div className={classes.paginationContainer}>
-                  <TablePagination
-                    handlepgnum={handlepgnum}
-                    totalPage={totalPage}
-                  />
-                </div>
-              </>
-            )}
+              <p>&nbsp;</p>
+            </div>
+            {/* buttons */}
+            <div className={classes.buttons}>
+              {isCorrectAddress === true ? (
+                <ActionButton
+                  color="light"
+                  className={classes.bidchange}
+                  onClick={handleAdd}
+                >
+                  {t("Add")} &nbsp;
+                  <img src={raiseicon} alt="raiseicon" />
+                </ActionButton>
+              ) : (
+                <ActionButton
+                  disabled
+                  color="light"
+                  className={classes.bidchange}
+                >
+                  {t("Add")} &nbsp;
+                  <img src={raiseicon} alt="raiseicon" />
+                </ActionButton>
+              )}
+              <ActionButton
+                color="dark"
+                className={classes.cancelchange}
+                onClick={() => navigate(-1)}
+              >
+                {t("Cancel")}
+              </ActionButton>
+            </div>
           </div>
         </div>
-      ) : (
-        <NeedSignIn />
-      )}
+        <div className={classes.updateManagerRoot}>
+          <div className={classes.updateManagerTitle}>
+            {t("Update Managers")}
+          </div>
+          {totalPage === 0 || uniqueManagers === undefined ? (
+            <div className={classes.emptyDisplay}>
+              {t("You haven't got any any managers on this estate")}...
+            </div>
+          ) : (
+            <>
+              <UpdateManagerTable
+                columns={headerUpdateManagerData}
+                rows={uniqueManagers}
+                curPage={CurPage}
+                onRowClick={handleRow}
+              />
+              <div className={classes.paginationContainer}>
+                <TablePagination
+                  handlepgnum={handlepgnum}
+                  totalPage={totalPage}
+                />
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

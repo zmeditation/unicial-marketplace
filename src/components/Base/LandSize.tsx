@@ -1,13 +1,11 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import clsx from "clsx";
-import pinlocationSvg from "../../assets/svg/pinlocation.svg";
-import { addSpace } from "../../common/utils";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: "79px",
+      width: "95px",
       height: "25px",
-      backgroundColor: "#282E4E",
+      backgroundColor: "#21263F",
       borderRadius: "100px",
       //
       justifyContent: "center",
@@ -19,31 +17,36 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "2px",
     },
     info: {
-      fontSize: "14px",
+      fontSize: "15px",
       lineHeight: "17px",
-      fontWeight: 400,
+      fontWeight: 600,
       lineHeightStep: "16.8px",
       color: "#96A1DB !important",
+      marginRight: "5px",
+      fontFamily: "Montserrat",
     },
     darkbackground: {
-      backgroundColor: "#21263F",
+      backgroundColor: "#21263F !important",
+    },
+    landspan: {
+      fontSize: "15px",
+      fontFamily: "Montserrat",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      lineHeight: "17px",
     },
   })
 );
 
 interface Props {
-  position: string;
+  count?: number;
   dark?: boolean;
   className?: any;
   onClick?: () => void;
 }
 
-export default function LocationBtn({
-  position,
-  dark,
-  className,
-  onClick,
-}: Props) {
+export default function LandSize({ count, dark, className, onClick }: Props) {
   const classes = useStyles();
   return (
     <>
@@ -52,8 +55,12 @@ export default function LocationBtn({
           [classes.darkbackground]: dark,
         })}
       >
-        <img src={pinlocationSvg} className={classes.icon} />
-        <div className={classes.info}>{addSpace(position)}</div>
+        <div className={classes.info}>{count}</div>
+        {Number(count) === 1 ? (
+          <span className={classes.landspan}>Land</span>
+        ) : (
+          <span className={classes.landspan}>Lands</span>
+        )}
       </div>
     </>
   );

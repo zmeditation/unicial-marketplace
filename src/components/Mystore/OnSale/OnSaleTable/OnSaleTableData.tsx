@@ -1,10 +1,4 @@
-export const headerData = [
-  "Type",
-  "Token Id",
-  "Sale Type",
-  "Sale Price",
-  "Action",
-];
+export const headerData = ["Type", "Token Id", "Sale Price", "Action"];
 
 export const onsaleData = [
   {

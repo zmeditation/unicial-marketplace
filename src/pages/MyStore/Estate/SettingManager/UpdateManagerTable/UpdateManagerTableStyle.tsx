@@ -32,7 +32,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     float: "left",
   },
   actionBtn: {
-    minWidth: "0px",
+    width: "110px",
     "& span": {
       margin: "2px 11px",
       display: "flex",

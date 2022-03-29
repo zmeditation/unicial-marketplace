@@ -1,16 +1,12 @@
 import { ethers } from "ethers";
-import { CHAIN_INFO } from "./../config/constant";
 import { getProvider } from "./Common";
 import {
   SpaceRegistryAbi,
   SpaceProxyAddress,
 } from "../config/contracts/SpaceRegistryContract";
 
-declare var window: any;
 var provider: any;
 var signer: any;
-var loginAddress: string;
-
 var landContract;
 
 export const createEstateWithMetaData = async (
@@ -34,29 +30,27 @@ export const createEstateWithMetaData = async (
       beneficiaryAddress,
       metaData
     );
-  await createEstateWithMetaDataTx.wait;
+  await createEstateWithMetaDataTx.wait();
 };
 
 export const addEstate = async (
   axisX_array: any,
   axisY_array: any,
-  estateId: any,
+  estateId: any
 ) => {
   provider = getProvider();
   signer = provider.getSigner();
-  
+
   landContract = new ethers.Contract(
     SpaceProxyAddress,
     SpaceRegistryAbi,
     signer
   );
 
-  const addEstateContract =
-    await landContract.transferSpaceManyToEstate(
-      axisX_array,
-      axisY_array,
-      estateId
-    );
-  await addEstateContract.wait;
+  const addEstateContract = await landContract.transferSpaceManyToEstate(
+    axisX_array,
+    axisY_array,
+    estateId
+  );
+  await addEstateContract.wait();
 };
-
