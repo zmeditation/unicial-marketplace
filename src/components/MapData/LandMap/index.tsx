@@ -15,6 +15,7 @@ import { ethers } from "ethers";
 import { getCoords } from "../../../common/utils";
 import { EstateProxyAddress } from "../../../config/contracts/EstateRegitryContract";
 import { mapColor } from "../../../config/constant";
+import { showSpinner } from "../../../store/spinner";
 
 interface LandMapProps {
   height?: any;
@@ -222,15 +223,21 @@ const LandMap: React.FC<LandMapProps> = ({
     };
   }, [showPopup, mouseX, mouseY]);
 
+  const getAlldata = async () => {
+    dispatch(showSpinner(true));
+    await dispatch(setSaleEstates());
+    await dispatch(setSaleParcels());
+    await dispatch(setSpaces());
+    dispatch(showSpinner(false));
+  };
+
   useEffect(() => {
     if (query.get("onlyOnSale") === "true") {
       setOnSale(true);
     } else {
       setOnSale(false);
     }
-    dispatch(setSaleEstates());
-    dispatch(setSaleParcels());
-    dispatch(setSpaces());
+    getAlldata();
   }, [location]);
 
   return (

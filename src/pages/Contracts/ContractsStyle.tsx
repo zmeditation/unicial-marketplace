@@ -105,4 +105,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flexFlow: "row nowrap",
     display: "flex",
   },
+  emptyDisplay: {
+    opacity: "50%",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));

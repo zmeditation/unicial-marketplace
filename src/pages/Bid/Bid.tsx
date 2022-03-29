@@ -252,6 +252,7 @@ const Bid = () => {
         severity: "success",
       })
     );
+    navigate(-1);
   };
 
   return (

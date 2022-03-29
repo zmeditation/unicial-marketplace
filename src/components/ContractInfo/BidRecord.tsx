@@ -3,6 +3,8 @@ import fromImg from "../../assets/img/1.png";
 import normalshapeSvg from "../../assets/svg/normalshape.svg";
 import { useTranslation } from "react-i18next";
 import { addCommas } from "../../common/utils";
+import makeBlockie from "ethereum-blockies-base64";
+
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flex: "1 0 auto",
@@ -94,12 +96,22 @@ const useStyles = makeStyles((theme: Theme) => ({
     WebkitTextFillColor: "transparent",
     marginTop: "0.5px",
   },
+  price: {
+    fontFamily: "Lato",
+    fontSize: "16px",
+    lineHeight: "19.2px",
+    fontWeight: 400,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: "3px",
+  },
 }));
 
 interface data {
   fromName: string;
   price: string;
-  time: string;
+  time: any;
 }
 
 const BidRecord = ({ fromName, price, time }: data) => {
@@ -114,11 +126,11 @@ const BidRecord = ({ fromName, price, time }: data) => {
             <div className={classes.title}>{t("From")}</div>
             <div className={classes.content}>
               <img
-                src={fromImg}
+                src={makeBlockie(fromName)}
                 className={classes.fromIamge}
                 alt="fromimage!"
               />
-              {fromName}
+              {fromName?.slice(0, 6)}
             </div>
           </div>
 
@@ -126,17 +138,13 @@ const BidRecord = ({ fromName, price, time }: data) => {
             <div className={classes.title}>{t("Price")}</div>
             <div className={classes.content}>
               <img src={normalshapeSvg} className={classes.symbol} alt="alt" />
-
-              {addCommas(price)}
+              <span className={classes.price}>{addCommas(price)}</span>
             </div>
           </div>
 
           <div className={classes.timePart}>
             <div className={classes.title}>{t("Time Left")}</div>
-            <div className={classes.content}>
-              {time}
-              {/* {t("days")} */}
-            </div>
+            <div className={classes.content}>{time}</div>
           </div>
         </div>
       }

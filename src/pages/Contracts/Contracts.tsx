@@ -19,7 +19,7 @@ import { saleParcels } from "../../store/saleparcels/selectors";
 import { saleEstates } from "../../store/saleestates/selectors";
 import { totalSpace } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
-import { dateConvert, findCenterDot } from "../../common/utils";
+import { leftTime, findCenterDot } from "../../common/utils";
 import {
   BidContractAddress,
   BidContractAbi,
@@ -263,19 +263,20 @@ const Contract = () => {
             </div>
           </div> */}
           <div>
-            <div className={classes.BidsTitle}>{t("Bids")}</div>
             {bidItems?.length === 0 || bidItems === undefined ? (
-              <div>There is no bids</div>
+              <></>
             ) : (
               <div>
+                <div className={classes.BidsTitle}>{t("Bids")}</div>
+
                 <div>
                   {bidItems?.slice(0, showCount).map((item: any, key: any) => {
                     return (
                       <BidRecord
                         key={key}
-                        fromName={item[1]?.slice(0, 6)}
+                        fromName={item[1]}
                         price={ethers.utils.formatUnits(item[2], 18)}
-                        time={dateConvert(item[3])}
+                        time={leftTime(item[3])}
                       />
                     );
                   })}

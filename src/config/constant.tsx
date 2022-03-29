@@ -7,7 +7,7 @@ export const tabs = {
 };
 
 export const showMoreCount = 6;
-export const limitCount = 1;
+export const limitCount = 6;
 export const parcelshowMoreCount = 10;
 
 export const topTabIndex = {

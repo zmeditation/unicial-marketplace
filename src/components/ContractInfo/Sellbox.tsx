@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import cloccheckSvg from "../../assets/svg/clockcheck.svg";
 import { useTranslation } from "react-i18next";
 import { addCommas } from "../../common/utils";
+import normalshapeSvg from "../../assets/svg/normalshape.svg";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -34,6 +35,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "5px",
     fontSize: "20px",
     marginBottom: "20px",
+    display: "flex",
+    alignItems: "center",
   },
   symbol: {
     fontSize: "normal",
@@ -65,6 +68,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "20px",
     height: "20px",
   },
+  tokenImg: {
+    marginRight: "5px",
+    marginTop: "2px",
+  },
 }));
 
 interface SellboxProps {
@@ -82,8 +89,8 @@ const Sellbox = ({ price }: SellboxProps) => {
         <>
           <div className={classes.title}>{t("Price")}</div>
           <div className={classes.priceValueContainer}>
-            <i className={classes.symbol}>⏣</i>
-            {addCommas(price)}
+            <img src={normalshapeSvg} className={classes.tokenImg} />
+            <span>{addCommas(price)}</span>
           </div>
         </>
       )}
