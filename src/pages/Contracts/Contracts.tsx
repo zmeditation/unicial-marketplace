@@ -19,7 +19,11 @@ import { saleParcels } from "../../store/saleparcels/selectors";
 import { saleEstates } from "../../store/saleestates/selectors";
 import { totalSpace } from "../../store/parcels/selectors";
 import { ethers } from "ethers";
-import { leftTime, findCenterDot } from "../../common/utils";
+import {
+  leftTime,
+  dateConvert_untilDate,
+  findCenterDot,
+} from "../../common/utils";
 import {
   BidContractAddress,
   BidContractAbi,
@@ -271,6 +275,7 @@ const Contract = () => {
 
                 <div>
                   {bidItems?.slice(0, showCount).map((item: any, key: any) => {
+                    // console.log("item", item);
                     return (
                       <BidRecord
                         key={key}

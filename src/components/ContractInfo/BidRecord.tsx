@@ -144,7 +144,11 @@ const BidRecord = ({ fromName, price, time }: data) => {
 
           <div className={classes.timePart}>
             <div className={classes.title}>{t("Time Left")}</div>
-            <div className={classes.content}>{time}</div>
+            {time === -99 ? (
+              <div className={classes.content}>Expired</div>
+            ) : (
+              <div className={classes.content}>{time}</div>
+            )}
           </div>
         </div>
       }

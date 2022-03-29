@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { expired } from "../config/constant";
 
 export function isEmptyObject(obj: any) {
   for (var key in obj) {
@@ -42,8 +42,9 @@ export function leftTime(closingtimestamp: any) {
         return timeLeft.seconds + " Seconds";
       }
     }
+  } else {
+    return expired;
   }
-  // return timeLeft;
 }
 
 export function includeArray(array: any, key: any) {
