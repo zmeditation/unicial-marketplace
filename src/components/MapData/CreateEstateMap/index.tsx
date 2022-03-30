@@ -43,7 +43,7 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
       if (
         tile.owner &&
         tile.owner.toLowerCase() === loginAddress.toLowerCase() &&
-        tile.estateId === undefined
+        (tile.estateId === undefined || tile.estateId === "")
       ) {
         let newSelectedTile: string[] = [];
         const selectedIndex = selectedTile.indexOf(getCoords(x, y));
@@ -124,7 +124,8 @@ const CreateEstateMap: React.FC<CreateEstateMapProps> = ({
       if (
         tile?.owner &&
         tile?.owner?.toLowerCase() === loginAddress.toLowerCase() &&
-        tile?.estateId !== undefined
+        tile?.estateId !== undefined &&
+        tile?.estateId !== ""
       ) {
         return true;
       } else return false;

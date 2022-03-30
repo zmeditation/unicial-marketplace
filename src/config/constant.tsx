@@ -1,5 +1,5 @@
-// export const ApiUrl = "https://api.unicial.org";
-export const ApiUrl = "http://192.168.112.103:8080";
+export const ApiUrl = "https://api.unicial.org";
+// export const ApiUrl = "http://192.168.112.103:8080";
 export const REQUEST_API_URL = `${ApiUrl}/api/v1`;
 
 export const tabs = {
