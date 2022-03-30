@@ -161,6 +161,110 @@ export const headerReceiveData = [
 
 export const headerUpdateManagerData = ["Address", "Current Status", "Action"];
 
+export const WearablesData = [
+  {
+    tagColor: "EpicColor",
+    tagLetter: "EPIC",
+    productName: "1Unicon ",
+    price: 1500,
+  },
+  {
+    tagColor: "LegendaryColor",
+    tagLetter: "LEGENDARY",
+    productName: "2Unicon punk fantasy",
+    price: 1200,
+  },
+  {
+    tagColor: "CommonColor",
+    tagLetter: "COMMON",
+    productName: "3Unicon punk fantasy",
+    price: 900,
+  },
+  {
+    tagColor: "UncommonColor",
+    tagLetter: "UNCCOMMON",
+    productName: "4Unicon punk fantasy",
+    price: 1500,
+  },
+  {
+    tagColor: "RareColor",
+    tagLetter: "RARE",
+    productName: "5Unicon punk fantasy",
+    price: 4500,
+  },
+  {
+    tagColor: "CommonColor",
+    tagLetter: "COMMON",
+    productName: "3Unicon punk fantasy",
+    price: 900,
+  },
+  {
+    tagColor: "UncommonColor",
+    tagLetter: "UNCCOMMON",
+    productName: "4Unicon punk fantasy",
+    price: 1500,
+  },
+  {
+    tagColor: "RareColor",
+    tagLetter: "RARE",
+    productName: "5Unicon punk fantasy",
+    price: 4500,
+  },
+  {
+    tagColor: "CommonColor",
+    tagLetter: "COMMON",
+    productName: "3Unicon punk fantasy",
+    price: 900,
+  },
+  {
+    tagColor: "UncommonColor",
+    tagLetter: "UNCCOMMON",
+    productName: "4Unicon punk fantasy",
+    price: 1500,
+  },
+  {
+    tagColor: "RareColor",
+    tagLetter: "RARE",
+    productName: "5Unicon punk fantasy",
+    price: 4500,
+  },
+];
+
+export const NamesData = [
+  {
+    mainName: "Jacobandco",
+    price: 1000,
+  },
+  {
+    mainName: "Jacobandco",
+    price: 1000,
+  },
+  {
+    mainName: "Jacobandco",
+    price: 1000,
+  },
+  {
+    mainName: "Jacobandco",
+    price: 1000,
+  },
+  {
+    mainName: "Jacobandco",
+    price: 1000,
+  },
+  {
+    mainName: "Jacobandco",
+    price: 1000,
+  },
+  {
+    mainName: "Jacobandco",
+    price: 1000,
+  },
+  {
+    mainName: "Jacobandco",
+    price: 1000,
+  },
+];
+
 export const managerData = [
   {
     tokenAddress: "0x4343d",

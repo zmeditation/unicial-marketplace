@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   RareColor: {
     backgroundImage: "linear-gradient(57.2deg, #29C98F 20.25%, #66D8AF 82.22%)",
   },
+  NameColor: {
+    backgroundImage: "linear-gradient(90.07deg, #77CFD5 3.5%, #4BB7D6 91.65%)",
+  },
   DefaultColor: {
     backgroundColor: "#21263F",
   },
@@ -48,6 +51,7 @@ const Tag = ({ color, className, letter, onClick }: TagProps) => {
           [classes.CommonColor]: color === "CommonColor",
           [classes.UncommonColor]: color === "UncommonColor",
           [classes.RareColor]: color === "RareColor",
+          [classes.NameColor]: color === "NameColor",
           [classes.DefaultColor]: color === "DefaultColor",
         })}
         onClick={onClick}

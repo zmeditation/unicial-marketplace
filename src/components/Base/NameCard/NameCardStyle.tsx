@@ -1,7 +1,7 @@
 import { createStyles, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-export const ProductCardStyle = makeStyles((theme: Theme) =>
+export const NameCardStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       borderRadius: "15px",
@@ -21,27 +21,53 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       alignItems: "center",
     },
-    iconContainer: {
-      display: "flex",
-      width: "50px",
-      justifyContent: "space-between",
-    },
     icon: {
       width: "20px",
       height: "20px",
     },
-    imageContainer: {
+    infoRoot: {
+      position: "relative",
+    },
+    infoContainer: {
       width: "100%",
-      backgroundImage: "linear-gradient(67.71deg, #39B8FD 0%, #AD2DFE 98.37%)",
+      backgroundColor: "#21263F",
       borderRadius: "15px",
-      marginTop: "20px",
-      marginBottom: "17px",
-      textAlign: "center",
+      marginTop: "21px",
       display: "flex",
+      flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      padding: "20px",
+      position: "relative",
+      height: "150px",
+      [theme.breakpoints.down(1200)]: {
+        width: "100%",
+        height: "170px",
+      },
+      [theme.breakpoints.down(960)]: {
+        width: "100%",
+        height: "225px",
+      },
     },
+    infoNamesContainer: {
+      //   display: "flex",
+    },
+    infoBigname: {
+      fontFamily: "Montserrat",
+      fontWeight: 600,
+      fontSize: "24px",
+      lineHeight: "26px",
+      textAlign: "center",
+      color: "white",
+    },
+    infoSmallname: {
+      fontFamily: "Lato",
+      fontWeight: 400,
+      fontSize: "14px",
+      lineHeight: "16.8px",
+      textAlign: "center",
+      color: "white",
+    },
+
     image: {
       [theme.breakpoints.up(1200)]: {
         maxWidth: "150px",
@@ -54,6 +80,23 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       [theme.breakpoints.down(960)]: {
         width: "100%",
         alignSelf: "self-end",
+      },
+    },
+    avatarIamgeContainer: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    avatarIamge: {
+      borderRadius: "100%",
+      width: "68px",
+      height: "68px",
+      textAlign: "center",
+      position: "absolute",
+      bottom: "-34px",
+      [theme.breakpoints.down(600)]: {
+        width: "85px",
+        height: "85px",
       },
     },
     productName: {
@@ -69,6 +112,7 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       textOverflow: "ellipsis",
       overflow: "hidden",
       whiteSpace: "nowrap",
+      marginTop: "51px",
     },
     bottom: {
       display: "flex",

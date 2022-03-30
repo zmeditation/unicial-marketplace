@@ -5,8 +5,10 @@ import MystoreSidebar from "../../components/Mystore/MystoreSidebar/MystoreSideb
 import MobileSidebar from "../../components/Mystore/MobileSidebar/MobileSidebar";
 import LandParcels from "../../components/Mystore/LandParcels/LandParcels";
 import LandEstates from "../../components/Mystore/LandEstates/LandEstates";
+import Wearables from "../../components/Mystore/Wearables/Wearables";
 import OnSale from "../../components/Mystore/OnSale/OnSale";
 import AllBids from "../../components/Mystore/AllBids/AllBids";
+import Names from "../../components/Mystore/Names/Names";
 import NoResult from "../../components/NoResult/NoResult";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
@@ -26,17 +28,23 @@ export default function MyStore() {
       case "parcels":
         setrightPartIndex("parcels");
         break;
-      case "sales":
-        setrightPartIndex("sales");
-        break;
       case "estates":
         setrightPartIndex("estates");
+        break;
+      case "wearables":
+        setrightPartIndex("wearables");
+        break;
+      case "sales":
+        setrightPartIndex("sales");
         break;
       case "on_sale":
         setrightPartIndex("on_sale");
         break;
       case "bids":
         setrightPartIndex("bids");
+        break;
+      case "ens":
+        setrightPartIndex("ens");
         break;
       default:
         setrightPartIndex("");
@@ -59,12 +67,16 @@ export default function MyStore() {
             <LandParcels />
           ) : rightPartIndex === "estates" ? (
             <LandEstates />
+          ) : rightPartIndex === "wearables" ? (
+            <Wearables />
           ) : rightPartIndex === "sales" ? (
             <Sales />
           ) : rightPartIndex === "on_sale" ? (
             <OnSale />
           ) : rightPartIndex === "bids" ? (
             <AllBids />
+          ) : rightPartIndex === "ens" ? (
+            <Names />
           ) : (
             <NoResult />
           )}
