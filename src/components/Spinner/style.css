@@ -1,8 +1,8 @@
-.c-display {
+/* .c-display {
   display: none;
-}
+} */
 .c-displayNone {
-  display: "none";
+  display: none;
 }
 .c-loaderWrapper {
   position: fixed;
@@ -48,7 +48,7 @@
   }
 }
 .c-spinner-loading {
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   align-items: flex-end;
 }
