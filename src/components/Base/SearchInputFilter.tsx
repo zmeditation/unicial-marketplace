@@ -1,9 +1,7 @@
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-} from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import search_svg from "./../../assets/svg/search.svg";
+import { useLocation, useNavigate } from "react-router";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     textfilter: {
@@ -34,13 +32,33 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function SearchInputFilter() {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const query = new URLSearchParams(location.search);
+  let searchInput1: any = query.get("search");
+
+  const handleRoute = (search: string) => {
+    query.set("search", search);
+    navigate({
+      pathname: location.pathname,
+      search: query.toString(),
+    });
+  };
+
+  const handleChange = (e: any) => {
+    handleRoute(e.target.value);
+  };
+
   return (
     <>
       <div className={classes.textfilter}>
         <img src={search_svg} className={classes.searchIcon} alt="symbol" />
         <input
           className={classes.searchinput}
-          placeholder="Search 25 results..."
+          onChange={handleChange}
+          placeholder="Search"
+          value={searchInput1}
         />
       </div>
     </>
