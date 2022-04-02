@@ -48,7 +48,7 @@ export default function BuilderScenes() {
           <span className={classes.contentLetter}>
             {t("It looks like that you don't have any Scenes")}.
             <br />
-            <span className={classes.importantLink}>
+            <span className={classes.importantLink} onClick={handleCreateModal}>
               {t("Click here")}
             </span>{" "}
             {t("to get Started")}.

@@ -75,53 +75,5 @@ export const useStyles = makeStyles((theme: Theme) =>
     contentLetter: {
       textAlign: "center",
     },
-    viewLetter: {
-      fontFamily: "Lato",
-      fontSize: "14px",
-      fontStyle: "Regular",
-      fontWeight: 400,
-      lineHeight: "19px",
-      color: "red",
-      cursor: "pointer",
-    },
-    viewArrow: {
-      cursor: "pointer",
-      "& i": {
-        color: "red",
-        marginLeft: "10px",
-      },
-    },
-    sceneContent: {
-      display: "flex",
-      overflowX: "scroll",
-      paddingBottom: "30px",
-    },
-    sceneCardRoot: {
-      width: "250px",
-      minWidth: "250px",
-      height: "180px",
-      background: "grey",
-      borderRadius: "20px",
-      position: "relative",
-      marginRight: "20px",
-    },
-    sceneName: {
-      fontFamily: "Montserrat",
-      fontSize: "19px",
-      fontWeight: 500,
-      lineHeight: "19px",
-      position: "absolute",
-      left: "20px",
-      bottom: "50px",
-    },
-    sceneSize: {
-      fontFamily: "Montserrat",
-      fontSize: "19px",
-      fontWeight: 500,
-      lineHeight: "19px",
-      position: "absolute",
-      left: "20px",
-      bottom: "20px",
-    },
   })
 );
