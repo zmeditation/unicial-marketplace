@@ -1,5 +1,3 @@
-/** @format */
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Lands from "../../pages/Lands/Lands";
 import Auction from "../../pages/Auction/Auction";
@@ -53,6 +51,7 @@ import { setSaleEstates } from "../../store/saleestates";
 import { getProvider } from "../../hooks/Common";
 import { selectLoginAddress } from "./../../store/auth/selectors";
 import Scenes from "../../pages/Scenes/Scenes";
+import CreateSceneModal from "../CreateSceneModal/CreateSceneModal";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -279,6 +278,7 @@ export default function Layout() {
         <Notification />
         <NetModal />
         <Spinner />
+        <CreateSceneModal />
       </Box>
     </Router>
   );

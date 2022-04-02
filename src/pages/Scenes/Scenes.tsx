@@ -1,9 +1,16 @@
-/** @format */
-
+import { showCreateSceneModal } from "../../store/createscene";
+import { useAppDispatch } from "../../store/hooks";
 import { useStyles } from "./ScenesStyles";
 
 export default function Scenes() {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
+
+  const handleCreateModal = () => {
+    console.log("clicked");
+    dispatch(showCreateSceneModal(true));
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.createBtns}>
@@ -12,7 +19,7 @@ export default function Scenes() {
           <div className={classes.functionIcon}>
             <i className='far fa-arrow-from-bottom'></i>
           </div>
-          <div className={classes.functionIcon}>
+          <div className={classes.functionIcon} onClick={handleCreateModal}>
             <i className='far fa-plus'></i>
           </div>
         </div>

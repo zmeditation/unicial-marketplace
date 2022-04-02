@@ -9,7 +9,8 @@ import netModalReducer from "./netmodal/index";
 import saleParcelsReducer from "./saleparcels";
 import saleestatesReducer from "./saleestates";
 import parcelsReducer from "./parcels";
-import BidContractinfoReducer from "./bidContractData"
+import BidContractinfoReducer from "./bidContractData";
+import createSceneModalReducer from "./createscene";
 import { getSaleParcelsAPI } from "./api/parcels";
 
 export const store = configureStore({
@@ -25,6 +26,7 @@ export const store = configureStore({
     saleestates: saleestatesReducer,
     parcels: parcelsReducer,
     bidcontract: BidContractinfoReducer,
+    createScene: createSceneModalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
