@@ -32,7 +32,7 @@ export default function Scenes() {
         </span>
       </div>
       <div className={classes.createBtns}>
-        <div className={classes.resultStatus}>FROM THE SCENE POOL</div>x
+        <div className={classes.resultStatus}>FROM THE SCENE POOL</div>
         <div className={classes.functionBtn}>
           <div className={classes.viewLetter}>VIEW MORE</div>
           <div className={classes.viewArrow}>
