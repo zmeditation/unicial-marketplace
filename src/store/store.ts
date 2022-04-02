@@ -11,6 +11,7 @@ import saleestatesReducer from "./saleestates";
 import parcelsReducer from "./parcels";
 import BidContractinfoReducer from "./bidContractData";
 import createSceneModalReducer from "./createscene";
+import importSceneModalReducer from "./importscene";
 import { getSaleParcelsAPI } from "./api/parcels";
 
 export const store = configureStore({
@@ -27,6 +28,7 @@ export const store = configureStore({
     parcels: parcelsReducer,
     bidcontract: BidContractinfoReducer,
     createScene: createSceneModalReducer,
+    importScene: importSceneModalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
