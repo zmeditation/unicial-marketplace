@@ -3,32 +3,28 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useStyles } from "./ImportSceneModalStyle";
 import clsx from "clsx";
-import { useState } from "react";
 
 interface ImportSceneModalProps {
   show: boolean;
+  onClose: () => void;
 }
 
-export default function ImportSceneModal({ show }: ImportSceneModalProps) {
+export default function ImportSceneModal({ show, onClose }: ImportSceneModalProps) {
   const classes = useStyles();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [onShow, setOnShow] = useState(show);
 
-  const handleClose = () => {
-    setOnShow(false);
-  };
 
   return (
     <>
-      <div className={onShow ? classes.loaderWrapper : classes.displayNone}>
+      <div className={show ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
-          <div className={classes.closeIcon} onClick={handleClose}>
+          <div className={classes.closeIcon} onClick={onClose}>
             <i className='fas fa-times'></i>
           </div>
-          <div className={classes.title}>Import Scene</div>
+          <div className={classes.title}>{t("Import Scene")}</div>
           <div className={classes.description}>
-            You can import any Scene made with the Builder!
+            {t("You can import any Scene made with the Builder")}!
           </div>
           <div className={classes.importContent}>
             <input type='file' className={classes.fileImport}></input>
