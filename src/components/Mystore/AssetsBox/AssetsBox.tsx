@@ -26,7 +26,11 @@ export default function AssetsBox() {
   const query = new URLSearchParams(location.search);
 
   const handleRoute = (search: string) => {
-    query.set("section", search);
+    if (search === "land") {
+      query.set("section", "parcels");
+    } else {
+      query.set("section", search);
+    }
     navigate({
       pathname: location.pathname,
       search: query.toString(),
@@ -46,7 +50,7 @@ export default function AssetsBox() {
           break;
         case category.land:
           setExpanded(category.land);
-          setActiveCategory(category.land);
+          setActiveCategory(category.parcels);
           break;
         case category.parcels:
           setExpanded(category.land);
@@ -106,7 +110,9 @@ export default function AssetsBox() {
             })}
           >
             <StyledAccordionSummary aria-controls="panelLand" id="panel1Land">
-              <Typography className={classes.maintitle}>{t("Space")}</Typography>
+              <Typography className={classes.maintitle}>
+                {t("Space")}
+              </Typography>
             </StyledAccordionSummary>
             <StyledAccordionDetails>
               <CategoryWearables data={LandData} />

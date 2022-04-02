@@ -11,6 +11,15 @@ export const limitCount = 6;
 export const expired = -99;
 export const parcelshowMoreCount = 10;
 
+export const headerLinkData = {
+  home: 1,
+  marketplace: 2,
+  builder: 3,
+  docs: 4,
+  events: 5,
+  dao: 6,
+  blog: 7,
+};
 export const topTabIndex = {
   land: 1,
   collectibles: 2,

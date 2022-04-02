@@ -7,23 +7,48 @@ import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { HeaderMobileMenuStyle } from "./HeaderMobileMenuStyle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { headerLinkData } from "../../../../config/constant";
+import { useState, useEffect } from "react";
 
 export default function HeaderMobileMenu() {
   const classes = HeaderMobileMenuStyle();
+  const location = useLocation();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  const [headerActive, setHeaderActive] = useState(headerLinkData.marketplace);
   const handleClick = () => {
     setOpen(!open);
   };
 
-  const handleRoute = (route: any) => {
+  const handleHeaderlink = (index: number) => {
+    setHeaderActive(index);
     setOpen(false);
-    window.open(route);
+    switch (index) {
+      case headerLinkData.marketplace:
+        navigate("/");
+        break;
+      case headerLinkData.builder:
+        navigate("/builder");
+        break;
+      case headerLinkData.docs:
+        window.open("https://doc.unicial.org");
+        break;
+      case headerLinkData.blog:
+        window.open("https://blog.unicial.org");
+        break;
+    }
   };
+  useEffect(() => {
+    if (location.pathname.includes("/builder")) {
+      setHeaderActive(headerLinkData.builder);
+    } else {
+      setHeaderActive(headerLinkData.marketplace);
+    }
+  }, [headerActive]);
 
   return (
     <div className={classes.headerMobilemenu}>
@@ -51,29 +76,37 @@ export default function HeaderMobileMenu() {
             <List component="div" disablePadding>
               <ListItem
                 button
-                className={classes.unactive}
-                onClick={() => handleRoute("https://unicial.org")}
-              >
-                <ListItemText primary={t("Home")} />
-              </ListItem>
-              <ListItem
-                button
-                className={classes.active}
-                onClick={() => navigate("/")}
+                className={
+                  headerActive === headerLinkData.marketplace
+                    ? classes.active
+                    : classes.unactive
+                }
+                onClick={() => handleHeaderlink(headerLinkData.marketplace)}
               >
                 <ListItemText primary={t("Marketplace")} />
               </ListItem>
               <ListItem
                 button
+                className={
+                  headerActive === headerLinkData.builder
+                    ? classes.active
+                    : classes.unactive
+                }
+                onClick={() => handleHeaderlink(headerLinkData.builder)}
+              >
+                <ListItemText primary={t("Builder")} />
+              </ListItem>
+              <ListItem
+                button
                 className={classes.unactive}
-                onClick={() => handleRoute("https://doc.unicial.org")}
+                onClick={() => handleHeaderlink(headerLinkData.docs)}
               >
                 <ListItemText primary={t("Documents")} />
               </ListItem>
               <ListItem
                 button
                 className={classes.unactive}
-                onClick={() => handleRoute("https://blog.unicial.org")}
+                onClick={() => handleHeaderlink(headerLinkData.blog)}
               >
                 <ListItemText primary={t("Blog")} />
               </ListItem>
