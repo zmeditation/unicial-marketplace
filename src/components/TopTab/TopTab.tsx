@@ -1,41 +1,15 @@
 import React, { useEffect } from "react";
 import { topTabIndex, searchbarIndex } from "../../config/constant";
 import { TopTabStyle, StyledTopTabBtn } from "./TopTabStyle";
-import LandFilterBtns from "../../components/Base/LandFilterBtns";
 import LandSearchbar from "../Mystore/LandSearchbar/LandSearchbar";
 import CollectibleSearchBar from "../Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import MystoreSearchBar from "../Mystore/MystoreSearchBar/MystoreSearchBar";
 import OnSaleSearchBar from "../Mystore/OnSaleSearchbar/OnSaleSearchbar";
 import NamesSearchBar from "../Mystore/NamesSearchbar/NamesSearchbar";
 import { useLocation, useNavigate } from "react-router";
-import { withStyles } from "@material-ui/styles";
-import { Switch } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import OnSaleSwitch from "../Base/OnSaleSwitch";
 
-export const PurpleSwitch = withStyles({
-  root: {
-    height: "36px",
-    width: "55px",
-  },
-  switchBase: {
-    color: "#FF7C4C",
-    "&$checked": {
-      color: "#333B67",
-    },
-    "&$checked + $track": {
-      backgroundColor: "#333B67",
-    },
-    "&.Mui-checked:hover": {
-      backgroundColor: "unset",
-    },
-    "&.MuiIconButton-root:hover": {
-      backgroundColor: "unset",
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
 export default function TopTab() {
   const classes = TopTabStyle();
   const location = useLocation();
@@ -120,11 +94,6 @@ export default function TopTab() {
       }
     }
   }, [searchbar_index, location]);
-
-  //on sale
-  const [state, setState] = React.useState({
-    checkedA: true,
-  });
 
   return (
     <>
