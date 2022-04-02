@@ -7,15 +7,15 @@ import { useState, useEffect } from "react";
 
 interface Props {
   show: boolean;
+  onClose: () => void;
 }
-export default function CreateSceneModal({ show }: Props) {
+export default function CreateSceneModal({ show, onClose }: Props) {
   const classes = useStyles();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [showStatus, setShowStatus] = useState(show);
-  console.log("showsttus", showStatus);
   const handleClose = () => {
     setShowStatus(false);
   };
@@ -28,11 +28,11 @@ export default function CreateSceneModal({ show }: Props) {
     <>
       <div className={showStatus ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
-          <div className={classes.closeIcon} onClick={handleClose}>
+          <div className={classes.closeIcon} onClick={onClose}>
             <i className="fas fa-times"></i>
           </div>
           <div className={classes.title}>New Item</div>
-          {/* <div className={ classes.mainContainer}></div> */}
+          <div className={classes.mainContainer}></div>
         </div>
       </div>
     </>

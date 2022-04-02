@@ -19,7 +19,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   modalRoot: {
     padding: "30px",
     position: "fixed",
-    width: "650px",
+    width: "678px",
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "10px",
@@ -49,5 +49,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "25px",
     lineHeight: "19px",
     color: "#FFFFFF",
+  },
+  mainContainer: {
+    margin: "28px 32px",
+    backgroundColor: "#141b31",
+    height: "500px",
+    borderRadius: "12px",
   },
 }));

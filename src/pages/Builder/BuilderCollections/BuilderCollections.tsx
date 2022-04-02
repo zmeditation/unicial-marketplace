@@ -16,10 +16,12 @@ export default function BuilderCollections() {
 
   const handlecreateItem = () => {
     setCreateItemStatus(true);
-    console.log("yes");
   };
   const handlecreateCollection = () => {
     setCreateCollectionStatus(true);
+  };
+  const handleCreateItemClose = () => {
+    setCreateItemStatus(false);
   };
 
   return (
@@ -63,7 +65,10 @@ export default function BuilderCollections() {
           </div>
         </div>
       </div>
-      <CreateItemModal show={createItemStatus} />
+      <CreateItemModal
+        show={createItemStatus}
+        onClose={handleCreateItemClose}
+      />
     </>
   );
 }
