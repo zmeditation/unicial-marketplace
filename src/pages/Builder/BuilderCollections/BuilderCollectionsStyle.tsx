@@ -43,6 +43,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     functionBtn: {
       display: "flex",
+      alignItems: "center",
     },
     functionIcon: {
       padding: "5px 10px",
@@ -56,5 +57,57 @@ export const useStyles = makeStyles((theme: Theme) =>
         color: "red",
       },
     },
+    openEditorRoot: {
+      marginLeft: "10px",
+    },
+    openEditorContainer: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#ff2d55",
+      padding: "6px 13px",
+      fontSize: "11px",
+      borderRadius: "3px",
+    },
+
+    //noitems realte start
+    noItemsRoot: {
+      marginTop: "20px",
+    },
+    noItmesContainer: {
+      border: " 1px solid #282e4e",
+      borderRadius: "10px",
+      padding: "112px 0px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    noItemsInfoContainer: {},
+    noItemsTitle: {
+      color: "white",
+      fontSize: "34px",
+      fontWeight: 600,
+      textAlign: "center",
+    },
+    noItemsDesc: {
+      color: "#676370",
+      fontSize: "17px",
+      textAlign: "center",
+      width: "500px",
+      margin: "8px auto 34px",
+    },
+    CardsContainer: {
+      display: "flex",
+      alignItems: "center",
+    },
+    CardContainer: {
+      width: "240px",
+      height: "204px",
+    },
+    MarginRight: {
+      marginRight: "24px",
+    },
+    //noitems realte end
   })
 );

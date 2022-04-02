@@ -8,7 +8,6 @@ export default function BuilderScenes() {
   const dispatch = useAppDispatch();
 
   const handleCreateModal = () => {
-    console.log("clicked");
     dispatch(showCreateSceneModal(true));
   };
 
