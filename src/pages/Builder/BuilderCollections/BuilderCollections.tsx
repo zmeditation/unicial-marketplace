@@ -16,6 +16,7 @@ export default function BuilderCollections() {
 
   const handlecreateItem = () => {
     setCreateItemStatus(true);
+    console.log("yes");
   };
   const handlecreateCollection = () => {
     setCreateCollectionStatus(true);

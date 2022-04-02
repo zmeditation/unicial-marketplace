@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useStyles } from "./CreateItemModalStyle";
 import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface Props {
   show: boolean;
@@ -13,10 +13,16 @@ export default function CreateSceneModal({ show }: Props) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const [showStatus, setShowStatus] = useState(show);
+  console.log("showsttus", showStatus);
   const handleClose = () => {
     setShowStatus(false);
   };
+
+  useEffect(() => {
+    setShowStatus(show);
+  }, [show]);
 
   return (
     <>
