@@ -1,6 +1,5 @@
 import BuilderTopTab from "../../../components/BuilderTopTab/BuilderTopTab";
 import CreateCard from "../../../components/Base/CreateCard";
-import { showCreateSceneModal } from "../../../store/createscene";
 import { useAppDispatch } from "../../../store/hooks";
 import { useStyles } from "./BuilderCollectionsStyle";
 import clsx from "clsx";
@@ -15,9 +14,6 @@ export default function BuilderCollections() {
   const [createItemStatus, setCreateItemStatus] = useState(false);
   const [createCollectionStatus, setCreateCollectionStatus] = useState(false);
 
-  const handleCreateModal = () => {
-    dispatch(showCreateSceneModal(true));
-  };
   const handlecreateItem = () => {
     setCreateItemStatus(true);
   };
@@ -32,7 +28,7 @@ export default function BuilderCollections() {
         <div className={classes.createBtns}>
           <div className={classes.resultStatus}>0 RESULTS</div>
           <div className={classes.functionBtn}>
-            <div className={classes.functionIcon} onClick={handleCreateModal}>
+            <div className={classes.functionIcon}>
               <i className="far fa-plus"></i>
             </div>
             <div className={classes.openEditorRoot}>
