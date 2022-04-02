@@ -45,7 +45,7 @@ export default function Header() {
     } else {
       setHeaderActive(headerLinkData.marketplace);
     }
-  }, [headerActive]);
+  }, [headerActive, location]);
 
   return (
     <>

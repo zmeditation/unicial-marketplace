@@ -31,6 +31,13 @@ export const topTabIndex = {
   contracts: 8,
 };
 
+export const BuilderToptabData = {
+  builder_scenes: 1,
+  builder_land: 2,
+  builder_names: 3,
+  builder_collections: 4,
+};
+
 export const searchbarBtn = {
   tableBtn: 1,
   locationBtn: 2,
