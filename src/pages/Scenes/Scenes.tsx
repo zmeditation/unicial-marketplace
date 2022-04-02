@@ -7,7 +7,6 @@ export default function Scenes() {
   const dispatch = useAppDispatch();
 
   const handleCreateModal = () => {
-    console.log("clicked");
     dispatch(showCreateSceneModal(true));
   };
 
@@ -28,12 +27,12 @@ export default function Scenes() {
         <span className={classes.contentLetter}>
           It looks like that you don't have any Scenes.
           <br />
-          <span className={classes.importantLink}>Click here</span> to get
+          <span className={classes.importantLink} onClick={handleCreateModal}>Click here</span> to get
           Started.
         </span>
       </div>
       <div className={classes.createBtns}>
-        <div className={classes.resultStatus}>FROM THE SCENE POOL</div>
+        <div className={classes.resultStatus}>FROM THE SCENE POOL</div>x
         <div className={classes.functionBtn}>
           <div className={classes.viewLetter}>VIEW MORE</div>
           <div className={classes.viewArrow}>
