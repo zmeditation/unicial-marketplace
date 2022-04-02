@@ -5,13 +5,24 @@ import { useAppDispatch } from "../../../store/hooks";
 import { useStyles } from "./BuilderCollectionsStyle";
 import clsx from "clsx";
 import { createCardletterData } from "../../../config/constant";
+import CreateItemModal from "../../../components/CreateItemModal/CreateItemModal";
+import { useState } from "react";
 
 export default function BuilderCollections() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
 
+  const [createItemStatus, setCreateItemStatus] = useState(false);
+  const [createCollectionStatus, setCreateCollectionStatus] = useState(false);
+
   const handleCreateModal = () => {
     dispatch(showCreateSceneModal(true));
+  };
+  const handlecreateItem = () => {
+    setCreateItemStatus(true);
+  };
+  const handlecreateCollection = () => {
+    setCreateCollectionStatus(true);
   };
 
   return (
@@ -40,15 +51,22 @@ export default function BuilderCollections() {
             </div>
             <div className={classes.CardsContainer}>
               <div className={clsx(classes.CardContainer, classes.MarginRight)}>
-                <CreateCard letter={createCardletterData.new_item} />
+                <CreateCard
+                  letter={createCardletterData.new_item}
+                  onClick={handlecreateItem}
+                />
               </div>
               <div className={classes.CardContainer}>
-                <CreateCard letter={createCardletterData.new_collection} />
+                <CreateCard
+                  letter={createCardletterData.new_collection}
+                  onClick={handlecreateCollection}
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <CreateItemModal show={createItemStatus} />
     </>
   );
 }
