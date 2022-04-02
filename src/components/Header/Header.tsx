@@ -29,7 +29,7 @@ export default function Header() {
         navigate("/");
         break;
       case headerLinkData.builder:
-        navigate("/builder");
+        navigate("/builder/builder_scenes");
         break;
       case headerLinkData.docs:
         window.open("https://doc.unicial.org");

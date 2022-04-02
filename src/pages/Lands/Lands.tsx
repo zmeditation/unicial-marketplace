@@ -22,8 +22,8 @@ const Lands: React.FC = () => {
 
   return (
     <>
-      {/* <TopTab /> */}
-      <BuilderTopTab />
+      <TopTab />
+      {/* <BuilderTopTab /> */}
       <div className={classes.landMap}>
         <LandMap height={height} width={width} />
       </div>
