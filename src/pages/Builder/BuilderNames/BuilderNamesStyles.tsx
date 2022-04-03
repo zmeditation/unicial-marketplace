@@ -31,7 +31,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      marginTop: "30px",
       marginBottom: "30px",
     },
     resultStatus: {
