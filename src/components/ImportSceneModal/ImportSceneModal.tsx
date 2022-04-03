@@ -4,20 +4,20 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ActionButton from "../Base/ActionButton";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { createSceneStatus } from "../../store/createscene/selectors";
 import { useStyles } from "./ImportSceneModalStyle";
 import clsx from "clsx";
-import { showCreateSceneModal } from "../../store/createscene";
+import { importSceneStatus } from "../../store/importscene/selectors";
+import { showImportSceneModal } from "../../store/importscene";
 
-export default function CreateSceneModal() {
+export default function ImportSceneModal() {
   const classes = useStyles();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const show = useAppSelector(createSceneStatus);
+  const show = useAppSelector(importSceneStatus);
 
   const handleClose = () => {
-    dispatch(showCreateSceneModal(false));
+    dispatch(showImportSceneModal(false));
   };
 
   return (
@@ -31,7 +31,9 @@ export default function CreateSceneModal() {
           <div className={classes.description}>
             You can import any Scene made with the Builder!
           </div>
-          <input type='file' className={classes.fileImport}></input>
+          <div className={classes.importContent}>
+            <input type='file' className={classes.fileImport}></input>
+          </div>
           <div className={classes.btnRoot}>
             <ActionButton
               color='dark'

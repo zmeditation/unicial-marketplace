@@ -1,3 +1,5 @@
+/** @format */
+
 import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -23,7 +25,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "10px",
-    textAlign: "center",
     zIndex: 99999,
     [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
@@ -73,7 +74,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: "#FFFFFF",
     opacity: "0.7",
   },
-  fileImport:{},
+  importContent: {
+    width: "100%",
+    height: "300px",
+  },
+  fileImport: {},
+  empty: {
+    backgroundColor: "red",
+  },
   marginLeft: {
     marginLeft: "20px",
   },
