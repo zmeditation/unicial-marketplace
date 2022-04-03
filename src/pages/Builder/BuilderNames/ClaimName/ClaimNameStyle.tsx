@@ -3,7 +3,7 @@ import { Input } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    minWidth: "1064px",
+    width: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
     paddingTop: "50px",
@@ -15,14 +15,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
       borderRadius: "15px",
     },
     [theme.breakpoints.down(1200)]: {
-      minWidth: "933px",
+      width: "933px",
     },
     [theme.breakpoints.down(992)]: {
-      minWidth: "700px",
+      width: "700px",
       padding: "50px 16px",
     },
     [theme.breakpoints.down(769)]: {
-      minWidth: "calc(100% - 32px) !important",
+      width: "calc(100% - 32px) !important",
     },
   },
   container_root: {
@@ -148,10 +148,37 @@ export const useStyles = makeStyles((theme: Theme) => ({
   widthFull: {
     width: "100%",
   },
+  importantLetter: {
+    fontFamily: "Lato",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "14px",
+    lineHeight: "17px",
+    color: "#f50057",
+  },
+  normalshape: {
+    marginLeft: "5px",
+  },
+  alignCenter: {
+    display: "flex",
+    alignItems: "center",
+  },
+  inputAdor: {
+    borderLeft: "solid 1px #32395d",
+    paddingLeft: "10px",
+    height: "100%",
+    "& .MuiTypography-colorTextSecondary": {
+      color: "#747787",
+    },
+  },
+  marginLeft:{
+    marginLeft: "10px",
+  },
 }));
 
 export const StyledInput = withStyles((theme) => ({
   root: {
+    width: "100%",
     marginRight: "20px",
     display: "flex",
     height: "44px",
@@ -161,7 +188,6 @@ export const StyledInput = withStyles((theme) => ({
     borderRadius: "100px",
     alignItems: "center",
     color: "white",
-    width: "100%",
     "&:before": {
       border: "none",
     },
@@ -173,14 +199,25 @@ export const StyledInput = withStyles((theme) => ({
     },
     "& .MuiInputBase-input": {
       paddingLeft: "10px",
+      fontStyle: "normal",
       fontWeight: "normal",
       fontSize: "16px",
-      color: "#FFFFFF",
-      fontFamily: "Lato",
-      fontStyle: "Regular",
       lineHeight: "19px",
-      align: "Left",
-      verticalAlign: "Top",
+      color: "#FFFFFF",
+    },
+    "& img": {
+      fontWeight: 700,
+      fontSize: "16px",
+      lineHeight: "19px",
+      fontStyle: "normal",
+      padding: "0em 1em",
+      transform: "translateY(-0.06em)",
+      display: "inline-block",
+      marginTop: "2px",
+      background: "linear-gradient(to right, #FF7C4C 20%, #FFB03A 101.82%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      borderRight: "1px solid #373F66",
     },
   },
 }))(Input);
