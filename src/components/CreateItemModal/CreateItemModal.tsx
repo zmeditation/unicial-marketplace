@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useStyles } from "./CreateItemModalStyle";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
+import PublishIcon from "@material-ui/icons/Publish";
 
 interface Props {
   show: boolean;
@@ -32,7 +33,29 @@ export default function CreateSceneModal({ show, onClose }: Props) {
             <i className="fas fa-times"></i>
           </div>
           <div className={classes.title}>New Item</div>
-          <div className={classes.mainContainer}></div>
+          <div className={classes.mainContainer}>
+            <div className={classes.dragPartContainer}>
+              <div className={classes.uploadImgContainer}>
+                <PublishIcon className={classes.uploadIcon} />
+              </div>
+              <div className={classes.dragInfoContainer}>
+                <div className={classes.normalLetter}>
+                  Drag our Asset file here in &nbsp;
+                  <span className={classes.colorLetter}>
+                    ZIP, GLTF, GLB, ZIP, PNG
+                  </span>
+                  &nbsp; format, or
+                </div>
+                <div className={classes.browserContainer}>
+                  <span className={classes.colorLetter}>
+                    <input type="file" className={classes.fileInput} />
+                    Browse your computer
+                  </span>
+                  <input type="file" value="chooee file" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

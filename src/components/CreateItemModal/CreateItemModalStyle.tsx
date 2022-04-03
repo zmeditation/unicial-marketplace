@@ -51,9 +51,52 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: "#FFFFFF",
   },
   mainContainer: {
-    margin: "28px 32px",
+    margin: "28px 0px",
     backgroundColor: "#141b31",
     height: "500px",
     borderRadius: "12px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "0px 75px",
+  },
+  dragPartContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  uploadImgContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "100%",
+    backgroundColor: "#282E4E",
+    width: "64px",
+    height: "64px",
+    marginBottom: "32px",
+  },
+  uploadIcon: {
+    width: "80%",
+    height: "80%",
+  },
+  dragInfoContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  normalLetter: {
+    color: "white",
+    fontSize: "17px",
+  },
+  browserContainer: {},
+  colorLetter: {
+    color: "red",
+    fontSize: "17px",
+    cursor: "pointer",
+  },
+  fileInput: {
+    display: "none",
   },
 }));
