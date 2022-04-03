@@ -51,9 +51,8 @@ import { setSaleEstates } from "../../store/saleestates";
 import { getProvider } from "../../hooks/Common";
 import { selectLoginAddress } from "./../../store/auth/selectors";
 import BuilderScenes from "../../pages/Builder/BuilderScenes/BuilderScenes";
-import CreateSceneModal from "../CreateSceneModal/CreateSceneModal";
 import BuilderCollections from "../../pages/Builder/BuilderCollections/BuilderCollections";
-import ImportSceneModal from "../ImportSceneModal/ImportSceneModal";
+import BuilderLand from "../../pages/Builder/BuilderLand/BuilderLand";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -119,6 +118,7 @@ export default function Layout() {
         <Routes>
           <Route path='/' element={<MarketPlace />} />
           <Route path='/builder/builder_scenes' element={<BuilderScenes />} />
+          <Route path='/builder/builder_land' element={<BuilderLand />} />
           <Route
             path='/builder/builder_collections'
             element={<BuilderCollections />}
