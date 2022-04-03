@@ -37,9 +37,9 @@ export default function CreateSceneModal({ show }: CreateSceneModalProps) {
           <div className={classes.closeIcon} onClick={handleClose}>
             <i className='fas fa-times'></i>
           </div>
-          <div className={classes.title}>Create a Scene</div>
+          <div className={classes.title}>{t("Create a Scene")}</div>
           <div className={classes.description}>
-            Set a name and description for your scene
+            {t("Set a name and description for your scene")}
           </div>
 
           <div className={classes.form_field}>

@@ -26,9 +26,9 @@ export default function ImportSceneModal({ show }: ImportSceneModalProps) {
           <div className={classes.closeIcon} onClick={handleClose}>
             <i className='fas fa-times'></i>
           </div>
-          <div className={classes.title}>Import Scene</div>
+          <div className={classes.title}>{t("Import Scene")}</div>
           <div className={classes.description}>
-            You can import any Scene made with the Builder!
+            {t("You can import any Scene made with the Builder")}!
           </div>
           <div className={classes.importContent}>
             <input type='file' className={classes.fileImport}></input>
