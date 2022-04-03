@@ -51,7 +51,6 @@ export default function CreateSceneModal({ show, onClose }: Props) {
                     <input type="file" className={classes.fileInput} />
                     Browse your computer
                   </span>
-                  <input type="file" value="chooee file" />
                 </div>
               </div>
             </div>
