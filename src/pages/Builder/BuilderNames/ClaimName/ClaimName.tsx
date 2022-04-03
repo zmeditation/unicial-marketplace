@@ -42,7 +42,7 @@ const ClaimName = () => {
             <div className={classes.subtitle}>
               {t(
                 "Assigning a name to a parcel or estate allows you to create a unique URL , like https://name.dcl.eth, making it easy to send people to your LAND. When someone follows your new URL, they will redirected to your LAND in"
-              )}
+              )}{" "}
               <span className={classes.importantLetter}>
                 {t("Decentraland")}!
               </span>
@@ -60,7 +60,6 @@ const ClaimName = () => {
             </div>
             <div className={classes.form_field}>
               <div className={classes.price_container}>
-                {/* // */}
                 <div className={classes.subheader_label}>{t("NAME")}</div>
                 <FormControl className={classes.widthFull}>
                   <StyledInput
@@ -75,7 +74,6 @@ const ClaimName = () => {
                     }
                   />
                 </FormControl>
-                {/* // */}
                 <div className={classes.subheader_label}>
                   {t("UCC APPROVED")}
                 </div>
@@ -83,11 +81,11 @@ const ClaimName = () => {
                   <OnSaleSwitch letter='' />
                 </div>
                 <div className={classes.subtitle}>
-                  {t("Authorize the")} &nbsp;
+                  {t("Authorize the")}{" "}
                   <span className={classes.importantLetter}>
                     {t("DCLController")}
-                  </span>
-                  &nbsp; {t("contract to operate UCC on your behalf")}
+                  </span>{" "}
+                  {t("contract to operate UCC on your behalf")}
                 </div>
               </div>
               <p>&nbsp;</p>
