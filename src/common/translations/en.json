@@ -181,5 +181,13 @@
   "NAME": "NAME",
   "DESCRIPTION": "DESCRIPTION",
   "Some description ...": "Some description ...",
-  "Claim a unique Name": "Claim a unique Name"
+  "Claim a unique Name": "Claim a unique Name",
+  "UCC APPROVED": "UCC APPROVED",
+  "CLAIM": "CLAIM",
+  "contract to operate UCC on your behalf": "contract to operate UCC on your behalf",
+  "DCLController": "DCLController",
+  "Authorize the": "Authorize the",
+  "Unique names can be assigned to your avatar for use as an alias, or ther can be assigned to parcels": "Unique names can be assigned to your avatar for use as an alias, or ther can be assigned to parcels",
+  "Assigning a name to a parcel or estate allows you to create a unique URL , like https://name.dcl.eth, making it easy to send people to your LAND. When someone follows your new URL, they will redirected to your LAND in": "Assigning a name to a parcel or estate allows you to create a unique URL , like https://name.dcl.eth, making it easy to send people to your LAND. When someone follows your new URL, they will redirected to your LAND in",
+  "Names are only available in Ethereu, and can only be claimed with Ethereum UCC": "Names are only available in Ethereu, and can only be claimed with Ethereum UCC"
 }
