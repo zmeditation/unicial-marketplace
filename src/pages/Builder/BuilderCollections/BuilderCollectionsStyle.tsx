@@ -1,6 +1,6 @@
 import { createStyles, Theme } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
-
+import { makeStyles, withStyles } from "@material-ui/styles";
+import { MenuItem, Popover } from "@material-ui/core";
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -32,29 +32,42 @@ export const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       alignItems: "center",
       marginTop: "30px",
-      marginBottom: "30px",
+      marginBottom: "55px",
     },
     resultStatus: {
       fontFamily: "Lato",
-      fontSize: "16px",
+      fontSize: "18px",
       fontStyle: "Regular",
       fontWeight: 400,
-      lineHeight: "19px",
+      lineHeight: "26px",
+      color: "#96A1DB",
     },
     functionBtn: {
       display: "flex",
       alignItems: "center",
     },
     functionIcon: {
-      padding: "5px 10px",
-      borderRadius: "4px",
-      border: "1px solid #282e4e",
+      // padding: "5px 10px",
+      // borderRadius: "4px",
+      // border: "1px solid #282e4e",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "50px",
+      height: "34px",
+      border: "double 2px transparent",
+      borderRadius: "10px",
+      backgroundImage:
+        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+      backgroundClip: "content-box, border-box",
+      backgroundOrigin: "border-box",
       marginLeft: "4px",
       cursor: "pointer",
       "& i": {
         width: "16px",
         height: "16px",
-        color: "red",
+        color: "white",
+        marginLeft: "3px",
       },
     },
     openEditorRoot: {
@@ -64,20 +77,23 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "#ff2d55",
-      padding: "6px 13px",
-      fontSize: "11px",
-      borderRadius: "3px",
+      backgroundImage: "linear-gradient(67.71deg, #FF7C4C 0%, #FFB03A 98.37%)",
+      width: "128px",
+      height: "34px",
+      fontFamily: "Lato",
+      fontWeight: 400,
+      fontSize: "17px",
+      lineHeight: "20.4px",
+      borderRadius: "7px",
     },
 
     //noitems realte start
     noItemsRoot: {
       marginTop: "20px",
     },
-    noItmesContainer: {
-      border: " 1px solid #282e4e",
+    noItemsContainer: {
       borderRadius: "10px",
-      padding: "112px 0px",
+      padding: "0px 0px 100px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -86,28 +102,81 @@ export const useStyles = makeStyles((theme: Theme) =>
     noItemsInfoContainer: {},
     noItemsTitle: {
       color: "white",
-      fontSize: "34px",
+      fontSize: "24px",
       fontWeight: 600,
       textAlign: "center",
+      fontFamily: "Montserrat",
+      lineHeight: "50px",
     },
     noItemsDesc: {
-      color: "#676370",
-      fontSize: "17px",
+      color: "#96A1DB",
+      fontSize: "18px",
+      lineHeight: "29px",
+      fontWeight: 400,
       textAlign: "center",
       width: "500px",
-      margin: "8px auto 34px",
+      margin: "8px auto 58px",
     },
     CardsContainer: {
       display: "flex",
       alignItems: "center",
     },
     CardContainer: {
-      width: "240px",
-      height: "204px",
+      width: "285px",
+      height: "285px",
     },
     MarginRight: {
-      marginRight: "24px",
+      marginRight: "67px",
     },
     //noitems realte end
+
+    //plus dropdown relate start
+    listContainer: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    listLabel: {
+      fontSize: "14px",
+      lineHeight: "20px",
+      fontWeight: 400,
+      fontStyle: "normal",
+      color: "#96A1DB",
+      "&:hover": {
+        color: "white",
+      },
+    },
+    activeLabel: {
+      color: "white",
+    },
+    //plus dropdown relate end
   })
 );
+
+export const StyledCollectionPopover = withStyles({
+  paper: {
+    backgroundColor: "#1A1F37",
+    boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05 )",
+    marginBottom: "70px",
+    borderRadius: "15px",
+    position: "absolute",
+    minWidth: "168px",
+    top: "419px",
+  },
+})(Popover);
+
+export const StyledMenuItem = withStyles({
+  root: {
+    color: "#96A1DB",
+    fontSize: "14px",
+    lineHeight: "20px",
+    fontWeight: 500,
+    minWidth: "210px",
+    padding: "10px 16px",
+    cursor: "pointer",
+    position: "relative",
+    "&:hover": {
+      color: "white",
+    },
+  },
+})(MenuItem);

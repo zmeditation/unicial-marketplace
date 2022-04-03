@@ -3,6 +3,9 @@ import { createCardletterData } from "../../config/constant";
 import magicCapSvg from "./../../../src/assets/svg/magicCap.svg";
 import magicFileSvg from "./../../../src/assets/svg/magicFile.svg";
 
+import newItemIcon from "./../../../src/assets/svg/addItem.png";
+import newCollectionIcon from "./../../../src/assets/svg/folder.png";
+
 interface Props {
   children?: React.ReactNode;
   className?: any;
@@ -16,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "#282E4E",
       borderRadius: "8px",
       cursor: "pointer",
-      padding: "50px 5px 30px",
+      padding: "61px 5px 46px",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -35,9 +38,14 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: "center",
       fontSize: "17px",
     },
-    imgContainer: {
-      width: "80px",
+    ItemimgContainer: {
+      width: "96px",
+      height: "102px",
+    },
+    CollectionimgContainer: {
+      width: "104px",
       height: "80px",
+      marginTop: "10px",
     },
   })
 );
@@ -55,10 +63,14 @@ export default function CreateCard({
           <img
             src={
               letter === createCardletterData.new_item
-                ? magicCapSvg
-                : magicFileSvg
+                ? newItemIcon
+                : newCollectionIcon
             }
-            className={classes.imgContainer}
+            className={
+              letter === createCardletterData.new_item
+                ? classes.ItemimgContainer
+                : classes.CollectionimgContainer
+            }
           />
         </div>
         <div className={classes.letter}>{letter}</div>

@@ -1,4 +1,4 @@
-import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
+import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   displayNone: {
@@ -19,13 +19,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
   modalRoot: {
     padding: "30px 35px",
     position: "fixed",
-    width: "935px",
+    width: "620px",
+    height: "354px",
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "10px",
     textAlign: "center",
     zIndex: 99999,
-    [theme.breakpoints.down(975)]: {
+    [theme.breakpoints.down(769)]: {
       minWidth: "calc(100% - 32px) !important",
       width: "calc(100% - 32px) !important",
       margin: "0px 50px",
@@ -57,56 +58,47 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: "#FFFFFF",
   },
   mainContainer: {
-    margin: "30px 0px 0px",
-    backgroundColor: "#141b31",
-    height: "435px",
-    borderRadius: "12px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "0px 75px",
+    padding: "0px 50px",
   },
-  dragPartContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  uploadImgContainer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "80px",
-    height: "80px",
-    marginBottom: "55px",
-  },
-  uploadIcon: {
-    width: "100%",
-    height: "100%",
-  },
-  dragInfoContainer: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  normalLetter: {
+  descContainer: {
     color: "#96A1DB",
-    fontSize: "18px",
     fontFamily: "Lato",
-    lineHeight: "29px",
-  },
-  browserContainer: {},
-  colorLetter: {
+    fontWeight: 400,
     fontSize: "18px",
-    fontFamily: "Lato",
     lineHeight: "29px",
-    cursor: "pointer",
-    background: "linear-gradient(to right, #FF7C4C 10%, #FFB03A 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
+    textAlign: "center",
+    marginTop: "5px",
+    marginBottom: "30px",
   },
-  fileInput: {
-    display: "none",
+  name: {
+    color: "#96A1DB",
+    opacity: "50%",
+    fontFamily: "Lato",
+    fontWeight: 400,
+    fontSize: "12px",
+    lineHeight: "14.4px",
+    textAlign: "left",
+    marginBottom: "8px",
+    marginTop: "23px",
+  },
+  widthFull: {
+    width: "100%",
+  },
+  createBtnRoot: {
+    width: "100%",
+    marginTop: "10px",
+    height: "54px",
+  },
+  createBtnContainer: {
+    borderRadius: "9px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    backgroundImage: "linear-gradient(to right, #FF7C4C 0%, #FFB03A 100%)",
+    color: "white",
+    fontFamily: "Lato",
+    fontSize: "17px",
+    lineHeight: "20..4px",
   },
 }));

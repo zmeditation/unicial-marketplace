@@ -5,6 +5,7 @@ import { useStyles } from "./CreateItemModalStyle";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 import PublishIcon from "@material-ui/icons/Publish";
+import uploadIcon from "./../../../src/assets/svg/upload.png";
 
 interface Props {
   show: boolean;
@@ -36,7 +37,7 @@ export default function CreateSceneModal({ show, onClose }: Props) {
           <div className={classes.mainContainer}>
             <div className={classes.dragPartContainer}>
               <div className={classes.uploadImgContainer}>
-                <PublishIcon className={classes.uploadIcon} />
+                <img src={uploadIcon} className={classes.uploadIcon} />
               </div>
               <div className={classes.dragInfoContainer}>
                 <div className={classes.normalLetter}>

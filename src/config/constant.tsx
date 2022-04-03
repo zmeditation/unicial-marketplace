@@ -11,6 +11,17 @@ export const limitCount = 6;
 export const expired = -99;
 export const parcelshowMoreCount = 10;
 
+export const collectionsPlusData = [
+  {
+    index: 1,
+    content: "New Item",
+  },
+  {
+    index: 2,
+    content: "New Collection",
+  },
+];
+
 export const createCardletterData = {
   new_item: "New Item",
   new_collection: "New Collection",
