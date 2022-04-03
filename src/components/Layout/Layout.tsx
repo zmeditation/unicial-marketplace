@@ -54,6 +54,7 @@ import BuilderScenes from "../../pages/Builder/BuilderScenes/BuilderScenes";
 import BuilderCollections from "../../pages/Builder/BuilderCollections/BuilderCollections";
 import BuilderLand from "../../pages/Builder/BuilderLand/BuilderLand";
 import BuilderNames from "../../pages/Builder/BuilderNames/BuilderNames";
+import ClaimName from "../../pages/Builder/BuilderNames/ClaimName/ClaimName";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -121,6 +122,7 @@ export default function Layout() {
           <Route path='/builder/builder_scenes' element={<BuilderScenes />} />
           <Route path='/builder/builder_land' element={<BuilderLand />} />
           <Route path='/builder/builder_names' element={<BuilderNames />} />
+          <Route path='/builder/builder_claim-name' element={<ClaimName />} />
           <Route
             path='/builder/builder_collections'
             element={<BuilderCollections />}
