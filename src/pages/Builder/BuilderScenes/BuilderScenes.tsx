@@ -17,8 +17,16 @@ export default function BuilderScenes() {
     setShowCreateModal(true);
   };
 
+  const handleCreateClose = () => {
+    setShowCreateModal(false);
+  };
+
   const handleImportModal = () => {
     setShowImportModal(true);
+  };
+  
+  const handleImportClose = () => {
+    setShowImportModal(false);
   };
 
   return (
@@ -94,8 +102,8 @@ export default function BuilderScenes() {
           </div>
         </div>
       </div>
-      <ImportSceneModal show={showImportModal} />
-      <CreateSceneModal show={showCreateModal} />
+      <ImportSceneModal show={showImportModal} onClose={handleImportClose} />
+      <CreateSceneModal show={showCreateModal} onClose={handleCreateClose} />
     </>
   );
 }

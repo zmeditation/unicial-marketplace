@@ -9,19 +9,15 @@ import { useState } from "react";
 
 interface CreateSceneModalProps {
   show: boolean;
+  onClose: () => void;
 }
 
-export default function CreateSceneModal({ show }: CreateSceneModalProps) {
+export default function CreateSceneModal({ show, onClose }: CreateSceneModalProps) {
   const classes = useStyles();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [onShow, setOnShow] = useState(show);
   const [name, setName] = useState("");
   const [des, setDes] = useState("");
-
-  const handleClose = () => {
-    setOnShow(false);
-  };
 
   const handleName = (e: any) => {
     setName(e.target.value);
@@ -32,9 +28,9 @@ export default function CreateSceneModal({ show }: CreateSceneModalProps) {
 
   return (
     <>
-      <div className={onShow ? classes.loaderWrapper : classes.displayNone}>
+      <div className={show ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
-          <div className={classes.closeIcon} onClick={handleClose}>
+          <div className={classes.closeIcon} onClick={onClose}>
             <i className='fas fa-times'></i>
           </div>
           <div className={classes.title}>{t("Create a Scene")}</div>
