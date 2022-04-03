@@ -1,19 +1,22 @@
+import { useState } from "react";
 import BuilderTopTab from "../../../components/BuilderTopTab/BuilderTopTab";
-import { showCreateSceneModal } from "../../../store/createscene";
+import CreateSceneModal from "../../../components/CreateSceneModal/CreateSceneModal";
+import ImportSceneModal from "../../../components/ImportSceneModal/ImportSceneModal";
 import { useAppDispatch } from "../../../store/hooks";
-import { showImportSceneModal } from "../../../store/importscene";
 import { useStyles } from "./BuilderScenesStyles";
 
 export default function BuilderScenes() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   const handleCreateModal = () => {
-    dispatch(showCreateSceneModal(true));
+    setShowCreateModal(true);
   };
 
   const handleImportModal = () => {
-    dispatch(showImportSceneModal(true));
+    setShowImportModal(true);
   };
 
   return (
@@ -87,6 +90,8 @@ export default function BuilderScenes() {
           </div>
         </div>
       </div>
+      <ImportSceneModal show={showImportModal} />
+      <CreateSceneModal show={showCreateModal} />
     </>
   );
 }

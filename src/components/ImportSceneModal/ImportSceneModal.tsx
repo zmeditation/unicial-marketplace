@@ -1,28 +1,27 @@
-/** @format */
-
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ActionButton from "../Base/ActionButton";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useStyles } from "./ImportSceneModalStyle";
 import clsx from "clsx";
-import { importSceneStatus } from "../../store/importscene/selectors";
-import { showImportSceneModal } from "../../store/importscene";
+import { useState } from "react";
 
-export default function ImportSceneModal() {
+interface ImportSceneModalProps {
+  show: boolean;
+}
+
+export default function ImportSceneModal({ show }: ImportSceneModalProps) {
   const classes = useStyles();
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const show = useAppSelector(importSceneStatus);
+  const [onShow, setOnShow] = useState(show);
 
   const handleClose = () => {
-    dispatch(showImportSceneModal(false));
+    setOnShow(false);
   };
 
   return (
     <>
-      <div className={show ? classes.loaderWrapper : classes.displayNone}>
+      <div className={onShow ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
           <div className={classes.closeIcon} onClick={handleClose}>
             <i className='fas fa-times'></i>

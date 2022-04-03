@@ -284,8 +284,6 @@ export default function Layout() {
         <Notification />
         <NetModal />
         <Spinner />
-        <CreateSceneModal />
-        <ImportSceneModal />
       </Box>
     </Router>
   );

@@ -1,26 +1,26 @@
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ActionButton from "../Base/ActionButton";
 import FormControl from "@material-ui/core/FormControl";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { createSceneStatus } from "../../store/createscene/selectors";
 import { useStyles, StyledInput } from "./CreateSceneModalStyle";
 import clsx from "clsx";
-import { showCreateSceneModal } from "../../store/createscene";
 import { useState } from "react";
 
-export default function CreateSceneModal() {
+interface CreateSceneModalProps {
+  show: boolean;
+}
+
+export default function CreateSceneModal({ show }: CreateSceneModalProps) {
   const classes = useStyles();
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const show = useAppSelector(createSceneStatus);
+  const [onShow, setOnShow] = useState(show);
   const [name, setName] = useState("");
   const [des, setDes] = useState("");
 
   const handleClose = () => {
-    dispatch(showCreateSceneModal(false));
+    setOnShow(false);
   };
 
   const handleName = (e: any) => {
@@ -32,7 +32,7 @@ export default function CreateSceneModal() {
 
   return (
     <>
-      <div className={show ? classes.loaderWrapper : classes.displayNone}>
+      <div className={onShow ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
           <div className={classes.closeIcon} onClick={handleClose}>
             <i className='fas fa-times'></i>
