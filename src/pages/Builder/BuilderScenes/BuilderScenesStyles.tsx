@@ -129,6 +129,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       borderRadius: "20px",
       position: "relative",
       marginRight: "50px",
+      "&:hover": {
+        transform: "translateY(-2px)",
+      },
     },
     sceneImg: {
       width: "100%",

@@ -83,9 +83,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   subtitle: {
     fontFamily: "Lato",
     fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "14px",
-    lineHeight: "17px",
+    fontWeight: 400,
+    fontSize: "18px",
+    lineHeight: "29px",
     color: "#96A1DB",
   },
   form_field: {
@@ -151,10 +151,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
   importantLetter: {
     fontFamily: "Lato",
     fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "14px",
-    lineHeight: "17px",
-    color: "#f50057",
+    fontWeight: 400,
+    fontSize: "18px",
+    lineHeight: "29px",
+    color: "#fb895a",
+    cursor: "pointer",
   },
   normalshape: {
     marginLeft: "5px",
@@ -171,7 +172,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       color: "#747787",
     },
   },
-  marginLeft:{
+  marginLeft: {
     marginLeft: "10px",
   },
 }));
