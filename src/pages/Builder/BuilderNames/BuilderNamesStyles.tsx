@@ -31,7 +31,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      marginBottom: "30px",
+      marginBottom: "25px",
     },
     resultStatus: {
       fontFamily: "Lato",
