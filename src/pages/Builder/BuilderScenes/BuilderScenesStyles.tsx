@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      minHeight: "calc(100vh - 246px)",
+      minHeight: "calc(100vh - 390px)",
       minWidth: "1064px",
       maxWidth: "1064px",
       margin: "10px auto 60px auto",
