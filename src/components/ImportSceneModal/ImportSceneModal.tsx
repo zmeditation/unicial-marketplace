@@ -41,7 +41,7 @@ export default function ImportSceneModal({
             <span className={classes.contentLetter}>
               {t("Drag your Asset file here in")}{" "}
               <span className={classes.importantLink} onClick={() => {}}>
-                {t("ZIP, GLTF, GLB, ZIP, PNG")}
+                {t("ZIP, GLTF, GLB, JPG, PNG")}
               </span>{" "}
               {t("format, or")}
               <br />

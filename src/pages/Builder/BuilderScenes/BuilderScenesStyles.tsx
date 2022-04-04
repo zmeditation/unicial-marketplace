@@ -63,7 +63,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     createContent: {
-      height: "200px",
+      height: "338px",
       borderRadius: "10px",
       display: "flex",
       justifyContent: "center",
