@@ -12,7 +12,10 @@ interface CreateSceneModalProps {
   onClose: () => void;
 }
 
-export default function CreateSceneModal({ show, onClose }: CreateSceneModalProps) {
+export default function CreateSceneModal({
+  show,
+  onClose,
+}: CreateSceneModalProps) {
   const classes = useStyles();
   const { t } = useTranslation();
   const navigate = useNavigate();
