@@ -45,7 +45,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: "35px",
     height: "35px",
     "& i": {
-      fontSize: "13.5px",
       fontWeight: 100,
     },
   },

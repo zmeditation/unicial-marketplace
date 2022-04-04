@@ -18,6 +18,11 @@ export default function CreateSceneModal({ show, onClose }: Props) {
   const navigate = useNavigate();
 
   const [showStatus, setShowStatus] = useState(show);
+  const [importData, setImportData] = useState<any>();
+
+  const handleImportFile = (e: any) => {
+    setImportData(e.target.files);
+  };
   const handleClose = () => {
     setShowStatus(false);
   };
@@ -47,12 +52,19 @@ export default function CreateSceneModal({ show, onClose }: Props) {
                   </span>
                   &nbsp; format, or
                 </div>
-                <div className={classes.browserContainer}>
-                  <span className={classes.colorLetter}>
-                    <input type="file" className={classes.fileInput} />
-                    Browse your computer
-                  </span>
-                </div>
+                <span
+                  className={classes.importantFunctionLink}
+                  onClick={() => {}}
+                >
+                  {t("Browse your computer")}.
+                  <input
+                    type="file"
+                    className={classes.fileImport}
+                    onChange={(e) => {
+                      handleImportFile(e);
+                    }}
+                  ></input>
+                </span>
               </div>
             </div>
           </div>

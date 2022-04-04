@@ -15,6 +15,8 @@ import CreateCollectionModal from "../../../components/CreateCollectionModal/Cre
 import { useState } from "react";
 import React from "react";
 import { Box } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import CollectionCard from "../../../components/Base/CollectionCard/CollectionCard";
 
 export default function BuilderCollections() {
   const classes = useStyles();
@@ -60,10 +62,11 @@ export default function BuilderCollections() {
     handleClose();
   };
   //plus icon relate end
-
+  const itemStatus = true;
   return (
     <>
       <BuilderTopTab />
+
       <div className={classes.root}>
         <div className={classes.createBtns}>
           <div className={classes.resultStatus}>0 RESULTS</div>
@@ -107,32 +110,61 @@ export default function BuilderCollections() {
             </div>
           </div>
         </div>
-        <div className={classes.noItemsRoot}>
-          <div className={classes.noItemsContainer}>
-            <div className={classes.noItemsInfoContainer}>
-              <div className={classes.noItemsTitle}>No items</div>
-              <div className={classes.noItemsDesc}>
-                You have no Items or Collections yet. Create a new item or
-                collection, and dress the metaverse in style!
+        {itemStatus === true ? (
+          <>
+            <div className={classes.noItemsRoot}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={3}>
+                  <CollectionCard name="New Collection1" count={3} />
+                </Grid>
+                <Grid item xs={12} sm={6} md={3}>
+                  <CollectionCard name="New Collection1" count={3} />
+                </Grid>
+                <Grid item xs={12} sm={6} md={3}>
+                  <CollectionCard name="New Collection1" count={3} />
+                </Grid>
+                <Grid item xs={12} sm={6} md={3}>
+                  <CollectionCard name="New Collection1" count={3} />
+                </Grid>
+                <Grid item xs={12} sm={6} md={3}>
+                  <CollectionCard name="New Collection1" count={3} />
+                </Grid>
+              </Grid>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className={classes.noItemsRoot}>
+              <div className={classes.noItemsContainer}>
+                <div className={classes.noItemsInfoContainer}>
+                  <div className={classes.noItemsTitle}>No items</div>
+                  <div className={classes.noItemsDesc}>
+                    You have no Items or Collections yet. Create a new item or
+                    collection, and dress the metaverse in style!
+                  </div>
+                </div>
+                <div className={classes.CardsContainer}>
+                  <div
+                    className={clsx(classes.CardContainer, classes.MarginRight)}
+                  >
+                    <CreateCard
+                      letter={createCardletterData.new_item}
+                      onClick={handlecreateItem}
+                    />
+                  </div>
+                  <div className={classes.CardContainer}>
+                    <CreateCard
+                      letter={createCardletterData.new_collection}
+                      onClick={handlecreateCollection}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-            <div className={classes.CardsContainer}>
-              <div className={clsx(classes.CardContainer, classes.MarginRight)}>
-                <CreateCard
-                  letter={createCardletterData.new_item}
-                  onClick={handlecreateItem}
-                />
-              </div>
-              <div className={classes.CardContainer}>
-                <CreateCard
-                  letter={createCardletterData.new_collection}
-                  onClick={handlecreateCollection}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
+
       <CreateItemModal
         show={createItemStatus}
         onClose={handleCreateItemClose}

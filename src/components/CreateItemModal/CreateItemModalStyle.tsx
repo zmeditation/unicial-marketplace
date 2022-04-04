@@ -44,7 +44,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: "35px",
     height: "35px",
     "& i": {
-      fontSize: "13.5px",
       fontWeight: 100,
     },
   },
@@ -102,11 +101,26 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontFamily: "Lato",
     lineHeight: "29px",
     cursor: "pointer",
-    background: "linear-gradient(to right, #FF7C4C 10%, #FFB03A 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
+    color: "#fb895a",
   },
   fileInput: {
     display: "none",
+  },
+  importantFunctionLink: {
+    textAlign: "center",
+    fontFamily: "Lato",
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontSize: "18px",
+    lineHeight: "29px",
+    color: "#fb895a",
+    position: "relative",
+  },
+  fileImport: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    cursor: "pointer ",
   },
 }));
