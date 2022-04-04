@@ -1,3 +1,5 @@
+/** @format */
+
 import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -17,14 +19,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
   modalRoot: {
-    padding: "30px",
+    padding: "12px 35px 35px 35px",
     position: "fixed",
-    width: "650px",
+    width: "825px",
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "10px",
     zIndex: 99999,
-    [theme.breakpoints.down(769)]: {
+    [theme.breakpoints.down(900)]: {
       minWidth: "calc(100% - 32px) !important",
       width: "calc(100% - 32px) !important",
       margin: "0px 50px",
@@ -32,11 +34,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   closeIcon: {
     position: "absolute",
-    top: "30px",
+    top: "20px",
     right: "30px",
     cursor: "pointer",
+    borderRadius: "100px",
+    minWidth: "40px",
+    width: "40px",
+    height: "40px",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#444858",
+    display: "flex",
     "& i": {
-      fontSize: "22px",
+      fontSize: "21px",
       fontWeight: 100,
     },
   },
@@ -55,28 +65,31 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: "#FFFFFF",
   },
   title: {
-    marginBottom: "20px",
     fontStyle: "normal",
     fontFamily: "Montserrat",
     fontWeight: 600,
     fontSize: "25px",
-    lineHeight: "19px",
+    lineHeight: "50px",
     color: "#FFFFFF",
   },
   description: {
     fontStyle: "normal",
     fontWeight: 400,
     fontFamily: "Lato",
-    fontSize: "20px",
-    lineHeight: "19px",
-    color: "#FFFFFF",
-    opacity: "0.7",
+    fontSize: "18px",
+    lineHeight: "29px",
+    color: "#96A1DB",
   },
   importContent: {
+    marginTop: "30px",
     width: "100%",
-    height: "300px",
+    height: "435px",
+    background: "#21263F",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
   },
-  fileImport: {},
   empty: {
     backgroundColor: "red",
   },
@@ -85,5 +98,48 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   widthFull: {
     width: "100%",
+  },
+  importantLink: {
+    textAlign: "center",
+    fontFamily: "Lato",
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontSize: "18px",
+    lineHeight: "29px",
+    color: "#fb895a",
+  },
+  importantFunctionLink: {
+    textAlign: "center",
+    fontFamily: "Lato",
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontSize: "18px",
+    lineHeight: "29px",
+    color: "#fb895a",
+    position: "relative",
+  },
+  fileImport: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    cursor: "pointer ",
+  },
+  contentLetter: {
+    textAlign: "center",
+    fontFamily: "Lato",
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontSize: "18px",
+    lineHeight: "29px",
+    color: "#96A1DB",
+  },
+  arrowImg: {
+    "& i": {
+      color: "#96A1DB",
+      fontSize: "105px",
+      fontWeight: 100,
+    },
+    marginBottom: "55px",
   },
 }));
