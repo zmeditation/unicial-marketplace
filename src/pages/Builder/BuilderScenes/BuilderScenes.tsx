@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import BuilderTopTab from "../../../components/BuilderTopTab/BuilderTopTab";
@@ -24,7 +25,7 @@ export default function BuilderScenes() {
   const handleImportModal = () => {
     setShowImportModal(true);
   };
-  
+
   const handleImportClose = () => {
     setShowImportModal(false);
   };
@@ -54,10 +55,12 @@ export default function BuilderScenes() {
             {t("to get Started")}.
           </span>
         </div>
-        <div className={classes.createBtns}>
-          <div className={classes.resultStatus}>{t("FROM THE SCENE POOL")}</div>
+        <div className={clsx(classes.createBtns, classes.secondPart)}>
+          <div className={classes.resultStatus1}>
+            {t("From The Scene Pool")}
+          </div>
           <div className={classes.functionBtn}>
-            <div className={classes.viewLetter}>{t("VIEW MORE")}</div>
+            <div className={classes.viewLetter}>{t("View More")}</div>
             <div className={classes.viewArrow}>
               <i className='far fa-angle-right'></i>
             </div>
@@ -65,38 +68,47 @@ export default function BuilderScenes() {
         </div>
         <div className={classes.sceneContent}>
           <div className={classes.sceneCardRoot}>
+            <div className={classes.sceneImg}></div>
             <div className={classes.sceneName}>{t("Name")}</div>
             <div className={classes.sceneSize}>32x32m</div>
           </div>
           <div className={classes.sceneCardRoot}>
+            <div className={classes.sceneImg}></div>
             <div className={classes.sceneName}>{t("Name")}</div>
             <div className={classes.sceneSize}>32x32m</div>
           </div>
           <div className={classes.sceneCardRoot}>
+            <div className={classes.sceneImg}></div>
             <div className={classes.sceneName}>{t("Name")}</div>
             <div className={classes.sceneSize}>32x32m</div>
           </div>
           <div className={classes.sceneCardRoot}>
+            <div className={classes.sceneImg}></div>
             <div className={classes.sceneName}>{t("Name")}</div>
             <div className={classes.sceneSize}>32x32m</div>
           </div>
           <div className={classes.sceneCardRoot}>
+            <div className={classes.sceneImg}></div>
             <div className={classes.sceneName}>{t("Name")}</div>
             <div className={classes.sceneSize}>32x32m</div>
           </div>
           <div className={classes.sceneCardRoot}>
+            <div className={classes.sceneImg}></div>
             <div className={classes.sceneName}>{t("Name")}</div>
             <div className={classes.sceneSize}>32x32m</div>
           </div>
           <div className={classes.sceneCardRoot}>
+            <div className={classes.sceneImg}></div>
             <div className={classes.sceneName}>{t("Name")}</div>
             <div className={classes.sceneSize}>32x32m</div>
           </div>
           <div className={classes.sceneCardRoot}>
+            <div className={classes.sceneImg}></div>
             <div className={classes.sceneName}>{t("Name")}</div>
             <div className={classes.sceneSize}>32x32m</div>
           </div>
           <div className={classes.sceneCardRoot}>
+            <div className={classes.sceneImg}></div>
             <div className={classes.sceneName}>{t("Name")}</div>
             <div className={classes.sceneSize}>32x32m</div>
           </div>
