@@ -123,21 +123,24 @@ export const useStyles = makeStyles((theme: Theme) =>
     sceneCardRoot: {
       width: "285px",
       minWidth: "285px",
-      padding: "7px",
+      padding: "8.5px",
       height: "307px",
       background: "#282E4E",
-      borderRadius: "20px",
+      borderRadius: "15px",
       position: "relative",
       marginRight: "50px",
       "&:hover": {
         transform: "translateY(-2px)",
       },
     },
+    sceneImgRoot: {
+      width: "100%",
+      borderRadius: "15px",
+      overflow: "hidden",
+    },
     sceneImg: {
       width: "100%",
       height: "200px",
-      background: "grey",
-      borderRadius: "30px",
     },
     sceneName: {
       fontFamily: "Montserrat",

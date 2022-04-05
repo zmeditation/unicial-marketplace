@@ -87,9 +87,10 @@ const PurpleSwitch = withStyles({
 })(Switch);
 interface Props {
   letter: string;
+  className?: any;
 }
 
-export default function OnSaleSwitch({ letter }: Props) {
+export default function OnSaleSwitch({ letter, className }: Props) {
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
@@ -119,13 +120,13 @@ export default function OnSaleSwitch({ letter }: Props) {
   };
 
   return (
-    <div className={classes.OnSaleSwicthRoot}>
+    <div className={clsx(classes.OnSaleSwicthRoot, className)}>
       <StyledFormControlLabel
         control={
           <PurpleSwitch
             checked={switchStatus}
             onChange={handleChange}
-            name="checkedA"
+            name='checkedA'
             disableRipple={true}
           />
         }

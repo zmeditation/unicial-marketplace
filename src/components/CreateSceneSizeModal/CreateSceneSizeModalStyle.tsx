@@ -3,7 +3,6 @@ import { Input } from "@material-ui/core";
 
 export const StyledInput = withStyles((theme) => ({
   root: {
-    marginRight: "20px",
     display: "flex",
     height: "44px",
     alignContent: "center",
@@ -60,7 +59,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
   modalRoot: {
-    padding: "22px 84px 60px 84px",
+    padding: "22px 35px 60px 35px",
     position: "fixed",
     width: "650px",
     background: "#282E4E",
@@ -73,14 +72,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "calc(100% - 32px) !important",
       margin: "0px 50px",
     },
-    [theme.breakpoints.down(500)]: {
-      padding: "22px 20px 60px 20px",
-    },
   },
-  closeIcon: {
+  backIcon: {
     position: "absolute",
     top: "20px",
-    right: "30px",
+    left: "30px",
     cursor: "pointer",
     borderRadius: "100px",
     minWidth: "40px",
@@ -98,6 +94,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   btnRoot: {
     display: "flex",
     width: "100%",
+    [theme.breakpoints.down(450)]: {
+      flexDirection: "column",
+    },
   },
   nextBtn: {
     minWidth: "160px",
@@ -125,11 +124,83 @@ export const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "29px",
     color: "#96A1DB",
   },
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "10px",
+  },
+  squareRootLarge: {
+    display: "flex",
+    marginBottom: "4px",
+  },
+  squareRootMedium: {
+    display: "flex",
+    marginBottom: "2px",
+  },
+  squareRootSmall: {
+    display: "flex",
+    marginBottom: "1px",
+  },
+  squareLarge: {
+    width: "60px",
+    height: "60px",
+    marginRight: "4px",
+    background: "#21263F",
+    border: "solid 1px #96A1DB",
+    borderRadius: "5px",
+  },
+  squareMedium: {
+    width: "30px",
+    height: "30px",
+    marginRight: "2px",
+    background: "#21263F",
+    border: "solid 1px #96A1DB",
+    borderRadius: "5px",
+  },
+  squareSmall: {
+    width: "20px",
+    height: "20px",
+    marginRight: "1px",
+    background: "#21263F",
+    border: "solid 1px #96A1DB",
+    borderRadius: "5px",
+  },
+  cautionRoot: {
+    marginTop: "20px",
+    "& i": {
+      fontSize: "60px",
+      fontWeight: 100,
+      color: "red",
+    },
+  },
+  cautionLetter: {
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontFamily: "Lato",
+    fontSize: "18px",
+    lineHeight: "29px",
+    marginBottom: "0px !important",
+    color: "red",
+  },
   form_field: {
+    display: "flex",
     textAlign: "start",
     marginBottom: "20px",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "0 48px",
+    width: "100%",
     [theme.breakpoints.down(769)]: {
       marginBottom: "30px",
+    },
+    [theme.breakpoints.down(450)]: {
+      padding: "0px",
+    },
+    [theme.breakpoints.down(350)]: {
+      flexDirection: "column",
+      justifyContent: "center",
     },
   },
   subheader_label: {
@@ -143,38 +214,30 @@ export const useStyles = makeStyles((theme: Theme) => ({
     opacity: "50%",
     marginBottom: "8px",
     marginLeft: "15px",
-    marginTop: "24px",
   },
-  descriptionTextField: {
-    width: "100%",
-    marginRight: "20px",
+  inputItem: {
+    width: "170px",
+    minWidth: "100px",
+  },
+  operatorIcon: {
     display: "flex",
-    alignContent: "center",
-    padding: "10px",
-    border: "1px solid #373F66",
-    borderRadius: "20px",
-    alignItems: "center",
-    color: "white",
-    paddingLeft: "18px",
-    fontFamily: "Lato",
-    fontStyle: "Regular",
-    fontWeight: "normal",
-    fontSize: "16px",
-    lineHeight: "19px",
-    backgroundColor: "#282e4e",
-    minHeight: "100px",
-    align: "Left",
-    resize: "none",
-    verticalAlign: "Top",
-    "&:focus-visible": {
-      outline: "none",
+    alignItems: "end",
+    paddingLeft: "10px",
+    paddingRight: "10px",
+    marginTop: "20px",
+    [theme.breakpoints.down(350)]: {
+      marginTop: "5px",
+      marginBottom: "5px",
     },
-    "&::placeholder": {
-      opacity: 1 /* Firefox */,
-      fontFamily: "Lato",
-      fontSize: "16px",
-      lineHeight: "19px",
-      color: "#70708F",
+    "& i": {
+      fontSize: "32px",
+      fontWeight: 100,
+    },
+  },
+  marginLeft: {
+    marginLeft: "15px",
+    [theme.breakpoints.down(450)]: {
+      marginLeft: "0px",
     },
   },
   widthFull: {
