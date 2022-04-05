@@ -5,7 +5,11 @@ export const REQUEST_API_URL = `${ApiUrl}/api/v1`;
 export const tabs = {
   land: 1,
 };
-
+export const genderData = {
+  both: "Both",
+  male: "Male",
+  female: "Female",
+};
 export const showMoreCount = 6;
 export const limitCount = 6;
 export const expired = -99;
@@ -372,3 +376,56 @@ export const mapColor = {
   onSaleEstates: "#C7EFCF",
   focused: "#F0B67F ",
 };
+
+export const rareData = [
+  {
+    index: 1,
+    name: "Unique",
+    frequency: 1,
+  },
+  {
+    index: 2,
+    name: "Mythic",
+    frequency: 10,
+  },
+  {
+    index: 3,
+    name: "Legendary",
+    frequency: 100,
+  },
+  {
+    index: 4,
+    name: "Epic",
+    frequency: 1000,
+  },
+  {
+    index: 5,
+    name: "Rare",
+    frequency: 5000,
+  },
+  {
+    index: 6,
+    name: "Umcommon",
+    frequency: 10000,
+  },
+  {
+    index: 7,
+    name: "Common",
+    frequency: 10000000,
+  },
+];
+
+export const categoryData = [
+  {
+    index: 1,
+    name: "Eyebrows",
+  },
+  {
+    index: 2,
+    name: "Eyes",
+  },
+  {
+    index: 3,
+    name: "Mouth",
+  },
+];
