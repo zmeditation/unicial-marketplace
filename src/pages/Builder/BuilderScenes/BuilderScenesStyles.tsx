@@ -133,11 +133,14 @@ export const useStyles = makeStyles((theme: Theme) =>
         transform: "translateY(-2px)",
       },
     },
+    sceneImgRoot: {
+      width: "100%",
+      borderRadius: "30px",
+      overflow: "hidden",
+    },
     sceneImg: {
       width: "100%",
       height: "200px",
-      background: "grey",
-      borderRadius: "30px",
     },
     sceneName: {
       fontFamily: "Montserrat",

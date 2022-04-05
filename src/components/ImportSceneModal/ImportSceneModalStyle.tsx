@@ -81,7 +81,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   importContent: {
     marginTop: "30px",
     width: "100%",
-    height: "435px",
+    height: "350px",
     background: "#21263F",
     display: "flex",
     justifyContent: "center",
