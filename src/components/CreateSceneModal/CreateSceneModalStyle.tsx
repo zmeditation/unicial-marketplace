@@ -33,6 +33,13 @@ export const StyledInput = withStyles((theme) => ({
       align: "Left",
       verticalAlign: "Top",
     },
+    "& ::placeholder": {
+      opacity: 1 /* Firefox */,
+      fontFamily: "Lato",
+      fontSize: "16px",
+      lineHeight: "19px",
+      color: "#70708F",
+    },
   },
 }))(Input);
 
@@ -53,7 +60,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
   modalRoot: {
-    padding: "22px 84px 54px 84px",
+    padding: "22px 84px 60px 84px",
     position: "fixed",
     width: "650px",
     background: "#282E4E",
@@ -159,9 +166,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     "&:focus-visible": {
       outline: "none",
     },
-  },
-  marginLeft: {
-    marginLeft: "20px",
+    "&::placeholder": {
+      opacity: 1 /* Firefox */,
+      fontFamily: "Lato",
+      fontSize: "16px",
+      lineHeight: "19px",
+      color: "#70708F",
+    },
   },
   widthFull: {
     width: "100%",

@@ -63,16 +63,10 @@ export default function CreateSceneModal({
           </div>
           <div className={classes.btnRoot}>
             <ActionButton
-              color='dark'
+              color='light'
               className={classes.nextBtn}
               onClick={() => {}}>
-              {t("Cancel")}
-            </ActionButton>
-            <ActionButton
-              color='light'
-              className={clsx(classes.nextBtn, classes.marginLeft)}
-              onClick={() => {}}>
-              {t("Next")}
+              {t("Create")}
             </ActionButton>
           </div>
         </div>

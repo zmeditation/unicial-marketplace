@@ -123,10 +123,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     sceneCardRoot: {
       width: "285px",
       minWidth: "285px",
-      padding: "7px",
+      padding: "8.5px",
       height: "307px",
       background: "#282E4E",
-      borderRadius: "20px",
+      borderRadius: "15px",
       position: "relative",
       marginRight: "50px",
       "&:hover": {
@@ -135,7 +135,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     sceneImgRoot: {
       width: "100%",
-      borderRadius: "30px",
+      borderRadius: "15px",
       overflow: "hidden",
     },
     sceneImg: {
