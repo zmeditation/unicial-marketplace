@@ -14,7 +14,7 @@ export default function BuilderNames() {
   return (
     <>
       <BuilderTopTab />
-      <div className={classes.root}>
+      <div className={classes.root}>  
         <div className={classes.createBtns}>
           <div className={classes.resultStatus}>0 {t("RESULTS")}</div>
           <div className={classes.functionBtn}>

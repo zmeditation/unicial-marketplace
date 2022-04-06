@@ -51,6 +51,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   btnRoot: {
     display: "flex",
     width: "100%",
+    [theme.breakpoints.down(500)]: {
+      flexDirection: "column",
+    },
   },
   nextBtn: {
     minWidth: "160px",
@@ -87,12 +90,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
+    padding: "20px",
   },
   empty: {
     backgroundColor: "red",
   },
   marginLeft: {
     marginLeft: "20px",
+    [theme.breakpoints.down(500)]: {
+      marginLeft: "0px",
+    },
   },
   widthFull: {
     width: "100%",

@@ -94,6 +94,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   btnRoot: {
     display: "flex",
     width: "100%",
+    [theme.breakpoints.down(450)]: {
+      flexDirection: "column",
+    },
   },
   nextBtn: {
     minWidth: "160px",
@@ -186,10 +189,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "start",
     marginBottom: "20px",
     justifyContent: "space-between",
+    alignItems: "center",
     padding: "0 48px",
     width: "100%",
     [theme.breakpoints.down(769)]: {
       marginBottom: "30px",
+    },
+    [theme.breakpoints.down(450)]: {
+      padding: "0px",
+    },
+    [theme.breakpoints.down(350)]: {
+      flexDirection: "column",
+      justifyContent: "center",
     },
   },
   subheader_label: {
@@ -206,11 +217,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   inputItem: {
     width: "170px",
+    minWidth: "100px",
   },
   operatorIcon: {
     display: "flex",
     alignItems: "end",
-    padding: "10px",
+    paddingLeft: "10px",
+    paddingRight: "10px",
+    marginTop: "20px",
+    [theme.breakpoints.down(350)]: {
+      marginTop: "5px",
+      marginBottom: "5px",
+    },
     "& i": {
       fontSize: "32px",
       fontWeight: 100,
@@ -218,6 +236,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   marginLeft: {
     marginLeft: "15px",
+    [theme.breakpoints.down(450)]: {
+      marginLeft: "0px",
+    },
   },
   widthFull: {
     width: "100%",
