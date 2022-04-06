@@ -26,6 +26,36 @@ export const collectionsPlusData = [
     content: "New Collection",
   },
 ];
+export const collectionEditMoreIconData = [
+  {
+    index: 1,
+    content: "See in world",
+  },
+  {
+    index: 2,
+    content: "Open in editor",
+  },
+  {
+    index: 3,
+    content: "Add Existing Item",
+  },
+  {
+    index: 4,
+    content: "Delete",
+  },
+  {
+    index: 5,
+    content: "Copy URN",
+  },
+  {
+    index: 6,
+    content: "Copy address",
+  },
+  {
+    index: 7,
+    content: "Forum post",
+  },
+];
 
 export const createCardletterData = {
   new_item: "New Item",
