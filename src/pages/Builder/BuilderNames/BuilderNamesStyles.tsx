@@ -94,5 +94,15 @@ export const useStyles = makeStyles((theme: Theme) =>
       lineHeight: "29px",
       color: "#96A1DB",
     },
+    showmoreContent: {
+      marginTop: "15px",
+      justifyContent: "center",
+      width: "100%",
+      flexFlow: "row nowrap",
+      display: "flex",
+    },
+    displayNone: {
+      display: "none",
+    },
   })
 );
