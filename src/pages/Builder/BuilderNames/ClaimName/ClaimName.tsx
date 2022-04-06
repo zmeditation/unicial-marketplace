@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
+import { useState } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import ActionButton from "../../../../components/Base/ActionButton";
 import nameBackground from "../../../../assets/svg/claim_namebackground.svg";
 import { useStyles, StyledInput } from "./ClaimNameStyle";
-import { BackButton } from "../../../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch } from "../../../../store/hooks";
 import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
@@ -16,11 +16,24 @@ const ClaimName = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const [name, setName] = useState("");
+
+  const handleToName = () => {
+    navigate("/builder/builder_names");
+  };
+
+  const handleNameChange = (e: any) => {
+    if (e.target.value.length < 16) {
+      setName(e.target.value);
+    }
+  };
 
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>
-        <BackButton className={classes.backButton} />
+        <div className={classes.backIcon} onClick={handleToName}>
+          <i className='fas fa-angle-left'></i>
+        </div>
         <div className={classes.bidCard}>
           <div className={classes.leftCard}>
             <div className={classes.imgContent}>
@@ -70,12 +83,19 @@ const ClaimName = () => {
                 <FormControl className={classes.widthFull}>
                   <StyledInput
                     placeholder='Your name goes here'
-                    onChange={() => {}}
+                    onChange={(e) => {
+                      handleNameChange(e);
+                    }}
+                    value={name}
                     endAdornment={
                       <InputAdornment
                         position='start'
-                        className={classes.inputAdor}>
-                        1 / 15
+                        className={
+                          name?.length < 15
+                            ? classes.inputAdor
+                            : classes.inputAdorCaution
+                        }>
+                        {name?.length} / 15
                       </InputAdornment>
                     }
                   />

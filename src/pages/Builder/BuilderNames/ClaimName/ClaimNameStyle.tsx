@@ -6,8 +6,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: "1064px",
     marginLeft: "auto",
     marginRight: "auto",
-    paddingTop: "50px",
-    paddingBottom: "50px",
+    paddingTop: "20px",
+    paddingBottom: "20px",
     flexGrow: 1,
     display: "flex",
     position: "relative",
@@ -134,7 +134,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   buttons: {
     display: "flex",
-
     [theme.breakpoints.down(769)]: {
       width: "100%",
       display: "grid",
@@ -187,12 +186,32 @@ export const useStyles = makeStyles((theme: Theme) => ({
     // borderLeft: "solid 1px #32395d",
     paddingLeft: "10px",
     height: "100%",
-    "& .MuiTypography-colorTextSecondary": {
-      color: "#96A1DB",
-    },
+    color: "#96A1DB",
+  },
+  inputAdorCaution: {
+    // borderLeft: "solid 1px #32395d",
+    paddingLeft: "10px",
+    height: "100%",
+    color: "red",
   },
   marginLeft: {
     marginLeft: "10px",
+  },
+  backIcon: {
+    cursor: "pointer",
+    borderRadius: "100px",
+    minWidth: "40px",
+    width: "40px",
+    height: "40px",
+    justifyContent: "center",
+    display: "flex",
+    alignItems: "center",
+    background: "#444858",
+    marginBottom: "20px",
+    "& i": {
+      fontSize: "21px",
+      fontWeight: 100,
+    },
   },
 }));
 
@@ -243,7 +262,7 @@ export const StyledInput = withStyles((theme) => ({
       fontFamily: "Lato",
       fontSize: "16px",
       lineHeight: "19.2px",
-      color: "#ffffff",
+      color: "#70708F",
     },
   },
 }))(Input);

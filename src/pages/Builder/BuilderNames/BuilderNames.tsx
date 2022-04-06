@@ -36,7 +36,7 @@ export default function BuilderNames() {
         </div>
         {NamesData !== undefined && NamesData.length !== 0 ? (
           <>
-            <Grid container spacing={6}>
+            <Grid container spacing={3}>
               {NamesData.slice(
                 0,
                 !showStatus ? someShowMore : NamesData.length
