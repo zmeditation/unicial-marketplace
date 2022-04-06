@@ -4,16 +4,16 @@ import { Grid } from "@material-ui/core";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import GeneralListDropdown from "../../../components/Base/GeneralListDropdown/GeneralListDropdown";
-import NameCard from "../../../components/Base/NameCard/NameCard";
-import BuilderTopTab from "../../../components/BuilderTopTab/BuilderTopTab";
-import { ShowMoreLessBtn } from "../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
-import { NamesData, someShowMore } from "../../../config/constant";
+import GeneralListDropdown from "../../../../components/Base/GeneralListDropdown/GeneralListDropdown";
+import NameCard from "../../../../components/Base/NameCard/NameCard";
+import BuilderTopTab from "../../../../components/BuilderTopTab/BuilderTopTab";
+import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
+import { NamesData, someShowMore } from "../../../../config/constant";
 import {
   scenePoolList1,
   scenePoolList2,
-} from "../../../config/ListdropdownData/ListdropdownData";
-import { useAppDispatch } from "../../../store/hooks";
+} from "../../../../config/ListdropdownData/ListdropdownData";
+import { useAppDispatch } from "../../../../store/hooks";
 import { useStyles } from "./ScenePoolsStyles";
 
 export default function ScenePools() {

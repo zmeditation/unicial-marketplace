@@ -55,7 +55,7 @@ import BuilderCollections from "../../pages/Builder/BuilderCollections/BuilderCo
 import BuilderLand from "../../pages/Builder/BuilderLand/BuilderLand";
 import BuilderNames from "../../pages/Builder/BuilderNames/BuilderNames";
 import ClaimName from "../../pages/Builder/BuilderNames/ClaimName/ClaimName";
-import ScenePools from "../../pages/Builder/ScenePools/ScenePools";
+import ScenePools from "../../pages/Builder/BuilderScenes/ScenePools/ScenePools";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
