@@ -38,6 +38,7 @@ export default function CreateSceneSizeModal({
     for (let i = 0; i < column; i++) {
       rowsItem.push(
         <div
+          key={i}
           className={
             row > 6 || column > 6
               ? classes.squareSmall
@@ -50,6 +51,7 @@ export default function CreateSceneSizeModal({
     for (let j = 0; j < row; j++) {
       columnsItem.push(
         <div
+          key={j}
           className={
             row > 6 || column > 6
               ? classes.squareRootSmall

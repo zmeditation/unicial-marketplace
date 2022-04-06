@@ -41,7 +41,13 @@ const ClaimName = () => {
             <br />
             <div className={classes.subtitle}>
               {t(
-                "Assigning a name to a parcel or estate allows you to create a unique URL , like https://name.dcl.eth, making it easy to send people to your LAND. When someone follows your new URL, they will redirected to your LAND in"
+                "Assigning a name to a parcel or estate allows you to create a unique URL , like"
+              )}{" "}
+              <span className={classes.importantLetter}>
+                https://name.dcl.eth
+              </span>{" "}
+              {t(
+                "making it easy to send people to your LAND. When someone follows your new URL, they will redirected to your LAND in"
               )}{" "}
               <span className={classes.importantLetter}>
                 {t("Decentraland")}!
@@ -52,12 +58,12 @@ const ClaimName = () => {
               {t(
                 "Names are only available in Ethereu, and can only be claimed with Ethereum UCC"
               )}
-              <img
-                src={normalshapeSvg}
-                className={classes.normalshape}
-                alt='normalShape'
-              />
             </div>
+            <img
+              src={normalshapeSvg}
+              className={classes.normalshape}
+              alt='normalShape'
+            />
             <div className={classes.form_field}>
               <div className={classes.price_container}>
                 <div className={classes.subheader_label}>{t("NAME")}</div>
@@ -78,7 +84,7 @@ const ClaimName = () => {
                   {t("UCC APPROVED")}
                 </div>
                 <div className={classes.marginLeft}>
-                  <OnSaleSwitch letter='' />
+                  <OnSaleSwitch letter='' className={classes.manaSwitch} />
                 </div>
                 <div className={classes.subtitle}>
                   {t("Authorize the")}{" "}
@@ -88,7 +94,6 @@ const ClaimName = () => {
                   {t("contract to operate UCC on your behalf")}
                 </div>
               </div>
-              <p>&nbsp;</p>
             </div>
             <div className={classes.buttons}>
               <ActionButton

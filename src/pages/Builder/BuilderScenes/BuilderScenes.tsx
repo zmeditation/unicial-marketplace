@@ -57,7 +57,6 @@ export default function BuilderScenes() {
   };
 
   const handleCreateStep1 = (e: any) => {
-    console.log("data from create scene modal : ", e);
     setShowCreateModal(false);
     setShowCreateSizeModal(true);
   };

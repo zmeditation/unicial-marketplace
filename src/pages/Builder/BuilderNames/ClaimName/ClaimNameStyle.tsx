@@ -41,9 +41,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   leftCard: {
-    flex: "0.75 1 auto",
-    textAlign: "left",
     marginRight: "50px",
+    padding: "100px 20px 0px 20px",
+    background: "#282E4E",
+    borderRadius: "15px",
     [theme.breakpoints.down(769)]: {
       marginRight: "0px !important",
       marginBottom: "25px !important",
@@ -51,15 +52,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
       height: "100%",
     },
   },
-  rightCard: {
-    flex: "1.25 1 auto",
-  },
+  rightCard: {},
   tokenImg: {
     width: "100%",
     borderRadius: "15px",
   },
   imgContent: {
-    width: "329px",
+    width: "320px",
     borderRadius: "16px",
     overflow: "hidden",
     display: "inline-block",
@@ -71,11 +70,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontStyle: "normal",
     fontWeight: 600,
-    fontSize: "35px",
+    fontSize: "30px",
     fontFamily: "Montserrat",
     lineHeight: "50px",
     letterSpacing: "0.02em",
     color: "#FFFFFF",
+    marginBottom: "46px",
     [theme.breakpoints.down(769)]: {
       fontSize: "28px",
     },
@@ -98,6 +98,28 @@ export const useStyles = makeStyles((theme: Theme) => ({
     minWidth: "auto",
     marginBottom: "-5px",
   },
+  manaSwitch: {
+    marginBottom: "14px",
+    "& .MuiSwitch-root": {
+      padding: "unset !important",
+      width: "42px !important",
+      height: "22px !important",
+      overflow: "unset !important",
+    },
+    "& .MuiSwitch-switchBase": {
+      padding: "unset !important",
+    },
+    "& .MuiSwitch-thumb": {
+      marginTop: "unset !important",
+      marginBottom: "unset !important",
+      width: "22px !important",
+      height: "22px !important",
+    },
+    "& .MuiSwitch-track": {
+      background: "#373F66 !important",
+      borderRadius: "11px !important",
+    },
+  },
   subheader_label: {
     fontFamily: "Lato",
     color: "#96A1DB",
@@ -108,8 +130,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     verticalAlign: "Top",
     opacity: "50%",
     marginBottom: "8px",
-    marginLeft: "15px",
-    marginTop: "24px",
+    marginTop: "32.3px",
   },
   buttons: {
     display: "flex",
@@ -157,19 +178,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: "#fb895a",
     cursor: "pointer",
   },
-  normalshape: {
-    marginLeft: "5px",
-  },
+  normalshape: {},
   alignCenter: {
     display: "flex",
     alignItems: "center",
   },
   inputAdor: {
-    borderLeft: "solid 1px #32395d",
+    // borderLeft: "solid 1px #32395d",
     paddingLeft: "10px",
     height: "100%",
     "& .MuiTypography-colorTextSecondary": {
-      color: "#747787",
+      color: "#96A1DB",
     },
   },
   marginLeft: {
@@ -180,7 +199,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 export const StyledInput = withStyles((theme) => ({
   root: {
     width: "100%",
-    marginRight: "20px",
     display: "flex",
     height: "44px",
     alignContent: "center",
@@ -219,6 +237,13 @@ export const StyledInput = withStyles((theme) => ({
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       borderRight: "1px solid #373F66",
+    },
+    "& ::placeholder": {
+      opacity: 1 /* Firefox */,
+      fontFamily: "Lato",
+      fontSize: "16px",
+      lineHeight: "19.2px",
+      color: "#ffffff",
     },
   },
 }))(Input);
