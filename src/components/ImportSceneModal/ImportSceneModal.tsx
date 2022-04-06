@@ -62,7 +62,7 @@ export default function ImportSceneModal({
             <ActionButton
               color='dark'
               className={classes.nextBtn}
-              onClick={() => {}}>
+              onClick={onClose}>
               {t("Cancel")}
             </ActionButton>
             <ActionButton

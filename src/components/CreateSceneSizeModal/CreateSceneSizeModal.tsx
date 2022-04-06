@@ -123,7 +123,7 @@ export default function CreateSceneSizeModal({
             <ActionButton
               color='dark'
               className={classes.nextBtn}
-              onClick={() => {}}>
+              onClick={onBack}>
               {t("Back")}
             </ActionButton>
             <ActionButton
