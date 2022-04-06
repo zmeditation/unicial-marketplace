@@ -151,11 +151,14 @@ export const GeneralListDropdownStyle = makeStyles((theme: Theme) =>
       },
     },
     filterDownArrow: {
-      color: "linear-gradient( #FF7C4C 20%, #FFB03A 101.82%)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      marginLeft: "3px",
-      marginTop: "4px",
+      "& i": {
+        background: "linear-gradient(90deg, #FF7C4C 20%, #FFB03A 101.82%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        marginTop: "4px",
+        marginLeft: "8.34px",
+        fontSize: "10px",
+      },
     },
     filtericonContainer: {
       "& .MuiSvgIcon-root": {

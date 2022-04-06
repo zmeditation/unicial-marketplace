@@ -7,7 +7,6 @@ import {
   StyledListPopover,
   StyledMenuItem,
 } from "./GeneralListDropdownStyle";
-import filterDownArrowSvg from "../../../assets/svg/filterDownArrow.svg";
 import clsx from "clsx";
 
 export default function GeneralListDropdown(props: any) {
@@ -26,7 +25,6 @@ export default function GeneralListDropdown(props: any) {
   const [itemContent, setitemContent] = React.useState(props.data[0].content);
 
   const handleItem = (index: number) => {
-    // alert(index + props.data[index - 1].content);
     setitemContent(props.data[index - 1].content);
     handleRoute(props.data[index - 1].smallContent);
     handleClose();
@@ -63,19 +61,20 @@ export default function GeneralListDropdown(props: any) {
   return (
     <>
       <Box
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={handleOpen}
-      >
+        aria-controls='simple-menu'
+        aria-haspopup='true'
+        onClick={handleOpen}>
         <Box className={classes.listRoot}>
-          <Box className={classes.listContainer}>
+          <Box className={clsx(classes.listContainer, props.className)}>
             <Box className={classes.gradientlistLabel}>{itemContent}</Box>
-            <img src={filterDownArrowSvg} className={classes.filterDownArrow} />
+            <div className={classes.filterDownArrow}>
+              <i className='far fa-chevron-down'></i>
+            </div>
           </Box>
         </Box>
       </Box>
       <StyledListPopover
-        id="simple-menu"
+        id='simple-menu'
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -87,16 +86,14 @@ export default function GeneralListDropdown(props: any) {
         transformOrigin={{
           vertical: "top",
           horizontal: "right",
-        }}
-      >
+        }}>
         {props.data.map((item: any, index: any) => (
           <StyledMenuItem onClick={() => handleItem(item.index)} key={index}>
             <Box className={classes.listContainer}>
               <Box
                 className={clsx(classes.listLabel, {
                   [classes.activeLabel]: itemContent === item.content,
-                })}
-              >
+                })}>
                 {item.content}
               </Box>
             </Box>
