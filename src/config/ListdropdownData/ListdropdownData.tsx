@@ -76,3 +76,41 @@ export const ListdropdownData4 = [
     smallContent: "name",
   },
 ];
+
+export const scenePoolList1 = [
+  {
+    index: 1,
+    content: "All Users",
+  },
+  {
+    index: 2,
+    content: "Only me",
+  },
+];
+
+export const scenePoolList2 = [
+  {
+    index: 1,
+    content: "Newest",
+  },
+  {
+    index: 2,
+    content: "Name",
+  },
+  {
+    index: 3,
+    content: "Likes",
+  },
+  {
+    index: 4,
+    content: "Items",
+  },
+  {
+    index: 5,
+    content: "Smart Items",
+  },
+  {
+    index: 5,
+    content: "Size",
+  },
+];
