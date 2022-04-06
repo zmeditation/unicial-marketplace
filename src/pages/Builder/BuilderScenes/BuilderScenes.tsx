@@ -8,6 +8,7 @@ import { useAppDispatch } from "../../../store/hooks";
 import { useStyles } from "./BuilderScenesStyles";
 import sceneImg from "../../../assets/img/sceneImg.png";
 import CreateSceneSizeModal from "../../../components/CreateSceneSizeModal/CreateSceneSizeModal";
+import { useNavigate } from "react-router";
 
 export const sceneData = [
   {
@@ -43,6 +44,7 @@ export const sceneData = [
 export default function BuilderScenes() {
   const classes = useStyles();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const [showImportModal, setShowImportModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -74,6 +76,10 @@ export default function BuilderScenes() {
     setShowCreateModal(true);
   };
 
+  const handleToScenePool =()=>{
+    navigate("/builder/builder_scenes/pools")
+  }
+
   return (
     <>
       <BuilderTopTab />
@@ -104,7 +110,7 @@ export default function BuilderScenes() {
             {t("From The Scene Pool")}
           </div>
           <div className={classes.functionBtn}>
-            <div className={classes.viewLetter}>{t("View More")}</div>
+            <div className={classes.viewLetter} onClick={handleToScenePool}>{t("View More")}</div>
             <div className={classes.viewArrow}>
               <i className='far fa-angle-right'></i>
             </div>

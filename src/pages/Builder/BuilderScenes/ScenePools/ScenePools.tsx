@@ -1,5 +1,3 @@
-/** @format */
-
 import { Grid } from "@material-ui/core";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -27,13 +25,17 @@ export default function ScenePools() {
     setShowStatus(!showStatus);
   };
 
+  const handleBack = () => {
+    navigate("/builder/builder_scenes");
+  };
+
   return (
     <>
       <BuilderTopTab />
       <div className={classes.root}>
         <div className={classes.topPart}>
           <div className={classes.topFirst}>
-            <div className={classes.backIcon} onClick={() => {}}>
+            <div className={classes.backIcon} onClick={handleBack}>
               <i className='fas fa-angle-left'></i>
             </div>
             <span className={classes.scenePoolTitle}>Scene Pool</span>
