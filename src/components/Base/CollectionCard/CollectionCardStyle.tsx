@@ -1,7 +1,7 @@
 import { createStyles, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-export const ProductCardStyle = makeStyles((theme: Theme) =>
+export const CollectionCardStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       borderRadius: "15px",
@@ -14,18 +14,37 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       "&:hover": {
         transform: "translateY(-2px)",
         cursor: "pointer",
+        "& $moreIcon": {
+          display: "block",
+        },
       },
+    },
+    yellowTop: {
+      width: "100%",
+      height: "51px",
+      borderTopRightRadius: "14px",
+      borderTopLeftRadius: "14px",
+      backgroundColor: "#DFB140",
+      display: "flex",
+      justifyContent: "right",
+      alignItems: "center",
     },
     imageContainer: {
       width: "100%",
       backgroundColor: "#21263F",
-      borderRadius: "15px",
+      borderBottomLeftRadius: "15px",
+      borderBottomRightRadius: "15px",
       marginBottom: "12px",
       textAlign: "center",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       padding: "20px",
+      position: "relative",
+    },
+    moreIcon: {
+      marginRight: "10px",
+      display: "none",
     },
     image: {
       [theme.breakpoints.up(1200)]: {
