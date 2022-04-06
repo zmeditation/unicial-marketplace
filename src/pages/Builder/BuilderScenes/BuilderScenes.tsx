@@ -7,6 +7,7 @@ import ImportSceneModal from "../../../components/ImportSceneModal/ImportSceneMo
 import { useAppDispatch } from "../../../store/hooks";
 import { useStyles } from "./BuilderScenesStyles";
 import sceneImg from "../../../assets/img/sceneImg.png";
+import CreateSceneSizeModal from "../../../components/CreateSceneSizeModal/CreateSceneSizeModal";
 
 export const sceneData = [
   {
@@ -45,6 +46,7 @@ export default function BuilderScenes() {
   const { t } = useTranslation();
   const [showImportModal, setShowImportModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showCreateSizeModal, setShowCreateSizeModal] = useState(false);
 
   const handleCreateModal = () => {
     setShowCreateModal(true);
@@ -54,12 +56,23 @@ export default function BuilderScenes() {
     setShowCreateModal(false);
   };
 
+  const handleCreateStep1 = (e: any) => {
+    console.log("data from create scene modal : ", e);
+    setShowCreateModal(false);
+    setShowCreateSizeModal(true);
+  };
+
   const handleImportModal = () => {
     setShowImportModal(true);
   };
 
   const handleImportClose = () => {
     setShowImportModal(false);
+  };
+
+  const handleToCreateStep1 = () => {
+    setShowCreateSizeModal(false);
+    setShowCreateModal(true);
   };
 
   return (
@@ -113,7 +126,15 @@ export default function BuilderScenes() {
         </div>
       </div>
       <ImportSceneModal show={showImportModal} onClose={handleImportClose} />
-      <CreateSceneModal show={showCreateModal} onClose={handleCreateClose} />
+      <CreateSceneModal
+        show={showCreateModal}
+        onClose={handleCreateClose}
+        onCreate={(e) => handleCreateStep1(e)}
+      />
+      <CreateSceneSizeModal
+        show={showCreateSizeModal}
+        onBack={handleToCreateStep1}
+      />
     </>
   );
 }

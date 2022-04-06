@@ -4,17 +4,18 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useStyles, StyledInput } from "./CreateSceneModalStyle";
-import clsx from "clsx";
 import { useState } from "react";
 
 interface CreateSceneModalProps {
   show: boolean;
   onClose: () => void;
+  onCreate: (e: any) => void;
 }
 
 export default function CreateSceneModal({
   show,
   onClose,
+  onCreate,
 }: CreateSceneModalProps) {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -25,8 +26,17 @@ export default function CreateSceneModal({
   const handleName = (e: any) => {
     setName(e.target.value);
   };
+
   const handleDes = (e: any) => {
     setDes(e.target.value);
+  };
+
+  const handleCreate = () => {
+    let param = {
+      name: name,
+      des: des,
+    };
+    onCreate(param);
   };
 
   return (
@@ -40,7 +50,6 @@ export default function CreateSceneModal({
           <div className={classes.description}>
             {t("Set a name and description for your scene")}
           </div>
-
           <div className={classes.form_field}>
             <div className={classes.subheader_label}>{t("NAME")}</div>
             <FormControl className={classes.widthFull}>
@@ -65,7 +74,7 @@ export default function CreateSceneModal({
             <ActionButton
               color='light'
               className={classes.nextBtn}
-              onClick={() => {}}>
+              onClick={handleCreate}>
               {t("Create")}
             </ActionButton>
           </div>
