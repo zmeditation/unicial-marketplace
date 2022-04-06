@@ -1,16 +1,21 @@
-import { ProductCardStyle } from "./CollectionCardStyle";
+import { CollectionCardStyle } from "./CollectionCardStyle";
 import PussyhairPng from "../../../assets/img/Pussyhair.png";
+import moreIcon from "../../../assets/svg/more.png";
+import DeletemoreIcon from "./../../Base/DeletemoreIcon";
 
-interface ProductCardProps {
+interface CollctionCardProps {
   name: string;
   count: number;
 }
 
-export default function ProductCard({ name, count }: ProductCardProps) {
-  const classes = ProductCardStyle();
+export default function CollctionCard({ name, count }: CollctionCardProps) {
+  const classes = CollectionCardStyle();
   return (
     <>
       <div className={classes.root}>
+        <div className={classes.yellowTop}>
+          <DeletemoreIcon className={classes.moreIcon} />
+        </div>
         <div className={classes.imageContainer}>
           <img src={PussyhairPng} className={classes.image} />
         </div>
