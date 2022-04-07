@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     paddingTop: "20px",
-    paddingBottom: "20px",
+    paddingBottom: "85px",
     flexGrow: 1,
     display: "flex",
     position: "relative",
@@ -198,20 +198,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: "10px",
   },
   backIcon: {
-    cursor: "pointer",
-    borderRadius: "100px",
-    minWidth: "40px",
-    width: "40px",
-    height: "40px",
-    justifyContent: "center",
-    display: "flex",
-    alignItems: "center",
-    background: "#444858",
     marginBottom: "20px",
-    "& i": {
-      fontSize: "21px",
-      fontWeight: 100,
-    },
   },
 }));
 

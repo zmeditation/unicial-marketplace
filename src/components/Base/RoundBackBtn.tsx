@@ -1,9 +1,8 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { useNavigate } from "react-router";
 import clsx from "clsx";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    backIcon: {
+    root: {
       cursor: "pointer",
       borderRadius: "100px",
       minWidth: "40px",
@@ -13,7 +12,6 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       background: "#444858",
-      //   marginBottom: "20px",
       "& i": {
         fontSize: "21px",
         fontWeight: 100,
@@ -24,20 +22,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {
   className?: any;
-  onClick?: () => void;
+  onBack?: () => void;
+  type?: string;
 }
 
-export default function RoundBackBtn({ className, onClick }: Props) {
+export default function RoundBackBtn({ className, onBack, type }: Props) {
   const classes = useStyles();
-  const navigate = useNavigate();
-
-  const handleToName = () => {
-    navigate(-1);
-  };
 
   return (
-    <div className={clsx(classes.backIcon, className)} onClick={handleToName}>
-      <i className="fas fa-angle-left"></i>
+    <div className={clsx(classes.root, className)} onClick={onBack}>
+      {type === "multiply" ? (
+        <i className='fas fa-times'></i>
+      ) : (
+        <i className='fas fa-angle-left'></i>
+      )}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { useStyles, StyledInput } from "./CreateSceneSizeModalStyle";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+import RoundBackBtn from "../Base/RoundBackBtn";
 
 interface CreateSceneSizeModalProps {
   show: boolean;
@@ -71,9 +72,7 @@ export default function CreateSceneSizeModal({
     <>
       <div className={show ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
-          <div className={classes.backIcon} onClick={onBack}>
-            <i className='fas fa-angle-left'></i>
-          </div>
+          <RoundBackBtn className={classes.backIcon} onBack={onBack}/>
           <div className={classes.title}>{t("Create a Scene")}</div>
           <div className={classes.description}>
             {t("Set the size of your new scene")}

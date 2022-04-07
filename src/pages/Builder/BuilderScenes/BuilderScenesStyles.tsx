@@ -45,22 +45,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
     },
     functionIcon: {
-      border: "double 1px transparent",
-      borderRadius: "100px",
-      backgroundImage:
-        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
-      backgroundClip: "content-box, border-box",
-      backgroundOrigin: "border-box",
-      color: "#ffffff",
-      textAlign: "center",
       marginLeft: "10px",
-      cursor: "pointer",
-      "& i": {
-        margin: "9px 17px",
-        width: "16px",
-        height: "16px",
-        color: "#ffffff",
-      },
     },
     createContent: {
       height: "338px",

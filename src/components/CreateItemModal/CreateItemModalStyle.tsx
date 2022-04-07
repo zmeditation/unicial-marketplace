@@ -35,17 +35,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     position: "absolute",
     top: "30px",
     right: "30px",
-    cursor: "pointer",
-    backgroundColor: "#4a4f66",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: "100%",
-    width: "35px",
-    height: "35px",
-    "& i": {
-      fontWeight: 100,
-    },
   },
   title: {
     fontStyle: "normal",

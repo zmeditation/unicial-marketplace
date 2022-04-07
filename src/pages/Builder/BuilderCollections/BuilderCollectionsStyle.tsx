@@ -47,28 +47,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     functionIcon: {
-      // padding: "5px 10px",
-      // borderRadius: "4px",
-      // border: "1px solid #282e4e",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      width: "50px",
-      height: "34px",
-      border: "double 2px transparent",
-      borderRadius: "10px",
-      backgroundImage:
-        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
-      backgroundClip: "content-box, border-box",
-      backgroundOrigin: "border-box",
       marginLeft: "4px",
-      cursor: "pointer",
-      "& i": {
-        width: "16px",
-        height: "16px",
-        color: "white",
-        marginLeft: "3px",
-      },
     },
     openEditorRoot: {
       marginLeft: "10px",

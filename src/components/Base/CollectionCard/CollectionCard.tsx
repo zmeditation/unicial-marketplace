@@ -6,15 +6,16 @@ import DeletemoreIcon from "./../../Base/DeletemoreIcon";
 interface CollctionCardProps {
   name: string;
   count: number;
+  onClick?: () => void;
 }
 
-export default function CollctionCard({ name, count }: CollctionCardProps) {
+export default function CollctionCard({ name, count, onClick }: CollctionCardProps) {
   const classes = CollectionCardStyle();
   return (
     <>
       <div className={classes.root}>
         <div className={classes.yellowTop}>
-          <DeletemoreIcon className={classes.moreIcon} />
+          <DeletemoreIcon className={classes.moreIcon} onClick={onClick}/>
         </div>
         <div className={classes.imageContainer}>
           <img src={PussyhairPng} className={classes.image} />

@@ -3,6 +3,7 @@ import { useStyles } from "./CreateCollectionModalStyle";
 import { useState, useEffect } from "react";
 import { FormControl } from "@material-ui/core";
 import { StyledInput } from "./../CreateSceneModal/CreateSceneModalStyle";
+import RoundBackBtn from "../Base/RoundBackBtn";
 interface Props {
   show: boolean;
   onClose: () => void;
@@ -24,9 +25,11 @@ export default function CreateSceneModal({ show, onClose }: Props) {
     <>
       <div className={showStatus ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
-          <div className={classes.closeIcon} onClick={onClose}>
-            <i className="fas fa-times"></i>
-          </div>
+          <RoundBackBtn
+            className={classes.closeIcon}
+            onBack={onClose}
+            type='multiply'
+          />
           <div className={classes.title}>New Collection</div>
           <div className={classes.mainContainer}>
             <div className={classes.descContainer}>
