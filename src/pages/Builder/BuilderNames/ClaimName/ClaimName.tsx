@@ -10,6 +10,7 @@ import normalshapeSvg from "../../../../assets/svg/normalshape.svg";
 import clsx from "clsx";
 import { InputAdornment } from "@material-ui/core";
 import OnSaleSwitch from "../../../../components/Base/OnSaleSwitch";
+import RoundBackBtn from "../../../../components/Base/RoundBackBtn";
 
 const ClaimName = () => {
   const classes = useStyles();
@@ -31,9 +32,7 @@ const ClaimName = () => {
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>
-        <div className={classes.backIcon} onClick={handleToName}>
-          <i className='fas fa-angle-left'></i>
-        </div>
+        <RoundBackBtn className={classes.backIcon} onBack={handleToName} />
         <div className={classes.bidCard}>
           <div className={classes.leftCard}>
             <div className={classes.imgContent}>

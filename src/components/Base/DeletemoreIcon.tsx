@@ -4,15 +4,10 @@ import moreIcon from "./../../assets/svg/more.png";
 import { useState, useEffect } from "react";
 import DeleteModal from "./../../../src/components/DeleteModal/DeleteModal";
 
-interface Props {
-  //   letter?: string;
-  className?: any;
-  //   onClick?: any;
-}
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
+createStyles({
+  root: {
       position: "relative",
     },
     moreIconContainer: {
@@ -44,10 +39,16 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "none",
     },
   })
-);
-
-export default function DeletemoreIcon({ className }: Props) {
-  const classes = useStyles();
+  );
+  
+  interface Props {
+    //   letter?: string;
+    className?: any;
+    onClick?: () => void;
+    //   onClick?: any;
+  }
+  export default function DeletemoreIcon({ className, onClick }: Props) {
+    const classes = useStyles();
   const [openDeleteStatus, setOpenDeleteStatus] = useState(false);
   const [deleteModalStatus, setDeleteModalStatus] = useState(false);
 
@@ -55,13 +56,6 @@ export default function DeletemoreIcon({ className }: Props) {
     setOpenDeleteStatus(!openDeleteStatus);
   };
 
-  const handleDeleteItem = () => {
-    setOpenDeleteStatus(false);
-    setDeleteModalStatus(true);
-  };
-  const handleDeleteModalClose = () => {
-    setDeleteModalStatus(false);
-  };
   const handleblur = () => {
     alert("yes");
   };
@@ -80,7 +74,7 @@ export default function DeletemoreIcon({ className }: Props) {
           className={clsx(classes.deleteContainer, {
             [classes.Nonedisplay]: openDeleteStatus === false,
           })}
-          onClick={handleDeleteItem}
+          onClick={onClick}
           //   onBlur={() => {
           //     setOpenDeleteStatus(false);
           //   }}
@@ -89,7 +83,6 @@ export default function DeletemoreIcon({ className }: Props) {
           <span className={classes.deleteLetter}>Delete</span>
         </div>
       </div>
-      <DeleteModal show={deleteModalStatus} onClose={handleDeleteModalClose} />
     </>
   );
 }

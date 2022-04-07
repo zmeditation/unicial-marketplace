@@ -17,19 +17,29 @@ import React from "react";
 import { Box } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import CollectionCard from "../../../components/Base/CollectionCard/CollectionCard";
+import OvalBtn from "../../../components/Base/OvalBtn";
+import DeleteModal from "../../../components/DeleteModal/DeleteModal";
 
 export default function BuilderCollections() {
   const classes = useStyles();
   //
-  const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorNetwork, setAnchorNetwork] =
+    React.useState<null | HTMLElement>(null);
   const [itemContent, setitemContent] = React.useState(
     collectionsPlusData[0].content
   );
   //
   const [createItemStatus, setCreateItemStatus] = useState(false);
   const [createCollectionStatus, setCreateCollectionStatus] = useState(false);
+  const [deleteModalStatus, setDeleteModalStatus] = useState(false);
+
+  const handleDeleteModalClose = () => {
+    setDeleteModalStatus(false);
+  };
+
+  const handleDeleteModalOpen = () => {
+    setDeleteModalStatus(true);
+  };
 
   const handlecreateItem = () => {
     setCreateItemStatus(true);
@@ -71,12 +81,12 @@ export default function BuilderCollections() {
         <div className={classes.createBtns}>
           <div className={classes.resultStatus}>0 RESULTS</div>
           <div className={classes.functionBtn}>
-            <div aria-controls="simple-menu" aria-haspopup="true">
-              <Box className={classes.functionIcon} onClick={handleOpen}>
-                <i className="far fa-plus"></i>
+            <div aria-controls='simple-menu' aria-haspopup='true'>
+              <Box onClick={handleOpen}>
+                <OvalBtn className={classes.functionIcon} />
               </Box>
               <StyledCollectionPopover
-                id="simple-menu"
+                id='simple-menu'
                 anchorEl={anchorNetwork}
                 keepMounted
                 open={Boolean(anchorNetwork)}
@@ -88,13 +98,11 @@ export default function BuilderCollections() {
                 transformOrigin={{
                   vertical: "top",
                   horizontal: "right",
-                }}
-              >
+                }}>
                 {collectionsPlusData.map((item: any, index: any) => (
                   <StyledMenuItem
                     onClick={() => handleItem(item.index)}
-                    key={index}
-                  >
+                    key={index}>
                     <Box className={classes.listContainer}>
                       <Box className={clsx(classes.listLabel)}>
                         {item.content}
@@ -115,19 +123,23 @@ export default function BuilderCollections() {
             <div className={classes.noItemsRoot}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
+                  <CollectionCard
+                    name='New Collection1'
+                    count={3}
+                    onClick={handleDeleteModalOpen}
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
+                  <CollectionCard name='New Collection1' count={3} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
+                  <CollectionCard name='New Collection1' count={3} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
+                  <CollectionCard name='New Collection1' count={3} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
+                  <CollectionCard name='New Collection1' count={3} />
                 </Grid>
               </Grid>
             </div>
@@ -145,8 +157,10 @@ export default function BuilderCollections() {
                 </div>
                 <div className={classes.CardsContainer}>
                   <div
-                    className={clsx(classes.CardContainer, classes.MarginRight)}
-                  >
+                    className={clsx(
+                      classes.CardContainer,
+                      classes.MarginRight
+                    )}>
                     <CreateCard
                       letter={createCardletterData.new_item}
                       onClick={handlecreateItem}
@@ -164,6 +178,8 @@ export default function BuilderCollections() {
           </>
         )}
       </div>
+
+      <DeleteModal show={deleteModalStatus} onClose={handleDeleteModalClose} />
 
       <CreateItemModal
         show={createItemStatus}

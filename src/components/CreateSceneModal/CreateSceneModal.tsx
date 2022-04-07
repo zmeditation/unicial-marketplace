@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useStyles, StyledInput } from "./CreateSceneModalStyle";
 import { useState } from "react";
+import RoundBackBtn from "../Base/RoundBackBtn";
 
 interface CreateSceneModalProps {
   show: boolean;
@@ -43,9 +44,7 @@ export default function CreateSceneModal({
     <>
       <div className={show ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
-          <div className={classes.closeIcon} onClick={onClose}>
-            <i className='fas fa-times'></i>
-          </div>
+          <RoundBackBtn className={classes.closeIcon} onBack={onClose} type="multiply"/>
           <div className={classes.title}>{t("Create a Scene")}</div>
           <div className={classes.description}>
             {t("Set a name and description for your scene")}

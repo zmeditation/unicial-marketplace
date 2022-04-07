@@ -9,6 +9,7 @@ import { useStyles } from "./BuilderScenesStyles";
 import sceneImg from "../../../assets/img/sceneImg.png";
 import CreateSceneSizeModal from "../../../components/CreateSceneSizeModal/CreateSceneSizeModal";
 import { useNavigate } from "react-router";
+import OvalBtn from "../../../components/Base/OvalBtn";
 
 export const sceneData = [
   {
@@ -76,9 +77,9 @@ export default function BuilderScenes() {
     setShowCreateModal(true);
   };
 
-  const handleToScenePool =()=>{
-    navigate("/builder/builder_scenes/pools")
-  }
+  const handleToScenePool = () => {
+    navigate("/builder/builder_scenes/pools");
+  };
 
   return (
     <>
@@ -87,12 +88,15 @@ export default function BuilderScenes() {
         <div className={classes.createBtns}>
           <div className={classes.resultStatus}>0 {t("RESULTS")}</div>
           <div className={classes.functionBtn}>
-            <div className={classes.functionIcon} onClick={handleImportModal}>
-              <i className='far fa-arrow-from-bottom'></i>
-            </div>
-            <div className={classes.functionIcon} onClick={handleCreateModal}>
-              <i className='far fa-plus'></i>
-            </div>
+            <OvalBtn
+              className={classes.functionIcon}
+              onClick={handleImportModal}
+              type='toparrow'
+            />
+            <OvalBtn
+              className={classes.functionIcon}
+              onClick={handleCreateModal}
+            />
           </div>
         </div>
         <div className={classes.createContent}>
@@ -110,7 +114,9 @@ export default function BuilderScenes() {
             {t("From The Scene Pool")}
           </div>
           <div className={classes.functionBtn}>
-            <div className={classes.viewLetter} onClick={handleToScenePool}>{t("View More")}</div>
+            <div className={classes.viewLetter} onClick={handleToScenePool}>
+              {t("View More")}
+            </div>
             <div className={classes.viewArrow}>
               <i className='far fa-angle-right'></i>
             </div>
