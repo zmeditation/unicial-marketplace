@@ -30,11 +30,18 @@ export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+      [theme.breakpoints.down(760)]: {
+        display: "block",
+      },
     },
     collectionNameContainer: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      [theme.breakpoints.down(760)]: {
+        justifyContent: "left",
+        marginBottom: "40px",
+      },
     },
     backBtn: {
       marginRight: "32px",
@@ -50,6 +57,9 @@ export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      [theme.breakpoints.down(760)]: {
+        justifyContent: "left",
+      },
     },
     newItemBtnroot: {
       marginRight: "6px",

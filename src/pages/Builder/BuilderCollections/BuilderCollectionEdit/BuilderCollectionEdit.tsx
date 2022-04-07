@@ -16,9 +16,11 @@ import YellowBtn from "../../../../components/Base/YellowBtn";
 import CoolNotification from "../../../../components/Base/CoolNotification";
 import LookingGood from "../../../../components/Base/LookingGodd";
 import CollectionItemInfoRow from "../../../../components/Base/CollectionItemInfoRow";
+import { useNavigate } from "react-router";
 
 export default function BuilderCollectionEdit() {
   const classes = BuilderCollectionEditStyle();
+  const navigate = useNavigate();
   const [createItemStatus, setCreateItemStatus] = useState(false);
   const [settingPriceStatus, setSettingPriceStatus] = useState(true);
   const handlecreateItem = () => {
@@ -44,13 +46,19 @@ export default function BuilderCollectionEdit() {
     handleClose();
   };
   //moreIcon relate end
+  const handleRow = () => {
+    navigate("/builder/builder_items/200");
+  };
+  const handleBack = () => {
+    navigate(-1);
+  };
   let status = 2;
   return (
     <>
       <div className={classes.root}>
         <div className={classes.topContainer}>
           <div className={classes.collectionNameContainer}>
-            <RoundBackBtn className={classes.backBtn} />
+            <RoundBackBtn className={classes.backBtn} onBack={handleBack} />
             <span className={classes.nameLetter}>OrionNFT</span>
           </div>
           <div className={classes.btnSetContainer}>
@@ -107,11 +115,12 @@ export default function BuilderCollectionEdit() {
           <LookingGood className={classes.lookingGoodContainer} />
         ) : (
           <div className={classes.rowsRoot}>
-            <CollectionItemInfoRow />
+            <CollectionItemInfoRow onClick={handleRow} />
           </div>
         )}
       </div>
       <CreateItemModal
+        headerTitle="New Item"
         show={createItemStatus}
         onClose={handleCreateItemClose}
       />

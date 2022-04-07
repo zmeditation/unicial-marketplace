@@ -9,13 +9,17 @@ interface CollctionCardProps {
   onClick?: () => void;
 }
 
-export default function CollctionCard({ name, count, onClick }: CollctionCardProps) {
+export default function CollctionCard({
+  name,
+  count,
+  onClick,
+}: CollctionCardProps) {
   const classes = CollectionCardStyle();
   return (
     <>
-      <div className={classes.root}>
+      <div className={classes.root} onClick={onClick}>
         <div className={classes.yellowTop}>
-          <DeletemoreIcon className={classes.moreIcon} onClick={onClick}/>
+          <DeletemoreIcon className={classes.moreIcon} />
         </div>
         <div className={classes.imageContainer}>
           <img src={PussyhairPng} className={classes.image} />

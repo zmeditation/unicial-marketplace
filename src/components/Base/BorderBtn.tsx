@@ -11,12 +11,11 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     createBtnRoot: {
       width: "160px",
-      marginTop: "10px",
       height: "44px",
       cursor: "pointer",
     },
     createBtnContainer: {
-      borderRadius: "9px",
+      borderRadius: "9px", 
       display: "flex",
       justifyContent: "center",
       alignItems: "center",

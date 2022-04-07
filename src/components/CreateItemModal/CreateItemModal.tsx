@@ -21,11 +21,16 @@ import { rareData, categoryData } from "./../../../src/config/constant";
 import YellowBtn from "./../../components/Base/YellowBtn";
 import RoundBackBtn from "../Base/RoundBackBtn";
 interface Props {
+  headerTitle: string;
   show: boolean;
   onClose: () => void;
 }
 
-export default function CreateSceneModal({ show, onClose }: Props) {
+export default function CreateSceneModal({
+  headerTitle,
+  show,
+  onClose,
+}: Props) {
   const classes = useStyles();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -58,9 +63,9 @@ export default function CreateSceneModal({ show, onClose }: Props) {
             <RoundBackBtn
               className={classes.closeIcon}
               onBack={onClose}
-              type='multiply'
+              type="multiply"
             />
-            <div className={classes.title}>New Item</div>
+            <div className={classes.title}>{headerTitle}</div>
             <div className={classes.mainContainer}>
               <div className={classes.dragPartContainer}>
                 <div className={classes.uploadImgContainer}>
@@ -76,14 +81,16 @@ export default function CreateSceneModal({ show, onClose }: Props) {
                   </div>
                   <span
                     className={classes.importantFunctionLink}
-                    onClick={() => {}}>
+                    onClick={() => {}}
+                  >
                     {t("Browse your computer")}.
                     <input
-                      type='file'
+                      type="file"
                       className={classes.fileImport}
                       onChange={(e) => {
                         handleImportFile(e);
-                      }}></input>
+                      }}
+                    ></input>
                   </span>
                 </div>
               </div>
@@ -95,7 +102,7 @@ export default function CreateSceneModal({ show, onClose }: Props) {
               <RoundBackBtn
                 className={classes.closeIcon}
                 onBack={onClose}
-                type='multiply'
+                type="multiply"
               />
               <div className={classes.title}>New Item</div>
               <div className={classes.editMainContainer}>
@@ -155,7 +162,7 @@ export default function CreateSceneModal({ show, onClose }: Props) {
                     How rare is this item?
                   </div>
                   <InputBorderListDropdown
-                    type='rarity'
+                    type="rarity"
                     data={rareData}
                     className={classes.inputSelectContainer}
                   />
@@ -163,11 +170,11 @@ export default function CreateSceneModal({ show, onClose }: Props) {
                     What is the category of this item?
                   </div>
                   <InputBorderListDropdown
-                    type='category'
+                    type="category"
                     data={categoryData}
                     className={classes.inputSelectContainer}
                   />
-                  <YellowBtn letter='Create' />
+                  <YellowBtn letter="Create" />
                 </div>
               </div>
             </div>

@@ -34,9 +34,9 @@ export default function OvalBtn({ className, onClick, type }: Props) {
   return (
     <div className={clsx(classes.root, className)} onClick={onClick}>
       {type === "toparrow" ? (
-        <i className='far fa-arrow-from-bottom'></i>
+        <i className="far fa-arrow-from-bottom"></i>
       ) : (
-        <i className='far fa-plus'></i>
+        <i className="far fa-plus"></i>
       )}
     </div>
   );

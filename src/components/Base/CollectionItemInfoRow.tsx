@@ -1,5 +1,6 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import productImg from "../../assets/svg/texture.png";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -93,11 +94,16 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function CollectionItemInfoRow() {
+interface Props {
+  className?: any;
+  onClick?: any;
+}
+
+export default function CollectionItemInfoRow({ className, onClick }: Props) {
   const classes = useStyles();
   return (
     <>
-      <div className={classes.root}>
+      <div className={clsx(classes.root, className)} onClick={onClick}>
         <div className={classes.productContainer}>
           <div className={classes.yellowPart}></div>
           <div className={classes.imgContainer}>
