@@ -9,14 +9,14 @@ import { selectLoginAddress } from "../../store/auth/selectors";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import { headerLinkData } from "../../config/constant";
-
+import clsx from "clsx";
 export default function Header() {
   const classes = HeaderStyle();
   const navigate = useNavigate();
   const location = useLocation();
   const loginAddress = useAppSelector(selectLoginAddress);
   const { t } = useTranslation();
-
+  const [headerShowStatus, setHeaderShowStatus] = useState(true);
   const [headerActive, setHeaderActive] = useState(headerLinkData.marketplace);
   const handleSignIn = () => {
     navigate(`/signin`);
@@ -42,6 +42,12 @@ export default function Header() {
   useEffect(() => {
     if (location.pathname.includes("/builder")) {
       setHeaderActive(headerLinkData.builder);
+      if (location.pathname.includes("/builder/builderItem-editor")) {
+        setHeaderShowStatus(false);
+      }
+      // else {
+      //   setHeaderShowStatus(true);
+      // }
     } else {
       setHeaderActive(headerLinkData.marketplace);
     }
@@ -49,7 +55,11 @@ export default function Header() {
 
   return (
     <>
-      <div className={classes.root}>
+      <div
+        className={clsx(classes.root, {
+          [classes.NoneDisplay]: headerShowStatus === false,
+        })}
+      >
         <div className={classes.container}>
           <div className={classes.headermenuContainer}>
             <a href="https://unicial.org" className={classes.logoContent}>
