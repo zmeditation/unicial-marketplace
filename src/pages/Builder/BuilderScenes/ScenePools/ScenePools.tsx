@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import GeneralListDropdown from "../../../../components/Base/GeneralListDropdown/GeneralListDropdown";
-import NameCard from "../../../../components/Base/NameCard/NameCard";
+import ScenePoolCard from "../../../../components/Base/ScenePoolCard/ScenePoolCard";
 import BuilderTopTab from "../../../../components/BuilderTopTab/BuilderTopTab";
 import { ShowMoreLessBtn } from "../../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
-import { NamesData, someShowMore } from "../../../../config/constant";
+import { scenePoolData, someShowMore } from "../../../../config/constant";
 import {
   scenePoolList1,
   scenePoolList2,
@@ -48,23 +48,26 @@ export default function ScenePools() {
             <GeneralListDropdown data={scenePoolList2} />
           </div>
         </div>
-        {NamesData !== undefined && NamesData.length !== 0 ? (
+        {scenePoolData !== undefined && scenePoolData.length !== 0 ? (
           <>
             <Grid container spacing={3}>
-              {NamesData.slice(
-                0,
-                !showStatus ? someShowMore : NamesData.length
-              ).map((item: any, key: any) => {
-                return (
-                  <Grid item xs={12} sm={6} md={3} key={key}>
-                    <NameCard mainName={item.mainName} price={item.price} />
-                  </Grid>
-                );
-              })}
+              {scenePoolData
+                .slice(0, !showStatus ? someShowMore : scenePoolData.length)
+                .map((item: any, key: any) => {
+                  return (
+                    <Grid item xs={12} sm={6} md={3} key={key}>
+                      <ScenePoolCard
+                        cardName={item.cardName}
+                        parcel={item.parcel}
+                        item={item.item}
+                      />
+                    </Grid>
+                  );
+                })}
             </Grid>
             <div
               className={
-                NamesData.length < someShowMore
+                scenePoolData.length < someShowMore
                   ? classes.displayNone
                   : classes.showmoreContent
               }>
