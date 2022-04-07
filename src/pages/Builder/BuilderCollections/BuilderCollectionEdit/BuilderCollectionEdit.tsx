@@ -8,6 +8,7 @@ import { Box } from "@material-ui/core";
 import clsx from "clsx";
 import { useState } from "react";
 import CreateItemModal from "../../../../components/CreateItemModal/CreateItemModal";
+import SettingPriceModal from "../../../../components/SettingPriceModal/SettingPriceModal";
 import moreIcon from "./../../../../assets/svg/more.png";
 import React from "react";
 import { collectionEditMoreIconData } from "../../../../config/constant";
@@ -19,12 +20,15 @@ import CollectionItemInfoRow from "../../../../components/Base/CollectionItemInf
 export default function BuilderCollectionEdit() {
   const classes = BuilderCollectionEditStyle();
   const [createItemStatus, setCreateItemStatus] = useState(false);
-
+  const [settingPriceStatus, setSettingPriceStatus] = useState(true);
   const handlecreateItem = () => {
     setCreateItemStatus(true);
   };
   const handleCreateItemClose = () => {
     setCreateItemStatus(false);
+  };
+  const handleSettingPriceClose = () => {
+    setSettingPriceStatus(false);
   };
   //moreIcon relate start
   const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
@@ -110,6 +114,10 @@ export default function BuilderCollectionEdit() {
       <CreateItemModal
         show={createItemStatus}
         onClose={handleCreateItemClose}
+      />
+      <SettingPriceModal
+        show={settingPriceStatus}
+        onClose={handleSettingPriceClose}
       />
     </>
   );

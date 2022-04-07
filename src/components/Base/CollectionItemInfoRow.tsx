@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function GeneralSaleCard() {
+export default function CollectionItemInfoRow() {
   const classes = useStyles();
   return (
     <>
