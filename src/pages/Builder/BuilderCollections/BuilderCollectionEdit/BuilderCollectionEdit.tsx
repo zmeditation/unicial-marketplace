@@ -47,7 +47,6 @@ export default function BuilderCollectionEdit() {
   };
   //moreIcon relate end
   const handleRow = () => {
-    console.log("too this")
     navigate("/builder/builder_items/200");
   };
   const handleBack = () => {
@@ -55,10 +54,10 @@ export default function BuilderCollectionEdit() {
   };
   let status = 2;
 
-  const handleSetClick = ()=>{
-    console.log("here clicked")
+  const handleSetClick = () => {
+    console.log("here clicked");
     setSettingPriceStatus(true);
-  }
+  };
 
   return (
     <>
@@ -122,7 +121,10 @@ export default function BuilderCollectionEdit() {
           <LookingGood className={classes.lookingGoodContainer} />
         ) : (
           <div className={classes.rowsRoot}>
-            <CollectionItemInfoRow onClick={handleRow} setClick={handleSetClick}/>
+            <CollectionItemInfoRow
+              onClick={handleRow}
+              setClick={handleSetClick}
+            />
           </div>
         )}
       </div>
