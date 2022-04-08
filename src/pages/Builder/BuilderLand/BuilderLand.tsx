@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import LandMap from "../../../components/MapData/LandMap";
 import { useStyles } from "./BuilderLandStyle";
 import BuilderTopTab from "../../../components/BuilderTopTab/BuilderTopTab";
+import lightBlueCheck from "../../../assets/svg/lightblueCheck.svg";
+import purpleCheck from "../../../assets/svg/purpleCheck.svg";
 
 const BuilderLand: React.FC = () => {
   const classes = useStyles();
@@ -24,6 +26,30 @@ const BuilderLand: React.FC = () => {
   return (
     <>
       <BuilderTopTab />
+      <div className={classes.mapHeader}>
+        <div className={classes.mapHeaderContainer}>
+          <div className={classes.firstPart}>0 RESULT</div>
+          <div className={classes.secondPart}>
+            <div className={classes.item}>
+              <img
+                src={lightBlueCheck}
+                className={classes.lightBlue}
+                alt='check'
+              />
+              Owner
+            </div>
+            <div className={classes.item}>
+              <img
+                src={purpleCheck}
+                className={classes.lightBlue}
+                alt='check'
+              />
+              Operator
+            </div>
+            <div className={classes.item}></div>
+          </div>
+        </div>
+      </div>
       <div className={classes.landMap}>
         <LandMap height={height} width={width} />
       </div>
