@@ -460,3 +460,56 @@ export const categoryData = [
     name: "Mouth",
   },
 ];
+
+export const scenePoolData = [
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+  {
+    cardName: "Jacobandco",
+    parcel: 1000,
+    item: 1000,
+  },
+];
