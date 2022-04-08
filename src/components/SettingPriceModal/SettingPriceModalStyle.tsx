@@ -81,6 +81,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   formContainer: {
     width: "100%",
     marginBottom: "27px",
+    "& .MuiInputBase-root.Mui-disabled": {
+      color: "transparent !important",
+    },
   },
   infoIcon: {
     marginLeft: "3px",
@@ -132,7 +135,7 @@ export const StyledInput = withStyles((theme) => ({
       marginTop: "3px",
       marginRight: "20px",
     },
-    "& .MuiInputBase-root.Mui-disabled": {
+    "& .Mui-disabled": {
       color: "transparent !important",
     },
     "& img": {

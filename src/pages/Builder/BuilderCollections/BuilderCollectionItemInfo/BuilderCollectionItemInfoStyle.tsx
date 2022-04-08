@@ -1,6 +1,6 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
+export const BuilderCollectionItemInfoStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       minHeight: "calc(100vh - 246px)",
@@ -30,7 +30,7 @@ export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      [theme.breakpoints.down(760)]: {
+      [theme.breakpoints.down(660)]: {
         display: "block",
       },
     },
@@ -38,9 +38,9 @@ export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      [theme.breakpoints.down(760)]: {
+      [theme.breakpoints.down(660)]: {
         justifyContent: "left",
-        marginBottom: "40px",
+        marginBottom: "70px",
       },
     },
     backBtn: {
@@ -57,33 +57,10 @@ export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      [theme.breakpoints.down(760)]: {
+      [theme.breakpoints.down(660)]: {
         justifyContent: "left",
+        marginBottom: "10px",
       },
-    },
-    newItemBtnroot: {
-      marginRight: "6px",
-    },
-    newItemBtnContainer: {
-      cursor: "pointer",
-      width: "160px",
-      height: "44px",
-      borderRadius: "9px",
-      border: "double 1px transparent",
-      backgroundImage:
-        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
-      backgroundClip: "content-box, border-box",
-      backgroundOrigin: "border-box",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "white",
-      fontFamily: "Lato",
-      fontSize: "16px",
-      lineHeight: "19.2px",
-    },
-    plusIcon: {
-      //   fontSize: "14px",
     },
     moreIconContainer: {
       cursor: "pointer",
@@ -98,9 +75,6 @@ export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
         "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
       backgroundClip: "content-box, border-box",
       backgroundOrigin: "border-box",
-    },
-    moreIconroot: {
-      marginRight: "15px",
     },
     listContainer: {
       display: "flex",
@@ -117,14 +91,75 @@ export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
-    coolnotificationContainer: {
-      marginTop: "29px",
+    openEditor: {
+      marginRight: "6px",
     },
-    lookingGoodContainer: {
-      marginTop: "26px",
+    //totalInfo
+    totalInfoContainer: {
+      display: "flex",
+      marginTop: "36px",
     },
-    rowsRoot: {
-      marginTop: "26px",
+    productContainer: {
+      width: "303px",
+      height: "303px",
+      display: "flex",
+      flexDirection: "column",
+      marginRight: "57px",
+
+      //   [theme.breakpoints.down(726)]: {
+      //     width: "140px",
+      //     height: "150px",
+      //   },
+    },
+    yellowPart: {
+      borderTopLeftRadius: "14px",
+      borderTopRightRadius: "14px",
+      width: "100%",
+      height: "20%",
+      backgroundColor: "#DFB140",
+    },
+    imgContainer: {
+      width: "100%",
+      height: "80%",
+      borderBottomLeftRadius: "14px",
+      borderBottomRightRadius: "14px",
+    },
+    img: {
+      width: "100%",
+      height: "100%",
+      borderBottomLeftRadius: "14px",
+      borderBottomRightRadius: "14px",
+    },
+    InfoContainer: {},
+    itemContainer: {
+      marginBottom: "23px",
+    },
+    title: {
+      fontFamily: "Lato",
+      fontWeight: 400,
+      fontSize: "15px",
+      lineHeight: "18px",
+      color: "#96A1DB",
+      opacity: "50%",
+      marginBottom: "9px",
+    },
+    content: {
+      fontFamily: "Lato",
+      fontWeight: 600,
+      fontSize: "23px",
+      lineHeight: "27.6px",
+      color: "#white",
+      marginBottom: "43px",
+    },
+    gradientContent: {
+      cursor: "pointer",
+      fontFamily: "Lato",
+      fontWeight: 600,
+      fontSize: "23px",
+      lineHeight: "27.6px",
+      background: "linear-gradient(to right, #FF7C4C 10%, #FFB03A 100%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
     },
   })
 );

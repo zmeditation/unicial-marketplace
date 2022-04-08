@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       backgroundColor: "#1A1F37",
       borderRadius: "9px",
-      height: "72px",
-      padding: "21px 27px",
+      height: "auto",
+      padding: "20px 27px",
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       lineHeight: "29px",
       color: "#96A1DB",
+      marginRight: "20px",
     },
     colorLetter: {
       background: "linear-gradient(to right, #FF7C4C 0%, #FFB03A 100%)",

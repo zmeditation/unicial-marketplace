@@ -26,6 +26,16 @@ export const collectionsPlusData = [
     content: "New Collection",
   },
 ];
+export const itemMoreData = [
+  {
+    index: 1,
+    content: "Edit representation",
+  },
+  {
+    index: 2,
+    content: "Delete",
+  },
+];
 export const collectionEditMoreIconData = [
   {
     index: 1,

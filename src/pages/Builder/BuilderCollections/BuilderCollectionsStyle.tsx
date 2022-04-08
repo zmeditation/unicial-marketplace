@@ -53,6 +53,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginLeft: "10px",
     },
     openEditorContainer: {
+      cursor: "pointer",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",

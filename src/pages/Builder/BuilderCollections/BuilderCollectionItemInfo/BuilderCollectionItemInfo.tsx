@@ -1,4 +1,4 @@
-import { BuilderCollectionEditStyle } from "./BuilderCollectionEditStyle";
+import { BuilderCollectionItemInfoStyle } from "./BuilderCollectionItemInfoStyle";
 import RoundBackBtn from "../../../../components/Base/RoundBackBtn";
 import {
   StyledCollectionPopover,
@@ -8,51 +8,54 @@ import { Box } from "@material-ui/core";
 import clsx from "clsx";
 import { useState } from "react";
 import CreateItemModal from "../../../../components/CreateItemModal/CreateItemModal";
-import SettingPriceModal from "../../../../components/SettingPriceModal/SettingPriceModal";
+import SimpleDeleteModal from "../../../../components/SimpleDeleteModal/SimpleDeleteModal";
 import moreIcon from "./../../../../assets/svg/more.png";
 import React from "react";
-import { collectionEditMoreIconData } from "../../../../config/constant";
+import { itemMoreData } from "../../../../config/constant";
 import YellowBtn from "../../../../components/Base/YellowBtn";
-import CoolNotification from "../../../../components/Base/CoolNotification";
-import LookingGood from "../../../../components/Base/LookingGodd";
-import CollectionItemInfoRow from "../../../../components/Base/CollectionItemInfoRow";
-import { useNavigate } from "react-router";
+import productImg from "./../../../../assets/svg/texture.png";
+import { useLocation, useNavigate } from "react-router";
 
-export default function BuilderCollectionEdit() {
-  const classes = BuilderCollectionEditStyle();
+export default function BuilderCollectionItemInfo() {
+  const classes = BuilderCollectionItemInfoStyle();
   const navigate = useNavigate();
   const [createItemStatus, setCreateItemStatus] = useState(false);
-  const [settingPriceStatus, setSettingPriceStatus] = useState(true);
+  const [simpleDeleteStatus, setSimpleDeleteStatus] = useState(false);
   const handlecreateItem = () => {
     setCreateItemStatus(true);
   };
   const handleCreateItemClose = () => {
     setCreateItemStatus(false);
   };
-  const handleSettingPriceClose = () => {
-    setSettingPriceStatus(false);
+
+  const handleSimpleDelete = () => {
+    setSimpleDeleteStatus(true);
+  };
+  const handleSimpleDeleteClose = () => {
+    setSimpleDeleteStatus(false);
   };
   //moreIcon relate start
   const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
     null
   );
-  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMoreOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorNetwork(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorNetwork(null);
   };
   const handleItem = (index: number) => {
+    if (index === 1) {
+      handlecreateItem();
+    } else {
+      handleSimpleDelete();
+    }
     handleClose();
   };
   //moreIcon relate end
-  const handleRow = () => {
-    navigate("/builder/builder_items/200");
-  };
   const handleBack = () => {
     navigate(-1);
   };
-  let status = 2;
   return (
     <>
       <div className={classes.root}>
@@ -62,20 +65,12 @@ export default function BuilderCollectionEdit() {
             <span className={classes.nameLetter}>OrionNFT</span>
           </div>
           <div className={classes.btnSetContainer}>
-            <div className={classes.newItemBtnroot}>
-              <div
-                className={classes.newItemBtnContainer}
-                onClick={handlecreateItem}
+            <YellowBtn letter="Open in Editor" className={classes.openEditor} />
+            <div aria-controls="simple-menu" aria-haspopup="true">
+              <Box
+                className={classes.moreIconContainer}
+                onClick={handleMoreOpen}
               >
-                <i className="far fa-plus plusIcon"></i>&nbsp; New Item
-              </div>
-            </div>
-            <div
-              className={classes.moreIconroot}
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-            >
-              <Box className={classes.moreIconContainer} onClick={handleOpen}>
                 <img src={moreIcon} />
               </Box>
               <StyledCollectionPopover
@@ -93,7 +88,7 @@ export default function BuilderCollectionEdit() {
                   horizontal: "right",
                 }}
               >
-                {collectionEditMoreIconData.map((item: any, index: any) => (
+                {itemMoreData.map((item: any, index: any) => (
                   <StyledMenuItem
                     onClick={() => handleItem(item.index)}
                     key={index}
@@ -107,26 +102,43 @@ export default function BuilderCollectionEdit() {
                 ))}
               </StyledCollectionPopover>
             </div>
-            <YellowBtn letter="Publish" />
           </div>
         </div>
-        <CoolNotification className={classes.coolnotificationContainer} />
-        {status === 1 ? (
-          <LookingGood className={classes.lookingGoodContainer} />
-        ) : (
-          <div className={classes.rowsRoot}>
-            <CollectionItemInfoRow onClick={handleRow} />
+        <div className={classes.totalInfoContainer}>
+          <div className={classes.productContainer}>
+            <div className={classes.yellowPart}></div>
+            <div className={classes.imgContainer}>
+              <img src={productImg} className={classes.img} />
+            </div>
           </div>
-        )}
+          <div className={classes.InfoContainer}>
+            <div className={classes.itemContainer}>
+              <div className={classes.title}>category</div>
+              <div className={classes.content}>Eyes</div>
+            </div>
+            <div className={classes.itemContainer}>
+              <div className={classes.title}>Representation</div>
+              <div className={classes.content}>Male</div>
+            </div>
+            <div className={classes.itemContainer}>
+              <div className={classes.title}>Rarity</div>
+              <div className={classes.content}>Unique</div>
+            </div>
+            <div className={classes.itemContainer}>
+              <div className={classes.title}>Rarity</div>
+              <div className={classes.gradientContent}>Unique</div>
+            </div>
+          </div>
+        </div>
       </div>
       <CreateItemModal
         headerTitle="New Item"
         show={createItemStatus}
         onClose={handleCreateItemClose}
       />
-      <SettingPriceModal
-        show={settingPriceStatus}
-        onClose={handleSettingPriceClose}
+      <SimpleDeleteModal
+        show={simpleDeleteStatus}
+        onClose={handleSimpleDeleteClose}
       />
     </>
   );

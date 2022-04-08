@@ -213,7 +213,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: "111px",
     marginRight: "12px",
     [theme.breakpoints.down(725)]: {
-      width: "40%",
+      width: "140px",
       marginBottom: "20px",
     },
   },
