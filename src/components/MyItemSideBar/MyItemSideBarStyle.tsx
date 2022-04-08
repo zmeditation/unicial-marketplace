@@ -1,9 +1,4 @@
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  withStyles,
-} from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 export const MyItemSideBarStyle = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,7 +11,7 @@ export const MyItemSideBarStyle = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       alignItems: "center",
       height: "62px",
-      backgroundColor: "#3a3f59",
+      backgroundColor: "#FFFFFF0D",
     },
     NavbarTitle: {
       color: "white",

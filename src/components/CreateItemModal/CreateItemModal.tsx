@@ -5,7 +5,7 @@ import { useStyles } from "./CreateItemModalStyle";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 import uploadIcon from "./../../../src/assets/svg/upload.png";
-import itemImg from "./../../../src/assets/img/photoItem.png";
+import itemImg from "./../../../src/assets/svg/photoItem.svg"
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import triangleIcon from "./../../../src/assets/svg/triangle.png";
 import materialIcon from "./../../../src/assets/svg/material.png";

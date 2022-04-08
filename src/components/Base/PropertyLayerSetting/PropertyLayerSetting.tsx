@@ -1,29 +1,33 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useState } from "react";
 import { PropertyLayerSettingStyle } from "./PropertyLayerSettingStyle";
 
 interface PropertyLayerSettingProps {
   title: string;
   children?: React.ReactNode;
+  className?: any;
 }
 
 export default function PropertyLayerSetting({
   title,
   children,
+  className,
 }: PropertyLayerSettingProps) {
   const classes = PropertyLayerSettingStyle();
-
-  console.log("children : ", children);
+  const [show, setShow] = useState(false);
+  const handleShow = () => {
+    setShow(!show);
+  };
   return (
     <>
-      <div className={classes.root}>
-        <div className={clsx(classes.headerPart, classes.borderBottomLine)}>
+      <div className={clsx(classes.root, className)}>
+        <div className={classes.headerPart} onClick={handleShow}>
           <span className={classes.title}>{title}</span>
           <div className={classes.dropdownIcon}>
             <i className='fal fa-angle-down'></i>
           </div>
         </div>
-        {children}
+        {show && children}
       </div>
     </>
   );

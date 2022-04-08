@@ -15,6 +15,7 @@ export const PropertyLayerSettingStyle = makeStyles((theme: Theme) =>
       width: "100%",
       display: "flex",
       justifyContent: "space-between",
+      borderBottom: "1px solid #222740",
       alignItems: "center",
     },
     title: {
@@ -31,9 +32,6 @@ export const PropertyLayerSettingStyle = makeStyles((theme: Theme) =>
         height: "10px",
         color: "#FFFFFF40",
       },
-    },
-    borderBottomLine: {
-      border: "1px solid #222740",
     },
   })
 );
