@@ -1,3 +1,5 @@
+/** @format */
+
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 export const PropertySideBarStyle = makeStyles((theme: Theme) =>
@@ -20,6 +22,9 @@ export const PropertySideBarStyle = makeStyles((theme: Theme) =>
       fontWeight: 700,
       fontSize: "20px",
       lineHeight: "50px",
+    },
+    layersRoot: {
+      padding: "24px 23px 0px 22px",
     },
   })
 );

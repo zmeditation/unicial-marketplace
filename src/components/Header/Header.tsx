@@ -49,6 +49,7 @@ export default function Header() {
       }
     } else {
       setHeaderActive(headerLinkData.marketplace);
+      setHeaderShowStatus(true);
     }
   }, [headerActive, location]);
 
