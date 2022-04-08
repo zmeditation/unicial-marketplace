@@ -6,7 +6,7 @@ export default function PropertySideBar() {
     <>
       <div className={classes.myItemsBlock}>
         <div className={classes.propertyNavbar}>
-          <span>Properties</span>
+          <span className={classes.NavbarTitle}>Properties</span>
         </div>
       </div>
     </>

@@ -8,7 +8,7 @@ import {
 export const MyItemSideBarStyle = makeStyles((theme: Theme) =>
   createStyles({
     myItemsBlock: {
-      width: "451px",
+      width: "360px",
       height: "100vh",
     },
     myItemNavbar: {

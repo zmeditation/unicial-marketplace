@@ -1,9 +1,4 @@
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  withStyles,
-} from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 export const BuilderItemEditorStyle = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,11 +12,12 @@ export const BuilderItemEditorStyle = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      width: "calc(100% - 902px)",
+      width: "calc(100% - 720px)",
+      padding: "50px",
     },
     blackman: {
-      width: "212px",
-      height: "701px",
+      width: "180px",
+      height: "500px",
     },
   })
 );
