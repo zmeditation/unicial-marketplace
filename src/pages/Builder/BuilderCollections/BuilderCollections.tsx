@@ -25,9 +25,8 @@ export default function BuilderCollections() {
   const classes = useStyles();
   const navigate = useNavigate();
   //
-  const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorNetwork, setAnchorNetwork] =
+    React.useState<null | HTMLElement>(null);
   const [itemContent, setitemContent] = React.useState(
     collectionsPlusData[0].content
   );
@@ -78,6 +77,10 @@ export default function BuilderCollections() {
   const handleNavigate = () => {
     navigate("/builder/builder_collections/100");
   };
+
+  const handleToEditor = () => {
+    navigate("/builder/builderItem-editor");
+  };
   const itemStatus = true;
   return (
     <>
@@ -87,12 +90,12 @@ export default function BuilderCollections() {
         <div className={classes.createBtns}>
           <div className={classes.resultStatus}>0 RESULTS</div>
           <div className={classes.functionBtn}>
-            <div aria-controls="simple-menu" aria-haspopup="true">
+            <div aria-controls='simple-menu' aria-haspopup='true'>
               <Box onClick={handleOpen}>
                 <OvalBtn className={classes.functionIcon} />
               </Box>
               <StyledCollectionPopover
-                id="simple-menu"
+                id='simple-menu'
                 anchorEl={anchorNetwork}
                 keepMounted
                 open={Boolean(anchorNetwork)}
@@ -104,13 +107,11 @@ export default function BuilderCollections() {
                 transformOrigin={{
                   vertical: "top",
                   horizontal: "right",
-                }}
-              >
+                }}>
                 {collectionsPlusData.map((item: any, index: any) => (
                   <StyledMenuItem
                     onClick={() => handleItem(item.index)}
-                    key={index}
-                  >
+                    key={index}>
                     <Box className={classes.listContainer}>
                       <Box className={clsx(classes.listLabel)}>
                         {item.content}
@@ -121,7 +122,7 @@ export default function BuilderCollections() {
               </StyledCollectionPopover>
             </div>
 
-            <div className={classes.openEditorRoot}>
+            <div className={classes.openEditorRoot} onClick={handleToEditor}>
               <div className={classes.openEditorContainer}>Open Editor</div>
             </div>
           </div>
@@ -132,26 +133,26 @@ export default function BuilderCollections() {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} md={3}>
                   <CollectionCard
-                    name="New Collection1"
+                    name='New Collection1'
                     count={3}
                     onClick={handleNavigate}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
                   <CollectionCard
-                    name="New Collection1"
+                    name='New Collection1'
                     count={3}
                     onClick={handleNavigate}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
+                  <CollectionCard name='New Collection1' count={3} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
+                  <CollectionCard name='New Collection1' count={3} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
+                  <CollectionCard name='New Collection1' count={3} />
                 </Grid>
               </Grid>
             </div>
@@ -169,8 +170,10 @@ export default function BuilderCollections() {
                 </div>
                 <div className={classes.CardsContainer}>
                   <div
-                    className={clsx(classes.CardContainer, classes.MarginRight)}
-                  >
+                    className={clsx(
+                      classes.CardContainer,
+                      classes.MarginRight
+                    )}>
                     <CreateCard
                       letter={createCardletterData.new_item}
                       onClick={handlecreateItem}
@@ -192,7 +195,7 @@ export default function BuilderCollections() {
       <DeleteModal show={deleteModalStatus} onClose={handleDeleteModalClose} />
 
       <CreateItemModal
-        headerTitle="New Item"
+        headerTitle='New Item'
         show={createItemStatus}
         onClose={handleCreateItemClose}
       />

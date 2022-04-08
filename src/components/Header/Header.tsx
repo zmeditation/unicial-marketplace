@@ -44,10 +44,9 @@ export default function Header() {
       setHeaderActive(headerLinkData.builder);
       if (location.pathname.includes("/builder/builderItem-editor")) {
         setHeaderShowStatus(false);
+      } else {
+        setHeaderShowStatus(true);
       }
-      // else {
-      //   setHeaderShowStatus(true);
-      // }
     } else {
       setHeaderActive(headerLinkData.marketplace);
     }
@@ -58,12 +57,11 @@ export default function Header() {
       <div
         className={clsx(classes.root, {
           [classes.NoneDisplay]: headerShowStatus === false,
-        })}
-      >
+        })}>
         <div className={classes.container}>
           <div className={classes.headermenuContainer}>
-            <a href="https://unicial.org" className={classes.logoContent}>
-              <img src={"/logo.svg"} className={classes.logo} alt="symbol" />
+            <a href='https://unicial.org' className={classes.logoContent}>
+              <img src={"/logo.svg"} className={classes.logo} alt='symbol' />
               <span className={classes.logoName}>{t("UNICIAL")}</span>
             </a>
             <Button
@@ -73,8 +71,7 @@ export default function Header() {
                   : classes.headerBtn
               }
               disableRipple
-              onClick={() => handleHeaderlink(headerLinkData.marketplace)}
-            >
+              onClick={() => handleHeaderlink(headerLinkData.marketplace)}>
               <span></span>
               <span className={classes.headerLink}>{t("Marketplace")}</span>
               <span className={"active-border"}></span>
@@ -86,8 +83,7 @@ export default function Header() {
                   : classes.headerBtn
               }
               disableRipple
-              onClick={() => handleHeaderlink(headerLinkData.builder)}
-            >
+              onClick={() => handleHeaderlink(headerLinkData.builder)}>
               <span></span>
               <span className={classes.headerLink}>{t("Builder")}</span>
               <span className={"active-border"}></span>
@@ -95,8 +91,7 @@ export default function Header() {
             <Button
               className={classes.headerBtn}
               disableRipple
-              onClick={() => handleHeaderlink(headerLinkData.docs)}
-            >
+              onClick={() => handleHeaderlink(headerLinkData.docs)}>
               <span></span>
               <span className={classes.headerLink}>{t("Documents")}</span>
               <span className={"active-border"}></span>
@@ -104,8 +99,7 @@ export default function Header() {
             <Button
               className={classes.headerBtn}
               disableRipple
-              onClick={() => handleHeaderlink(headerLinkData.blog)}
-            >
+              onClick={() => handleHeaderlink(headerLinkData.blog)}>
               <span></span>
               <span className={classes.headerLink}>{t("Blog")}</span>
               <span className={"active-border"}></span>
