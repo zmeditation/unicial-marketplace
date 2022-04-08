@@ -40,6 +40,19 @@ const useStyles = makeStyles((theme: Theme) =>
       lineHeight: "29px",
       color: "#96A1DB",
     },
+    yellowPart: {
+      borderTopLeftRadius: "5px",
+      borderTopRightRadius: "5px",
+      backgroundColor: "#FF7C4C",
+      height: "20%",
+      width: "100%",
+    },
+    imgContainer: {
+      borderBottomRightRadius: "5px",
+      borderBottomLeftRadius: "5px",
+      height: "80%",
+      width: "100%",
+    },
   })
 );
 
@@ -60,7 +73,11 @@ export default function CollectionRow({
 
   return (
     <div className={clsx(classes.root, className)} onClick={onClick}>
-      <img src={textureImg} className={classes.imgRoot} />
+      {/* <img src={textureImg} className={classes.imgRoot} /> */}
+      <div className={classes.imgRoot}>
+        <div className={classes.yellowPart}></div>
+        <img src={textureImg} className={classes.imgContainer} />
+      </div>
       <div className={classes.infoContainer}>
         <div className={classes.name}>{name}</div>
         <div className={classes.count}>{count} &nbsp; items</div>
