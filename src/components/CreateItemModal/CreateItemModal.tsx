@@ -5,7 +5,7 @@ import { useStyles } from "./CreateItemModalStyle";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 import uploadIcon from "./../../../src/assets/svg/upload.png";
-import itemImg from "./../../../src/assets/svg/photoItem.svg"
+import itemImg from "./../../../src/assets/svg/photoItem.svg";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import triangleIcon from "./../../../src/assets/svg/triangle.png";
 import materialIcon from "./../../../src/assets/svg/material.png";
@@ -15,9 +15,11 @@ import { genderData } from "./../../../src/config/constant";
 import FormControl from "@material-ui/core/FormControl";
 import { StyledInput } from "./../../components/CreateSceneModal/CreateSceneModalStyle";
 import InputBorderListDropdown from "./../../components/Base/InputBorderListDropdown/InputBorderListDropdown";
-import { rareData, categoryData } from "./../../../src/config/constant";
+import { rareData, categoryData } from "../../config/constant";
 import YellowBtn from "./../../components/Base/YellowBtn";
 import RoundBackBtn from "../Base/RoundBackBtn";
+import { FileUploader } from "react-drag-drop-files";
+
 interface Props {
   headerTitle: string;
   show: boolean;
@@ -35,12 +37,17 @@ export default function CreateSceneModal({
   const navigate = useNavigate();
 
   const [showStatus, setShowStatus] = useState(show);
-  const [importData, setImportData] = useState<any>();
+  const [image, setImage] = useState<any>();
   const [name, setName] = useState("");
+  const [rarity, setRarity] = useState("");
+  const [category, setCategory] = useState("");
+  const fileTypes = ["ZIP", "PNG", "GLTF", "GLB"];
 
-  const handleImportFile = (e: any) => {
-    setImportData(e.target.files);
+  const handleChange = (file: any) => {
+    setImage(URL.createObjectURL(file[0]));
+    setName(file[0].name.split(".")[0]);
   };
+
   const handleClose = () => {
     setShowStatus(false);
   };
@@ -49,14 +56,25 @@ export default function CreateSceneModal({
     setName(e.target.value);
   };
 
+  const init = () => {
+    setImage(null);
+    setName("");
+  };
+
+  const handleImportFile = (e: any) => {
+    setImage(URL.createObjectURL(e.target.files[0]));
+    setName(e.target.files[0].name.split(".")[0]);
+  };
+
   useEffect(() => {
+    init();
     setShowStatus(show);
   }, [show]);
-  let status = 2;
+
   return (
     <>
       <div className={showStatus ? classes.loaderWrapper : classes.displayNone}>
-        {status === 1 ? (
+        {image === null ? (
           <div className={classes.modalRoot}>
             <RoundBackBtn
               className={classes.closeIcon}
@@ -64,35 +82,32 @@ export default function CreateSceneModal({
               type="multiply"
             />
             <div className={classes.title}>{headerTitle}</div>
-            <div className={classes.mainContainer}>
-              <div className={classes.dragPartContainer}>
-                <div className={classes.uploadImgContainer}>
-                  <img src={uploadIcon} className={classes.uploadIcon} />
-                </div>
-                <div className={classes.dragInfoContainer}>
-                  <div className={classes.normalLetter}>
-                    Drag our Asset file here in &nbsp;
-                    <span className={classes.colorLetter}>
-                      ZIP, GLTF, GLB, ZIP, PNG
-                    </span>
-                    &nbsp; format, or
+            <FileUploader
+              multiple={true}
+              handleChange={handleChange}
+              name="file"
+              types={fileTypes}
+            >
+              <div className={classes.mainContainer}>
+                <div className={classes.dragPartContainer}>
+                  <div className={classes.uploadImgContainer}>
+                    <img src={uploadIcon} className={classes.uploadIcon} />
                   </div>
-                  <span
-                    className={classes.importantFunctionLink}
-                    onClick={() => {}}
-                  >
-                    {t("Browse your computer")}.
-                    <input
-                      type="file"
-                      className={classes.fileImport}
-                      onChange={(e) => {
-                        handleImportFile(e);
-                      }}
-                    ></input>
-                  </span>
+                  <div className={classes.dragInfoContainer}>
+                    <div className={classes.normalLetter}>
+                      Drag our Asset file here in &nbsp;
+                      <span className={classes.colorLetter}>
+                        ZIP, GLTF, GLB, PNG
+                      </span>
+                      &nbsp; format, or
+                    </div>
+                    <span className={classes.importantFunctionLink}>
+                      {t("Browse your computer")}.
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </FileUploader>
           </div>
         ) : (
           <>
@@ -102,12 +117,23 @@ export default function CreateSceneModal({
                 onBack={onClose}
                 type="multiply"
               />
-              <div className={classes.title}>New Item</div>
+              <div className={classes.title}>{headerTitle}</div>
               <div className={classes.editMainContainer}>
                 <div className={classes.photoInfoContainer}>
                   <div className={classes.photoContainer}>
-                    <img src={itemImg} className={classes.photo} />
-                    <PhotoCameraIcon className={classes.camera} />
+                    <img
+                      src={!image ? itemImg : image}
+                      className={classes.photo}
+                    />
+                    <span className={classes.camera}>
+                      <input
+                        type="file"
+                        onChange={(e) => {
+                          handleImportFile(e);
+                        }}
+                      />
+                      <PhotoCameraIcon />
+                    </span>
                   </div>
                   <div className={classes.photoDetailInfoContainer}>
                     <div className={classes.triangleContainer}>
@@ -150,7 +176,8 @@ export default function CreateSceneModal({
                   </div>
                   <FormControl className={classes.nameInput}>
                     <StyledInput
-                      placeholder={t("New scene")}
+                      placeholder={t("New Scene")}
+                      value={name === "" ? undefined : name}
                       onChange={(e) => {
                         handleName(e);
                       }}
@@ -162,6 +189,9 @@ export default function CreateSceneModal({
                   <InputBorderListDropdown
                     type="rarity"
                     data={rareData}
+                    handleChange={(value: any) => {
+                      setRarity(value);
+                    }}
                     className={classes.inputSelectContainer}
                   />
                   <div className={classes.titleLetter}>
@@ -171,6 +201,9 @@ export default function CreateSceneModal({
                     type="category"
                     data={categoryData}
                     className={classes.inputSelectContainer}
+                    handleChange={(value: any) => {
+                      setCategory(value);
+                    }}
                   />
                   <YellowBtn letter="Create" />
                 </div>

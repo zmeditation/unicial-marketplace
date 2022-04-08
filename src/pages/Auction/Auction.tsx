@@ -131,6 +131,7 @@ const Auction = () => {
         SpaceAuctionAddress
       );
       setUccAllowance(allowance);
+      window.location.reload()
     } else {
       dispatch(
         showAlert({

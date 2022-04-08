@@ -11,12 +11,14 @@ interface Props {
   type?: string;
   data?: any;
   className?: any;
+  handleChange: (value: any) => void;
 }
 
 export default function InputBorderListDropdown({
   type,
   data,
   className,
+  handleChange,
 }: Props) {
   const classes = InputBorderListDropdownStyle();
   const [openStatus, setOpenStatus] = useState(false);
@@ -31,7 +33,8 @@ export default function InputBorderListDropdown({
       placeholderValue = "Select a category";
   }
   const handleItem = (index: number) => {
-    setInputValue(data[index - 1].name);
+    handleChange(data[index - 1].name);
+    // setInputValue(data[index - 1].name);
     setOpenStatus(false);
   };
   const handleIcon = () => {
@@ -40,7 +43,8 @@ export default function InputBorderListDropdown({
   };
 
   const handleInputChange = (e: any) => {
-    setInputValue(e.target.value);
+    handleChange(e.target.value);
+    // setInputValue(e.target.value);
   };
   const handleInputClick = (e: any) => {};
 
