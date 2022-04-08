@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   mapHeaderContainer: {
     margin: "0 auto",
-    padding: "41px 16px 33px 16px",
+    padding: "41px 0px 33px 0px",
     maxWidth: "1064px",
     display: "flex",
     justifyContent: "space-between",
