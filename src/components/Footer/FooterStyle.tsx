@@ -175,6 +175,9 @@ export const FooterStyle = makeStyles((theme: Theme) =>
     activeLabel: {
       color: "white",
     },
+    NoneDisplay: {
+      display: "none",
+    },
   })
 );
 

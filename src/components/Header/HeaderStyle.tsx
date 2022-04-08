@@ -143,5 +143,8 @@ export const HeaderStyle = makeStyles((theme: Theme) =>
         background: "#7F64E2",
       },
     },
+    NoneDisplay: {
+      display: 'none'
+    },
   })
 );

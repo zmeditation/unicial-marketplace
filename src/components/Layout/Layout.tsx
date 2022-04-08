@@ -58,6 +58,7 @@ import ClaimName from "../../pages/Builder/BuilderNames/ClaimName/ClaimName";
 import BuilderCollectionEdit from "../../pages/Builder/BuilderCollections/BuilderCollectionEdit/BuilderCollectionEdit";
 import BuilderCollectionItemInfo from "../../pages/Builder/BuilderCollections/BuilderCollectionItemInfo/BuilderCollectionItemInfo";
 import ScenePools from "../../pages/Builder/BuilderScenes/ScenePools/ScenePools";
+import BuilderItemEditor from "../../pages/Builder/BuilderItemEditor/BuilderItemEditor";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -141,6 +142,10 @@ export default function Layout() {
           <Route
             path="/builder/builder_items/200"
             element={<BuilderCollectionItemInfo />}
+          />
+          <Route
+            path="/builder/builderItem-editor"
+            element={<BuilderItemEditor />}
           />
           <Route path="/needsignin" element={<NeedSignIn />} />
           <Route path="/lands" element={<Lands />} />
