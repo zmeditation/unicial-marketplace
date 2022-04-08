@@ -22,7 +22,7 @@ export default function BuilderCollectionEdit() {
   const classes = BuilderCollectionEditStyle();
   const navigate = useNavigate();
   const [createItemStatus, setCreateItemStatus] = useState(false);
-  const [settingPriceStatus, setSettingPriceStatus] = useState(true);
+  const [settingPriceStatus, setSettingPriceStatus] = useState(false);
   const handlecreateItem = () => {
     setCreateItemStatus(true);
   };
@@ -47,12 +47,19 @@ export default function BuilderCollectionEdit() {
   };
   //moreIcon relate end
   const handleRow = () => {
+    console.log("too this")
     navigate("/builder/builder_items/200");
   };
   const handleBack = () => {
     navigate(-1);
   };
   let status = 2;
+
+  const handleSetClick = ()=>{
+    console.log("here clicked")
+    setSettingPriceStatus(true);
+  }
+
   return (
     <>
       <div className={classes.root}>
@@ -115,7 +122,7 @@ export default function BuilderCollectionEdit() {
           <LookingGood className={classes.lookingGoodContainer} />
         ) : (
           <div className={classes.rowsRoot}>
-            <CollectionItemInfoRow onClick={handleRow} />
+            <CollectionItemInfoRow onClick={handleRow} setClick={handleSetClick}/>
           </div>
         )}
       </div>

@@ -97,9 +97,10 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props {
   className?: any;
   onClick?: any;
+  setClick: () => void;
 }
 
-export default function CollectionItemInfoRow({ className, onClick }: Props) {
+export default function CollectionItemInfoRow({ className, onClick, setClick }: Props) {
   const classes = useStyles();
   return (
     <>
@@ -124,7 +125,7 @@ export default function CollectionItemInfoRow({ className, onClick }: Props) {
             <div className={classes.greyColor}>Rarity</div>
           </div>
           <div className={classes.itemContainer}>
-            <div className={classes.yellowColor}>Set Price</div>
+            <div className={classes.yellowColor} onClick={setClick}>Set Price</div>
             <div className={classes.greyColor}>price</div>
           </div>
         </div>
