@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
       "& i": {
         fontSize: "21px",
         fontWeight: 100,
+        marginTop: "1px",
+        marginRight: "3px",
       },
     },
   })
@@ -32,9 +34,9 @@ export default function RoundBackBtn({ className, onBack, type }: Props) {
   return (
     <div className={clsx(classes.root, className)} onClick={onBack}>
       {type === "multiply" ? (
-        <i className='fas fa-times'></i>
+        <i className="fas fa-times"></i>
       ) : (
-        <i className='fas fa-angle-left'></i>
+        <i className="fas fa-angle-left"></i>
       )}
     </div>
   );

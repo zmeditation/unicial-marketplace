@@ -112,7 +112,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
     cursor: "pointer ",
   },
-  //Edit modal relate
   editModalRoot: {
     padding: "30px 35px",
     position: "fixed",
@@ -131,20 +130,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
   editMainContainer: {
     margin: "30px 0px 0px",
     backgroundColor: "#141b31",
-    // height: "435px",
     borderRadius: "12px",
     display: "flex",
     justifyContent: "space-between",
-    // alignItems: "center",
     padding: "25px 25px",
+    [theme.breakpoints.down(570)]: {
+      display: "block",
+    },
   },
   photoInfoContainer: {
     width: "148px",
     height: "244px",
     borderRadius: "5px",
     marginRight: "49px",
-    // display: "flex",
-    // justifyContent: ''
   },
   photoContainer: {
     position: "relative",
@@ -154,6 +152,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   photo: {
     width: "100%",
     height: "100%",
+    borderRadius: "5px",
   },
   camera: {
     color: "white",
@@ -162,7 +161,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     bottom: "12px",
     right: "12px",
     position: "absolute",
-    cursor: "pointer",
+    "& input": {
+      position: "absolute",
+      width: "24px",
+    },
   },
   photoDetailInfoContainer: {
     background: "#282E4E",
@@ -188,6 +190,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   editFormContainer: {
     width: "calc(100% - 195px)",
     padding: "30px 0px 0px",
+    [theme.breakpoints.down(570)]: {
+      width: "100%",
+    },
   },
   titleLetter: {
     color: "#96A1DB",

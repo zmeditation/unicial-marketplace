@@ -125,8 +125,8 @@ export default function BuilderCollectionItemInfo() {
               <div className={classes.content}>Unique</div>
             </div>
             <div className={classes.itemContainer}>
-              <div className={classes.title}>Rarity</div>
-              <div className={classes.gradientContent}>Unique</div>
+              <div className={classes.title}>Collection</div>
+              <div className={classes.gradientContent}>Orion NFT</div>
             </div>
           </div>
         </div>
