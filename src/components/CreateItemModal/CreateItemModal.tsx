@@ -15,7 +15,12 @@ import { genderData } from "./../../../src/config/constant";
 import FormControl from "@material-ui/core/FormControl";
 import { StyledInput } from "./../../components/CreateSceneModal/CreateSceneModalStyle";
 import InputBorderListDropdown from "./../../components/Base/InputBorderListDropdown/InputBorderListDropdown";
-import { rareData, categoryData } from "../../config/constant";
+import {
+  rareData,
+  categoryData,
+  rarities,
+  categories,
+} from "../../config/constant";
 import YellowBtn from "./../../components/Base/YellowBtn";
 import RoundBackBtn from "../Base/RoundBackBtn";
 import { FileUploader } from "react-drag-drop-files";
@@ -64,6 +69,13 @@ export default function CreateSceneModal({
   const handleImportFile = (e: any) => {
     setImage(URL.createObjectURL(e.target.files[0]));
     setName(e.target.files[0].name.split(".")[0]);
+  };
+
+  const handleSubmit = () => {
+    console.log(name, rarity, category);
+    const flagRarity = rarities.includes(rarity);
+    const flagCategory = categories.includes(category);
+    console.log(flagRarity, flagCategory);
   };
 
   useEffect(() => {
@@ -189,6 +201,7 @@ export default function CreateSceneModal({
                   <InputBorderListDropdown
                     type="rarity"
                     data={rareData}
+                    value={rarity}
                     handleChange={(value: any) => {
                       setRarity(value);
                     }}
@@ -200,12 +213,13 @@ export default function CreateSceneModal({
                   <InputBorderListDropdown
                     type="category"
                     data={categoryData}
+                    value={category}
                     className={classes.inputSelectContainer}
                     handleChange={(value: any) => {
                       setCategory(value);
                     }}
                   />
-                  <YellowBtn letter="Create" />
+                  <YellowBtn onClick={handleSubmit} letter="Create" />
                 </div>
               </div>
             </div>

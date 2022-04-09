@@ -1,5 +1,5 @@
-export const ApiUrl = "https://api.unicial.org";
-// export const ApiUrl = "http://192.168.112.103:8080";
+// export const ApiUrl = "https://api.unicial.org";
+export const ApiUrl = "http://192.168.112.103:8080";
 export const REQUEST_API_URL = `${ApiUrl}/api/v1`;
 
 export const tabs = {
@@ -37,11 +37,11 @@ export const editorItemsData = [
     index: 5,
     name: "05 Economy",
   },
-    {
+  {
     index: 5,
     name: "05 Economy",
   },
-    {
+  {
     index: 5,
     name: "05 Economy",
   },
@@ -73,12 +73,12 @@ export const editorCollectionsData = [
     name: "05 NFT",
     count: 0,
   },
-    {
+  {
     index: 5,
     name: "05 NFT",
     count: 0,
   },
-    {
+  {
     index: 5,
     name: "05 NFT",
     count: 0,
@@ -487,6 +487,18 @@ export const mapColor = {
   focused: "#F0B67F ",
 };
 
+export const rarities = [
+  "Unique",
+  " Mythic",
+  "Legendary",
+  "Epic",
+  "Rare",
+  "Uncommon",
+  "Common",
+];
+
+export const categories = ["Eyebrows", "Eyes", "Mouth"];
+
 export const rareData = [
   {
     index: 1,
@@ -515,7 +527,7 @@ export const rareData = [
   },
   {
     index: 6,
-    name: "Umcommon",
+    name: "Uncommon",
     frequency: 10000,
   },
   {
