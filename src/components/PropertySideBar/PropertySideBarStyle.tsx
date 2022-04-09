@@ -82,5 +82,17 @@ export const PropertySideBarStyle = makeStyles((theme: Theme) =>
         color: "#5E627A",
       },
     },
+    basicRoot: {
+      padding: "25px 27px",
+    },
+    basicInput: {
+      marginBottom: "10px",
+    },
+    overridesRoot: {
+      padding: "25px 27px 58px 27px",
+    },
+    overridesInput: {
+      marginBottom: "9px",
+    },
   })
 );

@@ -11,6 +11,7 @@ interface Props {
   type?: string;
   data?: any;
   className?: any;
+  value: any;
   handleChange: (value: any) => void;
 }
 
@@ -18,10 +19,12 @@ export default function InputBorderListDropdown({
   type,
   data,
   className,
+  value,
   handleChange,
 }: Props) {
   const classes = InputBorderListDropdownStyle();
   const [openStatus, setOpenStatus] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [resultData, setResultData] = useState<any>([]);
   let placeholderValue;
@@ -34,7 +37,9 @@ export default function InputBorderListDropdown({
   }
   const handleItem = (index: number) => {
     handleChange(data[index - 1].name);
+    setSuccess(false);
     // setInputValue(data[index - 1].name);
+    console.log("1");
     setOpenStatus(false);
   };
   const handleIcon = () => {
@@ -43,19 +48,18 @@ export default function InputBorderListDropdown({
   };
 
   const handleInputChange = (e: any) => {
+    setSuccess(true);
     handleChange(e.target.value);
-    // setInputValue(e.target.value);
   };
   const handleInputClick = (e: any) => {};
 
   let temp: any[] = [];
   useEffect(() => {
-    if (inputValue === "") {
-      //   setResultData(rareData);
-      //     setOpenStatus(true);
+    if (value === "") {
       setResultData(data);
       setOpenStatus(false);
-    } else {
+    } else if (value !== "" && success) {
+      console.log("2");
       setOpenStatus(true);
       for (let i = 0; i < data.length; i++) {
         if (data[i]?.name?.toLowerCase() === inputValue.toLowerCase()) {
@@ -70,7 +74,7 @@ export default function InputBorderListDropdown({
       }
       setResultData(temp);
     }
-  }, [inputValue]);
+  }, [value]);
 
   return (
     <div className={clsx(classes.totalRoot, className)}>
@@ -81,7 +85,7 @@ export default function InputBorderListDropdown({
             placeholder={placeholderValue}
             onChange={handleInputChange}
             onClick={handleInputClick}
-            value={inputValue}
+            value={value}
           />
           <ExpandMoreIcon className={classes.expandIcon} onClick={handleIcon} />
         </div>
