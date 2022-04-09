@@ -46,7 +46,6 @@ export default function CreateSceneModal({ show, onClose }: Props) {
     setShowStatus(show);
   }, [show]);
   let status = 1;
-  console.log("nonefreestatus:", nonefreeStatus, "freestatus", freeStatus);
   return (
     <>
       <div className={showStatus ? classes.loaderWrapper : classes.displayNone}>

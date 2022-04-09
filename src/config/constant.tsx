@@ -16,6 +16,75 @@ export const limitCount = 6;
 export const expired = -99;
 export const parcelshowMoreCount = 10;
 
+export const editorItemsData = [
+  {
+    index: 1,
+    name: "01 Economy",
+  },
+  {
+    index: 2,
+    name: "02 Economy",
+  },
+  {
+    index: 3,
+    name: "03 Economy",
+  },
+  {
+    index: 4,
+    name: "04 Economy",
+  },
+  {
+    index: 5,
+    name: "05 Economy",
+  },
+    {
+    index: 5,
+    name: "05 Economy",
+  },
+    {
+    index: 5,
+    name: "05 Economy",
+  },
+];
+
+export const editorCollectionsData = [
+  {
+    index: 1,
+    name: "01 NFT",
+    count: 0,
+  },
+  {
+    index: 2,
+    name: "02 NFT",
+    count: 0,
+  },
+  {
+    index: 3,
+    name: "03 NFT",
+    count: 0,
+  },
+  {
+    index: 4,
+    name: "04 NFT",
+    count: 0,
+  },
+  {
+    index: 5,
+    name: "05 NFT",
+    count: 0,
+  },
+    {
+    index: 5,
+    name: "05 NFT",
+    count: 0,
+  },
+    {
+    index: 5,
+    name: "05 NFT",
+    count: 0,
+  },
+];
+
 export const collectionsPlusData = [
   {
     index: 1,
