@@ -17,6 +17,7 @@ export const PropertyLayerSettingStyle = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       borderBottom: "1px solid #222740",
       alignItems: "center",
+      cursor: "pointer",
     },
     title: {
       fontFamily: "Lato",
@@ -31,7 +32,7 @@ export const PropertyLayerSettingStyle = makeStyles((theme: Theme) =>
         width: "16px",
         height: "10px",
         color: "#FFFFFF40",
-      },
+      },      
     },
   })
 );

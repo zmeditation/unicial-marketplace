@@ -24,7 +24,7 @@ export default function PropertyLayerSetting({
         <div className={classes.headerPart} onClick={handleShow}>
           <span className={classes.title}>{title}</span>
           <div className={classes.dropdownIcon}>
-            <i className='fal fa-angle-down'></i>
+            <i className={`fal fa-angle-${show ? `up` : `down`}`}></i>
           </div>
         </div>
         {show && children}

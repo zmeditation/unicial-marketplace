@@ -1,3 +1,5 @@
+/** @format */
+
 import PropertyLayerSetting from "../Base/PropertyLayerSetting/PropertyLayerSetting";
 import { PropertySideBarStyle } from "./PropertySideBarStyle";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
@@ -5,9 +7,21 @@ import photoItem from "../../assets/svg/photoItem.svg";
 import triangleIcon from "../../assets/svg/triangle.png";
 import materialIcon from "../../assets/svg/material.png";
 import textureIcon from "../../assets/svg/texture.png";
+import PropertiesInput from "../Base/PropertiesInput";
 
 export default function PropertySideBar() {
   const classes = PropertySideBarStyle();
+
+  const categoryData: any = ["Eyebrows", "Eyes", "Mouth"];
+  const rareData: any = [
+    "Unique",
+    "Mythic",
+    "Legendary",
+    "Epic",
+    "Rare",
+    "Umcommon",
+    "Common",
+  ];
   return (
     <>
       <div className={classes.myItemsBlock}>
@@ -51,6 +65,51 @@ export default function PropertySideBar() {
               </div>
             </div>
           </PropertyLayerSetting>
+          <PropertyLayerSetting title='Basics'>
+            <div className={classes.basicRoot}>
+              <PropertiesInput
+                name='1 texture'
+                defaultInputValue='05 Economy'
+                className={classes.basicInput}
+              />
+              <PropertiesInput
+                name='Description'
+                defaultInputValue='This is Nft.'
+                className={classes.basicInput}
+              />
+              <PropertiesInput
+                name='Category'
+                type='dropdown'
+                className={classes.basicInput}
+                defaultInputValue={categoryData[0]}
+                item={categoryData}
+              />
+              <PropertiesInput
+                name='Rarity'
+                type='dropdown'
+                item={rareData}
+                defaultInputValue={rareData[0]}
+              />
+            </div>
+          </PropertyLayerSetting>
+          <PropertyLayerSetting title='Overrides'>
+            <div className={classes.overridesRoot}>
+              <PropertiesInput
+                name='Replaces'
+                type='dropdown'
+                className={classes.overridesInput}
+                defaultInputValue='Select an option'
+                item={categoryData}
+              />
+              <PropertiesInput
+                name='Hides'
+                type='dropdown'
+                item={rareData}
+                defaultInputValue='Select an option'
+              />
+            </div>
+          </PropertyLayerSetting>
+          <PropertyLayerSetting title='Tags'></PropertyLayerSetting>
         </div>
       </div>
     </>
