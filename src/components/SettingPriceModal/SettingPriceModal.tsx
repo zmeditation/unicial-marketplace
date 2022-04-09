@@ -17,7 +17,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function CreateSceneModal({ show, onClose }: Props) {
+export default function SettingPriceModal({ show, onClose }: Props) {
   const address = "0x8734CB972d36a740Cc983d5515e160C373A4a016";
   const emptyaddress = "0x00000000000000000000000000000";
   const classes = useStyles();

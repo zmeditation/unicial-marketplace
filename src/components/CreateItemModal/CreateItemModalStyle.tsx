@@ -131,12 +131,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
   editMainContainer: {
     margin: "30px 0px 0px",
     backgroundColor: "#141b31",
-    // height: "435px",
     borderRadius: "12px",
     display: "flex",
     justifyContent: "space-between",
-    // alignItems: "center",
     padding: "25px 25px",
+    [theme.breakpoints.down(570)]: {
+      display: "block",
+    },
   },
   photoInfoContainer: {
     width: "148px",
@@ -188,6 +189,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   editFormContainer: {
     width: "calc(100% - 195px)",
     padding: "30px 0px 0px",
+    [theme.breakpoints.down(570)]: {
+      width: "100%",
+    },
   },
   titleLetter: {
     color: "#96A1DB",

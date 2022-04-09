@@ -56,7 +56,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginLeft: "10px",
       cursor: "pointer",
       "& i": {
-        margin: "9px 17px",
+        margin: "7px 17px",
         width: "16px",
         height: "16px",
         color: "#ffffff",

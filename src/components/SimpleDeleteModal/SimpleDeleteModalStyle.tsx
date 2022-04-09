@@ -48,9 +48,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: "5px",
+    [theme.breakpoints.down(620)]: {
+      display: "block",
+    },
   },
   cancelBtn: {
     width: "45%",
     height: "54px",
+    [theme.breakpoints.down(620)]: {
+      width: "100%",
+      marginBottom: "20px",
+    },
   },
 }));

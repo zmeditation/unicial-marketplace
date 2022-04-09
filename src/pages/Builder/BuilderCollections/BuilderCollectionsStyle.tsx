@@ -100,13 +100,22 @@ export const useStyles = makeStyles((theme: Theme) =>
     CardsContainer: {
       display: "flex",
       alignItems: "center",
+      [theme.breakpoints.down(700)]: {
+        display: "block",
+      },
     },
     CardContainer: {
       width: "285px",
       height: "285px",
+      [theme.breakpoints.down(700)]: {
+        marginBottom: "50px",
+      },
     },
     MarginRight: {
       marginRight: "67px",
+      [theme.breakpoints.down(700)]: {
+        marginRight: "0px",
+      },
     },
     //noitems realte end
 

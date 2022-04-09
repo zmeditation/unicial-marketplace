@@ -17,16 +17,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
   modalRoot: {
-    padding: "30px 35px",
+    padding: "30px 35px 53px",
     position: "fixed",
     width: "620px",
-    height: "354px",
+    height: "auto",
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "10px",
     textAlign: "center",
     zIndex: 99999,
-    [theme.breakpoints.down(769)]: {
+    [theme.breakpoints.down(640)]: {
       minWidth: "calc(100% - 32px) !important",
       width: "calc(100% - 32px) !important",
       margin: "0px 50px",
@@ -47,6 +47,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   mainContainer: {
     padding: "0px 50px",
+    [theme.breakpoints.down(640)]: {
+      padding: "0px 20px",
+    },
   },
   descContainer: {
     color: "#96A1DB",
@@ -66,8 +69,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "12px",
     lineHeight: "14.4px",
     textAlign: "left",
-    marginBottom: "8px",
-    marginTop: "23px",
+    marginBottom: "23px",
+    marginTop: "11px",
   },
   widthFull: {
     width: "100%",
