@@ -47,6 +47,40 @@ export const editorItemsData = [
   },
 ];
 
+export const editDonedropdownData = [
+{
+  index: 1,
+  content: "See details",
+},
+{
+  index: 2,
+  content: "Open in editor",
+},
+{
+  index: 3,
+  content: "Edit price",
+},
+{
+  index: 4,
+  content: "Remove from collection",
+},
+];
+
+export const editnotYetdonedropdownData = [
+{
+  index: 1,
+  content: "See details",
+},
+{
+  index: 2,
+  content: "Open in editor",
+},
+{
+  index: 4,
+  content: "Remove from collection",
+},
+];
+
 export const editorCollectionsData = [
   {
     index: 1,

@@ -46,7 +46,7 @@ export default function BuilderCollectionEdit() {
     handleClose();
   };
   //moreIcon relate end
-  const handleRow = () => {
+  const handlePhoto = () => {
     navigate("/builder/builder_items/200");
   };
   const handleBack = () => {
@@ -55,7 +55,6 @@ export default function BuilderCollectionEdit() {
   let status = 2;
 
   const handleSetClick = () => {
-    console.log("here clicked");
     setSettingPriceStatus(true);
   };
 
@@ -122,7 +121,7 @@ export default function BuilderCollectionEdit() {
         ) : (
           <div className={classes.rowsRoot}>
             <CollectionItemInfoRow
-              onClick={handleRow}
+              handlePhoto={handlePhoto}
               setClick={handleSetClick}
             />
           </div>

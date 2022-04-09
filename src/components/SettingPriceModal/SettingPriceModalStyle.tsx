@@ -47,6 +47,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     height: "35px",
     "& i": {
       fontWeight: 100,
+      maginTop: "3px",
     },
   },
   title: {
@@ -103,6 +104,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   disablecursor: {
     cursor: "not-allowed",
+  },
+  backIcon: {
+    position: "absolute",
+    top: "20px",
+    right: "30px",
   },
 }));
 export const StyledInput = withStyles((theme) => ({

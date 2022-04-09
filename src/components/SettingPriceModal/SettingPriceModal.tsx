@@ -11,6 +11,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import whiteTokenIcon from "./../../assets/svg/whiteToken.png";
 import InfoIcon from "../../assets/svg/Info.png";
 import makeBlockie from "ethereum-blockies-base64";
+import RoundBackBtn from "../Base/RoundBackBtn";
 
 interface Props {
   show: boolean;
@@ -51,9 +52,11 @@ export default function SettingPriceModal({ show, onClose }: Props) {
       <div className={showStatus ? classes.loaderWrapper : classes.displayNone}>
         {status === 1 ? (
           <div className={classes.modalRoot}>
-            <div className={classes.closeIcon} onClick={onClose}>
-              <i className="fas fa-times"></i>
-            </div>
+            <RoundBackBtn
+              className={classes.backIcon}
+              type="multiply"
+              onBack={onClose}
+            />
             <div className={classes.title}>
               Set price and address for "OrionNFT"
             </div>

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
         fontSize: "21px",
         fontWeight: 100,
         marginTop: "1px",
-        marginRight: "3px",
+        marginRight: "1px",
       },
     },
   })
