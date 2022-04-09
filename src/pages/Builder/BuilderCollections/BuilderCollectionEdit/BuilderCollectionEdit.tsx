@@ -112,7 +112,7 @@ export default function BuilderCollectionEdit() {
                 ))}
               </StyledCollectionPopover>
             </div>
-            <YellowBtn letter="Publish" />
+            <YellowBtn letter="Publish" disabled />
           </div>
         </div>
         <CoolNotification className={classes.coolnotificationContainer} />

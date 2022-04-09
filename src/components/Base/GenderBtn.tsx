@@ -13,6 +13,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
+    color: "#70708F",
+  },
+  activedColor: {
+    backgroundColor: "#41A6EF",
+    border: "1px solid #141b31",
+    color: "white !important",
   },
   container: {
     display: "flex",
@@ -25,7 +31,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 400,
     fontSize: "16px",
     lineHeight: "19.2px",
-    color: "#70708F",
   },
 }));
 
@@ -34,6 +39,7 @@ interface ButtonProps {
   letter: string;
   className?: any;
   onClick?: () => void;
+  actived?: boolean;
 }
 
 const ActionButton = ({
@@ -41,11 +47,17 @@ const ActionButton = ({
   letter,
   className,
   onClick,
+  actived,
 }: ButtonProps) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx(classes.root, className, {
+        [classes.activedColor]: actived,
+      })}
+      onClick={onClick}
+    >
       <div className={classes.container}>
         {letter === genderData.both ? (
           <img src={bothIcon} />

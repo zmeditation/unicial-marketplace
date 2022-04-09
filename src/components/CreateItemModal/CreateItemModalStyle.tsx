@@ -229,4 +229,33 @@ export const useStyles = makeStyles((theme: Theme) => ({
   inputSelectContainer: {
     marginBottom: "25px",
   },
+  queBtnContainer: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "25px",
+  },
+  yesBtn: {
+    marginRight: "20px",
+  },
+  pickupStatus: {
+    color: "#8795e0",
+    fontFamily: "Lato",
+    fontWeight: 400,
+    fontSize: "12px",
+    lineHeight: "14.4px",
+    opacity: "50%",
+    textAlign: "left",
+    marginBottom: "8px",
+  },
+  // ***
+  NoneDisplay: {
+    display: "none",
+  },
+  questionPartContainer: {},
+  pickItemPartContainer: {
+    marginBottom: "20px",
+  },
+  InputsPartContainer: {},
+
+  // ****
 }));

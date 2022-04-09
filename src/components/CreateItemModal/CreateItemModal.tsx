@@ -24,6 +24,7 @@ import {
 import YellowBtn from "./../../components/Base/YellowBtn";
 import RoundBackBtn from "../Base/RoundBackBtn";
 import { FileUploader } from "react-drag-drop-files";
+import QuestionBtn from "../Base/QuestionBtn";
 
 interface Props {
   headerTitle: string;
@@ -78,6 +79,17 @@ export default function CreateSceneModal({
     console.log(flagRarity, flagCategory);
   };
 
+  const [genderBtStatus, setGenderBtnStatus] = useState(0);
+  const handleGender = (index: number) => {
+    setGenderBtnStatus(index);
+    setQueBtnStatus(0);
+  };
+
+  const [queBtnStatus, setQueBtnStatus] = useState(0);
+  const handleQuestion = (index: number) => {
+    setQueBtnStatus(index);
+  };
+
   useEffect(() => {
     init();
     setShowStatus(show);
@@ -86,7 +98,7 @@ export default function CreateSceneModal({
   return (
     <>
       <div className={showStatus ? classes.loaderWrapper : classes.displayNone}>
-        {image === null ? (
+        {image === !null ? (
           <div className={classes.modalRoot}>
             <RoundBackBtn
               className={classes.closeIcon}
@@ -173,52 +185,107 @@ export default function CreateSceneModal({
                     Select the body shape for your item
                   </div>
                   <div className={classes.genderContainer}>
-                    <div className={classes.genderBtnContainer}>
-                      <GenderBtn letter={genderData.both} />
+                    <GenderBtn
+                      letter={genderData.both}
+                      actived={genderBtStatus === 1}
+                      className={classes.genderBtnContainer}
+                      onClick={() => handleGender(1)}
+                    />
+                    <GenderBtn
+                      letter={genderData.male}
+                      actived={genderBtStatus === 2}
+                      className={classes.genderBtnContainer}
+                      onClick={() => handleGender(2)}
+                    />
+                    <GenderBtn
+                      letter={genderData.female}
+                      actived={genderBtStatus === 3}
+                      className={classes.genderBtnContainer}
+                      onClick={() => handleGender(3)}
+                    />
+                  </div>
+                  <div
+                    className={clsx(classes.questionPartContainer, {
+                      [classes.NoneDisplay]: genderBtStatus === 1,
+                    })}
+                  >
+                    <div className={classes.titleLetter}>
+                      Is this part of an existing item
                     </div>
-                    <div className={classes.genderBtnContainer}>
-                      <GenderBtn letter={genderData.male} />
-                    </div>
-                    <div className={classes.genderBtnContainer}>
-                      <GenderBtn letter={genderData.female} />
+                    <div className={classes.queBtnContainer}>
+                      <QuestionBtn
+                        letter="Yes"
+                        className={classes.yesBtn}
+                        actived={queBtnStatus === 1}
+                        onClick={() => handleQuestion(1)}
+                      />
+                      <QuestionBtn
+                        letter="No"
+                        actived={queBtnStatus === 2}
+                        onClick={() => handleQuestion(2)}
+                      />
                     </div>
                   </div>
-                  <div className={classes.titleLetter}>
-                    ENter a name for your item
+                  <div
+                    className={clsx(classes.pickItemPartContainer, {
+                      [classes.NoneDisplay]:
+                        genderBtStatus === 1 ||
+                        queBtnStatus === 0 ||
+                        queBtnStatus === 2,
+                    })}
+                  >
+                    <div className={classes.titleLetter}>
+                      Pick an item that doesn't have this gender
+                    </div>
+                    <div className={classes.pickupStatus}>
+                      No valid items found
+                    </div>
                   </div>
-                  <FormControl className={classes.nameInput}>
-                    <StyledInput
-                      placeholder={t("New Scene")}
-                      value={name === "" ? undefined : name}
-                      onChange={(e) => {
-                        handleName(e);
+                  <div
+                    className={clsx(classes.InputsPartContainer, {
+                      [classes.NoneDisplay]:
+                        genderBtStatus !== 1 &&
+                        (queBtnStatus === 0 || queBtnStatus === 1),
+                    })}
+                  >
+                    <div className={classes.titleLetter}>
+                      Enter a name for your item
+                    </div>
+                    <FormControl className={classes.nameInput}>
+                      <StyledInput
+                        placeholder={t("New Scene")}
+                        value={name === "" ? undefined : name}
+                        onChange={(e) => {
+                          handleName(e);
+                        }}
+                      />
+                    </FormControl>
+                    <div className={classes.titleLetter}>
+                      How rare is this item?
+                    </div>
+                    <InputBorderListDropdown
+                      type="rarity"
+                      data={rareData}
+                      value={rarity}
+                      handleChange={(value: any) => {
+                        setRarity(value);
+                      }}
+                      className={classes.inputSelectContainer}
+                    />
+                    <div className={classes.titleLetter}>
+                      What is the category of this item?
+                    </div>
+                    <InputBorderListDropdown
+                      type="category"
+                      data={categoryData}
+                      value={category}
+                      className={classes.inputSelectContainer}
+                      handleChange={(value: any) => {
+                        setCategory(value);
                       }}
                     />
-                  </FormControl>
-                  <div className={classes.titleLetter}>
-                    How rare is this item?
                   </div>
-                  <InputBorderListDropdown
-                    type="rarity"
-                    data={rareData}
-                    value={rarity}
-                    handleChange={(value: any) => {
-                      setRarity(value);
-                    }}
-                    className={classes.inputSelectContainer}
-                  />
-                  <div className={classes.titleLetter}>
-                    What is the category of this item?
-                  </div>
-                  <InputBorderListDropdown
-                    type="category"
-                    data={categoryData}
-                    value={category}
-                    className={classes.inputSelectContainer}
-                    handleChange={(value: any) => {
-                      setCategory(value);
-                    }}
-                  />
+
                   <YellowBtn onClick={handleSubmit} letter="Create" />
                 </div>
               </div>
