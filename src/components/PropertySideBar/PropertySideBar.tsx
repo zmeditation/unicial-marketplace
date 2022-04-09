@@ -1,5 +1,3 @@
-/** @format */
-
 import PropertyLayerSetting from "../Base/PropertyLayerSetting/PropertyLayerSetting";
 import { PropertySideBarStyle } from "./PropertySideBarStyle";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";

@@ -32,7 +32,7 @@ export const PropertyLayerSettingStyle = makeStyles((theme: Theme) =>
         width: "16px",
         height: "10px",
         color: "#FFFFFF40",
-      },      
+      },
     },
   })
 );

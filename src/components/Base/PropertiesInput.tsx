@@ -1,8 +1,6 @@
-/** @format */
-
-import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
+import { Theme, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
