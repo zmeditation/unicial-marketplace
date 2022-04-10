@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Box } from "@material-ui/core";
 
@@ -66,6 +67,8 @@ export default function Footer() {
   React.useEffect(() => {
     if (location.pathname.includes("/builder/builderItem-editor")) {
       setFooterShowStatus(false);
+    }else{
+      setFooterShowStatus(true);
     }
   }, [location]);
 
