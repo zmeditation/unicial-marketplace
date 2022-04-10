@@ -69,27 +69,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontSize: "12px",
     lineHeight: "14.4px",
     textAlign: "left",
-    marginBottom: "23px",
-    marginTop: "11px",
+    marginBottom: "8px",
   },
   widthFull: {
     width: "100%",
+    marginBottom: "11px",
   },
-  createBtnRoot: {
+  createbtn: {
     width: "100%",
-    marginTop: "10px",
-    height: "54px",
-  },
-  createBtnContainer: {
-    borderRadius: "9px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%",
-    backgroundImage: "linear-gradient(to right, #FF7C4C 0%, #FFB03A 100%)",
-    color: "white",
-    fontFamily: "Lato",
-    fontSize: "17px",
-    lineHeight: "20..4px",
+    marginTop: "23px",
   },
 }));

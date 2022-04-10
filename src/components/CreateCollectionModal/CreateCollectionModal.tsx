@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FormControl } from "@material-ui/core";
 import { StyledInput } from "./../CreateSceneModal/CreateSceneModalStyle";
 import RoundBackBtn from "../Base/RoundBackBtn";
+import YellowBtn from "../Base/YellowBtn";
 interface Props {
   show: boolean;
   onClose: () => void;
@@ -28,7 +29,7 @@ export default function CreateSceneModal({ show, onClose }: Props) {
           <RoundBackBtn
             className={classes.closeIcon}
             onBack={onClose}
-            type='multiply'
+            type="multiply"
           />
           <div className={classes.title}>New Collection</div>
           <div className={classes.mainContainer}>
@@ -47,9 +48,7 @@ export default function CreateSceneModal({ show, onClose }: Props) {
             <div className={classes.name}>
               The name can be 32 characters at most
             </div>
-            <div className={classes.createBtnRoot}>
-              <div className={classes.createBtnContainer}>Create</div>
-            </div>
+            <YellowBtn letter="Create" className={classes.createbtn} />
           </div>
         </div>
       </div>

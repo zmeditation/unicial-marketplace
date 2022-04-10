@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     createBtnRoot: {
       width: "160px",
-      // marginTop: "10px",
       height: "44px",
       cursor: "pointer",
       borderRadius: "9px",
@@ -24,10 +23,16 @@ const useStyles = makeStyles((theme: Theme) =>
       fontFamily: "Lato",
       fontSize: "17px",
       lineHeight: "20..4px",
+      "&:hover": {
+        transform: "translateY(-2px)",
+      },
     },
     disableColor: {
       opacity: "60%",
       cursor: "default",
+      "&:hover": {
+        transform: "translateY(0px)",
+      },
     },
   })
 );
