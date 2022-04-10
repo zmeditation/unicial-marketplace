@@ -8,7 +8,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   mapHeader: {
     margin: "0px 50px",
     textAlign: "center",
-    borderTop: "solid 1px #282E4E",
   },
   mapHeaderContainer: {
     margin: "0 auto",
