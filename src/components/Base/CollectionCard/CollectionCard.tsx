@@ -18,9 +18,9 @@ export default function CollctionCard({
   return (
     <>
       <div className={classes.root} onClick={onClick}>
-        <div className={classes.yellowTop}>
+        {/* <div className={classes.yellowTop}>
           <DeletemoreIcon className={classes.moreIcon} />
-        </div>
+        </div> */}
         <div className={classes.imageContainer}>
           <img src={PussyhairPng} className={classes.image} />
         </div>

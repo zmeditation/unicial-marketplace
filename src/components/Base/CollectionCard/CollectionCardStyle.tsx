@@ -67,7 +67,7 @@ export const CollectionCardStyle = makeStyles((theme: Theme) =>
       lineHeight: "26px",
       color: "white",
       marginBottom: "10.8px",
-      marginLeft: "3px",
+      marginLeft: "9px",
       textAlign: "left",
     },
     descContainer: {
@@ -76,8 +76,8 @@ export const CollectionCardStyle = makeStyles((theme: Theme) =>
       fontWeight: 400,
       lineHeight: "16.8px",
       color: "#96A1DB",
+      marginLeft: "9px",
       display: "flex",
-      marginLeft: "3px",
     },
     divide: {
       width: "1px",
