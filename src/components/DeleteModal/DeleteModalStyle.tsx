@@ -20,7 +20,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: "30px 35px",
     position: "fixed",
     width: "620px",
-    height: "285px",
+    // height: "285px",
+    height: "auto",
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "10px",
@@ -57,8 +58,22 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    [theme.breakpoints.down(570)]: {
+      display: "block",
+    },
   },
   cancelBtn: {
-    width: "45%",
+    width: "100% !important",
+
+    marginBottom: "20px",
+  },
+  confirmBtn: {
+    marginLeft: "15px",
+    marginBottom: "20px",
+
+    width: "100%",
+    [theme.breakpoints.down(570)]: {
+      marginLeft: "0px",
+    },
   },
 }));

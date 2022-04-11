@@ -32,8 +32,7 @@ export const CollectionCardStyle = makeStyles((theme: Theme) =>
     imageContainer: {
       width: "100%",
       backgroundColor: "#21263F",
-      borderBottomLeftRadius: "15px",
-      borderBottomRightRadius: "15px",
+      borderRadius: "15px",
       marginBottom: "12px",
       textAlign: "center",
       display: "flex",
@@ -43,8 +42,13 @@ export const CollectionCardStyle = makeStyles((theme: Theme) =>
       position: "relative",
     },
     moreIcon: {
-      marginRight: "10px",
+      position: "absolute",
+      right: "20px",
+      top: "10px",
       display: "none",
+      "& i": {
+        Color: "#C4C4C4",
+      },
     },
     image: {
       [theme.breakpoints.up(1200)]: {
@@ -84,6 +88,24 @@ export const CollectionCardStyle = makeStyles((theme: Theme) =>
       height: "15px",
       borderRight: "1px solid #96A1DB",
       margin: "1px 5px 0px",
+    },
+    listContainer: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    listLabel: {
+      fontSize: "14px",
+      lineHeight: "20px",
+      fontWeight: 400,
+      fontStyle: "normal",
+      color: "#96A1DB",
+      "&:hover": {
+        color: "white",
+      },
+    },
+    editContainerShow: {
+      opacity: 100,
     },
   })
 );

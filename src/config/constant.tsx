@@ -170,6 +170,29 @@ export const collectionEditMoreIconData = [
   },
 ];
 
+export const builderCollectionData = [
+{
+  name: "New Collection1",
+  count : 3
+},
+{
+  name: "New Collection2",
+  count : 3
+},
+{
+  name: "New Collection3",
+  count : 3
+},
+{
+  name: "New Collection4",
+  count : 3
+},
+{
+  name: "New Collection5",
+  count : 3
+},
+];
+
 export const createCardletterData = {
   new_item: "New Item",
   new_collection: "New Collection",

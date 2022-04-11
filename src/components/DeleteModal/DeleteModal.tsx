@@ -35,14 +35,14 @@ export default function DeleteModal({ show, onClose }: Props) {
               Are you sure you want to delete your collection "Bydefaultone"?
               This operation is not reversible
             </div>
-            <div className={classes.btnContainer}>
-              <BorderBtn
-                letter="Cancel"
-                className={classes.cancelBtn}
-                onClick={onClose}
-              />
-              <YellowBtn letter="Confirm" className={classes.cancelBtn} />
-            </div>
+          </div>
+          <div className={classes.btnContainer}>
+            <BorderBtn
+              letter="Cancel"
+              className={classes.cancelBtn}
+              onClick={onClose}
+            />
+            <YellowBtn letter="Confirm" className={classes.confirmBtn} />
           </div>
         </div>
       </div>

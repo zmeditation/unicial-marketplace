@@ -9,6 +9,8 @@ import clsx from "clsx";
 import {
   createCardletterData,
   collectionsPlusData,
+  builderCollectionData,
+  showMoreCount,
 } from "../../../config/constant";
 import CreateItemModal from "../../../components/CreateItemModal/CreateItemModal";
 import CreateCollectionModal from "../../../components/CreateCollectionModal/CreateCollectionModal";
@@ -20,10 +22,19 @@ import CollectionCard from "../../../components/Base/CollectionCard/CollectionCa
 import OvalBtn from "../../../components/Base/OvalBtn";
 import DeleteModal from "../../../components/DeleteModal/DeleteModal";
 import { useLocation, useNavigate } from "react-router";
+import { ShowMoreLessBtn } from "../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 
 export default function BuilderCollections() {
   const classes = useStyles();
   const navigate = useNavigate();
+
+  // showmore Btn relate start
+  const [showStatus, setShowStatus] = useState(false);
+  const handleShowBtn = () => {
+    setShowStatus(!showStatus);
+  };
+  // showmore Btn relate end
+
   //
   const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
     null
@@ -134,30 +145,36 @@ export default function BuilderCollections() {
           <>
             <div className={classes.noItemsRoot}>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard
-                    name="New Collection1"
-                    count={3}
-                    onClick={handleNavigate}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard
-                    name="New Collection1"
-                    count={3}
-                    onClick={handleNavigate}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                  <CollectionCard name="New Collection1" count={3} />
-                </Grid>
+                {builderCollectionData
+                  ?.slice(
+                    0,
+                    !showStatus ? showMoreCount : builderCollectionData.length
+                  )
+                  .map((item: any, key: any) => {
+                    return (
+                      <Grid item xs={12} sm={6} md={3}>
+                        <CollectionCard
+                          name={item.name}
+                          count={item.count}
+                          onClick={handleNavigate}
+                          OpenDeleteModal={handleDeleteModalOpen}
+                        />
+                      </Grid>
+                    );
+                  })}
               </Grid>
+            </div>
+            <div
+              className={
+                builderCollectionData.length < showMoreCount
+                  ? classes.displayNone
+                  : classes.showmoreContent
+              }
+            >
+              <ShowMoreLessBtn
+                letter={showStatus ? "Show Less" : "Show All"}
+                onClick={handleShowBtn}
+              />
             </div>
           </>
         ) : (

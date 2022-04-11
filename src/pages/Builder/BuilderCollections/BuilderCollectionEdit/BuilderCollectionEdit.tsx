@@ -123,6 +123,12 @@ export default function BuilderCollectionEdit() {
             <CollectionItemInfoRow
               handlePhoto={handlePhoto}
               setClick={handleSetClick}
+              className={classes.rowContainer}
+            />
+            <CollectionItemInfoRow
+              handlePhoto={handlePhoto}
+              setClick={handleSetClick}
+              className={classes.rowContainer}
             />
           </div>
         )}

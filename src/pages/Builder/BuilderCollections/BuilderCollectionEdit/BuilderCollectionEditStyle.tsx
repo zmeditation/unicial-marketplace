@@ -126,5 +126,8 @@ export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
     rowsRoot: {
       marginTop: "26px",
     },
+    rowContainer: {
+      marginBottom: "20px",
+    },
   })
 );

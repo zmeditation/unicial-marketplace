@@ -140,9 +140,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       marginTop: "1px",
       "& i": {
-        background: "linear-gradient(to right, #FF7C4C 10%, #FFB03A 100%)",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
+        color: "#C4C4C4",
       },
     },
     doneContainer: {
