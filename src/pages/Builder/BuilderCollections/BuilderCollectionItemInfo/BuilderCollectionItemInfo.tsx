@@ -56,6 +56,9 @@ export default function BuilderCollectionItemInfo() {
   const handleBack = () => {
     navigate(-1);
   };
+  const handleNavigate = () => {
+    navigate("/builder/builderItem-editor");
+  };
   return (
     <>
       <div className={classes.root}>
@@ -65,7 +68,11 @@ export default function BuilderCollectionItemInfo() {
             <span className={classes.nameLetter}>OrionNFT</span>
           </div>
           <div className={classes.btnSetContainer}>
-            <YellowBtn letter="Open in Editor" className={classes.openEditor} />
+            <YellowBtn
+              letter="Open in Editor"
+              className={classes.openEditor}
+              onClick={handleNavigate}
+            />
             <div aria-controls="simple-menu" aria-haspopup="true">
               <Box
                 className={classes.moreIconContainer}

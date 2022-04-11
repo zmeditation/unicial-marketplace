@@ -13,7 +13,15 @@ import ItemRow from "./../Base/ItemRow";
 import CollectionRow from "../Base/CollectionRow";
 import { editorItemsData, editorCollectionsData } from "../../config/constant";
 
-export default function MyItemSideBar() {
+interface Props {
+  OpencreateItem?: any;
+  OpencreateCollection?: any;
+}
+
+export default function MyItemSideBar({
+  OpencreateItem,
+  OpencreateCollection,
+}: Props) {
   const classes = MyItemSideBarStyle();
   const navigate = useNavigate();
 
@@ -32,11 +40,11 @@ export default function MyItemSideBar() {
     setAnchorNetwork(null);
   };
   const handleItem = (index: number) => {
-    //   if (index === 1) {
-    //     handlecreateItem();
-    //   } else {
-    //     handlecreateCollection();
-    //   }
+    if (index === 1) {
+      OpencreateItem();
+    } else {
+      OpencreateCollection();
+    }
     handleClose();
   };
   //
