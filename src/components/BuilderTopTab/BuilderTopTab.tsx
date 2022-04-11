@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import { BuilderToptabData } from "../../config/constant";
-import { TopTabStyle, StyledTopTabBtn } from "./../TopTab/TopTabStyle";
+import {
+  BuilderTopTabStyle,
+  BuilderStyledTopTabBtn,
+} from "./BuilderToptabStyles";
 import { useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
 export default function TopTab() {
-  const classes = TopTabStyle();
+  const classes = BuilderTopTabStyle();
   const location = useLocation();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -36,50 +39,46 @@ export default function TopTab() {
             <div className={classes.nftfilter}>
               <div className={classes.topbar}>
                 <div className={classes.tabsLeft}>
-                  <StyledTopTabBtn
+                  <BuilderStyledTopTabBtn
                     onClick={() => handlehead("/builder/builder_scenes")}
                     className={
                       buildertoptab_index === BuilderToptabData.builder_scenes
                         ? classes.activetoptab
                         : classes.normaltoptab
-                    }
-                  >
+                    }>
                     {t("Scenes")}
-                  </StyledTopTabBtn>
+                  </BuilderStyledTopTabBtn>
 
-                  <StyledTopTabBtn
+                  <BuilderStyledTopTabBtn
                     onClick={() => handlehead("/builder/builder_land")}
                     className={
                       buildertoptab_index === BuilderToptabData.builder_land
                         ? classes.activetoptab
                         : classes.normaltoptab
-                    }
-                  >
+                    }>
                     {t("Land")}
-                  </StyledTopTabBtn>
+                  </BuilderStyledTopTabBtn>
 
-                  <StyledTopTabBtn
+                  <BuilderStyledTopTabBtn
                     onClick={() => handlehead("/builder/builder_names")}
                     className={
                       buildertoptab_index === BuilderToptabData.builder_names
                         ? classes.activetoptab
                         : classes.normaltoptab
-                    }
-                  >
+                    }>
                     {t("Names")}
-                  </StyledTopTabBtn>
+                  </BuilderStyledTopTabBtn>
 
-                  <StyledTopTabBtn
+                  <BuilderStyledTopTabBtn
                     onClick={() => handlehead("/builder/builder_collections")}
                     className={
                       buildertoptab_index ===
                       BuilderToptabData.builder_collections
                         ? classes.activetoptab
                         : classes.normaltoptab
-                    }
-                  >
+                    }>
                     {t("Collections")}
-                  </StyledTopTabBtn>
+                  </BuilderStyledTopTabBtn>
                 </div>
               </div>
             </div>

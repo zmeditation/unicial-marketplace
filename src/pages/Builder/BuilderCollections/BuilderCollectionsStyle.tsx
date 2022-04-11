@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       minHeight: "calc(100vh - 246px)",
       minWidth: "1064px",
       maxWidth: "1064px",
-      margin: "10px auto 60px auto",
+      margin: "60px auto 60px auto",
       position: "relative",
       "& canvas, .react-tile-map ": {
         borderRadius: "15px",
@@ -31,8 +31,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      marginTop: "30px",
-      marginBottom: "55px",
+      marginBottom: "30px",
     },
     resultStatus: {
       fontFamily: "Lato",
