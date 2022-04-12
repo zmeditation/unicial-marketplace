@@ -11,7 +11,6 @@ import triangleIcon from "./../../../src/assets/svg/triangle.png";
 import materialIcon from "./../../../src/assets/svg/material.png";
 import textureIcon from "./../../../src/assets/svg/texture.png";
 import GenderBtn from "./../Base/GenderBtn";
-import { genderData } from "./../../../src/config/constant";
 import FormControl from "@material-ui/core/FormControl";
 import { StyledInput } from "./../../components/CreateSceneModal/CreateSceneModalStyle";
 import InputBorderListDropdown from "./../../components/Base/InputBorderListDropdown/InputBorderListDropdown";
@@ -20,11 +19,14 @@ import {
   categoryData,
   rarities,
   categories,
+  genderData,
+  existItem,
 } from "../../config/constant";
 import YellowBtn from "./../../components/Base/YellowBtn";
 import RoundBackBtn from "../Base/RoundBackBtn";
 import { FileUploader } from "react-drag-drop-files";
 import QuestionBtn from "../Base/QuestionBtn";
+import { Hashing } from "../../common/utils";
 
 interface Props {
   headerTitle: string;
@@ -44,12 +46,16 @@ export default function CreateSceneModal({
 
   const [showStatus, setShowStatus] = useState(show);
   const [image, setImage] = useState<any>();
+  const [selectedFile, setSelectedFile] = useState<any>();
   const [name, setName] = useState("");
   const [rarity, setRarity] = useState("");
   const [category, setCategory] = useState("");
+  const [genderBtStatus, setGenderBtnStatus] = useState(genderData.init);
+  const [queBtnStatus, setQueBtnStatus] = useState(existItem.init);
   const fileTypes = ["ZIP", "PNG", "GLTF", "GLB"];
 
   const handleChange = (file: any) => {
+    setSelectedFile(file[0]);
     setImage(URL.createObjectURL(file[0]));
     setName(file[0].name.split(".")[0]);
   };
@@ -63,30 +69,66 @@ export default function CreateSceneModal({
   };
 
   const init = () => {
+    setSelectedFile(null);
     setImage(null);
+    setGenderBtnStatus(genderData.init);
     setName("");
+    setRarity("");
+    setCategory("");
   };
 
   const handleImportFile = (e: any) => {
+    setSelectedFile(e.target.files[0]);
     setImage(URL.createObjectURL(e.target.files[0]));
     setName(e.target.files[0].name.split(".")[0]);
   };
 
   const handleSubmit = () => {
-    console.log(name, rarity, category);
+    // console.log(genderBtStatus, name, rarity, category, selectedFile);
     const flagRarity = rarities.includes(rarity);
     const flagCategory = categories.includes(category);
-    console.log(flagRarity, flagCategory);
+    const formData = new FormData();
+    const hashing = new Hashing();
+    var bytes: any = [];
+    var reader = new FileReader();
+    reader.onload = async function () {
+      bytes = reader.result;
+      if (flagRarity && flagCategory) {
+        formData.append("file", selectedFile);
+        formData.append("gender", genderBtStatus);
+        formData.append("name", name);
+        formData.append("rarity", rarity);
+        formData.append("category", category);
+        const hashName = await hashing.calculateBufferHash(bytes);
+        let contents: any = {};
+        if (genderBtStatus === genderData.both) {
+          contents[`female/${selectedFile.name}`] = hashName;
+          contents[`male/${selectedFile.name}`] = hashName;
+          contents[`thumbnail.png`] = hashName;
+          contents[`image.png`] = hashName;
+        } else if (genderBtStatus === genderData.female) {
+          contents[`female/${selectedFile.name}`] = hashName;
+          contents[`thumbnail.png`] = hashName;
+          contents[`image.png`] = hashName;
+        } else if (genderBtStatus === genderData.male) {
+          contents[`male/${selectedFile.name}`] = hashName;
+          contents[`thumbnail.png`] = hashName;
+          contents[`image.png`] = hashName;
+        }
+        formData.append("hashName", hashName);
+        formData.append("contents", contents);
+        console.log("contents", contents);
+      }
+    };
+    reader.readAsArrayBuffer(selectedFile);
   };
 
-  const [genderBtStatus, setGenderBtnStatus] = useState(0);
-  const handleGender = (index: number) => {
+  const handleGender = (index: string) => {
     setGenderBtnStatus(index);
-    setQueBtnStatus(0);
+    setQueBtnStatus(existItem.init);
   };
 
-  const [queBtnStatus, setQueBtnStatus] = useState(0);
-  const handleQuestion = (index: number) => {
+  const handleQuestion = (index: string) => {
     setQueBtnStatus(index);
   };
 
@@ -98,7 +140,7 @@ export default function CreateSceneModal({
   return (
     <>
       <div className={showStatus ? classes.loaderWrapper : classes.displayNone}>
-        {image === !null ? (
+        {image === null ? (
           <div className={classes.modalRoot}>
             <RoundBackBtn
               className={classes.closeIcon}
@@ -187,26 +229,28 @@ export default function CreateSceneModal({
                   <div className={classes.genderContainer}>
                     <GenderBtn
                       letter={genderData.both}
-                      actived={genderBtStatus === 1}
+                      actived={genderBtStatus === genderData.both}
                       className={classes.genderBtnContainer}
-                      onClick={() => handleGender(1)}
+                      onClick={() => handleGender(genderData.both)}
                     />
                     <GenderBtn
                       letter={genderData.male}
-                      actived={genderBtStatus === 2}
+                      actived={genderBtStatus === genderData.male}
                       className={classes.genderBtnContainer}
-                      onClick={() => handleGender(2)}
+                      onClick={() => handleGender(genderData.male)}
                     />
                     <GenderBtn
                       letter={genderData.female}
-                      actived={genderBtStatus === 3}
+                      actived={genderBtStatus === genderData.female}
                       className={classes.genderBtnContainer}
-                      onClick={() => handleGender(3)}
+                      onClick={() => handleGender(genderData.female)}
                     />
                   </div>
                   <div
                     className={clsx(classes.questionPartContainer, {
-                      [classes.NoneDisplay]: genderBtStatus === 1,
+                      [classes.NoneDisplay]:
+                        genderBtStatus === genderData.both ||
+                        genderBtStatus === genderData.init,
                     })}
                   >
                     <div className={classes.titleLetter}>
@@ -216,22 +260,22 @@ export default function CreateSceneModal({
                       <QuestionBtn
                         letter="Yes"
                         className={classes.yesBtn}
-                        actived={queBtnStatus === 1}
-                        onClick={() => handleQuestion(1)}
+                        actived={queBtnStatus === existItem.yes}
+                        onClick={() => handleQuestion(existItem.yes)}
                       />
                       <QuestionBtn
                         letter="No"
-                        actived={queBtnStatus === 2}
-                        onClick={() => handleQuestion(2)}
+                        actived={queBtnStatus === existItem.no}
+                        onClick={() => handleQuestion(existItem.no)}
                       />
                     </div>
                   </div>
                   <div
                     className={clsx(classes.pickItemPartContainer, {
                       [classes.NoneDisplay]:
-                        genderBtStatus === 1 ||
-                        queBtnStatus === 0 ||
-                        queBtnStatus === 2,
+                        genderBtStatus === genderData.both ||
+                        queBtnStatus === existItem.init ||
+                        queBtnStatus === existItem.no,
                     })}
                   >
                     <div className={classes.titleLetter}>
@@ -244,8 +288,10 @@ export default function CreateSceneModal({
                   <div
                     className={clsx(classes.InputsPartContainer, {
                       [classes.NoneDisplay]:
-                        genderBtStatus !== 1 &&
-                        (queBtnStatus === 0 || queBtnStatus === 1),
+                        genderBtStatus !== genderData.both &&
+                        genderBtStatus !== genderData.init &&
+                        (queBtnStatus === existItem.init ||
+                          queBtnStatus === existItem.yes),
                     })}
                   >
                     <div className={classes.titleLetter}>
@@ -286,7 +332,16 @@ export default function CreateSceneModal({
                     />
                   </div>
 
-                  <YellowBtn onClick={handleSubmit} letter="Create" />
+                  <YellowBtn
+                    onClick={handleSubmit}
+                    disabled={
+                      genderBtStatus === genderData.init ||
+                      name === "" ||
+                      rarity === "" ||
+                      category === ""
+                    }
+                    letter="Create"
+                  />
                 </div>
               </div>
             </div>
