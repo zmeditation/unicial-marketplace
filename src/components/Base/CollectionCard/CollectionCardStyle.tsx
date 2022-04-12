@@ -107,9 +107,9 @@ export const CollectionCardStyle = makeStyles((theme: Theme) =>
       fontStyle: "normal",
       color: "#96A1DB",
       fontFamily: "Montserrat",
-      "&:hover": {
-        color: "white",
-      },
+      // "&:hover": {
+      //   color: "white",
+      // },
     },
     editContainerShow: {
       opacity: 100,
@@ -126,13 +126,12 @@ export const StyledDeletePopover = withStyles({
     position: "absolute",
     minWidth: "187px",
     top: "419px",
+    marginTop: "15px",
   },
 })(Popover);
 
 export const StyledDeleteItem = withStyles({
   root: {
-    // color: "#96A1DB",
-    // fontSize: "14px",
     lineHeight: "20px",
     fontWeight: 500,
     minWidth: "187px",
@@ -140,7 +139,9 @@ export const StyledDeleteItem = withStyles({
     cursor: "pointer",
     position: "relative",
     "&:hover": {
-      color: "white",
+      "& $listLabel": {
+        color: "white !important",
+      },
     },
   },
 })(MenuItem);

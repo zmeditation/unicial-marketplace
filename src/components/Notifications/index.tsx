@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "none",
   },
   notificationRoot: {
+    zIndex: 99998,
     position: "fixed",
     top: "30px",
     right: "50px",
@@ -137,7 +138,8 @@ export default function Notifications() {
       <div
         className={
           openAlert === true ? classes.notificationRoot : classes.displayNone
-        }>
+        }
+      >
         {severity === "success" ? (
           <div className={classes.notificationContainer}>
             <div className={classes.notificationPicture}>
@@ -147,7 +149,7 @@ export default function Notifications() {
               <div className={classes.notificationTitle}>{t("Success")}</div>
               <div className={classes.notificationDescription}>{msg}</div>
             </div>
-            <IconButton onClick={handleCloseClick} size='small'>
+            <IconButton onClick={handleCloseClick} size="small">
               <CloseIcon className={classes.closeIcon} />
             </IconButton>
           </div>
@@ -162,7 +164,7 @@ export default function Notifications() {
               </div>
               <div className={classes.notificationDescription}>{msg}</div>
             </div>
-            <IconButton onClick={handleCloseClick} size='small'>
+            <IconButton onClick={handleCloseClick} size="small">
               <CloseIcon className={classes.closeIcon} />
             </IconButton>
           </div>

@@ -36,8 +36,9 @@ export default function BuilderCollections() {
   // showmore Btn relate end
 
   //
-  const [anchorNetwork, setAnchorNetwork] =
-    React.useState<null | HTMLElement>(null);
+  const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
+    null
+  );
   const [itemContent, setitemContent] = React.useState(
     collectionsPlusData[0].content
   );
@@ -122,6 +123,7 @@ export default function BuilderCollections() {
               >
                 {collectionsPlusData.map((item: any, index: any) => (
                   <StyledMenuItem
+                    disableRipple
                     onClick={() => handleItem(item.index)}
                     key={index}
                   >

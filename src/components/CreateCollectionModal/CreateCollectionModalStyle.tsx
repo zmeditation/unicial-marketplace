@@ -17,6 +17,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
   modalRoot: {
+    maxHeight: "600px",
+    overflow: "auto",
     padding: "30px 35px 53px",
     position: "fixed",
     width: "620px",

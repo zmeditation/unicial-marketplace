@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       minHeight: "calc(100vh - 246px)",
       minWidth: "1064px",
       maxWidth: "1064px",
-      margin: "60px auto 60px auto",
+      margin: "40px auto 60px auto",
       position: "relative",
       "& canvas, .react-tile-map ": {
         borderRadius: "15px",
@@ -63,7 +63,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontSize: "17px",
       lineHeight: "20.4px",
-      borderRadius: "7px",
+      borderRadius: "100px",
     },
 
     //noitems realte start
@@ -160,6 +160,7 @@ export const StyledCollectionPopover = withStyles({
     position: "absolute",
     minWidth: "168px",
     top: "419px",
+    marginTop: "7px",
   },
 })(Popover);
 

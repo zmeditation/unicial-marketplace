@@ -63,7 +63,7 @@ export default function CollctionCard({
                 horizontal: "left",
               }}
             >
-              <StyledDeleteItem onClick={() => handleItem()}>
+              <StyledDeleteItem disableRipple onClick={() => handleItem()}>
                 <Box className={classes.listContainer}>
                   <Box className={clsx(classes.listLabel)}>Delete</Box>
                 </Box>

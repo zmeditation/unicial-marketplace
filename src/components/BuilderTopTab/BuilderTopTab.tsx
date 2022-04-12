@@ -40,43 +40,51 @@ export default function TopTab() {
               <div className={classes.topbar}>
                 <div className={classes.tabsLeft}>
                   <BuilderStyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/builder/builder_scenes")}
                     className={
                       buildertoptab_index === BuilderToptabData.builder_scenes
                         ? classes.activetoptab
                         : classes.normaltoptab
-                    }>
+                    }
+                  >
                     {t("Scenes")}
                   </BuilderStyledTopTabBtn>
 
                   <BuilderStyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/builder/builder_land")}
                     className={
                       buildertoptab_index === BuilderToptabData.builder_land
                         ? classes.activetoptab
                         : classes.normaltoptab
-                    }>
+                    }
+                  >
                     {t("Land")}
                   </BuilderStyledTopTabBtn>
 
                   <BuilderStyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/builder/builder_names")}
                     className={
                       buildertoptab_index === BuilderToptabData.builder_names
                         ? classes.activetoptab
                         : classes.normaltoptab
-                    }>
+                    }
+                  >
                     {t("Names")}
                   </BuilderStyledTopTabBtn>
 
                   <BuilderStyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/builder/builder_collections")}
                     className={
                       buildertoptab_index ===
                       BuilderToptabData.builder_collections
                         ? classes.activetoptab
                         : classes.normaltoptab
-                    }>
+                    }
+                  >
                     {t("Collections")}
                   </BuilderStyledTopTabBtn>
                 </div>

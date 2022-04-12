@@ -39,7 +39,6 @@ export default function InputBorderListDropdown({
     handleChange(data[index - 1].name);
     setSuccess(false);
     // setInputValue(data[index - 1].name);
-    console.log("1");
     setOpenStatus(false);
   };
   const handleIcon = () => {
@@ -59,7 +58,6 @@ export default function InputBorderListDropdown({
       setResultData(data);
       setOpenStatus(false);
     } else if (value !== "" && success) {
-      console.log("2");
       setOpenStatus(true);
       for (let i = 0; i < data.length; i++) {
         if (data[i]?.name?.toLowerCase() === inputValue.toLowerCase()) {

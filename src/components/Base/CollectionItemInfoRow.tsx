@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    pricecContainer: {
+    priceContainer: {
       color: "white",
       fontFamily: "Montserrat",
       fontWeight: 600,
@@ -95,6 +95,9 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
       display: "flex",
+      [theme.breakpoints.down(726)]: {
+        justifyContent: "left",
+      },
     },
     whiteTokenIcon: {
       marginRight: "3px",
@@ -111,7 +114,7 @@ const useStyles = makeStyles((theme: Theme) =>
       cursor: "pointer",
       fontFamily: "Montserrat",
       fontWeight: 600,
-      fontSize: "18px",
+      fontSize: "16px",
       lineHeight: "26px",
       background: "linear-gradient(to right, #FF7C4C 10%, #FFB03A 100%)",
       WebkitBackgroundClip: "text",
@@ -147,7 +150,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       "& i": {
-        fontSize: "21px",
+        fontSize: "18px",
         fontWeight: 100,
         marginRight: "1px",
         background: "linear-gradient(to right, #7F64E2 10%, #41A6EF 100%)",
@@ -159,7 +162,7 @@ const useStyles = makeStyles((theme: Theme) =>
       cursor: "pointer",
       fontFamily: "Montserrat",
       fontWeight: 600,
-      fontSize: "18px",
+      fontSize: "16px",
       lineHeight: "26px",
       background: "linear-gradient(to right, #7F64E2 10%, #41A6EF 100%)",
       WebkitBackgroundClip: "text",
@@ -263,7 +266,7 @@ export default function CollectionItemInfoRow({
                 Set Price
               </div>
             ) : (
-              <div className={classes.pricecContainer}>
+              <div className={classes.priceContainer}>
                 <img src={whiteTokenIcon} className={classes.whiteTokenIcon} />{" "}
                 12
               </div>
@@ -303,6 +306,7 @@ export default function CollectionItemInfoRow({
                 >
                   {editnotYetdonedropdownData.map((item: any, index: any) => (
                     <StyledMenuItem
+                      disableRipple
                       onClick={() => handleItem(item.index)}
                       key={index}
                     >
@@ -348,6 +352,7 @@ export default function CollectionItemInfoRow({
                 >
                   {editDonedropdownData.map((item: any, index: any) => (
                     <StyledMenuItem
+                      disableRipple
                       onClick={() => handleItem(item.index)}
                       key={index}
                     >

@@ -10,10 +10,9 @@ export const BuilderTopTabStyle = makeStyles((theme: Theme) =>
       alignItems: "center",
       height: "71px",
       color: "#fff",
-      margin: "0px 50px",
+      margin: "20px 0px",
       paddingRight: "16px",
       paddingLeft: "16px",
-      borderBottom: "1px solid #282E4E",
       [theme.breakpoints.down(992)]: {
         marginLeft: "0px !important",
         marginRight: "0px !important",

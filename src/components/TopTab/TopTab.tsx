@@ -104,6 +104,7 @@ export default function TopTab() {
               <div className={classes.topbar}>
                 <div className={classes.tabsLeft}>
                   <StyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/lands")}
                     className={
                       toptab_index === topTabIndex.land
@@ -115,6 +116,7 @@ export default function TopTab() {
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
+                    disableRipple
                     onClick={() =>
                       handlehead(
                         "/browse?section=wearables&vendor=decentraland&page=1&sortBy=recently_listed&onlyOnSale=true"
@@ -130,6 +132,7 @@ export default function TopTab() {
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/account?section=collections")}
                     className={
                       toptab_index === topTabIndex.mystore
@@ -141,6 +144,7 @@ export default function TopTab() {
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/auction")}
                     className={
                       toptab_index === topTabIndex.auction

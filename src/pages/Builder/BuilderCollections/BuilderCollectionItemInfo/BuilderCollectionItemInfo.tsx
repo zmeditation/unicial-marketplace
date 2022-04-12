@@ -97,6 +97,7 @@ export default function BuilderCollectionItemInfo() {
               >
                 {itemMoreData.map((item: any, index: any) => (
                   <StyledMenuItem
+                    disableRipple
                     onClick={() => handleItem(item.index)}
                     key={index}
                   >

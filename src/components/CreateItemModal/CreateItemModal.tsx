@@ -117,7 +117,6 @@ export default function CreateSceneModal({
         }
         formData.append("hashName", hashName);
         formData.append("contents", contents);
-        console.log("contents", contents);
       }
     };
     reader.readAsArrayBuffer(selectedFile);

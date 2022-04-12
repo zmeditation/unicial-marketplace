@@ -12,6 +12,8 @@ import whiteTokenIcon from "./../../assets/svg/whiteToken.png";
 import InfoIcon from "../../assets/svg/Info.png";
 import makeBlockie from "ethereum-blockies-base64";
 import RoundBackBtn from "../Base/RoundBackBtn";
+import { ethers } from "ethers";
+import { showAlert } from "../../store/alert";
 
 interface Props {
   show: boolean;
@@ -22,15 +24,19 @@ export default function SettingPriceModal({ show, onClose }: Props) {
   const address = "0x8734CB972d36a740Cc983d5515e160C373A4a016";
   const emptyaddress = "0x00000000000000000000000000000";
   const classes = useStyles();
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [showStatus, setShowStatus] = useState(show);
   const [price, setPrice] = useState("");
+  const [beneficiary, setBeneficiary] = useState("");
+
   const [nonefreeStatus, setNonefreeStatus] = useState(true);
   const [freeStatus, setFreeStatus] = useState(false);
 
+  const [submitBtnStatus, setSubmitBtnStatus] = useState(false);
+  const [isCorrectAddress, setIsCorrectAddress] = useState(false);
   const handleNonefreeBtn = () => {
     setNonefreeStatus(!nonefreeStatus);
     setFreeStatus(false);
@@ -42,10 +48,61 @@ export default function SettingPriceModal({ show, onClose }: Props) {
   const handlePrice = (e: any) => {
     setPrice(e.target.value);
   };
+  const handleBeneficiary = (e: any) => {
+    setBeneficiary(e.target.value);
+  };
+
+  const testAddress = (address: string) => {
+    try {
+      ethers.utils.getAddress(address);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  };
+  const handleSubmit = () => {
+    if (isCorrectAddress === false) {
+      dispatch(
+        showAlert({
+          message: "Invaild address",
+          severity: "error",
+        })
+      );
+    }
+  };
+  useEffect(() => {
+    if (freeStatus === true) {
+      setIsCorrectAddress(true);
+    } else {
+      let result = testAddress(beneficiary);
+      result === true ? setIsCorrectAddress(true) : setIsCorrectAddress(false);
+    }
+  }, [beneficiary]);
 
   useEffect(() => {
     setShowStatus(show);
   }, [show]);
+
+  useEffect(() => {
+    if (freeStatus === true) {
+      setSubmitBtnStatus(true);
+      return;
+    } else if (price === "" || beneficiary === "") {
+      setSubmitBtnStatus(false);
+      return;
+    } else {
+      setSubmitBtnStatus(true);
+      return;
+    }
+  }, [price, beneficiary]);
+
+  useEffect(() => {
+    if (nonefreeStatus === true) {
+      setBeneficiary(address);
+    } else {
+      setBeneficiary("");
+    }
+  }, [freeStatus, nonefreeStatus]);
   let status = 1;
   return (
     <>
@@ -90,12 +147,13 @@ export default function SettingPriceModal({ show, onClose }: Props) {
               </div>
               {nonefreeStatus === false && freeStatus === false ? (
                 <>
-                  <div className={classes.titleLetter}>Price</div>
+                  <div className={classes.titleLetter}>PRICE</div>
 
                   <FormControl className={classes.formContainer}>
                     <StyledInput
+                      type="number"
                       placeholder="100"
-                      //   onChange={(e) => handleChange(e)}
+                      onChange={(e) => handlePrice(e)}
                       startAdornment={
                         <InputAdornment position="start">
                           <img src={whiteTokenIcon} alt="settingIcon" />
@@ -104,14 +162,14 @@ export default function SettingPriceModal({ show, onClose }: Props) {
                     />
                   </FormControl>
                   <div className={classes.titleLetter}>
-                    Beneficiary{" "}
+                    BENEFICIARY{" "}
                     <img src={InfoIcon} className={classes.infoIcon} />
                   </div>
                   <FormControl className={classes.formContainer}>
                     <StyledInput
                       placeholder="0x"
-                      value=""
-                      //   onChange={(e) => handleChange(e)}
+                      value={beneficiary}
+                      onChange={(e) => handleBeneficiary(e)}
                       endAdornment={
                         <InputAdornment position="end">
                           <img
@@ -126,12 +184,13 @@ export default function SettingPriceModal({ show, onClose }: Props) {
                 </>
               ) : nonefreeStatus === true && freeStatus === false ? (
                 <>
-                  <div className={classes.titleLetter}>Price</div>
+                  <div className={classes.titleLetter}>PRICE</div>
 
                   <FormControl className={classes.formContainer}>
                     <StyledInput
+                      type="number"
                       placeholder="100"
-                      //   onChange={(e) => handleChange(e)}
+                      onChange={(e) => handlePrice(e)}
                       startAdornment={
                         <InputAdornment position="start">
                           <img src={whiteTokenIcon} alt="settingIcon" />
@@ -140,14 +199,14 @@ export default function SettingPriceModal({ show, onClose }: Props) {
                     />
                   </FormControl>
                   <div className={classes.titleLetter}>
-                    Beneficiary{" "}
+                    BENEFICIARY{" "}
                     <img src={InfoIcon} className={classes.infoIcon} />
                   </div>
                   <FormControl className={classes.formContainer}>
                     <StyledInput
                       placeholder="0x"
-                      value={address}
-                      //   onChange={(e) => handleChange(e)}
+                      value={beneficiary}
+                      onChange={(e) => handleBeneficiary(e)}
                       endAdornment={
                         <InputAdornment position="end">
                           <img
@@ -162,33 +221,52 @@ export default function SettingPriceModal({ show, onClose }: Props) {
                 </>
               ) : (
                 <>
-                  <div className={classes.titleLetter}>Price</div>
+                  <div className={classes.titleLetter}>PRICE</div>
 
                   <FormControl className={classes.formContainer}>
                     <StyledInput
+                      type="number"
+                      onChange={(e) => handlePrice(e)}
                       placeholder="0"
                       disabled
                       startAdornment={
                         <InputAdornment position="start">
                           <img src={whiteTokenIcon} alt="settingIcon" />
+                          <span className={classes.freePlaceholderLetter}>
+                            0
+                          </span>
                         </InputAdornment>
                       }
                     />
                   </FormControl>
                   <div className={classes.titleLetter}>
-                    Beneficiary{" "}
+                    BENEFICIARY{" "}
                     <img src={InfoIcon} className={classes.infoIcon} />
                   </div>
                   <FormControl className={classes.formContainer}>
                     <StyledInput
+                      type="number"
+                      onChange={(e) => handleBeneficiary(e)}
                       placeholder={emptyaddress}
                       disabled
-                      value=""
+                      value={beneficiary}
                       className={classes.disablecursor}
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <span
+                            className={clsx(
+                              classes.freePlaceholderLetter,
+                              classes.noneMarginLeft
+                            )}
+                          >
+                            {emptyaddress}
+                          </span>
+                        </InputAdornment>
+                      }
                       endAdornment={
                         <InputAdornment position="end">
                           <img
-                            src={makeBlockie(address)}
+                            src={makeBlockie(emptyaddress)}
                             className={classes.addressImg}
                             alt="address"
                           />
@@ -198,8 +276,19 @@ export default function SettingPriceModal({ show, onClose }: Props) {
                   </FormControl>
                 </>
               )}
-
-              <YellowBtn letter="Submit" className={classes.subBtn} />
+              {submitBtnStatus === false ? (
+                <YellowBtn
+                  disabled
+                  letter="Submit"
+                  className={classes.subBtn}
+                />
+              ) : (
+                <YellowBtn
+                  letter="Submit"
+                  className={classes.subBtn}
+                  onClick={handleSubmit}
+                />
+              )}
             </div>
           </div>
         ) : (

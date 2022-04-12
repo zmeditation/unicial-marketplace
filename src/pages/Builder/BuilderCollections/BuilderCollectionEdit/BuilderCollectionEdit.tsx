@@ -100,6 +100,7 @@ export default function BuilderCollectionEdit() {
               >
                 {collectionEditMoreIconData.map((item: any, index: any) => (
                   <StyledMenuItem
+                    disableRipple
                     onClick={() => handleItem(item.index)}
                     key={index}
                   >
