@@ -36,9 +36,8 @@ export default function BuilderCollections() {
   // showmore Btn relate end
 
   //
-  const [anchorNetwork, setAnchorNetwork] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorNetwork, setAnchorNetwork] =
+    React.useState<null | HTMLElement>(null);
   const [itemContent, setitemContent] = React.useState(
     collectionsPlusData[0].content
   );
@@ -152,7 +151,7 @@ export default function BuilderCollections() {
                   )
                   .map((item: any, key: any) => {
                     return (
-                      <Grid item xs={12} sm={6} md={3}>
+                      <Grid item xs={12} sm={6} md={3} key={key}>
                         <CollectionCard
                           name={item.name}
                           count={item.count}

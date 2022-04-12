@@ -6,9 +6,15 @@ export const tabs = {
   land: 1,
 };
 export const genderData = {
+  init: "init",
   both: "Both",
   male: "Male",
   female: "Female",
+};
+export const existItem = {
+  init: "",
+  yes: "yes",
+  no: "no",
 };
 export const showMoreCount = 6;
 export const someShowMore = 4;
@@ -48,37 +54,37 @@ export const editorItemsData = [
 ];
 
 export const editDonedropdownData = [
-{
-  index: 1,
-  content: "See details",
-},
-{
-  index: 2,
-  content: "Open in editor",
-},
-{
-  index: 3,
-  content: "Edit price",
-},
-{
-  index: 4,
-  content: "Remove from collection",
-},
+  {
+    index: 1,
+    content: "See details",
+  },
+  {
+    index: 2,
+    content: "Open in editor",
+  },
+  {
+    index: 3,
+    content: "Edit price",
+  },
+  {
+    index: 4,
+    content: "Remove from collection",
+  },
 ];
 
 export const editnotYetdonedropdownData = [
-{
-  index: 1,
-  content: "See details",
-},
-{
-  index: 2,
-  content: "Open in editor",
-},
-{
-  index: 4,
-  content: "Remove from collection",
-},
+  {
+    index: 1,
+    content: "See details",
+  },
+  {
+    index: 2,
+    content: "Open in editor",
+  },
+  {
+    index: 4,
+    content: "Remove from collection",
+  },
 ];
 
 export const editorCollectionsData = [
@@ -171,26 +177,26 @@ export const collectionEditMoreIconData = [
 ];
 
 export const builderCollectionData = [
-{
-  name: "New Collection1",
-  count : 3
-},
-{
-  name: "New Collection2",
-  count : 3
-},
-{
-  name: "New Collection3",
-  count : 3
-},
-{
-  name: "New Collection4",
-  count : 3
-},
-{
-  name: "New Collection5",
-  count : 3
-},
+  {
+    name: "New Collection1",
+    count: 3,
+  },
+  {
+    name: "New Collection2",
+    count: 3,
+  },
+  {
+    name: "New Collection3",
+    count: 3,
+  },
+  {
+    name: "New Collection4",
+    count: 3,
+  },
+  {
+    name: "New Collection5",
+    count: 3,
+  },
 ];
 
 export const createCardletterData = {
