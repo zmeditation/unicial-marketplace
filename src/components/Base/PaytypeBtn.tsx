@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme: Theme) =>
     activedBorder: {
       border: "double 1px transparent",
       backgroundImage:
-        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+        "linear-gradient(#282E4E, #282E4E), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
       backgroundClip: "content-box, border-box",
       backgroundOrigin: "border-box",
     },
     letter: {
-      margin: "0px 12px 1px",
+      margin: "0px 12px 0px",
     },
   })
 );

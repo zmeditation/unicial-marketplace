@@ -1,4 +1,10 @@
-import { createStyles, Theme } from "@material-ui/core";
+import {
+  createStyles,
+  MenuItem,
+  Popover,
+  Theme,
+  withStyles,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
 export const CollectionCardStyle = makeStyles((theme: Theme) =>
@@ -95,17 +101,47 @@ export const CollectionCardStyle = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
     },
     listLabel: {
-      fontSize: "14px",
-      lineHeight: "20px",
-      fontWeight: 400,
+      fontSize: "15px",
+      lineHeight: "15px",
+      fontWeight: 600,
       fontStyle: "normal",
       color: "#96A1DB",
-      "&:hover": {
-        color: "white",
-      },
+      fontFamily: "Montserrat",
+      // "&:hover": {
+      //   color: "white",
+      // },
     },
     editContainerShow: {
       opacity: 100,
     },
   })
 );
+
+export const StyledDeletePopover = withStyles({
+  paper: {
+    backgroundColor: "#1A1F37",
+    boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05 )",
+    marginBottom: "70px",
+    borderRadius: "6px",
+    position: "absolute",
+    minWidth: "187px",
+    top: "419px",
+    marginTop: "15px",
+  },
+})(Popover);
+
+export const StyledDeleteItem = withStyles({
+  root: {
+    lineHeight: "20px",
+    fontWeight: 500,
+    minWidth: "187px",
+    padding: "18px",
+    cursor: "pointer",
+    position: "relative",
+    "&:hover": {
+      "& $listLabel": {
+        color: "white !important",
+      },
+    },
+  },
+})(MenuItem);

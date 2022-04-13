@@ -113,6 +113,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer ",
   },
   editModalRoot: {
+    maxHeight: "720px",
+    overflow: "auto",
     padding: "30px 35px",
     position: "fixed",
     width: "773px",

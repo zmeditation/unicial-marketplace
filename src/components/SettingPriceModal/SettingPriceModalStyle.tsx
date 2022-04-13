@@ -18,6 +18,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
   modalRoot: {
+    maxHeight: "600px",
+    overflow: "auto",
     padding: "30px 84px",
     position: "fixed",
     width: "620px",
@@ -96,7 +98,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
   subBtn: {
     marginTop: "13px",
-    height: "54px",
     width: "100%",
   },
   nonefreeBtn: {
@@ -109,6 +110,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
     position: "absolute",
     top: "20px",
     right: "30px",
+  },
+  freePlaceholderLetter: {
+    color: "#575f8a",
+    fontSize: "16px",
+    lineHeight: "19px",
+    marginLeft: "20px",
+  },
+  noneMarginLeft: {
+    marginLeft: "0px",
   },
 }));
 export const StyledInput = withStyles((theme) => ({

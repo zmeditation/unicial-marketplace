@@ -5,18 +5,16 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       cursor: "pointer",
       borderRadius: "100px",
-      minWidth: "40px",
-      width: "40px",
-      height: "40px",
+      minWidth: "35px",
+      width: "35px",
+      height: "35px",
       justifyContent: "center",
       display: "flex",
       alignItems: "center",
       background: "#444858",
       "& i": {
-        fontSize: "21px",
+        fontSize: "15px",
         fontWeight: 100,
-        marginTop: "1px",
-        marginRight: "1px",
       },
     },
   })

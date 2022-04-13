@@ -64,12 +64,12 @@ export const BuilderCollectionItemInfoStyle = makeStyles((theme: Theme) =>
     },
     moreIconContainer: {
       cursor: "pointer",
-      width: "44px",
-      height: "44px",
+      width: "60px",
+      height: "42px",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      borderRadius: "9px",
+      borderRadius: "25px",
       border: "double 1px transparent",
       backgroundImage:
         "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",

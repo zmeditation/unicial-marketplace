@@ -1,7 +1,8 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import { useState } from "react";
-
+import RoundBackBtn from "./RoundBackBtn";
+import { useNavigate } from "react-router";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -22,24 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: "20px",
     },
     colorLetter: {
+      cursor: "pointer",
       background: "linear-gradient(to right, #FF7C4C 0%, #FFB03A 100%)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
-    },
-    closeIcon: {
-      cursor: "pointer",
-      borderRadius: "100px",
-      minWidth: "40px",
-      width: "40px",
-      height: "40px",
-      justifyContent: "center",
-      display: "flex",
-      alignItems: "center",
-      background: "#444858",
-      "& i": {
-        fontSize: "21px",
-        fontWeight: 100,
-      },
     },
     Nonedisplay: {
       display: "none",
@@ -54,9 +41,14 @@ interface Props {
 
 export default function CoolNotification({ className, onClick }: Props) {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [showStatus, setShowStatus] = useState(true);
   const handleClose = () => {
     setShowStatus(false);
+  };
+
+  const handleNavigate = () => {
+    navigate("/builder/builderItem-editor");
   };
 
   return (
@@ -67,12 +59,12 @@ export default function CoolNotification({ className, onClick }: Props) {
     >
       <div className={classes.descContainer}>
         Cool! Now you can start working on your items. &nbsp;{" "}
-        <span className={classes.colorLetter}>Click here</span> &nbsp; to open
-        the editor or click the edit button on any item.
+        <span className={classes.colorLetter} onClick={handleNavigate}>
+          Click here
+        </span>{" "}
+        &nbsp; to open the editor or click the edit button on any item.
       </div>
-      <div className={classes.closeIcon} onClick={handleClose}>
-        <i className="fas fa-times"></i>
-      </div>
+      <RoundBackBtn onBack={handleClose} type="multiply" />
     </div>
   );
 }

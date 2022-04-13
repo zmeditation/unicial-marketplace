@@ -1,12 +1,13 @@
-import { CollectionCardStyle } from "./CollectionCardStyle";
+import {
+  CollectionCardStyle,
+  StyledDeletePopover,
+  StyledDeleteItem,
+} from "./CollectionCardStyle";
 import PussyhairPng from "../../../assets/img/Pussyhair.png";
 import moreIcon from "../../../assets/svg/more.png";
 import DeletemoreIcon from "./../../Base/DeletemoreIcon";
 import { Box } from "@material-ui/core";
-import {
-  StyledCollectionPopover,
-  StyledMenuItem,
-} from "./../../../pages/Builder/BuilderCollections/BuilderCollectionsStyle";
+
 import React from "react";
 import clsx from "clsx";
 interface CollctionCardProps {
@@ -47,27 +48,27 @@ export default function CollctionCard({
               <i className="fas fa-ellipsis-h"></i>
             </Box>
 
-            <StyledCollectionPopover
+            <StyledDeletePopover
               id="simple-menu"
               anchorEl={anchorNetwork}
               keepMounted
               open={Boolean(anchorNetwork)}
               onClose={handleClose}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right",
+                vertical: "top",
+                horizontal: "left",
               }}
               transformOrigin={{
                 vertical: "top",
-                horizontal: "right",
+                horizontal: "left",
               }}
             >
-              <StyledMenuItem onClick={() => handleItem()}>
+              <StyledDeleteItem disableRipple onClick={() => handleItem()}>
                 <Box className={classes.listContainer}>
                   <Box className={clsx(classes.listLabel)}>Delete</Box>
                 </Box>
-              </StyledMenuItem>
-            </StyledCollectionPopover>
+              </StyledDeleteItem>
+            </StyledDeletePopover>
           </div>
           <img src={PussyhairPng} className={classes.image} onClick={onClick} />
         </div>

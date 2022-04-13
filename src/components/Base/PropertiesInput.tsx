@@ -122,8 +122,6 @@ const PropertiesInput = ({
     setInputValue(e.target.value);
   };
 
-  console.log(itemValue);
-
   return (
     <>
       <div
@@ -131,21 +129,24 @@ const PropertiesInput = ({
           type === "dropdown" ? classes.rootIncludePoiner : classes.root,
           className
         )}
-        onClick={type === "dropdown" ? handleDropdown : () => {}}>
+        onClick={type === "dropdown" ? handleDropdown : () => {}}
+      >
         <div className={classes.inputAdor}>{name}</div>
         {type === "dropdown" ? (
           <div className={classes.dropdownRoot}>
             {itemValue}
-            <i className='fas fa-caret-down'></i>
+            <i className="fas fa-caret-down"></i>
           </div>
         ) : (
           <input
             className={classes.input}
             value={inputValue}
-            onChange={(e) => handleChange(e)}></input>
+            onChange={(e) => handleChange(e)}
+          ></input>
         )}
         <div
-          className={dropdownStatus ? classes.listPanel : classes.displayNone}>
+          className={dropdownStatus ? classes.listPanel : classes.displayNone}
+        >
           {item?.map((val: any, key: any) => {
             return (
               <div
@@ -153,7 +154,8 @@ const PropertiesInput = ({
                 className={
                   val === itemValue ? classes.focusListItem : classes.listItem
                 }
-                onClick={(e) => handleListClick(val)}>
+                onClick={(e) => handleListClick(val)}
+              >
                 {val}
               </div>
             );

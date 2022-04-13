@@ -123,6 +123,7 @@ export default function BuilderCollections() {
               >
                 {collectionsPlusData.map((item: any, index: any) => (
                   <StyledMenuItem
+                    disableRipple
                     onClick={() => handleItem(item.index)}
                     key={index}
                   >
@@ -152,7 +153,7 @@ export default function BuilderCollections() {
                   )
                   .map((item: any, key: any) => {
                     return (
-                      <Grid item xs={12} sm={6} md={3}>
+                      <Grid item xs={12} sm={6} md={3} key={key}>
                         <CollectionCard
                           name={item.name}
                           count={item.count}
