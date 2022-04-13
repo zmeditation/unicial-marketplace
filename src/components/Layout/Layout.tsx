@@ -130,7 +130,7 @@ export default function Layout() {
           />
           <Route path="/builder/builder_land" element={<BuilderLand />} />
           <Route path="/builder/builder_names" element={<BuilderNames />} />
-          <Route path="/builder/builder_claim-name" element={<ClaimName />} />
+          <Route path="/builder/builder_claim_name" element={<ClaimName />} />
           <Route
             path="/builder/builder_collections"
             element={<BuilderCollections />}

@@ -29,7 +29,7 @@ export default function BuilderNames() {
           <div className={classes.functionBtn}>
             <div
               className={classes.functionIcon}
-              onClick={() => navigate("/builder/builder_claim-name")}>
+              onClick={() => navigate("/builder/builder_claim_name")}>
               <i className='far fa-plus'></i>
             </div>
           </div>
@@ -67,10 +67,10 @@ export default function BuilderNames() {
               <br />
               <span
                 className={classes.importantLink}
-                onClick={() => navigate("/builder/builder_claim-name")}>
+                onClick={() => navigate("/builder/builder_claim_name")}>
                 {t("Click here")}
               </span>{" "}
-              {t("to get Started")}.
+              {t("to get started")}.
             </span>
           </div>
         )}
