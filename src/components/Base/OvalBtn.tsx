@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
       border: "double 1px transparent",
       borderRadius: "100px",
       backgroundImage:
-        "linear-gradient(#21263f, #21263f), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
+        "linear-gradient(#282E4E, #282E4E), radial-gradient(circle at top left, #7F64E2, #41A6EF)",
       backgroundClip: "content-box, border-box",
       backgroundOrigin: "border-box",
       color: "#ffffff",

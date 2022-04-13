@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useStyles } from "./ImportSceneModalStyle";
 import clsx from "clsx";
 import { useState } from "react";
+import RoundBackBtn from "../Base/RoundBackBtn";
 
 interface ImportSceneModalProps {
   show: boolean;
@@ -27,9 +28,7 @@ export default function ImportSceneModal({
     <>
       <div className={show ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
-          <div className={classes.closeIcon} onClick={onClose}>
-            <i className='fas fa-times'></i>
-          </div>
+          <RoundBackBtn className={classes.closeIcon} onBack={onClose} type="multiply"/>
           <div className={classes.title}>{t("Import Scene")}</div>
           <div className={classes.description}>
             {t("You can import any Scene made with the Builder")}!
