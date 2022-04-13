@@ -6,6 +6,7 @@ import triangleIcon from "../../assets/svg/triangle.png";
 import materialIcon from "../../assets/svg/material.png";
 import textureIcon from "../../assets/svg/texture.png";
 import PropertiesInput from "../Base/PropertiesInput";
+import PropertiesCategory from "../Base/PropertiesCategory";
 
 export default function PropertySideBar() {
   const classes = PropertySideBarStyle();
@@ -92,14 +93,14 @@ export default function PropertySideBar() {
           </PropertyLayerSetting>
           <PropertyLayerSetting title='Overrides'>
             <div className={classes.overridesRoot}>
-              <PropertiesInput
+              <PropertiesCategory
                 name='Replaces'
                 type='dropdown'
                 className={classes.overridesInput}
                 defaultInputValue='Select an option'
                 item={categoryData}
               />
-              <PropertiesInput
+              <PropertiesCategory
                 name='Hides'
                 type='dropdown'
                 item={rareData}
@@ -107,7 +108,11 @@ export default function PropertySideBar() {
               />
             </div>
           </PropertyLayerSetting>
-          <PropertyLayerSetting title='Tags'></PropertyLayerSetting>
+          <PropertyLayerSetting title='Tags'>
+            <div className={classes.tagsRoot}>
+              <PropertiesCategory name='' defaultInputValue='' />
+            </div>
+          </PropertyLayerSetting>
         </div>
       </div>
     </>
