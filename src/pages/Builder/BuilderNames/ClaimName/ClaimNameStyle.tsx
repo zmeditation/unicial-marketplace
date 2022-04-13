@@ -62,6 +62,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "16px",
     overflow: "hidden",
     display: "inline-block",
+    [theme.breakpoints.down(996)]: {
+      width: "200px",
+    },
     [theme.breakpoints.down(769)]: {
       width: "100%",
       height: "auto",
@@ -112,6 +115,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     "& .MuiSwitch-thumb": {
       marginTop: "unset !important",
       marginBottom: "unset !important",
+      marginLeft: "unset !important",
       width: "22px !important",
       height: "22px !important",
     },
@@ -177,19 +181,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: "#fb895a",
     cursor: "pointer",
   },
-  normalshape: {},
+  normalshape: {
+    margin: "0 5px",
+  },
   alignCenter: {
     display: "flex",
     alignItems: "center",
   },
   inputAdor: {
-    // borderLeft: "solid 1px #32395d",
     paddingLeft: "10px",
     height: "100%",
     color: "#96A1DB",
   },
   inputAdorCaution: {
-    // borderLeft: "solid 1px #32395d",
     paddingLeft: "10px",
     height: "100%",
     color: "red",

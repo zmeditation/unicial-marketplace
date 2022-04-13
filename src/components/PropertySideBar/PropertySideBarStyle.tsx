@@ -94,5 +94,8 @@ export const PropertySideBarStyle = makeStyles((theme: Theme) =>
     overridesInput: {
       marginBottom: "9px",
     },
+    tagsRoot:{
+      padding: "25px 27px 58px 27px",
+    },
   })
 );

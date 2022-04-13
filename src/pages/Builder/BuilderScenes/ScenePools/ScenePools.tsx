@@ -84,10 +84,10 @@ export default function ScenePools() {
               <br />
               <span
                 className={classes.importantLink}
-                onClick={() => navigate("/builder/builder_claim-name")}>
+                onClick={() => navigate("/builder/builder_claim_name")}>
                 {t("Click here")}
               </span>{" "}
-              {t("to get Started")}.
+              {t("to get started")}.
             </span>
           </div>
         )}

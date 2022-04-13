@@ -23,6 +23,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "10px",
+    textAlign: "center",
     zIndex: 99999,
     [theme.breakpoints.down(900)]: {
       minWidth: "calc(100% - 32px) !important",
@@ -34,19 +35,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     position: "absolute",
     top: "20px",
     right: "30px",
-    cursor: "pointer",
-    borderRadius: "100px",
-    minWidth: "40px",
-    width: "40px",
-    height: "40px",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#444858",
-    display: "flex",
-    "& i": {
-      fontSize: "21px",
-      fontWeight: 100,
-    },
   },
   btnRoot: {
     display: "flex",

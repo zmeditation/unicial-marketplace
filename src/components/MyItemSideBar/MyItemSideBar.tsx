@@ -107,7 +107,7 @@ export default function MyItemSideBar({
             <div className={classes.title}>COLLECTIONS</div>
             <div className={classes.scrollContainer}>
               {editorCollectionsData.map((item: any, key: any) => {
-                return <CollectionRow name={item.name} count={item.count} />;
+                return <CollectionRow name={item.name} count={item.count} key={key} />;
               })}
             </div>
           </div>

@@ -106,7 +106,7 @@ export default function BuilderScenes() {
             <span className={classes.importantLink} onClick={handleCreateModal}>
               {t("Click here")}
             </span>{" "}
-            {t("to get Started")}.
+            {t("to get started")}.
           </span>
         </div>
         <div className={clsx(classes.createBtns, classes.secondPart)}>
