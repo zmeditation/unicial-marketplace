@@ -16,6 +16,9 @@ export const NameCardStyle = makeStyles((theme: Theme) =>
         cursor: "pointer",
       },
     },
+    nameRoot:{
+      marginLeft: "7.58px",
+    },
     header: {
       display: "flex",
       justifyContent: "space-between",

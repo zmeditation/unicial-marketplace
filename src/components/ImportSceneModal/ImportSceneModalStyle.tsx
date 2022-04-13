@@ -23,6 +23,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     background: "#282E4E",
     boxShadow: "0px 0px 30px rgba(55, 55, 79, 0.05)",
     borderRadius: "10px",
+    textAlign: "center",
     zIndex: 99999,
     [theme.breakpoints.down(900)]: {
       minWidth: "calc(100% - 32px) !important",

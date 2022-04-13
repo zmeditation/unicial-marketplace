@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import NameCard from "../../../components/Base/NameCard/NameCard";
+import OvalBtn from "../../../components/Base/OvalBtn";
 import BuilderTopTab from "../../../components/BuilderTopTab/BuilderTopTab";
 import { ShowMoreLessBtn } from "../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
 import { NamesData, someShowMore } from "../../../config/constant";
@@ -27,11 +28,9 @@ export default function BuilderNames() {
         <div className={classes.createBtns}>
           <div className={classes.resultStatus}>0 {t("RESULTS")}</div>
           <div className={classes.functionBtn}>
-            <div
-              className={classes.functionIcon}
-              onClick={() => navigate("/builder/builder_claim_name")}>
-              <i className='far fa-plus'></i>
-            </div>
+            <OvalBtn
+              onClick={() => navigate("/builder/builder_claim_name")}
+            />
           </div>
         </div>
         {NamesData !== undefined && NamesData.length !== 0 ? (

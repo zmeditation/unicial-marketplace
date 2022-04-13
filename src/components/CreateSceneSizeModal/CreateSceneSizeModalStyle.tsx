@@ -117,6 +117,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     justifyContent: "center",
     padding: "10px",
+    minHeight: "237px",
   },
   squareRootLarge: {
     display: "flex",

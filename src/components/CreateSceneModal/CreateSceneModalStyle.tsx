@@ -129,7 +129,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     verticalAlign: "Top",
     opacity: "50%",
     marginBottom: "8px",
-    marginLeft: "15px",
     marginTop: "24px",
   },
   descriptionTextField: {

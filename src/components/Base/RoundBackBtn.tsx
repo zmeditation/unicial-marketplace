@@ -1,5 +1,3 @@
-/** @format */
-
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import leftArrow from "../../assets/svg/leftarrow_icon.svg";
 import multipylIcon from "../../assets/svg/multiply_icon.svg";

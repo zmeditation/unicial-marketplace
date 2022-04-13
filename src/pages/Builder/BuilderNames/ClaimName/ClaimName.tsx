@@ -19,10 +19,6 @@ const ClaimName = () => {
   const { t } = useTranslation();
   const [name, setName] = useState("");
 
-  const handleToName = () => {
-    navigate("/builder/builder_names");
-  };
-
   const handleNameChange = (e: any) => {
     if (e.target.value.length < 16) {
       setName(e.target.value);
@@ -32,7 +28,10 @@ const ClaimName = () => {
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>
-        <RoundBackBtn className={classes.backIcon} onBack={handleToName} />
+        <RoundBackBtn
+          className={classes.backIcon}
+          onBack={() => navigate("/builder/builder_names")}
+        />
         <div className={classes.bidCard}>
           <div className={classes.leftCard}>
             <div className={classes.imgContent}>
@@ -46,7 +45,7 @@ const ClaimName = () => {
             <div className={classes.title}>{t("Claim a unique Name")}</div>
             <div className={classes.subtitle}>
               {t(
-                "Unique names can be assigned to your avatar for use as an alias, or ther can be assigned to parcels"
+                "Unique names can be assigned to your avatar for use as an alias, or they can be assigned to parcels"
               )}
               .
             </div>
@@ -130,7 +129,7 @@ const ClaimName = () => {
               <ActionButton
                 color='dark'
                 className={classes.cancelchange}
-                onClick={() => navigate("/account/estate/create")}>
+                onClick={() => navigate("/builder/builder_names")}>
                 {t("CANCEL")}
               </ActionButton>
             </div>

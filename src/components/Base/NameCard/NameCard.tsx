@@ -18,7 +18,7 @@ export default function NameCard({ mainName, price }: ProductCardProps) {
     <>
       <div className={classes.root}>
         <div className={classes.header}>
-          <Tag color="NameColor" letter="NAME" />
+          <Tag color="NameColor" letter="NAME" className={classes.nameRoot}/>
           <></>
         </div>
         <div className={classes.infoRoot}>
