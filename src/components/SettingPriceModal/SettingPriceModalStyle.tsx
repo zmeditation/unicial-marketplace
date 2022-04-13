@@ -1,5 +1,5 @@
 import { Theme, makeStyles, withStyles } from "@material-ui/core/styles";
-import { Input } from "@material-ui/core";
+import { Input, Tooltip } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   displayNone: {
@@ -167,3 +167,21 @@ export const StyledInput = withStyles((theme) => ({
     },
   },
 }))(Input);
+
+export const StyledTooltip = withStyles({
+  popper: {
+    cursor: "pointer",
+    zIndex: 99999,
+  },
+  tooltip: {
+    color: "white",
+    fontSize: "12px",
+    padding: "10px 10px",
+    fontFamily: "Lato",
+    backgroundColor: "#21263F",
+    textAlign: "left",
+  },
+  arrow: {
+    color: "#21263F !important",
+  },
+})(Tooltip);

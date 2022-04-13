@@ -42,6 +42,13 @@ export const MyItemSideBarStyle = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
+    menuItem: {
+      "&:hover": {
+        "& $listLabel": {
+          color: "white !important",
+        },
+      },
+    },
     createPopover: {
       marginTop: "23px",
     },

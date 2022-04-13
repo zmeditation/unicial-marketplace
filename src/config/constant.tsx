@@ -22,6 +22,9 @@ export const limitCount = 6;
 export const expired = -99;
 export const parcelshowMoreCount = 10;
 
+export const tooltopData =
+  "This is the wallet address  that will receive MANA when the item is sold for the first time and Royalities when it is resold. you can set a different beneficciary address for each item in a collections";
+
 export const editorItemsData = [
   {
     index: 1,

@@ -61,7 +61,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       height: "34px",
       fontFamily: "Lato",
       fontWeight: 400,
-      fontSize: "17px",
+      fontSize: "16px",
       lineHeight: "20.4px",
       borderRadius: "100px",
     },
@@ -131,7 +131,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontStyle: "normal",
       color: "#96A1DB",
       "&:hover": {
-        color: "white",
+        color: "red !important",
       },
     },
     activeLabel: {
@@ -148,6 +148,13 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "none",
     },
     //plus dropdown relate end
+    menuItem: {
+      "&:hover": {
+        "& $listLabel": {
+          color: "white !important",
+        },
+      },
+    },
   })
 );
 
@@ -174,8 +181,5 @@ export const StyledMenuItem = withStyles({
     padding: "10px 16px",
     cursor: "pointer",
     position: "relative",
-    "&:hover": {
-      color: "white",
-    },
   },
 })(MenuItem);

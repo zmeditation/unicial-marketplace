@@ -107,9 +107,13 @@ export const CollectionCardStyle = makeStyles((theme: Theme) =>
       fontStyle: "normal",
       color: "#96A1DB",
       fontFamily: "Montserrat",
-      // "&:hover": {
-      //   color: "white",
-      // },
+    },
+    menuItem: {
+      "&:hover": {
+        "& $listLabel": {
+          color: "white !important",
+        },
+      },
     },
     editContainerShow: {
       opacity: 100,

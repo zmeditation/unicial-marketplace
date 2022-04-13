@@ -103,6 +103,7 @@ export default function BuilderCollectionEdit() {
                     disableRipple
                     onClick={() => handleItem(item.index)}
                     key={index}
+                    className={classes.menuItem}
                   >
                     <Box className={classes.listContainer}>
                       <Box className={clsx(classes.listLabel)}>

@@ -1,7 +1,11 @@
 import { useAppDispatch } from "../../store/hooks";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { useStyles, StyledInput } from "./SettingPriceModalStyle";
+import {
+  useStyles,
+  StyledInput,
+  StyledTooltip,
+} from "./SettingPriceModalStyle";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 import PaytypeBtn from "../Base/PaytypeBtn";
@@ -14,7 +18,7 @@ import makeBlockie from "ethereum-blockies-base64";
 import RoundBackBtn from "../Base/RoundBackBtn";
 import { ethers } from "ethers";
 import { showAlert } from "../../store/alert";
-
+import { tooltopData } from "./../../config/constant";
 interface Props {
   show: boolean;
   onClose: () => void;
@@ -163,7 +167,16 @@ export default function SettingPriceModal({ show, onClose }: Props) {
                   </FormControl>
                   <div className={classes.titleLetter}>
                     BENEFICIARY{" "}
-                    <img src={InfoIcon} className={classes.infoIcon} />
+                    <StyledTooltip
+                      interactive
+                      arrow
+                      title={tooltopData}
+                      placement="top"
+                    >
+                      <span>
+                        <img src={InfoIcon} className={classes.infoIcon} />
+                      </span>
+                    </StyledTooltip>
                   </div>
                   <FormControl className={classes.formContainer}>
                     <StyledInput

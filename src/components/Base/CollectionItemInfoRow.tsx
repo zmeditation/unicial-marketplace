@@ -184,6 +184,13 @@ const useStyles = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
+    menuItem: {
+      "&:hover": {
+        "& $listLabel": {
+          color: "white !important",
+        },
+      },
+    },
   })
 );
 
@@ -309,6 +316,7 @@ export default function CollectionItemInfoRow({
                       disableRipple
                       onClick={() => handleItem(item.index)}
                       key={index}
+                      className={classes.menuItem}
                     >
                       <Box className={classes.listContainer}>
                         <Box className={clsx(classes.listLabel)}>
@@ -355,6 +363,7 @@ export default function CollectionItemInfoRow({
                       disableRipple
                       onClick={() => handleItem(item.index)}
                       key={index}
+                      className={classes.menuItem}
                     >
                       <Box className={classes.listContainer}>
                         <Box className={clsx(classes.listLabel)}>

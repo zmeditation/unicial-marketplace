@@ -107,15 +107,19 @@ export const BuilderCollectionEditStyle = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "space-between",
     },
+    menuItem: {
+      "&:hover": {
+        "& $listLabel": {
+          color: "white !important",
+        },
+      },
+    },
     listLabel: {
       fontSize: "14px",
       lineHeight: "20px",
       fontWeight: 400,
       fontStyle: "normal",
       color: "#96A1DB",
-      "&:hover": {
-        color: "white",
-      },
     },
     coolnotificationContainer: {
       marginTop: "29px",
