@@ -89,6 +89,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   infoIcon: {
+    cursor: "pointer",
     marginLeft: "3px",
   },
   addressImg: {

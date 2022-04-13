@@ -173,9 +173,7 @@ export default function SettingPriceModal({ show, onClose }: Props) {
                       title={tooltopData}
                       placement="top"
                     >
-                      <span>
-                        <img src={InfoIcon} className={classes.infoIcon} />
-                      </span>
+                      <img src={InfoIcon} className={classes.infoIcon} />
                     </StyledTooltip>
                   </div>
                   <FormControl className={classes.formContainer}>
@@ -213,7 +211,14 @@ export default function SettingPriceModal({ show, onClose }: Props) {
                   </FormControl>
                   <div className={classes.titleLetter}>
                     BENEFICIARY{" "}
-                    <img src={InfoIcon} className={classes.infoIcon} />
+                    <StyledTooltip
+                      interactive
+                      arrow
+                      title={tooltopData}
+                      placement="top"
+                    >
+                      <img src={InfoIcon} className={classes.infoIcon} />
+                    </StyledTooltip>
                   </div>
                   <FormControl className={classes.formContainer}>
                     <StyledInput
@@ -254,7 +259,14 @@ export default function SettingPriceModal({ show, onClose }: Props) {
                   </FormControl>
                   <div className={classes.titleLetter}>
                     BENEFICIARY{" "}
-                    <img src={InfoIcon} className={classes.infoIcon} />
+                    <StyledTooltip
+                      interactive
+                      arrow
+                      title={tooltopData}
+                      placement="top"
+                    >
+                      <img src={InfoIcon} className={classes.infoIcon} />
+                    </StyledTooltip>
                   </div>
                   <FormControl className={classes.formContainer}>
                     <StyledInput

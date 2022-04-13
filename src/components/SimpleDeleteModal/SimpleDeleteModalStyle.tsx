@@ -53,8 +53,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   cancelBtn: {
-    width: "45%",
-    height: "54px",
+    width: "100%",
+    marginRight: "20px",
+    // height: "54px",
+    [theme.breakpoints.down(620)]: {
+      width: "100%",
+      marginBottom: "20px",
+    },
+  },
+  okBtn: {
+    width: "100%",
+    // height: "54px",
     [theme.breakpoints.down(620)]: {
       width: "100%",
       marginBottom: "20px",

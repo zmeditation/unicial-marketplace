@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontFamily: "Lato",
       fontSize: "17px",
       lineHeight: "20..4px",
+
       "&:hover": {
         transform: "translateY(-2px)",
       },

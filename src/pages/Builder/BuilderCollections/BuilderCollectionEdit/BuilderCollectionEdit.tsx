@@ -43,6 +43,31 @@ export default function BuilderCollectionEdit() {
     setAnchorNetwork(null);
   };
   const handleItem = (index: number) => {
+    switch (index) {
+      case 1:
+        handleClose();
+        break;
+      case 2:
+        navigate("/builder/builderItem-editor");
+
+        handleClose();
+        break;
+      case 3:
+        handleClose();
+        break;
+      case 4:
+        handleClose();
+        break;
+      case 5:
+        handleClose();
+        break;
+      case 6:
+        handleClose();
+        break;
+      case 7:
+        handleClose();
+        break;
+    }
     handleClose();
   };
   //moreIcon relate end

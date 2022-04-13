@@ -119,6 +119,7 @@ const useStyles = makeStyles((theme: Theme) =>
       background: "linear-gradient(to right, #FF7C4C 10%, #FFB03A 100%)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
+      marginRight: "5px",
     },
     img: {
       width: "100%",
@@ -205,7 +206,7 @@ export default function CollectionItemInfoRow({
   handlePhoto,
   setClick,
 }: Props) {
-  let status = 2;
+  let status = 1;
   const classes = useStyles();
   const navigate = useNavigate();
   const [ellipsisIconStatus, setEllipsisIconStatus] = React.useState(false);

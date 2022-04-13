@@ -46,7 +46,8 @@ export default function CreateSceneSizeModal({
               : row > 4 || column > 4
               ? classes.squareMedium
               : classes.squareLarge
-          }></div>
+          }
+        ></div>
       );
     }
     for (let j = 0; j < row; j++) {
@@ -59,7 +60,8 @@ export default function CreateSceneSizeModal({
               : row > 4 || column > 4
               ? classes.squareRootMedium
               : classes.squareRootLarge
-          }>
+          }
+        >
           {rowsItem}
         </div>
       );
@@ -72,7 +74,7 @@ export default function CreateSceneSizeModal({
     <>
       <div className={show ? classes.loaderWrapper : classes.displayNone}>
         <div className={classes.modalRoot}>
-          <RoundBackBtn className={classes.backIcon} onBack={onBack}/>
+          <RoundBackBtn className={classes.backIcon} onBack={onBack} />
           <div className={classes.title}>{t("Create a Scene")}</div>
           <div className={classes.description}>
             {t("Set the size of your new scene")}
@@ -80,9 +82,9 @@ export default function CreateSceneSizeModal({
           <div className={classes.content}>
             {graphicStatus ? (
               <div className={classes.cautionRoot}>
-                <i className='far fa-exclamation-triangle'></i>
+                <i className="far fa-exclamation-triangle"></i>
                 <p className={classes.cautionLetter}>
-                  Your Scene can't have more than 32parcels
+                  Your Scene can't have more than 32 parcels
                 </p>
               </div>
             ) : (
@@ -94,7 +96,7 @@ export default function CreateSceneSizeModal({
               <div className={classes.subheader_label}>{t("Rows")}</div>
               <FormControl className={classes.widthFull}>
                 <StyledInput
-                  type='number'
+                  type="number"
                   defaultValue={2}
                   onChange={(e) => {
                     handleRows(e);
@@ -103,13 +105,13 @@ export default function CreateSceneSizeModal({
               </FormControl>
             </div>
             <div className={classes.operatorIcon}>
-              <i className='fas fa-times'></i>
+              <i className="fas fa-times"></i>
             </div>
             <div className={classes.inputItem}>
               <div className={classes.subheader_label}>{t("Columns")}</div>
               <FormControl className={classes.widthFull}>
                 <StyledInput
-                  type='number'
+                  type="number"
                   defaultValue={2}
                   onChange={(e) => {
                     handleColumns(e);
@@ -120,15 +122,17 @@ export default function CreateSceneSizeModal({
           </div>
           <div className={classes.btnRoot}>
             <ActionButton
-              color='dark'
+              color="dark"
               className={classes.nextBtn}
-              onClick={onBack}>
+              onClick={onBack}
+            >
               {t("Back")}
             </ActionButton>
             <ActionButton
-              color='light'
+              color="light"
               className={clsx(classes.nextBtn, classes.marginLeft)}
-              onClick={() => {}}>
+              onClick={() => {}}
+            >
               {t("Create")}
             </ActionButton>
           </div>

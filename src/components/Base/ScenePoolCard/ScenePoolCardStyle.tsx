@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 export const ScenePoolCardStyle = makeStyles((theme: Theme) =>
   createStyles({
     sceneCardRoot: {
+      cursor: "pointer",
       width: "100%",
       padding: "8.5px 8.5px 23px 8.5px",
       background: "#282E4E",
@@ -30,11 +31,11 @@ export const ScenePoolCardStyle = makeStyles((theme: Theme) =>
       lineHeight: "26px",
       margin: "16px 8px 13px 8px",
     },
-    sceneItems:{
+    sceneItems: {
       display: "flex",
       justifyContent: "start",
       alignItems: "center",
-      marginLeft: "8px"
+      marginLeft: "8px",
     },
     sceneSize: {
       fontFamily: "Lato",
@@ -43,11 +44,11 @@ export const ScenePoolCardStyle = makeStyles((theme: Theme) =>
       lineHeight: "16.8px",
       color: "#96A1DB",
     },
-    marginRight:{
+    marginRight: {
       marginRight: "30px",
     },
-    itemImg:{
-      marginRight: "6.15px"
+    itemImg: {
+      marginRight: "6.15px",
     },
   })
 );

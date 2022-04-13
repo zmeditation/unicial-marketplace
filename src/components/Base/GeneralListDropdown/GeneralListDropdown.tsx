@@ -61,20 +61,21 @@ export default function GeneralListDropdown(props: any) {
   return (
     <>
       <Box
-        aria-controls='simple-menu'
-        aria-haspopup='true'
-        onClick={handleOpen}>
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleOpen}
+      >
         <Box className={classes.listRoot}>
           <Box className={clsx(classes.listContainer, props.className)}>
             <Box className={classes.gradientlistLabel}>{itemContent}</Box>
             <div className={classes.filterDownArrow}>
-              <i className='far fa-chevron-down'></i>
+              <i className="far fa-chevron-down"></i>
             </div>
           </Box>
         </Box>
       </Box>
       <StyledListPopover
-        id='simple-menu'
+        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -86,14 +87,21 @@ export default function GeneralListDropdown(props: any) {
         transformOrigin={{
           vertical: "top",
           horizontal: "right",
-        }}>
+        }}
+      >
         {props.data.map((item: any, index: any) => (
-          <StyledMenuItem onClick={() => handleItem(item.index)} key={index}>
+          <StyledMenuItem
+            disableRipple
+            onClick={() => handleItem(item.index)}
+            key={index}
+            className={classes.menuItem}
+          >
             <Box className={classes.listContainer}>
               <Box
                 className={clsx(classes.listLabel, {
                   [classes.activeLabel]: itemContent === item.content,
-                })}>
+                })}
+              >
                 {item.content}
               </Box>
             </Box>

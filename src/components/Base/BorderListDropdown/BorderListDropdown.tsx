@@ -51,9 +51,10 @@ export default function BorderListDropdown({
     <>
       {/* network select start */}
       <Box
-        aria-controls='simple-menu'
-        aria-haspopup='true'
-        className={classes.listDropdown}>
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        className={classes.listDropdown}
+      >
         <Box className={classes.listRoot}>
           <Box className={classes.listContainer}>
             <Box className={classes.mainlistLabel}>{itemContent}</Box>
@@ -61,21 +62,23 @@ export default function BorderListDropdown({
               onClick={handleOpen}
               className={
                 showIcon === false ? classes.moreIcon : classes.displayNone
-              }>
+              }
+            >
               <ExpandMoreIcon />
             </IconButton>
             <IconButton
               onClick={handleIconClick}
               className={
                 showIcon === false ? classes.displayNone : classes.cancelIcon
-              }>
+              }
+            >
               <CancelIcon />
             </IconButton>
           </Box>
         </Box>
       </Box>
       <StyledCollectionPopover
-        id='simple-menu'
+        id="simple-menu"
         anchorEl={anchorNetwork}
         keepMounted
         open={Boolean(anchorNetwork)}
@@ -87,14 +90,20 @@ export default function BorderListDropdown({
         transformOrigin={{
           vertical: "top",
           horizontal: "right",
-        }}>
+        }}
+      >
         {data.map((item: any, index: any) => (
-          <StyledMenuItem onClick={() => handleItem(item.index)} key={index}>
+          <StyledMenuItem
+            onClick={() => handleItem(item.index)}
+            key={index}
+            className={classes.menuItem}
+          >
             <Box className={classes.listContainer}>
               <Box
                 className={clsx(classes.listLabel, {
                   [classes.activeLabel]: itemContent === item.content,
-                })}>
+                })}
+              >
                 {item.content}
               </Box>
             </Box>

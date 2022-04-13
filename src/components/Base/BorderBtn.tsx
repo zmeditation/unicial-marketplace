@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "160px",
       height: "42px",
       cursor: "pointer",
+      "&:hover": {
+        transform: "translateY(-2px)",
+      },
     },
     createBtnContainer: {
       borderRadius: "100px",

@@ -38,7 +38,8 @@ const ClaimName = () => {
               <img
                 src={nameBackground}
                 className={classes.tokenImg}
-                alt='token'></img>
+                alt="token"
+              ></img>
             </div>
           </div>
           <div className={classes.rightCard}>
@@ -73,26 +74,27 @@ const ClaimName = () => {
             <img
               src={normalshapeSvg}
               className={classes.normalshape}
-              alt='normalShape'
+              alt="normalShape"
             />
             <div className={classes.form_field}>
               <div className={classes.price_container}>
                 <div className={classes.subheader_label}>{t("NAME")}</div>
                 <FormControl className={classes.widthFull}>
                   <StyledInput
-                    placeholder='Your name goes here'
+                    placeholder="Your name goes here"
                     onChange={(e) => {
                       handleNameChange(e);
                     }}
                     value={name}
                     endAdornment={
                       <InputAdornment
-                        position='start'
+                        position="start"
                         className={
                           name?.length < 15
                             ? classes.inputAdor
                             : classes.inputAdorCaution
-                        }>
+                        }
+                      >
                         {name?.length} / 15
                       </InputAdornment>
                     }
@@ -102,7 +104,7 @@ const ClaimName = () => {
                   {t("UCC APPROVED")}
                 </div>
                 <div className={classes.marginLeft}>
-                  <OnSaleSwitch letter='' className={classes.manaSwitch} />
+                  <OnSaleSwitch letter="" className={classes.manaSwitch} />
                 </div>
                 <div className={classes.subtitle}>
                   {t("Authorize the")}{" "}
@@ -115,21 +117,23 @@ const ClaimName = () => {
             </div>
             <div className={classes.buttons}>
               <ActionButton
-                color='light'
+                color="light"
                 className={classes.bidchange}
-                onClick={() => {}}>
+                onClick={() => {}}
+              >
                 {t("CLAIM")}
                 <img
                   src={normalshapeSvg}
                   className={classes.normalshape}
-                  alt='normalShape'
+                  alt="normalShape"
                 />
                 100
               </ActionButton>
               <ActionButton
-                color='dark'
+                color="dark"
                 className={classes.cancelchange}
-                onClick={() => navigate("/builder/builder_names")}>
+                onClick={() => navigate("/builder/builder_names")}
+              >
                 {t("CANCEL")}
               </ActionButton>
             </div>

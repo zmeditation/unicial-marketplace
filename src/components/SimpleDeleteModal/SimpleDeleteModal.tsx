@@ -28,7 +28,7 @@ export default function DeleteModal({ show, onClose }: Props) {
                 className={classes.cancelBtn}
                 onClick={onClose}
               />
-              <YellowBtn letter="OK" className={classes.cancelBtn} />
+              <YellowBtn letter="OK" className={classes.okBtn} />
             </div>
           </div>
         </div>

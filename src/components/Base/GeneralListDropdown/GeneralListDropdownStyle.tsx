@@ -171,6 +171,13 @@ export const GeneralListDropdownStyle = makeStyles((theme: Theme) =>
       color: "white",
       opacity: "100%",
     },
+    menuItem: {
+      "&:hover": {
+        "& $listLabel": {
+          color: "white !important",
+        },
+      },
+    },
   })
 );
 
@@ -195,6 +202,7 @@ export const StyledListPopover = withStyles({
     position: "absolute",
     minWidth: "168px",
     top: "419px",
+    marginTop: "7px",
   },
 })(Popover);
 
