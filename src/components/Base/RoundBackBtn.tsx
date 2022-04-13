@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       background: "#444858",
       "& i": {
-        fontSize: "15px",
+        fontSize: "22px",
         fontWeight: 100,
       },
     },
