@@ -1,6 +1,8 @@
+/** @format */
+
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -110,6 +112,21 @@ const PropertiesInput = ({
   const [itemValue, setItemValue] = useState<string>(defaultInputValue);
   const [inputValue, setInputValue] = useState<string>(defaultInputValue);
 
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+    function handleClick(e: any) {
+      if (divRef && divRef.current) {
+        const ref: any = divRef.current;
+        if (!ref.contains(e.target)) {
+          setDropdownStatus(false);
+        }
+      }
+    }
+  }, [divRef]);
+
   const handleDropdown = () => {
     setDropdownStatus(!dropdownStatus);
   };
@@ -130,23 +147,21 @@ const PropertiesInput = ({
           className
         )}
         onClick={type === "dropdown" ? handleDropdown : () => {}}
-      >
+        ref={divRef}>
         <div className={classes.inputAdor}>{name}</div>
         {type === "dropdown" ? (
           <div className={classes.dropdownRoot}>
             {itemValue}
-            <i className="fas fa-caret-down"></i>
+            <i className='fas fa-caret-down'></i>
           </div>
         ) : (
           <input
             className={classes.input}
             value={inputValue}
-            onChange={(e) => handleChange(e)}
-          ></input>
+            onChange={(e) => handleChange(e)}></input>
         )}
         <div
-          className={dropdownStatus ? classes.listPanel : classes.displayNone}
-        >
+          className={dropdownStatus ? classes.listPanel : classes.displayNone}>
           {item?.map((val: any, key: any) => {
             return (
               <div
@@ -154,8 +169,7 @@ const PropertiesInput = ({
                 className={
                   val === itemValue ? classes.focusListItem : classes.listItem
                 }
-                onClick={(e) => handleListClick(val)}
-              >
+                onClick={(e) => handleListClick(val)}>
                 {val}
               </div>
             );
