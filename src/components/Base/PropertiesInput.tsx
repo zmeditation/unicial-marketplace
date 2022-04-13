@@ -70,8 +70,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "15px",
     padding: "7px 23px 7px 19px",
     position: "absolute",
-    left: 0,
-    top: "48px",
+    right: 0,
+    top: "55px",
     zIndex: 30,
   },
   listItem: {
