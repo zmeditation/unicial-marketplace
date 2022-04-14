@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import LandMap from "../../../components/MapData/LandMap";
 import { useStyles } from "./BuilderLandStyle";
 import BuilderTopTab from "../../../components/BuilderTopTab/BuilderTopTab";
 import lightBlueCheck from "../../../assets/svg/lightblueCheck.svg";
 import purpleCheck from "../../../assets/svg/purpleCheck.svg";
+import BuilderMap from "../../../components/MapData/BuilderMap";
 
 const BuilderLand: React.FC = () => {
   const classes = useStyles();
@@ -51,7 +51,7 @@ const BuilderLand: React.FC = () => {
         </div>
       </div>
       <div className={classes.landMap}>
-        <LandMap height={height} width={width} />
+        <BuilderMap height={height} width={width} />
       </div>
     </>
   );
