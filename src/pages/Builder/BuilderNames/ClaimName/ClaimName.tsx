@@ -66,7 +66,7 @@ const ClaimName = () => {
                 "making it easy to send people to your LAND. When someone follows your new URL, they will redirected to your LAND in"
               )}{" "}
               <span className={classes.importantLetter} onClick={handleToUnicial}>
-                {t("Unicial")}!
+                {t("Unicial")}{" "}!
               </span>
             </div>
             <br />

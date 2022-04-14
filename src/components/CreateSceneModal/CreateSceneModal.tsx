@@ -4,7 +4,7 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useStyles, StyledInput } from "./CreateSceneModalStyle";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RoundBackBtn from "../Base/RoundBackBtn";
 
 interface CreateSceneModalProps {
@@ -24,6 +24,23 @@ export default function CreateSceneModal({
   const [name, setName] = useState("");
   const [des, setDes] = useState("");
 
+  const rootRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+    function handleClick(e: any) {
+      if (rootRef && rootRef.current && contentRef && contentRef.current) {
+        const root: any = rootRef.current;
+        const content: any = contentRef.current;
+        if (root.contains(e.target) && !content.contains(e.target)) {
+          onClose();
+        }
+      }
+    }
+  }, [rootRef, contentRef]);
+
   const handleName = (e: any) => {
     setName(e.target.value);
   };
@@ -42,9 +59,15 @@ export default function CreateSceneModal({
 
   return (
     <>
-      <div className={show ? classes.loaderWrapper : classes.displayNone}>
-        <div className={classes.modalRoot}>
-          <RoundBackBtn className={classes.closeIcon} onBack={onClose} type="multiply"/>
+      <div
+        className={show ? classes.loaderWrapper : classes.displayNone}
+        ref={rootRef}>
+        <div className={classes.modalRoot} ref={contentRef}>
+          <RoundBackBtn
+            className={classes.closeIcon}
+            onBack={onClose}
+            type='multiply'
+          />
           <div className={classes.title}>{t("Create a Scene")}</div>
           <div className={classes.description}>
             {t("Set a name and description for your scene")}

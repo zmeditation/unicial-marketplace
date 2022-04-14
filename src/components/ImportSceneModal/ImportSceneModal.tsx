@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useStyles } from "./ImportSceneModalStyle";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RoundBackBtn from "../Base/RoundBackBtn";
 
 interface ImportSceneModalProps {
@@ -20,15 +20,38 @@ export default function ImportSceneModal({
   const navigate = useNavigate();
   const [importData, setImportData] = useState<any>();
 
+  const rootRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+    function handleClick(e: any) {
+      if (rootRef && rootRef.current && contentRef && contentRef.current) {
+        const root: any = rootRef.current;
+        const content: any = contentRef.current;
+        if (root.contains(e.target) && !content.contains(e.target)) {
+          onClose();
+        }
+      }
+    }
+  }, [rootRef, contentRef]);
+
   const handleImportFile = (e: any) => {
     setImportData(e.target.files);
   };
 
   return (
     <>
-      <div className={show ? classes.loaderWrapper : classes.displayNone}>
-        <div className={classes.modalRoot}>
-          <RoundBackBtn className={classes.closeIcon} onBack={onClose} type="multiply"/>
+      <div
+        className={show ? classes.loaderWrapper : classes.displayNone}
+        ref={rootRef}>
+        <div className={classes.modalRoot} ref={contentRef}>
+          <RoundBackBtn
+            className={classes.closeIcon}
+            onBack={onClose}
+            type='multiply'
+          />
           <div className={classes.title}>{t("Import Scene")}</div>
           <div className={classes.description}>
             {t("You can import any Scene made with the Builder")}!
