@@ -8,7 +8,7 @@ export const BuilderTopTabStyle = makeStyles((theme: Theme) =>
       backgroundColor: "#21263F",
       display: "flex",
       alignItems: "center",
-      height: "71px",
+      height: "65px",
       color: "#fff",
       margin: "20px 0px",
       paddingRight: "16px",
