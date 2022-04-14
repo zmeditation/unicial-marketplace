@@ -63,12 +63,13 @@ export const NameCardStyle = makeStyles((theme: Theme) =>
       color: "white",
     },
     infoSmallname: {
+      marginTop: "3px",
       fontFamily: "Lato",
       fontWeight: 400,
       fontSize: "14px",
       lineHeight: "16.8px",
       textAlign: "center",
-      color: "white",
+      color: "#96A1DB",
     },
 
     image: {

@@ -25,6 +25,10 @@ const ClaimName = () => {
     }
   };
 
+  const handleToUnicial = () =>{
+    window.open("https://unicial.org");
+  }
+
   return (
     <div className={classes.root}>
       <div className={classes.container_root}>
@@ -61,8 +65,8 @@ const ClaimName = () => {
               {t(
                 "making it easy to send people to your LAND. When someone follows your new URL, they will redirected to your LAND in"
               )}{" "}
-              <span className={classes.importantLetter}>
-                {t("Decentraland")}!
+              <span className={classes.importantLetter} onClick={handleToUnicial}>
+                {t("Unicial")}!
               </span>
             </div>
             <br />
