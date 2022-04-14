@@ -27,6 +27,7 @@ import RoundBackBtn from "../Base/RoundBackBtn";
 import { FileUploader } from "react-drag-drop-files";
 import QuestionBtn from "../Base/QuestionBtn";
 import { Hashing } from "../../common/utils";
+import { saveItem } from "../../hooks/builder";
 
 interface Props {
   headerTitle: string;
@@ -91,16 +92,15 @@ export default function CreateSceneModal({
     const hashing = new Hashing();
     var bytes: any = [];
     var reader = new FileReader();
+
     reader.onload = async function () {
       bytes = reader.result;
+
       if (flagRarity && flagCategory) {
-        formData.append("file", selectedFile);
-        formData.append("gender", genderBtStatus);
-        formData.append("name", name);
-        formData.append("rarity", rarity);
-        formData.append("category", category);
+        let item: any;
         const hashName = await hashing.calculateBufferHash(bytes);
         let contents: any = {};
+
         if (genderBtStatus === genderData.both) {
           contents[`female/${selectedFile.name}`] = hashName;
           contents[`male/${selectedFile.name}`] = hashName;
@@ -115,8 +115,18 @@ export default function CreateSceneModal({
           contents[`thumbnail.png`] = hashName;
           contents[`image.png`] = hashName;
         }
+
+        item = {
+          name: name,
+          rarity: rarity,
+          category: category,
+          contents: contents,
+        };
+        formData.append("file", selectedFile);
         formData.append("hashName", hashName);
-        formData.append("contents", contents);
+        formData.append("item", item);
+        // const save_res = await saveItem(formData);
+        // console.log("save_res", save_res);
       }
     };
     reader.readAsArrayBuffer(selectedFile);
