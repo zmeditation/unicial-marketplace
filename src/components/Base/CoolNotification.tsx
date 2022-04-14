@@ -3,6 +3,8 @@ import clsx from "clsx";
 import { useState } from "react";
 import RoundBackBtn from "./RoundBackBtn";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -41,6 +43,8 @@ interface Props {
 
 export default function CoolNotification({ className, onClick }: Props) {
   const classes = useStyles();
+
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [showStatus, setShowStatus] = useState(true);
   const handleClose = () => {
@@ -58,11 +62,12 @@ export default function CoolNotification({ className, onClick }: Props) {
       })}
     >
       <div className={classes.descContainer}>
-        Cool! Now you can start working on your items. &nbsp;{" "}
+        {t("Cool! Now you can start working on your items.")}
+        &nbsp;{" "}
         <span className={classes.colorLetter} onClick={handleNavigate}>
-          Click here
+          {t("Click here")}
         </span>{" "}
-        &nbsp; to open the editor or click the edit button on any item.
+        &nbsp; {t("to open the editor or click the edit button on any item.")}
       </div>
       <RoundBackBtn onBack={handleClose} type="multiply" />
     </div>

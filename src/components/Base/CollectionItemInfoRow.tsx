@@ -13,6 +13,7 @@ import {
   editDonedropdownData,
 } from "./../../../src/config/constant";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -208,6 +209,7 @@ export default function CollectionItemInfoRow({
 }: Props) {
   let status = 1;
   const classes = useStyles();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [ellipsisIconStatus, setEllipsisIconStatus] = React.useState(false);
   const handleEdit = () => {
@@ -257,21 +259,21 @@ export default function CollectionItemInfoRow({
         </div>
         <div className={classes.infoContainer}>
           <div className={classes.itemContainer}>
-            <div className={classes.whiteColor}>OrionNFT</div>
-            <div className={classes.greyColor}>Wearable</div>
+            <div className={classes.whiteColor}>{t("OrionNFT")}</div>
+            <div className={classes.greyColor}>{t("Wearable")}</div>
           </div>
           <div className={classes.itemContainer}>
-            <div className={classes.whiteColor}>Eyes</div>
-            <div className={classes.greyColor}>Category</div>
+            <div className={classes.whiteColor}>{t("Eyes")}</div>
+            <div className={classes.greyColor}>{t("Category")}</div>
           </div>
           <div className={classes.itemContainer}>
-            <div className={classes.whiteColor}>Unique</div>
-            <div className={classes.greyColor}>Rarity</div>
+            <div className={classes.whiteColor}>{t("Unique")}</div>
+            <div className={classes.greyColor}>{t("Rarity")}</div>
           </div>
           <div className={classes.itemContainer}>
             {status === 1 ? (
               <div className={classes.yellowColor} onClick={setClick}>
-                Set Price
+                {t("Set Price")}
               </div>
             ) : (
               <div className={classes.priceContainer}>
@@ -280,7 +282,7 @@ export default function CollectionItemInfoRow({
               </div>
             )}
 
-            <div className={classes.greyColor}>price</div>
+            <div className={classes.greyColor}> {t("price")}</div>
           </div>
           {/* /// */}
           {status === 1 ? (
@@ -290,7 +292,7 @@ export default function CollectionItemInfoRow({
               })}
             >
               <div className={classes.yellowColor} onClick={handleEdit}>
-                Edit
+                {t("Edit")}
               </div>
               <div aria-controls="simple-menu" aria-haspopup="true">
                 <Box className={classes.moreIcon} onClick={handleOpen}>
@@ -336,7 +338,7 @@ export default function CollectionItemInfoRow({
               })}
             >
               <div className={classes.doneContainer}>
-                <span className={classes.doneLetter}>Done</span>
+                <span className={classes.doneLetter}>{t("Done")}</span>
                 <i className="fas fa-check"></i>
               </div>
               <div aria-controls="simple-menu" aria-haspopup="true">

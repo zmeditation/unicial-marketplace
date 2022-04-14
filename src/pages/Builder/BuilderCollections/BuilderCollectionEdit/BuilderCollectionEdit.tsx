@@ -17,9 +17,12 @@ import CoolNotification from "../../../../components/Base/CoolNotification";
 import LookingGood from "../../../../components/Base/LookingGodd";
 import CollectionItemInfoRow from "../../../../components/Base/CollectionItemInfoRow";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export default function BuilderCollectionEdit() {
   const classes = BuilderCollectionEditStyle();
+
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [createItemStatus, setCreateItemStatus] = useState(false);
   const [settingPriceStatus, setSettingPriceStatus] = useState(false);
@@ -89,7 +92,7 @@ export default function BuilderCollectionEdit() {
         <div className={classes.topContainer}>
           <div className={classes.collectionNameContainer}>
             <RoundBackBtn className={classes.backBtn} onBack={handleBack} />
-            <span className={classes.nameLetter}>OrionNFT</span>
+            <span className={classes.nameLetter}>{t("OrionNFT")}</span>
           </div>
           <div className={classes.btnSetContainer}>
             <div className={classes.newItemBtnroot}>
@@ -97,7 +100,7 @@ export default function BuilderCollectionEdit() {
                 className={classes.newItemBtnContainer}
                 onClick={handlecreateItem}
               >
-                <i className="far fa-plus plusIcon"></i>&nbsp; New Item
+                <i className="far fa-plus plusIcon"></i>&nbsp; {t("New Item")}
               </div>
             </div>
             <div

@@ -23,9 +23,11 @@ import OvalBtn from "../../../components/Base/OvalBtn";
 import DeleteModal from "../../../components/DeleteModal/DeleteModal";
 import { useLocation, useNavigate } from "react-router";
 import { ShowMoreLessBtn } from "../../../components/ShowMoreLessBtn/ShowMoreLessBtn";
+import { useTranslation } from "react-i18next";
 
 export default function BuilderCollections() {
   const classes = useStyles();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   // showmore Btn relate start
@@ -100,7 +102,7 @@ export default function BuilderCollections() {
 
       <div className={classes.root}>
         <div className={classes.createBtns}>
-          <div className={classes.resultStatus}>0 RESULTS</div>
+          <div className={classes.resultStatus}>0 {t("RESULTS")}</div>
           <div className={classes.functionBtn}>
             <div aria-controls="simple-menu" aria-haspopup="true">
               <Box onClick={handleOpen}>
@@ -139,7 +141,9 @@ export default function BuilderCollections() {
             </div>
 
             <div className={classes.openEditorRoot} onClick={handleToEditor}>
-              <div className={classes.openEditorContainer}>Open Editor</div>
+              <div className={classes.openEditorContainer}>
+                {t("Open Editor")}
+              </div>
             </div>
           </div>
         </div>
@@ -184,10 +188,11 @@ export default function BuilderCollections() {
             <div className={classes.noItemsRoot}>
               <div className={classes.noItemsContainer}>
                 <div className={classes.noItemsInfoContainer}>
-                  <div className={classes.noItemsTitle}>No items</div>
+                  <div className={classes.noItemsTitle}>{t("No items")}</div>
                   <div className={classes.noItemsDesc}>
-                    You have no Items or Collections yet. Create a new item or
-                    collection, and dress the metaverse in style!
+                    {t(
+                      "No itemsYou have no Items or Collections yet. Create a new item or collection, and dress the metaverse in style!"
+                    )}
                   </div>
                 </div>
                 <div className={classes.CardsContainer}>

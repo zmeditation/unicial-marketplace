@@ -5,8 +5,11 @@ import blackManImg from "../../../assets/img/blackMan.png";
 import CreateItemModal from "../../../components/CreateItemModal/CreateItemModal";
 import { useState } from "react";
 import CreateCollectionModal from "../../../components/CreateCollectionModal/CreateCollectionModal";
+import { useTranslation } from "react-i18next";
+
 export default function BuilderItemEditor() {
   const classes = BuilderItemEditorStyle();
+  const { t } = useTranslation();
   const [createItemStatus, setCreateItemStatus] = useState(false);
   const handlecreateItemOpen = () => {
     setCreateItemStatus(true);
@@ -36,7 +39,7 @@ export default function BuilderItemEditor() {
         <PropertySideBar />
       </div>
       <CreateItemModal
-        headerTitle="New Item"
+        headerTitle={t("New Item")}
         show={createItemStatus}
         onClose={handleCreateItemClose}
       />

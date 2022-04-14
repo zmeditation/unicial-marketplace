@@ -1,10 +1,8 @@
 import { NameCardStyle } from "./NameCardStyle";
 import Tag from "../Tag";
-import headSvg from "../../../assets/svg/head.svg";
-import unisexSvg from "../../../assets/svg/unisex.svg";
 import diamondSvg from "../../../assets/svg/diamond.svg";
-import PussyhairPng from "../../../assets/img/Pussyhair.png";
 import makeBlockie from "ethereum-blockies-base64";
+import { useTranslation } from "react-i18next";
 
 interface ProductCardProps {
   mainName: string;
@@ -13,12 +11,13 @@ interface ProductCardProps {
 
 export default function NameCard({ mainName, price }: ProductCardProps) {
   const classes = NameCardStyle();
+  const { t } = useTranslation();
   const address = "0x8734CB972d36a740Cc983d5515e160C373A4a016";
   return (
     <>
       <div className={classes.root}>
         <div className={classes.header}>
-          <Tag color="NameColor" letter="NAME" className={classes.nameRoot}/>
+          <Tag color="NameColor" letter="NAME" className={classes.nameRoot} />
           <></>
         </div>
         <div className={classes.infoRoot}>
@@ -39,7 +38,7 @@ export default function NameCard({ mainName, price }: ProductCardProps) {
 
         <div className={classes.productName}>{mainName}</div>
         <div className={classes.bottom}>
-          <div className={classes.category}>Zilionixx</div>
+          <div className={classes.category}>{t("Zilionixx")}</div>
           <div className={classes.priceContainer}>
             <img src={diamondSvg} className={classes.icon} />
             <div className={classes.price}>{price}</div>

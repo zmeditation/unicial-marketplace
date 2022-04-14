@@ -15,9 +15,11 @@ import { itemMoreData } from "../../../../config/constant";
 import YellowBtn from "../../../../components/Base/YellowBtn";
 import productImg from "./../../../../assets/svg/texture.png";
 import { useLocation, useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export default function BuilderCollectionItemInfo() {
   const classes = BuilderCollectionItemInfoStyle();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [createItemStatus, setCreateItemStatus] = useState(false);
   const [simpleDeleteStatus, setSimpleDeleteStatus] = useState(false);
@@ -59,17 +61,20 @@ export default function BuilderCollectionItemInfo() {
   const handleNavigate = () => {
     navigate("/builder/builderItem-editor");
   };
+  const handleNavigateItemInfo = () => {
+    navigate("/builder/builder_collections/100");
+  };
   return (
     <>
       <div className={classes.root}>
         <div className={classes.topContainer}>
           <div className={classes.collectionNameContainer}>
             <RoundBackBtn className={classes.backBtn} onBack={handleBack} />
-            <span className={classes.nameLetter}>OrionNFT</span>
+            <span className={classes.nameLetter}>{t("OrionNFT")}</span>
           </div>
           <div className={classes.btnSetContainer}>
             <YellowBtn
-              letter="Open in Editor"
+              letter={t("Open in Editor")}
               className={classes.openEditor}
               onClick={handleNavigate}
             />
@@ -121,26 +126,31 @@ export default function BuilderCollectionItemInfo() {
           </div>
           <div className={classes.InfoContainer}>
             <div className={classes.itemContainer}>
-              <div className={classes.title}>category</div>
-              <div className={classes.content}>Eyes</div>
+              <div className={classes.title}>{t("category")}</div>
+              <div className={classes.content}>{t("Eyes")}</div>
             </div>
             <div className={classes.itemContainer}>
-              <div className={classes.title}>Representation</div>
-              <div className={classes.content}>Male</div>
+              <div className={classes.title}>{t("Representation")}</div>
+              <div className={classes.content}>{t("Male")}</div>
             </div>
             <div className={classes.itemContainer}>
-              <div className={classes.title}>Rarity</div>
-              <div className={classes.content}>Unique</div>
+              <div className={classes.title}>{t("Rarity")}</div>
+              <div className={classes.content}>{t("Unique")}</div>
             </div>
             <div className={classes.itemContainer}>
-              <div className={classes.title}>Collection</div>
-              <div className={classes.gradientContent}>Orion NFT</div>
+              <div className={classes.title}>{t("Collection")}</div>
+              <div
+                className={classes.gradientContent}
+                onClick={handleNavigateItemInfo}
+              >
+                {t("Orion NFT")}
+              </div>
             </div>
           </div>
         </div>
       </div>
       <CreateItemModal
-        headerTitle="New Item"
+        headerTitle={t("New Item")}
         show={createItemStatus}
         onClose={handleCreateItemClose}
       />

@@ -1,6 +1,7 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import textureImg from "./../../assets/svg/texture.png";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -70,7 +71,7 @@ export default function CollectionRow({
   count,
 }: Props) {
   const classes = useStyles();
-
+  const { t } = useTranslation();
   return (
     <div className={clsx(classes.root, className)} onClick={onClick}>
       {/* <img src={textureImg} className={classes.imgRoot} /> */}
@@ -80,7 +81,9 @@ export default function CollectionRow({
       </div>
       <div className={classes.infoContainer}>
         <div className={classes.name}>{name}</div>
-        <div className={classes.count}>{count} &nbsp; items</div>
+        <div className={classes.count}>
+          {count} &nbsp; {t("items")}
+        </div>
       </div>
     </div>
   );

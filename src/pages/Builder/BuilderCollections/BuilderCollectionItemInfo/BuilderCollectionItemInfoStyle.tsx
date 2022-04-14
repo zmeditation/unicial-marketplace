@@ -98,6 +98,9 @@ export const BuilderCollectionItemInfoStyle = makeStyles((theme: Theme) =>
     totalInfoContainer: {
       display: "flex",
       marginTop: "36px",
+      [theme.breakpoints.down(560)]: {
+        display: "block",
+      },
     },
     productContainer: {
       width: "303px",
@@ -106,10 +109,11 @@ export const BuilderCollectionItemInfoStyle = makeStyles((theme: Theme) =>
       flexDirection: "column",
       marginRight: "57px",
 
-      //   [theme.breakpoints.down(726)]: {
-      //     width: "140px",
-      //     height: "150px",
-      //   },
+      [theme.breakpoints.down(560)]: {
+        width: "100%",
+        height: "auto",
+        marginBottom: "30px",
+      },
     },
     yellowPart: {
       borderTopLeftRadius: "14px",
@@ -117,6 +121,9 @@ export const BuilderCollectionItemInfoStyle = makeStyles((theme: Theme) =>
       width: "100%",
       height: "20%",
       backgroundColor: "#DFB140",
+      [theme.breakpoints.down(560)]: {
+        height: "40px",
+      },
     },
     imgContainer: {
       width: "100%",
