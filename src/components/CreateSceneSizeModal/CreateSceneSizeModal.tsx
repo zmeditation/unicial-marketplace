@@ -93,7 +93,7 @@ export default function CreateSceneSizeModal({
           </div>
           <div className={classes.form_field}>
             <div className={classes.inputItem}>
-              <div className={classes.subheader_label}>{t("Rows")}</div>
+              <div className={classes.subheader_label}>{t("ROWS")}</div>
               <FormControl className={classes.widthFull}>
                 <StyledInput
                   type="number"
@@ -108,7 +108,7 @@ export default function CreateSceneSizeModal({
               <i className="fas fa-times"></i>
             </div>
             <div className={classes.inputItem}>
-              <div className={classes.subheader_label}>{t("Columns")}</div>
+              <div className={classes.subheader_label}>{t("COLUMNS")}</div>
               <FormControl className={classes.widthFull}>
                 <StyledInput
                   type="number"

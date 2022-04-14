@@ -201,7 +201,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     verticalAlign: "Top",
     opacity: "50%",
     marginBottom: "8px",
-    marginLeft: "15px",
   },
   inputItem: {
     width: "170px",
