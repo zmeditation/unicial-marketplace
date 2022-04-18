@@ -7,7 +7,7 @@ import {
   StyledTooltip,
 } from "./SettingPriceModalStyle";
 import clsx from "clsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PaytypeBtn from "../Base/PaytypeBtn";
 import YellowBtn from "./../../components/Base/YellowBtn";
 import FormControl from "@material-ui/core/FormControl";
@@ -74,6 +74,28 @@ export default function SettingPriceModal({ show, onClose }: Props) {
       );
     }
   };
+
+  const rootRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+    function handleClick(e: any) {
+      if (rootRef && rootRef.current && contentRef && contentRef.current) {
+        const root: any = rootRef.current;
+        const content: any = contentRef.current;
+        if (root.contains(e.target) && !content.contains(e.target)) {
+          onClose();
+        }
+      }
+    }
+  }, [rootRef, contentRef, show]);
   useEffect(() => {
     if (freeStatus === true) {
       setIsCorrectAddress(true);

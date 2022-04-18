@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useStyles } from "./CreateCollectionModalStyle";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FormControl } from "@material-ui/core";
 import { StyledInput } from "./../CreateSceneModal/CreateSceneModalStyle";
 import RoundBackBtn from "../Base/RoundBackBtn";
@@ -21,6 +21,28 @@ export default function CreateSceneModal({ show, onClose }: Props) {
   useEffect(() => {
     setShowStatus(show);
   }, [show]);
+
+  const rootRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+    function handleClick(e: any) {
+      if (rootRef && rootRef.current && contentRef && contentRef.current) {
+        const root: any = rootRef.current;
+        const content: any = contentRef.current;
+        if (root.contains(e.target) && !content.contains(e.target)) {
+          onClose();
+        }
+      }
+    }
+  }, [rootRef, contentRef, show]);
 
   return (
     <>

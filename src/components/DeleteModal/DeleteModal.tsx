@@ -1,8 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useStyles } from "./DeleteModalStyle";
-import { useState, useEffect } from "react";
-import { FormControl } from "@material-ui/core";
-import { StyledInput } from "./../CreateSceneModal/CreateSceneModalStyle";
+import { useState, useEffect, useRef } from "react";
 import BorderBtn from "../Base/BorderBtn";
 import YellowBtn from "../Base/YellowBtn";
 interface Props {
@@ -18,6 +16,29 @@ export default function DeleteModal({ show, onClose }: Props) {
   const handleName = (e: any) => {
     setName(e.target.value);
   };
+
+  const rootRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+    function handleClick(e: any) {
+      if (rootRef && rootRef.current && contentRef && contentRef.current) {
+        const root: any = rootRef.current;
+        const content: any = contentRef.current;
+        if (root.contains(e.target) && !content.contains(e.target)) {
+          onClose();
+        }
+      }
+    }
+  }, [rootRef, contentRef, show]);
+
   useEffect(() => {
     setShowStatus(show);
   }, [show]);
