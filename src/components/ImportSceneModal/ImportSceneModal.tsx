@@ -24,6 +24,11 @@ export default function ImportSceneModal({
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
     function handleClick(e: any) {
@@ -35,7 +40,7 @@ export default function ImportSceneModal({
         }
       }
     }
-  }, [rootRef, contentRef]);
+  }, [rootRef, contentRef, show]);
 
   const handleImportFile = (e: any) => {
     setImportData(e.target.files);

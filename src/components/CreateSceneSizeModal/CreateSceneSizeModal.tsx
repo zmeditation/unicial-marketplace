@@ -24,6 +24,14 @@ export default function CreateSceneSizeModal({
   const [graphic, setGraphic] = useState<any>();
   const [graphicStatus, setGraphicStatus] = useState(false);
 
+  useEffect(()=>{
+    if (show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  },[show])
+
   const handleRows = (e: any) => {
     setRow(e.target.value);
   };

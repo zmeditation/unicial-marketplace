@@ -28,6 +28,11 @@ export default function CreateSceneModal({
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
     function handleClick(e: any) {
@@ -39,7 +44,7 @@ export default function CreateSceneModal({
         }
       }
     }
-  }, [rootRef, contentRef]);
+  }, [rootRef, contentRef, show]);
 
   const handleName = (e: any) => {
     setName(e.target.value);
