@@ -25,6 +25,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "10px",
     textAlign: "center",
     zIndex: 99999,
+    maxHeight: "calc(100vh - 32px)",
+    overflow: "auto",
     [theme.breakpoints.down(900)]: {
       minWidth: "calc(100% - 32px) !important",
       width: "calc(100% - 32px) !important",

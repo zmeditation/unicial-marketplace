@@ -180,6 +180,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     padding: "0 48px",
     width: "100%",
+    maxHeight: "calc(100vh - 32px)",
+    overflow: "auto",
     [theme.breakpoints.down(769)]: {
       marginBottom: "30px",
     },
