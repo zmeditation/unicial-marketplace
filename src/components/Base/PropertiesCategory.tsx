@@ -275,7 +275,6 @@ const PropertiesCategory = ({
               })}
               <input
                 className={classes.input}
-                defaultValue={defaultInputValue}
                 value={inputValue}
                 onChange={(e) => handleInputChange(e)}
                 onKeyPress={(e) =>
