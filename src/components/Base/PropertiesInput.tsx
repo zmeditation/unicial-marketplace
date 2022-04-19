@@ -159,7 +159,11 @@ const PropertiesInput = ({
             onChange={(e) => handleChange(e)}></input>
         )}
         <div
-          className={dropdownStatus ? classes.listPanel : classes.displayNone}>
+          className={
+            dropdownStatus && item?.length !== 0
+              ? classes.listPanel
+              : classes.displayNone
+          }>
           {item?.map((val: any, key: any) => {
             return (
               <div
