@@ -1,4 +1,7 @@
 import { expired } from "../config/constant";
+import cids_1 from "cids";
+import multihashing_async_1 from "multihashing-async";
+import * as ipfs_only_hash_1 from "typestub-ipfs-only-hash";
 
 export function isEmptyObject(obj: any) {
   for (var key in obj) {
@@ -218,3 +221,28 @@ export const convertBidTypeArray = (array: any) => {
   data.ys = ys;
   return data;
 };
+
+export class Hashing {
+  calculateHashes = async (files: any) => {
+    const entries = Array.from(files).map(async (file) => ({
+      hash: await this.calculateBufferHash(file),
+      file,
+    }));
+    return Promise.all(entries);
+  };
+  /** Return the given buffer's hash */
+  calculateBufferHash = async (buffer: any) => {
+    const hash = await multihashing_async_1(buffer, "sha2-256");
+    return new cids_1(0, "dag-pb", hash).toBaseEncodedString();
+  };
+  calculateIPFSHash = async (buffer: any) => {
+    return ipfs_only_hash_1.of(buffer);
+  };
+  calculateIPFSHashes = async (files: any) => {
+    const entries = Array.from(files).map(async (file) => ({
+      hash: await this.calculateIPFSHash(file),
+      file,
+    }));
+    return Promise.all(entries);
+  };
+}

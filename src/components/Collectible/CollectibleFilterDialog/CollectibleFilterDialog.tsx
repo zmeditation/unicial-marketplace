@@ -74,7 +74,7 @@ export default function CollectibleFilterDialog() {
           {/* // */}
           <div className={classes.collectionSelectContainer}>
             <div className={classes.title}>{t("Network")}</div>
-            {/* network select start */}
+            {/* network select start */}ma
             <div>
               <BorderListDropdown data={networkData} />
             </div>

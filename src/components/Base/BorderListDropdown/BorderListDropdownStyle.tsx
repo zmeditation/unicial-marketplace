@@ -78,6 +78,13 @@ export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
+    menuItem: {
+      "&:hover": {
+        "& $listLabel": {
+          color: "white !important",
+        },
+      },
+    },
     rarityPart: {
       flex: "1 1 auto",
       alignItems: "flex-start",
@@ -135,7 +142,7 @@ export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
       color: "#96A1DB !important",
       marginLeft: "3px !important",
       padding: "0px !important",
-      "& .MuiSvgIcon-root":{
+      "& .MuiSvgIcon-root": {
         fontSize: "20px",
       },
     },
@@ -143,12 +150,12 @@ export const BorderListDropdownStyle = makeStyles((theme: Theme) =>
       color: "#96A1DB !important",
       marginLeft: "3px !important",
       padding: "0px !important",
-      "& .MuiSvgIcon-root":{
+      "& .MuiSvgIcon-root": {
         fontSize: "15px",
       },
     },
     displayNone: {
-      display: 'none'
+      display: "none",
     },
   })
 );
@@ -162,6 +169,7 @@ export const StyledCollectionPopover = withStyles({
     position: "absolute",
     minWidth: "168px",
     top: "419px",
+    marginTop: "7px",
   },
 })(Popover);
 

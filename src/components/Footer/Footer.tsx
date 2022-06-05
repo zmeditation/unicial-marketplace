@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Box } from "@material-ui/core";
 
@@ -8,19 +9,18 @@ import {
   StyledLanguagePopover,
   StyledMenuItem,
 } from "./FooterStyle";
-import JoySvg from "./../../assets/svg/joy.svg";
-import RobotSvg from "./../../assets/svg/robot.svg";
-import GithubSvg from "./../../assets/svg/github.svg";
-import DoveSvg from "./../../assets/svg/dove.svg";
 
 import ChinaSvg from "./../../assets/svg/China.svg";
 import EnglandSvg from "./../../assets/svg/England.svg";
 import SpainSvg from "./../../assets/svg/Spain.svg";
 import FooterTexture from "../../assets/svg/footer_texture.svg";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router";
 
 export default function Footer() {
   const classes = FooterStyle();
+  const location = useLocation();
+  const [footerShowStatus, setFooterShowStatus] = React.useState(true);
   const [countryLanguage, setCountryLanguage] = React.useState("");
   const [countryFlag, setCountryFlag] = React.useState("");
   const [languageIndex, setlanguageIndex] = React.useState(1);
@@ -64,6 +64,14 @@ export default function Footer() {
     }
   }, [languageIndex]);
 
+  React.useEffect(() => {
+    if (location.pathname.includes("/builder/builderItem-editor")) {
+      setFooterShowStatus(false);
+    }else{
+      setFooterShowStatus(true);
+    }
+  }, [location]);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -72,7 +80,11 @@ export default function Footer() {
 
   //flag end
   return (
-    <div className={classes.footer}>
+    <div
+      className={clsx(classes.footer, {
+        [classes.NoneDisplay]: footerShowStatus === false,
+      })}
+    >
       <img
         src={FooterTexture}
         alt="texture"

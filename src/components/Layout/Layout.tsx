@@ -1,5 +1,3 @@
-/** @format */
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Lands from "../../pages/Lands/Lands";
 import Auction from "../../pages/Auction/Auction";
@@ -52,6 +50,15 @@ import EstateEdit from "../../pages/MyStore/Estate/EstateAdd/EstateAdd";
 import { setSaleEstates } from "../../store/saleestates";
 import { getProvider } from "../../hooks/Common";
 import { selectLoginAddress } from "./../../store/auth/selectors";
+import BuilderScenes from "../../pages/Builder/BuilderScenes/BuilderScenes";
+import BuilderCollections from "../../pages/Builder/BuilderCollections/BuilderCollections";
+import BuilderLand from "../../pages/Builder/BuilderLand/BuilderLand";
+import BuilderNames from "../../pages/Builder/BuilderNames/BuilderNames";
+import ClaimName from "../../pages/Builder/BuilderNames/ClaimName/ClaimName";
+import BuilderCollectionEdit from "../../pages/Builder/BuilderCollections/BuilderCollectionEdit/BuilderCollectionEdit";
+import BuilderCollectionItemInfo from "../../pages/Builder/BuilderCollections/BuilderCollectionItemInfo/BuilderCollectionItemInfo";
+import ScenePools from "../../pages/Builder/BuilderScenes/ScenePools/ScenePools";
+import BuilderItemEditor from "../../pages/Builder/BuilderItemEditor/BuilderItemEditor";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -116,6 +123,30 @@ export default function Layout() {
         <Header />
         <Routes>
           <Route path="/" element={<MarketPlace />} />
+          <Route path="/builder/builder_scenes" element={<BuilderScenes />} />
+          <Route
+            path="/builder/builder_scenes/pools"
+            element={<ScenePools />}
+          />
+          <Route path="/builder/builder_land" element={<BuilderLand />} />
+          <Route path="/builder/builder_names" element={<BuilderNames />} />
+          <Route path="/builder/builder_claim_name" element={<ClaimName />} />
+          <Route
+            path="/builder/builder_collections"
+            element={<BuilderCollections />}
+          />
+          <Route
+            path="/builder/builder_collections/100"
+            element={<BuilderCollectionEdit />}
+          />
+          <Route
+            path="/builder/builder_items/200"
+            element={<BuilderCollectionItemInfo />}
+          />
+          <Route
+            path="/builder/builderItem-editor"
+            element={<BuilderItemEditor />}
+          />
           <Route path="/needsignin" element={<NeedSignIn />} />
           <Route path="/lands" element={<Lands />} />
           <Route path="/browse" element={<Collectibles />} />

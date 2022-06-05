@@ -28,6 +28,24 @@
   color: #61dafb;
 }
 
+input[type="file"] {
+  opacity: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+::-webkit-file-upload-button {
+  cursor: pointer;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

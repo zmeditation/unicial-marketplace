@@ -1,41 +1,15 @@
 import React, { useEffect } from "react";
 import { topTabIndex, searchbarIndex } from "../../config/constant";
 import { TopTabStyle, StyledTopTabBtn } from "./TopTabStyle";
-import LandFilterBtns from "../../components/Base/LandFilterBtns";
 import LandSearchbar from "../Mystore/LandSearchbar/LandSearchbar";
 import CollectibleSearchBar from "../Collectible/CollectibleSearchBar/CollectibleSearchBar";
 import MystoreSearchBar from "../Mystore/MystoreSearchBar/MystoreSearchBar";
 import OnSaleSearchBar from "../Mystore/OnSaleSearchbar/OnSaleSearchbar";
 import NamesSearchBar from "../Mystore/NamesSearchbar/NamesSearchbar";
 import { useLocation, useNavigate } from "react-router";
-import { withStyles } from "@material-ui/styles";
-import { Switch } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import OnSaleSwitch from "../Base/OnSaleSwitch";
 
-export const PurpleSwitch = withStyles({
-  root: {
-    height: "36px",
-    width: "55px",
-  },
-  switchBase: {
-    color: "#FF7C4C",
-    "&$checked": {
-      color: "#333B67",
-    },
-    "&$checked + $track": {
-      backgroundColor: "#333B67",
-    },
-    "&.Mui-checked:hover": {
-      backgroundColor: "unset",
-    },
-    "&.MuiIconButton-root:hover": {
-      backgroundColor: "unset",
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
 export default function TopTab() {
   const classes = TopTabStyle();
   const location = useLocation();
@@ -121,11 +95,6 @@ export default function TopTab() {
     }
   }, [searchbar_index, location]);
 
-  //on sale
-  const [state, setState] = React.useState({
-    checkedA: true,
-  });
-
   return (
     <>
       {location.pathname !== "/" && (
@@ -135,6 +104,7 @@ export default function TopTab() {
               <div className={classes.topbar}>
                 <div className={classes.tabsLeft}>
                   <StyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/lands")}
                     className={
                       toptab_index === topTabIndex.land
@@ -146,6 +116,7 @@ export default function TopTab() {
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
+                    disableRipple
                     onClick={() =>
                       handlehead(
                         "/browse?section=wearables&vendor=decentraland&page=1&sortBy=recently_listed&onlyOnSale=true"
@@ -161,6 +132,7 @@ export default function TopTab() {
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/account?section=collections")}
                     className={
                       toptab_index === topTabIndex.mystore
@@ -172,6 +144,7 @@ export default function TopTab() {
                   </StyledTopTabBtn>
 
                   <StyledTopTabBtn
+                    disableRipple
                     onClick={() => handlehead("/auction")}
                     className={
                       toptab_index === topTabIndex.auction

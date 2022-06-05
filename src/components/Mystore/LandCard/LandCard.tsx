@@ -61,8 +61,7 @@ export default function LandCard({
       getLandCount();
       getMetaData();
     }
-  }, []);
-
+  }, [tokenid]);
   return (
     <>
       <div className={classes.root} onClick={onClick}>

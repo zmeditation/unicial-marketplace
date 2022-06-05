@@ -9,7 +9,7 @@ import netModalReducer from "./netmodal/index";
 import saleParcelsReducer from "./saleparcels";
 import saleestatesReducer from "./saleestates";
 import parcelsReducer from "./parcels";
-import BidContractinfoReducer from "./bidContractData"
+import BidContractinfoReducer from "./bidContractData";
 import { getSaleParcelsAPI } from "./api/parcels";
 
 export const store = configureStore({

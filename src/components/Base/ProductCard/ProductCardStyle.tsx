@@ -13,6 +13,7 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       marginBottom: "20px",
       "&:hover": {
         transform: "translateY(-2px)",
+        cursor: "pointer",
       },
     },
     header: {
@@ -65,6 +66,9 @@ export const ProductCardStyle = makeStyles((theme: Theme) =>
       color: "white",
       marginBottom: "10px",
       paddingLeft: "8px",
+      textOverflow: "ellipsis",
+      overflow: "hidden",
+      whiteSpace: "nowrap",
     },
     bottom: {
       display: "flex",

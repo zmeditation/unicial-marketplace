@@ -1,8 +1,8 @@
-.c-display {
+/* .c-display {
   display: none;
-}
+} */
 .c-displayNone {
-  display: "none";
+  display: none;
 }
 .c-loaderWrapper {
   position: fixed;
@@ -48,7 +48,7 @@
   }
 }
 .c-spinner-loading {
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   align-items: flex-end;
 }
@@ -56,7 +56,7 @@
   color: #2d64f1;
   font-size: 20px;
   letter-spacing: 2px;
-  font-family: Open Sans;
+  font-family: Lato;
 }
 .c-spinner-dot1 {
   color: #2d64f1;

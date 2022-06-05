@@ -9,7 +9,7 @@ interface ProductCardProps {
   tagColor: string;
   tagLetter: string;
   productName: string;
-  category: string;
+  category?: string;
   price: number;
 }
 
